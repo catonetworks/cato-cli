@@ -1,0 +1,28 @@
+mutation networkConfigDnsUpdateServerSet ( $accountId:ID! $networkConfigDnsUpdateServerSetInput:NetworkConfigDnsUpdateServerSetInput!) {
+	networkConfig ( accountId:$accountId ) {
+		dns {
+			updateServerSet ( input:$networkConfigDnsUpdateServerSetInput   ) {
+				dnsServerSet {
+					id
+					name
+					server
+					audit {
+						updatedTime
+						updatedBy {
+							id
+							name
+							... on AdminRef {
+								id
+								name
+							}
+							... on ApiKeyRef {
+								id
+								name
+							}
+						}
+					}
+				}
+			}
+		}
+	}	
+}

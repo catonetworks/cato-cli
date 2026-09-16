@@ -1,0 +1,796 @@
+{
+    "args": {
+        "accountId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        }
+    },
+    "childOperations": {
+        "dns": {
+            "args": {},
+            "deprecationReason": null,
+            "description": "DNS write operations.",
+            "isDeprecated": false,
+            "name": "dns",
+            "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                    "kind": "OBJECT",
+                    "name": "NetworkConfigDnsMutations",
+                    "ofType": null
+                }
+            }
+        },
+        "updateSuffixSet": {
+            "args": {
+                "updateSuffixSet___input": {
+                    "defaultValue": null,
+                    "description": null,
+                    "id_str": "updateSuffixSet___input",
+                    "name": "input",
+                    "path": "updateSuffixSet.input",
+                    "requestStr": "$networkConfigDnsUpdateSuffixSetInput:NetworkConfigDnsUpdateSuffixSetInput! ",
+                    "required": true,
+                    "responseStr": "input:$networkConfigDnsUpdateSuffixSetInput ",
+                    "type": {
+                        "definition": {
+                            "description": "Input for updating existing DNS suffix sets, addressed by id.",
+                            "enumValues": null,
+                            "fields": null,
+                            "inputFields": {
+                                "dnsSuffixSet": {
+                                    "defaultValue": null,
+                                    "description": "The sets to update, addressed by id.",
+                                    "id_str": "updateSuffixSet___input___dnsSuffixSet",
+                                    "name": "dnsSuffixSet",
+                                    "path": "updateSuffixSet.input.dnsSuffixSet",
+                                    "requestStr": "$networkConfigDnsSuffixSetUpdateInput:[NetworkConfigDnsSuffixSetUpdateInput]! ",
+                                    "required": true,
+                                    "responseStr": "dnsSuffixSet:$networkConfigDnsSuffixSetUpdateInput ",
+                                    "type": {
+                                        "definition": {
+                                            "description": "Changes to an existing DNS suffix set, addressed by id. An omitted field is left unchanged.",
+                                            "enumValues": null,
+                                            "fields": null,
+                                            "inputFields": {
+                                                "id": {
+                                                    "defaultValue": null,
+                                                    "description": "Id of the set to update.",
+                                                    "id_str": "updateSuffixSet___input___dnsSuffixSet___id",
+                                                    "name": "id",
+                                                    "path": "updateSuffixSet.input.dnsSuffixSet.id",
+                                                    "requestStr": "$id:ID! ",
+                                                    "required": true,
+                                                    "responseStr": "id:$id ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "ID",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "id"
+                                                },
+                                                "name": {
+                                                    "defaultValue": null,
+                                                    "description": "Set name, unique within the account.",
+                                                    "id_str": "updateSuffixSet___input___dnsSuffixSet___name",
+                                                    "name": "name",
+                                                    "path": "updateSuffixSet.input.dnsSuffixSet.name",
+                                                    "requestStr": "$name:String ",
+                                                    "required": false,
+                                                    "responseStr": "name:$name ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "name"
+                                                },
+                                                "suffix": {
+                                                    "defaultValue": null,
+                                                    "description": "The set's full, ordered suffix list; replaces the stored one. Empty clears it.",
+                                                    "id_str": "updateSuffixSet___input___dnsSuffixSet___suffix",
+                                                    "name": "suffix",
+                                                    "path": "updateSuffixSet.input.dnsSuffixSet.suffix",
+                                                    "requestStr": "$suffix:[Domain] ",
+                                                    "required": false,
+                                                    "responseStr": "suffix:$suffix ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "LIST",
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "Domain",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "suffix"
+                                                }
+                                            },
+                                            "interfaces": null,
+                                            "kind": "INPUT_OBJECT",
+                                            "name": "NetworkConfigDnsSuffixSetUpdateInput",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "input_object",
+                                        "kind": [
+                                            "NON_NULL",
+                                            "LIST",
+                                            "NON_NULL",
+                                            "INPUT_OBJECT"
+                                        ],
+                                        "name": "NetworkConfigDnsSuffixSetUpdateInput",
+                                        "non_null": false
+                                    },
+                                    "varName": "networkConfigDnsSuffixSetUpdateInput"
+                                }
+                            },
+                            "interfaces": null,
+                            "kind": "INPUT_OBJECT",
+                            "name": "NetworkConfigDnsUpdateSuffixSetInput",
+                            "possibleTypes": null
+                        },
+                        "indexType": "input_object",
+                        "kind": [
+                            "NON_NULL",
+                            "INPUT_OBJECT"
+                        ],
+                        "name": "NetworkConfigDnsUpdateSuffixSetInput",
+                        "non_null": false
+                    },
+                    "varName": "networkConfigDnsUpdateSuffixSetInput"
+                }
+            },
+            "deprecationReason": null,
+            "description": "Partially update DNS suffix sets, addressed by id. Returns the updated sets.",
+            "isDeprecated": false,
+            "name": "updateSuffixSet",
+            "type": {
+                "kind": "OBJECT",
+                "name": "NetworkConfigDnsUpdateSuffixSetPayload",
+                "ofType": null
+            }
+        }
+    },
+    "deprecationReason": null,
+    "description": "All network-configuration write operations for an account.",
+    "fieldTypes": {},
+    "isDeprecated": false,
+    "name": "networkConfig",
+    "operationArgs": {
+        "accountId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        },
+        "networkConfigDnsUpdateSuffixSetInput": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "updateSuffixSet___input",
+            "name": "input",
+            "path": "updateSuffixSet.input",
+            "requestStr": "$networkConfigDnsUpdateSuffixSetInput:NetworkConfigDnsUpdateSuffixSetInput! ",
+            "required": true,
+            "responseStr": "input:$networkConfigDnsUpdateSuffixSetInput ",
+            "type": {
+                "definition": {
+                    "description": "Input for updating existing DNS suffix sets, addressed by id.",
+                    "enumValues": null,
+                    "fields": null,
+                    "inputFields": {
+                        "dnsSuffixSet": {
+                            "defaultValue": null,
+                            "description": "The sets to update, addressed by id.",
+                            "id_str": "updateSuffixSet___input___dnsSuffixSet",
+                            "name": "dnsSuffixSet",
+                            "path": "updateSuffixSet.input.dnsSuffixSet",
+                            "requestStr": "$networkConfigDnsSuffixSetUpdateInput:[NetworkConfigDnsSuffixSetUpdateInput]! ",
+                            "required": true,
+                            "responseStr": "dnsSuffixSet:$networkConfigDnsSuffixSetUpdateInput ",
+                            "type": {
+                                "definition": {
+                                    "description": "Changes to an existing DNS suffix set, addressed by id. An omitted field is left unchanged.",
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "id": {
+                                            "defaultValue": null,
+                                            "description": "Id of the set to update.",
+                                            "id_str": "updateSuffixSet___input___dnsSuffixSet___id",
+                                            "name": "id",
+                                            "path": "updateSuffixSet.input.dnsSuffixSet.id",
+                                            "requestStr": "$id:ID! ",
+                                            "required": true,
+                                            "responseStr": "id:$id ",
+                                            "type": {
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "SCALAR"
+                                                ],
+                                                "name": "ID",
+                                                "non_null": false
+                                            },
+                                            "varName": "id"
+                                        },
+                                        "name": {
+                                            "defaultValue": null,
+                                            "description": "Set name, unique within the account.",
+                                            "id_str": "updateSuffixSet___input___dnsSuffixSet___name",
+                                            "name": "name",
+                                            "path": "updateSuffixSet.input.dnsSuffixSet.name",
+                                            "requestStr": "$name:String ",
+                                            "required": false,
+                                            "responseStr": "name:$name ",
+                                            "type": {
+                                                "kind": [
+                                                    "SCALAR"
+                                                ],
+                                                "name": "String",
+                                                "non_null": false
+                                            },
+                                            "varName": "name"
+                                        },
+                                        "suffix": {
+                                            "defaultValue": null,
+                                            "description": "The set's full, ordered suffix list; replaces the stored one. Empty clears it.",
+                                            "id_str": "updateSuffixSet___input___dnsSuffixSet___suffix",
+                                            "name": "suffix",
+                                            "path": "updateSuffixSet.input.dnsSuffixSet.suffix",
+                                            "requestStr": "$suffix:[Domain] ",
+                                            "required": false,
+                                            "responseStr": "suffix:$suffix ",
+                                            "type": {
+                                                "kind": [
+                                                    "LIST",
+                                                    "NON_NULL",
+                                                    "SCALAR"
+                                                ],
+                                                "name": "Domain",
+                                                "non_null": false
+                                            },
+                                            "varName": "suffix"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "NetworkConfigDnsSuffixSetUpdateInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "NON_NULL",
+                                    "LIST",
+                                    "NON_NULL",
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "NetworkConfigDnsSuffixSetUpdateInput",
+                                "non_null": false
+                            },
+                            "varName": "networkConfigDnsSuffixSetUpdateInput"
+                        }
+                    },
+                    "interfaces": null,
+                    "kind": "INPUT_OBJECT",
+                    "name": "NetworkConfigDnsUpdateSuffixSetInput",
+                    "possibleTypes": null
+                },
+                "indexType": "input_object",
+                "kind": [
+                    "NON_NULL",
+                    "INPUT_OBJECT"
+                ],
+                "name": "NetworkConfigDnsUpdateSuffixSetInput",
+                "non_null": false
+            },
+            "varName": "networkConfigDnsUpdateSuffixSetInput"
+        }
+    },
+    "path": "mutation.networkConfig.dns.updateSuffixSet",
+    "type": {
+        "definition": {
+            "description": "Network-configuration write operations.",
+            "enumValues": null,
+            "fields": {
+                "dns": {
+                    "args": {},
+                    "deprecationReason": null,
+                    "description": "DNS write operations.",
+                    "id_str": "dns",
+                    "isDeprecated": false,
+                    "name": "dns",
+                    "path": "dns",
+                    "requestStr": "$networkConfigDnsMutations:NetworkConfigDnsMutations! ",
+                    "required": true,
+                    "responseStr": "dns:$networkConfigDnsMutations ",
+                    "type": {
+                        "definition": {
+                            "description": "DNS write operations for the account.",
+                            "enumValues": null,
+                            "fields": {
+                                "updateSuffixSet": {
+                                    "args": {
+                                        "updateSuffixSet___input": {
+                                            "defaultValue": null,
+                                            "description": null,
+                                            "id_str": "updateSuffixSet___input",
+                                            "name": "input",
+                                            "path": "updateSuffixSet.input",
+                                            "requestStr": "$networkConfigDnsUpdateSuffixSetInput:NetworkConfigDnsUpdateSuffixSetInput! ",
+                                            "required": true,
+                                            "responseStr": "input:$networkConfigDnsUpdateSuffixSetInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": "Input for updating existing DNS suffix sets, addressed by id.",
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "dnsSuffixSet": {
+                                                            "defaultValue": null,
+                                                            "description": "The sets to update, addressed by id.",
+                                                            "id_str": "updateSuffixSet___input___dnsSuffixSet",
+                                                            "name": "dnsSuffixSet",
+                                                            "path": "updateSuffixSet.input.dnsSuffixSet",
+                                                            "requestStr": "$networkConfigDnsSuffixSetUpdateInput:[NetworkConfigDnsSuffixSetUpdateInput]! ",
+                                                            "required": true,
+                                                            "responseStr": "dnsSuffixSet:$networkConfigDnsSuffixSetUpdateInput ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": "Changes to an existing DNS suffix set, addressed by id. An omitted field is left unchanged.",
+                                                                    "enumValues": null,
+                                                                    "fields": null,
+                                                                    "inputFields": {
+                                                                        "id": {
+                                                                            "defaultValue": null,
+                                                                            "description": "Id of the set to update.",
+                                                                            "id_str": "updateSuffixSet___input___dnsSuffixSet___id",
+                                                                            "name": "id",
+                                                                            "path": "updateSuffixSet.input.dnsSuffixSet.id",
+                                                                            "requestStr": "$id:ID! ",
+                                                                            "required": true,
+                                                                            "responseStr": "id:$id ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "NON_NULL",
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "ID",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "id"
+                                                                        },
+                                                                        "name": {
+                                                                            "defaultValue": null,
+                                                                            "description": "Set name, unique within the account.",
+                                                                            "id_str": "updateSuffixSet___input___dnsSuffixSet___name",
+                                                                            "name": "name",
+                                                                            "path": "updateSuffixSet.input.dnsSuffixSet.name",
+                                                                            "requestStr": "$name:String ",
+                                                                            "required": false,
+                                                                            "responseStr": "name:$name ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "String",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "name"
+                                                                        },
+                                                                        "suffix": {
+                                                                            "defaultValue": null,
+                                                                            "description": "The set's full, ordered suffix list; replaces the stored one. Empty clears it.",
+                                                                            "id_str": "updateSuffixSet___input___dnsSuffixSet___suffix",
+                                                                            "name": "suffix",
+                                                                            "path": "updateSuffixSet.input.dnsSuffixSet.suffix",
+                                                                            "requestStr": "$suffix:[Domain] ",
+                                                                            "required": false,
+                                                                            "responseStr": "suffix:$suffix ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "LIST",
+                                                                                    "NON_NULL",
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "Domain",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "suffix"
+                                                                        }
+                                                                    },
+                                                                    "interfaces": null,
+                                                                    "kind": "INPUT_OBJECT",
+                                                                    "name": "NetworkConfigDnsSuffixSetUpdateInput",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "input_object",
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "LIST",
+                                                                    "NON_NULL",
+                                                                    "INPUT_OBJECT"
+                                                                ],
+                                                                "name": "NetworkConfigDnsSuffixSetUpdateInput",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "networkConfigDnsSuffixSetUpdateInput"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "NetworkConfigDnsUpdateSuffixSetInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "NetworkConfigDnsUpdateSuffixSetInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "networkConfigDnsUpdateSuffixSetInput"
+                                        }
+                                    },
+                                    "deprecationReason": null,
+                                    "description": "Partially update DNS suffix sets, addressed by id. Returns the updated sets.",
+                                    "id_str": "dns___updateSuffixSet",
+                                    "isDeprecated": false,
+                                    "name": "updateSuffixSet",
+                                    "path": "dns.updateSuffixSet",
+                                    "requestStr": "$networkConfigDnsUpdateSuffixSetPayload:NetworkConfigDnsUpdateSuffixSetPayload ",
+                                    "required": false,
+                                    "responseStr": "updateSuffixSet:$networkConfigDnsUpdateSuffixSetPayload ",
+                                    "type": {
+                                        "definition": {
+                                            "description": "Result of updating DNS suffix sets.",
+                                            "enumValues": null,
+                                            "fields": {
+                                                "dnsSuffixSet": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "The updated sets.",
+                                                    "id_str": "dns___updateSuffixSet___dnsSuffixSet",
+                                                    "isDeprecated": false,
+                                                    "name": "dnsSuffixSet",
+                                                    "path": "dns.updateSuffixSet.dnsSuffixSet",
+                                                    "requestStr": "$networkConfigDnsSuffixSet:[NetworkConfigDnsSuffixSet]! ",
+                                                    "required": true,
+                                                    "responseStr": "dnsSuffixSet:$networkConfigDnsSuffixSet ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": "A named, ordered list of DNS search suffixes a DHCP profile can hand out.",
+                                                            "enumValues": null,
+                                                            "fields": {
+                                                                "audit": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Who last changed this set, and when.",
+                                                                    "id_str": "dns___updateSuffixSet___dnsSuffixSet___audit",
+                                                                    "isDeprecated": false,
+                                                                    "name": "audit",
+                                                                    "path": "dns.updateSuffixSet.dnsSuffixSet.audit",
+                                                                    "requestStr": "$auditingMetadata:AuditingMetadata ",
+                                                                    "required": false,
+                                                                    "responseStr": "audit:$auditingMetadata ",
+                                                                    "type": {
+                                                                        "definition": {
+                                                                            "description": null,
+                                                                            "enumValues": null,
+                                                                            "fields": {
+                                                                                "updatedBy": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "id_str": "dns___updateSuffixSet___dnsSuffixSet___audit___updatedBy",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "updatedBy",
+                                                                                    "path": "dns.updateSuffixSet.dnsSuffixSet.audit.updatedBy",
+                                                                                    "requestStr": "$actorRef:ActorRef! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "updatedBy:$actorRef ",
+                                                                                    "type": {
+                                                                                        "definition": {
+                                                                                            "description": null,
+                                                                                            "enumValues": null,
+                                                                                            "fields": {
+                                                                                                "id": {
+                                                                                                    "args": {},
+                                                                                                    "deprecationReason": null,
+                                                                                                    "description": null,
+                                                                                                    "id_str": "dns___updateSuffixSet___dnsSuffixSet___audit___updatedBy___id",
+                                                                                                    "isDeprecated": false,
+                                                                                                    "name": "id",
+                                                                                                    "path": "dns.updateSuffixSet.dnsSuffixSet.audit.updatedBy.id",
+                                                                                                    "requestStr": "$id:ID! ",
+                                                                                                    "required": true,
+                                                                                                    "responseStr": "id:$id ",
+                                                                                                    "type": {
+                                                                                                        "kind": [
+                                                                                                            "NON_NULL",
+                                                                                                            "SCALAR"
+                                                                                                        ],
+                                                                                                        "name": "ID",
+                                                                                                        "non_null": false
+                                                                                                    },
+                                                                                                    "varName": "id"
+                                                                                                },
+                                                                                                "name": {
+                                                                                                    "args": {},
+                                                                                                    "deprecationReason": null,
+                                                                                                    "description": null,
+                                                                                                    "id_str": "dns___updateSuffixSet___dnsSuffixSet___audit___updatedBy___name",
+                                                                                                    "isDeprecated": false,
+                                                                                                    "name": "name",
+                                                                                                    "path": "dns.updateSuffixSet.dnsSuffixSet.audit.updatedBy.name",
+                                                                                                    "requestStr": "$name:String! ",
+                                                                                                    "required": true,
+                                                                                                    "responseStr": "name:$name ",
+                                                                                                    "type": {
+                                                                                                        "kind": [
+                                                                                                            "NON_NULL",
+                                                                                                            "SCALAR"
+                                                                                                        ],
+                                                                                                        "name": "String",
+                                                                                                        "non_null": false
+                                                                                                    },
+                                                                                                    "varName": "name"
+                                                                                                }
+                                                                                            },
+                                                                                            "inputFields": null,
+                                                                                            "interfaces": [
+                                                                                                {
+                                                                                                    "kind": "INTERFACE",
+                                                                                                    "name": "ObjectRef",
+                                                                                                    "ofType": null
+                                                                                                }
+                                                                                            ],
+                                                                                            "kind": "INTERFACE",
+                                                                                            "name": "ActorRef",
+                                                                                            "possibleTypes": {
+                                                                                                "AdminRef": {
+                                                                                                    "description": "A reference identifying the Admin object. ID: Unique Admin Identifier, Name: The Admin Name",
+                                                                                                    "enumValues": null,
+                                                                                                    "fields": {},
+                                                                                                    "inputFields": null,
+                                                                                                    "interfaces": {},
+                                                                                                    "kind": "OBJECT",
+                                                                                                    "name": "AdminRef",
+                                                                                                    "possibleTypes": null
+                                                                                                },
+                                                                                                "ApiKeyRef": {
+                                                                                                    "description": "A reference identifying the ApiKey object. ID: Unique ApiKey Identifier, Name: The ApiKey Name",
+                                                                                                    "enumValues": null,
+                                                                                                    "fields": {},
+                                                                                                    "inputFields": null,
+                                                                                                    "interfaces": {},
+                                                                                                    "kind": "OBJECT",
+                                                                                                    "name": "ApiKeyRef",
+                                                                                                    "possibleTypes": null
+                                                                                                }
+                                                                                            }
+                                                                                        },
+                                                                                        "indexType": "interface",
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "INTERFACE"
+                                                                                        ],
+                                                                                        "name": "ActorRef",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "actorRef"
+                                                                                },
+                                                                                "updatedTime": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "id_str": "dns___updateSuffixSet___dnsSuffixSet___audit___updatedTime",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "updatedTime",
+                                                                                    "path": "dns.updateSuffixSet.dnsSuffixSet.audit.updatedTime",
+                                                                                    "requestStr": "$updatedTime:DateTime! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "updatedTime:$updatedTime ",
+                                                                                    "type": {
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "SCALAR"
+                                                                                        ],
+                                                                                        "name": "DateTime",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "updatedTime"
+                                                                                }
+                                                                            },
+                                                                            "inputFields": null,
+                                                                            "interfaces": {},
+                                                                            "kind": "OBJECT",
+                                                                            "name": "AuditingMetadata",
+                                                                            "possibleTypes": null
+                                                                        },
+                                                                        "indexType": "object",
+                                                                        "kind": [
+                                                                            "OBJECT"
+                                                                        ],
+                                                                        "name": "AuditingMetadata",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "auditingMetadata"
+                                                                },
+                                                                "id": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Globally-unique, opaque identifier for the set.",
+                                                                    "id_str": "dns___updateSuffixSet___dnsSuffixSet___id",
+                                                                    "isDeprecated": false,
+                                                                    "name": "id",
+                                                                    "path": "dns.updateSuffixSet.dnsSuffixSet.id",
+                                                                    "requestStr": "$id:ID! ",
+                                                                    "required": true,
+                                                                    "responseStr": "id:$id ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "ID",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "id"
+                                                                },
+                                                                "name": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Set name, unique within the account.",
+                                                                    "id_str": "dns___updateSuffixSet___dnsSuffixSet___name",
+                                                                    "isDeprecated": false,
+                                                                    "name": "name",
+                                                                    "path": "dns.updateSuffixSet.dnsSuffixSet.name",
+                                                                    "requestStr": "$name:String! ",
+                                                                    "required": true,
+                                                                    "responseStr": "name:$name ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "String",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "name"
+                                                                },
+                                                                "suffix": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "The ordered DNS search suffixes in the set.",
+                                                                    "id_str": "dns___updateSuffixSet___dnsSuffixSet___suffix",
+                                                                    "isDeprecated": false,
+                                                                    "name": "suffix",
+                                                                    "path": "dns.updateSuffixSet.dnsSuffixSet.suffix",
+                                                                    "requestStr": "$suffix:[Domain]! ",
+                                                                    "required": true,
+                                                                    "responseStr": "suffix:$suffix ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "LIST",
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "Domain",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "suffix"
+                                                                }
+                                                            },
+                                                            "inputFields": null,
+                                                            "interfaces": {},
+                                                            "kind": "OBJECT",
+                                                            "name": "NetworkConfigDnsSuffixSet",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "object",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "LIST",
+                                                            "NON_NULL",
+                                                            "OBJECT"
+                                                        ],
+                                                        "name": "NetworkConfigDnsSuffixSet",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "networkConfigDnsSuffixSet"
+                                                }
+                                            },
+                                            "inputFields": null,
+                                            "interfaces": {},
+                                            "kind": "OBJECT",
+                                            "name": "NetworkConfigDnsUpdateSuffixSetPayload",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "object",
+                                        "kind": [
+                                            "OBJECT"
+                                        ],
+                                        "name": "NetworkConfigDnsUpdateSuffixSetPayload",
+                                        "non_null": false
+                                    },
+                                    "varName": "networkConfigDnsUpdateSuffixSetPayload"
+                                }
+                            },
+                            "inputFields": null,
+                            "interfaces": {},
+                            "kind": "OBJECT",
+                            "name": "NetworkConfigDnsMutations",
+                            "possibleTypes": null
+                        },
+                        "indexType": "object",
+                        "kind": [
+                            "NON_NULL",
+                            "OBJECT"
+                        ],
+                        "name": "NetworkConfigDnsMutations",
+                        "non_null": false
+                    },
+                    "varName": "networkConfigDnsMutations"
+                }
+            },
+            "inputFields": null,
+            "interfaces": [],
+            "kind": "OBJECT",
+            "name": "NetworkConfigMutations",
+            "possibleTypes": null
+        },
+        "indexType": "object",
+        "kind": [
+            "OBJECT"
+        ],
+        "name": "NetworkConfigMutations",
+        "non_null": false
+    },
+    "variablesPayload": {
+        "networkConfigDnsUpdateSuffixSetInput": {
+            "dnsSuffixSet": {
+                "id": "id",
+                "name": "string",
+                "suffix": [
+                    "example1",
+                    "example2"
+                ]
+            }
+        }
+    }
+}

@@ -1,0 +1,12 @@
+query networkConfigDnsSiteSettings ( $accountId:ID! $siteRefInput:SiteRefInput!) {
+	networkConfig ( accountId:$accountId ) {
+		dns {
+			siteSettings ( site:$siteRefInput   ) {
+				siteId
+				primaryServer
+				secondaryServer
+				suffix
+			}
+		}
+	}	
+}

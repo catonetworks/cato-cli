@@ -1,0 +1,18 @@
+query networkConfigDnsServerSet ( $accountId:ID! $networkConfigDnsServerSetRefInput:NetworkConfigDnsServerSetRefInput!) {
+	networkConfig ( accountId:$accountId ) {
+		dns {
+			serverSet ( input:$networkConfigDnsServerSetRefInput   ) {
+				id
+				name
+				server
+				audit {
+					updatedTime
+					updatedBy {
+						id
+						name
+					}
+				}
+			}
+		}
+	}	
+}

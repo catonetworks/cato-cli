@@ -1,0 +1,644 @@
+{
+    "args": {
+        "accountId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        }
+    },
+    "childOperations": {
+        "dhcp": {
+            "args": {},
+            "deprecationReason": null,
+            "description": "DHCP write operations.",
+            "isDeprecated": false,
+            "name": "dhcp",
+            "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                    "kind": "OBJECT",
+                    "name": "NetworkConfigDhcpMutations",
+                    "ofType": null
+                }
+            }
+        },
+        "setRelayGroup": {
+            "args": {
+                "setRelayGroup___input": {
+                    "defaultValue": null,
+                    "description": null,
+                    "id_str": "setRelayGroup___input",
+                    "name": "input",
+                    "path": "setRelayGroup.input",
+                    "requestStr": "$networkConfigDhcpSetRelayGroupInput:NetworkConfigDhcpSetRelayGroupInput! ",
+                    "required": true,
+                    "responseStr": "input:$networkConfigDhcpSetRelayGroupInput ",
+                    "type": {
+                        "definition": {
+                            "description": "Input for replacing the whole DHCP relay-group catalog.",
+                            "enumValues": null,
+                            "fields": null,
+                            "inputFields": {
+                                "relayGroup": {
+                                    "defaultValue": null,
+                                    "description": "The full desired relay-group list.",
+                                    "id_str": "setRelayGroup___input___relayGroup",
+                                    "name": "relayGroup",
+                                    "path": "setRelayGroup.input.relayGroup",
+                                    "requestStr": "$networkConfigDhcpRelayGroupUpsertInput:[NetworkConfigDhcpRelayGroupUpsertInput]! ",
+                                    "required": true,
+                                    "responseStr": "relayGroup:$networkConfigDhcpRelayGroupUpsertInput ",
+                                    "type": {
+                                        "definition": {
+                                            "description": "A desired DHCP relay group for setRelayGroup. With an id it updates the existing group; without an id a new group is created.",
+                                            "enumValues": null,
+                                            "fields": null,
+                                            "inputFields": {
+                                                "id": {
+                                                    "defaultValue": null,
+                                                    "description": "Id of an existing relay group to keep/update; omit to create a new group.",
+                                                    "id_str": "setRelayGroup___input___relayGroup___id",
+                                                    "name": "id",
+                                                    "path": "setRelayGroup.input.relayGroup.id",
+                                                    "requestStr": "$id:ID ",
+                                                    "required": false,
+                                                    "responseStr": "id:$id ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "ID",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "id"
+                                                },
+                                                "name": {
+                                                    "defaultValue": null,
+                                                    "description": "Group name, unique within the account.",
+                                                    "id_str": "setRelayGroup___input___relayGroup___name",
+                                                    "name": "name",
+                                                    "path": "setRelayGroup.input.relayGroup.name",
+                                                    "requestStr": "$name:String! ",
+                                                    "required": true,
+                                                    "responseStr": "name:$name ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "name"
+                                                },
+                                                "server": {
+                                                    "defaultValue": null,
+                                                    "description": "The relay server addresses that make up this group.",
+                                                    "id_str": "setRelayGroup___input___relayGroup___server",
+                                                    "name": "server",
+                                                    "path": "setRelayGroup.input.relayGroup.server",
+                                                    "requestStr": "$server:[IPAddress]! ",
+                                                    "required": true,
+                                                    "responseStr": "server:$server ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "LIST",
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "IPAddress",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "server"
+                                                }
+                                            },
+                                            "interfaces": null,
+                                            "kind": "INPUT_OBJECT",
+                                            "name": "NetworkConfigDhcpRelayGroupUpsertInput",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "input_object",
+                                        "kind": [
+                                            "NON_NULL",
+                                            "LIST",
+                                            "NON_NULL",
+                                            "INPUT_OBJECT"
+                                        ],
+                                        "name": "NetworkConfigDhcpRelayGroupUpsertInput",
+                                        "non_null": false
+                                    },
+                                    "varName": "networkConfigDhcpRelayGroupUpsertInput"
+                                }
+                            },
+                            "interfaces": null,
+                            "kind": "INPUT_OBJECT",
+                            "name": "NetworkConfigDhcpSetRelayGroupInput",
+                            "possibleTypes": null
+                        },
+                        "indexType": "input_object",
+                        "kind": [
+                            "NON_NULL",
+                            "INPUT_OBJECT"
+                        ],
+                        "name": "NetworkConfigDhcpSetRelayGroupInput",
+                        "non_null": false
+                    },
+                    "varName": "networkConfigDhcpSetRelayGroupInput"
+                }
+            },
+            "deprecationReason": null,
+            "description": "Replace the whole DHCP relay-group catalog with the given list. Items with an id update the existing group; items without an id are created; existing groups missing from the list are deleted (rejected if a missing group is in use). Returns the resulting collection.",
+            "isDeprecated": false,
+            "name": "setRelayGroup",
+            "type": {
+                "kind": "OBJECT",
+                "name": "NetworkConfigDhcpSetRelayGroupPayload",
+                "ofType": null
+            }
+        }
+    },
+    "deprecationReason": null,
+    "description": "All network-configuration write operations for an account.",
+    "fieldTypes": {},
+    "isDeprecated": false,
+    "name": "networkConfig",
+    "operationArgs": {
+        "accountId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        },
+        "networkConfigDhcpSetRelayGroupInput": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "setRelayGroup___input",
+            "name": "input",
+            "path": "setRelayGroup.input",
+            "requestStr": "$networkConfigDhcpSetRelayGroupInput:NetworkConfigDhcpSetRelayGroupInput! ",
+            "required": true,
+            "responseStr": "input:$networkConfigDhcpSetRelayGroupInput ",
+            "type": {
+                "definition": {
+                    "description": "Input for replacing the whole DHCP relay-group catalog.",
+                    "enumValues": null,
+                    "fields": null,
+                    "inputFields": {
+                        "relayGroup": {
+                            "defaultValue": null,
+                            "description": "The full desired relay-group list.",
+                            "id_str": "setRelayGroup___input___relayGroup",
+                            "name": "relayGroup",
+                            "path": "setRelayGroup.input.relayGroup",
+                            "requestStr": "$networkConfigDhcpRelayGroupUpsertInput:[NetworkConfigDhcpRelayGroupUpsertInput]! ",
+                            "required": true,
+                            "responseStr": "relayGroup:$networkConfigDhcpRelayGroupUpsertInput ",
+                            "type": {
+                                "definition": {
+                                    "description": "A desired DHCP relay group for setRelayGroup. With an id it updates the existing group; without an id a new group is created.",
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "id": {
+                                            "defaultValue": null,
+                                            "description": "Id of an existing relay group to keep/update; omit to create a new group.",
+                                            "id_str": "setRelayGroup___input___relayGroup___id",
+                                            "name": "id",
+                                            "path": "setRelayGroup.input.relayGroup.id",
+                                            "requestStr": "$id:ID ",
+                                            "required": false,
+                                            "responseStr": "id:$id ",
+                                            "type": {
+                                                "kind": [
+                                                    "SCALAR"
+                                                ],
+                                                "name": "ID",
+                                                "non_null": false
+                                            },
+                                            "varName": "id"
+                                        },
+                                        "name": {
+                                            "defaultValue": null,
+                                            "description": "Group name, unique within the account.",
+                                            "id_str": "setRelayGroup___input___relayGroup___name",
+                                            "name": "name",
+                                            "path": "setRelayGroup.input.relayGroup.name",
+                                            "requestStr": "$name:String! ",
+                                            "required": true,
+                                            "responseStr": "name:$name ",
+                                            "type": {
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "SCALAR"
+                                                ],
+                                                "name": "String",
+                                                "non_null": false
+                                            },
+                                            "varName": "name"
+                                        },
+                                        "server": {
+                                            "defaultValue": null,
+                                            "description": "The relay server addresses that make up this group.",
+                                            "id_str": "setRelayGroup___input___relayGroup___server",
+                                            "name": "server",
+                                            "path": "setRelayGroup.input.relayGroup.server",
+                                            "requestStr": "$server:[IPAddress]! ",
+                                            "required": true,
+                                            "responseStr": "server:$server ",
+                                            "type": {
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "LIST",
+                                                    "NON_NULL",
+                                                    "SCALAR"
+                                                ],
+                                                "name": "IPAddress",
+                                                "non_null": false
+                                            },
+                                            "varName": "server"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "NetworkConfigDhcpRelayGroupUpsertInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "NON_NULL",
+                                    "LIST",
+                                    "NON_NULL",
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "NetworkConfigDhcpRelayGroupUpsertInput",
+                                "non_null": false
+                            },
+                            "varName": "networkConfigDhcpRelayGroupUpsertInput"
+                        }
+                    },
+                    "interfaces": null,
+                    "kind": "INPUT_OBJECT",
+                    "name": "NetworkConfigDhcpSetRelayGroupInput",
+                    "possibleTypes": null
+                },
+                "indexType": "input_object",
+                "kind": [
+                    "NON_NULL",
+                    "INPUT_OBJECT"
+                ],
+                "name": "NetworkConfigDhcpSetRelayGroupInput",
+                "non_null": false
+            },
+            "varName": "networkConfigDhcpSetRelayGroupInput"
+        }
+    },
+    "path": "mutation.networkConfig.dhcp.setRelayGroup",
+    "type": {
+        "definition": {
+            "description": "Network-configuration write operations.",
+            "enumValues": null,
+            "fields": {
+                "dhcp": {
+                    "args": {},
+                    "deprecationReason": null,
+                    "description": "DHCP write operations.",
+                    "id_str": "dhcp",
+                    "isDeprecated": false,
+                    "name": "dhcp",
+                    "path": "dhcp",
+                    "requestStr": "$networkConfigDhcpMutations:NetworkConfigDhcpMutations! ",
+                    "required": true,
+                    "responseStr": "dhcp:$networkConfigDhcpMutations ",
+                    "type": {
+                        "definition": {
+                            "description": "DHCP write operations for the account.",
+                            "enumValues": null,
+                            "fields": {
+                                "setRelayGroup": {
+                                    "args": {
+                                        "setRelayGroup___input": {
+                                            "defaultValue": null,
+                                            "description": null,
+                                            "id_str": "setRelayGroup___input",
+                                            "name": "input",
+                                            "path": "setRelayGroup.input",
+                                            "requestStr": "$networkConfigDhcpSetRelayGroupInput:NetworkConfigDhcpSetRelayGroupInput! ",
+                                            "required": true,
+                                            "responseStr": "input:$networkConfigDhcpSetRelayGroupInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": "Input for replacing the whole DHCP relay-group catalog.",
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "relayGroup": {
+                                                            "defaultValue": null,
+                                                            "description": "The full desired relay-group list.",
+                                                            "id_str": "setRelayGroup___input___relayGroup",
+                                                            "name": "relayGroup",
+                                                            "path": "setRelayGroup.input.relayGroup",
+                                                            "requestStr": "$networkConfigDhcpRelayGroupUpsertInput:[NetworkConfigDhcpRelayGroupUpsertInput]! ",
+                                                            "required": true,
+                                                            "responseStr": "relayGroup:$networkConfigDhcpRelayGroupUpsertInput ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": "A desired DHCP relay group for setRelayGroup. With an id it updates the existing group; without an id a new group is created.",
+                                                                    "enumValues": null,
+                                                                    "fields": null,
+                                                                    "inputFields": {
+                                                                        "id": {
+                                                                            "defaultValue": null,
+                                                                            "description": "Id of an existing relay group to keep/update; omit to create a new group.",
+                                                                            "id_str": "setRelayGroup___input___relayGroup___id",
+                                                                            "name": "id",
+                                                                            "path": "setRelayGroup.input.relayGroup.id",
+                                                                            "requestStr": "$id:ID ",
+                                                                            "required": false,
+                                                                            "responseStr": "id:$id ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "ID",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "id"
+                                                                        },
+                                                                        "name": {
+                                                                            "defaultValue": null,
+                                                                            "description": "Group name, unique within the account.",
+                                                                            "id_str": "setRelayGroup___input___relayGroup___name",
+                                                                            "name": "name",
+                                                                            "path": "setRelayGroup.input.relayGroup.name",
+                                                                            "requestStr": "$name:String! ",
+                                                                            "required": true,
+                                                                            "responseStr": "name:$name ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "NON_NULL",
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "String",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "name"
+                                                                        },
+                                                                        "server": {
+                                                                            "defaultValue": null,
+                                                                            "description": "The relay server addresses that make up this group.",
+                                                                            "id_str": "setRelayGroup___input___relayGroup___server",
+                                                                            "name": "server",
+                                                                            "path": "setRelayGroup.input.relayGroup.server",
+                                                                            "requestStr": "$server:[IPAddress]! ",
+                                                                            "required": true,
+                                                                            "responseStr": "server:$server ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "NON_NULL",
+                                                                                    "LIST",
+                                                                                    "NON_NULL",
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "IPAddress",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "server"
+                                                                        }
+                                                                    },
+                                                                    "interfaces": null,
+                                                                    "kind": "INPUT_OBJECT",
+                                                                    "name": "NetworkConfigDhcpRelayGroupUpsertInput",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "input_object",
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "LIST",
+                                                                    "NON_NULL",
+                                                                    "INPUT_OBJECT"
+                                                                ],
+                                                                "name": "NetworkConfigDhcpRelayGroupUpsertInput",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "networkConfigDhcpRelayGroupUpsertInput"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "NetworkConfigDhcpSetRelayGroupInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "NetworkConfigDhcpSetRelayGroupInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "networkConfigDhcpSetRelayGroupInput"
+                                        }
+                                    },
+                                    "deprecationReason": null,
+                                    "description": "Replace the whole DHCP relay-group catalog with the given list. Items with an id update the existing group; items without an id are created; existing groups missing from the list are deleted (rejected if a missing group is in use). Returns the resulting collection.",
+                                    "id_str": "dhcp___setRelayGroup",
+                                    "isDeprecated": false,
+                                    "name": "setRelayGroup",
+                                    "path": "dhcp.setRelayGroup",
+                                    "requestStr": "$networkConfigDhcpSetRelayGroupPayload:NetworkConfigDhcpSetRelayGroupPayload ",
+                                    "required": false,
+                                    "responseStr": "setRelayGroup:$networkConfigDhcpSetRelayGroupPayload ",
+                                    "type": {
+                                        "definition": {
+                                            "description": "Result of replacing the DHCP relay-group catalog.",
+                                            "enumValues": null,
+                                            "fields": {
+                                                "relayGroup": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "The resulting relay-group catalog.",
+                                                    "id_str": "dhcp___setRelayGroup___relayGroup",
+                                                    "isDeprecated": false,
+                                                    "name": "relayGroup",
+                                                    "path": "dhcp.setRelayGroup.relayGroup",
+                                                    "requestStr": "$networkConfigDhcpRelayGroup:[NetworkConfigDhcpRelayGroup]! ",
+                                                    "required": true,
+                                                    "responseStr": "relayGroup:$networkConfigDhcpRelayGroup ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": "A named group of DHCP relay servers.",
+                                                            "enumValues": null,
+                                                            "fields": {
+                                                                "id": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Globally-unique, opaque identifier for the relay group.",
+                                                                    "id_str": "dhcp___setRelayGroup___relayGroup___id",
+                                                                    "isDeprecated": false,
+                                                                    "name": "id",
+                                                                    "path": "dhcp.setRelayGroup.relayGroup.id",
+                                                                    "requestStr": "$id:ID! ",
+                                                                    "required": true,
+                                                                    "responseStr": "id:$id ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "ID",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "id"
+                                                                },
+                                                                "name": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Group name, unique within the account.",
+                                                                    "id_str": "dhcp___setRelayGroup___relayGroup___name",
+                                                                    "isDeprecated": false,
+                                                                    "name": "name",
+                                                                    "path": "dhcp.setRelayGroup.relayGroup.name",
+                                                                    "requestStr": "$name:String! ",
+                                                                    "required": true,
+                                                                    "responseStr": "name:$name ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "String",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "name"
+                                                                },
+                                                                "server": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "The relay server addresses that make up this group.",
+                                                                    "id_str": "dhcp___setRelayGroup___relayGroup___server",
+                                                                    "isDeprecated": false,
+                                                                    "name": "server",
+                                                                    "path": "dhcp.setRelayGroup.relayGroup.server",
+                                                                    "requestStr": "$server:[IPAddress]! ",
+                                                                    "required": true,
+                                                                    "responseStr": "server:$server ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "LIST",
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "IPAddress",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "server"
+                                                                }
+                                                            },
+                                                            "inputFields": null,
+                                                            "interfaces": {},
+                                                            "kind": "OBJECT",
+                                                            "name": "NetworkConfigDhcpRelayGroup",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "object",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "LIST",
+                                                            "NON_NULL",
+                                                            "OBJECT"
+                                                        ],
+                                                        "name": "NetworkConfigDhcpRelayGroup",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "networkConfigDhcpRelayGroup"
+                                                }
+                                            },
+                                            "inputFields": null,
+                                            "interfaces": {},
+                                            "kind": "OBJECT",
+                                            "name": "NetworkConfigDhcpSetRelayGroupPayload",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "object",
+                                        "kind": [
+                                            "OBJECT"
+                                        ],
+                                        "name": "NetworkConfigDhcpSetRelayGroupPayload",
+                                        "non_null": false
+                                    },
+                                    "varName": "networkConfigDhcpSetRelayGroupPayload"
+                                }
+                            },
+                            "inputFields": null,
+                            "interfaces": {},
+                            "kind": "OBJECT",
+                            "name": "NetworkConfigDhcpMutations",
+                            "possibleTypes": null
+                        },
+                        "indexType": "object",
+                        "kind": [
+                            "NON_NULL",
+                            "OBJECT"
+                        ],
+                        "name": "NetworkConfigDhcpMutations",
+                        "non_null": false
+                    },
+                    "varName": "networkConfigDhcpMutations"
+                }
+            },
+            "inputFields": null,
+            "interfaces": [],
+            "kind": "OBJECT",
+            "name": "NetworkConfigMutations",
+            "possibleTypes": null
+        },
+        "indexType": "object",
+        "kind": [
+            "OBJECT"
+        ],
+        "name": "NetworkConfigMutations",
+        "non_null": false
+    },
+    "variablesPayload": {
+        "networkConfigDhcpSetRelayGroupInput": {
+            "relayGroup": {
+                "id": "id",
+                "name": "string",
+                "server": [
+                    "example1",
+                    "example2"
+                ]
+            }
+        }
+    }
+}

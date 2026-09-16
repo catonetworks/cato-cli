@@ -1,0 +1,66 @@
+mutation postureUndismissFinding ( $accountId:ID! $postureUndismissFindingInput:PostureUndismissFindingInput!) {
+	posture ( accountId:$accountId ) {
+		undismissFinding ( input:$postureUndismissFindingInput  )  {
+			finding {
+				id
+				externalId
+				checkId
+				name
+				appInstance
+				description
+				impact
+				impactedEntities {
+					id
+					type
+					name
+				}
+				additionalInfo {
+					key
+					value
+				}
+				muteStatus
+				muteReason
+				mutedAt
+				muteDurationInDays
+				resolutionStatus
+				checkDefinition {
+					id
+					name
+					description
+					tags
+					impact
+					recommendedActions {
+						recommendedAction
+						recommendedActionLink {
+							text
+							url
+						}
+					}
+					suppressedStatus
+					category {
+						id
+						name
+					}
+					domain {
+						id
+						name
+					}
+					area {
+						id
+						name
+					}
+					complianceFrameworks
+					complianceControls {
+						framework
+						key
+						title
+						description
+					}
+					application
+					checkType
+					securityDomain
+				}
+			}
+		}
+	}	
+}

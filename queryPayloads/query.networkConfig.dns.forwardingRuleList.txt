@@ -1,0 +1,16 @@
+query networkConfigDnsForwardingRuleList ( $accountId:ID! $networkConfigDnsForwardingRuleListInput:NetworkConfigDnsForwardingRuleListInput!) {
+	networkConfig ( accountId:$accountId ) {
+		dns {
+			forwardingRuleList ( input:$networkConfigDnsForwardingRuleListInput   ) {
+				items {
+					id
+					domain
+					server
+				}
+				paging {
+					total
+				}
+			}
+		}
+	}	
+}

@@ -1,0 +1,149 @@
+mutation postureUnmuteCheck ( $accountId:ID! $postureUnmuteCheckInput:PostureUnmuteCheckInput!) {
+	posture ( accountId:$accountId ) {
+		unmuteCheck ( input:$postureUnmuteCheckInput  )  {
+			check {
+				definition {
+					id
+					name
+					description
+					tags
+					impact
+					recommendedActions {
+						recommendedAction
+						recommendedActionLink {
+							text
+							url
+						}
+					}
+					suppressedStatus
+					category {
+						id
+						name
+					}
+					domain {
+						id
+						name
+					}
+					area {
+						id
+						name
+					}
+					complianceFrameworks
+					complianceControls {
+						framework
+						key
+						title
+						description
+					}
+					application
+					checkType
+					securityDomain
+				}
+				result {
+					id
+					status
+					impactedEntities {
+						id
+						type
+						name
+					}
+					evaluatedAt
+					muteStatus
+					muteReason
+					mutedAt
+					muteDurationInDays
+				}
+				findings {
+					id
+					externalId
+					checkId
+					name
+					appInstance
+					description
+					impact
+					impactedEntities {
+						id
+						type
+						name
+					}
+					additionalInfo {
+						key
+						value
+					}
+					muteStatus
+					muteReason
+					mutedAt
+					muteDurationInDays
+					resolutionStatus
+					checkDefinition {
+						id
+						name
+						description
+						tags
+						impact
+						recommendedActions {
+							recommendedAction
+							recommendedActionLink {
+								text
+								url
+							}
+						}
+						suppressedStatus
+						category {
+							id
+							name
+						}
+						domain {
+							id
+							name
+						}
+						area {
+							id
+							name
+						}
+						complianceFrameworks
+						complianceControls {
+							framework
+							key
+							title
+							description
+						}
+						application
+						checkType
+						securityDomain
+					}
+				}
+				findingsCount {
+					breakdown {
+						muteStatus
+						resolutionStatus
+						count
+					}
+					openFindingsAppInstanceBreakdown {
+						muteStatus
+						appInstance
+						count
+					}
+				}
+				events {
+					id
+					type
+					timestamp
+					title
+					text
+					actor {
+						name
+						type
+					}
+					metadata
+					findingId
+				}
+				comparisons {
+					comparisonType
+					comparisonValue
+					percentile
+				}
+			}
+		}
+	}	
+}

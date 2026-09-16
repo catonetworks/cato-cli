@@ -1,0 +1,15 @@
+mutation postureAddCheckComment ( $accountId:ID! $addCheckCommentInput:AddCheckCommentInput!) {
+	posture ( accountId:$accountId ) {
+		addCheckComment ( input:$addCheckCommentInput  )  {
+			comments {
+				id
+				timestamp
+				text
+				actor {
+					name
+					type
+				}
+			}
+		}
+	}	
+}

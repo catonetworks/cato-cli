@@ -1,0 +1,799 @@
+{
+    "args": {
+        "accountId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        }
+    },
+    "childOperations": {
+        "dns": {
+            "args": {},
+            "deprecationReason": null,
+            "description": "DNS write operations.",
+            "isDeprecated": false,
+            "name": "dns",
+            "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                    "kind": "OBJECT",
+                    "name": "NetworkConfigDnsMutations",
+                    "ofType": null
+                }
+            }
+        },
+        "setServerSet": {
+            "args": {
+                "setServerSet___input": {
+                    "defaultValue": null,
+                    "description": null,
+                    "id_str": "setServerSet___input",
+                    "name": "input",
+                    "path": "setServerSet.input",
+                    "requestStr": "$networkConfigDnsSetServerSetInput:NetworkConfigDnsSetServerSetInput! ",
+                    "required": true,
+                    "responseStr": "input:$networkConfigDnsSetServerSetInput ",
+                    "type": {
+                        "definition": {
+                            "description": "Input for replacing the whole DNS server set collection.",
+                            "enumValues": null,
+                            "fields": null,
+                            "inputFields": {
+                                "dnsServerSet": {
+                                    "defaultValue": null,
+                                    "description": "The full desired set list.",
+                                    "id_str": "setServerSet___input___dnsServerSet",
+                                    "name": "dnsServerSet",
+                                    "path": "setServerSet.input.dnsServerSet",
+                                    "requestStr": "$networkConfigDnsServerSetUpsertInput:[NetworkConfigDnsServerSetUpsertInput]! ",
+                                    "required": true,
+                                    "responseStr": "dnsServerSet:$networkConfigDnsServerSetUpsertInput ",
+                                    "type": {
+                                        "definition": {
+                                            "description": "A desired DNS server set for setDnsServerSet. With an id it replaces the existing set; without an id a new set is created.",
+                                            "enumValues": null,
+                                            "fields": null,
+                                            "inputFields": {
+                                                "id": {
+                                                    "defaultValue": null,
+                                                    "description": "Id of an existing set to keep/update; omit to create a new set.",
+                                                    "id_str": "setServerSet___input___dnsServerSet___id",
+                                                    "name": "id",
+                                                    "path": "setServerSet.input.dnsServerSet.id",
+                                                    "requestStr": "$id:ID ",
+                                                    "required": false,
+                                                    "responseStr": "id:$id ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "ID",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "id"
+                                                },
+                                                "name": {
+                                                    "defaultValue": null,
+                                                    "description": "Set name, unique within the account.",
+                                                    "id_str": "setServerSet___input___dnsServerSet___name",
+                                                    "name": "name",
+                                                    "path": "setServerSet.input.dnsServerSet.name",
+                                                    "requestStr": "$name:String! ",
+                                                    "required": true,
+                                                    "responseStr": "name:$name ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "name"
+                                                },
+                                                "server": {
+                                                    "defaultValue": null,
+                                                    "description": "The set's full server list (1-2 addresses); replaces the stored one.",
+                                                    "id_str": "setServerSet___input___dnsServerSet___server",
+                                                    "name": "server",
+                                                    "path": "setServerSet.input.dnsServerSet.server",
+                                                    "requestStr": "$server:[IPAddress]! ",
+                                                    "required": true,
+                                                    "responseStr": "server:$server ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "LIST",
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "IPAddress",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "server"
+                                                }
+                                            },
+                                            "interfaces": null,
+                                            "kind": "INPUT_OBJECT",
+                                            "name": "NetworkConfigDnsServerSetUpsertInput",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "input_object",
+                                        "kind": [
+                                            "NON_NULL",
+                                            "LIST",
+                                            "NON_NULL",
+                                            "INPUT_OBJECT"
+                                        ],
+                                        "name": "NetworkConfigDnsServerSetUpsertInput",
+                                        "non_null": false
+                                    },
+                                    "varName": "networkConfigDnsServerSetUpsertInput"
+                                }
+                            },
+                            "interfaces": null,
+                            "kind": "INPUT_OBJECT",
+                            "name": "NetworkConfigDnsSetServerSetInput",
+                            "possibleTypes": null
+                        },
+                        "indexType": "input_object",
+                        "kind": [
+                            "NON_NULL",
+                            "INPUT_OBJECT"
+                        ],
+                        "name": "NetworkConfigDnsSetServerSetInput",
+                        "non_null": false
+                    },
+                    "varName": "networkConfigDnsSetServerSetInput"
+                }
+            },
+            "deprecationReason": null,
+            "description": "Replace the whole DNS server set collection with the given list. Items with an id update the existing set; items without an id are created; existing sets missing from the list are deleted (rejected if a missing set is referenced). Returns the resulting collection.",
+            "isDeprecated": false,
+            "name": "setServerSet",
+            "type": {
+                "kind": "OBJECT",
+                "name": "NetworkConfigDnsSetServerSetPayload",
+                "ofType": null
+            }
+        }
+    },
+    "deprecationReason": null,
+    "description": "All network-configuration write operations for an account.",
+    "fieldTypes": {},
+    "isDeprecated": false,
+    "name": "networkConfig",
+    "operationArgs": {
+        "accountId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        },
+        "networkConfigDnsSetServerSetInput": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "setServerSet___input",
+            "name": "input",
+            "path": "setServerSet.input",
+            "requestStr": "$networkConfigDnsSetServerSetInput:NetworkConfigDnsSetServerSetInput! ",
+            "required": true,
+            "responseStr": "input:$networkConfigDnsSetServerSetInput ",
+            "type": {
+                "definition": {
+                    "description": "Input for replacing the whole DNS server set collection.",
+                    "enumValues": null,
+                    "fields": null,
+                    "inputFields": {
+                        "dnsServerSet": {
+                            "defaultValue": null,
+                            "description": "The full desired set list.",
+                            "id_str": "setServerSet___input___dnsServerSet",
+                            "name": "dnsServerSet",
+                            "path": "setServerSet.input.dnsServerSet",
+                            "requestStr": "$networkConfigDnsServerSetUpsertInput:[NetworkConfigDnsServerSetUpsertInput]! ",
+                            "required": true,
+                            "responseStr": "dnsServerSet:$networkConfigDnsServerSetUpsertInput ",
+                            "type": {
+                                "definition": {
+                                    "description": "A desired DNS server set for setDnsServerSet. With an id it replaces the existing set; without an id a new set is created.",
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "id": {
+                                            "defaultValue": null,
+                                            "description": "Id of an existing set to keep/update; omit to create a new set.",
+                                            "id_str": "setServerSet___input___dnsServerSet___id",
+                                            "name": "id",
+                                            "path": "setServerSet.input.dnsServerSet.id",
+                                            "requestStr": "$id:ID ",
+                                            "required": false,
+                                            "responseStr": "id:$id ",
+                                            "type": {
+                                                "kind": [
+                                                    "SCALAR"
+                                                ],
+                                                "name": "ID",
+                                                "non_null": false
+                                            },
+                                            "varName": "id"
+                                        },
+                                        "name": {
+                                            "defaultValue": null,
+                                            "description": "Set name, unique within the account.",
+                                            "id_str": "setServerSet___input___dnsServerSet___name",
+                                            "name": "name",
+                                            "path": "setServerSet.input.dnsServerSet.name",
+                                            "requestStr": "$name:String! ",
+                                            "required": true,
+                                            "responseStr": "name:$name ",
+                                            "type": {
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "SCALAR"
+                                                ],
+                                                "name": "String",
+                                                "non_null": false
+                                            },
+                                            "varName": "name"
+                                        },
+                                        "server": {
+                                            "defaultValue": null,
+                                            "description": "The set's full server list (1-2 addresses); replaces the stored one.",
+                                            "id_str": "setServerSet___input___dnsServerSet___server",
+                                            "name": "server",
+                                            "path": "setServerSet.input.dnsServerSet.server",
+                                            "requestStr": "$server:[IPAddress]! ",
+                                            "required": true,
+                                            "responseStr": "server:$server ",
+                                            "type": {
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "LIST",
+                                                    "NON_NULL",
+                                                    "SCALAR"
+                                                ],
+                                                "name": "IPAddress",
+                                                "non_null": false
+                                            },
+                                            "varName": "server"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "NetworkConfigDnsServerSetUpsertInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "NON_NULL",
+                                    "LIST",
+                                    "NON_NULL",
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "NetworkConfigDnsServerSetUpsertInput",
+                                "non_null": false
+                            },
+                            "varName": "networkConfigDnsServerSetUpsertInput"
+                        }
+                    },
+                    "interfaces": null,
+                    "kind": "INPUT_OBJECT",
+                    "name": "NetworkConfigDnsSetServerSetInput",
+                    "possibleTypes": null
+                },
+                "indexType": "input_object",
+                "kind": [
+                    "NON_NULL",
+                    "INPUT_OBJECT"
+                ],
+                "name": "NetworkConfigDnsSetServerSetInput",
+                "non_null": false
+            },
+            "varName": "networkConfigDnsSetServerSetInput"
+        }
+    },
+    "path": "mutation.networkConfig.dns.setServerSet",
+    "type": {
+        "definition": {
+            "description": "Network-configuration write operations.",
+            "enumValues": null,
+            "fields": {
+                "dns": {
+                    "args": {},
+                    "deprecationReason": null,
+                    "description": "DNS write operations.",
+                    "id_str": "dns",
+                    "isDeprecated": false,
+                    "name": "dns",
+                    "path": "dns",
+                    "requestStr": "$networkConfigDnsMutations:NetworkConfigDnsMutations! ",
+                    "required": true,
+                    "responseStr": "dns:$networkConfigDnsMutations ",
+                    "type": {
+                        "definition": {
+                            "description": "DNS write operations for the account.",
+                            "enumValues": null,
+                            "fields": {
+                                "setServerSet": {
+                                    "args": {
+                                        "setServerSet___input": {
+                                            "defaultValue": null,
+                                            "description": null,
+                                            "id_str": "setServerSet___input",
+                                            "name": "input",
+                                            "path": "setServerSet.input",
+                                            "requestStr": "$networkConfigDnsSetServerSetInput:NetworkConfigDnsSetServerSetInput! ",
+                                            "required": true,
+                                            "responseStr": "input:$networkConfigDnsSetServerSetInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": "Input for replacing the whole DNS server set collection.",
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "dnsServerSet": {
+                                                            "defaultValue": null,
+                                                            "description": "The full desired set list.",
+                                                            "id_str": "setServerSet___input___dnsServerSet",
+                                                            "name": "dnsServerSet",
+                                                            "path": "setServerSet.input.dnsServerSet",
+                                                            "requestStr": "$networkConfigDnsServerSetUpsertInput:[NetworkConfigDnsServerSetUpsertInput]! ",
+                                                            "required": true,
+                                                            "responseStr": "dnsServerSet:$networkConfigDnsServerSetUpsertInput ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": "A desired DNS server set for setDnsServerSet. With an id it replaces the existing set; without an id a new set is created.",
+                                                                    "enumValues": null,
+                                                                    "fields": null,
+                                                                    "inputFields": {
+                                                                        "id": {
+                                                                            "defaultValue": null,
+                                                                            "description": "Id of an existing set to keep/update; omit to create a new set.",
+                                                                            "id_str": "setServerSet___input___dnsServerSet___id",
+                                                                            "name": "id",
+                                                                            "path": "setServerSet.input.dnsServerSet.id",
+                                                                            "requestStr": "$id:ID ",
+                                                                            "required": false,
+                                                                            "responseStr": "id:$id ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "ID",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "id"
+                                                                        },
+                                                                        "name": {
+                                                                            "defaultValue": null,
+                                                                            "description": "Set name, unique within the account.",
+                                                                            "id_str": "setServerSet___input___dnsServerSet___name",
+                                                                            "name": "name",
+                                                                            "path": "setServerSet.input.dnsServerSet.name",
+                                                                            "requestStr": "$name:String! ",
+                                                                            "required": true,
+                                                                            "responseStr": "name:$name ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "NON_NULL",
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "String",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "name"
+                                                                        },
+                                                                        "server": {
+                                                                            "defaultValue": null,
+                                                                            "description": "The set's full server list (1-2 addresses); replaces the stored one.",
+                                                                            "id_str": "setServerSet___input___dnsServerSet___server",
+                                                                            "name": "server",
+                                                                            "path": "setServerSet.input.dnsServerSet.server",
+                                                                            "requestStr": "$server:[IPAddress]! ",
+                                                                            "required": true,
+                                                                            "responseStr": "server:$server ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "NON_NULL",
+                                                                                    "LIST",
+                                                                                    "NON_NULL",
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "IPAddress",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "server"
+                                                                        }
+                                                                    },
+                                                                    "interfaces": null,
+                                                                    "kind": "INPUT_OBJECT",
+                                                                    "name": "NetworkConfigDnsServerSetUpsertInput",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "input_object",
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "LIST",
+                                                                    "NON_NULL",
+                                                                    "INPUT_OBJECT"
+                                                                ],
+                                                                "name": "NetworkConfigDnsServerSetUpsertInput",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "networkConfigDnsServerSetUpsertInput"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "NetworkConfigDnsSetServerSetInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "NetworkConfigDnsSetServerSetInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "networkConfigDnsSetServerSetInput"
+                                        }
+                                    },
+                                    "deprecationReason": null,
+                                    "description": "Replace the whole DNS server set collection with the given list. Items with an id update the existing set; items without an id are created; existing sets missing from the list are deleted (rejected if a missing set is referenced). Returns the resulting collection.",
+                                    "id_str": "dns___setServerSet",
+                                    "isDeprecated": false,
+                                    "name": "setServerSet",
+                                    "path": "dns.setServerSet",
+                                    "requestStr": "$networkConfigDnsSetServerSetPayload:NetworkConfigDnsSetServerSetPayload ",
+                                    "required": false,
+                                    "responseStr": "setServerSet:$networkConfigDnsSetServerSetPayload ",
+                                    "type": {
+                                        "definition": {
+                                            "description": "Result of replacing the DNS server set collection.",
+                                            "enumValues": null,
+                                            "fields": {
+                                                "dnsServerSet": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "The resulting set collection.",
+                                                    "id_str": "dns___setServerSet___dnsServerSet",
+                                                    "isDeprecated": false,
+                                                    "name": "dnsServerSet",
+                                                    "path": "dns.setServerSet.dnsServerSet",
+                                                    "requestStr": "$networkConfigDnsServerSet:[NetworkConfigDnsServerSet]! ",
+                                                    "required": true,
+                                                    "responseStr": "dnsServerSet:$networkConfigDnsServerSet ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": "A named set of DNS servers a DHCP profile can hand out.",
+                                                            "enumValues": null,
+                                                            "fields": {
+                                                                "audit": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Who last changed this set, and when.",
+                                                                    "id_str": "dns___setServerSet___dnsServerSet___audit",
+                                                                    "isDeprecated": false,
+                                                                    "name": "audit",
+                                                                    "path": "dns.setServerSet.dnsServerSet.audit",
+                                                                    "requestStr": "$auditingMetadata:AuditingMetadata ",
+                                                                    "required": false,
+                                                                    "responseStr": "audit:$auditingMetadata ",
+                                                                    "type": {
+                                                                        "definition": {
+                                                                            "description": null,
+                                                                            "enumValues": null,
+                                                                            "fields": {
+                                                                                "updatedBy": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "id_str": "dns___setServerSet___dnsServerSet___audit___updatedBy",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "updatedBy",
+                                                                                    "path": "dns.setServerSet.dnsServerSet.audit.updatedBy",
+                                                                                    "requestStr": "$actorRef:ActorRef! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "updatedBy:$actorRef ",
+                                                                                    "type": {
+                                                                                        "definition": {
+                                                                                            "description": null,
+                                                                                            "enumValues": null,
+                                                                                            "fields": {
+                                                                                                "id": {
+                                                                                                    "args": {},
+                                                                                                    "deprecationReason": null,
+                                                                                                    "description": null,
+                                                                                                    "id_str": "dns___setServerSet___dnsServerSet___audit___updatedBy___id",
+                                                                                                    "isDeprecated": false,
+                                                                                                    "name": "id",
+                                                                                                    "path": "dns.setServerSet.dnsServerSet.audit.updatedBy.id",
+                                                                                                    "requestStr": "$id:ID! ",
+                                                                                                    "required": true,
+                                                                                                    "responseStr": "id:$id ",
+                                                                                                    "type": {
+                                                                                                        "kind": [
+                                                                                                            "NON_NULL",
+                                                                                                            "SCALAR"
+                                                                                                        ],
+                                                                                                        "name": "ID",
+                                                                                                        "non_null": false
+                                                                                                    },
+                                                                                                    "varName": "id"
+                                                                                                },
+                                                                                                "name": {
+                                                                                                    "args": {},
+                                                                                                    "deprecationReason": null,
+                                                                                                    "description": null,
+                                                                                                    "id_str": "dns___setServerSet___dnsServerSet___audit___updatedBy___name",
+                                                                                                    "isDeprecated": false,
+                                                                                                    "name": "name",
+                                                                                                    "path": "dns.setServerSet.dnsServerSet.audit.updatedBy.name",
+                                                                                                    "requestStr": "$name:String! ",
+                                                                                                    "required": true,
+                                                                                                    "responseStr": "name:$name ",
+                                                                                                    "type": {
+                                                                                                        "kind": [
+                                                                                                            "NON_NULL",
+                                                                                                            "SCALAR"
+                                                                                                        ],
+                                                                                                        "name": "String",
+                                                                                                        "non_null": false
+                                                                                                    },
+                                                                                                    "varName": "name"
+                                                                                                }
+                                                                                            },
+                                                                                            "inputFields": null,
+                                                                                            "interfaces": [
+                                                                                                {
+                                                                                                    "kind": "INTERFACE",
+                                                                                                    "name": "ObjectRef",
+                                                                                                    "ofType": null
+                                                                                                }
+                                                                                            ],
+                                                                                            "kind": "INTERFACE",
+                                                                                            "name": "ActorRef",
+                                                                                            "possibleTypes": {
+                                                                                                "AdminRef": {
+                                                                                                    "description": "A reference identifying the Admin object. ID: Unique Admin Identifier, Name: The Admin Name",
+                                                                                                    "enumValues": null,
+                                                                                                    "fields": {},
+                                                                                                    "inputFields": null,
+                                                                                                    "interfaces": {},
+                                                                                                    "kind": "OBJECT",
+                                                                                                    "name": "AdminRef",
+                                                                                                    "possibleTypes": null
+                                                                                                },
+                                                                                                "ApiKeyRef": {
+                                                                                                    "description": "A reference identifying the ApiKey object. ID: Unique ApiKey Identifier, Name: The ApiKey Name",
+                                                                                                    "enumValues": null,
+                                                                                                    "fields": {},
+                                                                                                    "inputFields": null,
+                                                                                                    "interfaces": {},
+                                                                                                    "kind": "OBJECT",
+                                                                                                    "name": "ApiKeyRef",
+                                                                                                    "possibleTypes": null
+                                                                                                }
+                                                                                            }
+                                                                                        },
+                                                                                        "indexType": "interface",
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "INTERFACE"
+                                                                                        ],
+                                                                                        "name": "ActorRef",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "actorRef"
+                                                                                },
+                                                                                "updatedTime": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "id_str": "dns___setServerSet___dnsServerSet___audit___updatedTime",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "updatedTime",
+                                                                                    "path": "dns.setServerSet.dnsServerSet.audit.updatedTime",
+                                                                                    "requestStr": "$updatedTime:DateTime! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "updatedTime:$updatedTime ",
+                                                                                    "type": {
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "SCALAR"
+                                                                                        ],
+                                                                                        "name": "DateTime",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "updatedTime"
+                                                                                }
+                                                                            },
+                                                                            "inputFields": null,
+                                                                            "interfaces": {},
+                                                                            "kind": "OBJECT",
+                                                                            "name": "AuditingMetadata",
+                                                                            "possibleTypes": null
+                                                                        },
+                                                                        "indexType": "object",
+                                                                        "kind": [
+                                                                            "OBJECT"
+                                                                        ],
+                                                                        "name": "AuditingMetadata",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "auditingMetadata"
+                                                                },
+                                                                "id": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Globally-unique, opaque identifier for the set.",
+                                                                    "id_str": "dns___setServerSet___dnsServerSet___id",
+                                                                    "isDeprecated": false,
+                                                                    "name": "id",
+                                                                    "path": "dns.setServerSet.dnsServerSet.id",
+                                                                    "requestStr": "$id:ID! ",
+                                                                    "required": true,
+                                                                    "responseStr": "id:$id ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "ID",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "id"
+                                                                },
+                                                                "name": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Set name, unique within the account.",
+                                                                    "id_str": "dns___setServerSet___dnsServerSet___name",
+                                                                    "isDeprecated": false,
+                                                                    "name": "name",
+                                                                    "path": "dns.setServerSet.dnsServerSet.name",
+                                                                    "requestStr": "$name:String! ",
+                                                                    "required": true,
+                                                                    "responseStr": "name:$name ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "String",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "name"
+                                                                },
+                                                                "server": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "The DNS servers in the set (1-2 addresses; catod supports no more).",
+                                                                    "id_str": "dns___setServerSet___dnsServerSet___server",
+                                                                    "isDeprecated": false,
+                                                                    "name": "server",
+                                                                    "path": "dns.setServerSet.dnsServerSet.server",
+                                                                    "requestStr": "$server:[IPAddress]! ",
+                                                                    "required": true,
+                                                                    "responseStr": "server:$server ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "LIST",
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "IPAddress",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "server"
+                                                                }
+                                                            },
+                                                            "inputFields": null,
+                                                            "interfaces": {},
+                                                            "kind": "OBJECT",
+                                                            "name": "NetworkConfigDnsServerSet",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "object",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "LIST",
+                                                            "NON_NULL",
+                                                            "OBJECT"
+                                                        ],
+                                                        "name": "NetworkConfigDnsServerSet",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "networkConfigDnsServerSet"
+                                                }
+                                            },
+                                            "inputFields": null,
+                                            "interfaces": {},
+                                            "kind": "OBJECT",
+                                            "name": "NetworkConfigDnsSetServerSetPayload",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "object",
+                                        "kind": [
+                                            "OBJECT"
+                                        ],
+                                        "name": "NetworkConfigDnsSetServerSetPayload",
+                                        "non_null": false
+                                    },
+                                    "varName": "networkConfigDnsSetServerSetPayload"
+                                }
+                            },
+                            "inputFields": null,
+                            "interfaces": {},
+                            "kind": "OBJECT",
+                            "name": "NetworkConfigDnsMutations",
+                            "possibleTypes": null
+                        },
+                        "indexType": "object",
+                        "kind": [
+                            "NON_NULL",
+                            "OBJECT"
+                        ],
+                        "name": "NetworkConfigDnsMutations",
+                        "non_null": false
+                    },
+                    "varName": "networkConfigDnsMutations"
+                }
+            },
+            "inputFields": null,
+            "interfaces": [],
+            "kind": "OBJECT",
+            "name": "NetworkConfigMutations",
+            "possibleTypes": null
+        },
+        "indexType": "object",
+        "kind": [
+            "OBJECT"
+        ],
+        "name": "NetworkConfigMutations",
+        "non_null": false
+    },
+    "variablesPayload": {
+        "networkConfigDnsSetServerSetInput": {
+            "dnsServerSet": {
+                "id": "id",
+                "name": "string",
+                "server": [
+                    "example1",
+                    "example2"
+                ]
+            }
+        }
+    }
+}

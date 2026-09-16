@@ -1,0 +1,89 @@
+query postureFindingSummary ( $accountId:ID! $postureFindingSummaryInput:PostureFindingSummaryInput) {
+	posture ( accountId:$accountId ) {
+		findingSummary ( input:$postureFindingSummaryInput  )  {
+			summary {
+				total
+				checkSeverityBreakdown {
+					key
+					name
+					findingCount
+					checkCount
+				}
+				categoryBreakdown {
+					key
+					name
+					findingCount
+					checkCount
+				}
+				areaBreakdown {
+					key
+					name
+					findingCount
+					checkCount
+				}
+				applicationBreakdown {
+					key
+					name
+					findingCount
+					checkCount
+				}
+				securityDomainBreakdown {
+					key
+					name
+					findingCount
+					checkCount
+				}
+				checkTypeBreakdown {
+					key
+					name
+					findingCount
+					checkCount
+				}
+				complianceFrameworkBreakdown {
+					key
+					name
+					findingCount
+					checkCount
+				}
+				complianceControlBreakdown {
+					key
+					name
+					findingCount
+					checkCount
+				}
+				severityBreakdown {
+					items {
+						key
+						findingCount
+						checkCount
+					}
+					total
+				}
+				resolutionStatusBreakdown {
+					items {
+						key
+						findingCount
+						checkCount
+					}
+					total
+				}
+				muteStatusBreakdown {
+					items {
+						key
+						findingCount
+						checkCount
+					}
+					total
+				}
+				appInstanceBreakdown {
+					items {
+						key
+						findingCount
+						checkCount
+					}
+					total
+				}
+			}
+		}
+	}	
+}

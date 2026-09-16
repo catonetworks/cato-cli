@@ -1,0 +1,1477 @@
+{
+    "args": {
+        "accountId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        }
+    },
+    "childOperations": {
+        "dns": {
+            "args": {},
+            "deprecationReason": null,
+            "description": "DNS read operations.",
+            "isDeprecated": false,
+            "name": "dns",
+            "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                    "kind": "OBJECT",
+                    "name": "NetworkConfigDnsQueries",
+                    "ofType": null
+                }
+            }
+        },
+        "forwardingRuleList": {
+            "args": {
+                "forwardingRuleList___input": {
+                    "defaultValue": "{sort: {domain: {direction: ASC, priority: 1}}, paging: {limit: 100, from: 0}}",
+                    "description": null,
+                    "id_str": "forwardingRuleList___input",
+                    "name": "input",
+                    "path": "forwardingRuleList.input",
+                    "requestStr": "$networkConfigDnsForwardingRuleListInput:NetworkConfigDnsForwardingRuleListInput! ",
+                    "required": true,
+                    "responseStr": "input:$networkConfigDnsForwardingRuleListInput ",
+                    "type": {
+                        "definition": {
+                            "description": "Input for listing DNS forwarding rules.",
+                            "enumValues": null,
+                            "fields": null,
+                            "inputFields": {
+                                "filter": {
+                                    "defaultValue": null,
+                                    "description": "Restricts the result to the forwarding rules matching every condition given.",
+                                    "id_str": "forwardingRuleList___input___filter",
+                                    "name": "filter",
+                                    "path": "forwardingRuleList.input.filter",
+                                    "requestStr": "$networkConfigDnsForwardingRuleFilterInput:NetworkConfigDnsForwardingRuleFilterInput ",
+                                    "required": false,
+                                    "responseStr": "filter:$networkConfigDnsForwardingRuleFilterInput ",
+                                    "type": {
+                                        "definition": {
+                                            "description": "Conditions a forwarding rule must match to appear in the result.",
+                                            "enumValues": null,
+                                            "fields": null,
+                                            "inputFields": {
+                                                "domain": {
+                                                    "defaultValue": null,
+                                                    "description": "Match by the domain whose queries are forwarded.",
+                                                    "id_str": "forwardingRuleList___input___filter___domain",
+                                                    "name": "domain",
+                                                    "path": "forwardingRuleList.input.filter.domain",
+                                                    "requestStr": "$advancedStringFilterInput:AdvancedStringFilterInput ",
+                                                    "required": false,
+                                                    "responseStr": "domain:$advancedStringFilterInput ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": null,
+                                                            "enumValues": null,
+                                                            "fields": null,
+                                                            "inputFields": {
+                                                                "eq": {
+                                                                    "defaultValue": null,
+                                                                    "description": null,
+                                                                    "id_str": "forwardingRuleList___input___filter___domain___eq",
+                                                                    "name": "eq",
+                                                                    "path": "forwardingRuleList.input.filter.domain.eq",
+                                                                    "requestStr": "$eq:String ",
+                                                                    "required": false,
+                                                                    "responseStr": "eq:$eq ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "String",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "eq"
+                                                                },
+                                                                "in": {
+                                                                    "defaultValue": null,
+                                                                    "description": null,
+                                                                    "id_str": "forwardingRuleList___input___filter___domain___in",
+                                                                    "name": "in",
+                                                                    "path": "forwardingRuleList.input.filter.domain.in",
+                                                                    "requestStr": "$in:[String] ",
+                                                                    "required": false,
+                                                                    "responseStr": "in:$in ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "LIST",
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "String",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "in"
+                                                                },
+                                                                "neq": {
+                                                                    "defaultValue": null,
+                                                                    "description": null,
+                                                                    "id_str": "forwardingRuleList___input___filter___domain___neq",
+                                                                    "name": "neq",
+                                                                    "path": "forwardingRuleList.input.filter.domain.neq",
+                                                                    "requestStr": "$neq:String ",
+                                                                    "required": false,
+                                                                    "responseStr": "neq:$neq ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "String",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "neq"
+                                                                },
+                                                                "nin": {
+                                                                    "defaultValue": null,
+                                                                    "description": null,
+                                                                    "id_str": "forwardingRuleList___input___filter___domain___nin",
+                                                                    "name": "nin",
+                                                                    "path": "forwardingRuleList.input.filter.domain.nin",
+                                                                    "requestStr": "$nin:[String] ",
+                                                                    "required": false,
+                                                                    "responseStr": "nin:$nin ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "LIST",
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "String",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "nin"
+                                                                },
+                                                                "regex": {
+                                                                    "defaultValue": null,
+                                                                    "description": null,
+                                                                    "id_str": "forwardingRuleList___input___filter___domain___regex",
+                                                                    "name": "regex",
+                                                                    "path": "forwardingRuleList.input.filter.domain.regex",
+                                                                    "requestStr": "$regex:String ",
+                                                                    "required": false,
+                                                                    "responseStr": "regex:$regex ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "String",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "regex"
+                                                                }
+                                                            },
+                                                            "interfaces": null,
+                                                            "kind": "INPUT_OBJECT",
+                                                            "name": "AdvancedStringFilterInput",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "input_object",
+                                                        "kind": [
+                                                            "INPUT_OBJECT"
+                                                        ],
+                                                        "name": "AdvancedStringFilterInput",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "advancedStringFilterInput"
+                                                }
+                                            },
+                                            "interfaces": null,
+                                            "kind": "INPUT_OBJECT",
+                                            "name": "NetworkConfigDnsForwardingRuleFilterInput",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "input_object",
+                                        "kind": [
+                                            "INPUT_OBJECT"
+                                        ],
+                                        "name": "NetworkConfigDnsForwardingRuleFilterInput",
+                                        "non_null": false
+                                    },
+                                    "varName": "networkConfigDnsForwardingRuleFilterInput"
+                                },
+                                "paging": {
+                                    "defaultValue": "{limit: 100, from: 0}",
+                                    "description": "The page of forwarding rules to return.",
+                                    "id_str": "forwardingRuleList___input___paging",
+                                    "name": "paging",
+                                    "path": "forwardingRuleList.input.paging",
+                                    "requestStr": "$pagingInput:PagingInput ",
+                                    "required": false,
+                                    "responseStr": "paging:$pagingInput ",
+                                    "type": {
+                                        "definition": {
+                                            "description": null,
+                                            "enumValues": null,
+                                            "fields": null,
+                                            "inputFields": {
+                                                "from": {
+                                                    "defaultValue": "0",
+                                                    "description": null,
+                                                    "id_str": "forwardingRuleList___input___paging___from",
+                                                    "name": "from",
+                                                    "path": "forwardingRuleList.input.paging.from",
+                                                    "requestStr": "$from:Int! ",
+                                                    "required": true,
+                                                    "responseStr": "from:$from ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "Int",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "from"
+                                                },
+                                                "limit": {
+                                                    "defaultValue": "100",
+                                                    "description": null,
+                                                    "id_str": "forwardingRuleList___input___paging___limit",
+                                                    "name": "limit",
+                                                    "path": "forwardingRuleList.input.paging.limit",
+                                                    "requestStr": "$limit:Int! ",
+                                                    "required": true,
+                                                    "responseStr": "limit:$limit ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "Int",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "limit"
+                                                }
+                                            },
+                                            "interfaces": null,
+                                            "kind": "INPUT_OBJECT",
+                                            "name": "PagingInput",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "input_object",
+                                        "kind": [
+                                            "INPUT_OBJECT"
+                                        ],
+                                        "name": "PagingInput",
+                                        "non_null": false
+                                    },
+                                    "varName": "pagingInput"
+                                },
+                                "sort": {
+                                    "defaultValue": "{domain: {direction: ASC, priority: 1}}",
+                                    "description": "The order the rules are returned in. Defaults to ascending by domain.",
+                                    "id_str": "forwardingRuleList___input___sort",
+                                    "name": "sort",
+                                    "path": "forwardingRuleList.input.sort",
+                                    "requestStr": "$networkConfigDnsForwardingRuleSortInput:NetworkConfigDnsForwardingRuleSortInput! ",
+                                    "required": true,
+                                    "responseStr": "sort:$networkConfigDnsForwardingRuleSortInput ",
+                                    "type": {
+                                        "definition": {
+                                            "description": "The order DNS forwarding rules are returned in.",
+                                            "enumValues": null,
+                                            "fields": null,
+                                            "inputFields": {
+                                                "domain": {
+                                                    "defaultValue": null,
+                                                    "description": "Sort by domain.",
+                                                    "id_str": "forwardingRuleList___input___sort___domain",
+                                                    "name": "domain",
+                                                    "path": "forwardingRuleList.input.sort.domain",
+                                                    "requestStr": "$sortOrderInput:SortOrderInput ",
+                                                    "required": false,
+                                                    "responseStr": "domain:$sortOrderInput ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": null,
+                                                            "enumValues": null,
+                                                            "fields": null,
+                                                            "inputFields": {
+                                                                "direction": {
+                                                                    "defaultValue": "ASC",
+                                                                    "description": null,
+                                                                    "id_str": "forwardingRuleList___input___sort___domain___direction",
+                                                                    "name": "direction",
+                                                                    "path": "forwardingRuleList.input.sort.domain.direction",
+                                                                    "requestStr": "$direction:SortOrder! ",
+                                                                    "required": true,
+                                                                    "responseStr": "direction:$direction ",
+                                                                    "type": {
+                                                                        "definition": {
+                                                                            "description": null,
+                                                                            "enumValues": [
+                                                                                {
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "ASC"
+                                                                                },
+                                                                                {
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "DESC"
+                                                                                }
+                                                                            ],
+                                                                            "fields": null,
+                                                                            "inputFields": null,
+                                                                            "interfaces": null,
+                                                                            "kind": "ENUM",
+                                                                            "name": "SortOrder",
+                                                                            "possibleTypes": null
+                                                                        },
+                                                                        "indexType": "enum",
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "ENUM"
+                                                                        ],
+                                                                        "name": "SortOrder",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "direction"
+                                                                },
+                                                                "priority": {
+                                                                    "defaultValue": "1",
+                                                                    "description": null,
+                                                                    "id_str": "forwardingRuleList___input___sort___domain___priority",
+                                                                    "name": "priority",
+                                                                    "path": "forwardingRuleList.input.sort.domain.priority",
+                                                                    "requestStr": "$priority:Int! ",
+                                                                    "required": true,
+                                                                    "responseStr": "priority:$priority ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "Int",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "priority"
+                                                                }
+                                                            },
+                                                            "interfaces": null,
+                                                            "kind": "INPUT_OBJECT",
+                                                            "name": "SortOrderInput",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "input_object",
+                                                        "kind": [
+                                                            "INPUT_OBJECT"
+                                                        ],
+                                                        "name": "SortOrderInput",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "sortOrderInput"
+                                                }
+                                            },
+                                            "interfaces": null,
+                                            "kind": "INPUT_OBJECT",
+                                            "name": "NetworkConfigDnsForwardingRuleSortInput",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "input_object",
+                                        "kind": [
+                                            "NON_NULL",
+                                            "INPUT_OBJECT"
+                                        ],
+                                        "name": "NetworkConfigDnsForwardingRuleSortInput",
+                                        "non_null": false
+                                    },
+                                    "varName": "networkConfigDnsForwardingRuleSortInput"
+                                }
+                            },
+                            "interfaces": null,
+                            "kind": "INPUT_OBJECT",
+                            "name": "NetworkConfigDnsForwardingRuleListInput",
+                            "possibleTypes": null
+                        },
+                        "indexType": "input_object",
+                        "kind": [
+                            "NON_NULL",
+                            "INPUT_OBJECT"
+                        ],
+                        "name": "NetworkConfigDnsForwardingRuleListInput",
+                        "non_null": false
+                    },
+                    "varName": "networkConfigDnsForwardingRuleListInput"
+                }
+            },
+            "deprecationReason": null,
+            "description": "The account's DNS forwarding rules.",
+            "isDeprecated": false,
+            "name": "forwardingRuleList",
+            "type": {
+                "kind": "OBJECT",
+                "name": "NetworkConfigDnsForwardingRuleListPayload",
+                "ofType": null
+            }
+        }
+    },
+    "deprecationReason": null,
+    "description": "All network-configuration read operations for an account.",
+    "fieldTypes": {},
+    "isDeprecated": false,
+    "name": "networkConfig",
+    "operationArgs": {
+        "accountId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        },
+        "networkConfigDnsForwardingRuleListInput": {
+            "defaultValue": "{sort: {domain: {direction: ASC, priority: 1}}, paging: {limit: 100, from: 0}}",
+            "description": null,
+            "id_str": "forwardingRuleList___input",
+            "name": "input",
+            "path": "forwardingRuleList.input",
+            "requestStr": "$networkConfigDnsForwardingRuleListInput:NetworkConfigDnsForwardingRuleListInput! ",
+            "required": true,
+            "responseStr": "input:$networkConfigDnsForwardingRuleListInput ",
+            "type": {
+                "definition": {
+                    "description": "Input for listing DNS forwarding rules.",
+                    "enumValues": null,
+                    "fields": null,
+                    "inputFields": {
+                        "filter": {
+                            "defaultValue": null,
+                            "description": "Restricts the result to the forwarding rules matching every condition given.",
+                            "id_str": "forwardingRuleList___input___filter",
+                            "name": "filter",
+                            "path": "forwardingRuleList.input.filter",
+                            "requestStr": "$networkConfigDnsForwardingRuleFilterInput:NetworkConfigDnsForwardingRuleFilterInput ",
+                            "required": false,
+                            "responseStr": "filter:$networkConfigDnsForwardingRuleFilterInput ",
+                            "type": {
+                                "definition": {
+                                    "description": "Conditions a forwarding rule must match to appear in the result.",
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "domain": {
+                                            "defaultValue": null,
+                                            "description": "Match by the domain whose queries are forwarded.",
+                                            "id_str": "forwardingRuleList___input___filter___domain",
+                                            "name": "domain",
+                                            "path": "forwardingRuleList.input.filter.domain",
+                                            "requestStr": "$advancedStringFilterInput:AdvancedStringFilterInput ",
+                                            "required": false,
+                                            "responseStr": "domain:$advancedStringFilterInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "eq": {
+                                                            "defaultValue": null,
+                                                            "description": null,
+                                                            "id_str": "forwardingRuleList___input___filter___domain___eq",
+                                                            "name": "eq",
+                                                            "path": "forwardingRuleList.input.filter.domain.eq",
+                                                            "requestStr": "$eq:String ",
+                                                            "required": false,
+                                                            "responseStr": "eq:$eq ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "String",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "eq"
+                                                        },
+                                                        "in": {
+                                                            "defaultValue": null,
+                                                            "description": null,
+                                                            "id_str": "forwardingRuleList___input___filter___domain___in",
+                                                            "name": "in",
+                                                            "path": "forwardingRuleList.input.filter.domain.in",
+                                                            "requestStr": "$in:[String] ",
+                                                            "required": false,
+                                                            "responseStr": "in:$in ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "LIST",
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "String",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "in"
+                                                        },
+                                                        "neq": {
+                                                            "defaultValue": null,
+                                                            "description": null,
+                                                            "id_str": "forwardingRuleList___input___filter___domain___neq",
+                                                            "name": "neq",
+                                                            "path": "forwardingRuleList.input.filter.domain.neq",
+                                                            "requestStr": "$neq:String ",
+                                                            "required": false,
+                                                            "responseStr": "neq:$neq ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "String",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "neq"
+                                                        },
+                                                        "nin": {
+                                                            "defaultValue": null,
+                                                            "description": null,
+                                                            "id_str": "forwardingRuleList___input___filter___domain___nin",
+                                                            "name": "nin",
+                                                            "path": "forwardingRuleList.input.filter.domain.nin",
+                                                            "requestStr": "$nin:[String] ",
+                                                            "required": false,
+                                                            "responseStr": "nin:$nin ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "LIST",
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "String",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "nin"
+                                                        },
+                                                        "regex": {
+                                                            "defaultValue": null,
+                                                            "description": null,
+                                                            "id_str": "forwardingRuleList___input___filter___domain___regex",
+                                                            "name": "regex",
+                                                            "path": "forwardingRuleList.input.filter.domain.regex",
+                                                            "requestStr": "$regex:String ",
+                                                            "required": false,
+                                                            "responseStr": "regex:$regex ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "String",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "regex"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "AdvancedStringFilterInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "AdvancedStringFilterInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "advancedStringFilterInput"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "NetworkConfigDnsForwardingRuleFilterInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "NetworkConfigDnsForwardingRuleFilterInput",
+                                "non_null": false
+                            },
+                            "varName": "networkConfigDnsForwardingRuleFilterInput"
+                        },
+                        "paging": {
+                            "defaultValue": "{limit: 100, from: 0}",
+                            "description": "The page of forwarding rules to return.",
+                            "id_str": "forwardingRuleList___input___paging",
+                            "name": "paging",
+                            "path": "forwardingRuleList.input.paging",
+                            "requestStr": "$pagingInput:PagingInput ",
+                            "required": false,
+                            "responseStr": "paging:$pagingInput ",
+                            "type": {
+                                "definition": {
+                                    "description": null,
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "from": {
+                                            "defaultValue": "0",
+                                            "description": null,
+                                            "id_str": "forwardingRuleList___input___paging___from",
+                                            "name": "from",
+                                            "path": "forwardingRuleList.input.paging.from",
+                                            "requestStr": "$from:Int! ",
+                                            "required": true,
+                                            "responseStr": "from:$from ",
+                                            "type": {
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "SCALAR"
+                                                ],
+                                                "name": "Int",
+                                                "non_null": false
+                                            },
+                                            "varName": "from"
+                                        },
+                                        "limit": {
+                                            "defaultValue": "100",
+                                            "description": null,
+                                            "id_str": "forwardingRuleList___input___paging___limit",
+                                            "name": "limit",
+                                            "path": "forwardingRuleList.input.paging.limit",
+                                            "requestStr": "$limit:Int! ",
+                                            "required": true,
+                                            "responseStr": "limit:$limit ",
+                                            "type": {
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "SCALAR"
+                                                ],
+                                                "name": "Int",
+                                                "non_null": false
+                                            },
+                                            "varName": "limit"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "PagingInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "PagingInput",
+                                "non_null": false
+                            },
+                            "varName": "pagingInput"
+                        },
+                        "sort": {
+                            "defaultValue": "{domain: {direction: ASC, priority: 1}}",
+                            "description": "The order the rules are returned in. Defaults to ascending by domain.",
+                            "id_str": "forwardingRuleList___input___sort",
+                            "name": "sort",
+                            "path": "forwardingRuleList.input.sort",
+                            "requestStr": "$networkConfigDnsForwardingRuleSortInput:NetworkConfigDnsForwardingRuleSortInput! ",
+                            "required": true,
+                            "responseStr": "sort:$networkConfigDnsForwardingRuleSortInput ",
+                            "type": {
+                                "definition": {
+                                    "description": "The order DNS forwarding rules are returned in.",
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "domain": {
+                                            "defaultValue": null,
+                                            "description": "Sort by domain.",
+                                            "id_str": "forwardingRuleList___input___sort___domain",
+                                            "name": "domain",
+                                            "path": "forwardingRuleList.input.sort.domain",
+                                            "requestStr": "$sortOrderInput:SortOrderInput ",
+                                            "required": false,
+                                            "responseStr": "domain:$sortOrderInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "direction": {
+                                                            "defaultValue": "ASC",
+                                                            "description": null,
+                                                            "id_str": "forwardingRuleList___input___sort___domain___direction",
+                                                            "name": "direction",
+                                                            "path": "forwardingRuleList.input.sort.domain.direction",
+                                                            "requestStr": "$direction:SortOrder! ",
+                                                            "required": true,
+                                                            "responseStr": "direction:$direction ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": null,
+                                                                    "enumValues": [
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "ASC"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "DESC"
+                                                                        }
+                                                                    ],
+                                                                    "fields": null,
+                                                                    "inputFields": null,
+                                                                    "interfaces": null,
+                                                                    "kind": "ENUM",
+                                                                    "name": "SortOrder",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "enum",
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "ENUM"
+                                                                ],
+                                                                "name": "SortOrder",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "direction"
+                                                        },
+                                                        "priority": {
+                                                            "defaultValue": "1",
+                                                            "description": null,
+                                                            "id_str": "forwardingRuleList___input___sort___domain___priority",
+                                                            "name": "priority",
+                                                            "path": "forwardingRuleList.input.sort.domain.priority",
+                                                            "requestStr": "$priority:Int! ",
+                                                            "required": true,
+                                                            "responseStr": "priority:$priority ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "Int",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "priority"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "SortOrderInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "SortOrderInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "sortOrderInput"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "NetworkConfigDnsForwardingRuleSortInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "NON_NULL",
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "NetworkConfigDnsForwardingRuleSortInput",
+                                "non_null": false
+                            },
+                            "varName": "networkConfigDnsForwardingRuleSortInput"
+                        }
+                    },
+                    "interfaces": null,
+                    "kind": "INPUT_OBJECT",
+                    "name": "NetworkConfigDnsForwardingRuleListInput",
+                    "possibleTypes": null
+                },
+                "indexType": "input_object",
+                "kind": [
+                    "NON_NULL",
+                    "INPUT_OBJECT"
+                ],
+                "name": "NetworkConfigDnsForwardingRuleListInput",
+                "non_null": false
+            },
+            "varName": "networkConfigDnsForwardingRuleListInput"
+        }
+    },
+    "path": "query.networkConfig.dns.forwardingRuleList",
+    "type": {
+        "definition": {
+            "description": "Network-configuration read operations.",
+            "enumValues": null,
+            "fields": {
+                "dns": {
+                    "args": {},
+                    "deprecationReason": null,
+                    "description": "DNS read operations.",
+                    "id_str": "dns",
+                    "isDeprecated": false,
+                    "name": "dns",
+                    "path": "dns",
+                    "requestStr": "$networkConfigDnsQueries:NetworkConfigDnsQueries! ",
+                    "required": true,
+                    "responseStr": "dns:$networkConfigDnsQueries ",
+                    "type": {
+                        "definition": {
+                            "description": "DNS read operations for the account.",
+                            "enumValues": null,
+                            "fields": {
+                                "forwardingRuleList": {
+                                    "args": {
+                                        "forwardingRuleList___input": {
+                                            "defaultValue": "{sort: {domain: {direction: ASC, priority: 1}}, paging: {limit: 100, from: 0}}",
+                                            "description": null,
+                                            "id_str": "forwardingRuleList___input",
+                                            "name": "input",
+                                            "path": "forwardingRuleList.input",
+                                            "requestStr": "$networkConfigDnsForwardingRuleListInput:NetworkConfigDnsForwardingRuleListInput! ",
+                                            "required": true,
+                                            "responseStr": "input:$networkConfigDnsForwardingRuleListInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": "Input for listing DNS forwarding rules.",
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "filter": {
+                                                            "defaultValue": null,
+                                                            "description": "Restricts the result to the forwarding rules matching every condition given.",
+                                                            "id_str": "forwardingRuleList___input___filter",
+                                                            "name": "filter",
+                                                            "path": "forwardingRuleList.input.filter",
+                                                            "requestStr": "$networkConfigDnsForwardingRuleFilterInput:NetworkConfigDnsForwardingRuleFilterInput ",
+                                                            "required": false,
+                                                            "responseStr": "filter:$networkConfigDnsForwardingRuleFilterInput ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": "Conditions a forwarding rule must match to appear in the result.",
+                                                                    "enumValues": null,
+                                                                    "fields": null,
+                                                                    "inputFields": {
+                                                                        "domain": {
+                                                                            "defaultValue": null,
+                                                                            "description": "Match by the domain whose queries are forwarded.",
+                                                                            "id_str": "forwardingRuleList___input___filter___domain",
+                                                                            "name": "domain",
+                                                                            "path": "forwardingRuleList.input.filter.domain",
+                                                                            "requestStr": "$advancedStringFilterInput:AdvancedStringFilterInput ",
+                                                                            "required": false,
+                                                                            "responseStr": "domain:$advancedStringFilterInput ",
+                                                                            "type": {
+                                                                                "definition": {
+                                                                                    "description": null,
+                                                                                    "enumValues": null,
+                                                                                    "fields": null,
+                                                                                    "inputFields": {
+                                                                                        "eq": {
+                                                                                            "defaultValue": null,
+                                                                                            "description": null,
+                                                                                            "id_str": "forwardingRuleList___input___filter___domain___eq",
+                                                                                            "name": "eq",
+                                                                                            "path": "forwardingRuleList.input.filter.domain.eq",
+                                                                                            "requestStr": "$eq:String ",
+                                                                                            "required": false,
+                                                                                            "responseStr": "eq:$eq ",
+                                                                                            "type": {
+                                                                                                "kind": [
+                                                                                                    "SCALAR"
+                                                                                                ],
+                                                                                                "name": "String",
+                                                                                                "non_null": false
+                                                                                            },
+                                                                                            "varName": "eq"
+                                                                                        },
+                                                                                        "in": {
+                                                                                            "defaultValue": null,
+                                                                                            "description": null,
+                                                                                            "id_str": "forwardingRuleList___input___filter___domain___in",
+                                                                                            "name": "in",
+                                                                                            "path": "forwardingRuleList.input.filter.domain.in",
+                                                                                            "requestStr": "$in:[String] ",
+                                                                                            "required": false,
+                                                                                            "responseStr": "in:$in ",
+                                                                                            "type": {
+                                                                                                "kind": [
+                                                                                                    "LIST",
+                                                                                                    "NON_NULL",
+                                                                                                    "SCALAR"
+                                                                                                ],
+                                                                                                "name": "String",
+                                                                                                "non_null": false
+                                                                                            },
+                                                                                            "varName": "in"
+                                                                                        },
+                                                                                        "neq": {
+                                                                                            "defaultValue": null,
+                                                                                            "description": null,
+                                                                                            "id_str": "forwardingRuleList___input___filter___domain___neq",
+                                                                                            "name": "neq",
+                                                                                            "path": "forwardingRuleList.input.filter.domain.neq",
+                                                                                            "requestStr": "$neq:String ",
+                                                                                            "required": false,
+                                                                                            "responseStr": "neq:$neq ",
+                                                                                            "type": {
+                                                                                                "kind": [
+                                                                                                    "SCALAR"
+                                                                                                ],
+                                                                                                "name": "String",
+                                                                                                "non_null": false
+                                                                                            },
+                                                                                            "varName": "neq"
+                                                                                        },
+                                                                                        "nin": {
+                                                                                            "defaultValue": null,
+                                                                                            "description": null,
+                                                                                            "id_str": "forwardingRuleList___input___filter___domain___nin",
+                                                                                            "name": "nin",
+                                                                                            "path": "forwardingRuleList.input.filter.domain.nin",
+                                                                                            "requestStr": "$nin:[String] ",
+                                                                                            "required": false,
+                                                                                            "responseStr": "nin:$nin ",
+                                                                                            "type": {
+                                                                                                "kind": [
+                                                                                                    "LIST",
+                                                                                                    "NON_NULL",
+                                                                                                    "SCALAR"
+                                                                                                ],
+                                                                                                "name": "String",
+                                                                                                "non_null": false
+                                                                                            },
+                                                                                            "varName": "nin"
+                                                                                        },
+                                                                                        "regex": {
+                                                                                            "defaultValue": null,
+                                                                                            "description": null,
+                                                                                            "id_str": "forwardingRuleList___input___filter___domain___regex",
+                                                                                            "name": "regex",
+                                                                                            "path": "forwardingRuleList.input.filter.domain.regex",
+                                                                                            "requestStr": "$regex:String ",
+                                                                                            "required": false,
+                                                                                            "responseStr": "regex:$regex ",
+                                                                                            "type": {
+                                                                                                "kind": [
+                                                                                                    "SCALAR"
+                                                                                                ],
+                                                                                                "name": "String",
+                                                                                                "non_null": false
+                                                                                            },
+                                                                                            "varName": "regex"
+                                                                                        }
+                                                                                    },
+                                                                                    "interfaces": null,
+                                                                                    "kind": "INPUT_OBJECT",
+                                                                                    "name": "AdvancedStringFilterInput",
+                                                                                    "possibleTypes": null
+                                                                                },
+                                                                                "indexType": "input_object",
+                                                                                "kind": [
+                                                                                    "INPUT_OBJECT"
+                                                                                ],
+                                                                                "name": "AdvancedStringFilterInput",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "advancedStringFilterInput"
+                                                                        }
+                                                                    },
+                                                                    "interfaces": null,
+                                                                    "kind": "INPUT_OBJECT",
+                                                                    "name": "NetworkConfigDnsForwardingRuleFilterInput",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "input_object",
+                                                                "kind": [
+                                                                    "INPUT_OBJECT"
+                                                                ],
+                                                                "name": "NetworkConfigDnsForwardingRuleFilterInput",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "networkConfigDnsForwardingRuleFilterInput"
+                                                        },
+                                                        "paging": {
+                                                            "defaultValue": "{limit: 100, from: 0}",
+                                                            "description": "The page of forwarding rules to return.",
+                                                            "id_str": "forwardingRuleList___input___paging",
+                                                            "name": "paging",
+                                                            "path": "forwardingRuleList.input.paging",
+                                                            "requestStr": "$pagingInput:PagingInput ",
+                                                            "required": false,
+                                                            "responseStr": "paging:$pagingInput ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": null,
+                                                                    "enumValues": null,
+                                                                    "fields": null,
+                                                                    "inputFields": {
+                                                                        "from": {
+                                                                            "defaultValue": "0",
+                                                                            "description": null,
+                                                                            "id_str": "forwardingRuleList___input___paging___from",
+                                                                            "name": "from",
+                                                                            "path": "forwardingRuleList.input.paging.from",
+                                                                            "requestStr": "$from:Int! ",
+                                                                            "required": true,
+                                                                            "responseStr": "from:$from ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "NON_NULL",
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "Int",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "from"
+                                                                        },
+                                                                        "limit": {
+                                                                            "defaultValue": "100",
+                                                                            "description": null,
+                                                                            "id_str": "forwardingRuleList___input___paging___limit",
+                                                                            "name": "limit",
+                                                                            "path": "forwardingRuleList.input.paging.limit",
+                                                                            "requestStr": "$limit:Int! ",
+                                                                            "required": true,
+                                                                            "responseStr": "limit:$limit ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "NON_NULL",
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "Int",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "limit"
+                                                                        }
+                                                                    },
+                                                                    "interfaces": null,
+                                                                    "kind": "INPUT_OBJECT",
+                                                                    "name": "PagingInput",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "input_object",
+                                                                "kind": [
+                                                                    "INPUT_OBJECT"
+                                                                ],
+                                                                "name": "PagingInput",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "pagingInput"
+                                                        },
+                                                        "sort": {
+                                                            "defaultValue": "{domain: {direction: ASC, priority: 1}}",
+                                                            "description": "The order the rules are returned in. Defaults to ascending by domain.",
+                                                            "id_str": "forwardingRuleList___input___sort",
+                                                            "name": "sort",
+                                                            "path": "forwardingRuleList.input.sort",
+                                                            "requestStr": "$networkConfigDnsForwardingRuleSortInput:NetworkConfigDnsForwardingRuleSortInput! ",
+                                                            "required": true,
+                                                            "responseStr": "sort:$networkConfigDnsForwardingRuleSortInput ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": "The order DNS forwarding rules are returned in.",
+                                                                    "enumValues": null,
+                                                                    "fields": null,
+                                                                    "inputFields": {
+                                                                        "domain": {
+                                                                            "defaultValue": null,
+                                                                            "description": "Sort by domain.",
+                                                                            "id_str": "forwardingRuleList___input___sort___domain",
+                                                                            "name": "domain",
+                                                                            "path": "forwardingRuleList.input.sort.domain",
+                                                                            "requestStr": "$sortOrderInput:SortOrderInput ",
+                                                                            "required": false,
+                                                                            "responseStr": "domain:$sortOrderInput ",
+                                                                            "type": {
+                                                                                "definition": {
+                                                                                    "description": null,
+                                                                                    "enumValues": null,
+                                                                                    "fields": null,
+                                                                                    "inputFields": {
+                                                                                        "direction": {
+                                                                                            "defaultValue": "ASC",
+                                                                                            "description": null,
+                                                                                            "id_str": "forwardingRuleList___input___sort___domain___direction",
+                                                                                            "name": "direction",
+                                                                                            "path": "forwardingRuleList.input.sort.domain.direction",
+                                                                                            "requestStr": "$direction:SortOrder! ",
+                                                                                            "required": true,
+                                                                                            "responseStr": "direction:$direction ",
+                                                                                            "type": {
+                                                                                                "definition": {
+                                                                                                    "description": null,
+                                                                                                    "enumValues": [
+                                                                                                        {
+                                                                                                            "deprecationReason": null,
+                                                                                                            "description": null,
+                                                                                                            "isDeprecated": false,
+                                                                                                            "name": "ASC"
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "deprecationReason": null,
+                                                                                                            "description": null,
+                                                                                                            "isDeprecated": false,
+                                                                                                            "name": "DESC"
+                                                                                                        }
+                                                                                                    ],
+                                                                                                    "fields": null,
+                                                                                                    "inputFields": null,
+                                                                                                    "interfaces": null,
+                                                                                                    "kind": "ENUM",
+                                                                                                    "name": "SortOrder",
+                                                                                                    "possibleTypes": null
+                                                                                                },
+                                                                                                "indexType": "enum",
+                                                                                                "kind": [
+                                                                                                    "NON_NULL",
+                                                                                                    "ENUM"
+                                                                                                ],
+                                                                                                "name": "SortOrder",
+                                                                                                "non_null": false
+                                                                                            },
+                                                                                            "varName": "direction"
+                                                                                        },
+                                                                                        "priority": {
+                                                                                            "defaultValue": "1",
+                                                                                            "description": null,
+                                                                                            "id_str": "forwardingRuleList___input___sort___domain___priority",
+                                                                                            "name": "priority",
+                                                                                            "path": "forwardingRuleList.input.sort.domain.priority",
+                                                                                            "requestStr": "$priority:Int! ",
+                                                                                            "required": true,
+                                                                                            "responseStr": "priority:$priority ",
+                                                                                            "type": {
+                                                                                                "kind": [
+                                                                                                    "NON_NULL",
+                                                                                                    "SCALAR"
+                                                                                                ],
+                                                                                                "name": "Int",
+                                                                                                "non_null": false
+                                                                                            },
+                                                                                            "varName": "priority"
+                                                                                        }
+                                                                                    },
+                                                                                    "interfaces": null,
+                                                                                    "kind": "INPUT_OBJECT",
+                                                                                    "name": "SortOrderInput",
+                                                                                    "possibleTypes": null
+                                                                                },
+                                                                                "indexType": "input_object",
+                                                                                "kind": [
+                                                                                    "INPUT_OBJECT"
+                                                                                ],
+                                                                                "name": "SortOrderInput",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "sortOrderInput"
+                                                                        }
+                                                                    },
+                                                                    "interfaces": null,
+                                                                    "kind": "INPUT_OBJECT",
+                                                                    "name": "NetworkConfigDnsForwardingRuleSortInput",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "input_object",
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "INPUT_OBJECT"
+                                                                ],
+                                                                "name": "NetworkConfigDnsForwardingRuleSortInput",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "networkConfigDnsForwardingRuleSortInput"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "NetworkConfigDnsForwardingRuleListInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "NetworkConfigDnsForwardingRuleListInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "networkConfigDnsForwardingRuleListInput"
+                                        }
+                                    },
+                                    "deprecationReason": null,
+                                    "description": "The account's DNS forwarding rules.",
+                                    "id_str": "dns___forwardingRuleList",
+                                    "isDeprecated": false,
+                                    "name": "forwardingRuleList",
+                                    "path": "dns.forwardingRuleList",
+                                    "requestStr": "$networkConfigDnsForwardingRuleListPayload:NetworkConfigDnsForwardingRuleListPayload ",
+                                    "required": false,
+                                    "responseStr": "forwardingRuleList:$networkConfigDnsForwardingRuleListPayload ",
+                                    "type": {
+                                        "definition": {
+                                            "description": "Response payload for the DNS forwarding-rules list.",
+                                            "enumValues": null,
+                                            "fields": {
+                                                "items": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "The DNS forwarding rules defined for this account.",
+                                                    "id_str": "dns___forwardingRuleList___items",
+                                                    "isDeprecated": false,
+                                                    "name": "items",
+                                                    "path": "dns.forwardingRuleList.items",
+                                                    "requestStr": "$networkConfigDnsForwardingRule:[NetworkConfigDnsForwardingRule]! ",
+                                                    "required": true,
+                                                    "responseStr": "items:$networkConfigDnsForwardingRule ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": "A DNS forwarding rule: DNS queries for `domain` are forwarded to `server`.",
+                                                            "enumValues": null,
+                                                            "fields": {
+                                                                "domain": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "The domain whose DNS queries are forwarded, unique within the account.",
+                                                                    "id_str": "dns___forwardingRuleList___items___domain",
+                                                                    "isDeprecated": false,
+                                                                    "name": "domain",
+                                                                    "path": "dns.forwardingRuleList.items.domain",
+                                                                    "requestStr": "$domain:Domain! ",
+                                                                    "required": true,
+                                                                    "responseStr": "domain:$domain ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "Domain",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "domain"
+                                                                },
+                                                                "id": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Globally-unique, opaque identifier for the forwarding rule.",
+                                                                    "id_str": "dns___forwardingRuleList___items___id",
+                                                                    "isDeprecated": false,
+                                                                    "name": "id",
+                                                                    "path": "dns.forwardingRuleList.items.id",
+                                                                    "requestStr": "$id:ID! ",
+                                                                    "required": true,
+                                                                    "responseStr": "id:$id ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "ID",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "id"
+                                                                },
+                                                                "server": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "The DNS servers the queries are forwarded to (1\u20136 addresses).",
+                                                                    "id_str": "dns___forwardingRuleList___items___server",
+                                                                    "isDeprecated": false,
+                                                                    "name": "server",
+                                                                    "path": "dns.forwardingRuleList.items.server",
+                                                                    "requestStr": "$server:[IPAddress]! ",
+                                                                    "required": true,
+                                                                    "responseStr": "server:$server ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "LIST",
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "IPAddress",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "server"
+                                                                }
+                                                            },
+                                                            "inputFields": null,
+                                                            "interfaces": {},
+                                                            "kind": "OBJECT",
+                                                            "name": "NetworkConfigDnsForwardingRule",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "object",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "LIST",
+                                                            "NON_NULL",
+                                                            "OBJECT"
+                                                        ],
+                                                        "name": "NetworkConfigDnsForwardingRule",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "networkConfigDnsForwardingRule"
+                                                },
+                                                "paging": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Pagination metadata for this list.",
+                                                    "id_str": "dns___forwardingRuleList___paging",
+                                                    "isDeprecated": false,
+                                                    "name": "paging",
+                                                    "path": "dns.forwardingRuleList.paging",
+                                                    "requestStr": "$pageInfo:PageInfo! ",
+                                                    "required": true,
+                                                    "responseStr": "paging:$pageInfo ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": null,
+                                                            "enumValues": null,
+                                                            "fields": {
+                                                                "total": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "id_str": "dns___forwardingRuleList___paging___total",
+                                                                    "isDeprecated": false,
+                                                                    "name": "total",
+                                                                    "path": "dns.forwardingRuleList.paging.total",
+                                                                    "requestStr": "$total:Int! ",
+                                                                    "required": true,
+                                                                    "responseStr": "total:$total ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "Int",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "total"
+                                                                }
+                                                            },
+                                                            "inputFields": null,
+                                                            "interfaces": {},
+                                                            "kind": "OBJECT",
+                                                            "name": "PageInfo",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "object",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "OBJECT"
+                                                        ],
+                                                        "name": "PageInfo",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "pageInfo"
+                                                }
+                                            },
+                                            "inputFields": null,
+                                            "interfaces": {},
+                                            "kind": "OBJECT",
+                                            "name": "NetworkConfigDnsForwardingRuleListPayload",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "object",
+                                        "kind": [
+                                            "OBJECT"
+                                        ],
+                                        "name": "NetworkConfigDnsForwardingRuleListPayload",
+                                        "non_null": false
+                                    },
+                                    "varName": "networkConfigDnsForwardingRuleListPayload"
+                                }
+                            },
+                            "inputFields": null,
+                            "interfaces": {},
+                            "kind": "OBJECT",
+                            "name": "NetworkConfigDnsQueries",
+                            "possibleTypes": null
+                        },
+                        "indexType": "object",
+                        "kind": [
+                            "NON_NULL",
+                            "OBJECT"
+                        ],
+                        "name": "NetworkConfigDnsQueries",
+                        "non_null": false
+                    },
+                    "varName": "networkConfigDnsQueries"
+                }
+            },
+            "inputFields": null,
+            "interfaces": [],
+            "kind": "OBJECT",
+            "name": "NetworkConfigQueries",
+            "possibleTypes": null
+        },
+        "indexType": "object",
+        "kind": [
+            "OBJECT"
+        ],
+        "name": "NetworkConfigQueries",
+        "non_null": false
+    },
+    "variablesPayload": {
+        "networkConfigDnsForwardingRuleListInput": {
+            "filter": {
+                "domain": {
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ],
+                    "regex": "string"
+                }
+            },
+            "paging": {
+                "from": 1,
+                "limit": 1
+            },
+            "sort": {
+                "domain": {
+                    "direction": "ASC",
+                    "priority": 1
+                }
+            }
+        }
+    }
+}

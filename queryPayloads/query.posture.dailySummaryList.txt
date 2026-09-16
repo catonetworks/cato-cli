@@ -1,0 +1,104 @@
+query postureDailySummaryList ( $accountId:ID! $postureDailySummaryListInput:PostureDailySummaryListInput!) {
+	posture ( accountId:$accountId ) {
+		dailySummaryList ( input:$postureDailySummaryListInput  )  {
+			items {
+				evaluatedAt
+				summary {
+					score
+					domainScores {
+						domain {
+							id
+							name
+						}
+						score
+						checkCount
+					}
+					areaScores {
+						area {
+							id
+							name
+						}
+						categoryScores {
+							category {
+								id
+								name
+							}
+							score
+							stats {
+								total
+								disabled
+								passed
+								failed
+							}
+						}
+						score
+						checkCount
+					}
+					categoryScores {
+						category {
+							id
+							name
+						}
+						score
+						stats {
+							total
+							disabled
+							passed
+							failed
+						}
+					}
+					securityDomainScores {
+						securityDomain
+						score
+						stats {
+							total
+							disabled
+							passed
+							failed
+						}
+					}
+					applicationScores {
+						application
+						score
+						stats {
+							total
+							disabled
+							passed
+							failed
+						}
+					}
+					stats {
+						categories {
+							total
+							disabled
+							passed
+							failed
+						}
+						subCategories {
+							total
+							disabled
+							passed
+							failed
+						}
+						checks {
+							total
+							disabled
+							passed
+							failed
+						}
+					}
+					evaluatedAt
+					comparisons {
+						comparisonType
+						comparisonValue
+						average
+						percentile
+					}
+				}
+			}
+			paging {
+				total
+			}
+		}
+	}	
+}

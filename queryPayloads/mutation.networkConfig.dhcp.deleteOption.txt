@@ -1,0 +1,15 @@
+mutation networkConfigDhcpDeleteOption ( $accountId:ID! $networkConfigDhcpDeleteOptionInput:NetworkConfigDhcpDeleteOptionInput!) {
+	networkConfig ( accountId:$accountId ) {
+		dhcp {
+			deleteOption ( input:$networkConfigDhcpDeleteOptionInput   ) {
+				option {
+					id
+					tag
+					value
+					description
+					type
+				}
+			}
+		}
+	}	
+}

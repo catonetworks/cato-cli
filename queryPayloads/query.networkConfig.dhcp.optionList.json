@@ -1,0 +1,59 @@
+{
+    "operationName": "networkConfigDhcpOptionList",
+    "query": "query networkConfigDhcpOptionList ( $accountId:ID! $networkConfigDhcpOptionListInput:NetworkConfigDhcpOptionListInput!) {\n\tnetworkConfig ( accountId:$accountId ) {\n\t\tdhcp {\n\t\t\toptionList ( input:$networkConfigDhcpOptionListInput   ) {\n\t\t\t\titems {\n\t\t\t\t\tid\n\t\t\t\t\ttag\n\t\t\t\t\tvalue\n\t\t\t\t\tdescription\n\t\t\t\t\ttype\n\t\t\t\t}\n\t\t\t\tpaging {\n\t\t\t\t\ttotal\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\t\n}",
+    "variables": {
+        "networkConfigDhcpOptionListInput": {
+            "filter": {
+                "description": {
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ],
+                    "regex": "string"
+                },
+                "tag": {
+                    "between": [
+                        1,
+                        2
+                    ],
+                    "eq": 1,
+                    "gt": 1,
+                    "gte": 1,
+                    "in": [
+                        1,
+                        2
+                    ],
+                    "lt": 1,
+                    "lte": 1,
+                    "neq": 1,
+                    "nin": [
+                        1,
+                        2
+                    ]
+                },
+                "type": {
+                    "eq": "ASCII",
+                    "in": "ASCII",
+                    "neq": "ASCII",
+                    "nin": "ASCII"
+                }
+            },
+            "paging": {
+                "from": 1,
+                "limit": 1
+            },
+            "sort": {
+                "tag": {
+                    "direction": "ASC",
+                    "priority": 1
+                }
+            }
+        }
+    }
+}

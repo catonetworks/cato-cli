@@ -1,0 +1,609 @@
+{
+    "args": {
+        "accountId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        }
+    },
+    "childOperations": {
+        "dns": {
+            "args": {},
+            "deprecationReason": null,
+            "description": "DNS write operations.",
+            "isDeprecated": false,
+            "name": "dns",
+            "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                    "kind": "OBJECT",
+                    "name": "NetworkConfigDnsMutations",
+                    "ofType": null
+                }
+            }
+        },
+        "updateSettings": {
+            "args": {
+                "updateSettings___input": {
+                    "defaultValue": null,
+                    "description": null,
+                    "id_str": "updateSettings___input",
+                    "name": "input",
+                    "path": "updateSettings.input",
+                    "requestStr": "$networkConfigDnsUpdateSettingsInput:NetworkConfigDnsUpdateSettingsInput! ",
+                    "required": true,
+                    "responseStr": "input:$networkConfigDnsUpdateSettingsInput ",
+                    "type": {
+                        "definition": {
+                            "description": "Input for updating the account-level DNS settings. Every field is optional and an omitted field is left unchanged, subject to \"no secondary server or suffix without a primary server\".",
+                            "enumValues": null,
+                            "fields": null,
+                            "inputFields": {
+                                "acceptDnsRequestsOnLanInterfaceIp": {
+                                    "defaultValue": null,
+                                    "description": "Whether the account accepts DNS requests sent to the Socket LAN interface IP. Omit to leave unchanged.",
+                                    "id_str": "updateSettings___input___acceptDnsRequestsOnLanInterfaceIp",
+                                    "name": "acceptDnsRequestsOnLanInterfaceIp",
+                                    "path": "updateSettings.input.acceptDnsRequestsOnLanInterfaceIp",
+                                    "requestStr": "$acceptDnsRequestsOnLanInterfaceIp:Boolean ",
+                                    "required": false,
+                                    "responseStr": "acceptDnsRequestsOnLanInterfaceIp:$acceptDnsRequestsOnLanInterfaceIp ",
+                                    "type": {
+                                        "kind": [
+                                            "SCALAR"
+                                        ],
+                                        "name": "Boolean",
+                                        "non_null": false
+                                    },
+                                    "varName": "acceptDnsRequestsOnLanInterfaceIp"
+                                },
+                                "primaryServer": {
+                                    "defaultValue": null,
+                                    "description": "The primary DNS server. Required if a secondary server or any suffix is set. Omit to leave unchanged, explicit null to clear.",
+                                    "id_str": "updateSettings___input___primaryServer",
+                                    "name": "primaryServer",
+                                    "path": "updateSettings.input.primaryServer",
+                                    "requestStr": "$primaryServer:IPAddress ",
+                                    "required": false,
+                                    "responseStr": "primaryServer:$primaryServer ",
+                                    "type": {
+                                        "kind": [
+                                            "SCALAR"
+                                        ],
+                                        "name": "IPAddress",
+                                        "non_null": false
+                                    },
+                                    "varName": "primaryServer"
+                                },
+                                "secondaryServer": {
+                                    "defaultValue": null,
+                                    "description": "The secondary DNS server. Omit to leave unchanged, explicit null to clear.",
+                                    "id_str": "updateSettings___input___secondaryServer",
+                                    "name": "secondaryServer",
+                                    "path": "updateSettings.input.secondaryServer",
+                                    "requestStr": "$secondaryServer:IPAddress ",
+                                    "required": false,
+                                    "responseStr": "secondaryServer:$secondaryServer ",
+                                    "type": {
+                                        "kind": [
+                                            "SCALAR"
+                                        ],
+                                        "name": "IPAddress",
+                                        "non_null": false
+                                    },
+                                    "varName": "secondaryServer"
+                                },
+                                "suffix": {
+                                    "defaultValue": null,
+                                    "description": "The ordered DNS search suffixes. A given list replaces the account's entire suffix list, so an empty list clears it; omit to leave unchanged.",
+                                    "id_str": "updateSettings___input___suffix",
+                                    "name": "suffix",
+                                    "path": "updateSettings.input.suffix",
+                                    "requestStr": "$suffix:[Domain] ",
+                                    "required": false,
+                                    "responseStr": "suffix:$suffix ",
+                                    "type": {
+                                        "kind": [
+                                            "LIST",
+                                            "NON_NULL",
+                                            "SCALAR"
+                                        ],
+                                        "name": "Domain",
+                                        "non_null": false
+                                    },
+                                    "varName": "suffix"
+                                }
+                            },
+                            "interfaces": null,
+                            "kind": "INPUT_OBJECT",
+                            "name": "NetworkConfigDnsUpdateSettingsInput",
+                            "possibleTypes": null
+                        },
+                        "indexType": "input_object",
+                        "kind": [
+                            "NON_NULL",
+                            "INPUT_OBJECT"
+                        ],
+                        "name": "NetworkConfigDnsUpdateSettingsInput",
+                        "non_null": false
+                    },
+                    "varName": "networkConfigDnsUpdateSettingsInput"
+                }
+            },
+            "deprecationReason": null,
+            "description": "Update the account-level DNS settings (servers, suffixes, LAN-interface acceptance).",
+            "isDeprecated": false,
+            "name": "updateSettings",
+            "type": {
+                "kind": "OBJECT",
+                "name": "NetworkConfigDnsUpdateSettingsPayload",
+                "ofType": null
+            }
+        }
+    },
+    "deprecationReason": null,
+    "description": "All network-configuration write operations for an account.",
+    "fieldTypes": {},
+    "isDeprecated": false,
+    "name": "networkConfig",
+    "operationArgs": {
+        "accountId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        },
+        "networkConfigDnsUpdateSettingsInput": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "updateSettings___input",
+            "name": "input",
+            "path": "updateSettings.input",
+            "requestStr": "$networkConfigDnsUpdateSettingsInput:NetworkConfigDnsUpdateSettingsInput! ",
+            "required": true,
+            "responseStr": "input:$networkConfigDnsUpdateSettingsInput ",
+            "type": {
+                "definition": {
+                    "description": "Input for updating the account-level DNS settings. Every field is optional and an omitted field is left unchanged, subject to \"no secondary server or suffix without a primary server\".",
+                    "enumValues": null,
+                    "fields": null,
+                    "inputFields": {
+                        "acceptDnsRequestsOnLanInterfaceIp": {
+                            "defaultValue": null,
+                            "description": "Whether the account accepts DNS requests sent to the Socket LAN interface IP. Omit to leave unchanged.",
+                            "id_str": "updateSettings___input___acceptDnsRequestsOnLanInterfaceIp",
+                            "name": "acceptDnsRequestsOnLanInterfaceIp",
+                            "path": "updateSettings.input.acceptDnsRequestsOnLanInterfaceIp",
+                            "requestStr": "$acceptDnsRequestsOnLanInterfaceIp:Boolean ",
+                            "required": false,
+                            "responseStr": "acceptDnsRequestsOnLanInterfaceIp:$acceptDnsRequestsOnLanInterfaceIp ",
+                            "type": {
+                                "kind": [
+                                    "SCALAR"
+                                ],
+                                "name": "Boolean",
+                                "non_null": false
+                            },
+                            "varName": "acceptDnsRequestsOnLanInterfaceIp"
+                        },
+                        "primaryServer": {
+                            "defaultValue": null,
+                            "description": "The primary DNS server. Required if a secondary server or any suffix is set. Omit to leave unchanged, explicit null to clear.",
+                            "id_str": "updateSettings___input___primaryServer",
+                            "name": "primaryServer",
+                            "path": "updateSettings.input.primaryServer",
+                            "requestStr": "$primaryServer:IPAddress ",
+                            "required": false,
+                            "responseStr": "primaryServer:$primaryServer ",
+                            "type": {
+                                "kind": [
+                                    "SCALAR"
+                                ],
+                                "name": "IPAddress",
+                                "non_null": false
+                            },
+                            "varName": "primaryServer"
+                        },
+                        "secondaryServer": {
+                            "defaultValue": null,
+                            "description": "The secondary DNS server. Omit to leave unchanged, explicit null to clear.",
+                            "id_str": "updateSettings___input___secondaryServer",
+                            "name": "secondaryServer",
+                            "path": "updateSettings.input.secondaryServer",
+                            "requestStr": "$secondaryServer:IPAddress ",
+                            "required": false,
+                            "responseStr": "secondaryServer:$secondaryServer ",
+                            "type": {
+                                "kind": [
+                                    "SCALAR"
+                                ],
+                                "name": "IPAddress",
+                                "non_null": false
+                            },
+                            "varName": "secondaryServer"
+                        },
+                        "suffix": {
+                            "defaultValue": null,
+                            "description": "The ordered DNS search suffixes. A given list replaces the account's entire suffix list, so an empty list clears it; omit to leave unchanged.",
+                            "id_str": "updateSettings___input___suffix",
+                            "name": "suffix",
+                            "path": "updateSettings.input.suffix",
+                            "requestStr": "$suffix:[Domain] ",
+                            "required": false,
+                            "responseStr": "suffix:$suffix ",
+                            "type": {
+                                "kind": [
+                                    "LIST",
+                                    "NON_NULL",
+                                    "SCALAR"
+                                ],
+                                "name": "Domain",
+                                "non_null": false
+                            },
+                            "varName": "suffix"
+                        }
+                    },
+                    "interfaces": null,
+                    "kind": "INPUT_OBJECT",
+                    "name": "NetworkConfigDnsUpdateSettingsInput",
+                    "possibleTypes": null
+                },
+                "indexType": "input_object",
+                "kind": [
+                    "NON_NULL",
+                    "INPUT_OBJECT"
+                ],
+                "name": "NetworkConfigDnsUpdateSettingsInput",
+                "non_null": false
+            },
+            "varName": "networkConfigDnsUpdateSettingsInput"
+        }
+    },
+    "path": "mutation.networkConfig.dns.updateSettings",
+    "type": {
+        "definition": {
+            "description": "Network-configuration write operations.",
+            "enumValues": null,
+            "fields": {
+                "dns": {
+                    "args": {},
+                    "deprecationReason": null,
+                    "description": "DNS write operations.",
+                    "id_str": "dns",
+                    "isDeprecated": false,
+                    "name": "dns",
+                    "path": "dns",
+                    "requestStr": "$networkConfigDnsMutations:NetworkConfigDnsMutations! ",
+                    "required": true,
+                    "responseStr": "dns:$networkConfigDnsMutations ",
+                    "type": {
+                        "definition": {
+                            "description": "DNS write operations for the account.",
+                            "enumValues": null,
+                            "fields": {
+                                "updateSettings": {
+                                    "args": {
+                                        "updateSettings___input": {
+                                            "defaultValue": null,
+                                            "description": null,
+                                            "id_str": "updateSettings___input",
+                                            "name": "input",
+                                            "path": "updateSettings.input",
+                                            "requestStr": "$networkConfigDnsUpdateSettingsInput:NetworkConfigDnsUpdateSettingsInput! ",
+                                            "required": true,
+                                            "responseStr": "input:$networkConfigDnsUpdateSettingsInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": "Input for updating the account-level DNS settings. Every field is optional and an omitted field is left unchanged, subject to \"no secondary server or suffix without a primary server\".",
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "acceptDnsRequestsOnLanInterfaceIp": {
+                                                            "defaultValue": null,
+                                                            "description": "Whether the account accepts DNS requests sent to the Socket LAN interface IP. Omit to leave unchanged.",
+                                                            "id_str": "updateSettings___input___acceptDnsRequestsOnLanInterfaceIp",
+                                                            "name": "acceptDnsRequestsOnLanInterfaceIp",
+                                                            "path": "updateSettings.input.acceptDnsRequestsOnLanInterfaceIp",
+                                                            "requestStr": "$acceptDnsRequestsOnLanInterfaceIp:Boolean ",
+                                                            "required": false,
+                                                            "responseStr": "acceptDnsRequestsOnLanInterfaceIp:$acceptDnsRequestsOnLanInterfaceIp ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "Boolean",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "acceptDnsRequestsOnLanInterfaceIp"
+                                                        },
+                                                        "primaryServer": {
+                                                            "defaultValue": null,
+                                                            "description": "The primary DNS server. Required if a secondary server or any suffix is set. Omit to leave unchanged, explicit null to clear.",
+                                                            "id_str": "updateSettings___input___primaryServer",
+                                                            "name": "primaryServer",
+                                                            "path": "updateSettings.input.primaryServer",
+                                                            "requestStr": "$primaryServer:IPAddress ",
+                                                            "required": false,
+                                                            "responseStr": "primaryServer:$primaryServer ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "IPAddress",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "primaryServer"
+                                                        },
+                                                        "secondaryServer": {
+                                                            "defaultValue": null,
+                                                            "description": "The secondary DNS server. Omit to leave unchanged, explicit null to clear.",
+                                                            "id_str": "updateSettings___input___secondaryServer",
+                                                            "name": "secondaryServer",
+                                                            "path": "updateSettings.input.secondaryServer",
+                                                            "requestStr": "$secondaryServer:IPAddress ",
+                                                            "required": false,
+                                                            "responseStr": "secondaryServer:$secondaryServer ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "IPAddress",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "secondaryServer"
+                                                        },
+                                                        "suffix": {
+                                                            "defaultValue": null,
+                                                            "description": "The ordered DNS search suffixes. A given list replaces the account's entire suffix list, so an empty list clears it; omit to leave unchanged.",
+                                                            "id_str": "updateSettings___input___suffix",
+                                                            "name": "suffix",
+                                                            "path": "updateSettings.input.suffix",
+                                                            "requestStr": "$suffix:[Domain] ",
+                                                            "required": false,
+                                                            "responseStr": "suffix:$suffix ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "LIST",
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "Domain",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "suffix"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "NetworkConfigDnsUpdateSettingsInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "NetworkConfigDnsUpdateSettingsInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "networkConfigDnsUpdateSettingsInput"
+                                        }
+                                    },
+                                    "deprecationReason": null,
+                                    "description": "Update the account-level DNS settings (servers, suffixes, LAN-interface acceptance).",
+                                    "id_str": "dns___updateSettings",
+                                    "isDeprecated": false,
+                                    "name": "updateSettings",
+                                    "path": "dns.updateSettings",
+                                    "requestStr": "$networkConfigDnsUpdateSettingsPayload:NetworkConfigDnsUpdateSettingsPayload ",
+                                    "required": false,
+                                    "responseStr": "updateSettings:$networkConfigDnsUpdateSettingsPayload ",
+                                    "type": {
+                                        "definition": {
+                                            "description": "Result of updating the account-level DNS settings.",
+                                            "enumValues": null,
+                                            "fields": {
+                                                "settings": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "The updated account-level DNS settings.",
+                                                    "id_str": "dns___updateSettings___settings",
+                                                    "isDeprecated": false,
+                                                    "name": "settings",
+                                                    "path": "dns.updateSettings.settings",
+                                                    "requestStr": "$networkConfigDnsSettings:NetworkConfigDnsSettings! ",
+                                                    "required": true,
+                                                    "responseStr": "settings:$networkConfigDnsSettings ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": "Account-level DNS settings. Exactly one instance exists per account.",
+                                                            "enumValues": null,
+                                                            "fields": {
+                                                                "acceptDnsRequestsOnLanInterfaceIp": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Whether the account accepts DNS requests sent to the Socket LAN interface IP.",
+                                                                    "id_str": "dns___updateSettings___settings___acceptDnsRequestsOnLanInterfaceIp",
+                                                                    "isDeprecated": false,
+                                                                    "name": "acceptDnsRequestsOnLanInterfaceIp",
+                                                                    "path": "dns.updateSettings.settings.acceptDnsRequestsOnLanInterfaceIp",
+                                                                    "requestStr": "$acceptDnsRequestsOnLanInterfaceIp:Boolean! ",
+                                                                    "required": true,
+                                                                    "responseStr": "acceptDnsRequestsOnLanInterfaceIp:$acceptDnsRequestsOnLanInterfaceIp ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "Boolean",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "acceptDnsRequestsOnLanInterfaceIp"
+                                                                },
+                                                                "primaryServer": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "The primary DNS server. Required unless both the secondary server and all suffixes are empty.",
+                                                                    "id_str": "dns___updateSettings___settings___primaryServer",
+                                                                    "isDeprecated": false,
+                                                                    "name": "primaryServer",
+                                                                    "path": "dns.updateSettings.settings.primaryServer",
+                                                                    "requestStr": "$primaryServer:IPAddress ",
+                                                                    "required": false,
+                                                                    "responseStr": "primaryServer:$primaryServer ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "IPAddress",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "primaryServer"
+                                                                },
+                                                                "secondaryServer": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "The secondary DNS server. Only allowed when a primary server is set.",
+                                                                    "id_str": "dns___updateSettings___settings___secondaryServer",
+                                                                    "isDeprecated": false,
+                                                                    "name": "secondaryServer",
+                                                                    "path": "dns.updateSettings.settings.secondaryServer",
+                                                                    "requestStr": "$secondaryServer:IPAddress ",
+                                                                    "required": false,
+                                                                    "responseStr": "secondaryServer:$secondaryServer ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "IPAddress",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "secondaryServer"
+                                                                },
+                                                                "suffix": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "The ordered DNS search suffixes.",
+                                                                    "id_str": "dns___updateSettings___settings___suffix",
+                                                                    "isDeprecated": false,
+                                                                    "name": "suffix",
+                                                                    "path": "dns.updateSettings.settings.suffix",
+                                                                    "requestStr": "$suffix:[Domain]! ",
+                                                                    "required": true,
+                                                                    "responseStr": "suffix:$suffix ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "LIST",
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "Domain",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "suffix"
+                                                                }
+                                                            },
+                                                            "inputFields": null,
+                                                            "interfaces": {},
+                                                            "kind": "OBJECT",
+                                                            "name": "NetworkConfigDnsSettings",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "object",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "OBJECT"
+                                                        ],
+                                                        "name": "NetworkConfigDnsSettings",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "networkConfigDnsSettings"
+                                                }
+                                            },
+                                            "inputFields": null,
+                                            "interfaces": {},
+                                            "kind": "OBJECT",
+                                            "name": "NetworkConfigDnsUpdateSettingsPayload",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "object",
+                                        "kind": [
+                                            "OBJECT"
+                                        ],
+                                        "name": "NetworkConfigDnsUpdateSettingsPayload",
+                                        "non_null": false
+                                    },
+                                    "varName": "networkConfigDnsUpdateSettingsPayload"
+                                }
+                            },
+                            "inputFields": null,
+                            "interfaces": {},
+                            "kind": "OBJECT",
+                            "name": "NetworkConfigDnsMutations",
+                            "possibleTypes": null
+                        },
+                        "indexType": "object",
+                        "kind": [
+                            "NON_NULL",
+                            "OBJECT"
+                        ],
+                        "name": "NetworkConfigDnsMutations",
+                        "non_null": false
+                    },
+                    "varName": "networkConfigDnsMutations"
+                }
+            },
+            "inputFields": null,
+            "interfaces": [],
+            "kind": "OBJECT",
+            "name": "NetworkConfigMutations",
+            "possibleTypes": null
+        },
+        "indexType": "object",
+        "kind": [
+            "OBJECT"
+        ],
+        "name": "NetworkConfigMutations",
+        "non_null": false
+    },
+    "variablesPayload": {
+        "networkConfigDnsUpdateSettingsInput": {
+            "acceptDnsRequestsOnLanInterfaceIp": true,
+            "primaryServer": "example_value",
+            "secondaryServer": "example_value",
+            "suffix": [
+                "example1",
+                "example2"
+            ]
+        }
+    }
+}

@@ -1,0 +1,43 @@
+mutation postureUpdateCheckConfiguration ( $accountId:ID! $postureUpdateCheckConfigurationInput:PostureUpdateCheckConfigurationInput!) {
+	posture ( accountId:$accountId ) {
+		updateCheckConfiguration ( input:$postureUpdateCheckConfigurationInput  )  {
+			items {
+				id
+				name
+				description
+				tags
+				impact
+				recommendedActions {
+					recommendedAction
+					recommendedActionLink {
+						text
+						url
+					}
+				}
+				suppressedStatus
+				category {
+					id
+					name
+				}
+				domain {
+					id
+					name
+				}
+				area {
+					id
+					name
+				}
+				complianceFrameworks
+				complianceControls {
+					framework
+					key
+					title
+					description
+				}
+				application
+				checkType
+				securityDomain
+			}
+		}
+	}	
+}

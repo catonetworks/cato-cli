@@ -1,0 +1,197 @@
+{
+    "args": {
+        "accountId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        },
+        "input": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "input",
+            "name": "input",
+            "path": "input",
+            "requestStr": "$encryptKeytabFileInput:EncryptKeytabFileInput! ",
+            "required": true,
+            "responseStr": "input:$encryptKeytabFileInput ",
+            "type": {
+                "definition": {
+                    "description": null,
+                    "enumValues": null,
+                    "fields": null,
+                    "inputFields": {
+                        "file": {
+                            "defaultValue": null,
+                            "description": "Keytab file uploaded via GraphQL multipart/form-data.",
+                            "id_str": "input___file",
+                            "name": "file",
+                            "path": "input.file",
+                            "requestStr": "$file:Upload! ",
+                            "required": true,
+                            "responseStr": "file:$file ",
+                            "type": {
+                                "kind": [
+                                    "NON_NULL",
+                                    "SCALAR"
+                                ],
+                                "name": "Upload",
+                                "non_null": false
+                            },
+                            "varName": "file"
+                        }
+                    },
+                    "interfaces": null,
+                    "kind": "INPUT_OBJECT",
+                    "name": "EncryptKeytabFileInput",
+                    "possibleTypes": null
+                },
+                "indexType": "input_object",
+                "kind": [
+                    "NON_NULL",
+                    "INPUT_OBJECT"
+                ],
+                "name": "EncryptKeytabFileInput",
+                "non_null": false
+            },
+            "varName": "encryptKeytabFileInput"
+        }
+    },
+    "childOperations": {},
+    "deprecationReason": null,
+    "description": "Uploads a Kerberos keytab file for Site Web Proxy and returns an encrypted payload.\nThis operation is a pre-step for configuring Kerberos authentication in siteWebProxy policy.\n\nThe request must be sent as a GraphQL multipart/form-data upload\n(graphql-multipart-request-spec): `input.file` is `null` in `operations`, and the\nfile bytes are sent as a separate form-data part mapped to it via `map`.\n\n```bash\ncurl -X POST \"https://api.catonetworks.com/api/v1/graphql2\" \\\n  -H \"x-api-key: <API_KEY>\" \\\n  -F 'operations={\"query\":\"mutation encryptKeytabFile($accountId: ID!, $input: EncryptKeytabFileInput!) { encryptKeytabFile(accountId: $accountId, input: $input) { encryptedFile } }\",\"variables\":{\"accountId\":\"123\",\"input\":{\"file\":null}}}' \\\n  -F 'map={\"0\":[\"variables.input.file\"]}' \\\n  -F '0=@/path/to/file.keytab'\n```",
+    "fieldTypes": {},
+    "isDeprecated": false,
+    "name": "encryptKeytabFile",
+    "operationArgs": {
+        "accountId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        },
+        "encryptKeytabFileInput": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "input",
+            "name": "input",
+            "path": "input",
+            "requestStr": "$encryptKeytabFileInput:EncryptKeytabFileInput! ",
+            "required": true,
+            "responseStr": "input:$encryptKeytabFileInput ",
+            "type": {
+                "definition": {
+                    "description": null,
+                    "enumValues": null,
+                    "fields": null,
+                    "inputFields": {
+                        "file": {
+                            "defaultValue": null,
+                            "description": "Keytab file uploaded via GraphQL multipart/form-data.",
+                            "id_str": "input___file",
+                            "name": "file",
+                            "path": "input.file",
+                            "requestStr": "$file:Upload! ",
+                            "required": true,
+                            "responseStr": "file:$file ",
+                            "type": {
+                                "kind": [
+                                    "NON_NULL",
+                                    "SCALAR"
+                                ],
+                                "name": "Upload",
+                                "non_null": false
+                            },
+                            "varName": "file"
+                        }
+                    },
+                    "interfaces": null,
+                    "kind": "INPUT_OBJECT",
+                    "name": "EncryptKeytabFileInput",
+                    "possibleTypes": null
+                },
+                "indexType": "input_object",
+                "kind": [
+                    "NON_NULL",
+                    "INPUT_OBJECT"
+                ],
+                "name": "EncryptKeytabFileInput",
+                "non_null": false
+            },
+            "varName": "encryptKeytabFileInput"
+        }
+    },
+    "path": "mutation.encryptKeytabFile",
+    "type": {
+        "definition": {
+            "description": null,
+            "enumValues": null,
+            "fields": {
+                "encryptedFile": {
+                    "args": {},
+                    "deprecationReason": null,
+                    "description": "Encrypted keytab payload. Use this value in Kerberos configuration file of siteWebProxy mutations.",
+                    "id_str": "encryptedFile",
+                    "isDeprecated": false,
+                    "name": "encryptedFile",
+                    "path": "encryptedFile",
+                    "requestStr": "$encryptedFile:String! ",
+                    "required": true,
+                    "responseStr": "encryptedFile:$encryptedFile ",
+                    "type": {
+                        "kind": [
+                            "NON_NULL",
+                            "SCALAR"
+                        ],
+                        "name": "String",
+                        "non_null": false
+                    },
+                    "varName": "encryptedFile"
+                }
+            },
+            "inputFields": null,
+            "interfaces": [],
+            "kind": "OBJECT",
+            "name": "EncryptKeytabFilePayload",
+            "possibleTypes": null
+        },
+        "indexType": "object",
+        "kind": [
+            "NON_NULL",
+            "OBJECT"
+        ],
+        "name": "EncryptKeytabFilePayload",
+        "non_null": false
+    },
+    "variablesPayload": {
+        "encryptKeytabFileInput": {
+            "file": "example_value"
+        }
+    }
+}

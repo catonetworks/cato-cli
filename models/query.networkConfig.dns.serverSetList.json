@@ -1,0 +1,1632 @@
+{
+    "args": {
+        "accountId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        }
+    },
+    "childOperations": {
+        "dns": {
+            "args": {},
+            "deprecationReason": null,
+            "description": "DNS read operations.",
+            "isDeprecated": false,
+            "name": "dns",
+            "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                    "kind": "OBJECT",
+                    "name": "NetworkConfigDnsQueries",
+                    "ofType": null
+                }
+            }
+        },
+        "serverSetList": {
+            "args": {
+                "serverSetList___input": {
+                    "defaultValue": "{sort: {name: {direction: ASC, priority: 1}}, paging: {limit: 100, from: 0}}",
+                    "description": null,
+                    "id_str": "serverSetList___input",
+                    "name": "input",
+                    "path": "serverSetList.input",
+                    "requestStr": "$networkConfigDnsServerSetListInput:NetworkConfigDnsServerSetListInput! ",
+                    "required": true,
+                    "responseStr": "input:$networkConfigDnsServerSetListInput ",
+                    "type": {
+                        "definition": {
+                            "description": "Input for listing DNS server sets.",
+                            "enumValues": null,
+                            "fields": null,
+                            "inputFields": {
+                                "filter": {
+                                    "defaultValue": null,
+                                    "description": "Restricts the result to the sets matching every condition given.",
+                                    "id_str": "serverSetList___input___filter",
+                                    "name": "filter",
+                                    "path": "serverSetList.input.filter",
+                                    "requestStr": "$networkConfigDnsServerSetFilterInput:NetworkConfigDnsServerSetFilterInput ",
+                                    "required": false,
+                                    "responseStr": "filter:$networkConfigDnsServerSetFilterInput ",
+                                    "type": {
+                                        "definition": {
+                                            "description": "Conditions a DNS server set must match to appear in the result.",
+                                            "enumValues": null,
+                                            "fields": null,
+                                            "inputFields": {
+                                                "name": {
+                                                    "defaultValue": null,
+                                                    "description": "Match by set name.",
+                                                    "id_str": "serverSetList___input___filter___name",
+                                                    "name": "name",
+                                                    "path": "serverSetList.input.filter.name",
+                                                    "requestStr": "$advancedStringFilterInput:AdvancedStringFilterInput ",
+                                                    "required": false,
+                                                    "responseStr": "name:$advancedStringFilterInput ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": null,
+                                                            "enumValues": null,
+                                                            "fields": null,
+                                                            "inputFields": {
+                                                                "eq": {
+                                                                    "defaultValue": null,
+                                                                    "description": null,
+                                                                    "id_str": "serverSetList___input___filter___name___eq",
+                                                                    "name": "eq",
+                                                                    "path": "serverSetList.input.filter.name.eq",
+                                                                    "requestStr": "$eq:String ",
+                                                                    "required": false,
+                                                                    "responseStr": "eq:$eq ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "String",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "eq"
+                                                                },
+                                                                "in": {
+                                                                    "defaultValue": null,
+                                                                    "description": null,
+                                                                    "id_str": "serverSetList___input___filter___name___in",
+                                                                    "name": "in",
+                                                                    "path": "serverSetList.input.filter.name.in",
+                                                                    "requestStr": "$in:[String] ",
+                                                                    "required": false,
+                                                                    "responseStr": "in:$in ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "LIST",
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "String",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "in"
+                                                                },
+                                                                "neq": {
+                                                                    "defaultValue": null,
+                                                                    "description": null,
+                                                                    "id_str": "serverSetList___input___filter___name___neq",
+                                                                    "name": "neq",
+                                                                    "path": "serverSetList.input.filter.name.neq",
+                                                                    "requestStr": "$neq:String ",
+                                                                    "required": false,
+                                                                    "responseStr": "neq:$neq ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "String",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "neq"
+                                                                },
+                                                                "nin": {
+                                                                    "defaultValue": null,
+                                                                    "description": null,
+                                                                    "id_str": "serverSetList___input___filter___name___nin",
+                                                                    "name": "nin",
+                                                                    "path": "serverSetList.input.filter.name.nin",
+                                                                    "requestStr": "$nin:[String] ",
+                                                                    "required": false,
+                                                                    "responseStr": "nin:$nin ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "LIST",
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "String",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "nin"
+                                                                },
+                                                                "regex": {
+                                                                    "defaultValue": null,
+                                                                    "description": null,
+                                                                    "id_str": "serverSetList___input___filter___name___regex",
+                                                                    "name": "regex",
+                                                                    "path": "serverSetList.input.filter.name.regex",
+                                                                    "requestStr": "$regex:String ",
+                                                                    "required": false,
+                                                                    "responseStr": "regex:$regex ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "String",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "regex"
+                                                                }
+                                                            },
+                                                            "interfaces": null,
+                                                            "kind": "INPUT_OBJECT",
+                                                            "name": "AdvancedStringFilterInput",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "input_object",
+                                                        "kind": [
+                                                            "INPUT_OBJECT"
+                                                        ],
+                                                        "name": "AdvancedStringFilterInput",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "advancedStringFilterInput"
+                                                }
+                                            },
+                                            "interfaces": null,
+                                            "kind": "INPUT_OBJECT",
+                                            "name": "NetworkConfigDnsServerSetFilterInput",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "input_object",
+                                        "kind": [
+                                            "INPUT_OBJECT"
+                                        ],
+                                        "name": "NetworkConfigDnsServerSetFilterInput",
+                                        "non_null": false
+                                    },
+                                    "varName": "networkConfigDnsServerSetFilterInput"
+                                },
+                                "paging": {
+                                    "defaultValue": "{limit: 100, from: 0}",
+                                    "description": "The page of sets to return.",
+                                    "id_str": "serverSetList___input___paging",
+                                    "name": "paging",
+                                    "path": "serverSetList.input.paging",
+                                    "requestStr": "$pagingInput:PagingInput ",
+                                    "required": false,
+                                    "responseStr": "paging:$pagingInput ",
+                                    "type": {
+                                        "definition": {
+                                            "description": null,
+                                            "enumValues": null,
+                                            "fields": null,
+                                            "inputFields": {
+                                                "from": {
+                                                    "defaultValue": "0",
+                                                    "description": null,
+                                                    "id_str": "serverSetList___input___paging___from",
+                                                    "name": "from",
+                                                    "path": "serverSetList.input.paging.from",
+                                                    "requestStr": "$from:Int! ",
+                                                    "required": true,
+                                                    "responseStr": "from:$from ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "Int",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "from"
+                                                },
+                                                "limit": {
+                                                    "defaultValue": "100",
+                                                    "description": null,
+                                                    "id_str": "serverSetList___input___paging___limit",
+                                                    "name": "limit",
+                                                    "path": "serverSetList.input.paging.limit",
+                                                    "requestStr": "$limit:Int! ",
+                                                    "required": true,
+                                                    "responseStr": "limit:$limit ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "Int",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "limit"
+                                                }
+                                            },
+                                            "interfaces": null,
+                                            "kind": "INPUT_OBJECT",
+                                            "name": "PagingInput",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "input_object",
+                                        "kind": [
+                                            "INPUT_OBJECT"
+                                        ],
+                                        "name": "PagingInput",
+                                        "non_null": false
+                                    },
+                                    "varName": "pagingInput"
+                                },
+                                "sort": {
+                                    "defaultValue": "{name: {direction: ASC, priority: 1}}",
+                                    "description": "The order the sets are returned in. Defaults to ascending by name.",
+                                    "id_str": "serverSetList___input___sort",
+                                    "name": "sort",
+                                    "path": "serverSetList.input.sort",
+                                    "requestStr": "$networkConfigDnsServerSetSortInput:NetworkConfigDnsServerSetSortInput! ",
+                                    "required": true,
+                                    "responseStr": "sort:$networkConfigDnsServerSetSortInput ",
+                                    "type": {
+                                        "definition": {
+                                            "description": "The order DNS server sets are returned in.",
+                                            "enumValues": null,
+                                            "fields": null,
+                                            "inputFields": {
+                                                "name": {
+                                                    "defaultValue": null,
+                                                    "description": "Sort by set name.",
+                                                    "id_str": "serverSetList___input___sort___name",
+                                                    "name": "name",
+                                                    "path": "serverSetList.input.sort.name",
+                                                    "requestStr": "$sortOrderInput:SortOrderInput ",
+                                                    "required": false,
+                                                    "responseStr": "name:$sortOrderInput ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": null,
+                                                            "enumValues": null,
+                                                            "fields": null,
+                                                            "inputFields": {
+                                                                "direction": {
+                                                                    "defaultValue": "ASC",
+                                                                    "description": null,
+                                                                    "id_str": "serverSetList___input___sort___name___direction",
+                                                                    "name": "direction",
+                                                                    "path": "serverSetList.input.sort.name.direction",
+                                                                    "requestStr": "$direction:SortOrder! ",
+                                                                    "required": true,
+                                                                    "responseStr": "direction:$direction ",
+                                                                    "type": {
+                                                                        "definition": {
+                                                                            "description": null,
+                                                                            "enumValues": [
+                                                                                {
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "ASC"
+                                                                                },
+                                                                                {
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "DESC"
+                                                                                }
+                                                                            ],
+                                                                            "fields": null,
+                                                                            "inputFields": null,
+                                                                            "interfaces": null,
+                                                                            "kind": "ENUM",
+                                                                            "name": "SortOrder",
+                                                                            "possibleTypes": null
+                                                                        },
+                                                                        "indexType": "enum",
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "ENUM"
+                                                                        ],
+                                                                        "name": "SortOrder",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "direction"
+                                                                },
+                                                                "priority": {
+                                                                    "defaultValue": "1",
+                                                                    "description": null,
+                                                                    "id_str": "serverSetList___input___sort___name___priority",
+                                                                    "name": "priority",
+                                                                    "path": "serverSetList.input.sort.name.priority",
+                                                                    "requestStr": "$priority:Int! ",
+                                                                    "required": true,
+                                                                    "responseStr": "priority:$priority ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "Int",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "priority"
+                                                                }
+                                                            },
+                                                            "interfaces": null,
+                                                            "kind": "INPUT_OBJECT",
+                                                            "name": "SortOrderInput",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "input_object",
+                                                        "kind": [
+                                                            "INPUT_OBJECT"
+                                                        ],
+                                                        "name": "SortOrderInput",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "sortOrderInput"
+                                                }
+                                            },
+                                            "interfaces": null,
+                                            "kind": "INPUT_OBJECT",
+                                            "name": "NetworkConfigDnsServerSetSortInput",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "input_object",
+                                        "kind": [
+                                            "NON_NULL",
+                                            "INPUT_OBJECT"
+                                        ],
+                                        "name": "NetworkConfigDnsServerSetSortInput",
+                                        "non_null": false
+                                    },
+                                    "varName": "networkConfigDnsServerSetSortInput"
+                                }
+                            },
+                            "interfaces": null,
+                            "kind": "INPUT_OBJECT",
+                            "name": "NetworkConfigDnsServerSetListInput",
+                            "possibleTypes": null
+                        },
+                        "indexType": "input_object",
+                        "kind": [
+                            "NON_NULL",
+                            "INPUT_OBJECT"
+                        ],
+                        "name": "NetworkConfigDnsServerSetListInput",
+                        "non_null": false
+                    },
+                    "varName": "networkConfigDnsServerSetListInput"
+                }
+            },
+            "deprecationReason": null,
+            "description": "The account's DNS server sets.",
+            "isDeprecated": false,
+            "name": "serverSetList",
+            "type": {
+                "kind": "OBJECT",
+                "name": "NetworkConfigDnsServerSetListPayload",
+                "ofType": null
+            }
+        }
+    },
+    "deprecationReason": null,
+    "description": "All network-configuration read operations for an account.",
+    "fieldTypes": {},
+    "isDeprecated": false,
+    "name": "networkConfig",
+    "operationArgs": {
+        "accountId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        },
+        "networkConfigDnsServerSetListInput": {
+            "defaultValue": "{sort: {name: {direction: ASC, priority: 1}}, paging: {limit: 100, from: 0}}",
+            "description": null,
+            "id_str": "serverSetList___input",
+            "name": "input",
+            "path": "serverSetList.input",
+            "requestStr": "$networkConfigDnsServerSetListInput:NetworkConfigDnsServerSetListInput! ",
+            "required": true,
+            "responseStr": "input:$networkConfigDnsServerSetListInput ",
+            "type": {
+                "definition": {
+                    "description": "Input for listing DNS server sets.",
+                    "enumValues": null,
+                    "fields": null,
+                    "inputFields": {
+                        "filter": {
+                            "defaultValue": null,
+                            "description": "Restricts the result to the sets matching every condition given.",
+                            "id_str": "serverSetList___input___filter",
+                            "name": "filter",
+                            "path": "serverSetList.input.filter",
+                            "requestStr": "$networkConfigDnsServerSetFilterInput:NetworkConfigDnsServerSetFilterInput ",
+                            "required": false,
+                            "responseStr": "filter:$networkConfigDnsServerSetFilterInput ",
+                            "type": {
+                                "definition": {
+                                    "description": "Conditions a DNS server set must match to appear in the result.",
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "name": {
+                                            "defaultValue": null,
+                                            "description": "Match by set name.",
+                                            "id_str": "serverSetList___input___filter___name",
+                                            "name": "name",
+                                            "path": "serverSetList.input.filter.name",
+                                            "requestStr": "$advancedStringFilterInput:AdvancedStringFilterInput ",
+                                            "required": false,
+                                            "responseStr": "name:$advancedStringFilterInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "eq": {
+                                                            "defaultValue": null,
+                                                            "description": null,
+                                                            "id_str": "serverSetList___input___filter___name___eq",
+                                                            "name": "eq",
+                                                            "path": "serverSetList.input.filter.name.eq",
+                                                            "requestStr": "$eq:String ",
+                                                            "required": false,
+                                                            "responseStr": "eq:$eq ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "String",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "eq"
+                                                        },
+                                                        "in": {
+                                                            "defaultValue": null,
+                                                            "description": null,
+                                                            "id_str": "serverSetList___input___filter___name___in",
+                                                            "name": "in",
+                                                            "path": "serverSetList.input.filter.name.in",
+                                                            "requestStr": "$in:[String] ",
+                                                            "required": false,
+                                                            "responseStr": "in:$in ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "LIST",
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "String",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "in"
+                                                        },
+                                                        "neq": {
+                                                            "defaultValue": null,
+                                                            "description": null,
+                                                            "id_str": "serverSetList___input___filter___name___neq",
+                                                            "name": "neq",
+                                                            "path": "serverSetList.input.filter.name.neq",
+                                                            "requestStr": "$neq:String ",
+                                                            "required": false,
+                                                            "responseStr": "neq:$neq ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "String",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "neq"
+                                                        },
+                                                        "nin": {
+                                                            "defaultValue": null,
+                                                            "description": null,
+                                                            "id_str": "serverSetList___input___filter___name___nin",
+                                                            "name": "nin",
+                                                            "path": "serverSetList.input.filter.name.nin",
+                                                            "requestStr": "$nin:[String] ",
+                                                            "required": false,
+                                                            "responseStr": "nin:$nin ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "LIST",
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "String",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "nin"
+                                                        },
+                                                        "regex": {
+                                                            "defaultValue": null,
+                                                            "description": null,
+                                                            "id_str": "serverSetList___input___filter___name___regex",
+                                                            "name": "regex",
+                                                            "path": "serverSetList.input.filter.name.regex",
+                                                            "requestStr": "$regex:String ",
+                                                            "required": false,
+                                                            "responseStr": "regex:$regex ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "String",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "regex"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "AdvancedStringFilterInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "AdvancedStringFilterInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "advancedStringFilterInput"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "NetworkConfigDnsServerSetFilterInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "NetworkConfigDnsServerSetFilterInput",
+                                "non_null": false
+                            },
+                            "varName": "networkConfigDnsServerSetFilterInput"
+                        },
+                        "paging": {
+                            "defaultValue": "{limit: 100, from: 0}",
+                            "description": "The page of sets to return.",
+                            "id_str": "serverSetList___input___paging",
+                            "name": "paging",
+                            "path": "serverSetList.input.paging",
+                            "requestStr": "$pagingInput:PagingInput ",
+                            "required": false,
+                            "responseStr": "paging:$pagingInput ",
+                            "type": {
+                                "definition": {
+                                    "description": null,
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "from": {
+                                            "defaultValue": "0",
+                                            "description": null,
+                                            "id_str": "serverSetList___input___paging___from",
+                                            "name": "from",
+                                            "path": "serverSetList.input.paging.from",
+                                            "requestStr": "$from:Int! ",
+                                            "required": true,
+                                            "responseStr": "from:$from ",
+                                            "type": {
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "SCALAR"
+                                                ],
+                                                "name": "Int",
+                                                "non_null": false
+                                            },
+                                            "varName": "from"
+                                        },
+                                        "limit": {
+                                            "defaultValue": "100",
+                                            "description": null,
+                                            "id_str": "serverSetList___input___paging___limit",
+                                            "name": "limit",
+                                            "path": "serverSetList.input.paging.limit",
+                                            "requestStr": "$limit:Int! ",
+                                            "required": true,
+                                            "responseStr": "limit:$limit ",
+                                            "type": {
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "SCALAR"
+                                                ],
+                                                "name": "Int",
+                                                "non_null": false
+                                            },
+                                            "varName": "limit"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "PagingInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "PagingInput",
+                                "non_null": false
+                            },
+                            "varName": "pagingInput"
+                        },
+                        "sort": {
+                            "defaultValue": "{name: {direction: ASC, priority: 1}}",
+                            "description": "The order the sets are returned in. Defaults to ascending by name.",
+                            "id_str": "serverSetList___input___sort",
+                            "name": "sort",
+                            "path": "serverSetList.input.sort",
+                            "requestStr": "$networkConfigDnsServerSetSortInput:NetworkConfigDnsServerSetSortInput! ",
+                            "required": true,
+                            "responseStr": "sort:$networkConfigDnsServerSetSortInput ",
+                            "type": {
+                                "definition": {
+                                    "description": "The order DNS server sets are returned in.",
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "name": {
+                                            "defaultValue": null,
+                                            "description": "Sort by set name.",
+                                            "id_str": "serverSetList___input___sort___name",
+                                            "name": "name",
+                                            "path": "serverSetList.input.sort.name",
+                                            "requestStr": "$sortOrderInput:SortOrderInput ",
+                                            "required": false,
+                                            "responseStr": "name:$sortOrderInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "direction": {
+                                                            "defaultValue": "ASC",
+                                                            "description": null,
+                                                            "id_str": "serverSetList___input___sort___name___direction",
+                                                            "name": "direction",
+                                                            "path": "serverSetList.input.sort.name.direction",
+                                                            "requestStr": "$direction:SortOrder! ",
+                                                            "required": true,
+                                                            "responseStr": "direction:$direction ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": null,
+                                                                    "enumValues": [
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "ASC"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "DESC"
+                                                                        }
+                                                                    ],
+                                                                    "fields": null,
+                                                                    "inputFields": null,
+                                                                    "interfaces": null,
+                                                                    "kind": "ENUM",
+                                                                    "name": "SortOrder",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "enum",
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "ENUM"
+                                                                ],
+                                                                "name": "SortOrder",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "direction"
+                                                        },
+                                                        "priority": {
+                                                            "defaultValue": "1",
+                                                            "description": null,
+                                                            "id_str": "serverSetList___input___sort___name___priority",
+                                                            "name": "priority",
+                                                            "path": "serverSetList.input.sort.name.priority",
+                                                            "requestStr": "$priority:Int! ",
+                                                            "required": true,
+                                                            "responseStr": "priority:$priority ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "Int",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "priority"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "SortOrderInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "SortOrderInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "sortOrderInput"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "NetworkConfigDnsServerSetSortInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "NON_NULL",
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "NetworkConfigDnsServerSetSortInput",
+                                "non_null": false
+                            },
+                            "varName": "networkConfigDnsServerSetSortInput"
+                        }
+                    },
+                    "interfaces": null,
+                    "kind": "INPUT_OBJECT",
+                    "name": "NetworkConfigDnsServerSetListInput",
+                    "possibleTypes": null
+                },
+                "indexType": "input_object",
+                "kind": [
+                    "NON_NULL",
+                    "INPUT_OBJECT"
+                ],
+                "name": "NetworkConfigDnsServerSetListInput",
+                "non_null": false
+            },
+            "varName": "networkConfigDnsServerSetListInput"
+        }
+    },
+    "path": "query.networkConfig.dns.serverSetList",
+    "type": {
+        "definition": {
+            "description": "Network-configuration read operations.",
+            "enumValues": null,
+            "fields": {
+                "dns": {
+                    "args": {},
+                    "deprecationReason": null,
+                    "description": "DNS read operations.",
+                    "id_str": "dns",
+                    "isDeprecated": false,
+                    "name": "dns",
+                    "path": "dns",
+                    "requestStr": "$networkConfigDnsQueries:NetworkConfigDnsQueries! ",
+                    "required": true,
+                    "responseStr": "dns:$networkConfigDnsQueries ",
+                    "type": {
+                        "definition": {
+                            "description": "DNS read operations for the account.",
+                            "enumValues": null,
+                            "fields": {
+                                "serverSetList": {
+                                    "args": {
+                                        "serverSetList___input": {
+                                            "defaultValue": "{sort: {name: {direction: ASC, priority: 1}}, paging: {limit: 100, from: 0}}",
+                                            "description": null,
+                                            "id_str": "serverSetList___input",
+                                            "name": "input",
+                                            "path": "serverSetList.input",
+                                            "requestStr": "$networkConfigDnsServerSetListInput:NetworkConfigDnsServerSetListInput! ",
+                                            "required": true,
+                                            "responseStr": "input:$networkConfigDnsServerSetListInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": "Input for listing DNS server sets.",
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "filter": {
+                                                            "defaultValue": null,
+                                                            "description": "Restricts the result to the sets matching every condition given.",
+                                                            "id_str": "serverSetList___input___filter",
+                                                            "name": "filter",
+                                                            "path": "serverSetList.input.filter",
+                                                            "requestStr": "$networkConfigDnsServerSetFilterInput:NetworkConfigDnsServerSetFilterInput ",
+                                                            "required": false,
+                                                            "responseStr": "filter:$networkConfigDnsServerSetFilterInput ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": "Conditions a DNS server set must match to appear in the result.",
+                                                                    "enumValues": null,
+                                                                    "fields": null,
+                                                                    "inputFields": {
+                                                                        "name": {
+                                                                            "defaultValue": null,
+                                                                            "description": "Match by set name.",
+                                                                            "id_str": "serverSetList___input___filter___name",
+                                                                            "name": "name",
+                                                                            "path": "serverSetList.input.filter.name",
+                                                                            "requestStr": "$advancedStringFilterInput:AdvancedStringFilterInput ",
+                                                                            "required": false,
+                                                                            "responseStr": "name:$advancedStringFilterInput ",
+                                                                            "type": {
+                                                                                "definition": {
+                                                                                    "description": null,
+                                                                                    "enumValues": null,
+                                                                                    "fields": null,
+                                                                                    "inputFields": {
+                                                                                        "eq": {
+                                                                                            "defaultValue": null,
+                                                                                            "description": null,
+                                                                                            "id_str": "serverSetList___input___filter___name___eq",
+                                                                                            "name": "eq",
+                                                                                            "path": "serverSetList.input.filter.name.eq",
+                                                                                            "requestStr": "$eq:String ",
+                                                                                            "required": false,
+                                                                                            "responseStr": "eq:$eq ",
+                                                                                            "type": {
+                                                                                                "kind": [
+                                                                                                    "SCALAR"
+                                                                                                ],
+                                                                                                "name": "String",
+                                                                                                "non_null": false
+                                                                                            },
+                                                                                            "varName": "eq"
+                                                                                        },
+                                                                                        "in": {
+                                                                                            "defaultValue": null,
+                                                                                            "description": null,
+                                                                                            "id_str": "serverSetList___input___filter___name___in",
+                                                                                            "name": "in",
+                                                                                            "path": "serverSetList.input.filter.name.in",
+                                                                                            "requestStr": "$in:[String] ",
+                                                                                            "required": false,
+                                                                                            "responseStr": "in:$in ",
+                                                                                            "type": {
+                                                                                                "kind": [
+                                                                                                    "LIST",
+                                                                                                    "NON_NULL",
+                                                                                                    "SCALAR"
+                                                                                                ],
+                                                                                                "name": "String",
+                                                                                                "non_null": false
+                                                                                            },
+                                                                                            "varName": "in"
+                                                                                        },
+                                                                                        "neq": {
+                                                                                            "defaultValue": null,
+                                                                                            "description": null,
+                                                                                            "id_str": "serverSetList___input___filter___name___neq",
+                                                                                            "name": "neq",
+                                                                                            "path": "serverSetList.input.filter.name.neq",
+                                                                                            "requestStr": "$neq:String ",
+                                                                                            "required": false,
+                                                                                            "responseStr": "neq:$neq ",
+                                                                                            "type": {
+                                                                                                "kind": [
+                                                                                                    "SCALAR"
+                                                                                                ],
+                                                                                                "name": "String",
+                                                                                                "non_null": false
+                                                                                            },
+                                                                                            "varName": "neq"
+                                                                                        },
+                                                                                        "nin": {
+                                                                                            "defaultValue": null,
+                                                                                            "description": null,
+                                                                                            "id_str": "serverSetList___input___filter___name___nin",
+                                                                                            "name": "nin",
+                                                                                            "path": "serverSetList.input.filter.name.nin",
+                                                                                            "requestStr": "$nin:[String] ",
+                                                                                            "required": false,
+                                                                                            "responseStr": "nin:$nin ",
+                                                                                            "type": {
+                                                                                                "kind": [
+                                                                                                    "LIST",
+                                                                                                    "NON_NULL",
+                                                                                                    "SCALAR"
+                                                                                                ],
+                                                                                                "name": "String",
+                                                                                                "non_null": false
+                                                                                            },
+                                                                                            "varName": "nin"
+                                                                                        },
+                                                                                        "regex": {
+                                                                                            "defaultValue": null,
+                                                                                            "description": null,
+                                                                                            "id_str": "serverSetList___input___filter___name___regex",
+                                                                                            "name": "regex",
+                                                                                            "path": "serverSetList.input.filter.name.regex",
+                                                                                            "requestStr": "$regex:String ",
+                                                                                            "required": false,
+                                                                                            "responseStr": "regex:$regex ",
+                                                                                            "type": {
+                                                                                                "kind": [
+                                                                                                    "SCALAR"
+                                                                                                ],
+                                                                                                "name": "String",
+                                                                                                "non_null": false
+                                                                                            },
+                                                                                            "varName": "regex"
+                                                                                        }
+                                                                                    },
+                                                                                    "interfaces": null,
+                                                                                    "kind": "INPUT_OBJECT",
+                                                                                    "name": "AdvancedStringFilterInput",
+                                                                                    "possibleTypes": null
+                                                                                },
+                                                                                "indexType": "input_object",
+                                                                                "kind": [
+                                                                                    "INPUT_OBJECT"
+                                                                                ],
+                                                                                "name": "AdvancedStringFilterInput",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "advancedStringFilterInput"
+                                                                        }
+                                                                    },
+                                                                    "interfaces": null,
+                                                                    "kind": "INPUT_OBJECT",
+                                                                    "name": "NetworkConfigDnsServerSetFilterInput",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "input_object",
+                                                                "kind": [
+                                                                    "INPUT_OBJECT"
+                                                                ],
+                                                                "name": "NetworkConfigDnsServerSetFilterInput",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "networkConfigDnsServerSetFilterInput"
+                                                        },
+                                                        "paging": {
+                                                            "defaultValue": "{limit: 100, from: 0}",
+                                                            "description": "The page of sets to return.",
+                                                            "id_str": "serverSetList___input___paging",
+                                                            "name": "paging",
+                                                            "path": "serverSetList.input.paging",
+                                                            "requestStr": "$pagingInput:PagingInput ",
+                                                            "required": false,
+                                                            "responseStr": "paging:$pagingInput ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": null,
+                                                                    "enumValues": null,
+                                                                    "fields": null,
+                                                                    "inputFields": {
+                                                                        "from": {
+                                                                            "defaultValue": "0",
+                                                                            "description": null,
+                                                                            "id_str": "serverSetList___input___paging___from",
+                                                                            "name": "from",
+                                                                            "path": "serverSetList.input.paging.from",
+                                                                            "requestStr": "$from:Int! ",
+                                                                            "required": true,
+                                                                            "responseStr": "from:$from ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "NON_NULL",
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "Int",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "from"
+                                                                        },
+                                                                        "limit": {
+                                                                            "defaultValue": "100",
+                                                                            "description": null,
+                                                                            "id_str": "serverSetList___input___paging___limit",
+                                                                            "name": "limit",
+                                                                            "path": "serverSetList.input.paging.limit",
+                                                                            "requestStr": "$limit:Int! ",
+                                                                            "required": true,
+                                                                            "responseStr": "limit:$limit ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "NON_NULL",
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "Int",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "limit"
+                                                                        }
+                                                                    },
+                                                                    "interfaces": null,
+                                                                    "kind": "INPUT_OBJECT",
+                                                                    "name": "PagingInput",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "input_object",
+                                                                "kind": [
+                                                                    "INPUT_OBJECT"
+                                                                ],
+                                                                "name": "PagingInput",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "pagingInput"
+                                                        },
+                                                        "sort": {
+                                                            "defaultValue": "{name: {direction: ASC, priority: 1}}",
+                                                            "description": "The order the sets are returned in. Defaults to ascending by name.",
+                                                            "id_str": "serverSetList___input___sort",
+                                                            "name": "sort",
+                                                            "path": "serverSetList.input.sort",
+                                                            "requestStr": "$networkConfigDnsServerSetSortInput:NetworkConfigDnsServerSetSortInput! ",
+                                                            "required": true,
+                                                            "responseStr": "sort:$networkConfigDnsServerSetSortInput ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": "The order DNS server sets are returned in.",
+                                                                    "enumValues": null,
+                                                                    "fields": null,
+                                                                    "inputFields": {
+                                                                        "name": {
+                                                                            "defaultValue": null,
+                                                                            "description": "Sort by set name.",
+                                                                            "id_str": "serverSetList___input___sort___name",
+                                                                            "name": "name",
+                                                                            "path": "serverSetList.input.sort.name",
+                                                                            "requestStr": "$sortOrderInput:SortOrderInput ",
+                                                                            "required": false,
+                                                                            "responseStr": "name:$sortOrderInput ",
+                                                                            "type": {
+                                                                                "definition": {
+                                                                                    "description": null,
+                                                                                    "enumValues": null,
+                                                                                    "fields": null,
+                                                                                    "inputFields": {
+                                                                                        "direction": {
+                                                                                            "defaultValue": "ASC",
+                                                                                            "description": null,
+                                                                                            "id_str": "serverSetList___input___sort___name___direction",
+                                                                                            "name": "direction",
+                                                                                            "path": "serverSetList.input.sort.name.direction",
+                                                                                            "requestStr": "$direction:SortOrder! ",
+                                                                                            "required": true,
+                                                                                            "responseStr": "direction:$direction ",
+                                                                                            "type": {
+                                                                                                "definition": {
+                                                                                                    "description": null,
+                                                                                                    "enumValues": [
+                                                                                                        {
+                                                                                                            "deprecationReason": null,
+                                                                                                            "description": null,
+                                                                                                            "isDeprecated": false,
+                                                                                                            "name": "ASC"
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "deprecationReason": null,
+                                                                                                            "description": null,
+                                                                                                            "isDeprecated": false,
+                                                                                                            "name": "DESC"
+                                                                                                        }
+                                                                                                    ],
+                                                                                                    "fields": null,
+                                                                                                    "inputFields": null,
+                                                                                                    "interfaces": null,
+                                                                                                    "kind": "ENUM",
+                                                                                                    "name": "SortOrder",
+                                                                                                    "possibleTypes": null
+                                                                                                },
+                                                                                                "indexType": "enum",
+                                                                                                "kind": [
+                                                                                                    "NON_NULL",
+                                                                                                    "ENUM"
+                                                                                                ],
+                                                                                                "name": "SortOrder",
+                                                                                                "non_null": false
+                                                                                            },
+                                                                                            "varName": "direction"
+                                                                                        },
+                                                                                        "priority": {
+                                                                                            "defaultValue": "1",
+                                                                                            "description": null,
+                                                                                            "id_str": "serverSetList___input___sort___name___priority",
+                                                                                            "name": "priority",
+                                                                                            "path": "serverSetList.input.sort.name.priority",
+                                                                                            "requestStr": "$priority:Int! ",
+                                                                                            "required": true,
+                                                                                            "responseStr": "priority:$priority ",
+                                                                                            "type": {
+                                                                                                "kind": [
+                                                                                                    "NON_NULL",
+                                                                                                    "SCALAR"
+                                                                                                ],
+                                                                                                "name": "Int",
+                                                                                                "non_null": false
+                                                                                            },
+                                                                                            "varName": "priority"
+                                                                                        }
+                                                                                    },
+                                                                                    "interfaces": null,
+                                                                                    "kind": "INPUT_OBJECT",
+                                                                                    "name": "SortOrderInput",
+                                                                                    "possibleTypes": null
+                                                                                },
+                                                                                "indexType": "input_object",
+                                                                                "kind": [
+                                                                                    "INPUT_OBJECT"
+                                                                                ],
+                                                                                "name": "SortOrderInput",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "sortOrderInput"
+                                                                        }
+                                                                    },
+                                                                    "interfaces": null,
+                                                                    "kind": "INPUT_OBJECT",
+                                                                    "name": "NetworkConfigDnsServerSetSortInput",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "input_object",
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "INPUT_OBJECT"
+                                                                ],
+                                                                "name": "NetworkConfigDnsServerSetSortInput",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "networkConfigDnsServerSetSortInput"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "NetworkConfigDnsServerSetListInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "NetworkConfigDnsServerSetListInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "networkConfigDnsServerSetListInput"
+                                        }
+                                    },
+                                    "deprecationReason": null,
+                                    "description": "The account's DNS server sets.",
+                                    "id_str": "dns___serverSetList",
+                                    "isDeprecated": false,
+                                    "name": "serverSetList",
+                                    "path": "dns.serverSetList",
+                                    "requestStr": "$networkConfigDnsServerSetListPayload:NetworkConfigDnsServerSetListPayload ",
+                                    "required": false,
+                                    "responseStr": "serverSetList:$networkConfigDnsServerSetListPayload ",
+                                    "type": {
+                                        "definition": {
+                                            "description": "Response payload for the DNS server sets list.",
+                                            "enumValues": null,
+                                            "fields": {
+                                                "items": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "The DNS server sets defined for this account.",
+                                                    "id_str": "dns___serverSetList___items",
+                                                    "isDeprecated": false,
+                                                    "name": "items",
+                                                    "path": "dns.serverSetList.items",
+                                                    "requestStr": "$networkConfigDnsServerSet:[NetworkConfigDnsServerSet]! ",
+                                                    "required": true,
+                                                    "responseStr": "items:$networkConfigDnsServerSet ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": "A named set of DNS servers a DHCP profile can hand out.",
+                                                            "enumValues": null,
+                                                            "fields": {
+                                                                "audit": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Who last changed this set, and when.",
+                                                                    "id_str": "dns___serverSetList___items___audit",
+                                                                    "isDeprecated": false,
+                                                                    "name": "audit",
+                                                                    "path": "dns.serverSetList.items.audit",
+                                                                    "requestStr": "$auditingMetadata:AuditingMetadata ",
+                                                                    "required": false,
+                                                                    "responseStr": "audit:$auditingMetadata ",
+                                                                    "type": {
+                                                                        "definition": {
+                                                                            "description": null,
+                                                                            "enumValues": null,
+                                                                            "fields": {
+                                                                                "updatedBy": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "id_str": "dns___serverSetList___items___audit___updatedBy",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "updatedBy",
+                                                                                    "path": "dns.serverSetList.items.audit.updatedBy",
+                                                                                    "requestStr": "$actorRef:ActorRef! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "updatedBy:$actorRef ",
+                                                                                    "type": {
+                                                                                        "definition": {
+                                                                                            "description": null,
+                                                                                            "enumValues": null,
+                                                                                            "fields": {
+                                                                                                "id": {
+                                                                                                    "args": {},
+                                                                                                    "deprecationReason": null,
+                                                                                                    "description": null,
+                                                                                                    "id_str": "dns___serverSetList___items___audit___updatedBy___id",
+                                                                                                    "isDeprecated": false,
+                                                                                                    "name": "id",
+                                                                                                    "path": "dns.serverSetList.items.audit.updatedBy.id",
+                                                                                                    "requestStr": "$id:ID! ",
+                                                                                                    "required": true,
+                                                                                                    "responseStr": "id:$id ",
+                                                                                                    "type": {
+                                                                                                        "kind": [
+                                                                                                            "NON_NULL",
+                                                                                                            "SCALAR"
+                                                                                                        ],
+                                                                                                        "name": "ID",
+                                                                                                        "non_null": false
+                                                                                                    },
+                                                                                                    "varName": "id"
+                                                                                                },
+                                                                                                "name": {
+                                                                                                    "args": {},
+                                                                                                    "deprecationReason": null,
+                                                                                                    "description": null,
+                                                                                                    "id_str": "dns___serverSetList___items___audit___updatedBy___name",
+                                                                                                    "isDeprecated": false,
+                                                                                                    "name": "name",
+                                                                                                    "path": "dns.serverSetList.items.audit.updatedBy.name",
+                                                                                                    "requestStr": "$name:String! ",
+                                                                                                    "required": true,
+                                                                                                    "responseStr": "name:$name ",
+                                                                                                    "type": {
+                                                                                                        "kind": [
+                                                                                                            "NON_NULL",
+                                                                                                            "SCALAR"
+                                                                                                        ],
+                                                                                                        "name": "String",
+                                                                                                        "non_null": false
+                                                                                                    },
+                                                                                                    "varName": "name"
+                                                                                                }
+                                                                                            },
+                                                                                            "inputFields": null,
+                                                                                            "interfaces": [
+                                                                                                {
+                                                                                                    "kind": "INTERFACE",
+                                                                                                    "name": "ObjectRef",
+                                                                                                    "ofType": null
+                                                                                                }
+                                                                                            ],
+                                                                                            "kind": "INTERFACE",
+                                                                                            "name": "ActorRef",
+                                                                                            "possibleTypes": {
+                                                                                                "AdminRef": {
+                                                                                                    "description": "A reference identifying the Admin object. ID: Unique Admin Identifier, Name: The Admin Name",
+                                                                                                    "enumValues": null,
+                                                                                                    "fields": {},
+                                                                                                    "inputFields": null,
+                                                                                                    "interfaces": {},
+                                                                                                    "kind": "OBJECT",
+                                                                                                    "name": "AdminRef",
+                                                                                                    "possibleTypes": null
+                                                                                                },
+                                                                                                "ApiKeyRef": {
+                                                                                                    "description": "A reference identifying the ApiKey object. ID: Unique ApiKey Identifier, Name: The ApiKey Name",
+                                                                                                    "enumValues": null,
+                                                                                                    "fields": {},
+                                                                                                    "inputFields": null,
+                                                                                                    "interfaces": {},
+                                                                                                    "kind": "OBJECT",
+                                                                                                    "name": "ApiKeyRef",
+                                                                                                    "possibleTypes": null
+                                                                                                }
+                                                                                            }
+                                                                                        },
+                                                                                        "indexType": "interface",
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "INTERFACE"
+                                                                                        ],
+                                                                                        "name": "ActorRef",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "actorRef"
+                                                                                },
+                                                                                "updatedTime": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "id_str": "dns___serverSetList___items___audit___updatedTime",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "updatedTime",
+                                                                                    "path": "dns.serverSetList.items.audit.updatedTime",
+                                                                                    "requestStr": "$updatedTime:DateTime! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "updatedTime:$updatedTime ",
+                                                                                    "type": {
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "SCALAR"
+                                                                                        ],
+                                                                                        "name": "DateTime",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "updatedTime"
+                                                                                }
+                                                                            },
+                                                                            "inputFields": null,
+                                                                            "interfaces": {},
+                                                                            "kind": "OBJECT",
+                                                                            "name": "AuditingMetadata",
+                                                                            "possibleTypes": null
+                                                                        },
+                                                                        "indexType": "object",
+                                                                        "kind": [
+                                                                            "OBJECT"
+                                                                        ],
+                                                                        "name": "AuditingMetadata",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "auditingMetadata"
+                                                                },
+                                                                "id": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Globally-unique, opaque identifier for the set.",
+                                                                    "id_str": "dns___serverSetList___items___id",
+                                                                    "isDeprecated": false,
+                                                                    "name": "id",
+                                                                    "path": "dns.serverSetList.items.id",
+                                                                    "requestStr": "$id:ID! ",
+                                                                    "required": true,
+                                                                    "responseStr": "id:$id ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "ID",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "id"
+                                                                },
+                                                                "name": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Set name, unique within the account.",
+                                                                    "id_str": "dns___serverSetList___items___name",
+                                                                    "isDeprecated": false,
+                                                                    "name": "name",
+                                                                    "path": "dns.serverSetList.items.name",
+                                                                    "requestStr": "$name:String! ",
+                                                                    "required": true,
+                                                                    "responseStr": "name:$name ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "String",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "name"
+                                                                },
+                                                                "server": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "The DNS servers in the set (1-2 addresses; catod supports no more).",
+                                                                    "id_str": "dns___serverSetList___items___server",
+                                                                    "isDeprecated": false,
+                                                                    "name": "server",
+                                                                    "path": "dns.serverSetList.items.server",
+                                                                    "requestStr": "$server:[IPAddress]! ",
+                                                                    "required": true,
+                                                                    "responseStr": "server:$server ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "LIST",
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "IPAddress",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "server"
+                                                                }
+                                                            },
+                                                            "inputFields": null,
+                                                            "interfaces": {},
+                                                            "kind": "OBJECT",
+                                                            "name": "NetworkConfigDnsServerSet",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "object",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "LIST",
+                                                            "NON_NULL",
+                                                            "OBJECT"
+                                                        ],
+                                                        "name": "NetworkConfigDnsServerSet",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "networkConfigDnsServerSet"
+                                                },
+                                                "paging": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Pagination metadata for this list.",
+                                                    "id_str": "dns___serverSetList___paging",
+                                                    "isDeprecated": false,
+                                                    "name": "paging",
+                                                    "path": "dns.serverSetList.paging",
+                                                    "requestStr": "$pageInfo:PageInfo! ",
+                                                    "required": true,
+                                                    "responseStr": "paging:$pageInfo ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": null,
+                                                            "enumValues": null,
+                                                            "fields": {
+                                                                "total": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "id_str": "dns___serverSetList___paging___total",
+                                                                    "isDeprecated": false,
+                                                                    "name": "total",
+                                                                    "path": "dns.serverSetList.paging.total",
+                                                                    "requestStr": "$total:Int! ",
+                                                                    "required": true,
+                                                                    "responseStr": "total:$total ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "Int",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "total"
+                                                                }
+                                                            },
+                                                            "inputFields": null,
+                                                            "interfaces": {},
+                                                            "kind": "OBJECT",
+                                                            "name": "PageInfo",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "object",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "OBJECT"
+                                                        ],
+                                                        "name": "PageInfo",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "pageInfo"
+                                                }
+                                            },
+                                            "inputFields": null,
+                                            "interfaces": {},
+                                            "kind": "OBJECT",
+                                            "name": "NetworkConfigDnsServerSetListPayload",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "object",
+                                        "kind": [
+                                            "OBJECT"
+                                        ],
+                                        "name": "NetworkConfigDnsServerSetListPayload",
+                                        "non_null": false
+                                    },
+                                    "varName": "networkConfigDnsServerSetListPayload"
+                                }
+                            },
+                            "inputFields": null,
+                            "interfaces": {},
+                            "kind": "OBJECT",
+                            "name": "NetworkConfigDnsQueries",
+                            "possibleTypes": null
+                        },
+                        "indexType": "object",
+                        "kind": [
+                            "NON_NULL",
+                            "OBJECT"
+                        ],
+                        "name": "NetworkConfigDnsQueries",
+                        "non_null": false
+                    },
+                    "varName": "networkConfigDnsQueries"
+                }
+            },
+            "inputFields": null,
+            "interfaces": [],
+            "kind": "OBJECT",
+            "name": "NetworkConfigQueries",
+            "possibleTypes": null
+        },
+        "indexType": "object",
+        "kind": [
+            "OBJECT"
+        ],
+        "name": "NetworkConfigQueries",
+        "non_null": false
+    },
+    "variablesPayload": {
+        "networkConfigDnsServerSetListInput": {
+            "filter": {
+                "name": {
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ],
+                    "regex": "string"
+                }
+            },
+            "paging": {
+                "from": 1,
+                "limit": 1
+            },
+            "sort": {
+                "name": {
+                    "direction": "ASC",
+                    "priority": 1
+                }
+            }
+        }
+    }
+}

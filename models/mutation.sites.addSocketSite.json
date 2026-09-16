@@ -179,6 +179,259 @@
                                     },
                                     "varName": "nativeNetworkRange"
                                 },
+                                "secondaryVSocket": {
+                                    "defaultValue": null,
+                                    "description": "Optional secondary vSocket configuration. When provided, the site is created as a vSocket High\nAvailability (HA) site with a secondary socket in addition to the primary, in a single call.\nProvide exactly the block matching the site's connectionType (AWS / Azure / GCP vSocket).",
+                                    "id_str": "addSocketSite___input___secondaryVSocket",
+                                    "name": "secondaryVSocket",
+                                    "path": "addSocketSite.input.secondaryVSocket",
+                                    "requestStr": "$secondaryVSocketAtCreationInput:SecondaryVSocketAtCreationInput ",
+                                    "required": false,
+                                    "responseStr": "secondaryVSocket:$secondaryVSocketAtCreationInput ",
+                                    "type": {
+                                        "definition": {
+                                            "description": "Secondary vSocket parameters supplied at site creation to build a vSocket HA site with both sockets.\nProvide exactly one block, and it must correspond to the site's connectionType \u2014 supported for the\ncloud vSockets only (SOCKET_AWS1500, SOCKET_AZ1500, SOCKET_GCP1500). Any other connectionType, or a\nblock that does not match it, is rejected.",
+                                            "enumValues": null,
+                                            "fields": null,
+                                            "inputFields": {
+                                                "aws": {
+                                                    "defaultValue": null,
+                                                    "description": "Use for a site whose connectionType is SOCKET_AWS1500.",
+                                                    "id_str": "addSocketSite___input___secondaryVSocket___aws",
+                                                    "name": "aws",
+                                                    "path": "addSocketSite.input.secondaryVSocket.aws",
+                                                    "requestStr": "$secondaryAwsVSocketConfigInput:SecondaryAwsVSocketConfigInput ",
+                                                    "required": false,
+                                                    "responseStr": "aws:$secondaryAwsVSocketConfigInput ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": null,
+                                                            "enumValues": null,
+                                                            "fields": null,
+                                                            "inputFields": {
+                                                                "eniIpAddress": {
+                                                                    "defaultValue": null,
+                                                                    "description": "The IP address of the LAN interface",
+                                                                    "id_str": "addSocketSite___input___secondaryVSocket___aws___eniIpAddress",
+                                                                    "name": "eniIpAddress",
+                                                                    "path": "addSocketSite.input.secondaryVSocket.aws.eniIpAddress",
+                                                                    "requestStr": "$eniIpAddress:IPAddress! ",
+                                                                    "required": true,
+                                                                    "responseStr": "eniIpAddress:$eniIpAddress ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "IPAddress",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "eniIpAddress"
+                                                                },
+                                                                "eniIpSubnet": {
+                                                                    "defaultValue": null,
+                                                                    "description": "The subnet of the LAN interface",
+                                                                    "id_str": "addSocketSite___input___secondaryVSocket___aws___eniIpSubnet",
+                                                                    "name": "eniIpSubnet",
+                                                                    "path": "addSocketSite.input.secondaryVSocket.aws.eniIpSubnet",
+                                                                    "requestStr": "$eniIpSubnet:NetworkSubnet! ",
+                                                                    "required": true,
+                                                                    "responseStr": "eniIpSubnet:$eniIpSubnet ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "NetworkSubnet",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "eniIpSubnet"
+                                                                },
+                                                                "routeTableId": {
+                                                                    "defaultValue": null,
+                                                                    "description": "The ID of the LAN route table",
+                                                                    "id_str": "addSocketSite___input___secondaryVSocket___aws___routeTableId",
+                                                                    "name": "routeTableId",
+                                                                    "path": "addSocketSite.input.secondaryVSocket.aws.routeTableId",
+                                                                    "requestStr": "$routeTableId:String! ",
+                                                                    "required": true,
+                                                                    "responseStr": "routeTableId:$routeTableId ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "String",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "routeTableId"
+                                                                }
+                                                            },
+                                                            "interfaces": null,
+                                                            "kind": "INPUT_OBJECT",
+                                                            "name": "SecondaryAwsVSocketConfigInput",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "input_object",
+                                                        "kind": [
+                                                            "INPUT_OBJECT"
+                                                        ],
+                                                        "name": "SecondaryAwsVSocketConfigInput",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "secondaryAwsVSocketConfigInput"
+                                                },
+                                                "azure": {
+                                                    "defaultValue": null,
+                                                    "description": "Use for a site whose connectionType is SOCKET_AZ1500.",
+                                                    "id_str": "addSocketSite___input___secondaryVSocket___azure",
+                                                    "name": "azure",
+                                                    "path": "addSocketSite.input.secondaryVSocket.azure",
+                                                    "requestStr": "$secondaryAzureVSocketConfigInput:SecondaryAzureVSocketConfigInput ",
+                                                    "required": false,
+                                                    "responseStr": "azure:$secondaryAzureVSocketConfigInput ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": null,
+                                                            "enumValues": null,
+                                                            "fields": null,
+                                                            "inputFields": {
+                                                                "floatingIp": {
+                                                                    "defaultValue": null,
+                                                                    "description": "The floating IP address",
+                                                                    "id_str": "addSocketSite___input___secondaryVSocket___azure___floatingIp",
+                                                                    "name": "floatingIp",
+                                                                    "path": "addSocketSite.input.secondaryVSocket.azure.floatingIp",
+                                                                    "requestStr": "$floatingIp:IPAddress! ",
+                                                                    "required": true,
+                                                                    "responseStr": "floatingIp:$floatingIp ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "IPAddress",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "floatingIp"
+                                                                },
+                                                                "interfaceIp": {
+                                                                    "defaultValue": null,
+                                                                    "description": "The IP address of the interface",
+                                                                    "id_str": "addSocketSite___input___secondaryVSocket___azure___interfaceIp",
+                                                                    "name": "interfaceIp",
+                                                                    "path": "addSocketSite.input.secondaryVSocket.azure.interfaceIp",
+                                                                    "requestStr": "$interfaceIp:IPAddress! ",
+                                                                    "required": true,
+                                                                    "responseStr": "interfaceIp:$interfaceIp ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "IPAddress",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "interfaceIp"
+                                                                }
+                                                            },
+                                                            "interfaces": null,
+                                                            "kind": "INPUT_OBJECT",
+                                                            "name": "SecondaryAzureVSocketConfigInput",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "input_object",
+                                                        "kind": [
+                                                            "INPUT_OBJECT"
+                                                        ],
+                                                        "name": "SecondaryAzureVSocketConfigInput",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "secondaryAzureVSocketConfigInput"
+                                                },
+                                                "gcp": {
+                                                    "defaultValue": null,
+                                                    "description": "Use for a site whose connectionType is SOCKET_GCP1500.",
+                                                    "id_str": "addSocketSite___input___secondaryVSocket___gcp",
+                                                    "name": "gcp",
+                                                    "path": "addSocketSite.input.secondaryVSocket.gcp",
+                                                    "requestStr": "$secondaryGcpVSocketConfigInput:SecondaryGcpVSocketConfigInput ",
+                                                    "required": false,
+                                                    "responseStr": "gcp:$secondaryGcpVSocketConfigInput ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": null,
+                                                            "enumValues": null,
+                                                            "fields": null,
+                                                            "inputFields": {
+                                                                "interfaceIp": {
+                                                                    "defaultValue": null,
+                                                                    "description": "The IP address of the interface",
+                                                                    "id_str": "addSocketSite___input___secondaryVSocket___gcp___interfaceIp",
+                                                                    "name": "interfaceIp",
+                                                                    "path": "addSocketSite.input.secondaryVSocket.gcp.interfaceIp",
+                                                                    "requestStr": "$interfaceIp:IPAddress! ",
+                                                                    "required": true,
+                                                                    "responseStr": "interfaceIp:$interfaceIp ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "IPAddress",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "interfaceIp"
+                                                                },
+                                                                "loadBalancerIp": {
+                                                                    "defaultValue": null,
+                                                                    "description": "The load balancer IP address",
+                                                                    "id_str": "addSocketSite___input___secondaryVSocket___gcp___loadBalancerIp",
+                                                                    "name": "loadBalancerIp",
+                                                                    "path": "addSocketSite.input.secondaryVSocket.gcp.loadBalancerIp",
+                                                                    "requestStr": "$loadBalancerIp:IPAddress! ",
+                                                                    "required": true,
+                                                                    "responseStr": "loadBalancerIp:$loadBalancerIp ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "IPAddress",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "loadBalancerIp"
+                                                                }
+                                                            },
+                                                            "interfaces": null,
+                                                            "kind": "INPUT_OBJECT",
+                                                            "name": "SecondaryGcpVSocketConfigInput",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "input_object",
+                                                        "kind": [
+                                                            "INPUT_OBJECT"
+                                                        ],
+                                                        "name": "SecondaryGcpVSocketConfigInput",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "secondaryGcpVSocketConfigInput"
+                                                }
+                                            },
+                                            "interfaces": null,
+                                            "kind": "INPUT_OBJECT",
+                                            "name": "SecondaryVSocketAtCreationInput",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "input_object",
+                                        "kind": [
+                                            "INPUT_OBJECT"
+                                        ],
+                                        "name": "SecondaryVSocketAtCreationInput",
+                                        "non_null": false
+                                    },
+                                    "varName": "secondaryVSocketAtCreationInput"
+                                },
                                 "siteLocation": {
                                     "defaultValue": null,
                                     "description": "The location of the site",
@@ -602,6 +855,259 @@
                             },
                             "varName": "nativeNetworkRange"
                         },
+                        "secondaryVSocket": {
+                            "defaultValue": null,
+                            "description": "Optional secondary vSocket configuration. When provided, the site is created as a vSocket High\nAvailability (HA) site with a secondary socket in addition to the primary, in a single call.\nProvide exactly the block matching the site's connectionType (AWS / Azure / GCP vSocket).",
+                            "id_str": "addSocketSite___input___secondaryVSocket",
+                            "name": "secondaryVSocket",
+                            "path": "addSocketSite.input.secondaryVSocket",
+                            "requestStr": "$secondaryVSocketAtCreationInput:SecondaryVSocketAtCreationInput ",
+                            "required": false,
+                            "responseStr": "secondaryVSocket:$secondaryVSocketAtCreationInput ",
+                            "type": {
+                                "definition": {
+                                    "description": "Secondary vSocket parameters supplied at site creation to build a vSocket HA site with both sockets.\nProvide exactly one block, and it must correspond to the site's connectionType \u2014 supported for the\ncloud vSockets only (SOCKET_AWS1500, SOCKET_AZ1500, SOCKET_GCP1500). Any other connectionType, or a\nblock that does not match it, is rejected.",
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "aws": {
+                                            "defaultValue": null,
+                                            "description": "Use for a site whose connectionType is SOCKET_AWS1500.",
+                                            "id_str": "addSocketSite___input___secondaryVSocket___aws",
+                                            "name": "aws",
+                                            "path": "addSocketSite.input.secondaryVSocket.aws",
+                                            "requestStr": "$secondaryAwsVSocketConfigInput:SecondaryAwsVSocketConfigInput ",
+                                            "required": false,
+                                            "responseStr": "aws:$secondaryAwsVSocketConfigInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "eniIpAddress": {
+                                                            "defaultValue": null,
+                                                            "description": "The IP address of the LAN interface",
+                                                            "id_str": "addSocketSite___input___secondaryVSocket___aws___eniIpAddress",
+                                                            "name": "eniIpAddress",
+                                                            "path": "addSocketSite.input.secondaryVSocket.aws.eniIpAddress",
+                                                            "requestStr": "$eniIpAddress:IPAddress! ",
+                                                            "required": true,
+                                                            "responseStr": "eniIpAddress:$eniIpAddress ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "IPAddress",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "eniIpAddress"
+                                                        },
+                                                        "eniIpSubnet": {
+                                                            "defaultValue": null,
+                                                            "description": "The subnet of the LAN interface",
+                                                            "id_str": "addSocketSite___input___secondaryVSocket___aws___eniIpSubnet",
+                                                            "name": "eniIpSubnet",
+                                                            "path": "addSocketSite.input.secondaryVSocket.aws.eniIpSubnet",
+                                                            "requestStr": "$eniIpSubnet:NetworkSubnet! ",
+                                                            "required": true,
+                                                            "responseStr": "eniIpSubnet:$eniIpSubnet ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "NetworkSubnet",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "eniIpSubnet"
+                                                        },
+                                                        "routeTableId": {
+                                                            "defaultValue": null,
+                                                            "description": "The ID of the LAN route table",
+                                                            "id_str": "addSocketSite___input___secondaryVSocket___aws___routeTableId",
+                                                            "name": "routeTableId",
+                                                            "path": "addSocketSite.input.secondaryVSocket.aws.routeTableId",
+                                                            "requestStr": "$routeTableId:String! ",
+                                                            "required": true,
+                                                            "responseStr": "routeTableId:$routeTableId ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "String",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "routeTableId"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "SecondaryAwsVSocketConfigInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "SecondaryAwsVSocketConfigInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "secondaryAwsVSocketConfigInput"
+                                        },
+                                        "azure": {
+                                            "defaultValue": null,
+                                            "description": "Use for a site whose connectionType is SOCKET_AZ1500.",
+                                            "id_str": "addSocketSite___input___secondaryVSocket___azure",
+                                            "name": "azure",
+                                            "path": "addSocketSite.input.secondaryVSocket.azure",
+                                            "requestStr": "$secondaryAzureVSocketConfigInput:SecondaryAzureVSocketConfigInput ",
+                                            "required": false,
+                                            "responseStr": "azure:$secondaryAzureVSocketConfigInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "floatingIp": {
+                                                            "defaultValue": null,
+                                                            "description": "The floating IP address",
+                                                            "id_str": "addSocketSite___input___secondaryVSocket___azure___floatingIp",
+                                                            "name": "floatingIp",
+                                                            "path": "addSocketSite.input.secondaryVSocket.azure.floatingIp",
+                                                            "requestStr": "$floatingIp:IPAddress! ",
+                                                            "required": true,
+                                                            "responseStr": "floatingIp:$floatingIp ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "IPAddress",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "floatingIp"
+                                                        },
+                                                        "interfaceIp": {
+                                                            "defaultValue": null,
+                                                            "description": "The IP address of the interface",
+                                                            "id_str": "addSocketSite___input___secondaryVSocket___azure___interfaceIp",
+                                                            "name": "interfaceIp",
+                                                            "path": "addSocketSite.input.secondaryVSocket.azure.interfaceIp",
+                                                            "requestStr": "$interfaceIp:IPAddress! ",
+                                                            "required": true,
+                                                            "responseStr": "interfaceIp:$interfaceIp ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "IPAddress",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "interfaceIp"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "SecondaryAzureVSocketConfigInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "SecondaryAzureVSocketConfigInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "secondaryAzureVSocketConfigInput"
+                                        },
+                                        "gcp": {
+                                            "defaultValue": null,
+                                            "description": "Use for a site whose connectionType is SOCKET_GCP1500.",
+                                            "id_str": "addSocketSite___input___secondaryVSocket___gcp",
+                                            "name": "gcp",
+                                            "path": "addSocketSite.input.secondaryVSocket.gcp",
+                                            "requestStr": "$secondaryGcpVSocketConfigInput:SecondaryGcpVSocketConfigInput ",
+                                            "required": false,
+                                            "responseStr": "gcp:$secondaryGcpVSocketConfigInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "interfaceIp": {
+                                                            "defaultValue": null,
+                                                            "description": "The IP address of the interface",
+                                                            "id_str": "addSocketSite___input___secondaryVSocket___gcp___interfaceIp",
+                                                            "name": "interfaceIp",
+                                                            "path": "addSocketSite.input.secondaryVSocket.gcp.interfaceIp",
+                                                            "requestStr": "$interfaceIp:IPAddress! ",
+                                                            "required": true,
+                                                            "responseStr": "interfaceIp:$interfaceIp ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "IPAddress",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "interfaceIp"
+                                                        },
+                                                        "loadBalancerIp": {
+                                                            "defaultValue": null,
+                                                            "description": "The load balancer IP address",
+                                                            "id_str": "addSocketSite___input___secondaryVSocket___gcp___loadBalancerIp",
+                                                            "name": "loadBalancerIp",
+                                                            "path": "addSocketSite.input.secondaryVSocket.gcp.loadBalancerIp",
+                                                            "requestStr": "$loadBalancerIp:IPAddress! ",
+                                                            "required": true,
+                                                            "responseStr": "loadBalancerIp:$loadBalancerIp ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "IPAddress",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "loadBalancerIp"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "SecondaryGcpVSocketConfigInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "SecondaryGcpVSocketConfigInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "secondaryGcpVSocketConfigInput"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "SecondaryVSocketAtCreationInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "SecondaryVSocketAtCreationInput",
+                                "non_null": false
+                            },
+                            "varName": "secondaryVSocketAtCreationInput"
+                        },
                         "siteLocation": {
                             "defaultValue": null,
                             "description": "The location of the site",
@@ -997,6 +1503,259 @@
                                             },
                                             "varName": "nativeNetworkRange"
                                         },
+                                        "secondaryVSocket": {
+                                            "defaultValue": null,
+                                            "description": "Optional secondary vSocket configuration. When provided, the site is created as a vSocket High\nAvailability (HA) site with a secondary socket in addition to the primary, in a single call.\nProvide exactly the block matching the site's connectionType (AWS / Azure / GCP vSocket).",
+                                            "id_str": "addSocketSite___input___secondaryVSocket",
+                                            "name": "secondaryVSocket",
+                                            "path": "addSocketSite.input.secondaryVSocket",
+                                            "requestStr": "$secondaryVSocketAtCreationInput:SecondaryVSocketAtCreationInput ",
+                                            "required": false,
+                                            "responseStr": "secondaryVSocket:$secondaryVSocketAtCreationInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": "Secondary vSocket parameters supplied at site creation to build a vSocket HA site with both sockets.\nProvide exactly one block, and it must correspond to the site's connectionType \u2014 supported for the\ncloud vSockets only (SOCKET_AWS1500, SOCKET_AZ1500, SOCKET_GCP1500). Any other connectionType, or a\nblock that does not match it, is rejected.",
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "aws": {
+                                                            "defaultValue": null,
+                                                            "description": "Use for a site whose connectionType is SOCKET_AWS1500.",
+                                                            "id_str": "addSocketSite___input___secondaryVSocket___aws",
+                                                            "name": "aws",
+                                                            "path": "addSocketSite.input.secondaryVSocket.aws",
+                                                            "requestStr": "$secondaryAwsVSocketConfigInput:SecondaryAwsVSocketConfigInput ",
+                                                            "required": false,
+                                                            "responseStr": "aws:$secondaryAwsVSocketConfigInput ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": null,
+                                                                    "enumValues": null,
+                                                                    "fields": null,
+                                                                    "inputFields": {
+                                                                        "eniIpAddress": {
+                                                                            "defaultValue": null,
+                                                                            "description": "The IP address of the LAN interface",
+                                                                            "id_str": "addSocketSite___input___secondaryVSocket___aws___eniIpAddress",
+                                                                            "name": "eniIpAddress",
+                                                                            "path": "addSocketSite.input.secondaryVSocket.aws.eniIpAddress",
+                                                                            "requestStr": "$eniIpAddress:IPAddress! ",
+                                                                            "required": true,
+                                                                            "responseStr": "eniIpAddress:$eniIpAddress ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "NON_NULL",
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "IPAddress",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "eniIpAddress"
+                                                                        },
+                                                                        "eniIpSubnet": {
+                                                                            "defaultValue": null,
+                                                                            "description": "The subnet of the LAN interface",
+                                                                            "id_str": "addSocketSite___input___secondaryVSocket___aws___eniIpSubnet",
+                                                                            "name": "eniIpSubnet",
+                                                                            "path": "addSocketSite.input.secondaryVSocket.aws.eniIpSubnet",
+                                                                            "requestStr": "$eniIpSubnet:NetworkSubnet! ",
+                                                                            "required": true,
+                                                                            "responseStr": "eniIpSubnet:$eniIpSubnet ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "NON_NULL",
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "NetworkSubnet",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "eniIpSubnet"
+                                                                        },
+                                                                        "routeTableId": {
+                                                                            "defaultValue": null,
+                                                                            "description": "The ID of the LAN route table",
+                                                                            "id_str": "addSocketSite___input___secondaryVSocket___aws___routeTableId",
+                                                                            "name": "routeTableId",
+                                                                            "path": "addSocketSite.input.secondaryVSocket.aws.routeTableId",
+                                                                            "requestStr": "$routeTableId:String! ",
+                                                                            "required": true,
+                                                                            "responseStr": "routeTableId:$routeTableId ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "NON_NULL",
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "String",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "routeTableId"
+                                                                        }
+                                                                    },
+                                                                    "interfaces": null,
+                                                                    "kind": "INPUT_OBJECT",
+                                                                    "name": "SecondaryAwsVSocketConfigInput",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "input_object",
+                                                                "kind": [
+                                                                    "INPUT_OBJECT"
+                                                                ],
+                                                                "name": "SecondaryAwsVSocketConfigInput",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "secondaryAwsVSocketConfigInput"
+                                                        },
+                                                        "azure": {
+                                                            "defaultValue": null,
+                                                            "description": "Use for a site whose connectionType is SOCKET_AZ1500.",
+                                                            "id_str": "addSocketSite___input___secondaryVSocket___azure",
+                                                            "name": "azure",
+                                                            "path": "addSocketSite.input.secondaryVSocket.azure",
+                                                            "requestStr": "$secondaryAzureVSocketConfigInput:SecondaryAzureVSocketConfigInput ",
+                                                            "required": false,
+                                                            "responseStr": "azure:$secondaryAzureVSocketConfigInput ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": null,
+                                                                    "enumValues": null,
+                                                                    "fields": null,
+                                                                    "inputFields": {
+                                                                        "floatingIp": {
+                                                                            "defaultValue": null,
+                                                                            "description": "The floating IP address",
+                                                                            "id_str": "addSocketSite___input___secondaryVSocket___azure___floatingIp",
+                                                                            "name": "floatingIp",
+                                                                            "path": "addSocketSite.input.secondaryVSocket.azure.floatingIp",
+                                                                            "requestStr": "$floatingIp:IPAddress! ",
+                                                                            "required": true,
+                                                                            "responseStr": "floatingIp:$floatingIp ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "NON_NULL",
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "IPAddress",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "floatingIp"
+                                                                        },
+                                                                        "interfaceIp": {
+                                                                            "defaultValue": null,
+                                                                            "description": "The IP address of the interface",
+                                                                            "id_str": "addSocketSite___input___secondaryVSocket___azure___interfaceIp",
+                                                                            "name": "interfaceIp",
+                                                                            "path": "addSocketSite.input.secondaryVSocket.azure.interfaceIp",
+                                                                            "requestStr": "$interfaceIp:IPAddress! ",
+                                                                            "required": true,
+                                                                            "responseStr": "interfaceIp:$interfaceIp ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "NON_NULL",
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "IPAddress",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "interfaceIp"
+                                                                        }
+                                                                    },
+                                                                    "interfaces": null,
+                                                                    "kind": "INPUT_OBJECT",
+                                                                    "name": "SecondaryAzureVSocketConfigInput",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "input_object",
+                                                                "kind": [
+                                                                    "INPUT_OBJECT"
+                                                                ],
+                                                                "name": "SecondaryAzureVSocketConfigInput",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "secondaryAzureVSocketConfigInput"
+                                                        },
+                                                        "gcp": {
+                                                            "defaultValue": null,
+                                                            "description": "Use for a site whose connectionType is SOCKET_GCP1500.",
+                                                            "id_str": "addSocketSite___input___secondaryVSocket___gcp",
+                                                            "name": "gcp",
+                                                            "path": "addSocketSite.input.secondaryVSocket.gcp",
+                                                            "requestStr": "$secondaryGcpVSocketConfigInput:SecondaryGcpVSocketConfigInput ",
+                                                            "required": false,
+                                                            "responseStr": "gcp:$secondaryGcpVSocketConfigInput ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": null,
+                                                                    "enumValues": null,
+                                                                    "fields": null,
+                                                                    "inputFields": {
+                                                                        "interfaceIp": {
+                                                                            "defaultValue": null,
+                                                                            "description": "The IP address of the interface",
+                                                                            "id_str": "addSocketSite___input___secondaryVSocket___gcp___interfaceIp",
+                                                                            "name": "interfaceIp",
+                                                                            "path": "addSocketSite.input.secondaryVSocket.gcp.interfaceIp",
+                                                                            "requestStr": "$interfaceIp:IPAddress! ",
+                                                                            "required": true,
+                                                                            "responseStr": "interfaceIp:$interfaceIp ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "NON_NULL",
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "IPAddress",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "interfaceIp"
+                                                                        },
+                                                                        "loadBalancerIp": {
+                                                                            "defaultValue": null,
+                                                                            "description": "The load balancer IP address",
+                                                                            "id_str": "addSocketSite___input___secondaryVSocket___gcp___loadBalancerIp",
+                                                                            "name": "loadBalancerIp",
+                                                                            "path": "addSocketSite.input.secondaryVSocket.gcp.loadBalancerIp",
+                                                                            "requestStr": "$loadBalancerIp:IPAddress! ",
+                                                                            "required": true,
+                                                                            "responseStr": "loadBalancerIp:$loadBalancerIp ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "NON_NULL",
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "IPAddress",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "loadBalancerIp"
+                                                                        }
+                                                                    },
+                                                                    "interfaces": null,
+                                                                    "kind": "INPUT_OBJECT",
+                                                                    "name": "SecondaryGcpVSocketConfigInput",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "input_object",
+                                                                "kind": [
+                                                                    "INPUT_OBJECT"
+                                                                ],
+                                                                "name": "SecondaryGcpVSocketConfigInput",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "secondaryGcpVSocketConfigInput"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "SecondaryVSocketAtCreationInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "SecondaryVSocketAtCreationInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "secondaryVSocketAtCreationInput"
+                                        },
                                         "siteLocation": {
                                             "defaultValue": null,
                                             "description": "The location of the site",
@@ -1300,6 +2059,21 @@
             "description": "string",
             "name": "string",
             "nativeNetworkRange": "example_value",
+            "secondaryVSocket": {
+                "aws": {
+                    "eniIpAddress": "example_value",
+                    "eniIpSubnet": "example_value",
+                    "routeTableId": "string"
+                },
+                "azure": {
+                    "floatingIp": "example_value",
+                    "interfaceIp": "example_value"
+                },
+                "gcp": {
+                    "interfaceIp": "example_value",
+                    "loadBalancerIp": "example_value"
+                }
+            },
             "siteLocation": {
                 "address": "string",
                 "city": "string",

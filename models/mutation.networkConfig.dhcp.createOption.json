@@ -1,0 +1,852 @@
+{
+    "args": {
+        "accountId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        }
+    },
+    "childOperations": {
+        "createOption": {
+            "args": {
+                "createOption___input": {
+                    "defaultValue": null,
+                    "description": null,
+                    "id_str": "createOption___input",
+                    "name": "input",
+                    "path": "createOption.input",
+                    "requestStr": "$networkConfigDhcpCreateOptionInput:NetworkConfigDhcpCreateOptionInput! ",
+                    "required": true,
+                    "responseStr": "input:$networkConfigDhcpCreateOptionInput ",
+                    "type": {
+                        "definition": {
+                            "description": "Input for creating DHCP options.",
+                            "enumValues": null,
+                            "fields": null,
+                            "inputFields": {
+                                "option": {
+                                    "defaultValue": null,
+                                    "description": "The options to create (the server assigns each id).",
+                                    "id_str": "createOption___input___option",
+                                    "name": "option",
+                                    "path": "createOption.input.option",
+                                    "requestStr": "$networkConfigDhcpOptionCreateInput:[NetworkConfigDhcpOptionCreateInput]! ",
+                                    "required": true,
+                                    "responseStr": "option:$networkConfigDhcpOptionCreateInput ",
+                                    "type": {
+                                        "definition": {
+                                            "description": "Fields for creating a DHCP option.",
+                                            "enumValues": null,
+                                            "fields": null,
+                                            "inputFields": {
+                                                "description": {
+                                                    "defaultValue": null,
+                                                    "description": "Human-readable description of the option.",
+                                                    "id_str": "createOption___input___option___description",
+                                                    "name": "description",
+                                                    "path": "createOption.input.option.description",
+                                                    "requestStr": "$description:String ",
+                                                    "required": false,
+                                                    "responseStr": "description:$description ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "description"
+                                                },
+                                                "tag": {
+                                                    "defaultValue": null,
+                                                    "description": "The DHCP option code (tag).",
+                                                    "id_str": "createOption___input___option___tag",
+                                                    "name": "tag",
+                                                    "path": "createOption.input.option.tag",
+                                                    "requestStr": "$tag:Int! ",
+                                                    "required": true,
+                                                    "responseStr": "tag:$tag ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "Int",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "tag"
+                                                },
+                                                "type": {
+                                                    "defaultValue": null,
+                                                    "description": "The option type.",
+                                                    "id_str": "createOption___input___option___type",
+                                                    "name": "type",
+                                                    "path": "createOption.input.option.type",
+                                                    "requestStr": "$type:NetworkConfigDhcpOptionType! ",
+                                                    "required": true,
+                                                    "responseStr": "type:$type ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": "The type of a DHCP option value.",
+                                                            "enumValues": [
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "ASCII text.",
+                                                                    "isDeprecated": false,
+                                                                    "name": "ASCII"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Hexadecimal bytes.",
+                                                                    "isDeprecated": false,
+                                                                    "name": "HEX"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "An IP address.",
+                                                                    "isDeprecated": false,
+                                                                    "name": "IP"
+                                                                }
+                                                            ],
+                                                            "fields": null,
+                                                            "inputFields": null,
+                                                            "interfaces": null,
+                                                            "kind": "ENUM",
+                                                            "name": "NetworkConfigDhcpOptionType",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "enum",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "ENUM"
+                                                        ],
+                                                        "name": "NetworkConfigDhcpOptionType",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "type"
+                                                },
+                                                "value": {
+                                                    "defaultValue": null,
+                                                    "description": "The option value, formatted per `type`.",
+                                                    "id_str": "createOption___input___option___value",
+                                                    "name": "value",
+                                                    "path": "createOption.input.option.value",
+                                                    "requestStr": "$value:String! ",
+                                                    "required": true,
+                                                    "responseStr": "value:$value ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "value"
+                                                }
+                                            },
+                                            "interfaces": null,
+                                            "kind": "INPUT_OBJECT",
+                                            "name": "NetworkConfigDhcpOptionCreateInput",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "input_object",
+                                        "kind": [
+                                            "NON_NULL",
+                                            "LIST",
+                                            "NON_NULL",
+                                            "INPUT_OBJECT"
+                                        ],
+                                        "name": "NetworkConfigDhcpOptionCreateInput",
+                                        "non_null": false
+                                    },
+                                    "varName": "networkConfigDhcpOptionCreateInput"
+                                }
+                            },
+                            "interfaces": null,
+                            "kind": "INPUT_OBJECT",
+                            "name": "NetworkConfigDhcpCreateOptionInput",
+                            "possibleTypes": null
+                        },
+                        "indexType": "input_object",
+                        "kind": [
+                            "NON_NULL",
+                            "INPUT_OBJECT"
+                        ],
+                        "name": "NetworkConfigDhcpCreateOptionInput",
+                        "non_null": false
+                    },
+                    "varName": "networkConfigDhcpCreateOptionInput"
+                }
+            },
+            "deprecationReason": null,
+            "description": "Create DHCP options. Returns the created options.",
+            "isDeprecated": false,
+            "name": "createOption",
+            "type": {
+                "kind": "OBJECT",
+                "name": "NetworkConfigDhcpCreateOptionPayload",
+                "ofType": null
+            }
+        },
+        "dhcp": {
+            "args": {},
+            "deprecationReason": null,
+            "description": "DHCP write operations.",
+            "isDeprecated": false,
+            "name": "dhcp",
+            "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                    "kind": "OBJECT",
+                    "name": "NetworkConfigDhcpMutations",
+                    "ofType": null
+                }
+            }
+        }
+    },
+    "deprecationReason": null,
+    "description": "All network-configuration write operations for an account.",
+    "fieldTypes": {},
+    "isDeprecated": false,
+    "name": "networkConfig",
+    "operationArgs": {
+        "accountId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        },
+        "networkConfigDhcpCreateOptionInput": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "createOption___input",
+            "name": "input",
+            "path": "createOption.input",
+            "requestStr": "$networkConfigDhcpCreateOptionInput:NetworkConfigDhcpCreateOptionInput! ",
+            "required": true,
+            "responseStr": "input:$networkConfigDhcpCreateOptionInput ",
+            "type": {
+                "definition": {
+                    "description": "Input for creating DHCP options.",
+                    "enumValues": null,
+                    "fields": null,
+                    "inputFields": {
+                        "option": {
+                            "defaultValue": null,
+                            "description": "The options to create (the server assigns each id).",
+                            "id_str": "createOption___input___option",
+                            "name": "option",
+                            "path": "createOption.input.option",
+                            "requestStr": "$networkConfigDhcpOptionCreateInput:[NetworkConfigDhcpOptionCreateInput]! ",
+                            "required": true,
+                            "responseStr": "option:$networkConfigDhcpOptionCreateInput ",
+                            "type": {
+                                "definition": {
+                                    "description": "Fields for creating a DHCP option.",
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "description": {
+                                            "defaultValue": null,
+                                            "description": "Human-readable description of the option.",
+                                            "id_str": "createOption___input___option___description",
+                                            "name": "description",
+                                            "path": "createOption.input.option.description",
+                                            "requestStr": "$description:String ",
+                                            "required": false,
+                                            "responseStr": "description:$description ",
+                                            "type": {
+                                                "kind": [
+                                                    "SCALAR"
+                                                ],
+                                                "name": "String",
+                                                "non_null": false
+                                            },
+                                            "varName": "description"
+                                        },
+                                        "tag": {
+                                            "defaultValue": null,
+                                            "description": "The DHCP option code (tag).",
+                                            "id_str": "createOption___input___option___tag",
+                                            "name": "tag",
+                                            "path": "createOption.input.option.tag",
+                                            "requestStr": "$tag:Int! ",
+                                            "required": true,
+                                            "responseStr": "tag:$tag ",
+                                            "type": {
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "SCALAR"
+                                                ],
+                                                "name": "Int",
+                                                "non_null": false
+                                            },
+                                            "varName": "tag"
+                                        },
+                                        "type": {
+                                            "defaultValue": null,
+                                            "description": "The option type.",
+                                            "id_str": "createOption___input___option___type",
+                                            "name": "type",
+                                            "path": "createOption.input.option.type",
+                                            "requestStr": "$type:NetworkConfigDhcpOptionType! ",
+                                            "required": true,
+                                            "responseStr": "type:$type ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": "The type of a DHCP option value.",
+                                                    "enumValues": [
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "ASCII text.",
+                                                            "isDeprecated": false,
+                                                            "name": "ASCII"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Hexadecimal bytes.",
+                                                            "isDeprecated": false,
+                                                            "name": "HEX"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "An IP address.",
+                                                            "isDeprecated": false,
+                                                            "name": "IP"
+                                                        }
+                                                    ],
+                                                    "fields": null,
+                                                    "inputFields": null,
+                                                    "interfaces": null,
+                                                    "kind": "ENUM",
+                                                    "name": "NetworkConfigDhcpOptionType",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "enum",
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "ENUM"
+                                                ],
+                                                "name": "NetworkConfigDhcpOptionType",
+                                                "non_null": false
+                                            },
+                                            "varName": "type"
+                                        },
+                                        "value": {
+                                            "defaultValue": null,
+                                            "description": "The option value, formatted per `type`.",
+                                            "id_str": "createOption___input___option___value",
+                                            "name": "value",
+                                            "path": "createOption.input.option.value",
+                                            "requestStr": "$value:String! ",
+                                            "required": true,
+                                            "responseStr": "value:$value ",
+                                            "type": {
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "SCALAR"
+                                                ],
+                                                "name": "String",
+                                                "non_null": false
+                                            },
+                                            "varName": "value"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "NetworkConfigDhcpOptionCreateInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "NON_NULL",
+                                    "LIST",
+                                    "NON_NULL",
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "NetworkConfigDhcpOptionCreateInput",
+                                "non_null": false
+                            },
+                            "varName": "networkConfigDhcpOptionCreateInput"
+                        }
+                    },
+                    "interfaces": null,
+                    "kind": "INPUT_OBJECT",
+                    "name": "NetworkConfigDhcpCreateOptionInput",
+                    "possibleTypes": null
+                },
+                "indexType": "input_object",
+                "kind": [
+                    "NON_NULL",
+                    "INPUT_OBJECT"
+                ],
+                "name": "NetworkConfigDhcpCreateOptionInput",
+                "non_null": false
+            },
+            "varName": "networkConfigDhcpCreateOptionInput"
+        }
+    },
+    "path": "mutation.networkConfig.dhcp.createOption",
+    "type": {
+        "definition": {
+            "description": "Network-configuration write operations.",
+            "enumValues": null,
+            "fields": {
+                "dhcp": {
+                    "args": {},
+                    "deprecationReason": null,
+                    "description": "DHCP write operations.",
+                    "id_str": "dhcp",
+                    "isDeprecated": false,
+                    "name": "dhcp",
+                    "path": "dhcp",
+                    "requestStr": "$networkConfigDhcpMutations:NetworkConfigDhcpMutations! ",
+                    "required": true,
+                    "responseStr": "dhcp:$networkConfigDhcpMutations ",
+                    "type": {
+                        "definition": {
+                            "description": "DHCP write operations for the account.",
+                            "enumValues": null,
+                            "fields": {
+                                "createOption": {
+                                    "args": {
+                                        "createOption___input": {
+                                            "defaultValue": null,
+                                            "description": null,
+                                            "id_str": "createOption___input",
+                                            "name": "input",
+                                            "path": "createOption.input",
+                                            "requestStr": "$networkConfigDhcpCreateOptionInput:NetworkConfigDhcpCreateOptionInput! ",
+                                            "required": true,
+                                            "responseStr": "input:$networkConfigDhcpCreateOptionInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": "Input for creating DHCP options.",
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "option": {
+                                                            "defaultValue": null,
+                                                            "description": "The options to create (the server assigns each id).",
+                                                            "id_str": "createOption___input___option",
+                                                            "name": "option",
+                                                            "path": "createOption.input.option",
+                                                            "requestStr": "$networkConfigDhcpOptionCreateInput:[NetworkConfigDhcpOptionCreateInput]! ",
+                                                            "required": true,
+                                                            "responseStr": "option:$networkConfigDhcpOptionCreateInput ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": "Fields for creating a DHCP option.",
+                                                                    "enumValues": null,
+                                                                    "fields": null,
+                                                                    "inputFields": {
+                                                                        "description": {
+                                                                            "defaultValue": null,
+                                                                            "description": "Human-readable description of the option.",
+                                                                            "id_str": "createOption___input___option___description",
+                                                                            "name": "description",
+                                                                            "path": "createOption.input.option.description",
+                                                                            "requestStr": "$description:String ",
+                                                                            "required": false,
+                                                                            "responseStr": "description:$description ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "String",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "description"
+                                                                        },
+                                                                        "tag": {
+                                                                            "defaultValue": null,
+                                                                            "description": "The DHCP option code (tag).",
+                                                                            "id_str": "createOption___input___option___tag",
+                                                                            "name": "tag",
+                                                                            "path": "createOption.input.option.tag",
+                                                                            "requestStr": "$tag:Int! ",
+                                                                            "required": true,
+                                                                            "responseStr": "tag:$tag ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "NON_NULL",
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "Int",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "tag"
+                                                                        },
+                                                                        "type": {
+                                                                            "defaultValue": null,
+                                                                            "description": "The option type.",
+                                                                            "id_str": "createOption___input___option___type",
+                                                                            "name": "type",
+                                                                            "path": "createOption.input.option.type",
+                                                                            "requestStr": "$type:NetworkConfigDhcpOptionType! ",
+                                                                            "required": true,
+                                                                            "responseStr": "type:$type ",
+                                                                            "type": {
+                                                                                "definition": {
+                                                                                    "description": "The type of a DHCP option value.",
+                                                                                    "enumValues": [
+                                                                                        {
+                                                                                            "deprecationReason": null,
+                                                                                            "description": "ASCII text.",
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "ASCII"
+                                                                                        },
+                                                                                        {
+                                                                                            "deprecationReason": null,
+                                                                                            "description": "Hexadecimal bytes.",
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "HEX"
+                                                                                        },
+                                                                                        {
+                                                                                            "deprecationReason": null,
+                                                                                            "description": "An IP address.",
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "IP"
+                                                                                        }
+                                                                                    ],
+                                                                                    "fields": null,
+                                                                                    "inputFields": null,
+                                                                                    "interfaces": null,
+                                                                                    "kind": "ENUM",
+                                                                                    "name": "NetworkConfigDhcpOptionType",
+                                                                                    "possibleTypes": null
+                                                                                },
+                                                                                "indexType": "enum",
+                                                                                "kind": [
+                                                                                    "NON_NULL",
+                                                                                    "ENUM"
+                                                                                ],
+                                                                                "name": "NetworkConfigDhcpOptionType",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "type"
+                                                                        },
+                                                                        "value": {
+                                                                            "defaultValue": null,
+                                                                            "description": "The option value, formatted per `type`.",
+                                                                            "id_str": "createOption___input___option___value",
+                                                                            "name": "value",
+                                                                            "path": "createOption.input.option.value",
+                                                                            "requestStr": "$value:String! ",
+                                                                            "required": true,
+                                                                            "responseStr": "value:$value ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "NON_NULL",
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "String",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "value"
+                                                                        }
+                                                                    },
+                                                                    "interfaces": null,
+                                                                    "kind": "INPUT_OBJECT",
+                                                                    "name": "NetworkConfigDhcpOptionCreateInput",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "input_object",
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "LIST",
+                                                                    "NON_NULL",
+                                                                    "INPUT_OBJECT"
+                                                                ],
+                                                                "name": "NetworkConfigDhcpOptionCreateInput",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "networkConfigDhcpOptionCreateInput"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "NetworkConfigDhcpCreateOptionInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "NetworkConfigDhcpCreateOptionInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "networkConfigDhcpCreateOptionInput"
+                                        }
+                                    },
+                                    "deprecationReason": null,
+                                    "description": "Create DHCP options. Returns the created options.",
+                                    "id_str": "dhcp___createOption",
+                                    "isDeprecated": false,
+                                    "name": "createOption",
+                                    "path": "dhcp.createOption",
+                                    "requestStr": "$networkConfigDhcpCreateOptionPayload:NetworkConfigDhcpCreateOptionPayload ",
+                                    "required": false,
+                                    "responseStr": "createOption:$networkConfigDhcpCreateOptionPayload ",
+                                    "type": {
+                                        "definition": {
+                                            "description": "Result of creating DHCP options.",
+                                            "enumValues": null,
+                                            "fields": {
+                                                "option": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "The created options (with their server-assigned ids).",
+                                                    "id_str": "dhcp___createOption___option",
+                                                    "isDeprecated": false,
+                                                    "name": "option",
+                                                    "path": "dhcp.createOption.option",
+                                                    "requestStr": "$networkConfigDhcpOption:[NetworkConfigDhcpOption]! ",
+                                                    "required": true,
+                                                    "responseStr": "option:$networkConfigDhcpOption ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": "A single DHCP option (a code/value pair advertised to DHCP clients).",
+                                                            "enumValues": null,
+                                                            "fields": {
+                                                                "description": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Human-readable description of the option.",
+                                                                    "id_str": "dhcp___createOption___option___description",
+                                                                    "isDeprecated": false,
+                                                                    "name": "description",
+                                                                    "path": "dhcp.createOption.option.description",
+                                                                    "requestStr": "$description:String ",
+                                                                    "required": false,
+                                                                    "responseStr": "description:$description ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "String",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "description"
+                                                                },
+                                                                "id": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Globally-unique, opaque identifier for the option.",
+                                                                    "id_str": "dhcp___createOption___option___id",
+                                                                    "isDeprecated": false,
+                                                                    "name": "id",
+                                                                    "path": "dhcp.createOption.option.id",
+                                                                    "requestStr": "$id:ID! ",
+                                                                    "required": true,
+                                                                    "responseStr": "id:$id ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "ID",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "id"
+                                                                },
+                                                                "tag": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "The DHCP option code (tag) as defined by the DHCP protocol.",
+                                                                    "id_str": "dhcp___createOption___option___tag",
+                                                                    "isDeprecated": false,
+                                                                    "name": "tag",
+                                                                    "path": "dhcp.createOption.option.tag",
+                                                                    "requestStr": "$tag:Int! ",
+                                                                    "required": true,
+                                                                    "responseStr": "tag:$tag ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "Int",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "tag"
+                                                                },
+                                                                "type": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "The option type.",
+                                                                    "id_str": "dhcp___createOption___option___type",
+                                                                    "isDeprecated": false,
+                                                                    "name": "type",
+                                                                    "path": "dhcp.createOption.option.type",
+                                                                    "requestStr": "$type:NetworkConfigDhcpOptionType! ",
+                                                                    "required": true,
+                                                                    "responseStr": "type:$type ",
+                                                                    "type": {
+                                                                        "definition": {
+                                                                            "description": "The type of a DHCP option value.",
+                                                                            "enumValues": [
+                                                                                {
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "ASCII text.",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "ASCII"
+                                                                                },
+                                                                                {
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "Hexadecimal bytes.",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "HEX"
+                                                                                },
+                                                                                {
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "An IP address.",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "IP"
+                                                                                }
+                                                                            ],
+                                                                            "fields": null,
+                                                                            "inputFields": null,
+                                                                            "interfaces": null,
+                                                                            "kind": "ENUM",
+                                                                            "name": "NetworkConfigDhcpOptionType",
+                                                                            "possibleTypes": null
+                                                                        },
+                                                                        "indexType": "enum",
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "ENUM"
+                                                                        ],
+                                                                        "name": "NetworkConfigDhcpOptionType",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "type"
+                                                                },
+                                                                "value": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "The option value, formatted per `type`.",
+                                                                    "id_str": "dhcp___createOption___option___value",
+                                                                    "isDeprecated": false,
+                                                                    "name": "value",
+                                                                    "path": "dhcp.createOption.option.value",
+                                                                    "requestStr": "$value:String! ",
+                                                                    "required": true,
+                                                                    "responseStr": "value:$value ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "String",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "value"
+                                                                }
+                                                            },
+                                                            "inputFields": null,
+                                                            "interfaces": {},
+                                                            "kind": "OBJECT",
+                                                            "name": "NetworkConfigDhcpOption",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "object",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "LIST",
+                                                            "NON_NULL",
+                                                            "OBJECT"
+                                                        ],
+                                                        "name": "NetworkConfigDhcpOption",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "networkConfigDhcpOption"
+                                                }
+                                            },
+                                            "inputFields": null,
+                                            "interfaces": {},
+                                            "kind": "OBJECT",
+                                            "name": "NetworkConfigDhcpCreateOptionPayload",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "object",
+                                        "kind": [
+                                            "OBJECT"
+                                        ],
+                                        "name": "NetworkConfigDhcpCreateOptionPayload",
+                                        "non_null": false
+                                    },
+                                    "varName": "networkConfigDhcpCreateOptionPayload"
+                                }
+                            },
+                            "inputFields": null,
+                            "interfaces": {},
+                            "kind": "OBJECT",
+                            "name": "NetworkConfigDhcpMutations",
+                            "possibleTypes": null
+                        },
+                        "indexType": "object",
+                        "kind": [
+                            "NON_NULL",
+                            "OBJECT"
+                        ],
+                        "name": "NetworkConfigDhcpMutations",
+                        "non_null": false
+                    },
+                    "varName": "networkConfigDhcpMutations"
+                }
+            },
+            "inputFields": null,
+            "interfaces": [],
+            "kind": "OBJECT",
+            "name": "NetworkConfigMutations",
+            "possibleTypes": null
+        },
+        "indexType": "object",
+        "kind": [
+            "OBJECT"
+        ],
+        "name": "NetworkConfigMutations",
+        "non_null": false
+    },
+    "variablesPayload": {
+        "networkConfigDhcpCreateOptionInput": {
+            "option": {
+                "description": "string",
+                "tag": 1,
+                "type": "ASCII",
+                "value": "string"
+            }
+        }
+    }
+}

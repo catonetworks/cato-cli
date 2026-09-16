@@ -1,0 +1,19 @@
+mutation networkConfigDhcpUpdateSettings ( $accountId:ID! $networkConfigDhcpUpdateSettingsInput:NetworkConfigDhcpUpdateSettingsInput!) {
+	networkConfig ( accountId:$accountId ) {
+		dhcp {
+			updateSettings ( input:$networkConfigDhcpUpdateSettingsInput   ) {
+				settings {
+					relay {
+						enabled
+						timeout
+						group {
+							id
+							name
+						}
+					}
+					leaseTime
+				}
+			}
+		}
+	}	
+}

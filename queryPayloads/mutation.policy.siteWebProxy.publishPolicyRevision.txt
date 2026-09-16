@@ -1,0 +1,144 @@
+mutation policySiteWebProxyPublishPolicyRevision ( $accountId:ID! $siteWebProxyPolicyMutationInput:SiteWebProxyPolicyMutationInput $policyPublishRevisionInput:PolicyPublishRevisionInput) {
+	policy ( accountId:$accountId ) {
+		siteWebProxy ( input:$siteWebProxyPolicyMutationInput  )  {
+			publishPolicyRevision ( input:$policyPublishRevisionInput   ) {
+				policy {
+					enabled
+					rules {
+						audit {
+							updatedTime
+							updatedBy
+						}
+						metadata {
+							lock {
+								lockingAdminEmail
+								lockingTime
+								lockingRevisionId
+							}
+						}
+						rule {
+							id
+							name
+							description
+							index
+							section {
+								id
+								name
+							}
+							enabled
+							webProxyTraffic {
+								audit {
+									updatedTime
+									updatedBy
+								}
+								metadata {
+									lock {
+										lockingAdminEmail
+										lockingTime
+										lockingRevisionId
+									}
+								}
+								rule {
+									id
+									name
+									description
+									index
+									section {
+										id
+										name
+									}
+									enabled
+									source {
+										ip
+										site {
+											id
+											name
+										}
+										subnet
+										ipRange {
+											from
+											to
+										}
+										networkInterface {
+											id
+											name
+										}
+										siteNetworkSubnet {
+											id
+											name
+										}
+										globalIpRange {
+											id
+											name
+										}
+										group {
+											id
+											name
+										}
+									}
+									destination {
+										fqdn
+										ip
+										domain
+									}
+									action
+								}
+								properties
+							}
+							fqdn
+							port
+							associatedSite {
+								id
+								name
+							}
+							shouldAssociateWithAllSites
+							authenticationConfig {
+								method
+								kerberosConfig {
+									isEnabled
+									encryptedKeytab
+								}
+							}
+						}
+						properties
+					}
+					sections {
+						audit {
+							updatedTime
+							updatedBy
+						}
+						metadata {
+							lock {
+								lockingAdminEmail
+								lockingTime
+								lockingRevisionId
+							}
+						}
+						section {
+							id
+							name
+						}
+						properties
+					}
+					audit {
+						publishedTime
+						publishedBy
+					}
+					revision {
+						id
+						name
+						description
+						changes
+						createdTime
+						updatedTime
+					}
+				}
+				status
+				errors {
+					errorMessage
+					errorCode
+				}
+			}
+		}
+	}	
+}

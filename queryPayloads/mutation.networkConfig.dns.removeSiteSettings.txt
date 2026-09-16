@@ -1,0 +1,14 @@
+mutation networkConfigDnsRemoveSiteSettings ( $accountId:ID! $networkConfigDnsRemoveSiteSettingsInput:NetworkConfigDnsRemoveSiteSettingsInput!) {
+	networkConfig ( accountId:$accountId ) {
+		dns {
+			removeSiteSettings ( input:$networkConfigDnsRemoveSiteSettingsInput   ) {
+				siteSettings {
+					siteId
+					primaryServer
+					secondaryServer
+					suffix
+				}
+			}
+		}
+	}	
+}

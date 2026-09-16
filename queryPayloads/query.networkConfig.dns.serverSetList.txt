@@ -1,0 +1,31 @@
+query networkConfigDnsServerSetList ( $accountId:ID! $networkConfigDnsServerSetListInput:NetworkConfigDnsServerSetListInput!) {
+	networkConfig ( accountId:$accountId ) {
+		dns {
+			serverSetList ( input:$networkConfigDnsServerSetListInput   ) {
+				items {
+					id
+					name
+					server
+					audit {
+						updatedTime
+						updatedBy {
+							id
+							name
+							... on AdminRef {
+								id
+								name
+							}
+							... on ApiKeyRef {
+								id
+								name
+							}
+						}
+					}
+				}
+				paging {
+					total
+				}
+			}
+		}
+	}	
+}

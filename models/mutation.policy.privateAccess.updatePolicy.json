@@ -1531,10 +1531,10 @@
                                                                                                 },
                                                                                                 "connectionOrigin": {
                                                                                                     "args": {},
-                                                                                                    "deprecationReason": null,
+                                                                                                    "deprecationReason": "use connectionsOriginList instead. Planned end-of-life (EoL) date: 08 25, 2026.",
                                                                                                     "description": null,
                                                                                                     "id_str": "privateAccess___updatePolicy___policy___rules___rule___connectionOrigin",
-                                                                                                    "isDeprecated": false,
+                                                                                                    "isDeprecated": true,
                                                                                                     "name": "connectionOrigin",
                                                                                                     "path": "privateAccess.updatePolicy.policy.rules.rule.connectionOrigin",
                                                                                                     "requestStr": "$connectionOrigin:[PrivateAccessPolicyOriginEnum]! ",
@@ -1605,6 +1605,65 @@
                                                                                                         "non_null": false
                                                                                                     },
                                                                                                     "varName": "connectionOrigin"
+                                                                                                },
+                                                                                                "connectionsOriginList": {
+                                                                                                    "args": {},
+                                                                                                    "deprecationReason": null,
+                                                                                                    "description": "Connection origin list of the traffic. An empty list matches any origin.",
+                                                                                                    "id_str": "privateAccess___updatePolicy___policy___rules___rule___connectionsOriginList",
+                                                                                                    "isDeprecated": false,
+                                                                                                    "name": "connectionsOriginList",
+                                                                                                    "path": "privateAccess.updatePolicy.policy.rules.rule.connectionsOriginList",
+                                                                                                    "requestStr": "$connectionsOriginList:[ConnectionOriginsEnum]! ",
+                                                                                                    "required": true,
+                                                                                                    "responseStr": "connectionsOriginList:$connectionsOriginList ",
+                                                                                                    "type": {
+                                                                                                        "definition": {
+                                                                                                            "description": "Defines Origin of the connections",
+                                                                                                            "enumValues": [
+                                                                                                                {
+                                                                                                                    "deprecationReason": null,
+                                                                                                                    "description": "User is connecting from the site",
+                                                                                                                    "isDeprecated": false,
+                                                                                                                    "name": "SITE"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "deprecationReason": null,
+                                                                                                                    "description": "User is connecting from the client",
+                                                                                                                    "isDeprecated": false,
+                                                                                                                    "name": "REMOTE_CLIENT"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "deprecationReason": null,
+                                                                                                                    "description": "User is connecting from the browser extension",
+                                                                                                                    "isDeprecated": false,
+                                                                                                                    "name": "REMOTE_EXTENSION"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "deprecationReason": null,
+                                                                                                                    "description": "User is connecting from the Cato browser",
+                                                                                                                    "isDeprecated": false,
+                                                                                                                    "name": "REMOTE_BROWSER"
+                                                                                                                }
+                                                                                                            ],
+                                                                                                            "fields": null,
+                                                                                                            "inputFields": null,
+                                                                                                            "interfaces": null,
+                                                                                                            "kind": "ENUM",
+                                                                                                            "name": "ConnectionOriginsEnum",
+                                                                                                            "possibleTypes": null
+                                                                                                        },
+                                                                                                        "indexType": "enum",
+                                                                                                        "kind": [
+                                                                                                            "NON_NULL",
+                                                                                                            "LIST",
+                                                                                                            "NON_NULL",
+                                                                                                            "ENUM"
+                                                                                                        ],
+                                                                                                        "name": "ConnectionOriginsEnum",
+                                                                                                        "non_null": false
+                                                                                                    },
+                                                                                                    "varName": "connectionsOriginList"
                                                                                                 },
                                                                                                 "country": {
                                                                                                     "args": {},
@@ -3727,6 +3786,7 @@
         },
         "indexType": "object",
         "kind": [
+            "NON_NULL",
             "OBJECT"
         ],
         "name": "PolicyMutations",

@@ -1,0 +1,18 @@
+query networkConfigDnsSuffixSet ( $accountId:ID! $networkConfigDnsSuffixSetRefInput:NetworkConfigDnsSuffixSetRefInput!) {
+	networkConfig ( accountId:$accountId ) {
+		dns {
+			suffixSet ( input:$networkConfigDnsSuffixSetRefInput   ) {
+				id
+				name
+				suffix
+				audit {
+					updatedTime
+					updatedBy {
+						id
+						name
+					}
+				}
+			}
+		}
+	}	
+}

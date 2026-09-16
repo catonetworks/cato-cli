@@ -1,0 +1,15 @@
+mutation networkConfigDhcpSetOption ( $accountId:ID! $networkConfigDhcpSetOptionInput:NetworkConfigDhcpSetOptionInput!) {
+	networkConfig ( accountId:$accountId ) {
+		dhcp {
+			setOption ( input:$networkConfigDhcpSetOptionInput   ) {
+				option {
+					id
+					tag
+					value
+					description
+					type
+				}
+			}
+		}
+	}	
+}

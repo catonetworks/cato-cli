@@ -1,0 +1,334 @@
+{
+    "args": {
+        "accountId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        }
+    },
+    "childOperations": {
+        "dhcp": {
+            "args": {},
+            "deprecationReason": null,
+            "description": "DHCP read operations.",
+            "isDeprecated": false,
+            "name": "dhcp",
+            "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                    "kind": "OBJECT",
+                    "name": "NetworkConfigDhcpQueries",
+                    "ofType": null
+                }
+            }
+        },
+        "settings": {
+            "args": {},
+            "deprecationReason": null,
+            "description": "The account-level DHCP settings.",
+            "isDeprecated": false,
+            "name": "settings",
+            "type": {
+                "kind": "OBJECT",
+                "name": "NetworkConfigDhcpSettings",
+                "ofType": null
+            }
+        }
+    },
+    "deprecationReason": null,
+    "description": "All network-configuration read operations for an account.",
+    "fieldTypes": {},
+    "isDeprecated": false,
+    "name": "networkConfig",
+    "operationArgs": {
+        "accountId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        }
+    },
+    "path": "query.networkConfig.dhcp.settings",
+    "type": {
+        "definition": {
+            "description": "Network-configuration read operations.",
+            "enumValues": null,
+            "fields": {
+                "dhcp": {
+                    "args": {},
+                    "deprecationReason": null,
+                    "description": "DHCP read operations.",
+                    "id_str": "dhcp",
+                    "isDeprecated": false,
+                    "name": "dhcp",
+                    "path": "dhcp",
+                    "requestStr": "$networkConfigDhcpQueries:NetworkConfigDhcpQueries! ",
+                    "required": true,
+                    "responseStr": "dhcp:$networkConfigDhcpQueries ",
+                    "type": {
+                        "definition": {
+                            "description": "DHCP read operations for the account.",
+                            "enumValues": null,
+                            "fields": {
+                                "settings": {
+                                    "args": {},
+                                    "deprecationReason": null,
+                                    "description": "The account-level DHCP settings.",
+                                    "id_str": "dhcp___settings",
+                                    "isDeprecated": false,
+                                    "name": "settings",
+                                    "path": "dhcp.settings",
+                                    "requestStr": "$networkConfigDhcpSettings:NetworkConfigDhcpSettings ",
+                                    "required": false,
+                                    "responseStr": "settings:$networkConfigDhcpSettings ",
+                                    "type": {
+                                        "definition": {
+                                            "description": "Account-level DHCP settings. Exactly one instance exists per account.",
+                                            "enumValues": null,
+                                            "fields": {
+                                                "leaseTime": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "DHCP lease duration in seconds.",
+                                                    "id_str": "dhcp___settings___leaseTime",
+                                                    "isDeprecated": false,
+                                                    "name": "leaseTime",
+                                                    "path": "dhcp.settings.leaseTime",
+                                                    "requestStr": "$leaseTime:Int! ",
+                                                    "required": true,
+                                                    "responseStr": "leaseTime:$leaseTime ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "Int",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "leaseTime"
+                                                },
+                                                "relay": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "The account-level DHCP relay configuration.",
+                                                    "id_str": "dhcp___settings___relay",
+                                                    "isDeprecated": false,
+                                                    "name": "relay",
+                                                    "path": "dhcp.settings.relay",
+                                                    "requestStr": "$networkConfigDhcpRelay:NetworkConfigDhcpRelay! ",
+                                                    "required": true,
+                                                    "responseStr": "relay:$networkConfigDhcpRelay ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": "DHCP relay configuration for the account.",
+                                                            "enumValues": null,
+                                                            "fields": {
+                                                                "enabled": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Whether DHCP relay is enabled.",
+                                                                    "id_str": "dhcp___settings___relay___enabled",
+                                                                    "isDeprecated": false,
+                                                                    "name": "enabled",
+                                                                    "path": "dhcp.settings.relay.enabled",
+                                                                    "requestStr": "$enabled:Boolean! ",
+                                                                    "required": true,
+                                                                    "responseStr": "enabled:$enabled ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "Boolean",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "enabled"
+                                                                },
+                                                                "group": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "The account's selected relay group; required while relay is enabled.",
+                                                                    "id_str": "dhcp___settings___relay___group",
+                                                                    "isDeprecated": false,
+                                                                    "name": "group",
+                                                                    "path": "dhcp.settings.relay.group",
+                                                                    "requestStr": "$networkConfigDhcpRelayGroupRef:NetworkConfigDhcpRelayGroupRef ",
+                                                                    "required": false,
+                                                                    "responseStr": "group:$networkConfigDhcpRelayGroupRef ",
+                                                                    "type": {
+                                                                        "definition": {
+                                                                            "description": "A reference to an existing DHCP relay group.",
+                                                                            "enumValues": null,
+                                                                            "fields": {
+                                                                                "id": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "Globally-unique, opaque identifier for the relay group.",
+                                                                                    "id_str": "dhcp___settings___relay___group___id",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "id",
+                                                                                    "path": "dhcp.settings.relay.group.id",
+                                                                                    "requestStr": "$id:ID! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "id:$id ",
+                                                                                    "type": {
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "SCALAR"
+                                                                                        ],
+                                                                                        "name": "ID",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "id"
+                                                                                },
+                                                                                "name": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "Group name, unique within the account.",
+                                                                                    "id_str": "dhcp___settings___relay___group___name",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "name",
+                                                                                    "path": "dhcp.settings.relay.group.name",
+                                                                                    "requestStr": "$name:String! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "name:$name ",
+                                                                                    "type": {
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "SCALAR"
+                                                                                        ],
+                                                                                        "name": "String",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "name"
+                                                                                }
+                                                                            },
+                                                                            "inputFields": null,
+                                                                            "interfaces": {},
+                                                                            "kind": "OBJECT",
+                                                                            "name": "NetworkConfigDhcpRelayGroupRef",
+                                                                            "possibleTypes": null
+                                                                        },
+                                                                        "indexType": "object",
+                                                                        "kind": [
+                                                                            "OBJECT"
+                                                                        ],
+                                                                        "name": "NetworkConfigDhcpRelayGroupRef",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "networkConfigDhcpRelayGroupRef"
+                                                                },
+                                                                "timeout": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "DHCP-relay forwarding timeout in seconds (0\u201390). Null if never set. Required whenever relay is enabled.",
+                                                                    "id_str": "dhcp___settings___relay___timeout",
+                                                                    "isDeprecated": false,
+                                                                    "name": "timeout",
+                                                                    "path": "dhcp.settings.relay.timeout",
+                                                                    "requestStr": "$timeout:Int ",
+                                                                    "required": false,
+                                                                    "responseStr": "timeout:$timeout ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "Int",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "timeout"
+                                                                }
+                                                            },
+                                                            "inputFields": null,
+                                                            "interfaces": {},
+                                                            "kind": "OBJECT",
+                                                            "name": "NetworkConfigDhcpRelay",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "object",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "OBJECT"
+                                                        ],
+                                                        "name": "NetworkConfigDhcpRelay",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "networkConfigDhcpRelay"
+                                                }
+                                            },
+                                            "inputFields": null,
+                                            "interfaces": {},
+                                            "kind": "OBJECT",
+                                            "name": "NetworkConfigDhcpSettings",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "object",
+                                        "kind": [
+                                            "OBJECT"
+                                        ],
+                                        "name": "NetworkConfigDhcpSettings",
+                                        "non_null": false
+                                    },
+                                    "varName": "networkConfigDhcpSettings"
+                                }
+                            },
+                            "inputFields": null,
+                            "interfaces": {},
+                            "kind": "OBJECT",
+                            "name": "NetworkConfigDhcpQueries",
+                            "possibleTypes": null
+                        },
+                        "indexType": "object",
+                        "kind": [
+                            "NON_NULL",
+                            "OBJECT"
+                        ],
+                        "name": "NetworkConfigDhcpQueries",
+                        "non_null": false
+                    },
+                    "varName": "networkConfigDhcpQueries"
+                }
+            },
+            "inputFields": null,
+            "interfaces": [],
+            "kind": "OBJECT",
+            "name": "NetworkConfigQueries",
+            "possibleTypes": null
+        },
+        "indexType": "object",
+        "kind": [
+            "OBJECT"
+        ],
+        "name": "NetworkConfigQueries",
+        "non_null": false
+    },
+    "variablesPayload": {}
+}

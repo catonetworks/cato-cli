@@ -1,0 +1,16 @@
+query networkConfigDhcpRelayGroupList ( $accountId:ID! $networkConfigDhcpRelayGroupListInput:NetworkConfigDhcpRelayGroupListInput!) {
+	networkConfig ( accountId:$accountId ) {
+		dhcp {
+			relayGroupList ( input:$networkConfigDhcpRelayGroupListInput   ) {
+				items {
+					id
+					name
+					server
+				}
+				paging {
+					total
+				}
+			}
+		}
+	}	
+}

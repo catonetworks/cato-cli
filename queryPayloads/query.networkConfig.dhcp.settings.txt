@@ -1,0 +1,17 @@
+query networkConfigDhcpSettings ( $accountId:ID!) {
+	networkConfig ( accountId:$accountId ) {
+		dhcp {
+			settings {
+				relay {
+					enabled
+					timeout
+					group {
+						id
+						name
+					}
+				}
+				leaseTime
+			}
+		}
+	}	
+}

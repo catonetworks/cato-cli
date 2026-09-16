@@ -1,0 +1,28 @@
+mutation networkConfigDnsUpdateSuffixSet ( $accountId:ID! $networkConfigDnsUpdateSuffixSetInput:NetworkConfigDnsUpdateSuffixSetInput!) {
+	networkConfig ( accountId:$accountId ) {
+		dns {
+			updateSuffixSet ( input:$networkConfigDnsUpdateSuffixSetInput   ) {
+				dnsSuffixSet {
+					id
+					name
+					suffix
+					audit {
+						updatedTime
+						updatedBy {
+							id
+							name
+							... on AdminRef {
+								id
+								name
+							}
+							... on ApiKeyRef {
+								id
+								name
+							}
+						}
+					}
+				}
+			}
+		}
+	}	
+}

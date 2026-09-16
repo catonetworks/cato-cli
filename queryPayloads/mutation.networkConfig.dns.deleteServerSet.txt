@@ -1,0 +1,28 @@
+mutation networkConfigDnsDeleteServerSet ( $accountId:ID! $networkConfigDnsDeleteServerSetInput:NetworkConfigDnsDeleteServerSetInput!) {
+	networkConfig ( accountId:$accountId ) {
+		dns {
+			deleteServerSet ( input:$networkConfigDnsDeleteServerSetInput   ) {
+				dnsServerSet {
+					id
+					name
+					server
+					audit {
+						updatedTime
+						updatedBy {
+							id
+							name
+							... on AdminRef {
+								id
+								name
+							}
+							... on ApiKeyRef {
+								id
+								name
+							}
+						}
+					}
+				}
+			}
+		}
+	}	
+}

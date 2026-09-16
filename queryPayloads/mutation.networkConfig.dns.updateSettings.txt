@@ -1,0 +1,14 @@
+mutation networkConfigDnsUpdateSettings ( $accountId:ID! $networkConfigDnsUpdateSettingsInput:NetworkConfigDnsUpdateSettingsInput!) {
+	networkConfig ( accountId:$accountId ) {
+		dns {
+			updateSettings ( input:$networkConfigDnsUpdateSettingsInput   ) {
+				settings {
+					primaryServer
+					secondaryServer
+					suffix
+					acceptDnsRequestsOnLanInterfaceIp
+				}
+			}
+		}
+	}	
+}

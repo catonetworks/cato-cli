@@ -1,0 +1,21 @@
+query postureCategoryList ( $accountId:ID! $postureCategoryListInput:PostureCategoryListInput) {
+	posture ( accountId:$accountId ) {
+		categoryList ( input:$postureCategoryListInput  )  {
+			items {
+				id
+				name
+				area {
+					id
+					name
+				}
+				isChecksHiddenInCatalog
+				rbacPermission
+				isExcludedFromPostureScore
+				resultsTtlDays
+			}
+			paging {
+				total
+			}
+		}
+	}	
+}

@@ -1,0 +1,18 @@
+{
+    "operationName": "postureDefinitionList",
+    "query": "query postureDefinitionList ( $accountId:ID! $postureDefinitionListInput:PostureDefinitionListInput) {\n\tposture ( accountId:$accountId ) {\n\t\tdefinitionList ( input:$postureDefinitionListInput  )  {\n\t\t\titems {\n\t\t\t\tid\n\t\t\t\tname\n\t\t\t\tdescription\n\t\t\t\ttags\n\t\t\t\timpact\n\t\t\t\trecommendedActions {\n\t\t\t\t\trecommendedAction\n\t\t\t\t\trecommendedActionLink {\n\t\t\t\t\t\ttext\n\t\t\t\t\t\turl\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tsuppressedStatus\n\t\t\t\tcategory {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t}\n\t\t\t\tdomain {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t}\n\t\t\t\tarea {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t}\n\t\t\t\tcomplianceFrameworks\n\t\t\t\tcomplianceControls {\n\t\t\t\t\tframework\n\t\t\t\t\tkey\n\t\t\t\t\ttitle\n\t\t\t\t\tdescription\n\t\t\t\t}\n\t\t\t\tapplication\n\t\t\t\tcheckType\n\t\t\t\tsecurityDomain\n\t\t\t}\n\t\t\tpaging {\n\t\t\t\ttotal\n\t\t\t}\n\t\t}\n\t}\t\n}",
+    "variables": {
+        "postureDefinitionListInput": {
+            "sort": {
+                "name": {
+                    "direction": "ASC",
+                    "priority": 1
+                },
+                "severity": {
+                    "direction": "ASC",
+                    "priority": 1
+                }
+            }
+        }
+    }
+}

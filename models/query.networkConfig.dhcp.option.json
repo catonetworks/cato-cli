@@ -1,0 +1,585 @@
+{
+    "args": {
+        "accountId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        }
+    },
+    "childOperations": {
+        "dhcp": {
+            "args": {},
+            "deprecationReason": null,
+            "description": "DHCP read operations.",
+            "isDeprecated": false,
+            "name": "dhcp",
+            "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                    "kind": "OBJECT",
+                    "name": "NetworkConfigDhcpQueries",
+                    "ofType": null
+                }
+            }
+        },
+        "option": {
+            "args": {
+                "option___input": {
+                    "defaultValue": null,
+                    "description": null,
+                    "id_str": "option___input",
+                    "name": "input",
+                    "path": "option.input",
+                    "requestStr": "$networkConfigDhcpOptionRefInput:NetworkConfigDhcpOptionRefInput! ",
+                    "required": true,
+                    "responseStr": "input:$networkConfigDhcpOptionRefInput ",
+                    "type": {
+                        "definition": {
+                            "description": "A reference to an existing DHCP option. NAME means its description, which is not unique - a description matching more than one option is rejected.",
+                            "enumValues": null,
+                            "fields": null,
+                            "inputFields": {
+                                "by": {
+                                    "defaultValue": "ID",
+                                    "description": "Whether `input` is the option's id or its description.",
+                                    "id_str": "option___input___by",
+                                    "name": "by",
+                                    "path": "option.input.by",
+                                    "requestStr": "$by:ObjectRefBy! ",
+                                    "required": true,
+                                    "responseStr": "by:$by ",
+                                    "type": {
+                                        "definition": {
+                                            "description": null,
+                                            "enumValues": [
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": null,
+                                                    "isDeprecated": false,
+                                                    "name": "ID"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": null,
+                                                    "isDeprecated": false,
+                                                    "name": "NAME"
+                                                }
+                                            ],
+                                            "fields": null,
+                                            "inputFields": null,
+                                            "interfaces": null,
+                                            "kind": "ENUM",
+                                            "name": "ObjectRefBy",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "enum",
+                                        "kind": [
+                                            "NON_NULL",
+                                            "ENUM"
+                                        ],
+                                        "name": "ObjectRefBy",
+                                        "non_null": false
+                                    },
+                                    "varName": "by"
+                                },
+                                "input": {
+                                    "defaultValue": null,
+                                    "description": "The option's opaque id or its description, per `by`.",
+                                    "id_str": "option___input___input",
+                                    "name": "input",
+                                    "path": "option.input.input",
+                                    "requestStr": "$input:String! ",
+                                    "required": true,
+                                    "responseStr": "input:$input ",
+                                    "type": {
+                                        "kind": [
+                                            "NON_NULL",
+                                            "SCALAR"
+                                        ],
+                                        "name": "String",
+                                        "non_null": false
+                                    },
+                                    "varName": "input"
+                                }
+                            },
+                            "interfaces": null,
+                            "kind": "INPUT_OBJECT",
+                            "name": "NetworkConfigDhcpOptionRefInput",
+                            "possibleTypes": null
+                        },
+                        "indexType": "input_object",
+                        "kind": [
+                            "NON_NULL",
+                            "INPUT_OBJECT"
+                        ],
+                        "name": "NetworkConfigDhcpOptionRefInput",
+                        "non_null": false
+                    },
+                    "varName": "networkConfigDhcpOptionRefInput"
+                }
+            },
+            "deprecationReason": null,
+            "description": "A single DHCP option, by id or description.",
+            "isDeprecated": false,
+            "name": "option",
+            "type": {
+                "kind": "OBJECT",
+                "name": "NetworkConfigDhcpOption",
+                "ofType": null
+            }
+        }
+    },
+    "deprecationReason": null,
+    "description": "All network-configuration read operations for an account.",
+    "fieldTypes": {},
+    "isDeprecated": false,
+    "name": "networkConfig",
+    "operationArgs": {
+        "accountId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        },
+        "networkConfigDhcpOptionRefInput": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "option___input",
+            "name": "input",
+            "path": "option.input",
+            "requestStr": "$networkConfigDhcpOptionRefInput:NetworkConfigDhcpOptionRefInput! ",
+            "required": true,
+            "responseStr": "input:$networkConfigDhcpOptionRefInput ",
+            "type": {
+                "definition": {
+                    "description": "A reference to an existing DHCP option. NAME means its description, which is not unique - a description matching more than one option is rejected.",
+                    "enumValues": null,
+                    "fields": null,
+                    "inputFields": {
+                        "by": {
+                            "defaultValue": "ID",
+                            "description": "Whether `input` is the option's id or its description.",
+                            "id_str": "option___input___by",
+                            "name": "by",
+                            "path": "option.input.by",
+                            "requestStr": "$by:ObjectRefBy! ",
+                            "required": true,
+                            "responseStr": "by:$by ",
+                            "type": {
+                                "definition": {
+                                    "description": null,
+                                    "enumValues": [
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "ID"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "NAME"
+                                        }
+                                    ],
+                                    "fields": null,
+                                    "inputFields": null,
+                                    "interfaces": null,
+                                    "kind": "ENUM",
+                                    "name": "ObjectRefBy",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "enum",
+                                "kind": [
+                                    "NON_NULL",
+                                    "ENUM"
+                                ],
+                                "name": "ObjectRefBy",
+                                "non_null": false
+                            },
+                            "varName": "by"
+                        },
+                        "input": {
+                            "defaultValue": null,
+                            "description": "The option's opaque id or its description, per `by`.",
+                            "id_str": "option___input___input",
+                            "name": "input",
+                            "path": "option.input.input",
+                            "requestStr": "$input:String! ",
+                            "required": true,
+                            "responseStr": "input:$input ",
+                            "type": {
+                                "kind": [
+                                    "NON_NULL",
+                                    "SCALAR"
+                                ],
+                                "name": "String",
+                                "non_null": false
+                            },
+                            "varName": "input"
+                        }
+                    },
+                    "interfaces": null,
+                    "kind": "INPUT_OBJECT",
+                    "name": "NetworkConfigDhcpOptionRefInput",
+                    "possibleTypes": null
+                },
+                "indexType": "input_object",
+                "kind": [
+                    "NON_NULL",
+                    "INPUT_OBJECT"
+                ],
+                "name": "NetworkConfigDhcpOptionRefInput",
+                "non_null": false
+            },
+            "varName": "networkConfigDhcpOptionRefInput"
+        }
+    },
+    "path": "query.networkConfig.dhcp.option",
+    "type": {
+        "definition": {
+            "description": "Network-configuration read operations.",
+            "enumValues": null,
+            "fields": {
+                "dhcp": {
+                    "args": {},
+                    "deprecationReason": null,
+                    "description": "DHCP read operations.",
+                    "id_str": "dhcp",
+                    "isDeprecated": false,
+                    "name": "dhcp",
+                    "path": "dhcp",
+                    "requestStr": "$networkConfigDhcpQueries:NetworkConfigDhcpQueries! ",
+                    "required": true,
+                    "responseStr": "dhcp:$networkConfigDhcpQueries ",
+                    "type": {
+                        "definition": {
+                            "description": "DHCP read operations for the account.",
+                            "enumValues": null,
+                            "fields": {
+                                "option": {
+                                    "args": {
+                                        "option___input": {
+                                            "defaultValue": null,
+                                            "description": null,
+                                            "id_str": "option___input",
+                                            "name": "input",
+                                            "path": "option.input",
+                                            "requestStr": "$networkConfigDhcpOptionRefInput:NetworkConfigDhcpOptionRefInput! ",
+                                            "required": true,
+                                            "responseStr": "input:$networkConfigDhcpOptionRefInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": "A reference to an existing DHCP option. NAME means its description, which is not unique - a description matching more than one option is rejected.",
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "by": {
+                                                            "defaultValue": "ID",
+                                                            "description": "Whether `input` is the option's id or its description.",
+                                                            "id_str": "option___input___by",
+                                                            "name": "by",
+                                                            "path": "option.input.by",
+                                                            "requestStr": "$by:ObjectRefBy! ",
+                                                            "required": true,
+                                                            "responseStr": "by:$by ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": null,
+                                                                    "enumValues": [
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "ID"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "NAME"
+                                                                        }
+                                                                    ],
+                                                                    "fields": null,
+                                                                    "inputFields": null,
+                                                                    "interfaces": null,
+                                                                    "kind": "ENUM",
+                                                                    "name": "ObjectRefBy",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "enum",
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "ENUM"
+                                                                ],
+                                                                "name": "ObjectRefBy",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "by"
+                                                        },
+                                                        "input": {
+                                                            "defaultValue": null,
+                                                            "description": "The option's opaque id or its description, per `by`.",
+                                                            "id_str": "option___input___input",
+                                                            "name": "input",
+                                                            "path": "option.input.input",
+                                                            "requestStr": "$input:String! ",
+                                                            "required": true,
+                                                            "responseStr": "input:$input ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "String",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "input"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "NetworkConfigDhcpOptionRefInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "NetworkConfigDhcpOptionRefInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "networkConfigDhcpOptionRefInput"
+                                        }
+                                    },
+                                    "deprecationReason": null,
+                                    "description": "A single DHCP option, by id or description.",
+                                    "id_str": "dhcp___option",
+                                    "isDeprecated": false,
+                                    "name": "option",
+                                    "path": "dhcp.option",
+                                    "requestStr": "$networkConfigDhcpOption:NetworkConfigDhcpOption ",
+                                    "required": false,
+                                    "responseStr": "option:$networkConfigDhcpOption ",
+                                    "type": {
+                                        "definition": {
+                                            "description": "A single DHCP option (a code/value pair advertised to DHCP clients).",
+                                            "enumValues": null,
+                                            "fields": {
+                                                "description": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Human-readable description of the option.",
+                                                    "id_str": "dhcp___option___description",
+                                                    "isDeprecated": false,
+                                                    "name": "description",
+                                                    "path": "dhcp.option.description",
+                                                    "requestStr": "$description:String ",
+                                                    "required": false,
+                                                    "responseStr": "description:$description ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "description"
+                                                },
+                                                "id": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Globally-unique, opaque identifier for the option.",
+                                                    "id_str": "dhcp___option___id",
+                                                    "isDeprecated": false,
+                                                    "name": "id",
+                                                    "path": "dhcp.option.id",
+                                                    "requestStr": "$id:ID! ",
+                                                    "required": true,
+                                                    "responseStr": "id:$id ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "ID",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "id"
+                                                },
+                                                "tag": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "The DHCP option code (tag) as defined by the DHCP protocol.",
+                                                    "id_str": "dhcp___option___tag",
+                                                    "isDeprecated": false,
+                                                    "name": "tag",
+                                                    "path": "dhcp.option.tag",
+                                                    "requestStr": "$tag:Int! ",
+                                                    "required": true,
+                                                    "responseStr": "tag:$tag ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "Int",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "tag"
+                                                },
+                                                "type": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "The option type.",
+                                                    "id_str": "dhcp___option___type",
+                                                    "isDeprecated": false,
+                                                    "name": "type",
+                                                    "path": "dhcp.option.type",
+                                                    "requestStr": "$type:NetworkConfigDhcpOptionType! ",
+                                                    "required": true,
+                                                    "responseStr": "type:$type ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": "The type of a DHCP option value.",
+                                                            "enumValues": [
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "ASCII text.",
+                                                                    "isDeprecated": false,
+                                                                    "name": "ASCII"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Hexadecimal bytes.",
+                                                                    "isDeprecated": false,
+                                                                    "name": "HEX"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "An IP address.",
+                                                                    "isDeprecated": false,
+                                                                    "name": "IP"
+                                                                }
+                                                            ],
+                                                            "fields": null,
+                                                            "inputFields": null,
+                                                            "interfaces": null,
+                                                            "kind": "ENUM",
+                                                            "name": "NetworkConfigDhcpOptionType",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "enum",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "ENUM"
+                                                        ],
+                                                        "name": "NetworkConfigDhcpOptionType",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "type"
+                                                },
+                                                "value": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "The option value, formatted per `type`.",
+                                                    "id_str": "dhcp___option___value",
+                                                    "isDeprecated": false,
+                                                    "name": "value",
+                                                    "path": "dhcp.option.value",
+                                                    "requestStr": "$value:String! ",
+                                                    "required": true,
+                                                    "responseStr": "value:$value ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "value"
+                                                }
+                                            },
+                                            "inputFields": null,
+                                            "interfaces": {},
+                                            "kind": "OBJECT",
+                                            "name": "NetworkConfigDhcpOption",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "object",
+                                        "kind": [
+                                            "OBJECT"
+                                        ],
+                                        "name": "NetworkConfigDhcpOption",
+                                        "non_null": false
+                                    },
+                                    "varName": "networkConfigDhcpOption"
+                                }
+                            },
+                            "inputFields": null,
+                            "interfaces": {},
+                            "kind": "OBJECT",
+                            "name": "NetworkConfigDhcpQueries",
+                            "possibleTypes": null
+                        },
+                        "indexType": "object",
+                        "kind": [
+                            "NON_NULL",
+                            "OBJECT"
+                        ],
+                        "name": "NetworkConfigDhcpQueries",
+                        "non_null": false
+                    },
+                    "varName": "networkConfigDhcpQueries"
+                }
+            },
+            "inputFields": null,
+            "interfaces": [],
+            "kind": "OBJECT",
+            "name": "NetworkConfigQueries",
+            "possibleTypes": null
+        },
+        "indexType": "object",
+        "kind": [
+            "OBJECT"
+        ],
+        "name": "NetworkConfigQueries",
+        "non_null": false
+    },
+    "variablesPayload": {
+        "networkConfigDhcpOptionRefInput": {
+            "by": "ID",
+            "input": "string"
+        }
+    }
+}

@@ -1,0 +1,13 @@
+query networkConfigDhcpOption ( $accountId:ID! $networkConfigDhcpOptionRefInput:NetworkConfigDhcpOptionRefInput!) {
+	networkConfig ( accountId:$accountId ) {
+		dhcp {
+			option ( input:$networkConfigDhcpOptionRefInput   ) {
+				id
+				tag
+				value
+				description
+				type
+			}
+		}
+	}	
+}

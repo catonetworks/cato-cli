@@ -217,3 +217,6 @@
 - Added continuous `auditFeed --run` mode with marker persistence, polling, audit field filtering, and SIEM streaming (TCP and Sentinel), mirroring `eventsFeed`
 - Hardened Sentinel output to enforce TLS certificate validation (`ssl.create_default_context()` instead of an unverified context) for auditFeed, eventsFeed, and the shared API client
 - Added incremental auditFeed example with record-level deduplication and RFC 7231-compliant `Retry-After` handling (delay-seconds and HTTP-date forms)
+
+## 3.1.3 (2026-09-16)
+- Add new parsing update to support networkConfig and posture child operations, regenerated from new schema

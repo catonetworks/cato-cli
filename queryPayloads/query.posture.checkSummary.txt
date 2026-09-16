@@ -1,0 +1,148 @@
+query postureCheckSummary ( $accountId:ID! $postureCheckSummaryInput:PostureCheckSummaryInput) {
+	posture ( accountId:$accountId ) {
+		checkSummary ( input:$postureCheckSummaryInput  )  {
+			summary {
+				score
+				counts {
+					total
+					passed
+					failed
+					disabled
+					newCount
+				}
+				categoryBreakdown {
+					key
+					name
+					score
+					counts {
+						total
+						passed
+						failed
+						disabled
+						newCount
+					}
+				}
+				areaBreakdown {
+					key
+					name
+					score
+					counts {
+						total
+						passed
+						failed
+						disabled
+						newCount
+					}
+					categoryBreakdown {
+						key
+						name
+						score
+						counts {
+							total
+							passed
+							failed
+							disabled
+							newCount
+						}
+					}
+				}
+				applicationBreakdown {
+					key
+					name
+					score
+					counts {
+						total
+						passed
+						failed
+						disabled
+						newCount
+					}
+				}
+				securityDomainBreakdown {
+					key
+					name
+					score
+					counts {
+						total
+						passed
+						failed
+						disabled
+						newCount
+					}
+				}
+				complianceFrameworkBreakdown {
+					key
+					name
+					score
+					counts {
+						total
+						passed
+						failed
+						disabled
+						newCount
+					}
+					complianceControlBreakdown {
+						key
+						score
+						counts {
+							total
+							passed
+							failed
+							disabled
+							newCount
+						}
+						control {
+							framework
+							key
+							title
+							description
+						}
+					}
+				}
+				complianceControlBreakdown {
+					key
+					name
+					score
+					counts {
+						total
+						passed
+						failed
+						disabled
+						newCount
+					}
+				}
+				checkTypeBreakdown {
+					key
+					name
+					score
+					counts {
+						total
+						passed
+						failed
+						disabled
+						newCount
+					}
+				}
+				severityBreakdown {
+					key
+					name
+					score
+					counts {
+						total
+						passed
+						failed
+						disabled
+						newCount
+					}
+				}
+				evaluatedAt
+				comparisons {
+					comparisonType
+					comparisonValue
+					average
+					percentile
+				}
+			}
+		}
+	}	
+}

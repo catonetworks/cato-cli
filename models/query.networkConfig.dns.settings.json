@@ -1,0 +1,249 @@
+{
+    "args": {
+        "accountId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        }
+    },
+    "childOperations": {
+        "dns": {
+            "args": {},
+            "deprecationReason": null,
+            "description": "DNS read operations.",
+            "isDeprecated": false,
+            "name": "dns",
+            "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                    "kind": "OBJECT",
+                    "name": "NetworkConfigDnsQueries",
+                    "ofType": null
+                }
+            }
+        },
+        "settings": {
+            "args": {},
+            "deprecationReason": null,
+            "description": "The account-level DNS settings.",
+            "isDeprecated": false,
+            "name": "settings",
+            "type": {
+                "kind": "OBJECT",
+                "name": "NetworkConfigDnsSettings",
+                "ofType": null
+            }
+        }
+    },
+    "deprecationReason": null,
+    "description": "All network-configuration read operations for an account.",
+    "fieldTypes": {},
+    "isDeprecated": false,
+    "name": "networkConfig",
+    "operationArgs": {
+        "accountId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        }
+    },
+    "path": "query.networkConfig.dns.settings",
+    "type": {
+        "definition": {
+            "description": "Network-configuration read operations.",
+            "enumValues": null,
+            "fields": {
+                "dns": {
+                    "args": {},
+                    "deprecationReason": null,
+                    "description": "DNS read operations.",
+                    "id_str": "dns",
+                    "isDeprecated": false,
+                    "name": "dns",
+                    "path": "dns",
+                    "requestStr": "$networkConfigDnsQueries:NetworkConfigDnsQueries! ",
+                    "required": true,
+                    "responseStr": "dns:$networkConfigDnsQueries ",
+                    "type": {
+                        "definition": {
+                            "description": "DNS read operations for the account.",
+                            "enumValues": null,
+                            "fields": {
+                                "settings": {
+                                    "args": {},
+                                    "deprecationReason": null,
+                                    "description": "The account-level DNS settings.",
+                                    "id_str": "dns___settings",
+                                    "isDeprecated": false,
+                                    "name": "settings",
+                                    "path": "dns.settings",
+                                    "requestStr": "$networkConfigDnsSettings:NetworkConfigDnsSettings ",
+                                    "required": false,
+                                    "responseStr": "settings:$networkConfigDnsSettings ",
+                                    "type": {
+                                        "definition": {
+                                            "description": "Account-level DNS settings. Exactly one instance exists per account.",
+                                            "enumValues": null,
+                                            "fields": {
+                                                "acceptDnsRequestsOnLanInterfaceIp": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Whether the account accepts DNS requests sent to the Socket LAN interface IP.",
+                                                    "id_str": "dns___settings___acceptDnsRequestsOnLanInterfaceIp",
+                                                    "isDeprecated": false,
+                                                    "name": "acceptDnsRequestsOnLanInterfaceIp",
+                                                    "path": "dns.settings.acceptDnsRequestsOnLanInterfaceIp",
+                                                    "requestStr": "$acceptDnsRequestsOnLanInterfaceIp:Boolean! ",
+                                                    "required": true,
+                                                    "responseStr": "acceptDnsRequestsOnLanInterfaceIp:$acceptDnsRequestsOnLanInterfaceIp ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "Boolean",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "acceptDnsRequestsOnLanInterfaceIp"
+                                                },
+                                                "primaryServer": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "The primary DNS server. Required unless both the secondary server and all suffixes are empty.",
+                                                    "id_str": "dns___settings___primaryServer",
+                                                    "isDeprecated": false,
+                                                    "name": "primaryServer",
+                                                    "path": "dns.settings.primaryServer",
+                                                    "requestStr": "$primaryServer:IPAddress ",
+                                                    "required": false,
+                                                    "responseStr": "primaryServer:$primaryServer ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "IPAddress",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "primaryServer"
+                                                },
+                                                "secondaryServer": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "The secondary DNS server. Only allowed when a primary server is set.",
+                                                    "id_str": "dns___settings___secondaryServer",
+                                                    "isDeprecated": false,
+                                                    "name": "secondaryServer",
+                                                    "path": "dns.settings.secondaryServer",
+                                                    "requestStr": "$secondaryServer:IPAddress ",
+                                                    "required": false,
+                                                    "responseStr": "secondaryServer:$secondaryServer ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "IPAddress",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "secondaryServer"
+                                                },
+                                                "suffix": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "The ordered DNS search suffixes.",
+                                                    "id_str": "dns___settings___suffix",
+                                                    "isDeprecated": false,
+                                                    "name": "suffix",
+                                                    "path": "dns.settings.suffix",
+                                                    "requestStr": "$suffix:[Domain]! ",
+                                                    "required": true,
+                                                    "responseStr": "suffix:$suffix ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "LIST",
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "Domain",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "suffix"
+                                                }
+                                            },
+                                            "inputFields": null,
+                                            "interfaces": {},
+                                            "kind": "OBJECT",
+                                            "name": "NetworkConfigDnsSettings",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "object",
+                                        "kind": [
+                                            "OBJECT"
+                                        ],
+                                        "name": "NetworkConfigDnsSettings",
+                                        "non_null": false
+                                    },
+                                    "varName": "networkConfigDnsSettings"
+                                }
+                            },
+                            "inputFields": null,
+                            "interfaces": {},
+                            "kind": "OBJECT",
+                            "name": "NetworkConfigDnsQueries",
+                            "possibleTypes": null
+                        },
+                        "indexType": "object",
+                        "kind": [
+                            "NON_NULL",
+                            "OBJECT"
+                        ],
+                        "name": "NetworkConfigDnsQueries",
+                        "non_null": false
+                    },
+                    "varName": "networkConfigDnsQueries"
+                }
+            },
+            "inputFields": null,
+            "interfaces": [],
+            "kind": "OBJECT",
+            "name": "NetworkConfigQueries",
+            "possibleTypes": null
+        },
+        "indexType": "object",
+        "kind": [
+            "OBJECT"
+        ],
+        "name": "NetworkConfigQueries",
+        "non_null": false
+    },
+    "variablesPayload": {}
+}

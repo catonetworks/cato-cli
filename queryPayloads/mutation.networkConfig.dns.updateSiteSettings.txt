@@ -1,0 +1,14 @@
+mutation networkConfigDnsUpdateSiteSettings ( $accountId:ID! $networkConfigDnsUpdateSiteSettingsInput:NetworkConfigDnsUpdateSiteSettingsInput!) {
+	networkConfig ( accountId:$accountId ) {
+		dns {
+			updateSiteSettings ( input:$networkConfigDnsUpdateSiteSettingsInput   ) {
+				siteSettings {
+					siteId
+					primaryServer
+					secondaryServer
+					suffix
+				}
+			}
+		}
+	}	
+}

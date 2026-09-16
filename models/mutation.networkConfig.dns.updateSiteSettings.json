@@ -1,0 +1,940 @@
+{
+    "args": {
+        "accountId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        }
+    },
+    "childOperations": {
+        "dns": {
+            "args": {},
+            "deprecationReason": null,
+            "description": "DNS write operations.",
+            "isDeprecated": false,
+            "name": "dns",
+            "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                    "kind": "OBJECT",
+                    "name": "NetworkConfigDnsMutations",
+                    "ofType": null
+                }
+            }
+        },
+        "updateSiteSettings": {
+            "args": {
+                "updateSiteSettings___input": {
+                    "defaultValue": null,
+                    "description": null,
+                    "id_str": "updateSiteSettings___input",
+                    "name": "input",
+                    "path": "updateSiteSettings.input",
+                    "requestStr": "$networkConfigDnsUpdateSiteSettingsInput:NetworkConfigDnsUpdateSiteSettingsInput! ",
+                    "required": true,
+                    "responseStr": "input:$networkConfigDnsUpdateSiteSettingsInput ",
+                    "type": {
+                        "definition": {
+                            "description": "Input for creating or updating the DNS override for one or more sites.",
+                            "enumValues": null,
+                            "fields": null,
+                            "inputFields": {
+                                "siteSettings": {
+                                    "defaultValue": null,
+                                    "description": "The per-site DNS overrides to create or update, by id or name.",
+                                    "id_str": "updateSiteSettings___input___siteSettings",
+                                    "name": "siteSettings",
+                                    "path": "updateSiteSettings.input.siteSettings",
+                                    "requestStr": "$networkConfigDnsSiteSettingsUpdateInput:[NetworkConfigDnsSiteSettingsUpdateInput]! ",
+                                    "required": true,
+                                    "responseStr": "siteSettings:$networkConfigDnsSiteSettingsUpdateInput ",
+                                    "type": {
+                                        "definition": {
+                                            "description": "A DNS override for a single site, addressed by site id or name. Every field but `site` is optional and an omitted field is left unchanged (subject to \"no secondary/suffix without primary\").",
+                                            "enumValues": null,
+                                            "fields": null,
+                                            "inputFields": {
+                                                "primaryServer": {
+                                                    "defaultValue": null,
+                                                    "description": "The site's primary DNS server. Omit to leave unchanged, explicit null to clear.",
+                                                    "id_str": "updateSiteSettings___input___siteSettings___primaryServer",
+                                                    "name": "primaryServer",
+                                                    "path": "updateSiteSettings.input.siteSettings.primaryServer",
+                                                    "requestStr": "$primaryServer:IPAddress ",
+                                                    "required": false,
+                                                    "responseStr": "primaryServer:$primaryServer ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "IPAddress",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "primaryServer"
+                                                },
+                                                "secondaryServer": {
+                                                    "defaultValue": null,
+                                                    "description": "The site's secondary DNS server. Omit to leave unchanged, explicit null to clear.",
+                                                    "id_str": "updateSiteSettings___input___siteSettings___secondaryServer",
+                                                    "name": "secondaryServer",
+                                                    "path": "updateSiteSettings.input.siteSettings.secondaryServer",
+                                                    "requestStr": "$secondaryServer:IPAddress ",
+                                                    "required": false,
+                                                    "responseStr": "secondaryServer:$secondaryServer ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "IPAddress",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "secondaryServer"
+                                                },
+                                                "site": {
+                                                    "defaultValue": null,
+                                                    "description": "The site whose DNS override is created or updated.",
+                                                    "id_str": "updateSiteSettings___input___siteSettings___site",
+                                                    "name": "site",
+                                                    "path": "updateSiteSettings.input.siteSettings.site",
+                                                    "requestStr": "$siteRefInput:SiteRefInput! ",
+                                                    "required": true,
+                                                    "responseStr": "site:$siteRefInput ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": null,
+                                                            "enumValues": null,
+                                                            "fields": null,
+                                                            "inputFields": {
+                                                                "by": {
+                                                                    "defaultValue": "ID",
+                                                                    "description": null,
+                                                                    "id_str": "updateSiteSettings___input___siteSettings___site___by",
+                                                                    "name": "by",
+                                                                    "path": "updateSiteSettings.input.siteSettings.site.by",
+                                                                    "requestStr": "$by:ObjectRefBy! ",
+                                                                    "required": true,
+                                                                    "responseStr": "by:$by ",
+                                                                    "type": {
+                                                                        "definition": {
+                                                                            "description": null,
+                                                                            "enumValues": [
+                                                                                {
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "ID"
+                                                                                },
+                                                                                {
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "NAME"
+                                                                                }
+                                                                            ],
+                                                                            "fields": null,
+                                                                            "inputFields": null,
+                                                                            "interfaces": null,
+                                                                            "kind": "ENUM",
+                                                                            "name": "ObjectRefBy",
+                                                                            "possibleTypes": null
+                                                                        },
+                                                                        "indexType": "enum",
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "ENUM"
+                                                                        ],
+                                                                        "name": "ObjectRefBy",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "by"
+                                                                },
+                                                                "input": {
+                                                                    "defaultValue": null,
+                                                                    "description": null,
+                                                                    "id_str": "updateSiteSettings___input___siteSettings___site___input",
+                                                                    "name": "input",
+                                                                    "path": "updateSiteSettings.input.siteSettings.site.input",
+                                                                    "requestStr": "$input:String! ",
+                                                                    "required": true,
+                                                                    "responseStr": "input:$input ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "String",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "input"
+                                                                }
+                                                            },
+                                                            "interfaces": null,
+                                                            "kind": "INPUT_OBJECT",
+                                                            "name": "SiteRefInput",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "input_object",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "INPUT_OBJECT"
+                                                        ],
+                                                        "name": "SiteRefInput",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "siteRefInput"
+                                                },
+                                                "suffix": {
+                                                    "defaultValue": null,
+                                                    "description": "The site's ordered DNS search suffixes. A given list replaces the site's entire suffix list, so an empty list clears it; omit to leave unchanged.",
+                                                    "id_str": "updateSiteSettings___input___siteSettings___suffix",
+                                                    "name": "suffix",
+                                                    "path": "updateSiteSettings.input.siteSettings.suffix",
+                                                    "requestStr": "$suffix:[Domain] ",
+                                                    "required": false,
+                                                    "responseStr": "suffix:$suffix ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "LIST",
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "Domain",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "suffix"
+                                                }
+                                            },
+                                            "interfaces": null,
+                                            "kind": "INPUT_OBJECT",
+                                            "name": "NetworkConfigDnsSiteSettingsUpdateInput",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "input_object",
+                                        "kind": [
+                                            "NON_NULL",
+                                            "LIST",
+                                            "NON_NULL",
+                                            "INPUT_OBJECT"
+                                        ],
+                                        "name": "NetworkConfigDnsSiteSettingsUpdateInput",
+                                        "non_null": false
+                                    },
+                                    "varName": "networkConfigDnsSiteSettingsUpdateInput"
+                                }
+                            },
+                            "interfaces": null,
+                            "kind": "INPUT_OBJECT",
+                            "name": "NetworkConfigDnsUpdateSiteSettingsInput",
+                            "possibleTypes": null
+                        },
+                        "indexType": "input_object",
+                        "kind": [
+                            "NON_NULL",
+                            "INPUT_OBJECT"
+                        ],
+                        "name": "NetworkConfigDnsUpdateSiteSettingsInput",
+                        "non_null": false
+                    },
+                    "varName": "networkConfigDnsUpdateSiteSettingsInput"
+                }
+            },
+            "deprecationReason": null,
+            "description": "Create or update the DNS override for one or more sites.",
+            "isDeprecated": false,
+            "name": "updateSiteSettings",
+            "type": {
+                "kind": "OBJECT",
+                "name": "NetworkConfigDnsUpdateSiteSettingsPayload",
+                "ofType": null
+            }
+        }
+    },
+    "deprecationReason": null,
+    "description": "All network-configuration write operations for an account.",
+    "fieldTypes": {},
+    "isDeprecated": false,
+    "name": "networkConfig",
+    "operationArgs": {
+        "accountId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        },
+        "networkConfigDnsUpdateSiteSettingsInput": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "updateSiteSettings___input",
+            "name": "input",
+            "path": "updateSiteSettings.input",
+            "requestStr": "$networkConfigDnsUpdateSiteSettingsInput:NetworkConfigDnsUpdateSiteSettingsInput! ",
+            "required": true,
+            "responseStr": "input:$networkConfigDnsUpdateSiteSettingsInput ",
+            "type": {
+                "definition": {
+                    "description": "Input for creating or updating the DNS override for one or more sites.",
+                    "enumValues": null,
+                    "fields": null,
+                    "inputFields": {
+                        "siteSettings": {
+                            "defaultValue": null,
+                            "description": "The per-site DNS overrides to create or update, by id or name.",
+                            "id_str": "updateSiteSettings___input___siteSettings",
+                            "name": "siteSettings",
+                            "path": "updateSiteSettings.input.siteSettings",
+                            "requestStr": "$networkConfigDnsSiteSettingsUpdateInput:[NetworkConfigDnsSiteSettingsUpdateInput]! ",
+                            "required": true,
+                            "responseStr": "siteSettings:$networkConfigDnsSiteSettingsUpdateInput ",
+                            "type": {
+                                "definition": {
+                                    "description": "A DNS override for a single site, addressed by site id or name. Every field but `site` is optional and an omitted field is left unchanged (subject to \"no secondary/suffix without primary\").",
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "primaryServer": {
+                                            "defaultValue": null,
+                                            "description": "The site's primary DNS server. Omit to leave unchanged, explicit null to clear.",
+                                            "id_str": "updateSiteSettings___input___siteSettings___primaryServer",
+                                            "name": "primaryServer",
+                                            "path": "updateSiteSettings.input.siteSettings.primaryServer",
+                                            "requestStr": "$primaryServer:IPAddress ",
+                                            "required": false,
+                                            "responseStr": "primaryServer:$primaryServer ",
+                                            "type": {
+                                                "kind": [
+                                                    "SCALAR"
+                                                ],
+                                                "name": "IPAddress",
+                                                "non_null": false
+                                            },
+                                            "varName": "primaryServer"
+                                        },
+                                        "secondaryServer": {
+                                            "defaultValue": null,
+                                            "description": "The site's secondary DNS server. Omit to leave unchanged, explicit null to clear.",
+                                            "id_str": "updateSiteSettings___input___siteSettings___secondaryServer",
+                                            "name": "secondaryServer",
+                                            "path": "updateSiteSettings.input.siteSettings.secondaryServer",
+                                            "requestStr": "$secondaryServer:IPAddress ",
+                                            "required": false,
+                                            "responseStr": "secondaryServer:$secondaryServer ",
+                                            "type": {
+                                                "kind": [
+                                                    "SCALAR"
+                                                ],
+                                                "name": "IPAddress",
+                                                "non_null": false
+                                            },
+                                            "varName": "secondaryServer"
+                                        },
+                                        "site": {
+                                            "defaultValue": null,
+                                            "description": "The site whose DNS override is created or updated.",
+                                            "id_str": "updateSiteSettings___input___siteSettings___site",
+                                            "name": "site",
+                                            "path": "updateSiteSettings.input.siteSettings.site",
+                                            "requestStr": "$siteRefInput:SiteRefInput! ",
+                                            "required": true,
+                                            "responseStr": "site:$siteRefInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "by": {
+                                                            "defaultValue": "ID",
+                                                            "description": null,
+                                                            "id_str": "updateSiteSettings___input___siteSettings___site___by",
+                                                            "name": "by",
+                                                            "path": "updateSiteSettings.input.siteSettings.site.by",
+                                                            "requestStr": "$by:ObjectRefBy! ",
+                                                            "required": true,
+                                                            "responseStr": "by:$by ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": null,
+                                                                    "enumValues": [
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "ID"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "NAME"
+                                                                        }
+                                                                    ],
+                                                                    "fields": null,
+                                                                    "inputFields": null,
+                                                                    "interfaces": null,
+                                                                    "kind": "ENUM",
+                                                                    "name": "ObjectRefBy",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "enum",
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "ENUM"
+                                                                ],
+                                                                "name": "ObjectRefBy",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "by"
+                                                        },
+                                                        "input": {
+                                                            "defaultValue": null,
+                                                            "description": null,
+                                                            "id_str": "updateSiteSettings___input___siteSettings___site___input",
+                                                            "name": "input",
+                                                            "path": "updateSiteSettings.input.siteSettings.site.input",
+                                                            "requestStr": "$input:String! ",
+                                                            "required": true,
+                                                            "responseStr": "input:$input ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "String",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "input"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "SiteRefInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "SiteRefInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "siteRefInput"
+                                        },
+                                        "suffix": {
+                                            "defaultValue": null,
+                                            "description": "The site's ordered DNS search suffixes. A given list replaces the site's entire suffix list, so an empty list clears it; omit to leave unchanged.",
+                                            "id_str": "updateSiteSettings___input___siteSettings___suffix",
+                                            "name": "suffix",
+                                            "path": "updateSiteSettings.input.siteSettings.suffix",
+                                            "requestStr": "$suffix:[Domain] ",
+                                            "required": false,
+                                            "responseStr": "suffix:$suffix ",
+                                            "type": {
+                                                "kind": [
+                                                    "LIST",
+                                                    "NON_NULL",
+                                                    "SCALAR"
+                                                ],
+                                                "name": "Domain",
+                                                "non_null": false
+                                            },
+                                            "varName": "suffix"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "NetworkConfigDnsSiteSettingsUpdateInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "NON_NULL",
+                                    "LIST",
+                                    "NON_NULL",
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "NetworkConfigDnsSiteSettingsUpdateInput",
+                                "non_null": false
+                            },
+                            "varName": "networkConfigDnsSiteSettingsUpdateInput"
+                        }
+                    },
+                    "interfaces": null,
+                    "kind": "INPUT_OBJECT",
+                    "name": "NetworkConfigDnsUpdateSiteSettingsInput",
+                    "possibleTypes": null
+                },
+                "indexType": "input_object",
+                "kind": [
+                    "NON_NULL",
+                    "INPUT_OBJECT"
+                ],
+                "name": "NetworkConfigDnsUpdateSiteSettingsInput",
+                "non_null": false
+            },
+            "varName": "networkConfigDnsUpdateSiteSettingsInput"
+        }
+    },
+    "path": "mutation.networkConfig.dns.updateSiteSettings",
+    "type": {
+        "definition": {
+            "description": "Network-configuration write operations.",
+            "enumValues": null,
+            "fields": {
+                "dns": {
+                    "args": {},
+                    "deprecationReason": null,
+                    "description": "DNS write operations.",
+                    "id_str": "dns",
+                    "isDeprecated": false,
+                    "name": "dns",
+                    "path": "dns",
+                    "requestStr": "$networkConfigDnsMutations:NetworkConfigDnsMutations! ",
+                    "required": true,
+                    "responseStr": "dns:$networkConfigDnsMutations ",
+                    "type": {
+                        "definition": {
+                            "description": "DNS write operations for the account.",
+                            "enumValues": null,
+                            "fields": {
+                                "updateSiteSettings": {
+                                    "args": {
+                                        "updateSiteSettings___input": {
+                                            "defaultValue": null,
+                                            "description": null,
+                                            "id_str": "updateSiteSettings___input",
+                                            "name": "input",
+                                            "path": "updateSiteSettings.input",
+                                            "requestStr": "$networkConfigDnsUpdateSiteSettingsInput:NetworkConfigDnsUpdateSiteSettingsInput! ",
+                                            "required": true,
+                                            "responseStr": "input:$networkConfigDnsUpdateSiteSettingsInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": "Input for creating or updating the DNS override for one or more sites.",
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "siteSettings": {
+                                                            "defaultValue": null,
+                                                            "description": "The per-site DNS overrides to create or update, by id or name.",
+                                                            "id_str": "updateSiteSettings___input___siteSettings",
+                                                            "name": "siteSettings",
+                                                            "path": "updateSiteSettings.input.siteSettings",
+                                                            "requestStr": "$networkConfigDnsSiteSettingsUpdateInput:[NetworkConfigDnsSiteSettingsUpdateInput]! ",
+                                                            "required": true,
+                                                            "responseStr": "siteSettings:$networkConfigDnsSiteSettingsUpdateInput ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": "A DNS override for a single site, addressed by site id or name. Every field but `site` is optional and an omitted field is left unchanged (subject to \"no secondary/suffix without primary\").",
+                                                                    "enumValues": null,
+                                                                    "fields": null,
+                                                                    "inputFields": {
+                                                                        "primaryServer": {
+                                                                            "defaultValue": null,
+                                                                            "description": "The site's primary DNS server. Omit to leave unchanged, explicit null to clear.",
+                                                                            "id_str": "updateSiteSettings___input___siteSettings___primaryServer",
+                                                                            "name": "primaryServer",
+                                                                            "path": "updateSiteSettings.input.siteSettings.primaryServer",
+                                                                            "requestStr": "$primaryServer:IPAddress ",
+                                                                            "required": false,
+                                                                            "responseStr": "primaryServer:$primaryServer ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "IPAddress",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "primaryServer"
+                                                                        },
+                                                                        "secondaryServer": {
+                                                                            "defaultValue": null,
+                                                                            "description": "The site's secondary DNS server. Omit to leave unchanged, explicit null to clear.",
+                                                                            "id_str": "updateSiteSettings___input___siteSettings___secondaryServer",
+                                                                            "name": "secondaryServer",
+                                                                            "path": "updateSiteSettings.input.siteSettings.secondaryServer",
+                                                                            "requestStr": "$secondaryServer:IPAddress ",
+                                                                            "required": false,
+                                                                            "responseStr": "secondaryServer:$secondaryServer ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "IPAddress",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "secondaryServer"
+                                                                        },
+                                                                        "site": {
+                                                                            "defaultValue": null,
+                                                                            "description": "The site whose DNS override is created or updated.",
+                                                                            "id_str": "updateSiteSettings___input___siteSettings___site",
+                                                                            "name": "site",
+                                                                            "path": "updateSiteSettings.input.siteSettings.site",
+                                                                            "requestStr": "$siteRefInput:SiteRefInput! ",
+                                                                            "required": true,
+                                                                            "responseStr": "site:$siteRefInput ",
+                                                                            "type": {
+                                                                                "definition": {
+                                                                                    "description": null,
+                                                                                    "enumValues": null,
+                                                                                    "fields": null,
+                                                                                    "inputFields": {
+                                                                                        "by": {
+                                                                                            "defaultValue": "ID",
+                                                                                            "description": null,
+                                                                                            "id_str": "updateSiteSettings___input___siteSettings___site___by",
+                                                                                            "name": "by",
+                                                                                            "path": "updateSiteSettings.input.siteSettings.site.by",
+                                                                                            "requestStr": "$by:ObjectRefBy! ",
+                                                                                            "required": true,
+                                                                                            "responseStr": "by:$by ",
+                                                                                            "type": {
+                                                                                                "definition": {
+                                                                                                    "description": null,
+                                                                                                    "enumValues": [
+                                                                                                        {
+                                                                                                            "deprecationReason": null,
+                                                                                                            "description": null,
+                                                                                                            "isDeprecated": false,
+                                                                                                            "name": "ID"
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "deprecationReason": null,
+                                                                                                            "description": null,
+                                                                                                            "isDeprecated": false,
+                                                                                                            "name": "NAME"
+                                                                                                        }
+                                                                                                    ],
+                                                                                                    "fields": null,
+                                                                                                    "inputFields": null,
+                                                                                                    "interfaces": null,
+                                                                                                    "kind": "ENUM",
+                                                                                                    "name": "ObjectRefBy",
+                                                                                                    "possibleTypes": null
+                                                                                                },
+                                                                                                "indexType": "enum",
+                                                                                                "kind": [
+                                                                                                    "NON_NULL",
+                                                                                                    "ENUM"
+                                                                                                ],
+                                                                                                "name": "ObjectRefBy",
+                                                                                                "non_null": false
+                                                                                            },
+                                                                                            "varName": "by"
+                                                                                        },
+                                                                                        "input": {
+                                                                                            "defaultValue": null,
+                                                                                            "description": null,
+                                                                                            "id_str": "updateSiteSettings___input___siteSettings___site___input",
+                                                                                            "name": "input",
+                                                                                            "path": "updateSiteSettings.input.siteSettings.site.input",
+                                                                                            "requestStr": "$input:String! ",
+                                                                                            "required": true,
+                                                                                            "responseStr": "input:$input ",
+                                                                                            "type": {
+                                                                                                "kind": [
+                                                                                                    "NON_NULL",
+                                                                                                    "SCALAR"
+                                                                                                ],
+                                                                                                "name": "String",
+                                                                                                "non_null": false
+                                                                                            },
+                                                                                            "varName": "input"
+                                                                                        }
+                                                                                    },
+                                                                                    "interfaces": null,
+                                                                                    "kind": "INPUT_OBJECT",
+                                                                                    "name": "SiteRefInput",
+                                                                                    "possibleTypes": null
+                                                                                },
+                                                                                "indexType": "input_object",
+                                                                                "kind": [
+                                                                                    "NON_NULL",
+                                                                                    "INPUT_OBJECT"
+                                                                                ],
+                                                                                "name": "SiteRefInput",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "siteRefInput"
+                                                                        },
+                                                                        "suffix": {
+                                                                            "defaultValue": null,
+                                                                            "description": "The site's ordered DNS search suffixes. A given list replaces the site's entire suffix list, so an empty list clears it; omit to leave unchanged.",
+                                                                            "id_str": "updateSiteSettings___input___siteSettings___suffix",
+                                                                            "name": "suffix",
+                                                                            "path": "updateSiteSettings.input.siteSettings.suffix",
+                                                                            "requestStr": "$suffix:[Domain] ",
+                                                                            "required": false,
+                                                                            "responseStr": "suffix:$suffix ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "LIST",
+                                                                                    "NON_NULL",
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "Domain",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "suffix"
+                                                                        }
+                                                                    },
+                                                                    "interfaces": null,
+                                                                    "kind": "INPUT_OBJECT",
+                                                                    "name": "NetworkConfigDnsSiteSettingsUpdateInput",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "input_object",
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "LIST",
+                                                                    "NON_NULL",
+                                                                    "INPUT_OBJECT"
+                                                                ],
+                                                                "name": "NetworkConfigDnsSiteSettingsUpdateInput",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "networkConfigDnsSiteSettingsUpdateInput"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "NetworkConfigDnsUpdateSiteSettingsInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "NetworkConfigDnsUpdateSiteSettingsInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "networkConfigDnsUpdateSiteSettingsInput"
+                                        }
+                                    },
+                                    "deprecationReason": null,
+                                    "description": "Create or update the DNS override for one or more sites.",
+                                    "id_str": "dns___updateSiteSettings",
+                                    "isDeprecated": false,
+                                    "name": "updateSiteSettings",
+                                    "path": "dns.updateSiteSettings",
+                                    "requestStr": "$networkConfigDnsUpdateSiteSettingsPayload:NetworkConfigDnsUpdateSiteSettingsPayload ",
+                                    "required": false,
+                                    "responseStr": "updateSiteSettings:$networkConfigDnsUpdateSiteSettingsPayload ",
+                                    "type": {
+                                        "definition": {
+                                            "description": "Result of creating or updating site DNS overrides.",
+                                            "enumValues": null,
+                                            "fields": {
+                                                "siteSettings": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "The created or updated site DNS overrides.",
+                                                    "id_str": "dns___updateSiteSettings___siteSettings",
+                                                    "isDeprecated": false,
+                                                    "name": "siteSettings",
+                                                    "path": "dns.updateSiteSettings.siteSettings",
+                                                    "requestStr": "$networkConfigDnsSiteSettings:[NetworkConfigDnsSiteSettings]! ",
+                                                    "required": true,
+                                                    "responseStr": "siteSettings:$networkConfigDnsSiteSettings ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": "DNS settings overriding the account default for a single site.",
+                                                            "enumValues": null,
+                                                            "fields": {
+                                                                "primaryServer": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "The site's primary DNS server.",
+                                                                    "id_str": "dns___updateSiteSettings___siteSettings___primaryServer",
+                                                                    "isDeprecated": false,
+                                                                    "name": "primaryServer",
+                                                                    "path": "dns.updateSiteSettings.siteSettings.primaryServer",
+                                                                    "requestStr": "$primaryServer:IPAddress ",
+                                                                    "required": false,
+                                                                    "responseStr": "primaryServer:$primaryServer ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "IPAddress",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "primaryServer"
+                                                                },
+                                                                "secondaryServer": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "The site's secondary DNS server. Only allowed when a primary server is set.",
+                                                                    "id_str": "dns___updateSiteSettings___siteSettings___secondaryServer",
+                                                                    "isDeprecated": false,
+                                                                    "name": "secondaryServer",
+                                                                    "path": "dns.updateSiteSettings.siteSettings.secondaryServer",
+                                                                    "requestStr": "$secondaryServer:IPAddress ",
+                                                                    "required": false,
+                                                                    "responseStr": "secondaryServer:$secondaryServer ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "IPAddress",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "secondaryServer"
+                                                                },
+                                                                "siteId": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "The site these DNS settings apply to.",
+                                                                    "id_str": "dns___updateSiteSettings___siteSettings___siteId",
+                                                                    "isDeprecated": false,
+                                                                    "name": "siteId",
+                                                                    "path": "dns.updateSiteSettings.siteSettings.siteId",
+                                                                    "requestStr": "$siteId:ID! ",
+                                                                    "required": true,
+                                                                    "responseStr": "siteId:$siteId ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "ID",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "siteId"
+                                                                },
+                                                                "suffix": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "The site's ordered DNS search suffixes.",
+                                                                    "id_str": "dns___updateSiteSettings___siteSettings___suffix",
+                                                                    "isDeprecated": false,
+                                                                    "name": "suffix",
+                                                                    "path": "dns.updateSiteSettings.siteSettings.suffix",
+                                                                    "requestStr": "$suffix:[Domain]! ",
+                                                                    "required": true,
+                                                                    "responseStr": "suffix:$suffix ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "LIST",
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "Domain",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "suffix"
+                                                                }
+                                                            },
+                                                            "inputFields": null,
+                                                            "interfaces": {},
+                                                            "kind": "OBJECT",
+                                                            "name": "NetworkConfigDnsSiteSettings",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "object",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "LIST",
+                                                            "NON_NULL",
+                                                            "OBJECT"
+                                                        ],
+                                                        "name": "NetworkConfigDnsSiteSettings",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "networkConfigDnsSiteSettings"
+                                                }
+                                            },
+                                            "inputFields": null,
+                                            "interfaces": {},
+                                            "kind": "OBJECT",
+                                            "name": "NetworkConfigDnsUpdateSiteSettingsPayload",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "object",
+                                        "kind": [
+                                            "OBJECT"
+                                        ],
+                                        "name": "NetworkConfigDnsUpdateSiteSettingsPayload",
+                                        "non_null": false
+                                    },
+                                    "varName": "networkConfigDnsUpdateSiteSettingsPayload"
+                                }
+                            },
+                            "inputFields": null,
+                            "interfaces": {},
+                            "kind": "OBJECT",
+                            "name": "NetworkConfigDnsMutations",
+                            "possibleTypes": null
+                        },
+                        "indexType": "object",
+                        "kind": [
+                            "NON_NULL",
+                            "OBJECT"
+                        ],
+                        "name": "NetworkConfigDnsMutations",
+                        "non_null": false
+                    },
+                    "varName": "networkConfigDnsMutations"
+                }
+            },
+            "inputFields": null,
+            "interfaces": [],
+            "kind": "OBJECT",
+            "name": "NetworkConfigMutations",
+            "possibleTypes": null
+        },
+        "indexType": "object",
+        "kind": [
+            "OBJECT"
+        ],
+        "name": "NetworkConfigMutations",
+        "non_null": false
+    },
+    "variablesPayload": {
+        "networkConfigDnsUpdateSiteSettingsInput": {
+            "siteSettings": {
+                "primaryServer": "example_value",
+                "secondaryServer": "example_value",
+                "site": {
+                    "by": "ID",
+                    "input": "string"
+                },
+                "suffix": [
+                    "example1",
+                    "example2"
+                ]
+            }
+        }
+    }
+}

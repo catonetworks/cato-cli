@@ -1,0 +1,28 @@
+mutation networkConfigDnsDeleteSuffixSet ( $accountId:ID! $networkConfigDnsDeleteSuffixSetInput:NetworkConfigDnsDeleteSuffixSetInput!) {
+	networkConfig ( accountId:$accountId ) {
+		dns {
+			deleteSuffixSet ( input:$networkConfigDnsDeleteSuffixSetInput   ) {
+				dnsSuffixSet {
+					id
+					name
+					suffix
+					audit {
+						updatedTime
+						updatedBy {
+							id
+							name
+							... on AdminRef {
+								id
+								name
+							}
+							... on ApiKeyRef {
+								id
+								name
+							}
+						}
+					}
+				}
+			}
+		}
+	}	
+}

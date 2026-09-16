@@ -1,0 +1,31 @@
+query networkConfigDnsSuffixSetList ( $accountId:ID! $networkConfigDnsSuffixSetListInput:NetworkConfigDnsSuffixSetListInput!) {
+	networkConfig ( accountId:$accountId ) {
+		dns {
+			suffixSetList ( input:$networkConfigDnsSuffixSetListInput   ) {
+				items {
+					id
+					name
+					suffix
+					audit {
+						updatedTime
+						updatedBy {
+							id
+							name
+							... on AdminRef {
+								id
+								name
+							}
+							... on ApiKeyRef {
+								id
+								name
+							}
+						}
+					}
+				}
+				paging {
+					total
+				}
+			}
+		}
+	}	
+}

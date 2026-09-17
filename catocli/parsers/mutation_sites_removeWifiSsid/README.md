@@ -25,5 +25,3 @@ catocli mutation sites removeWifiSsid '{
 
 #### Operation Arguments for mutation.sites.removeWifiSsid ####
 
-`accountId` [ID] - (required) N/A    
-`removeWifiSsidInput` [RemoveWifiSsidInput] - (required) N/A    

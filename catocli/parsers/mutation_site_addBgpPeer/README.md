@@ -99,5 +99,3 @@ catocli mutation site addBgpPeer '{
 
 #### Operation Arguments for mutation.site.addBgpPeer ####
 
-`accountId` [ID] - (required) N/A    
-`addBgpPeerInput` [AddBgpPeerInput] - (required) N/A    

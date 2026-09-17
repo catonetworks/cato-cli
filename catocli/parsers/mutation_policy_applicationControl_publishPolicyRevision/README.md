@@ -28,6 +28,3 @@ catocli mutation policy applicationControl publishPolicyRevision '{
 
 #### Operation Arguments for mutation.policy.applicationControl.publishPolicyRevision ####
 
-`accountId` [ID] - (required) N/A    
-`applicationControlPolicyMutationInput` [ApplicationControlPolicyMutationInput] - (required) N/A    
-`policyPublishRevisionInput` [PolicyPublishRevisionInput] - (required) N/A    

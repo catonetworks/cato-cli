@@ -29,5 +29,3 @@ catocli mutation networkConfig dhcp updateRelayGroup '{
 
 #### Operation Arguments for mutation.networkConfig.dhcp.updateRelayGroup ####
 
-`accountId` [ID] - (required) N/A    
-`networkConfigDhcpUpdateRelayGroupInput` [NetworkConfigDhcpUpdateRelayGroupInput] - (required) N/A    

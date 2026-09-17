@@ -28,6 +28,3 @@ catocli mutation policy terminalServer publishPolicyRevision '{
 
 #### Operation Arguments for mutation.policy.terminalServer.publishPolicyRevision ####
 
-`accountId` [ID] - (required) N/A    
-`policyPublishRevisionInput` [PolicyPublishRevisionInput] - (required) N/A    
-`terminalServerPolicyMutationInput` [TerminalServerPolicyMutationInput] - (required) N/A    

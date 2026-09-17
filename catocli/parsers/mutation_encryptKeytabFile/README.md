@@ -22,5 +22,3 @@ catocli mutation encryptKeytabFile '{
 
 #### Operation Arguments for mutation.encryptKeytabFile ####
 
-`accountId` [ID] - (required) N/A    
-`encryptKeytabFileInput` [EncryptKeytabFileInput] - (required) N/A    

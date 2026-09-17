@@ -31,5 +31,3 @@ catocli query posture definitionList '{
 
 #### Operation Arguments for query.posture.definitionList ####
 
-`accountId` [ID] - (required) N/A    
-`postureDefinitionListInput` [PostureDefinitionListInput] - (required) N/A    

@@ -27,6 +27,3 @@ catocli mutation policy socketLan removeRule '{
 
 #### Operation Arguments for mutation.policy.socketLan.removeRule ####
 
-`accountId` [ID] - (required) N/A    
-`socketLanPolicyMutationInput` [SocketLanPolicyMutationInput] - (required) N/A    
-`socketLanRemoveRuleInput` [SocketLanRemoveRuleInput] - (required) N/A    

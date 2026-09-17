@@ -28,5 +28,3 @@ catocli mutation networkConfig dns createServerSet '{
 
 #### Operation Arguments for mutation.networkConfig.dns.createServerSet ####
 
-`accountId` [ID] - (required) N/A    
-`networkConfigDnsCreateServerSetInput` [NetworkConfigDnsCreateServerSetInput] - (required) N/A    

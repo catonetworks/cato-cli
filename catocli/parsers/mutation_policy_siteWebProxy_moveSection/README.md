@@ -31,6 +31,3 @@ catocli mutation policy siteWebProxy moveSection '{
 
 #### Operation Arguments for mutation.policy.siteWebProxy.moveSection ####
 
-`accountId` [ID] - (required) N/A    
-`policyMoveSectionInput` [PolicyMoveSectionInput] - (required) N/A    
-`siteWebProxyPolicyMutationInput` [SiteWebProxyPolicyMutationInput] - (required) N/A    

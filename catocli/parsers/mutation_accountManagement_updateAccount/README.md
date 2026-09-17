@@ -22,5 +22,3 @@ catocli mutation accountManagement updateAccount '{
 
 #### Operation Arguments for mutation.accountManagement.updateAccount ####
 
-`accountId` [ID] - (required) N/A    
-`updateAccountInput` [UpdateAccountInput] - (required) N/A    

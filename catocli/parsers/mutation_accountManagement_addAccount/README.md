@@ -26,5 +26,3 @@ catocli mutation accountManagement addAccount '{
 
 #### Operation Arguments for mutation.accountManagement.addAccount ####
 
-`accountId` [ID] - (required) N/A    
-`addAccountInput` [AddAccountInput] - (required) N/A    

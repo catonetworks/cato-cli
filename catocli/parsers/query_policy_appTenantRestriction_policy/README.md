@@ -45,5 +45,3 @@ catocli query policy appTenantRestriction policy | jq -r '.data.policy.appTenant
 
 #### Operation Arguments for query.policy.appTenantRestriction.policy ####
 
-`accountId` [ID] - (required) N/A    
-`appTenantRestrictionPolicyInput` [AppTenantRestrictionPolicyInput] - (required) N/A    

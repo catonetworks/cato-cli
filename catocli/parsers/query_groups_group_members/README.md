@@ -105,6 +105,3 @@ catocli query groups group members '{
 
 #### Operation Arguments for query.groups.group.members ####
 
-`accountId` [ID] - (required) N/A    
-`groupMembersListInput` [GroupMembersListInput] - (required) N/A    
-`groupRefInput` [GroupRefInput] - (required) N/A    

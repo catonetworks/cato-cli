@@ -24,5 +24,3 @@ catocli query posture dailySummaryList '{
 
 #### Operation Arguments for query.posture.dailySummaryList ####
 
-`accountId` [ID] - (required) N/A    
-`postureDailySummaryListInput` [PostureDailySummaryListInput] - (required) N/A    

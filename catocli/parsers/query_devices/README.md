@@ -888,11 +888,3 @@ catocli query devices '{
 
 #### Operation Arguments for query.devices ####
 
-`accountId` [ID] - (required) N/A    
-`deviceAttributeCatalogInput` [DeviceAttributeCatalogInput] - (required) N/A    
-`deviceComplianceCatalogInput` [DeviceComplianceCatalogInput] - (required) N/A    
-`deviceCsvExportInput` [DeviceCsvExportInput] - (required) N/A    
-`deviceRiskCatalogInput` [DeviceRiskCatalogInput] - (required) N/A    
-`deviceV2Input` [DeviceV2Input] - (required) N/A    
-`jobId` [ID] - (required) N/A    
-`sortOrderInput` [SortOrderInput] - (required) N/A    

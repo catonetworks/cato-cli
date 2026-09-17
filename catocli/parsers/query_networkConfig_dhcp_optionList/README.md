@@ -72,5 +72,3 @@ catocli query networkConfig dhcp optionList '{
 
 #### Operation Arguments for query.networkConfig.dhcp.optionList ####
 
-`accountId` [ID] - (required) N/A    
-`networkConfigDhcpOptionListInput` [NetworkConfigDhcpOptionListInput] - (required) N/A    

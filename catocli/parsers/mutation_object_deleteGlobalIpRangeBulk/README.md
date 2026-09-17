@@ -23,5 +23,3 @@ catocli mutation object deleteGlobalIpRangeBulk '{
 
 #### Operation Arguments for mutation.object.deleteGlobalIpRangeBulk ####
 
-`accountId` [ID] - (required) N/A    
-`globalIpRangeRefInput` [GlobalIpRangeRefInput[]] - (required) N/A    

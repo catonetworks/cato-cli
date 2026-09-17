@@ -25,5 +25,3 @@ catocli mutation networkConfig dhcp deleteRelayGroup '{
 
 #### Operation Arguments for mutation.networkConfig.dhcp.deleteRelayGroup ####
 
-`accountId` [ID] - (required) N/A    
-`networkConfigDhcpDeleteRelayGroupInput` [NetworkConfigDhcpDeleteRelayGroupInput] - (required) N/A    

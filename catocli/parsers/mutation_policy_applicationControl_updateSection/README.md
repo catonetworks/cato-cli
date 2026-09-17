@@ -30,6 +30,3 @@ catocli mutation policy applicationControl updateSection '{
 
 #### Operation Arguments for mutation.policy.applicationControl.updateSection ####
 
-`accountId` [ID] - (required) N/A    
-`applicationControlPolicyMutationInput` [ApplicationControlPolicyMutationInput] - (required) N/A    
-`policyUpdateSectionInput` [PolicyUpdateSectionInput] - (required) N/A    

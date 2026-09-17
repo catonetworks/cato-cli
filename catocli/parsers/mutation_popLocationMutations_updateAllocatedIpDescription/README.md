@@ -23,5 +23,3 @@ catocli mutation popLocationMutations updateAllocatedIpDescription '{
 
 #### Operation Arguments for mutation.popLocationMutations.updateAllocatedIpDescription ####
 
-`accountId` [ID] - (required) N/A    
-`popLocationUpdateAllocatedIpDescriptionInput` [PopLocationUpdateAllocatedIpDescriptionInput] - (required) N/A    

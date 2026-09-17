@@ -31,6 +31,3 @@ catocli mutation policy dynamicIpAllocation moveSection '{
 
 #### Operation Arguments for mutation.policy.dynamicIpAllocation.moveSection ####
 
-`accountId` [ID] - (required) N/A    
-`dynamicIpAllocationPolicyMutationInput` [DynamicIpAllocationPolicyMutationInput] - (required) N/A    
-`policyMoveSectionInput` [PolicyMoveSectionInput] - (required) N/A    

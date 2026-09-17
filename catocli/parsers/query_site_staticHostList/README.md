@@ -23,5 +23,3 @@ catocli query site staticHostList '{
 
 #### Operation Arguments for query.site.staticHostList ####
 
-`accountId` [ID] - (required) N/A    
-`siteRefInput` [SiteRefInput] - (required) N/A    

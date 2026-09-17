@@ -146,5 +146,3 @@ catocli query ztnaAppConnector ztnaAppConnectorList '{
 
 #### Operation Arguments for query.ztnaAppConnector.ztnaAppConnectorList ####
 
-`accountId` [ID] - (required) N/A    
-`ztnaAppConnectorListInput` [ZtnaAppConnectorListInput] - (required) N/A    

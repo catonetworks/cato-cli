@@ -22,5 +22,3 @@ catocli mutation sites removeCloudInterconnectPhysicalConnection '{
 
 #### Operation Arguments for mutation.sites.removeCloudInterconnectPhysicalConnection ####
 
-`accountId` [ID] - (required) N/A    
-`removeCloudInterconnectPhysicalConnectionInput` [RemoveCloudInterconnectPhysicalConnectionInput] - (required) N/A    

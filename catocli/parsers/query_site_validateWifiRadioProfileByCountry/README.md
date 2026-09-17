@@ -38,5 +38,3 @@ catocli query site validateWifiRadioProfileByCountry '{
 
 #### Operation Arguments for query.site.validateWifiRadioProfileByCountry ####
 
-`accountId` [ID] - (required) N/A    
-`validateWifiRadioProfileByCountryInput` [ValidateWifiRadioProfileByCountryInput] - (required) N/A    

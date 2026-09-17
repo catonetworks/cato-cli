@@ -30,9 +30,3 @@ catocli query admins '{
 
 #### Operation Arguments for query.admins ####
 
-`accountID` [ID] - (required) N/A    
-`adminIDs` [ID[]] - (required) N/A    
-`from` [Int] - (required) N/A    
-`limit` [Int] - (required) N/A    
-`search` [String] - (required) N/A    
-`sortInput` [SortInput[]] - (required) N/A    

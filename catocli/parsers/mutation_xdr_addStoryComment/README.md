@@ -25,5 +25,3 @@ catocli mutation xdr addStoryComment '{
 
 #### Operation Arguments for mutation.xdr.addStoryComment ####
 
-`accountId` [ID] - (required) N/A    
-`addStoryCommentInput` [AddStoryCommentInput] - (required) N/A    

@@ -24,5 +24,3 @@ catocli mutation xdr updateInvestigationDetails '{
 
 #### Operation Arguments for mutation.xdr.updateInvestigationDetails ####
 
-`accountId` [ID] - (required) N/A    
-`updateInvestigationDetailsInput` [UpdateInvestigationDetailsInput] - (required) N/A    

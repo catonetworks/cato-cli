@@ -29,5 +29,3 @@ catocli mutation networkConfig dns updateSuffixSet '{
 
 #### Operation Arguments for mutation.networkConfig.dns.updateSuffixSet ####
 
-`accountId` [ID] - (required) N/A    
-`networkConfigDnsUpdateSuffixSetInput` [NetworkConfigDnsUpdateSuffixSetInput] - (required) N/A    

@@ -28,6 +28,3 @@ catocli mutation policy appTenantRestriction publishPolicyRevision '{
 
 #### Operation Arguments for mutation.policy.appTenantRestriction.publishPolicyRevision ####
 
-`accountId` [ID] - (required) N/A    
-`appTenantRestrictionPolicyMutationInput` [AppTenantRestrictionPolicyMutationInput] - (required) N/A    
-`policyPublishRevisionInput` [PolicyPublishRevisionInput] - (required) N/A    

@@ -33,6 +33,3 @@ catocli mutation policy terminalServer addSection '{
 
 #### Operation Arguments for mutation.policy.terminalServer.addSection ####
 
-`accountId` [ID] - (required) N/A    
-`policyAddSectionInput` [PolicyAddSectionInput] - (required) N/A    
-`terminalServerPolicyMutationInput` [TerminalServerPolicyMutationInput] - (required) N/A    

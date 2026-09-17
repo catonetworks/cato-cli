@@ -45,5 +45,3 @@ catocli query policy socketLan policy | jq -r '.data.policy.socketLan.policy.rul
 
 #### Operation Arguments for query.policy.socketLan.policy ####
 
-`accountId` [ID] - (required) N/A    
-`socketLanPolicyInput` [SocketLanPolicyInput] - (required) N/A    

@@ -23,5 +23,3 @@ catocli mutation licensing enableServiceForManagedAccount '{
 
 #### Operation Arguments for mutation.licensing.enableServiceForManagedAccount ####
 
-`accountId` [ID] - (required) N/A    
-`enableServiceForManagedAccountInput` [EnableServiceForManagedAccountInput] - (required) N/A    

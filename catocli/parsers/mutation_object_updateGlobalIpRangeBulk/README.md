@@ -25,5 +25,3 @@ catocli mutation object updateGlobalIpRangeBulk '{
 
 #### Operation Arguments for mutation.object.updateGlobalIpRangeBulk ####
 
-`accountId` [ID] - (required) N/A    
-`updateGlobalIpRangeInput` [UpdateGlobalIpRangeInput[]] - (required) N/A    

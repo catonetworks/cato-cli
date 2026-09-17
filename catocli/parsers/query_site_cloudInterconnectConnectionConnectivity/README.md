@@ -22,5 +22,3 @@ catocli query site cloudInterconnectConnectionConnectivity '{
 
 #### Operation Arguments for query.site.cloudInterconnectConnectionConnectivity ####
 
-`accountId` [ID] - (required) N/A    
-`cloudInterconnectConnectionConnectivityInput` [CloudInterconnectConnectionConnectivityInput] - (required) N/A    

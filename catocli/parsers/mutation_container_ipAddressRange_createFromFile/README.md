@@ -25,5 +25,3 @@ catocli mutation container ipAddressRange createFromFile '{
 
 #### Operation Arguments for mutation.container.ipAddressRange.createFromFile ####
 
-`accountId` [ID] - (required) N/A    
-`createIpAddressRangeContainerFromFileInput` [CreateIpAddressRangeContainerFromFileInput] - (required) N/A    

@@ -101,5 +101,3 @@ catocli mutation sites createBgpPeerBulk '{
 
 #### Operation Arguments for mutation.sites.createBgpPeerBulk ####
 
-`accountId` [ID] - (required) N/A    
-`createBgpPeerBulkInput` [CreateBgpPeerBulkInput] - (required) N/A    

@@ -28,6 +28,3 @@ catocli mutation policy tlsInspect createPolicyRevision '{
 
 #### Operation Arguments for mutation.policy.tlsInspect.createPolicyRevision ####
 
-`accountId` [ID] - (required) N/A    
-`policyCreateRevisionInput` [PolicyCreateRevisionInput] - (required) N/A    
-`tlsInspectPolicyMutationInput` [TlsInspectPolicyMutationInput] - (required) N/A    

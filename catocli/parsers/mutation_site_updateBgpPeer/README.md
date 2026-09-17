@@ -96,5 +96,3 @@ catocli mutation site updateBgpPeer '{
 
 #### Operation Arguments for mutation.site.updateBgpPeer ####
 
-`accountId` [ID] - (required) N/A    
-`updateBgpPeerInput` [UpdateBgpPeerInput] - (required) N/A    

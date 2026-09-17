@@ -20,5 +20,3 @@ catocli mutation enterpriseDirectory archiveLocation '{
 
 #### Operation Arguments for mutation.enterpriseDirectory.archiveLocation ####
 
-`accountId` [ID] - (required) N/A    
-`locationId` [ID] - (required) N/A    

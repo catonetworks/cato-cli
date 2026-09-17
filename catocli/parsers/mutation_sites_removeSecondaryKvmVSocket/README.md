@@ -22,5 +22,3 @@ catocli mutation sites removeSecondaryKvmVSocket '{
 
 #### Operation Arguments for mutation.sites.removeSecondaryKvmVSocket ####
 
-`accountId` [ID] - (required) N/A    
-`removeSecondaryKvmVSocketInput` [RemoveSecondaryKvmVSocketInput] - (required) N/A    

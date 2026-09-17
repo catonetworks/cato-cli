@@ -23,5 +23,3 @@ catocli query groups whereUsed '{
 
 #### Operation Arguments for query.groups.whereUsed ####
 
-`accountId` [ID] - (required) N/A    
-`groupRefInput` [GroupRefInput] - (required) N/A    

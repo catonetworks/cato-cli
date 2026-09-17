@@ -33,6 +33,3 @@ catocli mutation policy wanFirewall addSection '{
 
 #### Operation Arguments for mutation.policy.wanFirewall.addSection ####
 
-`accountId` [ID] - (required) N/A    
-`policyAddSectionInput` [PolicyAddSectionInput] - (required) N/A    
-`wanFirewallPolicyMutationInput` [WanFirewallPolicyMutationInput] - (required) N/A    

@@ -25,5 +25,3 @@ catocli mutation networkConfig dhcp deleteOption '{
 
 #### Operation Arguments for mutation.networkConfig.dhcp.deleteOption ####
 
-`accountId` [ID] - (required) N/A    
-`networkConfigDhcpDeleteOptionInput` [NetworkConfigDhcpDeleteOptionInput] - (required) N/A    

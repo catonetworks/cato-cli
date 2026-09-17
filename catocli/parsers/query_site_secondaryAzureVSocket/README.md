@@ -20,5 +20,3 @@ catocli query site secondaryAzureVSocket '{
 
 #### Operation Arguments for query.site.secondaryAzureVSocket ####
 
-`accountId` [ID] - (required) N/A    
-`socketId` [ID] - (required) N/A    

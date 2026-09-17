@@ -23,5 +23,3 @@ catocli query networkConfig dns siteSettings '{
 
 #### Operation Arguments for query.networkConfig.dns.siteSettings ####
 
-`accountId` [ID] - (required) N/A    
-`siteRefInput` [SiteRefInput] - (required) N/A    

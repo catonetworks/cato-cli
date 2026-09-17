@@ -13,4 +13,3 @@ catocli query networkConfig dhcp settings --json-file query.networkConfig.dhcp.s
 
 #### Operation Arguments for query.networkConfig.dhcp.settings ####
 
-`accountId` [ID] - (required) N/A    

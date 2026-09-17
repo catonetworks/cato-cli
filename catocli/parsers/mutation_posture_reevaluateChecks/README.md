@@ -13,4 +13,3 @@ catocli mutation posture reevaluateChecks --json-file mutation.posture.reevaluat
 
 #### Operation Arguments for mutation.posture.reevaluateChecks ####
 
-`accountId` [ID] - (required) N/A    

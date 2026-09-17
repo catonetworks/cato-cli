@@ -54,6 +54,3 @@ catocli query object '{
 
 #### Operation Arguments for query.object ####
 
-`accountId` [ID] - (required) N/A    
-`globalIpRangeListInput` [GlobalIpRangeListInput] - (required) N/A    
-`globalIpRangeRefInput` [GlobalIpRangeRefInput] - (required) N/A    

@@ -219,5 +219,3 @@ catocli query posture findingSummary '{
 
 #### Operation Arguments for query.posture.findingSummary ####
 
-`accountId` [ID] - (required) N/A    
-`postureFindingSummaryInput` [PostureFindingSummaryInput] - (required) N/A    

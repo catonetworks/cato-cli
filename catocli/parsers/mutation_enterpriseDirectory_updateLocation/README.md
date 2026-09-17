@@ -46,5 +46,3 @@ catocli mutation enterpriseDirectory updateLocation '{
 
 #### Operation Arguments for mutation.enterpriseDirectory.updateLocation ####
 
-`accountId` [ID] - (required) N/A    
-`enterpriseDirectoryUpdateLocationInput` [EnterpriseDirectoryUpdateLocationInput] - (required) N/A    

@@ -30,6 +30,3 @@ catocli mutation policy remotePortFwd updateSection '{
 
 #### Operation Arguments for mutation.policy.remotePortFwd.updateSection ####
 
-`accountId` [ID] - (required) N/A    
-`policyUpdateSectionInput` [PolicyUpdateSectionInput] - (required) N/A    
-`remotePortFwdPolicyMutationInput` [RemotePortFwdPolicyMutationInput] - (required) N/A    

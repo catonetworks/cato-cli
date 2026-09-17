@@ -33,6 +33,3 @@ catocli mutation policy applicationControl addSection '{
 
 #### Operation Arguments for mutation.policy.applicationControl.addSection ####
 
-`accountId` [ID] - (required) N/A    
-`applicationControlPolicyMutationInput` [ApplicationControlPolicyMutationInput] - (required) N/A    
-`policyAddSectionInput` [PolicyAddSectionInput] - (required) N/A    

@@ -49,6 +49,3 @@ catocli mutation policy siteWebProxy addRule '{
 
 #### Operation Arguments for mutation.policy.siteWebProxy.addRule ####
 
-`accountId` [ID] - (required) N/A    
-`siteWebProxyAddRuleInput` [SiteWebProxyAddRuleInput] - (required) N/A    
-`siteWebProxyPolicyMutationInput` [SiteWebProxyPolicyMutationInput] - (required) N/A    

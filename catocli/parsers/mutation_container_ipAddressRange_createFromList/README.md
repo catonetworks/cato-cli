@@ -27,5 +27,3 @@ catocli mutation container ipAddressRange createFromList '{
 
 #### Operation Arguments for mutation.container.ipAddressRange.createFromList ####
 
-`accountId` [ID] - (required) N/A    
-`createIpAddressRangeContainerFromListInput` [CreateIpAddressRangeContainerFromListInput] - (required) N/A    

@@ -60,6 +60,3 @@ catocli mutation sites addIpsecIkeV2SiteTunnels '{
 
 #### Operation Arguments for mutation.sites.addIpsecIkeV2SiteTunnels ####
 
-`accountId` [ID] - (required) N/A    
-`addIpsecIkeV2SiteTunnelsInput` [AddIpsecIkeV2SiteTunnelsInput] - (required) N/A    
-`siteId` [ID] - (required) N/A    

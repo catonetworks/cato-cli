@@ -33,6 +33,3 @@ catocli mutation policy siteWebProxy addSection '{
 
 #### Operation Arguments for mutation.policy.siteWebProxy.addSection ####
 
-`accountId` [ID] - (required) N/A    
-`policyAddSectionInput` [PolicyAddSectionInput] - (required) N/A    
-`siteWebProxyPolicyMutationInput` [SiteWebProxyPolicyMutationInput] - (required) N/A    

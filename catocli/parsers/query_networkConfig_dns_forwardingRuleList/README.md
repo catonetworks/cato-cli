@@ -46,5 +46,3 @@ catocli query networkConfig dns forwardingRuleList '{
 
 #### Operation Arguments for query.networkConfig.dns.forwardingRuleList ####
 
-`accountId` [ID] - (required) N/A    
-`networkConfigDnsForwardingRuleListInput` [NetworkConfigDnsForwardingRuleListInput] - (required) N/A    

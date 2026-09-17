@@ -162,5 +162,3 @@ catocli query user '{
 
 #### Operation Arguments for query.user ####
 
-`accountId` [ID] - (required) Unique identifier of the Cato account.    
-`userListInput` [UserListInput] - (required) N/A    

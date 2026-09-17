@@ -502,6 +502,3 @@ catocli mutation policy wanFirewall addSubPolicy '{
 
 #### Operation Arguments for mutation.policy.wanFirewall.addSubPolicy ####
 
-`accountId` [ID] - (required) N/A    
-`wanFirewallAddSubPolicyInput` [WanFirewallAddSubPolicyInput] - (required) N/A    
-`wanFirewallPolicyMutationInput` [WanFirewallPolicyMutationInput] - (required) N/A    

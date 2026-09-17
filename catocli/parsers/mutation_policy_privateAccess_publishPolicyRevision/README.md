@@ -28,6 +28,3 @@ catocli mutation policy privateAccess publishPolicyRevision '{
 
 #### Operation Arguments for mutation.policy.privateAccess.publishPolicyRevision ####
 
-`accountId` [ID] - (required) N/A    
-`policyPublishRevisionInput` [PolicyPublishRevisionInput] - (required) N/A    
-`privateAccessPolicyMutationInput` [PrivateAccessPolicyMutationInput] - (required) N/A    

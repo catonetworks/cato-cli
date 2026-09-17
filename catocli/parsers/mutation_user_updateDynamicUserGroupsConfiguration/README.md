@@ -24,5 +24,3 @@ catocli mutation user updateDynamicUserGroupsConfiguration '{
 
 #### Operation Arguments for mutation.user.updateDynamicUserGroupsConfiguration ####
 
-`accountId` [ID] - (required) Unique identifier of the Cato account.    
-`updateDynamicUserGroupsConfigurationInput` [UpdateDynamicUserGroupsConfigurationInput] - (required) N/A    

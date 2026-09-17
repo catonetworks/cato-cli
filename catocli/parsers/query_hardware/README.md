@@ -173,5 +173,3 @@ catocli query hardware '{
 
 #### Operation Arguments for query.hardware ####
 
-`accountId` [ID] - (required) N/A    
-`hardwareSearchInput` [HardwareSearchInput] - (required) N/A    

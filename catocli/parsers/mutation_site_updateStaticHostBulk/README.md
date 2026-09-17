@@ -31,5 +31,3 @@ catocli mutation site updateStaticHostBulk '{
 
 #### Operation Arguments for mutation.site.updateStaticHostBulk ####
 
-`accountId` [ID] - (required) N/A    
-`updateStaticHostBulkInput` [UpdateStaticHostBulkInput] - (required) N/A    

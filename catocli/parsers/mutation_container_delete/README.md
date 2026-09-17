@@ -25,5 +25,3 @@ catocli mutation container delete '{
 
 #### Operation Arguments for mutation.container.delete ####
 
-`accountId` [ID] - (required) N/A    
-`deleteContainerInput` [DeleteContainerInput] - (required) N/A    

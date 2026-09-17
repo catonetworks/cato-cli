@@ -45,5 +45,3 @@ catocli query policy wanFirewall policy | jq -r '.data.policy.wanFirewall.policy
 
 #### Operation Arguments for query.policy.wanFirewall.policy ####
 
-`accountId` [ID] - (required) N/A    
-`wanFirewallPolicyInput` [WanFirewallPolicyInput] - (required) N/A    

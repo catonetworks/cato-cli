@@ -23,5 +23,3 @@ catocli mutation popLocationMutations releaseIp '{
 
 #### Operation Arguments for mutation.popLocationMutations.releaseIp ####
 
-`accountId` [ID] - (required) N/A    
-`popLocationReleaseIpInput` [PopLocationReleaseIpInput] - (required) N/A    

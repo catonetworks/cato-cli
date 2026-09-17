@@ -13,4 +13,3 @@ catocli query accountManagement --json-file query.accountManagement.json
 
 #### Operation Arguments for query.accountManagement ####
 
-`accountId` [ID] - (required) N/A    

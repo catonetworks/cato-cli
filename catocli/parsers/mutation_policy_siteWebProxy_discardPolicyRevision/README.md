@@ -27,6 +27,3 @@ catocli mutation policy siteWebProxy discardPolicyRevision '{
 
 #### Operation Arguments for mutation.policy.siteWebProxy.discardPolicyRevision ####
 
-`accountId` [ID] - (required) N/A    
-`policyDiscardRevisionInput` [PolicyDiscardRevisionInput] - (required) N/A    
-`siteWebProxyPolicyMutationInput` [SiteWebProxyPolicyMutationInput] - (required) N/A    

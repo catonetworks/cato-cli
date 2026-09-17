@@ -50,5 +50,3 @@ catocli mutation site addSocketSite '{
 
 #### Operation Arguments for mutation.site.addSocketSite ####
 
-`accountId` [ID] - (required) N/A    
-`addSocketSiteInput` [AddSocketSiteInput] - (required) N/A    

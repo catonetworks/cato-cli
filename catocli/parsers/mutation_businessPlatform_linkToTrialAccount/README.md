@@ -23,5 +23,3 @@ catocli mutation businessPlatform linkToTrialAccount '{
 
 #### Operation Arguments for mutation.businessPlatform.linkToTrialAccount ####
 
-`accountId` [ID] - (required) N/A    
-`businessPlatformLinkToTrialAccountInput` [BusinessPlatformLinkToTrialAccountInput] - (required) N/A    

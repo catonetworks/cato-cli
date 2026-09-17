@@ -23,5 +23,3 @@ catocli mutation notification deleteMailingList '{
 
 #### Operation Arguments for mutation.notification.deleteMailingList ####
 
-`accountId` [ID] - (required) N/A    
-`mailingListRefInput` [MailingListRefInput] - (required) N/A    

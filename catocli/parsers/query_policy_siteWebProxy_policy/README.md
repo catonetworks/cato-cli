@@ -25,5 +25,3 @@ catocli query policy siteWebProxy policy '{
 
 #### Operation Arguments for query.policy.siteWebProxy.policy ####
 
-`accountId` [ID] - (required) N/A    
-`siteWebProxyPolicyInput` [SiteWebProxyPolicyInput] - (required) N/A    

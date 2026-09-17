@@ -498,6 +498,3 @@ catocli mutation policy wanFirewall addRule '{
 
 #### Operation Arguments for mutation.policy.wanFirewall.addRule ####
 
-`accountId` [ID] - (required) N/A    
-`wanFirewallAddRuleInput` [WanFirewallAddRuleInput] - (required) N/A    
-`wanFirewallPolicyMutationInput` [WanFirewallPolicyMutationInput] - (required) N/A    

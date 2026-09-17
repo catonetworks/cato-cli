@@ -80,6 +80,3 @@ catocli mutation policy splitTunnel addRule '{
 
 #### Operation Arguments for mutation.policy.splitTunnel.addRule ####
 
-`accountId` [ID] - (required) N/A    
-`splitTunnelAddRuleInput` [SplitTunnelAddRuleInput] - (required) N/A    
-`splitTunnelPolicyMutationInput` [SplitTunnelPolicyMutationInput] - (required) N/A    

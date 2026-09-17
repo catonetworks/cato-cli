@@ -642,6 +642,44 @@ try:
                 pytest.fail(f"Configure command printed success but returned code {result.returncode}")
     
     
+    class TestJSONPathResolution:
+        """Test generated artifact path resolution."""
+
+        def test_schema_in_workspace_name_does_not_change_model_root(self, tmp_path, monkeypatch):
+            """A Jenkins job name containing 'schema' must not redirect model lookup."""
+            from catocli.Utils import graphql_utils
+
+            project_dir = tmp_path / "cato-cli-schema-update"
+            models_dir = project_dir / "models"
+            models_dir.mkdir(parents=True)
+            expected = {"operationArgs": {"accountId": {"name": "accountId"}}}
+            (models_dir / "query.example.json").write_text(
+                json.dumps(expected),
+                encoding="utf-8"
+            )
+
+            fake_module_path = project_dir / "catocli" / "Utils" / "graphql_utils.py"
+            monkeypatch.setattr(graphql_utils, "__file__", str(fake_module_path))
+
+            loaded = graphql_utils.loadJSON("../models/query.example.json")
+
+            assert loaded == expected
+
+        def test_json_comments_do_not_corrupt_string_values(self, tmp_path):
+            """Double slashes inside JSON strings are data, not comments."""
+            from catocli.Utils import graphql_utils
+
+            json_file = tmp_path / "model.json"
+            json_file.write_text(
+                '{"description": "site // deprecation notice"} // trailing comment\n',
+                encoding="utf-8"
+            )
+
+            loaded = graphql_utils.loadJSON(str(json_file))
+
+            assert loaded == {"description": "site // deprecation notice"}
+
+
     class TestModelFiles:
         """Test that all model files exist and are valid"""
         

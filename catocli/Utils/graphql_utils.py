@@ -22,6 +22,45 @@ import os
 import re
 import sys
 
+def _strip_json_line_comments(content):
+    """Remove // comments outside JSON strings."""
+    result = []
+    in_string = False
+    escaped = False
+    index = 0
+
+    while index < len(content):
+        char = content[index]
+
+        if in_string:
+            result.append(char)
+            if escaped:
+                escaped = False
+            elif char == "\\":
+                escaped = True
+            elif char == '"':
+                in_string = False
+            index += 1
+            continue
+
+        if char == '"':
+            in_string = True
+            result.append(char)
+            index += 1
+            continue
+
+        if char == "/" and index + 1 < len(content) and content[index + 1] == "/":
+            index += 2
+            while index < len(content) and content[index] not in "\r\n":
+                index += 1
+            continue
+
+        result.append(char)
+        index += 1
+
+    return "".join(result)
+
+
 def loadJSON(file, calling_module_path=None):
     """
     Enhanced JSON loading with better error handling and path resolution
@@ -75,7 +114,7 @@ def loadJSON(file, calling_module_path=None):
         # Handle ../models/ and ../tests/ patterns from schema directory
         # When called from schema/, module_dir will be schema/
         # We need to go up one level to get to root, then add the path
-        if "schema" in module_dir:
+        if os.path.basename(os.path.normpath(module_dir)) == "schema":
             # Called from schema directory
             root_dir = os.path.dirname(module_dir)
         else:
@@ -109,16 +148,7 @@ def loadJSON(file, calling_module_path=None):
         with open(file_path, 'r', encoding='utf-8') as data:
             content = data.read()
             
-            # Remove JavaScript-style single-line comments
-            # This regex removes // comments but preserves URLs (http://)
-            lines = []
-            for line in content.split('\n'):
-                # Remove // comments, but not if part of a URL (preceded by :)
-                # Also handle comments at the start of lines or after whitespace
-                line = re.sub(r'(?<!:)//.*$', '', line)
-                lines.append(line)
-            
-            cleaned_content = '\n'.join(lines)
+            cleaned_content = _strip_json_line_comments(content)
             
             config = json.loads(cleaned_content)
             logging.debug(f"Successfully loaded {file} from {file_path}")

@@ -1154,7 +1154,7 @@ catocli raw --endpoint https://custom-api.example.com/graphql '<json>'
             # Load operation arguments from the model file instead of schema
             try:
                 model_file_path = f"../models/{operationName}.json"
-                model_data = loadJSON(model_file_path)
+                model_data = loadJSON(model_file_path, __file__)
                 operationArgs = model_data.get("operationArgs", {})
                 
                 for argName in operationArgs:
@@ -1171,21 +1171,9 @@ catocli raw --endpoint https://custom-api.example.com/graphql '<json>'
                         "values": values
                     }
             except Exception as e:
-                # If model file doesn't exist or has issues, fall back to schema operationArgs
-                operationArgs = operation.get("operationArgs", {})
-                for argName in operationArgs:
-                    arg = operationArgs[argName]
-                    values = []
-                    if "definition" in arg["type"] and "enumValues" in arg["type"]["definition"] and arg["type"]["definition"]["enumValues"] != None:
-                        for enumValue in arg["type"]["definition"]["enumValues"]:
-                            values.append(enumValue["name"])
-                    parser["args"][arg["varName"]] = {
-                        "name": arg["name"],
-                        "description": "N/A" if arg["description"] == None else arg["description"],
-                        "type": arg["type"]["name"] + ("[]" if "LIST" in arg["type"]["kind"] else ""),
-                        "required": "required" if arg["required"] == True else "optional",
-                        "values": values
-                    }
+                raise RuntimeError(
+                    f"Failed to load generated model arguments for {operationName}"
+                ) from e
             
             # Generate README for this operation
             # Extract the operation parts (e.g., "query.xdr.stories" -> "xdr stories")

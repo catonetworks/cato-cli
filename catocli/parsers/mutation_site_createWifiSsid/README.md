@@ -47,3 +47,5 @@ catocli mutation site createWifiSsid '{
 
 #### Operation Arguments for mutation.site.createWifiSsid ####
 
+`accountId` [ID] - (required) N/A    
+`createWifiSsidInput` [CreateWifiSsidInput] - (required) N/A    

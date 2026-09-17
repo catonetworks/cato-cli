@@ -102,3 +102,6 @@ catocli query privateApplication '{
 
 #### Operation Arguments for query.privateApplication ####
 
+`accountId` [ID] - (required) N/A    
+`privateApplicationListInput` [PrivateApplicationListInput] - (required) N/A    
+`privateApplicationRefInput` [PrivateApplicationRefInput] - (required) N/A    

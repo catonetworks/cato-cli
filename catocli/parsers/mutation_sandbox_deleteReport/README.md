@@ -22,3 +22,5 @@ catocli mutation sandbox deleteReport '{
 
 #### Operation Arguments for mutation.sandbox.deleteReport ####
 
+`accountId` [ID] - (required) N/A    
+`deleteReportInput` [DeleteReportInput] - (required) N/A    

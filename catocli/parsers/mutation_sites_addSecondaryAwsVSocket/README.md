@@ -28,3 +28,5 @@ catocli mutation sites addSecondaryAwsVSocket '{
 
 #### Operation Arguments for mutation.sites.addSecondaryAwsVSocket ####
 
+`accountId` [ID] - (required) N/A    
+`addSecondaryAwsVSocketInput` [AddSecondaryAwsVSocketInput] - (required) N/A    

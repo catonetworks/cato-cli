@@ -27,3 +27,5 @@ catocli mutation popLocationMutations allocateIp '{
 
 #### Operation Arguments for mutation.popLocationMutations.allocateIp ####
 
+`accountId` [ID] - (required) N/A    
+`popLocationAllocateIpInput` [PopLocationAllocateIpInput] - (required) N/A    

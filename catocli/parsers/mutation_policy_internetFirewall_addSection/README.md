@@ -33,3 +33,6 @@ catocli mutation policy internetFirewall addSection '{
 
 #### Operation Arguments for mutation.policy.internetFirewall.addSection ####
 
+`accountId` [ID] - (required) N/A    
+`internetFirewallPolicyMutationInput` [InternetFirewallPolicyMutationInput] - (required) N/A    
+`policyAddSectionInput` [PolicyAddSectionInput] - (required) N/A    

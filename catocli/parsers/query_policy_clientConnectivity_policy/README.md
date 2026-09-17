@@ -25,3 +25,5 @@ catocli query policy clientConnectivity policy '{
 
 #### Operation Arguments for query.policy.clientConnectivity.policy ####
 
+`accountId` [ID] - (required) N/A    
+`clientConnectivityPolicyInput` [ClientConnectivityPolicyInput] - (required) N/A    

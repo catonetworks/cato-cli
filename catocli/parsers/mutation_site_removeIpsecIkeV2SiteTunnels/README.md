@@ -23,3 +23,6 @@ catocli mutation site removeIpsecIkeV2SiteTunnels '{
 
 #### Operation Arguments for mutation.site.removeIpsecIkeV2SiteTunnels ####
 
+`accountId` [ID] - (required) N/A    
+`removeIpsecIkeV2SiteTunnelsInput` [RemoveIpsecIkeV2SiteTunnelsInput] - (required) N/A    
+`siteId` [ID] - (required) N/A    

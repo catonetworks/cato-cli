@@ -20,3 +20,5 @@ catocli mutation admin removeAdmin '{
 
 #### Operation Arguments for mutation.admin.removeAdmin ####
 
+`accountId` [ID] - (required) N/A    
+`adminID` [ID] - (required) N/A    

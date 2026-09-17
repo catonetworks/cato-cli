@@ -31,3 +31,6 @@ catocli mutation policy privateAccess moveRule '{
 
 #### Operation Arguments for mutation.policy.privateAccess.moveRule ####
 
+`accountId` [ID] - (required) N/A    
+`policyMoveRuleInput` [PolicyMoveRuleInput] - (required) N/A    
+`privateAccessPolicyMutationInput` [PrivateAccessPolicyMutationInput] - (required) N/A    

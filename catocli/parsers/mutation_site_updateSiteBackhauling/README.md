@@ -29,3 +29,5 @@ catocli mutation site updateSiteBackhauling '{
 
 #### Operation Arguments for mutation.site.updateSiteBackhauling ####
 
+`accountId` [ID] - (required) N/A    
+`updateSiteBackhaulingInput` [UpdateSiteBackhaulingInput] - (required) N/A    

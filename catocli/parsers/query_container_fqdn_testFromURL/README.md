@@ -23,3 +23,5 @@ catocli query container fqdn testFromURL '{
 
 #### Operation Arguments for query.container.fqdn.testFromURL ####
 
+`accountId` [ID] - (required) N/A    
+`testContainerFromUrlInput` [TestContainerFromUrlInput] - (required) N/A    

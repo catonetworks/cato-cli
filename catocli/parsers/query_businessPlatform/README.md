@@ -83,3 +83,5 @@ catocli query businessPlatform '{
 
 #### Operation Arguments for query.businessPlatform ####
 
+`accountId` [ID] - (required) N/A    
+`businessPlatformAccountListInput` [BusinessPlatformAccountListInput] - (required) N/A    

@@ -28,3 +28,6 @@ catocli mutation policy wanFirewall publishPolicyRevision '{
 
 #### Operation Arguments for mutation.policy.wanFirewall.publishPolicyRevision ####
 
+`accountId` [ID] - (required) N/A    
+`policyPublishRevisionInput` [PolicyPublishRevisionInput] - (required) N/A    
+`wanFirewallPolicyMutationInput` [WanFirewallPolicyMutationInput] - (required) N/A    

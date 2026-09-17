@@ -28,3 +28,6 @@ catocli query aiSecurity '{
 
 #### Operation Arguments for query.aiSecurity ####
 
+`accountId` [ID] - (required) N/A    
+`aiSecurityAppsInvocationInput` [AiSecurityAppsInvocationInput] - (required) N/A    
+`aiSecurityEndUsersSessionConversationInput` [AiSecurityEndUsersSessionConversationInput] - (required) N/A    

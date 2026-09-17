@@ -13,3 +13,4 @@ catocli query licensing --json-file query.licensing.json
 
 #### Operation Arguments for query.licensing ####
 
+`accountId` [ID] - (required) N/A    

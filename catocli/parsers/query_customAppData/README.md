@@ -80,3 +80,6 @@ catocli query customAppData '{
 
 #### Operation Arguments for query.customAppData ####
 
+`accountId` [ID] - (required) N/A    
+`customApplicationListInput` [CustomApplicationListInput] - (required) N/A    
+`customApplicationRefInput` [CustomApplicationRefInput] - (required) N/A    

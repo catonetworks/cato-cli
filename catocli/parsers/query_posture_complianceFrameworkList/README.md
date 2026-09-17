@@ -13,3 +13,4 @@ catocli query posture complianceFrameworkList --json-file query.posture.complian
 
 #### Operation Arguments for query.posture.complianceFrameworkList ####
 
+`accountId` [ID] - (required) N/A    

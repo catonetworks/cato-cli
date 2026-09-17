@@ -28,3 +28,6 @@ catocli mutation policy siteWebProxy createPolicyRevision '{
 
 #### Operation Arguments for mutation.policy.siteWebProxy.createPolicyRevision ####
 
+`accountId` [ID] - (required) N/A    
+`policyCreateRevisionInput` [PolicyCreateRevisionInput] - (required) N/A    
+`siteWebProxyPolicyMutationInput` [SiteWebProxyPolicyMutationInput] - (required) N/A    

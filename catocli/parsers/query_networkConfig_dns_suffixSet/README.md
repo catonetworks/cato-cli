@@ -23,3 +23,5 @@ catocli query networkConfig dns suffixSet '{
 
 #### Operation Arguments for query.networkConfig.dns.suffixSet ####
 
+`accountId` [ID] - (required) N/A    
+`networkConfigDnsSuffixSetRefInput` [NetworkConfigDnsSuffixSetRefInput] - (required) N/A    

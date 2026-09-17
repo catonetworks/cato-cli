@@ -236,3 +236,5 @@ catocli query posture findingList '{
 
 #### Operation Arguments for query.posture.findingList ####
 
+`accountId` [ID] - (required) N/A    
+`postureFindingListInput` [PostureFindingListInput] - (required) N/A    

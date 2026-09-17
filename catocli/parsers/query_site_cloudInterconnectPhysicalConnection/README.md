@@ -22,3 +22,5 @@ catocli query site cloudInterconnectPhysicalConnection '{
 
 #### Operation Arguments for query.site.cloudInterconnectPhysicalConnection ####
 
+`accountId` [ID] - (required) N/A    
+`cloudInterconnectPhysicalConnectionInput` [CloudInterconnectPhysicalConnectionInput] - (required) N/A    

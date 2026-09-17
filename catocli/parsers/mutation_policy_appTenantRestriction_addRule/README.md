@@ -115,3 +115,6 @@ catocli mutation policy appTenantRestriction addRule '{
 
 #### Operation Arguments for mutation.policy.appTenantRestriction.addRule ####
 
+`accountId` [ID] - (required) N/A    
+`appTenantRestrictionAddRuleInput` [AppTenantRestrictionAddRuleInput] - (required) N/A    
+`appTenantRestrictionPolicyMutationInput` [AppTenantRestrictionPolicyMutationInput] - (required) N/A    

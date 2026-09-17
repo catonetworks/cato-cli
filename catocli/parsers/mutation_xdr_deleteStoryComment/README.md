@@ -23,3 +23,5 @@ catocli mutation xdr deleteStoryComment '{
 
 #### Operation Arguments for mutation.xdr.deleteStoryComment ####
 
+`accountId` [ID] - (required) N/A    
+`deleteStoryCommentInput` [DeleteStoryCommentInput] - (required) N/A    

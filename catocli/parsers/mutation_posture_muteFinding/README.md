@@ -24,3 +24,5 @@ catocli mutation posture muteFinding '{
 
 #### Operation Arguments for mutation.posture.muteFinding ####
 
+`accountId` [ID] - (required) N/A    
+`postureMuteFindingInput` [PostureMuteFindingInput] - (required) N/A    

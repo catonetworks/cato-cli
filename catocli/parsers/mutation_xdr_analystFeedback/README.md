@@ -32,3 +32,5 @@ catocli mutation xdr analystFeedback '{
 
 #### Operation Arguments for mutation.xdr.analystFeedback ####
 
+`accountId` [ID] - (required) N/A    
+`analystFeedbackInput` [AnalystFeedbackInput] - (required) N/A    

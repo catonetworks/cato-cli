@@ -41,3 +41,5 @@ catocli query site validateWifiRadioProfile '{
 
 #### Operation Arguments for query.site.validateWifiRadioProfile ####
 
+`accountId` [ID] - (required) N/A    
+`validateWifiRadioProfileInput` [ValidateWifiRadioProfileInput] - (required) N/A    

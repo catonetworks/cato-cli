@@ -31,3 +31,5 @@ catocli mutation sites addCloudInterconnectSite '{
 
 #### Operation Arguments for mutation.sites.addCloudInterconnectSite ####
 
+`accountId` [ID] - (required) N/A    
+`addCloudInterconnectSiteInput` [AddCloudInterconnectSiteInput] - (required) N/A    

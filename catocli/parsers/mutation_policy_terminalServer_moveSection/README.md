@@ -31,3 +31,6 @@ catocli mutation policy terminalServer moveSection '{
 
 #### Operation Arguments for mutation.policy.terminalServer.moveSection ####
 
+`accountId` [ID] - (required) N/A    
+`policyMoveSectionInput` [PolicyMoveSectionInput] - (required) N/A    
+`terminalServerPolicyMutationInput` [TerminalServerPolicyMutationInput] - (required) N/A    

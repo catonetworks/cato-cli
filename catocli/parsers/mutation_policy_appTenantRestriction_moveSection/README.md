@@ -31,3 +31,6 @@ catocli mutation policy appTenantRestriction moveSection '{
 
 #### Operation Arguments for mutation.policy.appTenantRestriction.moveSection ####
 
+`accountId` [ID] - (required) N/A    
+`appTenantRestrictionPolicyMutationInput` [AppTenantRestrictionPolicyMutationInput] - (required) N/A    
+`policyMoveSectionInput` [PolicyMoveSectionInput] - (required) N/A    

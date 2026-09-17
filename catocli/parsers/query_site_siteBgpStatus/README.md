@@ -25,3 +25,5 @@ catocli query site siteBgpStatus '{
 
 #### Operation Arguments for query.site.siteBgpStatus ####
 
+`accountId` [ID] - (required) N/A    
+`siteBgpStatusInput` [SiteBgpStatusInput] - (required) N/A    

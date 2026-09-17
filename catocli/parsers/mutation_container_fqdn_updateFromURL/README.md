@@ -46,3 +46,5 @@ catocli mutation container fqdn updateFromURL '{
 
 #### Operation Arguments for mutation.container.fqdn.updateFromURL ####
 
+`accountId` [ID] - (required) N/A    
+`updateFqdnContainerFromUrlInput` [UpdateFqdnContainerFromUrlInput] - (required) N/A    

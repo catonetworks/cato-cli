@@ -20,3 +20,5 @@ catocli mutation site removeStaticHost '{
 
 #### Operation Arguments for mutation.site.removeStaticHost ####
 
+`accountId` [ID] - (required) N/A    
+`hostId` [ID] - (required) N/A    

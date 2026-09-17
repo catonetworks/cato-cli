@@ -28,3 +28,5 @@ catocli mutation popLocationMutations updateBgpProfile '{
 
 #### Operation Arguments for mutation.popLocationMutations.updateBgpProfile ####
 
+`accountId` [ID] - (required) N/A    
+`popLocationUpdateBgpProfileInput` [PopLocationUpdateBgpProfileInput] - (required) N/A    

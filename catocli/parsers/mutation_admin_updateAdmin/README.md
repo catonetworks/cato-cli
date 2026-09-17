@@ -55,3 +55,6 @@ catocli mutation admin updateAdmin '{
 
 #### Operation Arguments for mutation.admin.updateAdmin ####
 
+`accountId` [ID] - (required) N/A    
+`adminID` [ID] - (required) N/A    
+`updateAdminInput` [UpdateAdminInput] - (required) N/A    

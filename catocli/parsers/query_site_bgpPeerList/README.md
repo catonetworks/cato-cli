@@ -25,3 +25,5 @@ catocli query site bgpPeerList '{
 
 #### Operation Arguments for query.site.bgpPeerList ####
 
+`accountId` [ID] - (required) N/A    
+`bgpPeerListInput` [BgpPeerListInput] - (required) N/A    

@@ -27,3 +27,5 @@ catocli mutation container fqdn createFromList '{
 
 #### Operation Arguments for mutation.container.fqdn.createFromList ####
 
+`accountId` [ID] - (required) N/A    
+`createFqdnContainerFromListInput` [CreateFqdnContainerFromListInput] - (required) N/A    

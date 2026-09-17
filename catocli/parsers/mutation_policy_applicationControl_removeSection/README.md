@@ -27,3 +27,6 @@ catocli mutation policy applicationControl removeSection '{
 
 #### Operation Arguments for mutation.policy.applicationControl.removeSection ####
 
+`accountId` [ID] - (required) N/A    
+`applicationControlPolicyMutationInput` [ApplicationControlPolicyMutationInput] - (required) N/A    
+`policyRemoveSectionInput` [PolicyRemoveSectionInput] - (required) N/A    

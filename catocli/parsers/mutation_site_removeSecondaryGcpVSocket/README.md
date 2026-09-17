@@ -22,3 +22,5 @@ catocli mutation site removeSecondaryGcpVSocket '{
 
 #### Operation Arguments for mutation.site.removeSecondaryGcpVSocket ####
 
+`accountId` [ID] - (required) N/A    
+`removeSecondaryGcpVSocketInput` [RemoveSecondaryGcpVSocketInput] - (required) N/A    

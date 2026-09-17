@@ -27,3 +27,6 @@ catocli mutation policy privateAccess removeRule '{
 
 #### Operation Arguments for mutation.policy.privateAccess.removeRule ####
 
+`accountId` [ID] - (required) N/A    
+`privateAccessPolicyMutationInput` [PrivateAccessPolicyMutationInput] - (required) N/A    
+`privateAccessRemoveRuleInput` [PrivateAccessRemoveRuleInput] - (required) N/A    

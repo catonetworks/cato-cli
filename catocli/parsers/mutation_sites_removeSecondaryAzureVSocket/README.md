@@ -20,3 +20,5 @@ catocli mutation sites removeSecondaryAzureVSocket '{
 
 #### Operation Arguments for mutation.sites.removeSecondaryAzureVSocket ####
 
+`accountId` [ID] - (required) N/A    
+`socketId` [ID] - (required) N/A    

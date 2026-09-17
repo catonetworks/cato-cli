@@ -51,3 +51,5 @@ catocli mutation privateApplication createPrivateApplication '{
 
 #### Operation Arguments for mutation.privateApplication.createPrivateApplication ####
 
+`accountId` [ID] - (required) N/A    
+`createPrivateApplicationInput` [CreatePrivateApplicationInput] - (required) N/A    

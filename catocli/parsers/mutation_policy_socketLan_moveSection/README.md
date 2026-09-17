@@ -31,3 +31,6 @@ catocli mutation policy socketLan moveSection '{
 
 #### Operation Arguments for mutation.policy.socketLan.moveSection ####
 
+`accountId` [ID] - (required) N/A    
+`policyMoveSectionInput` [PolicyMoveSectionInput] - (required) N/A    
+`socketLanPolicyMutationInput` [SocketLanPolicyMutationInput] - (required) N/A    

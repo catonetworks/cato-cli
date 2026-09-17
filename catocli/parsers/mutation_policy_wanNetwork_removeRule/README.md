@@ -27,3 +27,6 @@ catocli mutation policy wanNetwork removeRule '{
 
 #### Operation Arguments for mutation.policy.wanNetwork.removeRule ####
 
+`accountId` [ID] - (required) N/A    
+`wanNetworkPolicyMutationInput` [WanNetworkPolicyMutationInput] - (required) N/A    
+`wanNetworkRemoveRuleInput` [WanNetworkRemoveRuleInput] - (required) N/A    

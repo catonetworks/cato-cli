@@ -30,3 +30,5 @@ catocli mutation notification createSubscriptionGroup '{
 
 #### Operation Arguments for mutation.notification.createSubscriptionGroup ####
 
+`accountId` [ID] - (required) N/A    
+`createSubscriptionGroupInput` [CreateSubscriptionGroupInput] - (required) N/A    

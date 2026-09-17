@@ -27,3 +27,6 @@ catocli mutation policy socketBypass updatePolicy '{
 
 #### Operation Arguments for mutation.policy.socketBypass.updatePolicy ####
 
+`accountId` [ID] - (required) N/A    
+`socketBypassPolicyMutationInput` [SocketBypassPolicyMutationInput] - (required) N/A    
+`socketBypassPolicyUpdateInput` [SocketBypassPolicyUpdateInput] - (required) N/A    

@@ -20,3 +20,5 @@ catocli mutation enterpriseDirectory restoreLocation '{
 
 #### Operation Arguments for mutation.enterpriseDirectory.restoreLocation ####
 
+`accountId` [ID] - (required) N/A    
+`locationId` [ID] - (required) N/A    

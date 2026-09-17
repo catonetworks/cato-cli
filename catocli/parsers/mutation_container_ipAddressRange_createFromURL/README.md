@@ -43,3 +43,5 @@ catocli mutation container ipAddressRange createFromURL '{
 
 #### Operation Arguments for mutation.container.ipAddressRange.createFromURL ####
 
+`accountId` [ID] - (required) N/A    
+`createIpAddressRangeContainerFromUrlInput` [CreateIpAddressRangeContainerFromUrlInput] - (required) N/A    

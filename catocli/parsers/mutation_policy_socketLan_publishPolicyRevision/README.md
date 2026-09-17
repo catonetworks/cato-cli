@@ -28,3 +28,6 @@ catocli mutation policy socketLan publishPolicyRevision '{
 
 #### Operation Arguments for mutation.policy.socketLan.publishPolicyRevision ####
 
+`accountId` [ID] - (required) N/A    
+`policyPublishRevisionInput` [PolicyPublishRevisionInput] - (required) N/A    
+`socketLanPolicyMutationInput` [SocketLanPolicyMutationInput] - (required) N/A    

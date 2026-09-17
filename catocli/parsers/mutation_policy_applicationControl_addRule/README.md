@@ -668,3 +668,6 @@ catocli mutation policy applicationControl addRule '{
 
 #### Operation Arguments for mutation.policy.applicationControl.addRule ####
 
+`accountId` [ID] - (required) N/A    
+`applicationControlAddRuleInput` [ApplicationControlAddRuleInput] - (required) N/A    
+`applicationControlPolicyMutationInput` [ApplicationControlPolicyMutationInput] - (required) N/A    

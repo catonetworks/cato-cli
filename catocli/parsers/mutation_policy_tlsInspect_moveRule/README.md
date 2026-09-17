@@ -31,3 +31,6 @@ catocli mutation policy tlsInspect moveRule '{
 
 #### Operation Arguments for mutation.policy.tlsInspect.moveRule ####
 
+`accountId` [ID] - (required) N/A    
+`policyMoveRuleInput` [PolicyMoveRuleInput] - (required) N/A    
+`tlsInspectPolicyMutationInput` [TlsInspectPolicyMutationInput] - (required) N/A    

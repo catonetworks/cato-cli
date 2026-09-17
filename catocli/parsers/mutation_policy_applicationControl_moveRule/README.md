@@ -31,3 +31,6 @@ catocli mutation policy applicationControl moveRule '{
 
 #### Operation Arguments for mutation.policy.applicationControl.moveRule ####
 
+`accountId` [ID] - (required) N/A    
+`applicationControlPolicyMutationInput` [ApplicationControlPolicyMutationInput] - (required) N/A    
+`policyMoveRuleInput` [PolicyMoveRuleInput] - (required) N/A    

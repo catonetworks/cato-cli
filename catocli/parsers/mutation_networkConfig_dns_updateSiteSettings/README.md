@@ -33,3 +33,5 @@ catocli mutation networkConfig dns updateSiteSettings '{
 
 #### Operation Arguments for mutation.networkConfig.dns.updateSiteSettings ####
 
+`accountId` [ID] - (required) N/A    
+`networkConfigDnsUpdateSiteSettingsInput` [NetworkConfigDnsUpdateSiteSettingsInput] - (required) N/A    

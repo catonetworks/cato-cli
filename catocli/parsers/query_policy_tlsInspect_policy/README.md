@@ -45,3 +45,5 @@ catocli query policy tlsInspect policy | jq -r '.data.policy.tlsInspect.policy.r
 
 #### Operation Arguments for query.policy.tlsInspect.policy ####
 
+`accountId` [ID] - (required) N/A    
+`tlsInspectPolicyInput` [TlsInspectPolicyInput] - (required) N/A    

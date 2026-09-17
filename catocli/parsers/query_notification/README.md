@@ -35,3 +35,8 @@ catocli query notification '{
 
 #### Operation Arguments for query.notification ####
 
+`accountId` [ID] - (required) N/A    
+`mailingListRefInput` [MailingListRefInput] - (required) N/A    
+`subscriptionGroupRefInput` [SubscriptionGroupRefInput] - (required) N/A    
+`webhookIntegrationRefInput` [WebhookIntegrationRefInput] - (required) N/A    
+`webhookTemplateRefInput` [WebhookTemplateRefInput] - (required) N/A    

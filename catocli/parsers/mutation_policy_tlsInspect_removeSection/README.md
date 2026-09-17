@@ -27,3 +27,6 @@ catocli mutation policy tlsInspect removeSection '{
 
 #### Operation Arguments for mutation.policy.tlsInspect.removeSection ####
 
+`accountId` [ID] - (required) N/A    
+`policyRemoveSectionInput` [PolicyRemoveSectionInput] - (required) N/A    
+`tlsInspectPolicyMutationInput` [TlsInspectPolicyMutationInput] - (required) N/A    

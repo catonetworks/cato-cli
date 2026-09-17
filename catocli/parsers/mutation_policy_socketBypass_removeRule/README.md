@@ -27,3 +27,6 @@ catocli mutation policy socketBypass removeRule '{
 
 #### Operation Arguments for mutation.policy.socketBypass.removeRule ####
 
+`accountId` [ID] - (required) N/A    
+`socketBypassPolicyMutationInput` [SocketBypassPolicyMutationInput] - (required) N/A    
+`socketBypassRemoveRuleInput` [SocketBypassRemoveRuleInput] - (required) N/A    

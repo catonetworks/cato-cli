@@ -23,3 +23,5 @@ catocli query catalogs catalogApplication fqdn '{
 
 #### Operation Arguments for query.catalogs.catalogApplication.fqdn ####
 
+`accountId` [ID] - (required) N/A    
+`applicationRefInput` [ApplicationRefInput] - (required) N/A    

@@ -25,3 +25,5 @@ catocli mutation container fqdn createFromFile '{
 
 #### Operation Arguments for mutation.container.fqdn.createFromFile ####
 
+`accountId` [ID] - (required) N/A    
+`createFqdnContainerFromFileInput` [CreateFqdnContainerFromFileInput] - (required) N/A    

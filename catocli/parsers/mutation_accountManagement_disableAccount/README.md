@@ -13,3 +13,4 @@ catocli mutation accountManagement disableAccount --json-file mutation.accountMa
 
 #### Operation Arguments for mutation.accountManagement.disableAccount ####
 
+`accountId` [ID] - (required) N/A    

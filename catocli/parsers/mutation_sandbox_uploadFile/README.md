@@ -22,3 +22,5 @@ catocli mutation sandbox uploadFile '{
 
 #### Operation Arguments for mutation.sandbox.uploadFile ####
 
+`accountId` [ID] - (required) N/A    
+`uploadFileInput` [UploadFileInput] - (required) N/A    

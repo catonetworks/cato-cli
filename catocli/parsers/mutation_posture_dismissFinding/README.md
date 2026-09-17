@@ -23,3 +23,5 @@ catocli mutation posture dismissFinding '{
 
 #### Operation Arguments for mutation.posture.dismissFinding ####
 
+`accountId` [ID] - (required) N/A    
+`postureDismissFindingInput` [PostureDismissFindingInput] - (required) N/A    

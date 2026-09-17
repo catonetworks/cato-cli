@@ -30,3 +30,6 @@ catocli mutation policy socketLan updateSection '{
 
 #### Operation Arguments for mutation.policy.socketLan.updateSection ####
 
+`accountId` [ID] - (required) N/A    
+`policyUpdateSectionInput` [PolicyUpdateSectionInput] - (required) N/A    
+`socketLanPolicyMutationInput` [SocketLanPolicyMutationInput] - (required) N/A    

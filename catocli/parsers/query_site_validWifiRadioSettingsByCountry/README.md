@@ -32,3 +32,5 @@ catocli query site validWifiRadioSettingsByCountry '{
 
 #### Operation Arguments for query.site.validWifiRadioSettingsByCountry ####
 
+`accountId` [ID] - (required) N/A    
+`validWifiRadioSettingsByCountryInput` [ValidWifiRadioSettingsByCountryInput] - (required) N/A    

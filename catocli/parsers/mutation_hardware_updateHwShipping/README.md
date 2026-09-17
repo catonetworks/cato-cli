@@ -34,3 +34,5 @@ catocli mutation hardware updateHwShipping '{
 
 #### Operation Arguments for mutation.hardware.updateHwShipping ####
 
+`accountId` [ID] - (required) N/A    
+`updateHwShippingInput` [UpdateHwShippingInput] - (required) N/A    

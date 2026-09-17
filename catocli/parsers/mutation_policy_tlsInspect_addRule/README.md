@@ -175,3 +175,6 @@ catocli mutation policy tlsInspect addRule '{
 
 #### Operation Arguments for mutation.policy.tlsInspect.addRule ####
 
+`accountId` [ID] - (required) N/A    
+`tlsInspectAddRuleInput` [TlsInspectAddRuleInput] - (required) N/A    
+`tlsInspectPolicyMutationInput` [TlsInspectPolicyMutationInput] - (required) N/A    

@@ -28,3 +28,6 @@ catocli mutation policy wanNetwork createPolicyRevision '{
 
 #### Operation Arguments for mutation.policy.wanNetwork.createPolicyRevision ####
 
+`accountId` [ID] - (required) N/A    
+`policyCreateRevisionInput` [PolicyCreateRevisionInput] - (required) N/A    
+`wanNetworkPolicyMutationInput` [WanNetworkPolicyMutationInput] - (required) N/A    

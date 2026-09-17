@@ -20,3 +20,5 @@ catocli query subDomains '{
 
 #### Operation Arguments for query.subDomains ####
 
+`accountID` [ID] - (required) Unique Identifier of Account    
+`managedAccount` [Boolean] - (required) When the boolean argument managedAccount is set to true (default), then the query returns all subdomains related to the account    

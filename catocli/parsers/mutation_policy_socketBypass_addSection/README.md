@@ -33,3 +33,6 @@ catocli mutation policy socketBypass addSection '{
 
 #### Operation Arguments for mutation.policy.socketBypass.addSection ####
 
+`accountId` [ID] - (required) N/A    
+`policyAddSectionInput` [PolicyAddSectionInput] - (required) N/A    
+`socketBypassPolicyMutationInput` [SocketBypassPolicyMutationInput] - (required) N/A    

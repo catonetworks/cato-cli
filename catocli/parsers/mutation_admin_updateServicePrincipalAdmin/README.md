@@ -53,3 +53,6 @@ catocli mutation admin updateServicePrincipalAdmin '{
 
 #### Operation Arguments for mutation.admin.updateServicePrincipalAdmin ####
 
+`accountId` [ID] - (required) N/A    
+`adminID` [ID] - (required) N/A    
+`updateServicePrincipalAdminInput` [UpdateServicePrincipalAdminInput] - (required) N/A    

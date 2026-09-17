@@ -31,3 +31,6 @@ catocli mutation policy internetFirewall moveSection '{
 
 #### Operation Arguments for mutation.policy.internetFirewall.moveSection ####
 
+`accountId` [ID] - (required) N/A    
+`internetFirewallPolicyMutationInput` [InternetFirewallPolicyMutationInput] - (required) N/A    
+`policyMoveSectionInput` [PolicyMoveSectionInput] - (required) N/A    

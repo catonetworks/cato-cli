@@ -20,3 +20,5 @@ catocli mutation sites removeSite '{
 
 #### Operation Arguments for mutation.sites.removeSite ####
 
+`accountId` [ID] - (required) N/A    
+`siteId` [ID] - (required) N/A    

@@ -28,3 +28,6 @@ catocli mutation policy ztnaAlwaysOn createPolicyRevision '{
 
 #### Operation Arguments for mutation.policy.ztnaAlwaysOn.createPolicyRevision ####
 
+`accountId` [ID] - (required) N/A    
+`policyCreateRevisionInput` [PolicyCreateRevisionInput] - (required) N/A    
+`ztnaAlwaysOnPolicyMutationInput` [ZtnaAlwaysOnPolicyMutationInput] - (required) N/A    

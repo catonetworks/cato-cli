@@ -25,3 +25,5 @@ catocli mutation networkConfig dns removeSiteSettings '{
 
 #### Operation Arguments for mutation.networkConfig.dns.removeSiteSettings ####
 
+`accountId` [ID] - (required) N/A    
+`networkConfigDnsRemoveSiteSettingsInput` [NetworkConfigDnsRemoveSiteSettingsInput] - (required) N/A    

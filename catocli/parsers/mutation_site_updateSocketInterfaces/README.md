@@ -66,3 +66,5 @@ catocli mutation site updateSocketInterfaces '{
 
 #### Operation Arguments for mutation.site.updateSocketInterfaces ####
 
+`accountId` [ID] - (required) N/A    
+`updateSocketInterfacesInput` [UpdateSocketInterfacesInput] - (required) N/A    

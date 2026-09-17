@@ -28,3 +28,5 @@ catocli mutation container fqdn updateFromFile '{
 
 #### Operation Arguments for mutation.container.fqdn.updateFromFile ####
 
+`accountId` [ID] - (required) N/A    
+`updateFqdnContainerFromFileInput` [UpdateFqdnContainerFromFileInput] - (required) N/A    

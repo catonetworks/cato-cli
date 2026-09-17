@@ -28,3 +28,6 @@ catocli mutation policy internetFirewall publishPolicyRevision '{
 
 #### Operation Arguments for mutation.policy.internetFirewall.publishPolicyRevision ####
 
+`accountId` [ID] - (required) N/A    
+`internetFirewallPolicyMutationInput` [InternetFirewallPolicyMutationInput] - (required) N/A    
+`policyPublishRevisionInput` [PolicyPublishRevisionInput] - (required) N/A    

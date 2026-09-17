@@ -30,3 +30,6 @@ catocli mutation policy privateAccess updateSection '{
 
 #### Operation Arguments for mutation.policy.privateAccess.updateSection ####
 
+`accountId` [ID] - (required) N/A    
+`policyUpdateSectionInput` [PolicyUpdateSectionInput] - (required) N/A    
+`privateAccessPolicyMutationInput` [PrivateAccessPolicyMutationInput] - (required) N/A    

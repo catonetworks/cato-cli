@@ -50,3 +50,6 @@ catocli mutation site updateSiteGeneralDetails '{
 
 #### Operation Arguments for mutation.site.updateSiteGeneralDetails ####
 
+`accountId` [ID] - (required) N/A    
+`siteId` [ID] - (required) N/A    
+`updateSiteGeneralDetailsInput` [UpdateSiteGeneralDetailsInput] - (required) N/A    

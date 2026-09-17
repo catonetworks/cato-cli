@@ -27,3 +27,6 @@ catocli mutation policy siteWebProxy removeRule '{
 
 #### Operation Arguments for mutation.policy.siteWebProxy.removeRule ####
 
+`accountId` [ID] - (required) N/A    
+`siteWebProxyPolicyMutationInput` [SiteWebProxyPolicyMutationInput] - (required) N/A    
+`siteWebProxyRemoveRuleInput` [SiteWebProxyRemoveRuleInput] - (required) N/A    

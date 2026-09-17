@@ -23,3 +23,5 @@ catocli query site wifiSsid '{
 
 #### Operation Arguments for query.site.wifiSsid ####
 
+`accountId` [ID] - (required) N/A    
+`wifiSsidRefInput` [WifiSsidRefInput] - (required) N/A    

@@ -155,3 +155,5 @@ catocli query catalogs catalogApplicationList '{
 
 #### Operation Arguments for query.catalogs.catalogApplicationList ####
 
+`accountId` [ID] - (required) N/A    
+`catalogApplicationListInput` [CatalogApplicationListInput] - (required) N/A    

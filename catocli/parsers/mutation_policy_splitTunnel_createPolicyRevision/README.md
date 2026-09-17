@@ -28,3 +28,6 @@ catocli mutation policy splitTunnel createPolicyRevision '{
 
 #### Operation Arguments for mutation.policy.splitTunnel.createPolicyRevision ####
 
+`accountId` [ID] - (required) N/A    
+`policyCreateRevisionInput` [PolicyCreateRevisionInput] - (required) N/A    
+`splitTunnelPolicyMutationInput` [SplitTunnelPolicyMutationInput] - (required) N/A    

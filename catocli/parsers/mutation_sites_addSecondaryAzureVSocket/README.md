@@ -27,3 +27,5 @@ catocli mutation sites addSecondaryAzureVSocket '{
 
 #### Operation Arguments for mutation.sites.addSecondaryAzureVSocket ####
 
+`accountId` [ID] - (required) N/A    
+`addSecondaryAzureVSocketInput` [AddSecondaryAzureVSocketInput] - (required) N/A    

@@ -46,3 +46,5 @@ catocli query networkConfig dhcp relayGroupList '{
 
 #### Operation Arguments for query.networkConfig.dhcp.relayGroupList ####
 
+`accountId` [ID] - (required) N/A    
+`networkConfigDhcpRelayGroupListInput` [NetworkConfigDhcpRelayGroupListInput] - (required) N/A    

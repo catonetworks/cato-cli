@@ -40,3 +40,6 @@ catocli mutation sites updateIpsecIkeV2SiteGeneralDetails '{
 
 #### Operation Arguments for mutation.sites.updateIpsecIkeV2SiteGeneralDetails ####
 
+`accountId` [ID] - (required) N/A    
+`siteId` [ID] - (required) N/A    
+`updateIpsecIkeV2SiteGeneralDetailsInput` [UpdateIpsecIkeV2SiteGeneralDetailsInput] - (required) N/A    

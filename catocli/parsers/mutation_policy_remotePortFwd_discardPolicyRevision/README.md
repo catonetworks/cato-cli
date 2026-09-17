@@ -27,3 +27,6 @@ catocli mutation policy remotePortFwd discardPolicyRevision '{
 
 #### Operation Arguments for mutation.policy.remotePortFwd.discardPolicyRevision ####
 
+`accountId` [ID] - (required) N/A    
+`policyDiscardRevisionInput` [PolicyDiscardRevisionInput] - (required) N/A    
+`remotePortFwdPolicyMutationInput` [RemotePortFwdPolicyMutationInput] - (required) N/A    

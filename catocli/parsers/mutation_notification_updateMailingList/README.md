@@ -50,3 +50,5 @@ catocli mutation notification updateMailingList '{
 
 #### Operation Arguments for mutation.notification.updateMailingList ####
 
+`accountId` [ID] - (required) N/A    
+`updateMailingListInput` [UpdateMailingListInput] - (required) N/A    

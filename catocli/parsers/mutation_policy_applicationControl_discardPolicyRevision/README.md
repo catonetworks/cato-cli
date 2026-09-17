@@ -27,3 +27,6 @@ catocli mutation policy applicationControl discardPolicyRevision '{
 
 #### Operation Arguments for mutation.policy.applicationControl.discardPolicyRevision ####
 
+`accountId` [ID] - (required) N/A    
+`applicationControlPolicyMutationInput` [ApplicationControlPolicyMutationInput] - (required) N/A    
+`policyDiscardRevisionInput` [PolicyDiscardRevisionInput] - (required) N/A    

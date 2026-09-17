@@ -25,3 +25,5 @@ catocli mutation networkConfig dns deleteSuffixSet '{
 
 #### Operation Arguments for mutation.networkConfig.dns.deleteSuffixSet ####
 
+`accountId` [ID] - (required) N/A    
+`networkConfigDnsDeleteSuffixSetInput` [NetworkConfigDnsDeleteSuffixSetInput] - (required) N/A    

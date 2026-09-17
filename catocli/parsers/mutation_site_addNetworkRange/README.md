@@ -38,3 +38,6 @@ catocli mutation site addNetworkRange '{
 
 #### Operation Arguments for mutation.site.addNetworkRange ####
 
+`accountId` [ID] - (required) N/A    
+`addNetworkRangeInput` [AddNetworkRangeInput] - (required) N/A    
+`lanSocketInterfaceId` [ID] - (required) N/A    

@@ -194,3 +194,5 @@ catocli query xdr stories '{
 
 #### Operation Arguments for query.xdr.stories ####
 
+`accountID` [ID] - (required) N/A    
+`storyInput` [StoryInput] - (required) N/A    

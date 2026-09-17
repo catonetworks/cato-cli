@@ -24,3 +24,5 @@ catocli mutation site updateSecondaryAzureVSocket '{
 
 #### Operation Arguments for mutation.site.updateSecondaryAzureVSocket ####
 
+`accountId` [ID] - (required) N/A    
+`updateSecondaryAzureVSocketInput` [UpdateSecondaryAzureVSocketInput] - (required) N/A    

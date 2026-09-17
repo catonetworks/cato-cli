@@ -27,3 +27,6 @@ catocli mutation policy remotePortFwd removeSection '{
 
 #### Operation Arguments for mutation.policy.remotePortFwd.removeSection ####
 
+`accountId` [ID] - (required) N/A    
+`policyRemoveSectionInput` [PolicyRemoveSectionInput] - (required) N/A    
+`remotePortFwdPolicyMutationInput` [RemotePortFwdPolicyMutationInput] - (required) N/A    

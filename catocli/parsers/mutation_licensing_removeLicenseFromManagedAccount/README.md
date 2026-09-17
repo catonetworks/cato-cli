@@ -23,3 +23,5 @@ catocli mutation licensing removeLicenseFromManagedAccount '{
 
 #### Operation Arguments for mutation.licensing.removeLicenseFromManagedAccount ####
 
+`accountId` [ID] - (required) N/A    
+`removeLicenseFromManagedAccountInput` [RemoveLicenseFromManagedAccountInput] - (required) N/A    

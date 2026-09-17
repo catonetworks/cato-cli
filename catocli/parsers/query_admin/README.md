@@ -20,3 +20,5 @@ catocli query admin '{
 
 #### Operation Arguments for query.admin ####
 
+`accountId` [ID] - (required) N/A    
+`adminID` [ID] - (required) N/A    

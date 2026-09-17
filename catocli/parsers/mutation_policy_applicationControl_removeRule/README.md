@@ -27,3 +27,6 @@ catocli mutation policy applicationControl removeRule '{
 
 #### Operation Arguments for mutation.policy.applicationControl.removeRule ####
 
+`accountId` [ID] - (required) N/A    
+`applicationControlPolicyMutationInput` [ApplicationControlPolicyMutationInput] - (required) N/A    
+`applicationControlRemoveRuleInput` [ApplicationControlRemoveRuleInput] - (required) N/A    

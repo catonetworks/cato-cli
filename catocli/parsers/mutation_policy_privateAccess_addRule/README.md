@@ -113,3 +113,6 @@ catocli mutation policy privateAccess addRule '{
 
 #### Operation Arguments for mutation.policy.privateAccess.addRule ####
 
+`accountId` [ID] - (required) N/A    
+`privateAccessAddRuleInput` [PrivateAccessAddRuleInput] - (required) N/A    
+`privateAccessPolicyMutationInput` [PrivateAccessPolicyMutationInput] - (required) N/A    

@@ -81,3 +81,5 @@ catocli query sandbox '{
 
 #### Operation Arguments for query.sandbox ####
 
+`accountId` [ID] - (required) N/A    
+`sandboxReportsInput` [SandboxReportsInput] - (required) N/A    

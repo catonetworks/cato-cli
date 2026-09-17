@@ -183,3 +183,7 @@ catocli query popLocations '{
 
 #### Operation Arguments for query.popLocations ####
 
+`accountId` [ID] - (required) N/A    
+`id` [ID] - (required) N/A    
+`popLocationAllocatedIpInput` [PopLocationAllocatedIpInput] - (required) N/A    
+`popLocationFilterInput` [PopLocationFilterInput] - (required) N/A    

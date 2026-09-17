@@ -55,3 +55,6 @@ catocli mutation policy ztnaAlwaysOn updateRule '{
 
 #### Operation Arguments for mutation.policy.ztnaAlwaysOn.updateRule ####
 
+`accountId` [ID] - (required) N/A    
+`ztnaAlwaysOnPolicyMutationInput` [ZtnaAlwaysOnPolicyMutationInput] - (required) N/A    
+`ztnaAlwaysOnUpdateRuleInput` [ZtnaAlwaysOnUpdateRuleInput] - (required) N/A    

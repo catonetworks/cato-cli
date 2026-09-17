@@ -213,3 +213,5 @@ catocli query posture checkResultList '{
 
 #### Operation Arguments for query.posture.checkResultList ####
 
+`accountId` [ID] - (required) N/A    
+`postureCheckResultListInput` [PostureCheckResultListInput] - (required) N/A    

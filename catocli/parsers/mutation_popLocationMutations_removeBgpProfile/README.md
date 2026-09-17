@@ -20,3 +20,5 @@ catocli mutation popLocationMutations removeBgpProfile '{
 
 #### Operation Arguments for mutation.popLocationMutations.removeBgpProfile ####
 
+`accountId` [ID] - (required) N/A    
+`bgpProfileId` [ID] - (required) N/A    

@@ -30,3 +30,6 @@ catocli mutation policy wanNetwork updateSection '{
 
 #### Operation Arguments for mutation.policy.wanNetwork.updateSection ####
 
+`accountId` [ID] - (required) N/A    
+`policyUpdateSectionInput` [PolicyUpdateSectionInput] - (required) N/A    
+`wanNetworkPolicyMutationInput` [WanNetworkPolicyMutationInput] - (required) N/A    

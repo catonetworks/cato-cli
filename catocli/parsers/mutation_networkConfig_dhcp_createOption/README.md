@@ -27,3 +27,5 @@ catocli mutation networkConfig dhcp createOption '{
 
 #### Operation Arguments for mutation.networkConfig.dhcp.createOption ####
 
+`accountId` [ID] - (required) N/A    
+`networkConfigDhcpCreateOptionInput` [NetworkConfigDhcpCreateOptionInput] - (required) N/A    

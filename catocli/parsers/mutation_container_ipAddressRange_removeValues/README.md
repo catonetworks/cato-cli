@@ -29,3 +29,5 @@ catocli mutation container ipAddressRange removeValues '{
 
 #### Operation Arguments for mutation.container.ipAddressRange.removeValues ####
 
+`accountId` [ID] - (required) N/A    
+`ipAddressRangeContainerRemoveValuesInput` [IpAddressRangeContainerRemoveValuesInput] - (required) N/A    

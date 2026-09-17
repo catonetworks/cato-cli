@@ -27,3 +27,6 @@ catocli mutation policy wanNetwork removeSection '{
 
 #### Operation Arguments for mutation.policy.wanNetwork.removeSection ####
 
+`accountId` [ID] - (required) N/A    
+`policyRemoveSectionInput` [PolicyRemoveSectionInput] - (required) N/A    
+`wanNetworkPolicyMutationInput` [WanNetworkPolicyMutationInput] - (required) N/A    

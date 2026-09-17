@@ -248,3 +248,6 @@ catocli mutation policy socketBypass addRule '{
 
 #### Operation Arguments for mutation.policy.socketBypass.addRule ####
 
+`accountId` [ID] - (required) N/A    
+`socketBypassAddRuleInput` [SocketBypassAddRuleInput] - (required) N/A    
+`socketBypassPolicyMutationInput` [SocketBypassPolicyMutationInput] - (required) N/A    

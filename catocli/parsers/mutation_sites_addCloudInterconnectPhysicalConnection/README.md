@@ -42,3 +42,5 @@ catocli mutation sites addCloudInterconnectPhysicalConnection '{
 
 #### Operation Arguments for mutation.sites.addCloudInterconnectPhysicalConnection ####
 
+`accountId` [ID] - (required) N/A    
+`addCloudInterconnectPhysicalConnectionInput` [AddCloudInterconnectPhysicalConnectionInput] - (required) N/A    

@@ -31,3 +31,6 @@ catocli mutation policy wanNetwork moveRule '{
 
 #### Operation Arguments for mutation.policy.wanNetwork.moveRule ####
 
+`accountId` [ID] - (required) N/A    
+`policyMoveRuleInput` [PolicyMoveRuleInput] - (required) N/A    
+`wanNetworkPolicyMutationInput` [WanNetworkPolicyMutationInput] - (required) N/A    

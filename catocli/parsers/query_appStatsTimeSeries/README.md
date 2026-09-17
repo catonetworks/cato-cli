@@ -370,5 +370,36 @@ Valid values: `ad_name`, `app`, `application`, `application_description`, `appli
 
 
 
+
+#### TimeFrame Parameter Examples
+
+The `timeFrame` parameter supports both relative time ranges and absolute date ranges:
+
+**Relative Time Ranges:**
+- "last.PT5M" = Previous 5 minutes
+- "last.PT1H" = Previous 1 hour  
+- "last.P1D" = Previous 1 day
+- "last.P14D" = Previous 14 days
+- "last.P1M" = Previous 1 month
+
+**Absolute Date Ranges:**
+Format: `"utc.YYYY-MM-{DD/HH:MM:SS--DD/HH:MM:SS}"`
+
+- Single day: "utc.2023-02-{28/00:00:00--28/23:59:59}"  
+- Multiple days: "utc.2023-02-{25/00:00:00--28/23:59:59}"  
+- Specific hours: "utc.2023-02-{28/09:00:00--28/17:00:00}"
+- Across months: "utc.2023-{01-28/00:00:00--02-03/23:59:59}"
+
+
 #### Operation Arguments for query.appStatsTimeSeries ####
 
+`accountID` [ID] - (required) Account ID    
+`appStatsFilter` [AppStatsFilter[]] - (required) N/A    
+`buckets` [Int] - (required) N/A    
+`dimension` [Dimension[]] - (required) N/A    
+`includeEmptyDimension` [Boolean] - (required) When true, rows with empty/null values for a grouped dimension (e.g., country, device type) are returned as an empty group rather than excluded. This ensures consistent totals in API queries and surfaces previously hidden data in CMA dashboards and reports. Defaults to false.    
+`measure` [Measure[]] - (required) N/A    
+`perSecond` [Boolean] - (required) whether to normalize the data into per second (i.e. divide by granularity)    
+`timeFrame` [TimeFrame] - (required) N/A    
+`useDefaultSizeBucket` [Boolean] - (required) In case we want to have the default size bucket (from properties)    
+`withMissingData` [Boolean] - (required) If false, the data field will be set to '0' for buckets with no reported data. Otherwise it will be set to -1    

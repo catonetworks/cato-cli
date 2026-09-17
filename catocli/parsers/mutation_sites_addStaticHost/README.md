@@ -25,3 +25,6 @@ catocli mutation sites addStaticHost '{
 
 #### Operation Arguments for mutation.sites.addStaticHost ####
 
+`accountId` [ID] - (required) N/A    
+`addStaticHostInput` [AddStaticHostInput] - (required) N/A    
+`siteId` [ID] - (required) N/A    

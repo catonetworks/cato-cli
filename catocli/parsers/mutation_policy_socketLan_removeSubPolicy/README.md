@@ -30,3 +30,6 @@ catocli mutation policy socketLan removeSubPolicy '{
 
 #### Operation Arguments for mutation.policy.socketLan.removeSubPolicy ####
 
+`accountId` [ID] - (required) N/A    
+`socketLanPolicyMutationInput` [SocketLanPolicyMutationInput] - (required) N/A    
+`socketLanRemoveSubPolicyInput` [SocketLanRemoveSubPolicyInput] - (required) N/A    

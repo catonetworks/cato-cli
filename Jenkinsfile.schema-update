@@ -8,6 +8,9 @@ import groovy.json.JsonOutput
 //   cato-schema-update-gh-token      -> Shared GitHub token with least-privilege
 //                                      access to push branches and create pull requests
 //   cato-acc-slack-token             -> Jenkins Bot token for PR notifications
+//
+// The Jenkins service account must also be allowed to trigger the
+// cato-go-sdk-schema-update job.
 
 pipeline {
     agent { label 'jenkins-slaves' }
@@ -213,6 +216,22 @@ EOF
                         message: "CLI Schema Update ${schemaUpdateDate} <${env.SCHEMA_UPDATE_PR_URL}>"
                     )
                 }
+            }
+        }
+
+        stage('Trigger SDK schema update') {
+            when {
+                expression { env.CHANGES_DETECTED == 'true' }
+            }
+            steps {
+                build(
+                    job: 'cato-go-sdk-schema-update',
+                    wait: false,
+                    parameters: [
+                        string(name: 'CLI_REF', value: env.SCHEMA_UPDATE_BRANCH),
+                        string(name: 'PR_SLACK_CHANNEL', value: params.PR_SLACK_CHANNEL)
+                    ]
+                )
             }
         }
     }

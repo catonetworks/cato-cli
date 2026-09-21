@@ -11,6 +11,7 @@ import groovy.json.JsonOutput
 //
 // The Jenkins service account must also be allowed to trigger the
 // cato-go-sdk-schema-update job.
+// The jenkins-slaves agent must provide Docker for the Python refresh stage.
 
 pipeline {
     agent { label 'jenkins-slaves' }
@@ -50,19 +51,7 @@ pipeline {
             }
         }
 
-        stage('Install dependencies') {
-            steps {
-                sh '''
-                    rm -rf .ci-python
-                    python3 -m pip install --disable-pip-version-check \
-                        --break-system-packages \
-                        --target "$PWD/.ci-python" \
-                        -r requirements.txt
-                '''
-            }
-        }
-
-        stage('Refresh schema') {
+        stage('Refresh schema in Python container') {
             steps {
                 withCredentials([
                     string(credentialsId: 'cato-acctest-token', variable: 'CATO_TOKEN'),
@@ -71,15 +60,31 @@ pipeline {
                     sh '''
                         set -eu
 
-                        # Force this run to use only the injected credentials.
-                        rm -f schema/introspection.json
-                        ci_home="$(mktemp -d)"
-                        trap 'rm -rf "$ci_home"' EXIT
+                        docker run --rm \
+                            --user "$(id -u):$(id -g)" \
+                            --env CATO_TOKEN \
+                            --env CATO_ACCOUNT_ID \
+                            --volume "$WORKSPACE:/workspace:rw" \
+                            --workdir /workspace \
+                            python:3.11-slim-bookworm \
+                            sh -eu -c '
+                                rm -rf .ci-python
+                                python3 -m pip install \
+                                    --disable-pip-version-check \
+                                    --no-cache-dir \
+                                    --target /workspace/.ci-python \
+                                    -r requirements.txt
 
-                        export PYTHONPATH="$WORKSPACE/.ci-python:$WORKSPACE${PYTHONPATH:+:$PYTHONPATH}"
-                        cd schema
-                        HOME="$ci_home" python3 importSchema.py
-                        test -s introspection.json
+                                # Force this run to use only the injected credentials.
+                                rm -f schema/introspection.json
+                                ci_home="$(mktemp -d)"
+                                trap "rm -rf ${ci_home}" EXIT
+
+                                export PYTHONPATH="/workspace/.ci-python:/workspace${PYTHONPATH:+:$PYTHONPATH}"
+                                cd schema
+                                HOME="$ci_home" python3 importSchema.py
+                                test -s introspection.json
+                            '
                     '''
                 }
             }

@@ -42,7 +42,14 @@
         "query.businessPlatform": {},
         "query.externalAccess": {},
         "query.notification": {},
-        "query.user": {}
+        "query.user": {},
+        // DNS APIs are not rolled out to this account
+        "query.networkConfig.dns.serverSet": {},
+        "query.networkConfig.dns.serverSetList": {},
+        "query.networkConfig.dns.suffixSet": {},
+        "query.networkConfig.dns.suffixSetList": {},
+        // Returns an internal server error for every valid site ID
+        "query.networkConfig.dns.siteSettings": {}
     },
     "defaultValues": {
         "timeFrame": "last.P1D",
@@ -52,6 +59,17 @@
         ]
     },
     "overrideOperationPayload": {
+        "query.networkConfig.dns.siteSettings": {
+            "payload": {
+                "siteRefInput": {
+                    "by": "ID",
+                    "input": "213005"
+                }
+            },
+            "assertions": [
+                "networkConfig.dns.siteSettings"
+            ]
+        },
         "query.connectivitySnapshots": {
             "payload": {
                 "ztnaAppConnectorGroupSnapshotInput": {
@@ -391,12 +409,24 @@
             "payload": {
                 "privateApplicationRefInput": {
                     "by": "ID",
-                    "input": "15"
+                    "input": "630"
                 }
             },
             "assertions": [
                 "privateApplication.privateApplication",
                 "privateApplication.privateApplicationList"
+            ]
+        },
+        "query.posture.dailySummaryList": {
+            "payload": {
+                "postureDailySummaryListInput": {
+                    "filter": {
+                        "timeFrame": "last.P1D"
+                    }
+                }
+            },
+            "assertions": [
+                "posture.dailySummaryList.items"
             ]
         },
         "query.policy.internetFirewall.policyList": {
@@ -565,10 +595,10 @@
         },
         "query.site.staticHost": {
             "payload": {
-                "hostId": "3408994",
+                "hostId": "3493011",
                 "siteRefInput": {
                     "by": "ID",
-                    "input": "215688"
+                    "input": "218735"
                 }
             },
             "assertions": [
@@ -579,7 +609,7 @@
             "payload": {
                 "siteRefInput": {
                     "by": "ID",
-                    "input": "215688"
+                    "input": "218735"
                 }
             },
             "assertions": [

@@ -11,10 +11,9 @@ catocli mutation site removeStaticHost <json>
 
 catocli mutation site removeStaticHost --json-file mutation.site.removeStaticHost.json
 
-catocli mutation site removeStaticHost '{"accountId":"id","hostId":"id"}'
+catocli mutation site removeStaticHost '{"hostId":"id"}'
 
 catocli mutation site removeStaticHost '{
-    "accountId": "id",
     "hostId": "id"
 }'
 ```

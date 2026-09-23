@@ -11,10 +11,9 @@ catocli mutation sites removeBgpPeer <json>
 
 catocli mutation sites removeBgpPeer --json-file mutation.sites.removeBgpPeer.json
 
-catocli mutation sites removeBgpPeer '{"accountId":"id","removeBgpPeerInput":{"id":"id"}}'
+catocli mutation sites removeBgpPeer '{"removeBgpPeerInput":{"id":"id"}}'
 
 catocli mutation sites removeBgpPeer '{
-    "accountId": "id",
     "removeBgpPeerInput": {
         "id": "id"
     }

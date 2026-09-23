@@ -11,10 +11,9 @@ catocli query servicePrincipalAdmin <json>
 
 catocli query servicePrincipalAdmin --json-file query.servicePrincipalAdmin.json
 
-catocli query servicePrincipalAdmin '{"accountId":"id","adminID":"id"}'
+catocli query servicePrincipalAdmin '{"adminID":"id"}'
 
 catocli query servicePrincipalAdmin '{
-    "accountId": "id",
     "adminID": "id"
 }'
 ```

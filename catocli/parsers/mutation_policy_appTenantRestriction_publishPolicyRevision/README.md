@@ -11,10 +11,9 @@ catocli mutation policy appTenantRestriction publishPolicyRevision <json>
 
 catocli mutation policy appTenantRestriction publishPolicyRevision --json-file mutation.policy.appTenantRestriction.publishPolicyRevision.json
 
-catocli mutation policy appTenantRestriction publishPolicyRevision '{"accountId":"id","appTenantRestrictionPolicyMutationInput":{"revision":{"id":"id"}},"policyPublishRevisionInput":{"description":"string","name":"string"}}'
+catocli mutation policy appTenantRestriction publishPolicyRevision '{"appTenantRestrictionPolicyMutationInput":{"revision":{"id":"id"}},"policyPublishRevisionInput":{"description":"string","name":"string"}}'
 
 catocli mutation policy appTenantRestriction publishPolicyRevision '{
-    "accountId": "id",
     "appTenantRestrictionPolicyMutationInput": {
         "revision": {
             "id": "id"

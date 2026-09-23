@@ -11,10 +11,9 @@ catocli query container ipAddressRange downloadFile <json>
 
 catocli query container ipAddressRange downloadFile --json-file query.container.ipAddressRange.downloadFile.json
 
-catocli query container ipAddressRange downloadFile '{"accountId":"id","downloadIpAddressRangeContainerFileInput":{"by":"ID","input":"string"}}'
+catocli query container ipAddressRange downloadFile '{"downloadIpAddressRangeContainerFileInput":{"by":"ID","input":"string"}}'
 
 catocli query container ipAddressRange downloadFile '{
-    "accountId": "id",
     "downloadIpAddressRangeContainerFileInput": {
         "by": "ID",
         "input": "string"

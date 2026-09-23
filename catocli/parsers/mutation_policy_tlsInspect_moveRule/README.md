@@ -11,10 +11,9 @@ catocli mutation policy tlsInspect moveRule <json>
 
 catocli mutation policy tlsInspect moveRule --json-file mutation.policy.tlsInspect.moveRule.json
 
-catocli mutation policy tlsInspect moveRule '{"accountId":"id","policyMoveRuleInput":{"id":"id","to":{"position":"AFTER_RULE","ref":"id"}},"tlsInspectPolicyMutationInput":{"revision":{"id":"id"}}}'
+catocli mutation policy tlsInspect moveRule '{"policyMoveRuleInput":{"id":"id","to":{"position":"AFTER_RULE","ref":"id"}},"tlsInspectPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy tlsInspect moveRule '{
-    "accountId": "id",
     "policyMoveRuleInput": {
         "id": "id",
         "to": {

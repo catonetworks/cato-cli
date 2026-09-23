@@ -11,10 +11,9 @@ catocli mutation policy terminalServer moveRule <json>
 
 catocli mutation policy terminalServer moveRule --json-file mutation.policy.terminalServer.moveRule.json
 
-catocli mutation policy terminalServer moveRule '{"accountId":"id","policyMoveRuleInput":{"id":"id","to":{"position":"AFTER_RULE","ref":"id"}},"terminalServerPolicyMutationInput":{"revision":{"id":"id"}}}'
+catocli mutation policy terminalServer moveRule '{"policyMoveRuleInput":{"id":"id","to":{"position":"AFTER_RULE","ref":"id"}},"terminalServerPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy terminalServer moveRule '{
-    "accountId": "id",
     "policyMoveRuleInput": {
         "id": "id",
         "to": {

@@ -11,10 +11,9 @@ catocli mutation policy ztnaAlwaysOn addSection <json>
 
 catocli mutation policy ztnaAlwaysOn addSection --json-file mutation.policy.ztnaAlwaysOn.addSection.json
 
-catocli mutation policy ztnaAlwaysOn addSection '{"accountId":"id","policyAddSectionInput":{"at":{"position":"AFTER_SECTION","ref":"id"},"section":{"name":"string"}},"ztnaAlwaysOnPolicyMutationInput":{"revision":{"id":"id"}}}'
+catocli mutation policy ztnaAlwaysOn addSection '{"policyAddSectionInput":{"at":{"position":"AFTER_SECTION","ref":"id"},"section":{"name":"string"}},"ztnaAlwaysOnPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy ztnaAlwaysOn addSection '{
-    "accountId": "id",
     "policyAddSectionInput": {
         "at": {
             "position": "AFTER_SECTION",

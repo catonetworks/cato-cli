@@ -11,10 +11,9 @@ catocli query policy dynamicIpAllocation policy <json>
 
 catocli query policy dynamicIpAllocation policy --json-file query.policy.dynamicIpAllocation.policy.json
 
-catocli query policy dynamicIpAllocation policy '{"accountId":"id","dynamicIpAllocationPolicyInput":{"revision":{"id":"id","type":"PRIVATE"}}}'
+catocli query policy dynamicIpAllocation policy '{"dynamicIpAllocationPolicyInput":{"revision":{"id":"id","type":"PRIVATE"}}}'
 
 catocli query policy dynamicIpAllocation policy '{
-    "accountId": "id",
     "dynamicIpAllocationPolicyInput": {
         "revision": {
             "id": "id",

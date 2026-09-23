@@ -11,10 +11,9 @@ catocli mutation policy tlsInspect createPolicyRevision <json>
 
 catocli mutation policy tlsInspect createPolicyRevision --json-file mutation.policy.tlsInspect.createPolicyRevision.json
 
-catocli mutation policy tlsInspect createPolicyRevision '{"accountId":"id","policyCreateRevisionInput":{"description":"string","name":"string"},"tlsInspectPolicyMutationInput":{"revision":{"id":"id"}}}'
+catocli mutation policy tlsInspect createPolicyRevision '{"policyCreateRevisionInput":{"description":"string","name":"string"},"tlsInspectPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy tlsInspect createPolicyRevision '{
-    "accountId": "id",
     "policyCreateRevisionInput": {
         "description": "string",
         "name": "string"

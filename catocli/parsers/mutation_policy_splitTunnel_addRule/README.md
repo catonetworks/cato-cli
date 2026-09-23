@@ -11,10 +11,9 @@ catocli mutation policy splitTunnel addRule <json>
 
 catocli mutation policy splitTunnel addRule --json-file mutation.policy.splitTunnel.addRule.json
 
-catocli mutation policy splitTunnel addRule '{"accountId":"id","splitTunnelAddRuleInput":{"at":{"position":"AFTER_RULE","ref":"id"},"rule":{"action":"EXCLUDE","country":{"by":"ID","input":"string"},"coverage":"ALL","description":"string","destination":{"application":{"by":"ID","input":"string"},"domain":["example1","example2"],"fqdn":["example1","example2"],"globalIpRange":{"by":"ID","input":"string"}},"dnsExclusion":{"domain":["example1","example2"]},"enabled":true,"name":"string","platform":"WINDOWS","routingPriority":"LAN","source":{"user":{"by":"ID","input":"string"},"usersGroup":{"by":"ID","input":"string"}},"sourceNetwork":{"sourceNetworkType":"ANY"}}},"splitTunnelPolicyMutationInput":{"revision":{"id":"id"}}}'
+catocli mutation policy splitTunnel addRule '{"splitTunnelAddRuleInput":{"at":{"position":"AFTER_RULE","ref":"id"},"rule":{"action":"EXCLUDE","country":{"by":"ID","input":"string"},"coverage":"ALL","description":"string","destination":{"application":{"by":"ID","input":"string"},"domain":["example1","example2"],"fqdn":["example1","example2"],"globalIpRange":{"by":"ID","input":"string"}},"dnsExclusion":{"domain":["example1","example2"]},"enabled":true,"name":"string","platform":"WINDOWS","routingPriority":"LAN","source":{"user":{"by":"ID","input":"string"},"usersGroup":{"by":"ID","input":"string"}},"sourceNetwork":{"sourceNetworkType":"ANY"}}},"splitTunnelPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy splitTunnel addRule '{
-    "accountId": "id",
     "splitTunnelAddRuleInput": {
         "at": {
             "position": "AFTER_RULE",

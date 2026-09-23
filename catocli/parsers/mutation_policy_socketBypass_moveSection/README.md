@@ -11,10 +11,9 @@ catocli mutation policy socketBypass moveSection <json>
 
 catocli mutation policy socketBypass moveSection --json-file mutation.policy.socketBypass.moveSection.json
 
-catocli mutation policy socketBypass moveSection '{"accountId":"id","policyMoveSectionInput":{"id":"id","to":{"position":"AFTER_SECTION","ref":"id"}},"socketBypassPolicyMutationInput":{"revision":{"id":"id"}}}'
+catocli mutation policy socketBypass moveSection '{"policyMoveSectionInput":{"id":"id","to":{"position":"AFTER_SECTION","ref":"id"}},"socketBypassPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy socketBypass moveSection '{
-    "accountId": "id",
     "policyMoveSectionInput": {
         "id": "id",
         "to": {

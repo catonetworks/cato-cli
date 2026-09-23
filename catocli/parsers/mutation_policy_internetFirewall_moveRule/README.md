@@ -11,10 +11,9 @@ catocli mutation policy internetFirewall moveRule <json>
 
 catocli mutation policy internetFirewall moveRule --json-file mutation.policy.internetFirewall.moveRule.json
 
-catocli mutation policy internetFirewall moveRule '{"accountId":"id","internetFirewallPolicyMutationInput":{"revision":{"id":"id"}},"policyMoveRuleInput":{"id":"id","to":{"position":"AFTER_RULE","ref":"id"}}}'
+catocli mutation policy internetFirewall moveRule '{"internetFirewallPolicyMutationInput":{"revision":{"id":"id"}},"policyMoveRuleInput":{"id":"id","to":{"position":"AFTER_RULE","ref":"id"}}}'
 
 catocli mutation policy internetFirewall moveRule '{
-    "accountId": "id",
     "internetFirewallPolicyMutationInput": {
         "revision": {
             "id": "id"

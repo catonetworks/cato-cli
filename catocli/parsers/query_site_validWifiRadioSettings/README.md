@@ -11,10 +11,9 @@ catocli query site validWifiRadioSettings <json>
 
 catocli query site validWifiRadioSettings --json-file query.site.validWifiRadioSettings.json
 
-catocli query site validWifiRadioSettings '{"accountId":"id","validWifiRadioSettingsInput":{"band24":{"channelWidth":"AUTO","dfsEnabled":true,"standard":"AUTO"},"band5":{"channelWidth":"AUTO","dfsEnabled":true,"standard":"AUTO"},"site":{"by":"ID","input":"string"}}}'
+catocli query site validWifiRadioSettings '{"validWifiRadioSettingsInput":{"band24":{"channelWidth":"AUTO","dfsEnabled":true,"standard":"AUTO"},"band5":{"channelWidth":"AUTO","dfsEnabled":true,"standard":"AUTO"},"site":{"by":"ID","input":"string"}}}'
 
 catocli query site validWifiRadioSettings '{
-    "accountId": "id",
     "validWifiRadioSettingsInput": {
         "band24": {
             "channelWidth": "AUTO",

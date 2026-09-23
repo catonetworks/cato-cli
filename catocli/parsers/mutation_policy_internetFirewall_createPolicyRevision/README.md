@@ -11,10 +11,9 @@ catocli mutation policy internetFirewall createPolicyRevision <json>
 
 catocli mutation policy internetFirewall createPolicyRevision --json-file mutation.policy.internetFirewall.createPolicyRevision.json
 
-catocli mutation policy internetFirewall createPolicyRevision '{"accountId":"id","internetFirewallPolicyMutationInput":{"revision":{"id":"id"}},"policyCreateRevisionInput":{"description":"string","name":"string"}}'
+catocli mutation policy internetFirewall createPolicyRevision '{"internetFirewallPolicyMutationInput":{"revision":{"id":"id"}},"policyCreateRevisionInput":{"description":"string","name":"string"}}'
 
 catocli mutation policy internetFirewall createPolicyRevision '{
-    "accountId": "id",
     "internetFirewallPolicyMutationInput": {
         "revision": {
             "id": "id"

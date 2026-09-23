@@ -11,10 +11,9 @@ catocli mutation policy wanNetwork removeSection <json>
 
 catocli mutation policy wanNetwork removeSection --json-file mutation.policy.wanNetwork.removeSection.json
 
-catocli mutation policy wanNetwork removeSection '{"accountId":"id","policyRemoveSectionInput":{"id":"id"},"wanNetworkPolicyMutationInput":{"revision":{"id":"id"}}}'
+catocli mutation policy wanNetwork removeSection '{"policyRemoveSectionInput":{"id":"id"},"wanNetworkPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy wanNetwork removeSection '{
-    "accountId": "id",
     "policyRemoveSectionInput": {
         "id": "id"
     },

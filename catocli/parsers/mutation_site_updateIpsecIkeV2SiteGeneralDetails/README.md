@@ -11,10 +11,9 @@ catocli mutation site updateIpsecIkeV2SiteGeneralDetails <json>
 
 catocli mutation site updateIpsecIkeV2SiteGeneralDetails --json-file mutation.site.updateIpsecIkeV2SiteGeneralDetails.json
 
-catocli mutation site updateIpsecIkeV2SiteGeneralDetails '{"accountId":"id","siteId":"id","updateIpsecIkeV2SiteGeneralDetailsInput":{"authMessage":{"cipher":"NONE","dhGroup":"NONE","integrity":"NONE","prf":"NONE"},"connectionMode":"RESPONDER_ONLY","identificationType":"IPV4","initMessage":{"cipher":"NONE","dhGroup":"NONE","integrity":"NONE","prf":"NONE"},"networkRanges":["example1","example2"]}}'
+catocli mutation site updateIpsecIkeV2SiteGeneralDetails '{"siteId":"id","updateIpsecIkeV2SiteGeneralDetailsInput":{"authMessage":{"cipher":"NONE","dhGroup":"NONE","integrity":"NONE","prf":"NONE"},"connectionMode":"RESPONDER_ONLY","identificationType":"IPV4","initMessage":{"cipher":"NONE","dhGroup":"NONE","integrity":"NONE","prf":"NONE"},"networkRanges":["example1","example2"]}}'
 
 catocli mutation site updateIpsecIkeV2SiteGeneralDetails '{
-    "accountId": "id",
     "siteId": "id",
     "updateIpsecIkeV2SiteGeneralDetailsInput": {
         "authMessage": {

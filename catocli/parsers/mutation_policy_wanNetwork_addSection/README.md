@@ -11,10 +11,9 @@ catocli mutation policy wanNetwork addSection <json>
 
 catocli mutation policy wanNetwork addSection --json-file mutation.policy.wanNetwork.addSection.json
 
-catocli mutation policy wanNetwork addSection '{"accountId":"id","policyAddSectionInput":{"at":{"position":"AFTER_SECTION","ref":"id"},"section":{"name":"string"}},"wanNetworkPolicyMutationInput":{"revision":{"id":"id"}}}'
+catocli mutation policy wanNetwork addSection '{"policyAddSectionInput":{"at":{"position":"AFTER_SECTION","ref":"id"},"section":{"name":"string"}},"wanNetworkPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy wanNetwork addSection '{
-    "accountId": "id",
     "policyAddSectionInput": {
         "at": {
             "position": "AFTER_SECTION",

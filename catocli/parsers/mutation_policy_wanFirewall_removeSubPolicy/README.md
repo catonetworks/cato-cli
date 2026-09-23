@@ -11,10 +11,9 @@ catocli mutation policy wanFirewall removeSubPolicy <json>
 
 catocli mutation policy wanFirewall removeSubPolicy --json-file mutation.policy.wanFirewall.removeSubPolicy.json
 
-catocli mutation policy wanFirewall removeSubPolicy '{"accountId":"id","wanFirewallPolicyMutationInput":{"revision":{"id":"id"}},"wanFirewallRemoveSubPolicyInput":{"ref":{"by":"ID","input":"string"}}}'
+catocli mutation policy wanFirewall removeSubPolicy '{"wanFirewallPolicyMutationInput":{"revision":{"id":"id"}},"wanFirewallRemoveSubPolicyInput":{"ref":{"by":"ID","input":"string"}}}'
 
 catocli mutation policy wanFirewall removeSubPolicy '{
-    "accountId": "id",
     "wanFirewallPolicyMutationInput": {
         "revision": {
             "id": "id"

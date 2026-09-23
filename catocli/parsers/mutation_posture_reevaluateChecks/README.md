@@ -11,13 +11,6 @@ catocli mutation posture reevaluateChecks <json>
 
 catocli mutation posture reevaluateChecks --json-file mutation.posture.reevaluateChecks.json
 
-catocli mutation posture reevaluateChecks '{"accountId":"id"}'
-
-catocli mutation posture reevaluateChecks '{
-    "accountId": "id"
-}'
-```
-
 #### Operation Arguments for mutation.posture.reevaluateChecks ####
 
 `accountId` [ID] - (required) N/A    

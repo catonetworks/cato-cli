@@ -11,10 +11,9 @@ catocli mutation policy socketLan firewall removeRule <json>
 
 catocli mutation policy socketLan firewall removeRule --json-file mutation.policy.socketLan.firewall.removeRule.json
 
-catocli mutation policy socketLan firewall removeRule '{"accountId":"id","socketLanFirewallRemoveRuleInput":{"id":"id"},"socketLanPolicyMutationInput":{"revision":{"id":"id"}}}'
+catocli mutation policy socketLan firewall removeRule '{"socketLanFirewallRemoveRuleInput":{"id":"id"},"socketLanPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy socketLan firewall removeRule '{
-    "accountId": "id",
     "socketLanFirewallRemoveRuleInput": {
         "id": "id"
     },

@@ -11,10 +11,9 @@ catocli mutation posture dismissFinding <json>
 
 catocli mutation posture dismissFinding --json-file mutation.posture.dismissFinding.json
 
-catocli mutation posture dismissFinding '{"accountId":"id","postureDismissFindingInput":{"findingId":"id","reason":"string"}}'
+catocli mutation posture dismissFinding '{"postureDismissFindingInput":{"findingId":"id","reason":"string"}}'
 
 catocli mutation posture dismissFinding '{
-    "accountId": "id",
     "postureDismissFindingInput": {
         "findingId": "id",
         "reason": "string"

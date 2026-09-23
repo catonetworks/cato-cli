@@ -11,13 +11,6 @@ catocli query accountManagement <json>
 
 catocli query accountManagement --json-file query.accountManagement.json
 
-catocli query accountManagement '{"accountId":"id"}'
-
-catocli query accountManagement '{
-    "accountId": "id"
-}'
-```
-
 #### Operation Arguments for query.accountManagement ####
 
 `accountId` [ID] - (required) N/A    

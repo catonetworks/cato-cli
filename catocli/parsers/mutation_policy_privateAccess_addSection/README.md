@@ -11,10 +11,9 @@ catocli mutation policy privateAccess addSection <json>
 
 catocli mutation policy privateAccess addSection --json-file mutation.policy.privateAccess.addSection.json
 
-catocli mutation policy privateAccess addSection '{"accountId":"id","policyAddSectionInput":{"at":{"position":"AFTER_SECTION","ref":"id"},"section":{"name":"string"}},"privateAccessPolicyMutationInput":{"revision":{"id":"id"}}}'
+catocli mutation policy privateAccess addSection '{"policyAddSectionInput":{"at":{"position":"AFTER_SECTION","ref":"id"},"section":{"name":"string"}},"privateAccessPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy privateAccess addSection '{
-    "accountId": "id",
     "policyAddSectionInput": {
         "at": {
             "position": "AFTER_SECTION",

@@ -11,10 +11,9 @@ catocli mutation policy dynamicIpAllocation moveRule <json>
 
 catocli mutation policy dynamicIpAllocation moveRule --json-file mutation.policy.dynamicIpAllocation.moveRule.json
 
-catocli mutation policy dynamicIpAllocation moveRule '{"accountId":"id","dynamicIpAllocationPolicyMutationInput":{"revision":{"id":"id"}},"policyMoveRuleInput":{"id":"id","to":{"position":"AFTER_RULE","ref":"id"}}}'
+catocli mutation policy dynamicIpAllocation moveRule '{"dynamicIpAllocationPolicyMutationInput":{"revision":{"id":"id"}},"policyMoveRuleInput":{"id":"id","to":{"position":"AFTER_RULE","ref":"id"}}}'
 
 catocli mutation policy dynamicIpAllocation moveRule '{
-    "accountId": "id",
     "dynamicIpAllocationPolicyMutationInput": {
         "revision": {
             "id": "id"

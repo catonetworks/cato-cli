@@ -11,10 +11,9 @@ catocli query catalogs contentTypeGroupList <json>
 
 catocli query catalogs contentTypeGroupList --json-file query.catalogs.contentTypeGroupList.json
 
-catocli query catalogs contentTypeGroupList '{"accountId":"id","catalogApplicationContentTypeGroupListInput":{"filter":{"contentType":{"id":{"eq":"id","in":["id1","id2"],"neq":"id","nin":["id1","id2"]},"name":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]}},"id":{"eq":"id","in":["id1","id2"],"neq":"id","nin":["id1","id2"]},"name":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]}},"paging":{"from":1,"limit":1},"sort":{"name":{"direction":"ASC","priority":1}}}}'
+catocli query catalogs contentTypeGroupList '{"catalogApplicationContentTypeGroupListInput":{"filter":{"contentType":{"id":{"eq":"id","in":["id1","id2"],"neq":"id","nin":["id1","id2"]},"name":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]}},"id":{"eq":"id","in":["id1","id2"],"neq":"id","nin":["id1","id2"]},"name":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]}},"paging":{"from":1,"limit":1},"sort":{"name":{"direction":"ASC","priority":1}}}}'
 
 catocli query catalogs contentTypeGroupList '{
-    "accountId": "id",
     "catalogApplicationContentTypeGroupListInput": {
         "filter": {
             "contentType": {

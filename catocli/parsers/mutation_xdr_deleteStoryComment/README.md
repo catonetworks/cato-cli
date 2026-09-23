@@ -11,10 +11,9 @@ catocli mutation xdr deleteStoryComment <json>
 
 catocli mutation xdr deleteStoryComment --json-file mutation.xdr.deleteStoryComment.json
 
-catocli mutation xdr deleteStoryComment '{"accountId":"id","deleteStoryCommentInput":{"commentId":"id","storyId":"id"}}'
+catocli mutation xdr deleteStoryComment '{"deleteStoryCommentInput":{"commentId":"id","storyId":"id"}}'
 
 catocli mutation xdr deleteStoryComment '{
-    "accountId": "id",
     "deleteStoryCommentInput": {
         "commentId": "id",
         "storyId": "id"

@@ -11,10 +11,9 @@ catocli mutation policy privateAccess createPolicyRevision <json>
 
 catocli mutation policy privateAccess createPolicyRevision --json-file mutation.policy.privateAccess.createPolicyRevision.json
 
-catocli mutation policy privateAccess createPolicyRevision '{"accountId":"id","policyCreateRevisionInput":{"description":"string","name":"string"},"privateAccessPolicyMutationInput":{"revision":{"id":"id"}}}'
+catocli mutation policy privateAccess createPolicyRevision '{"policyCreateRevisionInput":{"description":"string","name":"string"},"privateAccessPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy privateAccess createPolicyRevision '{
-    "accountId": "id",
     "policyCreateRevisionInput": {
         "description": "string",
         "name": "string"

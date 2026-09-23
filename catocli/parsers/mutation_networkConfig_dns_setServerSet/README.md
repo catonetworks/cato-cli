@@ -11,10 +11,9 @@ catocli mutation networkConfig dns setServerSet <json>
 
 catocli mutation networkConfig dns setServerSet --json-file mutation.networkConfig.dns.setServerSet.json
 
-catocli mutation networkConfig dns setServerSet '{"accountId":"id","networkConfigDnsSetServerSetInput":{"dnsServerSet":{"id":"id","name":"string","server":["example1","example2"]}}}'
+catocli mutation networkConfig dns setServerSet '{"networkConfigDnsSetServerSetInput":{"dnsServerSet":{"id":"id","name":"string","server":["example1","example2"]}}}'
 
 catocli mutation networkConfig dns setServerSet '{
-    "accountId": "id",
     "networkConfigDnsSetServerSetInput": {
         "dnsServerSet": {
             "id": "id",

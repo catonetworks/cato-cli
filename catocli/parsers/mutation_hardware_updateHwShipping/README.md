@@ -11,10 +11,9 @@ catocli mutation hardware updateHwShipping <json>
 
 catocli mutation hardware updateHwShipping --json-file mutation.hardware.updateHwShipping.json
 
-catocli mutation hardware updateHwShipping '{"accountId":"id","updateHwShippingInput":{"details":{"details":{"address":"id","comment":"string","incoterms":"string","instruction":"string"},"powerCable":"string"},"ids":["id1","id2"]}}'
+catocli mutation hardware updateHwShipping '{"updateHwShippingInput":{"details":{"details":{"address":"id","comment":"string","incoterms":"string","instruction":"string"},"powerCable":"string"},"ids":["id1","id2"]}}'
 
 catocli mutation hardware updateHwShipping '{
-    "accountId": "id",
     "updateHwShippingInput": {
         "details": {
             "details": {

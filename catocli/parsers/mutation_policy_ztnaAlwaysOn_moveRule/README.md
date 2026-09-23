@@ -11,10 +11,9 @@ catocli mutation policy ztnaAlwaysOn moveRule <json>
 
 catocli mutation policy ztnaAlwaysOn moveRule --json-file mutation.policy.ztnaAlwaysOn.moveRule.json
 
-catocli mutation policy ztnaAlwaysOn moveRule '{"accountId":"id","policyMoveRuleInput":{"id":"id","to":{"position":"AFTER_RULE","ref":"id"}},"ztnaAlwaysOnPolicyMutationInput":{"revision":{"id":"id"}}}'
+catocli mutation policy ztnaAlwaysOn moveRule '{"policyMoveRuleInput":{"id":"id","to":{"position":"AFTER_RULE","ref":"id"}},"ztnaAlwaysOnPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy ztnaAlwaysOn moveRule '{
-    "accountId": "id",
     "policyMoveRuleInput": {
         "id": "id",
         "to": {

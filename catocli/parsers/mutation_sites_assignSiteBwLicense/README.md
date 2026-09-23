@@ -11,10 +11,9 @@ catocli mutation sites assignSiteBwLicense <json>
 
 catocli mutation sites assignSiteBwLicense --json-file mutation.sites.assignSiteBwLicense.json
 
-catocli mutation sites assignSiteBwLicense '{"accountId":"id","assignSiteBwLicenseInput":{"bw":1,"licenseId":"id","site":{"by":"ID","input":"string"}}}'
+catocli mutation sites assignSiteBwLicense '{"assignSiteBwLicenseInput":{"bw":1,"licenseId":"id","site":{"by":"ID","input":"string"}}}'
 
 catocli mutation sites assignSiteBwLicense '{
-    "accountId": "id",
     "assignSiteBwLicenseInput": {
         "bw": 1,
         "licenseId": "id",

@@ -11,10 +11,9 @@ catocli query ztnaAppConnector ztnaAppConnector <json>
 
 catocli query ztnaAppConnector ztnaAppConnector --json-file query.ztnaAppConnector.ztnaAppConnector.json
 
-catocli query ztnaAppConnector ztnaAppConnector '{"accountId":"id","ztnaAppConnectorRefInput":{"by":"ID","input":"string"}}'
+catocli query ztnaAppConnector ztnaAppConnector '{"ztnaAppConnectorRefInput":{"by":"ID","input":"string"}}'
 
 catocli query ztnaAppConnector ztnaAppConnector '{
-    "accountId": "id",
     "ztnaAppConnectorRefInput": {
         "by": "ID",
         "input": "string"

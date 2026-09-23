@@ -11,13 +11,6 @@ catocli query licensing <json>
 
 catocli query licensing --json-file query.licensing.json
 
-catocli query licensing '{"accountId":"id"}'
-
-catocli query licensing '{
-    "accountId": "id"
-}'
-```
-
 #### Operation Arguments for query.licensing ####
 
 `accountId` [ID] - (required) N/A    

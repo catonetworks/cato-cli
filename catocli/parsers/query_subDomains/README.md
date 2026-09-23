@@ -11,10 +11,9 @@ catocli query subDomains <json>
 
 catocli query subDomains --json-file query.subDomains.json
 
-catocli query subDomains '{"accountID":"id","managedAccount":true}'
+catocli query subDomains '{"managedAccount":true}'
 
 catocli query subDomains '{
-    "accountID": "id",
     "managedAccount": true
 }'
 ```

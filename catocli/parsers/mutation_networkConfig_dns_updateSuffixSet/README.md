@@ -11,10 +11,9 @@ catocli mutation networkConfig dns updateSuffixSet <json>
 
 catocli mutation networkConfig dns updateSuffixSet --json-file mutation.networkConfig.dns.updateSuffixSet.json
 
-catocli mutation networkConfig dns updateSuffixSet '{"accountId":"id","networkConfigDnsUpdateSuffixSetInput":{"dnsSuffixSet":{"id":"id","name":"string","suffix":["example1","example2"]}}}'
+catocli mutation networkConfig dns updateSuffixSet '{"networkConfigDnsUpdateSuffixSetInput":{"dnsSuffixSet":{"id":"id","name":"string","suffix":["example1","example2"]}}}'
 
 catocli mutation networkConfig dns updateSuffixSet '{
-    "accountId": "id",
     "networkConfigDnsUpdateSuffixSetInput": {
         "dnsSuffixSet": {
             "id": "id",

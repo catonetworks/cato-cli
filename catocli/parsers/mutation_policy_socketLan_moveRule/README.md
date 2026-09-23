@@ -11,10 +11,9 @@ catocli mutation policy socketLan moveRule <json>
 
 catocli mutation policy socketLan moveRule --json-file mutation.policy.socketLan.moveRule.json
 
-catocli mutation policy socketLan moveRule '{"accountId":"id","policyMoveRuleInput":{"id":"id","to":{"position":"AFTER_RULE","ref":"id"}},"socketLanPolicyMutationInput":{"revision":{"id":"id"}}}'
+catocli mutation policy socketLan moveRule '{"policyMoveRuleInput":{"id":"id","to":{"position":"AFTER_RULE","ref":"id"}},"socketLanPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy socketLan moveRule '{
-    "accountId": "id",
     "policyMoveRuleInput": {
         "id": "id",
         "to": {

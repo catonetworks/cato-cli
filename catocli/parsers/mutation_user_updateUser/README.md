@@ -11,10 +11,9 @@ catocli mutation user updateUser <json>
 
 catocli mutation user updateUser --json-file mutation.user.updateUser.json
 
-catocli mutation user updateUser '{"accountId":"id","updateUserInput":{"department":"string","email":"example_value","firstName":"string","id":"id","jobTitle":"string","lastName":"string","phoneNumber":"example_value"}}'
+catocli mutation user updateUser '{"updateUserInput":{"department":"string","email":"example_value","firstName":"string","id":"id","jobTitle":"string","lastName":"string","phoneNumber":"example_value"}}'
 
 catocli mutation user updateUser '{
-    "accountId": "id",
     "updateUserInput": {
         "department": "string",
         "email": "example_value",

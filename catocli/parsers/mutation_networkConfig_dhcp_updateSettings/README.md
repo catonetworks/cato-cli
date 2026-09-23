@@ -11,10 +11,9 @@ catocli mutation networkConfig dhcp updateSettings <json>
 
 catocli mutation networkConfig dhcp updateSettings --json-file mutation.networkConfig.dhcp.updateSettings.json
 
-catocli mutation networkConfig dhcp updateSettings '{"accountId":"id","networkConfigDhcpUpdateSettingsInput":{"leaseTime":1,"relay":{"enabled":true,"group":{"by":"ID","input":"string"},"timeout":1}}}'
+catocli mutation networkConfig dhcp updateSettings '{"networkConfigDhcpUpdateSettingsInput":{"leaseTime":1,"relay":{"enabled":true,"group":{"by":"ID","input":"string"},"timeout":1}}}'
 
 catocli mutation networkConfig dhcp updateSettings '{
-    "accountId": "id",
     "networkConfigDhcpUpdateSettingsInput": {
         "leaseTime": 1,
         "relay": {

@@ -11,10 +11,9 @@ catocli mutation popLocationMutations removeBgpProfile <json>
 
 catocli mutation popLocationMutations removeBgpProfile --json-file mutation.popLocationMutations.removeBgpProfile.json
 
-catocli mutation popLocationMutations removeBgpProfile '{"accountId":"id","bgpProfileId":"id"}'
+catocli mutation popLocationMutations removeBgpProfile '{"bgpProfileId":"id"}'
 
 catocli mutation popLocationMutations removeBgpProfile '{
-    "accountId": "id",
     "bgpProfileId": "id"
 }'
 ```

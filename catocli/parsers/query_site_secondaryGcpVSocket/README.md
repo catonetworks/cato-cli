@@ -11,10 +11,9 @@ catocli query site secondaryGcpVSocket <json>
 
 catocli query site secondaryGcpVSocket --json-file query.site.secondaryGcpVSocket.json
 
-catocli query site secondaryGcpVSocket '{"accountId":"id","secondaryGcpVSocketInput":{"id":"id"}}'
+catocli query site secondaryGcpVSocket '{"secondaryGcpVSocketInput":{"id":"id"}}'
 
 catocli query site secondaryGcpVSocket '{
-    "accountId": "id",
     "secondaryGcpVSocketInput": {
         "id": "id"
     }

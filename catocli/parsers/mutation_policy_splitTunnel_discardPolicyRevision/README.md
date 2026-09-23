@@ -11,10 +11,9 @@ catocli mutation policy splitTunnel discardPolicyRevision <json>
 
 catocli mutation policy splitTunnel discardPolicyRevision --json-file mutation.policy.splitTunnel.discardPolicyRevision.json
 
-catocli mutation policy splitTunnel discardPolicyRevision '{"accountId":"id","policyDiscardRevisionInput":{"id":"id"},"splitTunnelPolicyMutationInput":{"revision":{"id":"id"}}}'
+catocli mutation policy splitTunnel discardPolicyRevision '{"policyDiscardRevisionInput":{"id":"id"},"splitTunnelPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy splitTunnel discardPolicyRevision '{
-    "accountId": "id",
     "policyDiscardRevisionInput": {
         "id": "id"
     },

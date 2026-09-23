@@ -11,10 +11,9 @@ catocli mutation policy wanNetwork removeRule <json>
 
 catocli mutation policy wanNetwork removeRule --json-file mutation.policy.wanNetwork.removeRule.json
 
-catocli mutation policy wanNetwork removeRule '{"accountId":"id","wanNetworkPolicyMutationInput":{"revision":{"id":"id"}},"wanNetworkRemoveRuleInput":{"id":"id"}}'
+catocli mutation policy wanNetwork removeRule '{"wanNetworkPolicyMutationInput":{"revision":{"id":"id"}},"wanNetworkRemoveRuleInput":{"id":"id"}}'
 
 catocli mutation policy wanNetwork removeRule '{
-    "accountId": "id",
     "wanNetworkPolicyMutationInput": {
         "revision": {
             "id": "id"

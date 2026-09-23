@@ -11,10 +11,9 @@ catocli query site retrieveUsedVlanIDs <json>
 
 catocli query site retrieveUsedVlanIDs --json-file query.site.retrieveUsedVlanIDs.json
 
-catocli query site retrieveUsedVlanIDs '{"accountId":"id","retrieveUsedVlanIDsInput":{"encapsulationMethod":"DOT1Q","popLocation":{"by":"ID","input":"string"},"serviceProviderName":"string"}}'
+catocli query site retrieveUsedVlanIDs '{"retrieveUsedVlanIDsInput":{"encapsulationMethod":"DOT1Q","popLocation":{"by":"ID","input":"string"},"serviceProviderName":"string"}}'
 
 catocli query site retrieveUsedVlanIDs '{
-    "accountId": "id",
     "retrieveUsedVlanIDsInput": {
         "encapsulationMethod": "DOT1Q",
         "popLocation": {

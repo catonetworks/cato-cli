@@ -11,10 +11,9 @@ catocli mutation sandbox uploadFile <json>
 
 catocli mutation sandbox uploadFile --json-file mutation.sandbox.uploadFile.json
 
-catocli mutation sandbox uploadFile '{"accountId":"id","uploadFileInput":{"fileName":"string"}}'
+catocli mutation sandbox uploadFile '{"uploadFileInput":{"fileName":"string"}}'
 
 catocli mutation sandbox uploadFile '{
-    "accountId": "id",
     "uploadFileInput": {
         "fileName": "string"
     }

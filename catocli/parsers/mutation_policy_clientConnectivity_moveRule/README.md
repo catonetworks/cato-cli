@@ -11,10 +11,9 @@ catocli mutation policy clientConnectivity moveRule <json>
 
 catocli mutation policy clientConnectivity moveRule --json-file mutation.policy.clientConnectivity.moveRule.json
 
-catocli mutation policy clientConnectivity moveRule '{"accountId":"id","clientConnectivityPolicyMutationInput":{"revision":{"id":"id"}},"policyMoveRuleInput":{"id":"id","to":{"position":"AFTER_RULE","ref":"id"}}}'
+catocli mutation policy clientConnectivity moveRule '{"clientConnectivityPolicyMutationInput":{"revision":{"id":"id"}},"policyMoveRuleInput":{"id":"id","to":{"position":"AFTER_RULE","ref":"id"}}}'
 
 catocli mutation policy clientConnectivity moveRule '{
-    "accountId": "id",
     "clientConnectivityPolicyMutationInput": {
         "revision": {
             "id": "id"

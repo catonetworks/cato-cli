@@ -11,10 +11,9 @@ catocli query admin <json>
 
 catocli query admin --json-file query.admin.json
 
-catocli query admin '{"accountId":"id","adminID":"id"}'
+catocli query admin '{"adminID":"id"}'
 
 catocli query admin '{
-    "accountId": "id",
     "adminID": "id"
 }'
 ```

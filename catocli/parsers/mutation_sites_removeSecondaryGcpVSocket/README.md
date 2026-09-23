@@ -11,10 +11,9 @@ catocli mutation sites removeSecondaryGcpVSocket <json>
 
 catocli mutation sites removeSecondaryGcpVSocket --json-file mutation.sites.removeSecondaryGcpVSocket.json
 
-catocli mutation sites removeSecondaryGcpVSocket '{"accountId":"id","removeSecondaryGcpVSocketInput":{"id":"id"}}'
+catocli mutation sites removeSecondaryGcpVSocket '{"removeSecondaryGcpVSocketInput":{"id":"id"}}'
 
 catocli mutation sites removeSecondaryGcpVSocket '{
-    "accountId": "id",
     "removeSecondaryGcpVSocketInput": {
         "id": "id"
     }

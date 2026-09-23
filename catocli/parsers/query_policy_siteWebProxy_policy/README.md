@@ -11,10 +11,9 @@ catocli query policy siteWebProxy policy <json>
 
 catocli query policy siteWebProxy policy --json-file query.policy.siteWebProxy.policy.json
 
-catocli query policy siteWebProxy policy '{"accountId":"id","siteWebProxyPolicyInput":{"revision":{"id":"id","type":"PRIVATE"}}}'
+catocli query policy siteWebProxy policy '{"siteWebProxyPolicyInput":{"revision":{"id":"id","type":"PRIVATE"}}}'
 
 catocli query policy siteWebProxy policy '{
-    "accountId": "id",
     "siteWebProxyPolicyInput": {
         "revision": {
             "id": "id",

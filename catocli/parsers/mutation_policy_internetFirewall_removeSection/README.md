@@ -11,10 +11,9 @@ catocli mutation policy internetFirewall removeSection <json>
 
 catocli mutation policy internetFirewall removeSection --json-file mutation.policy.internetFirewall.removeSection.json
 
-catocli mutation policy internetFirewall removeSection '{"accountId":"id","internetFirewallPolicyMutationInput":{"revision":{"id":"id"}},"policyRemoveSectionInput":{"id":"id"}}'
+catocli mutation policy internetFirewall removeSection '{"internetFirewallPolicyMutationInput":{"revision":{"id":"id"}},"policyRemoveSectionInput":{"id":"id"}}'
 
 catocli mutation policy internetFirewall removeSection '{
-    "accountId": "id",
     "internetFirewallPolicyMutationInput": {
         "revision": {
             "id": "id"

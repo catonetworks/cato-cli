@@ -11,10 +11,9 @@ catocli mutation policy dynamicIpAllocation publishPolicyRevision <json>
 
 catocli mutation policy dynamicIpAllocation publishPolicyRevision --json-file mutation.policy.dynamicIpAllocation.publishPolicyRevision.json
 
-catocli mutation policy dynamicIpAllocation publishPolicyRevision '{"accountId":"id","dynamicIpAllocationPolicyMutationInput":{"revision":{"id":"id"}},"policyPublishRevisionInput":{"description":"string","name":"string"}}'
+catocli mutation policy dynamicIpAllocation publishPolicyRevision '{"dynamicIpAllocationPolicyMutationInput":{"revision":{"id":"id"}},"policyPublishRevisionInput":{"description":"string","name":"string"}}'
 
 catocli mutation policy dynamicIpAllocation publishPolicyRevision '{
-    "accountId": "id",
     "dynamicIpAllocationPolicyMutationInput": {
         "revision": {
             "id": "id"

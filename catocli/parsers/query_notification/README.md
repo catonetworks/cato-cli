@@ -11,10 +11,9 @@ catocli query notification <json>
 
 catocli query notification --json-file query.notification.json
 
-catocli query notification '{"accountId":"id","mailingListRefInput":{"by":"ID","input":"string"},"subscriptionGroupRefInput":{"by":"ID","input":"string"},"webhookIntegrationRefInput":{"by":"ID","input":"string"},"webhookTemplateRefInput":{"by":"ID","input":"string"}}'
+catocli query notification '{"mailingListRefInput":{"by":"ID","input":"string"},"subscriptionGroupRefInput":{"by":"ID","input":"string"},"webhookIntegrationRefInput":{"by":"ID","input":"string"},"webhookTemplateRefInput":{"by":"ID","input":"string"}}'
 
 catocli query notification '{
-    "accountId": "id",
     "mailingListRefInput": {
         "by": "ID",
         "input": "string"

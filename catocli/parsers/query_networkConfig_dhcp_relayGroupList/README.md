@@ -11,10 +11,9 @@ catocli query networkConfig dhcp relayGroupList <json>
 
 catocli query networkConfig dhcp relayGroupList --json-file query.networkConfig.dhcp.relayGroupList.json
 
-catocli query networkConfig dhcp relayGroupList '{"accountId":"id","networkConfigDhcpRelayGroupListInput":{"filter":{"name":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"],"regex":"string"}},"paging":{"from":1,"limit":1},"sort":{"name":{"direction":"ASC","priority":1}}}}'
+catocli query networkConfig dhcp relayGroupList '{"networkConfigDhcpRelayGroupListInput":{"filter":{"name":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"],"regex":"string"}},"paging":{"from":1,"limit":1},"sort":{"name":{"direction":"ASC","priority":1}}}}'
 
 catocli query networkConfig dhcp relayGroupList '{
-    "accountId": "id",
     "networkConfigDhcpRelayGroupListInput": {
         "filter": {
             "name": {

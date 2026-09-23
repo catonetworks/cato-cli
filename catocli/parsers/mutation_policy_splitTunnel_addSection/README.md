@@ -11,10 +11,9 @@ catocli mutation policy splitTunnel addSection <json>
 
 catocli mutation policy splitTunnel addSection --json-file mutation.policy.splitTunnel.addSection.json
 
-catocli mutation policy splitTunnel addSection '{"accountId":"id","policyAddSectionInput":{"at":{"position":"AFTER_SECTION","ref":"id"},"section":{"name":"string"}},"splitTunnelPolicyMutationInput":{"revision":{"id":"id"}}}'
+catocli mutation policy splitTunnel addSection '{"policyAddSectionInput":{"at":{"position":"AFTER_SECTION","ref":"id"},"section":{"name":"string"}},"splitTunnelPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy splitTunnel addSection '{
-    "accountId": "id",
     "policyAddSectionInput": {
         "at": {
             "position": "AFTER_SECTION",

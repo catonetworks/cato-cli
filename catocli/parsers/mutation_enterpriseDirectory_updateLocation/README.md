@@ -11,10 +11,9 @@ catocli mutation enterpriseDirectory updateLocation <json>
 
 catocli mutation enterpriseDirectory updateLocation --json-file mutation.enterpriseDirectory.updateLocation.json
 
-catocli mutation enterpriseDirectory updateLocation '{"accountId":"id","enterpriseDirectoryUpdateLocationInput":{"businessUnit":"string","description":"string","details":{"companyName":"string","contact":{"email":"example_value","name":"string","phone":"example_value"},"postalAddress":{"address1":"string","address2":"string","cityName":"string","country":{"by":"ID","input":"string"},"stateName":"string","zipCode":"string"},"vatId":"string"},"id":"id","name":"string","type":"BRANCH"}}'
+catocli mutation enterpriseDirectory updateLocation '{"enterpriseDirectoryUpdateLocationInput":{"businessUnit":"string","description":"string","details":{"companyName":"string","contact":{"email":"example_value","name":"string","phone":"example_value"},"postalAddress":{"address1":"string","address2":"string","cityName":"string","country":{"by":"ID","input":"string"},"stateName":"string","zipCode":"string"},"vatId":"string"},"id":"id","name":"string","type":"BRANCH"}}'
 
 catocli mutation enterpriseDirectory updateLocation '{
-    "accountId": "id",
     "enterpriseDirectoryUpdateLocationInput": {
         "businessUnit": "string",
         "description": "string",

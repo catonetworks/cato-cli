@@ -11,10 +11,9 @@ catocli mutation sites updateWifiSsid <json>
 
 catocli mutation sites updateWifiSsid --json-file mutation.sites.updateWifiSsid.json
 
-catocli mutation sites updateWifiSsid '{"accountId":"id","updateWifiSsidInput":{"band":"BAND_2P4G","category":"GUEST","dhcp":{"dhcpSubnet":"example_value"},"enabled":true,"id":"id","internetOnly":true,"localIp":"example_value","mdnsEnabled":true,"microsegmentationEnabled":true,"name":"string","security":{"authProtocol":"WPA2","mode":"OPEN","psk":{"passkey":"example_value"},"trackAuthentication":true},"subnet":"example_value","visible":true}}'
+catocli mutation sites updateWifiSsid '{"updateWifiSsidInput":{"band":"BAND_2P4G","category":"GUEST","dhcp":{"dhcpSubnet":"example_value"},"enabled":true,"id":"id","internetOnly":true,"localIp":"example_value","mdnsEnabled":true,"microsegmentationEnabled":true,"name":"string","security":{"authProtocol":"WPA2","mode":"OPEN","psk":{"passkey":"example_value"},"trackAuthentication":true},"subnet":"example_value","visible":true}}'
 
 catocli mutation sites updateWifiSsid '{
-    "accountId": "id",
     "updateWifiSsidInput": {
         "band": "BAND_2P4G",
         "category": "GUEST",

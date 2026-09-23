@@ -11,10 +11,9 @@ catocli mutation networkConfig dhcp updateRelayGroup <json>
 
 catocli mutation networkConfig dhcp updateRelayGroup --json-file mutation.networkConfig.dhcp.updateRelayGroup.json
 
-catocli mutation networkConfig dhcp updateRelayGroup '{"accountId":"id","networkConfigDhcpUpdateRelayGroupInput":{"relayGroup":{"id":"id","name":"string","server":["example1","example2"]}}}'
+catocli mutation networkConfig dhcp updateRelayGroup '{"networkConfigDhcpUpdateRelayGroupInput":{"relayGroup":{"id":"id","name":"string","server":["example1","example2"]}}}'
 
 catocli mutation networkConfig dhcp updateRelayGroup '{
-    "accountId": "id",
     "networkConfigDhcpUpdateRelayGroupInput": {
         "relayGroup": {
             "id": "id",

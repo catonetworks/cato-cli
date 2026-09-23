@@ -11,10 +11,9 @@ catocli mutation container delete <json>
 
 catocli mutation container delete --json-file mutation.container.delete.json
 
-catocli mutation container delete '{"accountId":"id","deleteContainerInput":{"ref":{"by":"ID","input":"string"}}}'
+catocli mutation container delete '{"deleteContainerInput":{"ref":{"by":"ID","input":"string"}}}'
 
 catocli mutation container delete '{
-    "accountId": "id",
     "deleteContainerInput": {
         "ref": {
             "by": "ID",

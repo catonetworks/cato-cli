@@ -11,10 +11,9 @@ catocli mutation user revokeUserSession <json>
 
 catocli mutation user revokeUserSession --json-file mutation.user.revokeUserSession.json
 
-catocli mutation user revokeUserSession '{"accountId":"id","revokeUserSessionInput":{"userId":["example1","example2"]}}'
+catocli mutation user revokeUserSession '{"revokeUserSessionInput":{"userId":["example1","example2"]}}'
 
 catocli mutation user revokeUserSession '{
-    "accountId": "id",
     "revokeUserSessionInput": {
         "userId": [
             "example1",

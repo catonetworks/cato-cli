@@ -11,10 +11,9 @@ catocli mutation site updateStaticHostBulk <json>
 
 catocli mutation site updateStaticHostBulk --json-file mutation.site.updateStaticHostBulk.json
 
-catocli mutation site updateStaticHostBulk '{"accountId":"id","updateStaticHostBulkInput":{"host":{"hostId":"id","ip":"example_value","macAddress":"string","name":"string"},"site":{"by":"ID","input":"string"}}}'
+catocli mutation site updateStaticHostBulk '{"updateStaticHostBulkInput":{"host":{"hostId":"id","ip":"example_value","macAddress":"string","name":"string"},"site":{"by":"ID","input":"string"}}}'
 
 catocli mutation site updateStaticHostBulk '{
-    "accountId": "id",
     "updateStaticHostBulkInput": {
         "host": {
             "hostId": "id",

@@ -11,10 +11,9 @@ catocli mutation networkConfig dns deleteSuffixSet <json>
 
 catocli mutation networkConfig dns deleteSuffixSet --json-file mutation.networkConfig.dns.deleteSuffixSet.json
 
-catocli mutation networkConfig dns deleteSuffixSet '{"accountId":"id","networkConfigDnsDeleteSuffixSetInput":{"id":["id1","id2"]}}'
+catocli mutation networkConfig dns deleteSuffixSet '{"networkConfigDnsDeleteSuffixSetInput":{"id":["id1","id2"]}}'
 
 catocli mutation networkConfig dns deleteSuffixSet '{
-    "accountId": "id",
     "networkConfigDnsDeleteSuffixSetInput": {
         "id": [
             "id1",

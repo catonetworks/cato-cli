@@ -11,10 +11,9 @@ catocli mutation policy siteWebProxy createPolicyRevision <json>
 
 catocli mutation policy siteWebProxy createPolicyRevision --json-file mutation.policy.siteWebProxy.createPolicyRevision.json
 
-catocli mutation policy siteWebProxy createPolicyRevision '{"accountId":"id","policyCreateRevisionInput":{"description":"string","name":"string"},"siteWebProxyPolicyMutationInput":{"revision":{"id":"id"}}}'
+catocli mutation policy siteWebProxy createPolicyRevision '{"policyCreateRevisionInput":{"description":"string","name":"string"},"siteWebProxyPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy siteWebProxy createPolicyRevision '{
-    "accountId": "id",
     "policyCreateRevisionInput": {
         "description": "string",
         "name": "string"

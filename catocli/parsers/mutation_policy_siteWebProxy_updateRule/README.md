@@ -11,10 +11,9 @@ catocli mutation policy siteWebProxy updateRule <json>
 
 catocli mutation policy siteWebProxy updateRule --json-file mutation.policy.siteWebProxy.updateRule.json
 
-catocli mutation policy siteWebProxy updateRule '{"accountId":"id","siteWebProxyPolicyMutationInput":{"revision":{"id":"id"}},"siteWebProxyUpdateRuleInput":{"id":"id","rule":{"associatedSite":{"by":"ID","input":"string"},"authenticationConfig":{"kerberosConfig":{"encryptedKeytab":"string","isEnabled":true},"method":"NONE"},"description":"string","enabled":true,"fqdn":"example_value","name":"string","port":"example_value","shouldAssociateWithAllSites":true}}}'
+catocli mutation policy siteWebProxy updateRule '{"siteWebProxyPolicyMutationInput":{"revision":{"id":"id"}},"siteWebProxyUpdateRuleInput":{"id":"id","rule":{"associatedSite":{"by":"ID","input":"string"},"authenticationConfig":{"kerberosConfig":{"encryptedKeytab":"string","isEnabled":true},"method":"NONE"},"description":"string","enabled":true,"fqdn":"example_value","name":"string","port":"example_value","shouldAssociateWithAllSites":true}}}'
 
 catocli mutation policy siteWebProxy updateRule '{
-    "accountId": "id",
     "siteWebProxyPolicyMutationInput": {
         "revision": {
             "id": "id"

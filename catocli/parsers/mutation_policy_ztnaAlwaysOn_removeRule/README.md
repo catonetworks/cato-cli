@@ -11,10 +11,9 @@ catocli mutation policy ztnaAlwaysOn removeRule <json>
 
 catocli mutation policy ztnaAlwaysOn removeRule --json-file mutation.policy.ztnaAlwaysOn.removeRule.json
 
-catocli mutation policy ztnaAlwaysOn removeRule '{"accountId":"id","ztnaAlwaysOnPolicyMutationInput":{"revision":{"id":"id"}},"ztnaAlwaysOnRemoveRuleInput":{"id":"id"}}'
+catocli mutation policy ztnaAlwaysOn removeRule '{"ztnaAlwaysOnPolicyMutationInput":{"revision":{"id":"id"}},"ztnaAlwaysOnRemoveRuleInput":{"id":"id"}}'
 
 catocli mutation policy ztnaAlwaysOn removeRule '{
-    "accountId": "id",
     "ztnaAlwaysOnPolicyMutationInput": {
         "revision": {
             "id": "id"

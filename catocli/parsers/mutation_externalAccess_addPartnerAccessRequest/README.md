@@ -11,10 +11,9 @@ catocli mutation externalAccess addPartnerAccessRequest <json>
 
 catocli mutation externalAccess addPartnerAccessRequest --json-file mutation.externalAccess.addPartnerAccessRequest.json
 
-catocli mutation externalAccess addPartnerAccessRequest '{"accountId":"id","addPartnerAccessRequestInput":{"accounts":{"by":"ID","input":"string"},"admins":{"by":"ID","input":"string"},"expirationDate":"example_value","groups":{"by":"ID","input":"string"},"isAppliedOnAllFullyManagedAccounts":true,"partner":{"by":"ID","input":"string"},"partnerNote":"string","reason":"string","roles":{"by":"ID","input":"string"},"supportLink":"string"}}'
+catocli mutation externalAccess addPartnerAccessRequest '{"addPartnerAccessRequestInput":{"accounts":{"by":"ID","input":"string"},"admins":{"by":"ID","input":"string"},"expirationDate":"example_value","groups":{"by":"ID","input":"string"},"isAppliedOnAllFullyManagedAccounts":true,"partner":{"by":"ID","input":"string"},"partnerNote":"string","reason":"string","roles":{"by":"ID","input":"string"},"supportLink":"string"}}'
 
 catocli mutation externalAccess addPartnerAccessRequest '{
-    "accountId": "id",
     "addPartnerAccessRequestInput": {
         "accounts": {
             "by": "ID",

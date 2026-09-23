@@ -11,10 +11,9 @@ catocli mutation policy privateAccess discardPolicyRevision <json>
 
 catocli mutation policy privateAccess discardPolicyRevision --json-file mutation.policy.privateAccess.discardPolicyRevision.json
 
-catocli mutation policy privateAccess discardPolicyRevision '{"accountId":"id","policyDiscardRevisionInput":{"id":"id"},"privateAccessPolicyMutationInput":{"revision":{"id":"id"}}}'
+catocli mutation policy privateAccess discardPolicyRevision '{"policyDiscardRevisionInput":{"id":"id"},"privateAccessPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy privateAccess discardPolicyRevision '{
-    "accountId": "id",
     "policyDiscardRevisionInput": {
         "id": "id"
     },

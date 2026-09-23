@@ -11,10 +11,9 @@ catocli mutation licensing updateCommercialLicense <json>
 
 catocli mutation licensing updateCommercialLicense --json-file mutation.licensing.updateCommercialLicense.json
 
-catocli mutation licensing updateCommercialLicense '{"accountId":"id","updateCommercialLicenseInput":{"licenseId":"id","startDate":"example_value"}}'
+catocli mutation licensing updateCommercialLicense '{"updateCommercialLicenseInput":{"licenseId":"id","startDate":"example_value"}}'
 
 catocli mutation licensing updateCommercialLicense '{
-    "accountId": "id",
     "updateCommercialLicenseInput": {
         "licenseId": "id",
         "startDate": "example_value"

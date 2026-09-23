@@ -11,10 +11,9 @@ catocli mutation site addSecondaryKvmVSocket <json>
 
 catocli mutation site addSecondaryKvmVSocket --json-file mutation.site.addSecondaryKvmVSocket.json
 
-catocli mutation site addSecondaryKvmVSocket '{"accountId":"id","addSecondaryKvmVSocketInput":{"site":{"by":"ID","input":"string"}}}'
+catocli mutation site addSecondaryKvmVSocket '{"addSecondaryKvmVSocketInput":{"site":{"by":"ID","input":"string"}}}'
 
 catocli mutation site addSecondaryKvmVSocket '{
-    "accountId": "id",
     "addSecondaryKvmVSocketInput": {
         "site": {
             "by": "ID",

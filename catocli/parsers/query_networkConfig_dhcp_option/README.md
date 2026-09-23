@@ -11,10 +11,9 @@ catocli query networkConfig dhcp option <json>
 
 catocli query networkConfig dhcp option --json-file query.networkConfig.dhcp.option.json
 
-catocli query networkConfig dhcp option '{"accountId":"id","networkConfigDhcpOptionRefInput":{"by":"ID","input":"string"}}'
+catocli query networkConfig dhcp option '{"networkConfigDhcpOptionRefInput":{"by":"ID","input":"string"}}'
 
 catocli query networkConfig dhcp option '{
-    "accountId": "id",
     "networkConfigDhcpOptionRefInput": {
         "by": "ID",
         "input": "string"

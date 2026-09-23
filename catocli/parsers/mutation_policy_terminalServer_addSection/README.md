@@ -11,10 +11,9 @@ catocli mutation policy terminalServer addSection <json>
 
 catocli mutation policy terminalServer addSection --json-file mutation.policy.terminalServer.addSection.json
 
-catocli mutation policy terminalServer addSection '{"accountId":"id","policyAddSectionInput":{"at":{"position":"AFTER_SECTION","ref":"id"},"section":{"name":"string"}},"terminalServerPolicyMutationInput":{"revision":{"id":"id"}}}'
+catocli mutation policy terminalServer addSection '{"policyAddSectionInput":{"at":{"position":"AFTER_SECTION","ref":"id"},"section":{"name":"string"}},"terminalServerPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy terminalServer addSection '{
-    "accountId": "id",
     "policyAddSectionInput": {
         "at": {
             "position": "AFTER_SECTION",

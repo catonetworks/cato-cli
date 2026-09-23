@@ -11,10 +11,9 @@ catocli mutation policy wanFirewall updateSection <json>
 
 catocli mutation policy wanFirewall updateSection --json-file mutation.policy.wanFirewall.updateSection.json
 
-catocli mutation policy wanFirewall updateSection '{"accountId":"id","policyUpdateSectionInput":{"id":"id","section":{"name":"string"}},"wanFirewallPolicyMutationInput":{"revision":{"id":"id"}}}'
+catocli mutation policy wanFirewall updateSection '{"policyUpdateSectionInput":{"id":"id","section":{"name":"string"}},"wanFirewallPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy wanFirewall updateSection '{
-    "accountId": "id",
     "policyUpdateSectionInput": {
         "id": "id",
         "section": {

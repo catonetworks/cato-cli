@@ -11,10 +11,9 @@ catocli mutation site removeSite <json>
 
 catocli mutation site removeSite --json-file mutation.site.removeSite.json
 
-catocli mutation site removeSite '{"accountId":"id","siteId":"id"}'
+catocli mutation site removeSite '{"siteId":"id"}'
 
 catocli mutation site removeSite '{
-    "accountId": "id",
     "siteId": "id"
 }'
 ```

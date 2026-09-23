@@ -11,10 +11,9 @@ catocli mutation networkConfig dhcp deleteRelayGroup <json>
 
 catocli mutation networkConfig dhcp deleteRelayGroup --json-file mutation.networkConfig.dhcp.deleteRelayGroup.json
 
-catocli mutation networkConfig dhcp deleteRelayGroup '{"accountId":"id","networkConfigDhcpDeleteRelayGroupInput":{"id":["id1","id2"]}}'
+catocli mutation networkConfig dhcp deleteRelayGroup '{"networkConfigDhcpDeleteRelayGroupInput":{"id":["id1","id2"]}}'
 
 catocli mutation networkConfig dhcp deleteRelayGroup '{
-    "accountId": "id",
     "networkConfigDhcpDeleteRelayGroupInput": {
         "id": [
             "id1",

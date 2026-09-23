@@ -11,10 +11,9 @@ catocli mutation businessPlatform updateSettings <json>
 
 catocli mutation businessPlatform updateSettings --json-file mutation.businessPlatform.updateSettings.json
 
-catocli mutation businessPlatform updateSettings '{"accountId":"id","businessPlatformUpdateSettingsInput":{"approvalEnabled":true}}'
+catocli mutation businessPlatform updateSettings '{"businessPlatformUpdateSettingsInput":{"approvalEnabled":true}}'
 
 catocli mutation businessPlatform updateSettings '{
-    "accountId": "id",
     "businessPlatformUpdateSettingsInput": {
         "approvalEnabled": true
     }

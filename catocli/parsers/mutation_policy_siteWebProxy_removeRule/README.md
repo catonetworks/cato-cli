@@ -11,10 +11,9 @@ catocli mutation policy siteWebProxy removeRule <json>
 
 catocli mutation policy siteWebProxy removeRule --json-file mutation.policy.siteWebProxy.removeRule.json
 
-catocli mutation policy siteWebProxy removeRule '{"accountId":"id","siteWebProxyPolicyMutationInput":{"revision":{"id":"id"}},"siteWebProxyRemoveRuleInput":{"id":"id"}}'
+catocli mutation policy siteWebProxy removeRule '{"siteWebProxyPolicyMutationInput":{"revision":{"id":"id"}},"siteWebProxyRemoveRuleInput":{"id":"id"}}'
 
 catocli mutation policy siteWebProxy removeRule '{
-    "accountId": "id",
     "siteWebProxyPolicyMutationInput": {
         "revision": {
             "id": "id"

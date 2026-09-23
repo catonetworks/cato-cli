@@ -11,10 +11,9 @@ catocli mutation posture muteFinding <json>
 
 catocli mutation posture muteFinding --json-file mutation.posture.muteFinding.json
 
-catocli mutation posture muteFinding '{"accountId":"id","postureMuteFindingInput":{"durationInDays":1,"findingId":"id","reason":"string"}}'
+catocli mutation posture muteFinding '{"postureMuteFindingInput":{"durationInDays":1,"findingId":"id","reason":"string"}}'
 
 catocli mutation posture muteFinding '{
-    "accountId": "id",
     "postureMuteFindingInput": {
         "durationInDays": 1,
         "findingId": "id",

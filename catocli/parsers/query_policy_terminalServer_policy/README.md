@@ -11,10 +11,9 @@ catocli query policy terminalServer policy <json>
 
 catocli query policy terminalServer policy --json-file query.policy.terminalServer.policy.json
 
-catocli query policy terminalServer policy '{"accountId":"id","terminalServerPolicyInput":{"revision":{"id":"id","type":"PRIVATE"}}}'
+catocli query policy terminalServer policy '{"terminalServerPolicyInput":{"revision":{"id":"id","type":"PRIVATE"}}}'
 
 catocli query policy terminalServer policy '{
-    "accountId": "id",
     "terminalServerPolicyInput": {
         "revision": {
             "id": "id",

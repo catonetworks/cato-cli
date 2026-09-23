@@ -11,10 +11,9 @@ catocli mutation policy siteWebProxy updateSection <json>
 
 catocli mutation policy siteWebProxy updateSection --json-file mutation.policy.siteWebProxy.updateSection.json
 
-catocli mutation policy siteWebProxy updateSection '{"accountId":"id","policyUpdateSectionInput":{"id":"id","section":{"name":"string"}},"siteWebProxyPolicyMutationInput":{"revision":{"id":"id"}}}'
+catocli mutation policy siteWebProxy updateSection '{"policyUpdateSectionInput":{"id":"id","section":{"name":"string"}},"siteWebProxyPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy siteWebProxy updateSection '{
-    "accountId": "id",
     "policyUpdateSectionInput": {
         "id": "id",
         "section": {

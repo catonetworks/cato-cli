@@ -11,10 +11,9 @@ catocli query site wifiSsid <json>
 
 catocli query site wifiSsid --json-file query.site.wifiSsid.json
 
-catocli query site wifiSsid '{"accountId":"id","wifiSsidRefInput":{"by":"ID","input":"string"}}'
+catocli query site wifiSsid '{"wifiSsidRefInput":{"by":"ID","input":"string"}}'
 
 catocli query site wifiSsid '{
-    "accountId": "id",
     "wifiSsidRefInput": {
         "by": "ID",
         "input": "string"

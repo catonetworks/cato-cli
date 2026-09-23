@@ -11,10 +11,9 @@ catocli mutation accountManagement updateAccount <json>
 
 catocli mutation accountManagement updateAccount --json-file mutation.accountManagement.updateAccount.json
 
-catocli mutation accountManagement updateAccount '{"accountId":"id","updateAccountInput":{"description":"string"}}'
+catocli mutation accountManagement updateAccount '{"updateAccountInput":{"description":"string"}}'
 
 catocli mutation accountManagement updateAccount '{
-    "accountId": "id",
     "updateAccountInput": {
         "description": "string"
     }

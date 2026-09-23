@@ -11,10 +11,9 @@ catocli mutation policy siteWebProxy removeSection <json>
 
 catocli mutation policy siteWebProxy removeSection --json-file mutation.policy.siteWebProxy.removeSection.json
 
-catocli mutation policy siteWebProxy removeSection '{"accountId":"id","policyRemoveSectionInput":{"id":"id"},"siteWebProxyPolicyMutationInput":{"revision":{"id":"id"}}}'
+catocli mutation policy siteWebProxy removeSection '{"policyRemoveSectionInput":{"id":"id"},"siteWebProxyPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy siteWebProxy removeSection '{
-    "accountId": "id",
     "policyRemoveSectionInput": {
         "id": "id"
     },

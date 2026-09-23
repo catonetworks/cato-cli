@@ -11,10 +11,9 @@ catocli mutation policy splitTunnel moveRule <json>
 
 catocli mutation policy splitTunnel moveRule --json-file mutation.policy.splitTunnel.moveRule.json
 
-catocli mutation policy splitTunnel moveRule '{"accountId":"id","policyMoveRuleInput":{"id":"id","to":{"position":"AFTER_RULE","ref":"id"}},"splitTunnelPolicyMutationInput":{"revision":{"id":"id"}}}'
+catocli mutation policy splitTunnel moveRule '{"policyMoveRuleInput":{"id":"id","to":{"position":"AFTER_RULE","ref":"id"}},"splitTunnelPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy splitTunnel moveRule '{
-    "accountId": "id",
     "policyMoveRuleInput": {
         "id": "id",
         "to": {

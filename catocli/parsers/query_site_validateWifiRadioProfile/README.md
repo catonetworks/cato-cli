@@ -11,10 +11,9 @@ catocli query site validateWifiRadioProfile <json>
 
 catocli query site validateWifiRadioProfile --json-file query.site.validateWifiRadioProfile.json
 
-catocli query site validateWifiRadioProfile '{"accountId":"id","validateWifiRadioProfileInput":{"radioProfile":{"band24":{"band":"BAND_2P4G","channel":1,"channelWidth":"AUTO","dfsEnabled":true,"standard":"AUTO"},"band5":{"band":"BAND_2P4G","channel":1,"channelWidth":"AUTO","dfsEnabled":true,"standard":"AUTO"}},"site":{"by":"ID","input":"string"}}}'
+catocli query site validateWifiRadioProfile '{"validateWifiRadioProfileInput":{"radioProfile":{"band24":{"band":"BAND_2P4G","channel":1,"channelWidth":"AUTO","dfsEnabled":true,"standard":"AUTO"},"band5":{"band":"BAND_2P4G","channel":1,"channelWidth":"AUTO","dfsEnabled":true,"standard":"AUTO"}},"site":{"by":"ID","input":"string"}}}'
 
 catocli query site validateWifiRadioProfile '{
-    "accountId": "id",
     "validateWifiRadioProfileInput": {
         "radioProfile": {
             "band24": {

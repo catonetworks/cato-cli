@@ -11,10 +11,9 @@ catocli query networkConfig dns serverSet <json>
 
 catocli query networkConfig dns serverSet --json-file query.networkConfig.dns.serverSet.json
 
-catocli query networkConfig dns serverSet '{"accountId":"id","networkConfigDnsServerSetRefInput":{"by":"ID","input":"string"}}'
+catocli query networkConfig dns serverSet '{"networkConfigDnsServerSetRefInput":{"by":"ID","input":"string"}}'
 
 catocli query networkConfig dns serverSet '{
-    "accountId": "id",
     "networkConfigDnsServerSetRefInput": {
         "by": "ID",
         "input": "string"

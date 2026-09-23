@@ -11,10 +11,9 @@ catocli mutation licensing removeLicenseFromManagedAccount <json>
 
 catocli mutation licensing removeLicenseFromManagedAccount --json-file mutation.licensing.removeLicenseFromManagedAccount.json
 
-catocli mutation licensing removeLicenseFromManagedAccount '{"accountId":"id","removeLicenseFromManagedAccountInput":{"licenseId":"id","managedAccountId":"id"}}'
+catocli mutation licensing removeLicenseFromManagedAccount '{"removeLicenseFromManagedAccountInput":{"licenseId":"id","managedAccountId":"id"}}'
 
 catocli mutation licensing removeLicenseFromManagedAccount '{
-    "accountId": "id",
     "removeLicenseFromManagedAccountInput": {
         "licenseId": "id",
         "managedAccountId": "id"

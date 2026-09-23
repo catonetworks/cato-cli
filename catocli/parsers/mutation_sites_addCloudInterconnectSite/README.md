@@ -11,10 +11,9 @@ catocli mutation sites addCloudInterconnectSite <json>
 
 catocli mutation sites addCloudInterconnectSite --json-file mutation.sites.addCloudInterconnectSite.json
 
-catocli mutation sites addCloudInterconnectSite '{"accountId":"id","addCloudInterconnectSiteInput":{"description":"string","name":"string","siteLocation":{"address":"string","city":"string","countryCode":"string","stateCode":"string","timezone":"string"},"siteType":"BRANCH"}}'
+catocli mutation sites addCloudInterconnectSite '{"addCloudInterconnectSiteInput":{"description":"string","name":"string","siteLocation":{"address":"string","city":"string","countryCode":"string","stateCode":"string","timezone":"string"},"siteType":"BRANCH"}}'
 
 catocli mutation sites addCloudInterconnectSite '{
-    "accountId": "id",
     "addCloudInterconnectSiteInput": {
         "description": "string",
         "name": "string",

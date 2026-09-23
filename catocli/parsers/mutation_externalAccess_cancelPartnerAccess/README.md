@@ -11,10 +11,9 @@ catocli mutation externalAccess cancelPartnerAccess <json>
 
 catocli mutation externalAccess cancelPartnerAccess --json-file mutation.externalAccess.cancelPartnerAccess.json
 
-catocli mutation externalAccess cancelPartnerAccess '{"accountId":"id","cancelPartnerAccessInput":{"invitationId":"id","reason":"string"}}'
+catocli mutation externalAccess cancelPartnerAccess '{"cancelPartnerAccessInput":{"invitationId":"id","reason":"string"}}'
 
 catocli mutation externalAccess cancelPartnerAccess '{
-    "accountId": "id",
     "cancelPartnerAccessInput": {
         "invitationId": "id",
         "reason": "string"

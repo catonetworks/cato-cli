@@ -11,10 +11,9 @@ catocli mutation externalAccess resolveIncomingAccessRequest <json>
 
 catocli mutation externalAccess resolveIncomingAccessRequest --json-file mutation.externalAccess.resolveIncomingAccessRequest.json
 
-catocli mutation externalAccess resolveIncomingAccessRequest '{"accountId":"id","resolveIncomingAccessRequestInput":{"approval":"APPROVE","note":"string","requestId":"id"}}'
+catocli mutation externalAccess resolveIncomingAccessRequest '{"resolveIncomingAccessRequestInput":{"approval":"APPROVE","note":"string","requestId":"id"}}'
 
 catocli mutation externalAccess resolveIncomingAccessRequest '{
-    "accountId": "id",
     "resolveIncomingAccessRequestInput": {
         "approval": "APPROVE",
         "note": "string",

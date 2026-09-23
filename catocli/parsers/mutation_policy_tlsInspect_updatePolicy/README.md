@@ -11,10 +11,9 @@ catocli mutation policy tlsInspect updatePolicy <json>
 
 catocli mutation policy tlsInspect updatePolicy --json-file mutation.policy.tlsInspect.updatePolicy.json
 
-catocli mutation policy tlsInspect updatePolicy '{"accountId":"id","tlsInspectPolicyMutationInput":{"revision":{"id":"id"}},"tlsInspectPolicyUpdateInput":{"additionalAttributes":{"defaultRuleAction":"INSPECT","defaultRuleUntrustedCertificateAction":"ALLOW"},"state":"ENABLED"}}'
+catocli mutation policy tlsInspect updatePolicy '{"tlsInspectPolicyMutationInput":{"revision":{"id":"id"}},"tlsInspectPolicyUpdateInput":{"additionalAttributes":{"defaultRuleAction":"INSPECT","defaultRuleUntrustedCertificateAction":"ALLOW"},"state":"ENABLED"}}'
 
 catocli mutation policy tlsInspect updatePolicy '{
-    "accountId": "id",
     "tlsInspectPolicyMutationInput": {
         "revision": {
             "id": "id"

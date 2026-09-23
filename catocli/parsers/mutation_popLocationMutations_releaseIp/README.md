@@ -11,10 +11,9 @@ catocli mutation popLocationMutations releaseIp <json>
 
 catocli mutation popLocationMutations releaseIp --json-file mutation.popLocationMutations.releaseIp.json
 
-catocli mutation popLocationMutations releaseIp '{"accountId":"id","popLocationReleaseIpInput":{"ip":"example_value","type":"SYSTEM"}}'
+catocli mutation popLocationMutations releaseIp '{"popLocationReleaseIpInput":{"ip":"example_value","type":"SYSTEM"}}'
 
 catocli mutation popLocationMutations releaseIp '{
-    "accountId": "id",
     "popLocationReleaseIpInput": {
         "ip": "example_value",
         "type": "SYSTEM"

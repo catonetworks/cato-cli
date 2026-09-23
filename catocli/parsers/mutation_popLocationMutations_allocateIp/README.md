@@ -11,10 +11,9 @@ catocli mutation popLocationMutations allocateIp <json>
 
 catocli mutation popLocationMutations allocateIp --json-file mutation.popLocationMutations.allocateIp.json
 
-catocli mutation popLocationMutations allocateIp '{"accountId":"id","popLocationAllocateIpInput":{"description":"string","popLocation":{"by":"ID","input":"string"},"type":"SYSTEM"}}'
+catocli mutation popLocationMutations allocateIp '{"popLocationAllocateIpInput":{"description":"string","popLocation":{"by":"ID","input":"string"},"type":"SYSTEM"}}'
 
 catocli mutation popLocationMutations allocateIp '{
-    "accountId": "id",
     "popLocationAllocateIpInput": {
         "description": "string",
         "popLocation": {

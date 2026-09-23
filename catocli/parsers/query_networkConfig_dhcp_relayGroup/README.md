@@ -11,10 +11,9 @@ catocli query networkConfig dhcp relayGroup <json>
 
 catocli query networkConfig dhcp relayGroup --json-file query.networkConfig.dhcp.relayGroup.json
 
-catocli query networkConfig dhcp relayGroup '{"accountId":"id","networkConfigDhcpRelayGroupRefInput":{"by":"ID","input":"string"}}'
+catocli query networkConfig dhcp relayGroup '{"networkConfigDhcpRelayGroupRefInput":{"by":"ID","input":"string"}}'
 
 catocli query networkConfig dhcp relayGroup '{
-    "accountId": "id",
     "networkConfigDhcpRelayGroupRefInput": {
         "by": "ID",
         "input": "string"

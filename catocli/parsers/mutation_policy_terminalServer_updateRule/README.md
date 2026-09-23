@@ -11,10 +11,9 @@ catocli mutation policy terminalServer updateRule <json>
 
 catocli mutation policy terminalServer updateRule --json-file mutation.policy.terminalServer.updateRule.json
 
-catocli mutation policy terminalServer updateRule '{"accountId":"id","terminalServerPolicyMutationInput":{"revision":{"id":"id"}},"terminalServerUpdateRuleInput":{"id":"id","rule":{"allowedHostIP":{"by":"ID","input":"string"},"description":"string","enabled":true,"excludeTraffic":{"by":"ID","input":"string"},"name":"string"}}}'
+catocli mutation policy terminalServer updateRule '{"terminalServerPolicyMutationInput":{"revision":{"id":"id"}},"terminalServerUpdateRuleInput":{"id":"id","rule":{"allowedHostIP":{"by":"ID","input":"string"},"description":"string","enabled":true,"excludeTraffic":{"by":"ID","input":"string"},"name":"string"}}}'
 
 catocli mutation policy terminalServer updateRule '{
-    "accountId": "id",
     "terminalServerPolicyMutationInput": {
         "revision": {
             "id": "id"

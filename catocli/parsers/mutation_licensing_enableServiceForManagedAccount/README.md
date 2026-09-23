@@ -11,10 +11,9 @@ catocli mutation licensing enableServiceForManagedAccount <json>
 
 catocli mutation licensing enableServiceForManagedAccount --json-file mutation.licensing.enableServiceForManagedAccount.json
 
-catocli mutation licensing enableServiceForManagedAccount '{"accountId":"id","enableServiceForManagedAccountInput":{"managedAccountId":"id","service":"CATO_SITE"}}'
+catocli mutation licensing enableServiceForManagedAccount '{"enableServiceForManagedAccountInput":{"managedAccountId":"id","service":"CATO_SITE"}}'
 
 catocli mutation licensing enableServiceForManagedAccount '{
-    "accountId": "id",
     "enableServiceForManagedAccountInput": {
         "managedAccountId": "id",
         "service": "CATO_SITE"

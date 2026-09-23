@@ -11,10 +11,9 @@ catocli query site siteSocketConfiguration <json>
 
 catocli query site siteSocketConfiguration --json-file query.site.siteSocketConfiguration.json
 
-catocli query site siteSocketConfiguration '{"accountId":"id","siteSocketConfigurationInput":{"site":{"by":"ID","input":"string"}}}'
+catocli query site siteSocketConfiguration '{"siteSocketConfigurationInput":{"site":{"by":"ID","input":"string"}}}'
 
 catocli query site siteSocketConfiguration '{
-    "accountId": "id",
     "siteSocketConfigurationInput": {
         "site": {
             "by": "ID",

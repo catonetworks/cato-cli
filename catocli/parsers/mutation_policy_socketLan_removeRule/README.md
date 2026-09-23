@@ -11,10 +11,9 @@ catocli mutation policy socketLan removeRule <json>
 
 catocli mutation policy socketLan removeRule --json-file mutation.policy.socketLan.removeRule.json
 
-catocli mutation policy socketLan removeRule '{"accountId":"id","socketLanPolicyMutationInput":{"revision":{"id":"id"}},"socketLanRemoveRuleInput":{"id":"id"}}'
+catocli mutation policy socketLan removeRule '{"socketLanPolicyMutationInput":{"revision":{"id":"id"}},"socketLanRemoveRuleInput":{"id":"id"}}'
 
 catocli mutation policy socketLan removeRule '{
-    "accountId": "id",
     "socketLanPolicyMutationInput": {
         "revision": {
             "id": "id"

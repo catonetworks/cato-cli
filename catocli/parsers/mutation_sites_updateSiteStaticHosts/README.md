@@ -11,10 +11,9 @@ catocli mutation sites updateSiteStaticHosts <json>
 
 catocli mutation sites updateSiteStaticHosts --json-file mutation.sites.updateSiteStaticHosts.json
 
-catocli mutation sites updateSiteStaticHosts '{"accountId":"id","updateSiteStaticHostsInput":{"host":{"ip":"example_value","macAddress":"example_value","name":"string"},"hostToAdd":{"ip":"example_value","macAddress":"example_value","name":"string"},"hostToRemove":{"hostId":"id"},"site":{"by":"ID","input":"string"}}}'
+catocli mutation sites updateSiteStaticHosts '{"updateSiteStaticHostsInput":{"host":{"ip":"example_value","macAddress":"example_value","name":"string"},"hostToAdd":{"ip":"example_value","macAddress":"example_value","name":"string"},"hostToRemove":{"hostId":"id"},"site":{"by":"ID","input":"string"}}}'
 
 catocli mutation sites updateSiteStaticHosts '{
-    "accountId": "id",
     "updateSiteStaticHostsInput": {
         "host": {
             "ip": "example_value",

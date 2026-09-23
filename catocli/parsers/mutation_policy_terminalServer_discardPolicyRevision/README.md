@@ -11,10 +11,9 @@ catocli mutation policy terminalServer discardPolicyRevision <json>
 
 catocli mutation policy terminalServer discardPolicyRevision --json-file mutation.policy.terminalServer.discardPolicyRevision.json
 
-catocli mutation policy terminalServer discardPolicyRevision '{"accountId":"id","policyDiscardRevisionInput":{"id":"id"},"terminalServerPolicyMutationInput":{"revision":{"id":"id"}}}'
+catocli mutation policy terminalServer discardPolicyRevision '{"policyDiscardRevisionInput":{"id":"id"},"terminalServerPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy terminalServer discardPolicyRevision '{
-    "accountId": "id",
     "policyDiscardRevisionInput": {
         "id": "id"
     },

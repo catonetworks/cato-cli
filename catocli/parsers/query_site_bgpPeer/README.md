@@ -11,10 +11,9 @@ catocli query site bgpPeer <json>
 
 catocli query site bgpPeer --json-file query.site.bgpPeer.json
 
-catocli query site bgpPeer '{"accountId":"id","bgpPeerRefInput":{"by":"ID","input":"string"}}'
+catocli query site bgpPeer '{"bgpPeerRefInput":{"by":"ID","input":"string"}}'
 
 catocli query site bgpPeer '{
-    "accountId": "id",
     "bgpPeerRefInput": {
         "by": "ID",
         "input": "string"

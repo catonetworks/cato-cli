@@ -11,10 +11,9 @@ catocli mutation sites removeSecondaryKvmVSocket <json>
 
 catocli mutation sites removeSecondaryKvmVSocket --json-file mutation.sites.removeSecondaryKvmVSocket.json
 
-catocli mutation sites removeSecondaryKvmVSocket '{"accountId":"id","removeSecondaryKvmVSocketInput":{"id":"id"}}'
+catocli mutation sites removeSecondaryKvmVSocket '{"removeSecondaryKvmVSocketInput":{"id":"id"}}'
 
 catocli mutation sites removeSecondaryKvmVSocket '{
-    "accountId": "id",
     "removeSecondaryKvmVSocketInput": {
         "id": "id"
     }

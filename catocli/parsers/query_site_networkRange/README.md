@@ -11,10 +11,9 @@ catocli query site networkRange <json>
 
 catocli query site networkRange --json-file query.site.networkRange.json
 
-catocli query site networkRange '{"accountId":"id","networkRangeId":"id"}'
+catocli query site networkRange '{"networkRangeId":"id"}'
 
 catocli query site networkRange '{
-    "accountId": "id",
     "networkRangeId": "id"
 }'
 ```

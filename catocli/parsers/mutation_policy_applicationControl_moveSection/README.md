@@ -11,10 +11,9 @@ catocli mutation policy applicationControl moveSection <json>
 
 catocli mutation policy applicationControl moveSection --json-file mutation.policy.applicationControl.moveSection.json
 
-catocli mutation policy applicationControl moveSection '{"accountId":"id","applicationControlPolicyMutationInput":{"revision":{"id":"id"}},"policyMoveSectionInput":{"id":"id","to":{"position":"AFTER_SECTION","ref":"id"}}}'
+catocli mutation policy applicationControl moveSection '{"applicationControlPolicyMutationInput":{"revision":{"id":"id"}},"policyMoveSectionInput":{"id":"id","to":{"position":"AFTER_SECTION","ref":"id"}}}'
 
 catocli mutation policy applicationControl moveSection '{
-    "accountId": "id",
     "applicationControlPolicyMutationInput": {
         "revision": {
             "id": "id"

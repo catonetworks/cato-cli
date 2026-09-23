@@ -11,10 +11,9 @@ catocli query site secondaryAwsVSocket <json>
 
 catocli query site secondaryAwsVSocket --json-file query.site.secondaryAwsVSocket.json
 
-catocli query site secondaryAwsVSocket '{"accountId":"id","socketId":"id"}'
+catocli query site secondaryAwsVSocket '{"socketId":"id"}'
 
 catocli query site secondaryAwsVSocket '{
-    "accountId": "id",
     "socketId": "id"
 }'
 ```

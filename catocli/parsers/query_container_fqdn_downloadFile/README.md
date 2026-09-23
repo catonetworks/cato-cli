@@ -11,10 +11,9 @@ catocli query container fqdn downloadFile <json>
 
 catocli query container fqdn downloadFile --json-file query.container.fqdn.downloadFile.json
 
-catocli query container fqdn downloadFile '{"accountId":"id","downloadFqdnContainerFileInput":{"by":"ID","input":"string"}}'
+catocli query container fqdn downloadFile '{"downloadFqdnContainerFileInput":{"by":"ID","input":"string"}}'
 
 catocli query container fqdn downloadFile '{
-    "accountId": "id",
     "downloadFqdnContainerFileInput": {
         "by": "ID",
         "input": "string"

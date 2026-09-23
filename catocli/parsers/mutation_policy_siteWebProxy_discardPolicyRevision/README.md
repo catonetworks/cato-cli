@@ -11,10 +11,9 @@ catocli mutation policy siteWebProxy discardPolicyRevision <json>
 
 catocli mutation policy siteWebProxy discardPolicyRevision --json-file mutation.policy.siteWebProxy.discardPolicyRevision.json
 
-catocli mutation policy siteWebProxy discardPolicyRevision '{"accountId":"id","policyDiscardRevisionInput":{"id":"id"},"siteWebProxyPolicyMutationInput":{"revision":{"id":"id"}}}'
+catocli mutation policy siteWebProxy discardPolicyRevision '{"policyDiscardRevisionInput":{"id":"id"},"siteWebProxyPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy siteWebProxy discardPolicyRevision '{
-    "accountId": "id",
     "policyDiscardRevisionInput": {
         "id": "id"
     },

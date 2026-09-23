@@ -11,10 +11,9 @@ catocli mutation sites addCloudInterconnectPhysicalConnection <json>
 
 catocli mutation sites addCloudInterconnectPhysicalConnection --json-file mutation.sites.addCloudInterconnectPhysicalConnection.json
 
-catocli mutation sites addCloudInterconnectPhysicalConnection '{"accountId":"id","addCloudInterconnectPhysicalConnectionInput":{"QinQVlanConfiguration":{"cVlan":"example_value","sVlan":"example_value"},"downstreamBwLimit":"example_value","encapsulationMethod":"DOT1Q","haRole":"PRIMARY","popLocation":{"by":"ID","input":"string"},"privateCatoIp":"example_value","privateSiteIp":"example_value","serviceProviderName":"string","site":{"by":"ID","input":"string"},"subnet":"example_value","upstreamBwLimit":"example_value","vlan":"example_value"}}'
+catocli mutation sites addCloudInterconnectPhysicalConnection '{"addCloudInterconnectPhysicalConnectionInput":{"QinQVlanConfiguration":{"cVlan":"example_value","sVlan":"example_value"},"downstreamBwLimit":"example_value","encapsulationMethod":"DOT1Q","haRole":"PRIMARY","popLocation":{"by":"ID","input":"string"},"privateCatoIp":"example_value","privateSiteIp":"example_value","serviceProviderName":"string","site":{"by":"ID","input":"string"},"subnet":"example_value","upstreamBwLimit":"example_value","vlan":"example_value"}}'
 
 catocli mutation sites addCloudInterconnectPhysicalConnection '{
-    "accountId": "id",
     "addCloudInterconnectPhysicalConnectionInput": {
         "QinQVlanConfiguration": {
             "cVlan": "example_value",

@@ -11,10 +11,9 @@ catocli mutation notification deleteSubscriptionGroup <json>
 
 catocli mutation notification deleteSubscriptionGroup --json-file mutation.notification.deleteSubscriptionGroup.json
 
-catocli mutation notification deleteSubscriptionGroup '{"accountId":"id","subscriptionGroupRefInput":{"by":"ID","input":"string"}}'
+catocli mutation notification deleteSubscriptionGroup '{"subscriptionGroupRefInput":{"by":"ID","input":"string"}}'
 
 catocli mutation notification deleteSubscriptionGroup '{
-    "accountId": "id",
     "subscriptionGroupRefInput": {
         "by": "ID",
         "input": "string"

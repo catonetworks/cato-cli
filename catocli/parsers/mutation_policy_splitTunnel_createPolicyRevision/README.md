@@ -11,10 +11,9 @@ catocli mutation policy splitTunnel createPolicyRevision <json>
 
 catocli mutation policy splitTunnel createPolicyRevision --json-file mutation.policy.splitTunnel.createPolicyRevision.json
 
-catocli mutation policy splitTunnel createPolicyRevision '{"accountId":"id","policyCreateRevisionInput":{"description":"string","name":"string"},"splitTunnelPolicyMutationInput":{"revision":{"id":"id"}}}'
+catocli mutation policy splitTunnel createPolicyRevision '{"policyCreateRevisionInput":{"description":"string","name":"string"},"splitTunnelPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy splitTunnel createPolicyRevision '{
-    "accountId": "id",
     "policyCreateRevisionInput": {
         "description": "string",
         "name": "string"

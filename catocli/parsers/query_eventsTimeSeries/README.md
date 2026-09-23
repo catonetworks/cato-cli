@@ -11,10 +11,9 @@ catocli query eventsTimeSeries <json>
 
 catocli query eventsTimeSeries --json-file query.eventsTimeSeries.json
 
-catocli query eventsTimeSeries '{"accountID":"id","buckets":1,"eventsDimension":{"fieldName":"access_method"},"eventsFilter":{"fieldName":"access_method","operator":"is","values":["string1","string2"]},"eventsMeasure":{"aggType":"sum","alias":"string","fieldName":"access_method","trend":true},"includeEmptyDimension":true,"perSecond":true,"timeFrame":"example_value","useDefaultSizeBucket":true,"withMissingData":true}'
+catocli query eventsTimeSeries '{"buckets":1,"eventsDimension":{"fieldName":"access_method"},"eventsFilter":{"fieldName":"access_method","operator":"is","values":["string1","string2"]},"eventsMeasure":{"aggType":"sum","alias":"string","fieldName":"access_method","trend":true},"includeEmptyDimension":true,"perSecond":true,"timeFrame":"example_value","useDefaultSizeBucket":true,"withMissingData":true}'
 
 catocli query eventsTimeSeries '{
-    "accountID": "id",
     "buckets": 1,
     "eventsDimension": {
         "fieldName": "access_method"

@@ -11,10 +11,9 @@ catocli query posture categoryList <json>
 
 catocli query posture categoryList --json-file query.posture.categoryList.json
 
-catocli query posture categoryList '{"accountId":"id","postureCategoryListInput":{"sort":{"name":{"direction":"ASC","priority":1}}}}'
+catocli query posture categoryList '{"postureCategoryListInput":{"sort":{"name":{"direction":"ASC","priority":1}}}}'
 
 catocli query posture categoryList '{
-    "accountId": "id",
     "postureCategoryListInput": {
         "sort": {
             "name": {

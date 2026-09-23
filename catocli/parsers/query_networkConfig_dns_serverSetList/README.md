@@ -11,10 +11,9 @@ catocli query networkConfig dns serverSetList <json>
 
 catocli query networkConfig dns serverSetList --json-file query.networkConfig.dns.serverSetList.json
 
-catocli query networkConfig dns serverSetList '{"accountId":"id","networkConfigDnsServerSetListInput":{"filter":{"name":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"],"regex":"string"}},"paging":{"from":1,"limit":1},"sort":{"name":{"direction":"ASC","priority":1}}}}'
+catocli query networkConfig dns serverSetList '{"networkConfigDnsServerSetListInput":{"filter":{"name":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"],"regex":"string"}},"paging":{"from":1,"limit":1},"sort":{"name":{"direction":"ASC","priority":1}}}}'
 
 catocli query networkConfig dns serverSetList '{
-    "accountId": "id",
     "networkConfigDnsServerSetListInput": {
         "filter": {
             "name": {

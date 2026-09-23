@@ -11,10 +11,9 @@ catocli mutation site addSecondaryGcpVSocket <json>
 
 catocli mutation site addSecondaryGcpVSocket --json-file mutation.site.addSecondaryGcpVSocket.json
 
-catocli mutation site addSecondaryGcpVSocket '{"accountId":"id","addSecondaryGcpVSocketInput":{"gcpConfig":{"interfaceIp":"example_value","loadBalancerIp":"example_value"},"site":{"by":"ID","input":"string"}}}'
+catocli mutation site addSecondaryGcpVSocket '{"addSecondaryGcpVSocketInput":{"gcpConfig":{"interfaceIp":"example_value","loadBalancerIp":"example_value"},"site":{"by":"ID","input":"string"}}}'
 
 catocli mutation site addSecondaryGcpVSocket '{
-    "accountId": "id",
     "addSecondaryGcpVSocketInput": {
         "gcpConfig": {
             "interfaceIp": "example_value",

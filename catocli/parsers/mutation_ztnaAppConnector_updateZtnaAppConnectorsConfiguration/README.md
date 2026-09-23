@@ -11,10 +11,9 @@ catocli mutation ztnaAppConnector updateZtnaAppConnectorsConfiguration <json>
 
 catocli mutation ztnaAppConnector updateZtnaAppConnectorsConfiguration --json-file mutation.ztnaAppConnector.updateZtnaAppConnectorsConfiguration.json
 
-catocli mutation ztnaAppConnector updateZtnaAppConnectorsConfiguration '{"accountId":"id","updateZtnaAppConnectorsConfigurationInput":{"appConnectorManagementRange":"example_value","privateAppsServiceRange":"example_value"}}'
+catocli mutation ztnaAppConnector updateZtnaAppConnectorsConfiguration '{"updateZtnaAppConnectorsConfigurationInput":{"appConnectorManagementRange":"example_value","privateAppsServiceRange":"example_value"}}'
 
 catocli mutation ztnaAppConnector updateZtnaAppConnectorsConfiguration '{
-    "accountId": "id",
     "updateZtnaAppConnectorsConfigurationInput": {
         "appConnectorManagementRange": "example_value",
         "privateAppsServiceRange": "example_value"

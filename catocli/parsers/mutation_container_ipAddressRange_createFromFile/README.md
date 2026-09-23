@@ -11,10 +11,9 @@ catocli mutation container ipAddressRange createFromFile <json>
 
 catocli mutation container ipAddressRange createFromFile --json-file mutation.container.ipAddressRange.createFromFile.json
 
-catocli mutation container ipAddressRange createFromFile '{"accountId":"id","createIpAddressRangeContainerFromFileInput":{"description":"string","fileType":"STIX","name":"string","uploadFile":"example_value"}}'
+catocli mutation container ipAddressRange createFromFile '{"createIpAddressRangeContainerFromFileInput":{"description":"string","fileType":"STIX","name":"string","uploadFile":"example_value"}}'
 
 catocli mutation container ipAddressRange createFromFile '{
-    "accountId": "id",
     "createIpAddressRangeContainerFromFileInput": {
         "description": "string",
         "fileType": "STIX",

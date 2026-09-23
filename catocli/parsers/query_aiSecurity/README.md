@@ -11,10 +11,9 @@ catocli query aiSecurity <json>
 
 catocli query aiSecurity --json-file query.aiSecurity.json
 
-catocli query aiSecurity '{"accountId":"id","aiSecurityAppsInvocationInput":{"id":"id"},"aiSecurityEndUsersSessionConversationInput":{"appId":"id","messageId":"id","sessionId":"id","userId":"id"}}'
+catocli query aiSecurity '{"aiSecurityAppsInvocationInput":{"id":"id"},"aiSecurityEndUsersSessionConversationInput":{"appId":"id","messageId":"id","sessionId":"id","userId":"id"}}'
 
 catocli query aiSecurity '{
-    "accountId": "id",
     "aiSecurityAppsInvocationInput": {
         "id": "id"
     },

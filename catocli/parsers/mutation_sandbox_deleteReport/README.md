@@ -11,10 +11,9 @@ catocli mutation sandbox deleteReport <json>
 
 catocli mutation sandbox deleteReport --json-file mutation.sandbox.deleteReport.json
 
-catocli mutation sandbox deleteReport '{"accountId":"id","deleteReportInput":{"fileHash":"string"}}'
+catocli mutation sandbox deleteReport '{"deleteReportInput":{"fileHash":"string"}}'
 
 catocli mutation sandbox deleteReport '{
-    "accountId": "id",
     "deleteReportInput": {
         "fileHash": "string"
     }

@@ -11,10 +11,9 @@ catocli mutation popLocationMutations updateAllocatedIpDescription <json>
 
 catocli mutation popLocationMutations updateAllocatedIpDescription --json-file mutation.popLocationMutations.updateAllocatedIpDescription.json
 
-catocli mutation popLocationMutations updateAllocatedIpDescription '{"accountId":"id","popLocationUpdateAllocatedIpDescriptionInput":{"description":"string","ip":"example_value"}}'
+catocli mutation popLocationMutations updateAllocatedIpDescription '{"popLocationUpdateAllocatedIpDescriptionInput":{"description":"string","ip":"example_value"}}'
 
 catocli mutation popLocationMutations updateAllocatedIpDescription '{
-    "accountId": "id",
     "popLocationUpdateAllocatedIpDescriptionInput": {
         "description": "string",
         "ip": "example_value"

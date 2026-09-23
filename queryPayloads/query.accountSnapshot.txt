@@ -1,401 +1,376 @@
-query accountSnapshot ( $siteIDs:[ID!] $userIDs:[ID!]) {
-	accountSnapshot ( ) {
+query accountSnapshot ( $accountID:ID $siteIDs:[ID!] $userIDs:[ID!]) {
+	accountSnapshot ( accountID:$accountID ) {
 		id
 		sites ( siteIDs:$siteIDs  )  {
-			id
-			protoId
-			connectivityStatus
-			haStatus {
-				readiness
-				wanConnectivity
-				keepalive
-				socketVersion
-			}
-			operationalStatus
-			lastConnected
+			altWanStatus
 			connectedSince
-			popName
+			connectivityStatus
+			degradedStatus {
+				degradedDetails {
+					args {
+						__typename
+						... on DegradedStatusBasicDataArgs {
+							deviceName
+							lastConnectedDate
+						}
+						... on DegradedStatusLastConnectedArgs {
+							lastConnectedDate
+						}
+						... on DegradedStatusMultiTunnelArgs {
+							deviceName
+							lastConnectedDate
+							tunnelID
+							tunnelName
+						}
+						... on DegradedStatusSocketArgs {
+							deviceName
+							lastConnectedDate
+							portID
+							portName
+						}
+						... on DegradedStatusSocketVersionsArgs {
+							primaryVersion
+							secondaryVersion
+						}
+					}
+
+					reason
+				}
+				isDegraded
+			}
 			devices {
-				id
-				name
-				identifier
 				connected
+				connectedSince
+				deviceUptime
 				haRole
+				id
+				identifier
 				interfaces {
+					bgpState
+					cellularInterfaceInfo {
+						apn
+						apnSelectionMethod
+						disconnectionReason
+						iccid
+						imei
+						isModemConnected
+						isModemSuspended
+						isRoamingAllowed
+						isSimSlot1Detected
+						isSimSlot2Detected
+						modemStatus
+						networkType
+						operatorName
+						signalStrength
+						simNumber
+						simSlotId
+					}
 					connected
 					id
+					info {
+						destType
+						downstreamBandwidth
+						downstreamBandwidthMbpsPrecision
+						id
+						name
+						upstreamBandwidth
+						upstreamBandwidthMbpsPrecision
+						wanRole
+					}
 					name
-					physicalPort
 					naturalOrder
+					physicalPort
 					popName
 					previousPopID
 					previousPopName
 					tunnelConnectionReason
-					tunnelUptime
 					tunnelRemoteIP
 					tunnelRemoteIPInfo {
-						ip
+						city
 						countryCode
 						countryName
-						city
-						state
-						provider
+						ip
 						latitude
 						longitude
+						provider
+						state
 					}
+					tunnelUptime
 					type
-					info {
-						id
-						name
-						upstreamBandwidth
-						downstreamBandwidth
-						upstreamBandwidthMbpsPrecision
-						downstreamBandwidthMbpsPrecision
-						destType
-						wanRole
-					}
-					cellularInterfaceInfo {
-						networkType
-						simSlotId
-						modemStatus
-						isModemConnected
-						iccid
-						imei
-						operatorName
-						isModemSuspended
-						apn
-						apnSelectionMethod
-						signalStrength
-						isRoamingAllowed
-						simNumber
-						disconnectionReason
-						isSimSlot1Detected
-						isSimSlot2Detected
-					}
-					bgpState
-				}
-				lastConnected
-				lastDuration
-				connectedSince
-				lastPopID
-				lastPopName
-				recentConnections {
-					duration
-					interfaceName
-					deviceName
-					lastConnected
-					popName
-					remoteIP
-					remoteIPInfo {
-						ip
-						countryCode
-						countryName
-						city
-						state
-						provider
-						latitude
-						longitude
-					}
-				}
-				type
-				deviceUptime
-				socketInfo {
-					id
-					serial
-					isPrimary
-					platform
-					version
-					versionUpdateTime
 				}
 				interfacesLinkState {
-					id
-					up
-					mediaIn
-					linkSpeed
 					duplex
 					hasAddress
 					hasInternet
 					hasTunnel
+					id
+					linkSpeed
+					mediaIn
+					up
 				}
+				internalIP
+				lastConnected
+				lastDuration
+				lastPopID
+				lastPopName
+				mfaCreationTime
+				mfaExpirationTime
+				name
 				osType
 				osVersion
+				recentConnections {
+					deviceName
+					duration
+					interfaceName
+					lastConnected
+					popName
+					remoteIP
+					remoteIPInfo {
+						city
+						countryCode
+						countryName
+						ip
+						latitude
+						longitude
+						provider
+						state
+					}
+				}
+				releaseGroup
+				socketInfo {
+					id
+					isPrimary
+					platform
+					serial
+					version
+					versionUpdateTime
+				}
+				type
 				version
 				versionNumber
-				releaseGroup
-				mfaExpirationTime
-				mfaCreationTime
-				internalIP
 			}
+			haStatus {
+				keepalive
+				readiness
+				socketVersion
+				wanConnectivity
+			}
+			hostCount
+			id
 			info {
-				name
-				type
-				description
+				address
+				cityName
+				connType
 				countryCode
-				region
 				countryName
 				countryStateName
-				cityName
-				address
-				isHA
-				connType
 				creationTime
+				description
 				interfaces {
+					destType
+					downstreamBandwidth
+					downstreamBandwidthMbpsPrecision
 					id
 					name
 					upstreamBandwidth
-					downstreamBandwidth
 					upstreamBandwidthMbpsPrecision
-					downstreamBandwidthMbpsPrecision
-					destType
 					wanRole
 				}
+				ipsec {
+					catoIP
+					ikeVersion
+					isPrimary
+					remoteIP
+					tunnelConfig {
+						localId
+						tunnelId
+						tunnelRemoteIdentifier
+					}
+				}
+				isHA
+				name
+				region
 				sockets {
 					id
-					serial
 					isPrimary
 					platform
+					serial
 					version
 					versionUpdateTime
 				}
-				ipsec {
-					isPrimary
-					catoIP
-					remoteIP
-					ikeVersion
-					tunnelConfig {
-						tunnelId
-						tunnelRemoteIdentifier
-						localId
-					}
-				}
+				type
 			}
-			hostCount
-			altWanStatus
-			degradedStatus {
-				isDegraded
-				degradedDetails {
-					reason
-					args {
-						__typename
-						... on DegradedStatusSocketVersionsArgs {
-							primaryVersion
-							secondaryVersion
-						}
-						... on DegradedStatusBasicDataArgs {
-							deviceName
-							lastConnectedDate
-						}
-						... on DegradedStatusSocketArgs {
-							deviceName
-							portID
-							portName
-							lastConnectedDate
-						}
-						... on DegradedStatusLastConnectedArgs {
-							lastConnectedDate
-						}
-						... on DegradedStatusMultiTunnelArgs {
-							deviceName
-							tunnelID
-							tunnelName
-							lastConnectedDate
-						}
-					}
- {
-						__typename
-						... on DegradedStatusSocketVersionsArgs {
-							primaryVersion
-							secondaryVersion
-						}
-						... on DegradedStatusBasicDataArgs {
-							deviceName
-							lastConnectedDate
-						}
-						... on DegradedStatusSocketArgs {
-							deviceName
-							portID
-							portName
-							lastConnectedDate
-						}
-						... on DegradedStatusLastConnectedArgs {
-							lastConnectedDate
-						}
-						... on DegradedStatusMultiTunnelArgs {
-							deviceName
-							tunnelID
-							tunnelName
-							lastConnectedDate
-						}
-					}
-				}
-			}
-		}
-		users ( userIDs:$userIDs  )  {
-			id
-			connectivityStatus
-			operationalStatus
-			name
-			deviceName
-			uptime
 			lastConnected
-			version
-			versionNumber
-			popID
+			operationalStatus
 			popName
-			remoteIP
-			remoteIPInfo {
-				ip
-				countryCode
-				countryName
-				city
-				state
-				provider
-				latitude
-				longitude
-			}
-			internalIP
-			osType
-			osVersion
+			protoId
+		}
+		timestamp
+		users ( userIDs:$userIDs  )  {
+			connectedInOffice
+			connectivityStatus
+			deviceName
 			devices {
-				id
-				name
-				identifier
 				connected
+				connectedSince
+				deviceUptime
 				haRole
+				id
+				identifier
 				interfaces {
+					bgpState
+					cellularInterfaceInfo {
+						apn
+						apnSelectionMethod
+						disconnectionReason
+						iccid
+						imei
+						isModemConnected
+						isModemSuspended
+						isRoamingAllowed
+						isSimSlot1Detected
+						isSimSlot2Detected
+						modemStatus
+						networkType
+						operatorName
+						signalStrength
+						simNumber
+						simSlotId
+					}
 					connected
 					id
+					info {
+						destType
+						downstreamBandwidth
+						downstreamBandwidthMbpsPrecision
+						id
+						name
+						upstreamBandwidth
+						upstreamBandwidthMbpsPrecision
+						wanRole
+					}
 					name
-					physicalPort
 					naturalOrder
+					physicalPort
 					popName
 					previousPopID
 					previousPopName
 					tunnelConnectionReason
-					tunnelUptime
 					tunnelRemoteIP
 					tunnelRemoteIPInfo {
-						ip
+						city
 						countryCode
 						countryName
-						city
-						state
-						provider
+						ip
 						latitude
 						longitude
+						provider
+						state
 					}
+					tunnelUptime
 					type
-					info {
-						id
-						name
-						upstreamBandwidth
-						downstreamBandwidth
-						upstreamBandwidthMbpsPrecision
-						downstreamBandwidthMbpsPrecision
-						destType
-						wanRole
-					}
-					cellularInterfaceInfo {
-						networkType
-						simSlotId
-						modemStatus
-						isModemConnected
-						iccid
-						imei
-						operatorName
-						isModemSuspended
-						apn
-						apnSelectionMethod
-						signalStrength
-						isRoamingAllowed
-						simNumber
-						disconnectionReason
-						isSimSlot1Detected
-						isSimSlot2Detected
-					}
-					bgpState
-				}
-				lastConnected
-				lastDuration
-				connectedSince
-				lastPopID
-				lastPopName
-				recentConnections {
-					duration
-					interfaceName
-					deviceName
-					lastConnected
-					popName
-					remoteIP
-					remoteIPInfo {
-						ip
-						countryCode
-						countryName
-						city
-						state
-						provider
-						latitude
-						longitude
-					}
-				}
-				type
-				deviceUptime
-				socketInfo {
-					id
-					serial
-					isPrimary
-					platform
-					version
-					versionUpdateTime
 				}
 				interfacesLinkState {
-					id
-					up
-					mediaIn
-					linkSpeed
 					duplex
 					hasAddress
 					hasInternet
 					hasTunnel
+					id
+					linkSpeed
+					mediaIn
+					up
 				}
+				internalIP
+				lastConnected
+				lastDuration
+				lastPopID
+				lastPopName
+				mfaCreationTime
+				mfaExpirationTime
+				name
 				osType
 				osVersion
+				recentConnections {
+					deviceName
+					duration
+					interfaceName
+					lastConnected
+					popName
+					remoteIP
+					remoteIPInfo {
+						city
+						countryCode
+						countryName
+						ip
+						latitude
+						longitude
+						provider
+						state
+					}
+				}
+				releaseGroup
+				socketInfo {
+					id
+					isPrimary
+					platform
+					serial
+					version
+					versionUpdateTime
+				}
+				type
 				version
 				versionNumber
-				releaseGroup
-				mfaExpirationTime
-				mfaCreationTime
-				internalIP
 			}
-			connectedInOffice
+			id
 			info {
-				name
-				status
-				email
-				creationTime
-				phoneNumber
-				origin
 				authMethod
+				creationTime
+				email
+				name
+				origin
+				phoneNumber
+				status
 			}
+			internalIP
+			lastConnected
+			name
+			operationalStatus
+			osType
+			osVersion
+			popID
+			popName
 			recentConnections {
+				deviceName
 				duration
 				interfaceName
-				deviceName
 				lastConnected
 				popName
 				remoteIP
 				remoteIPInfo {
-					ip
+					city
 					countryCode
 					countryName
-					city
-					state
-					provider
+					ip
 					latitude
 					longitude
+					provider
+					state
 				}
 			}
+			remoteIP
+			remoteIPInfo {
+				city
+				countryCode
+				countryName
+				ip
+				latitude
+				longitude
+				provider
+				state
+			}
+			uptime
+			version
+			versionNumber
 		}
-		timestamp
 	}	
 }

@@ -411,12 +411,13 @@ def generateGraphqlPayload(variables_obj, operation, operation_name, renderArgsA
     
     # We'll build variable_str after field rendering to include dynamically discovered arguments
     query_str += f" ( VARIABLES_PLACEHOLDER) {{\n"
-    query_str += f"{indent}{operation['name']} ( "
+    query_str += f"{indent}{operation['name']}"
     
     # Add main operation arguments - only include arguments that belong to the root operation field
     # Arguments for nested fields (like updateRule.input) will be handled in the field rendering process
     # Use args (not operationArgs) to only get main-level arguments for the root operation field
     main_args = operation.get("args", {})
+    main_arg_str = ""
     for arg_name in main_args:
         arg = main_args[arg_name]
         # Include required arguments always, and optional arguments only when they have meaningful values
@@ -429,7 +430,11 @@ def generateGraphqlPayload(variables_obj, operation, operation_name, renderArgsA
                     variables_obj[var_name] != {})
         
         if is_required or has_value:
-            query_str += arg["responseStr"]
+            main_arg_str += arg["responseStr"]
+
+    if main_arg_str:
+        query_str += f" ( {main_arg_str})"
+    query_str += " {\n"
     
     # Generate field selection with enhanced rendering and dynamic argument collection
     if renderArgsAndFields_func is None:
@@ -451,7 +456,7 @@ def generateGraphqlPayload(variables_obj, operation, operation_name, renderArgsA
     # This ensures all fields that need subfield selections are properly expanded
     field_selection = postProcessBareComplexFields(field_selection, "\t\t")
     
-    query_str += ") {\n" + field_selection + "\t}"
+    query_str += field_selection + "\t}"
     query_str += f"{indent}\n}}"
     
     # Now build variable declarations from dynamically collected arguments
@@ -644,10 +649,12 @@ def expandFieldWithIntrospection(field_name, field_type_name, indent, already_ex
                     if expansion:
                         result += f"{indent}\t{complex_field_name} {{\n{expansion}{indent}\t}}\n"
                     else:
-                        # Fallback: add minimal expansion for known complex types
-                        result += f"{indent}\t{complex_field_name}\n"
+                        # A complex GraphQL field cannot be selected without a
+                        # selection set. __typename is valid for every object,
+                        # interface, and union and keeps the generated query valid.
+                        result += f"{indent}\t{complex_field_name} {{ __typename }}\n"
                 else:
-                    result += f"{indent}\t{complex_field_name}\n"
+                    result += f"{indent}\t{complex_field_name} {{ __typename }}\n"
         
         elif type_def.get('kind') in ['INTERFACE', 'UNION'] and type_def.get('possibleTypes'):
             # Add __typename for interface/union types (essential for GraphQL)
@@ -690,13 +697,13 @@ def expandFieldWithIntrospection(field_name, field_type_name, indent, already_ex
                                             if inner_expansion:
                                                 result += f"{indent}\t\t{poss_field_name} {{\n{inner_expansion}{indent}\t\t}}\n"
                                             else:
-                                                result += f"{indent}\t\t{poss_field_name}\n"
+                                                result += f"{indent}\t\t{poss_field_name} {{ __typename }}\n"
                                         else:
-                                            result += f"{indent}\t\t{poss_field_name}\n"
+                                            result += f"{indent}\t\t{poss_field_name} {{ __typename }}\n"
                                     else:
-                                        result += f"{indent}\t\t{poss_field_name}\n"
+                                        result += f"{indent}\t\t{poss_field_name} {{ __typename }}\n"
                                 else:
-                                    result += f"{indent}\t\t{poss_field_name}\n"
+                                    result += f"{indent}\t\t{poss_field_name} {{ __typename }}\n"
                         
                         result += f"{indent}\t}}\n"
         
@@ -1038,7 +1045,8 @@ def renderArgsAndFields(response_arg_str, variables_obj, cur_operation, definiti
                                     has_complete_definition = (
                                         subfield.get("type") and subfield['type'].get('definition') and 
                                         (subfield['type']['definition'].get("fields") is not None or 
-                                         subfield['type']['definition'].get('inputFields') is not None)
+                                         subfield['type']['definition'].get('inputFields') is not None or
+                                         subfield['type']['definition'].get('possibleTypes') is not None)
                                     )
                                     if not has_complete_definition:
                                         subfield_needs_expansion = True
@@ -1055,35 +1063,37 @@ def renderArgsAndFields(response_arg_str, variables_obj, cur_operation, definiti
                         response_arg_str += "\n"
                 else:
                     response_arg_str += "\n"
-                
-            if field['type']['definition'].get('possibleTypes'):
-                # Load introspection data for comprehensive union expansion
+
+            if (
+                field['type']['definition'].get('possibleTypes')
+                and field['type']['definition'].get('kind') == 'INTERFACE'
+            ):
+                # Render only fields that are not already provided by the
+                # interface. Raw introspection still contains those fields,
+                # while processed possible-type definitions may omit them.
                 introspection_types = loadIntrospectionTypes()
-                
+                common_fields = set(field['type']['definition'].get('fields', {}))
                 possible_types = field['type']['definition']['possibleTypes']
-                # Handle both list and dict formats for possibleTypes
-                if isinstance(possible_types, list):
-                    for possible_type in possible_types:
-                        if isinstance(possible_type, dict) and 'name' in possible_type:
-                            type_name = possible_type['name']
-                            # Use introspection data to generate full union fragments
-                            if type_name in introspection_types:
-                                response_arg_str += f"{indent}\t... on {type_name} {{\n"
-                                expanded_fragment = expandUnionFragment(type_name, introspection_types, indent)
-                                if expanded_fragment:
-                                    response_arg_str += expanded_fragment
-                                response_arg_str += f"{indent}\t}}\n"
-                elif isinstance(possible_types, dict):
-                    for possible_type_name in possible_types:
-                        possible_type = possible_types[possible_type_name]
-                        type_name = possible_type['name'] if 'name' in possible_type else possible_type_name
-                        # Use introspection data to generate full union fragments
-                        if type_name in introspection_types:
-                            response_arg_str += f"{indent}\t... on {type_name} {{\n"
-                            expanded_fragment = expandUnionFragment(type_name, introspection_types, indent)
-                            if expanded_fragment:
-                                response_arg_str += expanded_fragment
-                            response_arg_str += f"{indent}\t}}\n"
+                possible_types = (
+                    possible_types.values()
+                    if isinstance(possible_types, dict)
+                    else possible_types
+                )
+                for possible_type in possible_types:
+                    if not isinstance(possible_type, dict) or 'name' not in possible_type:
+                        continue
+                    type_name = possible_type['name']
+                    if type_name not in introspection_types:
+                        continue
+                    response_arg_str += f"{indent}\t... on {type_name} {{\n"
+                    response_arg_str += expandUnionFragment(
+                        type_name,
+                        introspection_types,
+                        indent,
+                        excluded_fields=common_fields,
+                    )
+                    response_arg_str += f"{indent}\t}}\n"
+
             response_arg_str += f"{indent}}}\n"
         
         # Handle inputFields
@@ -1140,7 +1150,7 @@ def renderArgsAndFields(response_arg_str, variables_obj, cur_operation, definiti
     return response_arg_str
 
 
-def expandUnionFragment(type_name, introspection_types, indent):
+def expandUnionFragment(type_name, introspection_types, indent, excluded_fields=None):
     """
     Helper function to expand a union fragment based on introspection data
     
@@ -1152,29 +1162,79 @@ def expandUnionFragment(type_name, introspection_types, indent):
     Returns:
         String containing expanded fragment fields
     """
+    excluded_fields = set(excluded_fields or ())
+
+    def unwrap(type_info):
+        current = type_info or {}
+        while current.get('kind') in {'NON_NULL', 'LIST'}:
+            current = current.get('ofType') or {}
+        return current
+
+    def render_complex(complex_type_name, field_indent, depth, ancestors):
+        if depth <= 0 or complex_type_name in ancestors:
+            return f"{field_indent}__typename\n"
+
+        type_def = introspection_types.get(complex_type_name, {})
+        kind = type_def.get('kind')
+        if kind == 'OBJECT':
+            return render_fields(
+                type_def,
+                field_indent,
+                depth,
+                ancestors | {complex_type_name},
+                set(),
+            )
+        if kind in {'INTERFACE', 'UNION'}:
+            result = f"{field_indent}__typename\n"
+            for possible_type in type_def.get('possibleTypes') or []:
+                possible_name = possible_type.get('name')
+                if not possible_name:
+                    continue
+                fragment = render_fields(
+                    introspection_types.get(possible_name, {}),
+                    field_indent + "\t",
+                    depth - 1,
+                    ancestors | {complex_type_name, possible_name},
+                    set(),
+                )
+                if fragment:
+                    result += f"{field_indent}... on {possible_name} {{\n"
+                    result += fragment
+                    result += f"{field_indent}}}\n"
+            return result
+        return ""
+
+    def render_fields(type_def, field_indent, depth, ancestors, fields_to_exclude):
+        result = ""
+        for field in type_def.get('fields') or []:
+            field_name = field.get('name')
+            if not field_name or field_name in fields_to_exclude:
+                continue
+
+            result += f"{field_indent}{field_name}"
+            current_type = unwrap(field.get('type'))
+            if current_type.get('kind') in {'OBJECT', 'INTERFACE', 'UNION'}:
+                nested = render_complex(
+                    current_type.get('name'),
+                    field_indent + "\t",
+                    depth - 1,
+                    ancestors,
+                )
+                if nested:
+                    result += " {\n" + nested + f"{field_indent}}}"
+            result += "\n"
+        return result
+
     if type_name not in introspection_types:
         return ""
-        
-    type_def = introspection_types[type_name]
-    if not type_def.get('fields'):
-        return ""
-    
-    result = ""
-    for field in type_def['fields']:
-        field_name = field['name']
-        field_type = field.get('type', {})
-        
-        # Get core type
-        current_type = field_type
-        while current_type and current_type.get('ofType'):
-            current_type = current_type['ofType']
-        
-        if current_type and current_type.get('kind') in ['SCALAR', 'ENUM']:
-            result += f"{indent}\t\t{field_name}\n"
-        else:
-            result += f"{indent}\t\t{field_name}\n"
-    
-    return result
+
+    return render_fields(
+        introspection_types[type_name],
+        indent + "\t\t",
+        4,
+        {type_name},
+        excluded_fields,
+    )
 
 
 # Export commonly used functions for easy importing

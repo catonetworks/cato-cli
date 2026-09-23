@@ -1,13 +1,17 @@
-query auditFeed ( $accountIDs:[ID!] $timeFrame:TimeFrame! $auditFieldFilterInput:[AuditFieldFilterInput!] $marker:String $fieldNames:[AuditFieldName!]) {
-	auditFeed ( accountIDs:$accountIDs timeFrame:$timeFrame filters:$auditFieldFilterInput marker:$marker ) {
-		from
-		to
-		marker
-		fetchedCount
-		hasMore
+query auditFeed ( $accountIDs:[ID!] $auditFieldFilterInput:[AuditFieldFilterInput!] $fieldNames:[AuditFieldName!] $marker:String $timeFrame:TimeFrame!) {
+	auditFeed ( accountIDs:$accountIDs filters:$auditFieldFilterInput marker:$marker timeFrame:$timeFrame ) {
 		accounts {
 			id
 			records ( fieldNames:$fieldNames   ) {
+				account {
+					description
+					entity {
+						id
+						name
+						type
+					}
+					helperFields
+				}
 				admin {
 					id
 					name
@@ -18,55 +22,38 @@ query auditFeed ( $accountIDs:[ID!] $timeFrame:TimeFrame! $auditFieldFilterInput
 					name
 					type
 				}
+				fields {
+					name
+					value {
+						__typename
+						... on DateValue {
+							date
+						}
+						... on Entity {
+							id
+							name
+							type
+						}
+						... on StringValue {
+							string
+						}
+					}
+
+				}
+				fieldsMap
+				flatFields
 				object {
 					id
 					name
 					type
 				}
-				account {
-					entity {
-						id
-						name
-						type
-					}
-					description
-					helperFields
-				}
 				time
-				fields {
-					name
-					value {
-						__typename
-						... on StringValue {
-							string
-						}
-						... on DateValue {
-							date
-						}
-						... on Entity {
-							id
-							name
-							type
-						}
-					}
- {
-						__typename
-						... on StringValue {
-							string
-						}
-						... on DateValue {
-							date
-						}
-						... on Entity {
-							id
-							name
-							type
-						}
-					}
-				}
-				fieldsMap
-				flatFields
 			}
 		}
+		fetchedCount
+		from
+		hasMore
+		marker
+		to
 	}	
 }

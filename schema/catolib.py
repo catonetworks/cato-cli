@@ -504,10 +504,10 @@ def generateExampleVariables(operation):
                     # Use actual field name, not varName, for nested input fields
                     variablesObj[arg["varName"]][inputField["name"]] = parseNestedArgFields(inputField)
     
-    if "accountID" in variablesObj:
-        del variablesObj["accountID"]
-    if "accountId" in variablesObj:
-        del variablesObj["accountId"]
+    # Keep account identifiers in the generated payload. They may be required by
+    # the root operation or by a nested field such as removeAccount(accountId:).
+    # Runtime request handling can still override these example values with the
+    # configured account ID.
     return variablesObj
 
 def parseNestedArgFields(fieldObj):
@@ -567,6 +567,8 @@ def renderInputFieldVal(arg):
             value = enum_values[0].get("name", "ENUM_VALUE")
         else:
             value = "ENUM_VALUE"
+        if "LIST" in arg["type"]["kind"]:
+            value = [value]
     
     return value
 

@@ -64,6 +64,7 @@ pipeline {
                             --user "$(id -u):$(id -g)" \
                             --env CATO_TOKEN \
                             --env CATO_ACCOUNT_ID \
+                            --env SKIP_SITE_LOCATION_UPDATE=true \
                             --volume "$WORKSPACE:/workspace:rw" \
                             --workdir /workspace \
                             python:3.11-slim-bookworm \
@@ -121,6 +122,10 @@ pipeline {
                             commit -m 'Update generated CLI schema' \
                                    -m 'Refresh the Cato GraphQL introspection schema and regenerate CLI models, payloads, parsers, and documentation.'
                     '''
+                    env.CLI_COMMIT_SHA = sh(
+                        script: 'git rev-parse --verify HEAD^{commit}',
+                        returnStdout: true
+                    ).trim()
                     currentBuild.description = "Prepared ${env.SCHEMA_UPDATE_BRANCH}"
                 }
             }
@@ -233,7 +238,8 @@ EOF
                     job: 'cato-go-sdk-schema-update',
                     wait: false,
                     parameters: [
-                        string(name: 'CLI_REF', value: env.SCHEMA_UPDATE_BRANCH),
+                        string(name: 'CLI_REF', value: env.CLI_COMMIT_SHA),
+                        string(name: 'CLI_PR_URL', value: env.SCHEMA_UPDATE_PR_URL),
                         string(name: 'PR_SLACK_CHANNEL', value: params.PR_SLACK_CHANNEL)
                     ]
                 )

@@ -3,6 +3,8 @@ import sys
 import unittest
 from pathlib import Path
 
+from graphql import build_client_schema, parse, validate
+
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "schema"))
@@ -57,6 +59,27 @@ class GeneratedGraphQLPayloadTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         load_introspection()
+        with (ROOT / "schema/introspection.json").open(encoding="utf-8") as handle:
+            cls.schema = build_client_schema(json.load(handle)["data"])
+
+    def test_all_generated_operations_validate_against_introspection(self):
+        failures = []
+        payload_paths = sorted((ROOT / "queryPayloads").glob("*.txt"))
+
+        self.assertTrue(payload_paths, "no generated GraphQL operations found")
+        for payload_path in payload_paths:
+            try:
+                document = parse(payload_path.read_text(encoding="utf-8"))
+            except Exception as error:
+                failures.append(f"{payload_path.name}: {error}")
+                continue
+
+            failures.extend(
+                f"{payload_path.name}: {error.message}"
+                for error in validate(self.schema, document)
+            )
+
+        self.assertEqual([], failures, "\n" + "\n".join(failures))
 
     def test_account_arguments_are_rendered(self):
         remove_account = generated_query("mutation.accountManagement.removeAccount")

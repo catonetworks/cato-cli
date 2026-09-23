@@ -292,8 +292,12 @@ def run():
     print(f"   - Mutation operations: {len(catolib.catoApiSchema['mutation'])}")
     print(f"   - Total types processed: {len(catolib.catoApiIntrospection['objects']) + len(catolib.catoApiIntrospection['enums']) + len(catolib.catoApiIntrospection['scalars'])}")
 
-    # Build site location database from geonames data
-    build_site_location_db()
+    # Geonames is independent live data. Schema automation skips it so an API
+    # schema refresh cannot introduce unrelated, non-reproducible location churn.
+    if os.environ.get("SKIP_SITE_LOCATION_UPDATE", "").lower() not in {"1", "true", "yes"}:
+        build_site_location_db()
+    else:
+        print("• Skipping independent site location data refresh")
 
 if __name__ == '__main__':
     run()

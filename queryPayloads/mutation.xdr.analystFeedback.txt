@@ -2,59 +2,35 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 	xdr ( accountId:$accountId ) {
 		analystFeedback ( input:$analystFeedbackInput  )  {
 			story {
-				id
 				accountId
-				analystName
-				analystEmail
 				accountName
-				updatedAt
+				analystEmail
+				analystName
 				createdAt
-				playbook
-				summary
+				id
 				incident {
-					id
-					firstSignal
-					lastSignal
-					engineType
-					vendor
-					producer
-					producerType
-					producerName
-					connectionType
-					indication
-					queryName
-					criticality
-					source
-					ticket
-					status
-					research
-					siteName
-					storyDuration
-					description
-					sourceIp
 					analystFeedback {
-						verdict
+						additionalInfo
 						severity
+						threatClassification
 						threatType {
+							details
 							name
 							recommendedAction
-							details
 						}
-						threatClassification
-						additionalInfo
+						verdict
 					}
-					site {
-						id
-						name
-					}
-					user {
-						id
-						name
-					}
-					predictedVerdict
-					predictedThreatType
 					categories
+					connectionType
+					criticality
+					description
+					engineType
 					entities {
+						data {
+							fieldName
+							values
+						}
+						kind
 						ref {
 							id
 							name
@@ -62,15 +38,426 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 								type
 							}
 						}
-						type
 						role
-						kind
-						data {
-							fieldName
-							values
+						type
+					}
+					firstSignal
+					id
+					indication
+					lastSignal
+					muted
+					predictedThreatType
+					predictedVerdict
+					producer
+					producerName
+					producerType
+					queryName
+					research
+					site {
+						id
+						name
+					}
+					siteName
+					source
+					sourceIp
+					status
+					storyDuration
+					ticket
+					user {
+						id
+						name
+					}
+					vendor
+					... on AiOperationsIncident {
+						similarStoriesData {
+							storyId
+							threatTypeName
+							verdict
+							threatClassification
+							similarityPercentage
+							indication
+						}
+						flowLastTime
+						flowStartTime
+						ioa
+						riskScore
+						type
+						occurrences
+						eventsGraphQuery {
+							type
+							timeSeriesEvents {
+								accountID
+								timeFrame
+								measures {
+									aggType
+									fieldName
+									trend
+								}
+								dimensions {
+									fieldName
+								}
+								filters {
+									fieldName
+									operator
+									values
+								}
+								buckets
+							}
+						}
+						accountOperationIncident {
+							incidentTimeline {
+								__typename
+								... on AccountOperationsTimelineEvent {
+									id
+									created
+									validated
+									description
+									type
+									eventIds
+									muted
+								}
+							}
+							metadata {
+								type
+								key
+								value
+							}
+							playbooks {
+								title
+								description
+								link
+							}
 						}
 					}
-					muted
+					... on AnomalyEvents {
+						similarStoriesData {
+							storyId
+							threatTypeName
+							verdict
+							threatClassification
+							similarityPercentage
+							indication
+						}
+						srcSiteId
+						os
+						deviceName
+						macAddress
+						logonName
+						clientClass
+						drillDownFilter {
+							name
+							value
+							values
+						}
+						breakdownField
+						subjectType
+						extra {
+							name
+							type
+							value
+						}
+						gaussian {
+							std
+							ss
+							z_score
+							avg
+							n
+						}
+						metric {
+							name
+							value
+						}
+						metricDetails {
+							name
+							units
+						}
+						mitres {
+							id
+							name
+						}
+						rules
+						timeSeries {
+							data
+							groupBy
+							label
+							sum
+							units
+							info
+							key {
+								measureFieldName
+								dimensions {
+									fieldName
+									value
+								}
+							}
+						}
+						targets {
+							type
+							name
+							analysisScore
+							infectionSource
+							threatReference
+							catoPopularity
+							threatFeeds
+							creationTime
+							categories
+							countryOfRegistration
+							searchHits
+							engines
+							eventData {
+								signatureId
+								eventType
+								threatType
+								threatName
+								severity
+								action
+								ruleId
+								ruleName
+								virusName
+								scanResult
+								appId
+								appName
+								appActivityType
+								fileName
+								dnsProtectionCategory
+							}
+						}
+						direction
+					}
+					... on AnomalyStats {
+						similarStoriesData {
+							storyId
+							threatTypeName
+							verdict
+							threatClassification
+							similarityPercentage
+							indication
+						}
+						srcSiteId
+						os
+						deviceName
+						macAddress
+						logonName
+						clientClass
+						drillDownFilter {
+							name
+							value
+							values
+						}
+						breakdownField
+						subjectType
+						extra {
+							name
+							type
+							value
+						}
+						gaussian {
+							std
+							ss
+							z_score
+							avg
+							n
+						}
+						metric {
+							name
+							value
+						}
+						metricDetails {
+							name
+							units
+						}
+						mitres {
+							id
+							name
+						}
+						rules
+						timeSeries {
+							data
+							groupBy
+							label
+							sum
+							units
+							info
+							key {
+								measureFieldName
+								dimensions {
+									fieldName
+									value
+								}
+							}
+						}
+						targets {
+							type
+							name
+							analysisScore
+							infectionSource
+							threatReference
+							catoPopularity
+							threatFeeds
+							creationTime
+							categories
+							countryOfRegistration
+							searchHits
+							engines
+							eventData {
+								signatureId
+								eventType
+								threatType
+								threatName
+								severity
+								action
+								ruleId
+								ruleName
+								virusName
+								scanResult
+								appId
+								appName
+								appActivityType
+								fileName
+								dnsProtectionCategory
+							}
+						}
+						direction
+					}
+					... on CatoEndpoint {
+						similarStoriesData {
+							storyId
+							threatTypeName
+							verdict
+							threatClassification
+							similarityPercentage
+							indication
+						}
+						device {
+							id
+							deviceName
+							osDetails {
+								osType
+								osBuild
+								osVersion
+							}
+							loggedOnUsers {
+								__typename
+								... on MicrosoftEndpointUser {
+									id
+									name
+									userSid
+									accountName
+									domainName
+									principalName
+								}
+								... on CatoEndpointUser {
+									id
+									name
+								}
+							}
+							macAddress
+							externalIp
+							localIp
+						}
+						alerts {
+							id
+							title
+							description
+							threatName
+							mitreTechnique {
+								id
+								name
+							}
+							mitreSubTechnique {
+								id
+								name
+							}
+							createdDateTime
+							resources {
+								__typename
+								... on CatoProcessResource {
+									id
+									createdDateTime
+									remediationStatus
+									processId
+									processCommandLine
+									imageFile {
+										__typename
+									}
+									userAccount {
+										__typename
+									}
+								}
+								... on CatoFileResource {
+									id
+									createdDateTime
+									remediationStatus
+									fileDetails {
+										__typename
+									}
+									detectionStatus
+								}
+							}
+							activities {
+								id
+								resourceId
+								parentResourceId
+							}
+							criticality
+							engineType
+							statusCatoEndpoint: status
+							endpointProtectionProfile
+							externalIp
+							localIp
+						}
+					}
+					... on GenericIncident {
+						similarStoriesData {
+							storyId
+							threatTypeName
+							verdict
+							threatClassification
+							similarityPercentage
+							indication
+						}
+						vendorInfo {
+							name
+							product
+							status
+							engineType
+							incidentUrl
+						}
+						statusInfo {
+							verdict
+							classification
+							incidentStatus
+						}
+						evidences {
+							type
+							value
+							kind
+							data {
+								fieldName
+								values
+							}
+						}
+						queries {
+							dataSource
+							measures {
+								fieldName
+								aggType
+								unitType
+							}
+							filters {
+								name
+								operator
+								value
+								values
+							}
+							fields
+							buckets
+						}
+						mitres {
+							id
+							name
+						}
+					}
 					... on MicrosoftEndpoint {
 						similarStoriesData {
 							storyId
@@ -218,7 +605,7 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 							lastUpdateDateTime
 							destinationIp
 							destinationUrl
-							status
+							statusMicrosoftEndpoint: status
 							providerAlertId
 							alertWebUrl
 							determination
@@ -265,7 +652,7 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 						url
 						vendorStatus
 					}
-					... on AnomalyStats {
+					... on NetworkXDRIncident {
 						similarStoriesData {
 							storyId
 							threatTypeName
@@ -274,186 +661,93 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 							similarityPercentage
 							indication
 						}
-						srcSiteId
-						os
-						deviceName
-						macAddress
-						logonName
-						clientClass
-						drillDownFilter {
-							name
-							value
-							values
+						networkIncidentTimeline {
+							created
+							validated
+							description
+							eventType
+							incidentId
+							networkEventSource
+							eventIds
+							acknowledged
+							linkId
+							linkName
+							linkConfigPrecedence
+							linkStatus
+							linkConfigBandwidth
+							deviceConfigHaRole
+							deviceHaRoleState
+							socketSerialId
+							pop
+							isp
+							bgpConnection {
+								connectionName
+								peerIp
+								peerAsn
+								catoIp
+								catoAsn
+							}
+							linkQualityIssue {
+								issueType
+								direction
+								current
+								threshold
+							}
+							hostIp
+							ruleName
+							tunnelResetCount
+							muted
 						}
-						breakdownField
-						subjectType
-						extra {
-							name
-							type
-							value
+						storyType
+						occurrences
+						siteConnectionType
+						siteConfigLocation
+						acknowledged
+						linkId
+						linkName
+						linkConfigPrecedence
+						deviceConfigHaRole
+						licenseRegion
+						licenseBandwidth
+						pop
+						isp
+						bgpConnection {
+							connectionName
+							peerIp
+							peerAsn
+							catoIp
+							catoAsn
 						}
-						gaussian {
-							std
-							ss
-							z_score
-							avg
-							n
-						}
-						metric {
-							name
-							value
-						}
-						metricDetails {
-							name
-							units
-						}
-						mitres {
-							id
-							name
-						}
-						rules
-						timeSeries {
-							data
-							groupBy
-							label
-							sum
-							units
-							info
-							key {
-								measureFieldName
-								dimensions {
-									fieldName
-									value
+						hostIp
+						ruleName
+						ilmmDetails {
+							linkDetails {
+								linkId
+								description
+								ispLinkId
+								comments
+								onboardingStatus
+								activeLicense
+							}
+							ispDetails {
+								name
+								ispAccountId
+								supportEmail
+								supportPhone
+								description
+								countryCode
+								loaFile {
+									fileName
+									fileHash
+									uploadedAt
 								}
 							}
-						}
-						targets {
-							type
-							name
-							analysisScore
-							infectionSource
-							threatReference
-							catoPopularity
-							threatFeeds
-							creationTime
-							categories
-							countryOfRegistration
-							searchHits
-							engines
-							eventData {
-								signatureId
-								eventType
-								threatType
-								threatName
-								severity
-								action
-								ruleId
-								ruleName
-								virusName
-								scanResult
-								appId
-								appName
-								appActivityType
-								fileName
-								dnsProtectionCategory
+							contacts {
+								name
+								phone
+								email
 							}
 						}
-						direction
-					}
-					... on AnomalyEvents {
-						similarStoriesData {
-							storyId
-							threatTypeName
-							verdict
-							threatClassification
-							similarityPercentage
-							indication
-						}
-						srcSiteId
-						os
-						deviceName
-						macAddress
-						logonName
-						clientClass
-						drillDownFilter {
-							name
-							value
-							values
-						}
-						breakdownField
-						subjectType
-						extra {
-							name
-							type
-							value
-						}
-						gaussian {
-							std
-							ss
-							z_score
-							avg
-							n
-						}
-						metric {
-							name
-							value
-						}
-						metricDetails {
-							name
-							units
-						}
-						mitres {
-							id
-							name
-						}
-						rules
-						timeSeries {
-							data
-							groupBy
-							label
-							sum
-							units
-							info
-							key {
-								measureFieldName
-								dimensions {
-									fieldName
-									value
-								}
-							}
-						}
-						targets {
-							type
-							name
-							analysisScore
-							infectionSource
-							threatReference
-							catoPopularity
-							threatFeeds
-							creationTime
-							categories
-							countryOfRegistration
-							searchHits
-							engines
-							eventData {
-								signatureId
-								eventType
-								threatType
-								threatName
-								severity
-								action
-								ruleId
-								ruleName
-								virusName
-								scanResult
-								appId
-								appName
-								appActivityType
-								fileName
-								dnsProtectionCategory
-							}
-						}
-						direction
 					}
 					... on Threat {
 						similarStoriesData {
@@ -679,343 +973,49 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 							httpResponseCode
 						}
 					}
-					... on NetworkXDRIncident {
-						similarStoriesData {
-							storyId
-							threatTypeName
-							verdict
-							threatClassification
-							similarityPercentage
-							indication
-						}
-						networkIncidentTimeline {
-							created
-							validated
-							description
-							eventType
-							incidentId
-							networkEventSource
-							eventIds
-							acknowledged
-							linkId
-							linkName
-							linkConfigPrecedence
-							linkStatus
-							linkConfigBandwidth
-							deviceConfigHaRole
-							deviceHaRoleState
-							socketSerialId
-							pop
-							isp
-							bgpConnection {
-								connectionName
-								peerIp
-								peerAsn
-								catoIp
-								catoAsn
-							}
-							linkQualityIssue {
-								issueType
-								direction
-								current
-								threshold
-							}
-							hostIp
-							ruleName
-							tunnelResetCount
-							muted
-						}
-						storyType
-						occurrences
-						siteConnectionType
-						siteConfigLocation
-						acknowledged
-						linkId
-						linkName
-						linkConfigPrecedence
-						deviceConfigHaRole
-						licenseRegion
-						licenseBandwidth
-						pop
-						isp
-						bgpConnection {
-							connectionName
-							peerIp
-							peerAsn
-							catoIp
-							catoAsn
-						}
-						hostIp
-						ruleName
-						ilmmDetails {
-							linkDetails {
-								linkId
-								description
-								ispLinkId
-								comments
-								onboardingStatus
-								activeLicense
-							}
-							ispDetails {
-								name
-								ispAccountId
-								supportEmail
-								supportPhone
-								description
-								countryCode
-								loaFile {
-									fileName
-									fileHash
-									uploadedAt
-								}
-							}
-							contacts {
-								name
-								phone
-								email
-							}
-						}
-					}
-					... on AiOperationsIncident {
-						similarStoriesData {
-							storyId
-							threatTypeName
-							verdict
-							threatClassification
-							similarityPercentage
-							indication
-						}
-						flowLastTime
-						flowStartTime
-						ioa
-						riskScore
-						type
-						occurrences
-						eventsGraphQuery {
-							type
-							timeSeriesEvents {
-								accountID
-								timeFrame
-								measures {
-									aggType
-									fieldName
-									trend
-								}
-								dimensions {
-									fieldName
-								}
-								filters {
-									fieldName
-									operator
-									values
-								}
-								buckets
-							}
-						}
-						accountOperationIncident {
-							incidentTimeline {
-								__typename
-								... on AccountOperationsTimelineEvent {
-									id
-									created
-									validated
-									description
-									type
-									eventIds
-									muted
-								}
-							}
-							metadata {
-								type
-								key
-								value
-							}
-							playbooks {
-								title
-								description
-								link
-							}
-						}
-					}
-					... on GenericIncident {
-						similarStoriesData {
-							storyId
-							threatTypeName
-							verdict
-							threatClassification
-							similarityPercentage
-							indication
-						}
-						vendorInfo {
-							name
-							product
-							status
-							engineType
-							incidentUrl
-						}
-						statusInfo {
-							verdict
-							classification
-							incidentStatus
-						}
-						evidences {
-							type
-							value
-							kind
-							data {
-								fieldName
-								values
-							}
-						}
-						queries {
-							dataSource
-							measures {
-								fieldName
-								aggType
-								unitType
-							}
-							filters {
-								name
-								operator
-								value
-								values
-							}
-							fields
-							buckets
-						}
-						mitres {
-							id
-							name
-						}
-					}
-					... on CatoEndpoint {
-						similarStoriesData {
-							storyId
-							threatTypeName
-							verdict
-							threatClassification
-							similarityPercentage
-							indication
-						}
-						device {
-							id
-							deviceName
-							osDetails {
-								osType
-								osBuild
-								osVersion
-							}
-							loggedOnUsers {
-								__typename
-								... on MicrosoftEndpointUser {
-									id
-									name
-									userSid
-									accountName
-									domainName
-									principalName
-								}
-								... on CatoEndpointUser {
-									id
-									name
-								}
-							}
-							macAddress
-							externalIp
-							localIp
-						}
-						alerts {
-							id
-							title
-							description
-							threatName
-							mitreTechnique {
-								id
-								name
-							}
-							mitreSubTechnique {
-								id
-								name
-							}
-							createdDateTime
-							resources {
-								__typename
-								... on CatoProcessResource {
-									id
-									createdDateTime
-									remediationStatus
-									processId
-									processCommandLine
-									imageFile {
-										__typename
-									}
-									userAccount {
-										__typename
-									}
-								}
-								... on CatoFileResource {
-									id
-									createdDateTime
-									remediationStatus
-									fileDetails {
-										__typename
-									}
-									detectionStatus
-								}
-							}
-							activities {
-								id
-								resourceId
-								parentResourceId
-							}
-							criticality
-							engineType
-							status
-							endpointProtectionProfile
-							externalIp
-							localIp
-						}
-					}
-				}
-				timeline {
-					createdAt
-					description
-					context
-					type
-					descriptions
-					category
-					additionalInfo
-					analystInfo {
-						name
-						email
-					}
 				}
 				investigationDetails {
 					investigationStatus
-					managedServiceTicketLink
-					lastUserComment {
-						id
-						createdAt
-						text
-						actor {
-							id
-							name
-						}
-						type
-						author
-					}
 					lastManagedComment {
-						id
-						createdAt
-						text
 						actor {
 							id
 							name
 						}
-						type
 						author
+						createdAt
+						id
+						text
+						type
 					}
+					lastUserComment {
+						actor {
+							id
+							name
+						}
+						author
+						createdAt
+						id
+						text
+						type
+					}
+					managedServiceTicketLink
 				}
+				playbook
+				summary
+				timeline {
+					additionalInfo
+					analystInfo {
+						email
+						name
+					}
+					category
+					context
+					createdAt
+					description
+					descriptions
+					type
+				}
+				updatedAt
 			}
 		}
 	}	

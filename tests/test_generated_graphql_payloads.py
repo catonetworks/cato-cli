@@ -84,6 +84,8 @@ class GeneratedGraphQLPayloadTest(unittest.TestCase):
         self.assertIn("site {\n", query)
         self.assertIn("device {\n", query)
         self.assertIn("alerts {\n", query)
+        self.assertIn("statusCatoEndpoint: status", query)
+        self.assertIn("statusMicrosoftEndpoint: status", query)
         self.assertEqual(query.count("siteName"), 1)
         self.assertNotIn("\n\t\t\t\t\tanalystFeedback\n", query)
         self.assertNotIn("\n\t\t\t\t\tdevice\n", query)

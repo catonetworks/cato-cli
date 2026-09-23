@@ -1,17 +1,13 @@
-query auditFeed ( $accountIDs:[ID!] $auditFieldFilterInput:[AuditFieldFilterInput!] $fieldNames:[AuditFieldName!] $marker:String $timeFrame:TimeFrame!) {
-	auditFeed ( accountIDs:$accountIDs filters:$auditFieldFilterInput marker:$marker timeFrame:$timeFrame ) {
+query auditFeed ( $accountIDs:[ID!] $timeFrame:TimeFrame! $auditFieldFilterInput:[AuditFieldFilterInput!] $marker:String $fieldNames:[AuditFieldName!]) {
+	auditFeed ( accountIDs:$accountIDs timeFrame:$timeFrame filters:$auditFieldFilterInput marker:$marker ) {
+		from
+		to
+		marker
+		fetchedCount
+		hasMore
 		accounts {
 			id
 			records ( fieldNames:$fieldNames   ) {
-				account {
-					description
-					entity {
-						id
-						name
-						type
-					}
-					helperFields
-				}
 				admin {
 					id
 					name
@@ -22,10 +18,28 @@ query auditFeed ( $accountIDs:[ID!] $auditFieldFilterInput:[AuditFieldFilterInpu
 					name
 					type
 				}
+				object {
+					id
+					name
+					type
+				}
+				account {
+					entity {
+						id
+						name
+						type
+					}
+					description
+					helperFields
+				}
+				time
 				fields {
 					name
 					value {
 						__typename
+						... on StringValue {
+							string
+						}
 						... on DateValue {
 							date
 						}
@@ -34,26 +48,12 @@ query auditFeed ( $accountIDs:[ID!] $auditFieldFilterInput:[AuditFieldFilterInpu
 							name
 							type
 						}
-						... on StringValue {
-							string
-						}
 					}
 
 				}
 				fieldsMap
 				flatFields
-				object {
-					id
-					name
-					type
-				}
-				time
 			}
 		}
-		fetchedCount
-		from
-		hasMore
-		marker
-		to
 	}	
 }

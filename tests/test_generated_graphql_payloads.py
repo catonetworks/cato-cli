@@ -62,9 +62,11 @@ class GeneratedGraphQLPayloadTest(unittest.TestCase):
         remove_account = generated_query("mutation.accountManagement.removeAccount")
         account_snapshot = generated_query("query.accountSnapshot")
 
-        self.assertIn("removeAccount ( accountId:$accountId", remove_account)
+        self.assertIn("removeAccount ( accountId:$accountIdToRemove", remove_account)
+        self.assertIn("$accountId:ID!", remove_account)
+        self.assertIn("$accountIdToRemove:ID!", remove_account)
         self.assertNotIn("accountSnapshot ( )", account_snapshot)
-        self.assertIn("accountSnapshot ( accountID:$accountID )", account_snapshot)
+        self.assertIn("accountSnapshot {", account_snapshot)
 
     def test_union_is_rendered_once(self):
         query = generated_query("query.auditFeed")
@@ -82,10 +84,13 @@ class GeneratedGraphQLPayloadTest(unittest.TestCase):
         self.assertIn("site {\n", query)
         self.assertIn("device {\n", query)
         self.assertIn("alerts {\n", query)
+        self.assertIn("statusCatoEndpoint: status", query)
+        self.assertIn("statusMicrosoftEndpoint: status", query)
         self.assertEqual(query.count("siteName"), 1)
         self.assertNotIn("\n\t\t\t\t\tanalystFeedback\n", query)
         self.assertNotIn("\n\t\t\t\t\tdevice\n", query)
         self.assertNotIn("\n\t\t\t\t\talerts\n", query)
+        self.assertNotRegex(query, r"\.\.\. on \w+ \{\n\s*\}")
 
 
 if __name__ == "__main__":

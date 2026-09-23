@@ -455,6 +455,7 @@ def generateGraphqlPayload(variables_obj, operation, operation_name, renderArgsA
     # CRITICAL FIX: Post-process the field selection to expand any remaining bare complex fields
     # This ensures all fields that need subfield selections are properly expanded
     field_selection = postProcessBareComplexFields(field_selection, "\t\t")
+    field_selection = removeEmptyFragments(field_selection)
     
     query_str += field_selection + "\t}"
     query_str += f"{indent}\n}}"
@@ -508,6 +509,15 @@ def postProcessBareComplexFields(field_selection_str, base_indent):
     # The heuristic type matching in findCandidateTypesForField was incorrectly
     # expanding scalar fields like 'id' with complex type definitions from unrelated types
     return field_selection_str
+
+
+def removeEmptyFragments(field_selection_str):
+    """Remove inline fragments that contain no selections."""
+    return re.sub(
+        r"(?m)^[ \t]*\.\.\. on [_A-Za-z][_0-9A-Za-z]* \{\n[ \t]*\}\n",
+        "",
+        field_selection_str,
+    )
 
 
 def findCandidateTypesForField(field_name, introspection_types):
@@ -954,48 +964,41 @@ def renderArgsAndFields(response_arg_str, variables_obj, cur_operation, definiti
                                 if isinstance(possible_type, dict) and 'name' in possible_type:
                                     # Only create fragment if there are actually fields to render
                                     if possible_type.get('fields') or possible_type.get('inputFields'):
-                                        response_arg_str += f"{indent}\t\t... on {possible_type['name']} {{\n"
-                                        response_arg_str = renderArgsAndFields(response_arg_str, variables_obj, cur_operation, possible_type, operation_name, indent + "\t\t\t", dynamic_operation_args, custom_client, True)
-                                        
-                                        # ENHANCED: Apply introspection expansion within fragments for fields without definitions
-                                        if possible_type.get('fields'):
-                                            for poss_field_name, poss_field in possible_type['fields'].items():
-                                                if not poss_field.get('type', {}).get('definition'):
-                                                    # This field might need introspection expansion
-                                                    poss_field_type_name = None
-                                                    if poss_field.get('type'):
-                                                        poss_field_type = poss_field['type']
-                                                        if poss_field_type.get('name'):
-                                                            poss_field_type_name = poss_field_type['name']
-                                                        # Drill through wrapped types
-                                                        while poss_field_type and poss_field_type.get('ofType'):
-                                                            poss_field_type = poss_field_type['ofType']
-                                                            if poss_field_type and poss_field_type.get('name'):
-                                                                poss_field_type_name = poss_field_type['name']
-                                                    
-                                                    if poss_field_type_name:
-                                                        expansion = expandFieldWithIntrospection(poss_field['name'], poss_field_type_name, indent + "\t\t\t")
-                                                        if expansion:
-                                                            # Check if field was already added as bare field and remove it
-                                                            lines = response_arg_str.split('\n')
-                                                            filtered_lines = []
-                                                            field_pattern = f"{indent}\t\t\t{poss_field['name']}"
-                                                            for line in lines:
-                                                                if not line.strip() == field_pattern.strip():
-                                                                    filtered_lines.append(line)
-                                                            response_arg_str = '\n'.join(filtered_lines)
-                                                            # Add the expanded version
-                                                            response_arg_str += f"{indent}\t\t\t{poss_field['name']} {{\n{expansion}{indent}\t\t\t}}\n"
-                                        
-                                        response_arg_str += f"{indent}\t\t}}\n"
+                                        fragment = renderArgsAndFields(
+                                            "",
+                                            variables_obj,
+                                            cur_operation,
+                                            possible_type,
+                                            operation_name,
+                                            indent + "\t\t\t",
+                                            dynamic_operation_args,
+                                            custom_client,
+                                            True,
+                                        )
+                                        if fragment.strip():
+                                            response_arg_str += f"{indent}\t\t... on {possible_type['name']} {{\n"
+                                            response_arg_str += fragment
+                                            response_arg_str += f"{indent}\t\t}}\n"
                         elif isinstance(possible_types, dict):
                             for possible_type_name in possible_types:
                                 possible_type = possible_types[possible_type_name]
                                 # Only create fragment if there are actually fields to render
                                 if possible_type.get('fields') or possible_type.get('inputFields'):
-                                    response_arg_str += f"{indent}\t\t... on {possible_type['name']} {{\n"
-                                    response_arg_str = renderArgsAndFields(response_arg_str, variables_obj, cur_operation, possible_type, operation_name, indent + "\t\t\t", dynamic_operation_args, custom_client, True)
-                                    response_arg_str += f"{indent}\t\t}}\n"
+                                    fragment = renderArgsAndFields(
+                                        "",
+                                        variables_obj,
+                                        cur_operation,
+                                        possible_type,
+                                        operation_name,
+                                        indent + "\t\t\t",
+                                        dynamic_operation_args,
+                                        custom_client,
+                                        True,
+                                    )
+                                    if fragment.strip():
+                                        response_arg_str += f"{indent}\t\t... on {possible_type['name']} {{\n"
+                                        response_arg_str += fragment
+                                        response_arg_str += f"{indent}\t\t}}\n"
                     response_arg_str += f"{indent}\t}}"
                 elif subfield.get('type') and subfield['type'].get('definition') and subfield['type']['definition'].get('possibleTypes'):
                     response_arg_str += " {\n"
@@ -1007,17 +1010,41 @@ def renderArgsAndFields(response_arg_str, variables_obj, cur_operation, definiti
                             if isinstance(possible_type, dict) and 'name' in possible_type:
                                 # Only create fragment if there are actually fields to render
                                 if possible_type.get('fields') or possible_type.get('inputFields'):
-                                    response_arg_str += f"{indent}\t\t... on {possible_type['name']} {{\n"
-                                    response_arg_str = renderArgsAndFields(response_arg_str, variables_obj, cur_operation, possible_type, operation_name, indent + "\t\t\t", dynamic_operation_args, custom_client, True)
-                                    response_arg_str += f"{indent}\t\t}}\n"
+                                    fragment = renderArgsAndFields(
+                                        "",
+                                        variables_obj,
+                                        cur_operation,
+                                        possible_type,
+                                        operation_name,
+                                        indent + "\t\t\t",
+                                        dynamic_operation_args,
+                                        custom_client,
+                                        True,
+                                    )
+                                    if fragment.strip():
+                                        response_arg_str += f"{indent}\t\t... on {possible_type['name']} {{\n"
+                                        response_arg_str += fragment
+                                        response_arg_str += f"{indent}\t\t}}\n"
                     elif isinstance(possible_types, dict):
                         for possible_type_name in possible_types:
                             possible_type = possible_types[possible_type_name]
                             # Only create fragment if there are actually fields to render
                             if possible_type.get('fields') or possible_type.get('inputFields'):
-                                response_arg_str += f"{indent}\t\t... on {possible_type['name']} {{\n"
-                                response_arg_str = renderArgsAndFields(response_arg_str, variables_obj, cur_operation, possible_type, operation_name, indent + "\t\t\t", dynamic_operation_args, custom_client, True)
-                                response_arg_str += f"{indent}\t\t}}\n"
+                                fragment = renderArgsAndFields(
+                                    "",
+                                    variables_obj,
+                                    cur_operation,
+                                    possible_type,
+                                    operation_name,
+                                    indent + "\t\t\t",
+                                    dynamic_operation_args,
+                                    custom_client,
+                                    True,
+                                )
+                                if fragment.strip():
+                                    response_arg_str += f"{indent}\t\t... on {possible_type['name']} {{\n"
+                                    response_arg_str += fragment
+                                    response_arg_str += f"{indent}\t\t}}\n"
                     response_arg_str += f"{indent}\t}}\n"
                 # ENHANCED: Check if subfield needs introspection expansion even if it has basic definition
                 # This handles fields within fragments that need expansion but don't have complete definitions
@@ -1079,6 +1106,11 @@ def renderArgsAndFields(response_arg_str, variables_obj, cur_operation, definiti
                     if isinstance(possible_types, dict)
                     else possible_types
                 )
+                conflicting_paths = find_conflicting_field_paths(
+                    [possible_type["name"] for possible_type in possible_types
+                     if isinstance(possible_type, dict) and "name" in possible_type],
+                    introspection_types,
+                )
                 for possible_type in possible_types:
                     if not isinstance(possible_type, dict) or 'name' not in possible_type:
                         continue
@@ -1091,6 +1123,8 @@ def renderArgsAndFields(response_arg_str, variables_obj, cur_operation, definiti
                         introspection_types,
                         indent,
                         excluded_fields=common_fields,
+                        alias_paths=conflicting_paths,
+                        alias_suffix=type_name,
                     )
                     response_arg_str += f"{indent}\t}}\n"
 
@@ -1150,7 +1184,84 @@ def renderArgsAndFields(response_arg_str, variables_obj, cur_operation, definiti
     return response_arg_str
 
 
-def expandUnionFragment(type_name, introspection_types, indent, excluded_fields=None):
+def _type_signature(type_info):
+    """Return a comparable signature for a GraphQL type reference."""
+    if not isinstance(type_info, dict):
+        return ""
+    kind = type_info.get("kind", "")
+    name = type_info.get("name", "")
+    if kind in {"NON_NULL", "LIST"}:
+        return f"{kind}({_type_signature(type_info.get('ofType'))})"
+    return f"{kind}:{name}"
+
+
+def _unwrap_type_reference(type_info):
+    """Unwrap GraphQL list/non-null wrappers."""
+    current = type_info if isinstance(type_info, dict) else {}
+    while current.get("kind") in {"NON_NULL", "LIST"}:
+        current = current.get("ofType") or {}
+    return current
+
+
+def find_conflicting_field_paths(type_names, introspection_types):
+    """Find nested field paths with incompatible types across fragments."""
+    signatures_by_path = {}
+    kinds_by_path = {}
+
+    def collect(type_name, path, ancestors):
+        if not type_name or type_name in ancestors:
+            return
+        type_def = introspection_types.get(type_name, {})
+        if type_def.get("kind") != "OBJECT":
+            return
+
+        next_ancestors = ancestors | {type_name}
+        for field in type_def.get("fields") or []:
+            field_name = field.get("name")
+            if not field_name:
+                continue
+            field_path = f"{path}.{field_name}" if path else field_name
+            signatures_by_path.setdefault(field_path, set()).add(
+                _type_signature(field.get("type"))
+            )
+            kinds_by_path.setdefault(field_path, set()).add(
+                _unwrap_type_reference(field.get("type")).get("kind")
+            )
+
+            base_type = _unwrap_type_reference(field.get("type"))
+            nested_type_name = base_type.get("name")
+            if base_type.get("kind") == "OBJECT":
+                collect(nested_type_name, field_path, next_ancestors)
+            elif base_type.get("kind") in {"INTERFACE", "UNION"}:
+                for possible_type in introspection_types.get(
+                    nested_type_name, {}
+                ).get("possibleTypes") or []:
+                    if isinstance(possible_type, dict):
+                        collect(
+                            possible_type.get("name"),
+                            field_path,
+                            next_ancestors,
+                        )
+
+    for type_name in type_names:
+        collect(type_name, "", set())
+
+    return {
+        field_path
+        for field_path, signatures in signatures_by_path.items()
+        if len(signatures) > 1
+        and kinds_by_path.get(field_path, set()).issubset({"SCALAR", "ENUM"})
+    }
+
+
+def expandUnionFragment(
+    type_name,
+    introspection_types,
+    indent,
+    excluded_fields=None,
+    alias_paths=None,
+    alias_suffix=None,
+):
     """
     Helper function to expand a union fragment based on introspection data
     
@@ -1170,7 +1281,10 @@ def expandUnionFragment(type_name, introspection_types, indent, excluded_fields=
             current = current.get('ofType') or {}
         return current
 
-    def render_complex(complex_type_name, field_indent, depth, ancestors):
+    alias_paths = set(alias_paths or ())
+    alias_suffix = alias_suffix or type_name
+
+    def render_complex(complex_type_name, field_indent, depth, ancestors, path):
         if depth <= 0 or complex_type_name in ancestors:
             return f"{field_indent}__typename\n"
 
@@ -1183,6 +1297,7 @@ def expandUnionFragment(type_name, introspection_types, indent, excluded_fields=
                 depth,
                 ancestors | {complex_type_name},
                 set(),
+                path,
             )
         if kind in {'INTERFACE', 'UNION'}:
             result = f"{field_indent}__typename\n"
@@ -1196,6 +1311,7 @@ def expandUnionFragment(type_name, introspection_types, indent, excluded_fields=
                     depth - 1,
                     ancestors | {complex_type_name, possible_name},
                     set(),
+                    path,
                 )
                 if fragment:
                     result += f"{field_indent}... on {possible_name} {{\n"
@@ -1204,14 +1320,25 @@ def expandUnionFragment(type_name, introspection_types, indent, excluded_fields=
             return result
         return ""
 
-    def render_fields(type_def, field_indent, depth, ancestors, fields_to_exclude):
+    def render_fields(
+        type_def,
+        field_indent,
+        depth,
+        ancestors,
+        fields_to_exclude,
+        path_prefix="",
+    ):
         result = ""
         for field in type_def.get('fields') or []:
             field_name = field.get('name')
             if not field_name or field_name in fields_to_exclude:
                 continue
 
-            result += f"{field_indent}{field_name}"
+            field_path = f"{path_prefix}.{field_name}" if path_prefix else field_name
+            field_display_name = field_name
+            if field_path in alias_paths:
+                field_display_name = f"{field_name}{alias_suffix}: {field_name}"
+            result += f"{field_indent}{field_display_name}"
             current_type = unwrap(field.get('type'))
             if current_type.get('kind') in {'OBJECT', 'INTERFACE', 'UNION'}:
                 nested = render_complex(
@@ -1219,6 +1346,7 @@ def expandUnionFragment(type_name, introspection_types, indent, excluded_fields=
                     field_indent + "\t",
                     depth - 1,
                     ancestors,
+                    field_path,
                 )
                 if nested:
                     result += " {\n" + nested + f"{field_indent}}}"
@@ -1234,6 +1362,7 @@ def expandUnionFragment(type_name, introspection_types, indent, excluded_fields=
         4,
         {type_name},
         excluded_fields,
+        "",
     )
 
 

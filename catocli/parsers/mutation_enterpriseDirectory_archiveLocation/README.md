@@ -11,9 +11,10 @@ catocli mutation enterpriseDirectory archiveLocation <json>
 
 catocli mutation enterpriseDirectory archiveLocation --json-file mutation.enterpriseDirectory.archiveLocation.json
 
-catocli mutation enterpriseDirectory archiveLocation '{"locationId":"id"}'
+catocli mutation enterpriseDirectory archiveLocation '{"accountId":"id","locationId":"id"}'
 
 catocli mutation enterpriseDirectory archiveLocation '{
+    "accountId": "id",
     "locationId": "id"
 }'
 ```

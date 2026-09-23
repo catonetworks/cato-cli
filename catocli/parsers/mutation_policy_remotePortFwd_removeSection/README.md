@@ -11,9 +11,10 @@ catocli mutation policy remotePortFwd removeSection <json>
 
 catocli mutation policy remotePortFwd removeSection --json-file mutation.policy.remotePortFwd.removeSection.json
 
-catocli mutation policy remotePortFwd removeSection '{"policyRemoveSectionInput":{"id":"id"},"remotePortFwdPolicyMutationInput":{"revision":{"id":"id"}}}'
+catocli mutation policy remotePortFwd removeSection '{"accountId":"id","policyRemoveSectionInput":{"id":"id"},"remotePortFwdPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy remotePortFwd removeSection '{
+    "accountId": "id",
     "policyRemoveSectionInput": {
         "id": "id"
     },

@@ -11,9 +11,10 @@ catocli mutation admin removeAdmin <json>
 
 catocli mutation admin removeAdmin --json-file mutation.admin.removeAdmin.json
 
-catocli mutation admin removeAdmin '{"adminID":"id"}'
+catocli mutation admin removeAdmin '{"accountId":"id","adminID":"id"}'
 
 catocli mutation admin removeAdmin '{
+    "accountId": "id",
     "adminID": "id"
 }'
 ```

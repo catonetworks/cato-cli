@@ -11,9 +11,10 @@ catocli mutation policy wanNetwork discardPolicyRevision <json>
 
 catocli mutation policy wanNetwork discardPolicyRevision --json-file mutation.policy.wanNetwork.discardPolicyRevision.json
 
-catocli mutation policy wanNetwork discardPolicyRevision '{"policyDiscardRevisionInput":{"id":"id"},"wanNetworkPolicyMutationInput":{"revision":{"id":"id"}}}'
+catocli mutation policy wanNetwork discardPolicyRevision '{"accountId":"id","policyDiscardRevisionInput":{"id":"id"},"wanNetworkPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy wanNetwork discardPolicyRevision '{
+    "accountId": "id",
     "policyDiscardRevisionInput": {
         "id": "id"
     },

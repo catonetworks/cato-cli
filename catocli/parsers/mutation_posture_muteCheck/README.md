@@ -11,9 +11,10 @@ catocli mutation posture muteCheck <json>
 
 catocli mutation posture muteCheck --json-file mutation.posture.muteCheck.json
 
-catocli mutation posture muteCheck '{"postureMuteCheckInput":{"checkId":"id","durationInDays":1,"reason":"string"}}'
+catocli mutation posture muteCheck '{"accountId":"id","postureMuteCheckInput":{"checkId":"id","durationInDays":1,"reason":"string"}}'
 
 catocli mutation posture muteCheck '{
+    "accountId": "id",
     "postureMuteCheckInput": {
         "checkId": "id",
         "durationInDays": 1,

@@ -11,9 +11,10 @@ catocli mutation policy ztnaAlwaysOn createPolicyRevision <json>
 
 catocli mutation policy ztnaAlwaysOn createPolicyRevision --json-file mutation.policy.ztnaAlwaysOn.createPolicyRevision.json
 
-catocli mutation policy ztnaAlwaysOn createPolicyRevision '{"policyCreateRevisionInput":{"description":"string","name":"string"},"ztnaAlwaysOnPolicyMutationInput":{"revision":{"id":"id"}}}'
+catocli mutation policy ztnaAlwaysOn createPolicyRevision '{"accountId":"id","policyCreateRevisionInput":{"description":"string","name":"string"},"ztnaAlwaysOnPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy ztnaAlwaysOn createPolicyRevision '{
+    "accountId": "id",
     "policyCreateRevisionInput": {
         "description": "string",
         "name": "string"

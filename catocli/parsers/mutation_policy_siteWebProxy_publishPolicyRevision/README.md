@@ -11,9 +11,10 @@ catocli mutation policy siteWebProxy publishPolicyRevision <json>
 
 catocli mutation policy siteWebProxy publishPolicyRevision --json-file mutation.policy.siteWebProxy.publishPolicyRevision.json
 
-catocli mutation policy siteWebProxy publishPolicyRevision '{"policyPublishRevisionInput":{"description":"string","name":"string"},"siteWebProxyPolicyMutationInput":{"revision":{"id":"id"}}}'
+catocli mutation policy siteWebProxy publishPolicyRevision '{"accountId":"id","policyPublishRevisionInput":{"description":"string","name":"string"},"siteWebProxyPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy siteWebProxy publishPolicyRevision '{
+    "accountId": "id",
     "policyPublishRevisionInput": {
         "description": "string",
         "name": "string"

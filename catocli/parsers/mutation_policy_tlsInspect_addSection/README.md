@@ -11,9 +11,10 @@ catocli mutation policy tlsInspect addSection <json>
 
 catocli mutation policy tlsInspect addSection --json-file mutation.policy.tlsInspect.addSection.json
 
-catocli mutation policy tlsInspect addSection '{"policyAddSectionInput":{"at":{"position":"AFTER_SECTION","ref":"id"},"section":{"name":"string"}},"tlsInspectPolicyMutationInput":{"revision":{"id":"id"}}}'
+catocli mutation policy tlsInspect addSection '{"accountId":"id","policyAddSectionInput":{"at":{"position":"AFTER_SECTION","ref":"id"},"section":{"name":"string"}},"tlsInspectPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy tlsInspect addSection '{
+    "accountId": "id",
     "policyAddSectionInput": {
         "at": {
             "position": "AFTER_SECTION",

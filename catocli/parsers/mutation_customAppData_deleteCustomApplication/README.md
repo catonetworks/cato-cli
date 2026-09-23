@@ -11,9 +11,10 @@ catocli mutation customAppData deleteCustomApplication <json>
 
 catocli mutation customAppData deleteCustomApplication --json-file mutation.customAppData.deleteCustomApplication.json
 
-catocli mutation customAppData deleteCustomApplication '{"deleteCustomApplicationInput":{"customApplication":{"by":"ID","input":"string"}}}'
+catocli mutation customAppData deleteCustomApplication '{"accountId":"id","deleteCustomApplicationInput":{"customApplication":{"by":"ID","input":"string"}}}'
 
 catocli mutation customAppData deleteCustomApplication '{
+    "accountId": "id",
     "deleteCustomApplicationInput": {
         "customApplication": {
             "by": "ID",

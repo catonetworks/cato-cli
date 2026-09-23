@@ -11,9 +11,10 @@ catocli mutation policy applicationControl updateSection <json>
 
 catocli mutation policy applicationControl updateSection --json-file mutation.policy.applicationControl.updateSection.json
 
-catocli mutation policy applicationControl updateSection '{"applicationControlPolicyMutationInput":{"revision":{"id":"id"}},"policyUpdateSectionInput":{"id":"id","section":{"name":"string"}}}'
+catocli mutation policy applicationControl updateSection '{"accountId":"id","applicationControlPolicyMutationInput":{"revision":{"id":"id"}},"policyUpdateSectionInput":{"id":"id","section":{"name":"string"}}}'
 
 catocli mutation policy applicationControl updateSection '{
+    "accountId": "id",
     "applicationControlPolicyMutationInput": {
         "revision": {
             "id": "id"

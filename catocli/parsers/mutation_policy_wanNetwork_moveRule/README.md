@@ -11,9 +11,10 @@ catocli mutation policy wanNetwork moveRule <json>
 
 catocli mutation policy wanNetwork moveRule --json-file mutation.policy.wanNetwork.moveRule.json
 
-catocli mutation policy wanNetwork moveRule '{"policyMoveRuleInput":{"id":"id","to":{"position":"AFTER_RULE","ref":"id"}},"wanNetworkPolicyMutationInput":{"revision":{"id":"id"}}}'
+catocli mutation policy wanNetwork moveRule '{"accountId":"id","policyMoveRuleInput":{"id":"id","to":{"position":"AFTER_RULE","ref":"id"}},"wanNetworkPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy wanNetwork moveRule '{
+    "accountId": "id",
     "policyMoveRuleInput": {
         "id": "id",
         "to": {

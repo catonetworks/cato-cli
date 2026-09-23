@@ -11,9 +11,10 @@ catocli mutation site removeIpsecIkeV2SiteTunnels <json>
 
 catocli mutation site removeIpsecIkeV2SiteTunnels --json-file mutation.site.removeIpsecIkeV2SiteTunnels.json
 
-catocli mutation site removeIpsecIkeV2SiteTunnels '{"removeIpsecIkeV2SiteTunnelsInput":{"tunnelId":"PRIMARY1"},"siteId":"id"}'
+catocli mutation site removeIpsecIkeV2SiteTunnels '{"accountId":"id","removeIpsecIkeV2SiteTunnelsInput":{"tunnelId":"PRIMARY1"},"siteId":"id"}'
 
 catocli mutation site removeIpsecIkeV2SiteTunnels '{
+    "accountId": "id",
     "removeIpsecIkeV2SiteTunnelsInput": {
         "tunnelId": "PRIMARY1"
     },

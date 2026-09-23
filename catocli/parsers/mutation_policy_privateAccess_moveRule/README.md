@@ -11,9 +11,10 @@ catocli mutation policy privateAccess moveRule <json>
 
 catocli mutation policy privateAccess moveRule --json-file mutation.policy.privateAccess.moveRule.json
 
-catocli mutation policy privateAccess moveRule '{"policyMoveRuleInput":{"id":"id","to":{"position":"AFTER_RULE","ref":"id"}},"privateAccessPolicyMutationInput":{"revision":{"id":"id"}}}'
+catocli mutation policy privateAccess moveRule '{"accountId":"id","policyMoveRuleInput":{"id":"id","to":{"position":"AFTER_RULE","ref":"id"}},"privateAccessPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy privateAccess moveRule '{
+    "accountId": "id",
     "policyMoveRuleInput": {
         "id": "id",
         "to": {

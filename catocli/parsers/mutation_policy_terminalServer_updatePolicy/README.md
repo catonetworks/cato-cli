@@ -11,9 +11,10 @@ catocli mutation policy terminalServer updatePolicy <json>
 
 catocli mutation policy terminalServer updatePolicy --json-file mutation.policy.terminalServer.updatePolicy.json
 
-catocli mutation policy terminalServer updatePolicy '{"terminalServerPolicyMutationInput":{"revision":{"id":"id"}},"terminalServerPolicyUpdateInput":{"state":"ENABLED"}}'
+catocli mutation policy terminalServer updatePolicy '{"accountId":"id","terminalServerPolicyMutationInput":{"revision":{"id":"id"}},"terminalServerPolicyUpdateInput":{"state":"ENABLED"}}'
 
 catocli mutation policy terminalServer updatePolicy '{
+    "accountId": "id",
     "terminalServerPolicyMutationInput": {
         "revision": {
             "id": "id"

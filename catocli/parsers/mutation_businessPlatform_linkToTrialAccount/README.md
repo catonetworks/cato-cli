@@ -11,9 +11,10 @@ catocli mutation businessPlatform linkToTrialAccount <json>
 
 catocli mutation businessPlatform linkToTrialAccount --json-file mutation.businessPlatform.linkToTrialAccount.json
 
-catocli mutation businessPlatform linkToTrialAccount '{"businessPlatformLinkToTrialAccountInput":{"cmaId":"id","id":"id"}}'
+catocli mutation businessPlatform linkToTrialAccount '{"accountId":"id","businessPlatformLinkToTrialAccountInput":{"cmaId":"id","id":"id"}}'
 
 catocli mutation businessPlatform linkToTrialAccount '{
+    "accountId": "id",
     "businessPlatformLinkToTrialAccountInput": {
         "cmaId": "id",
         "id": "id"

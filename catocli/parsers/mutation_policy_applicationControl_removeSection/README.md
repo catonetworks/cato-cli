@@ -11,9 +11,10 @@ catocli mutation policy applicationControl removeSection <json>
 
 catocli mutation policy applicationControl removeSection --json-file mutation.policy.applicationControl.removeSection.json
 
-catocli mutation policy applicationControl removeSection '{"applicationControlPolicyMutationInput":{"revision":{"id":"id"}},"policyRemoveSectionInput":{"id":"id"}}'
+catocli mutation policy applicationControl removeSection '{"accountId":"id","applicationControlPolicyMutationInput":{"revision":{"id":"id"}},"policyRemoveSectionInput":{"id":"id"}}'
 
 catocli mutation policy applicationControl removeSection '{
+    "accountId": "id",
     "applicationControlPolicyMutationInput": {
         "revision": {
             "id": "id"

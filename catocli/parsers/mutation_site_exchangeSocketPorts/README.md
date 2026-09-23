@@ -11,9 +11,10 @@ catocli mutation site exchangeSocketPorts <json>
 
 catocli mutation site exchangeSocketPorts --json-file mutation.site.exchangeSocketPorts.json
 
-catocli mutation site exchangeSocketPorts '{"exchangeSocketPortsInput":{"firstInterface":{"interfaceId":"LAN1"},"secondInterface":{"interfaceId":"LAN1"},"site":{"by":"ID","input":"string"}}}'
+catocli mutation site exchangeSocketPorts '{"accountId":"id","exchangeSocketPortsInput":{"firstInterface":{"interfaceId":"LAN1"},"secondInterface":{"interfaceId":"LAN1"},"site":{"by":"ID","input":"string"}}}'
 
 catocli mutation site exchangeSocketPorts '{
+    "accountId": "id",
     "exchangeSocketPortsInput": {
         "firstInterface": {
             "interfaceId": "LAN1"

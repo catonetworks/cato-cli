@@ -11,9 +11,10 @@ catocli query ztnaAppConnector ztnaAppConnectorGroupList <json>
 
 catocli query ztnaAppConnector ztnaAppConnectorGroupList --json-file query.ztnaAppConnector.ztnaAppConnectorGroupList.json
 
-catocli query ztnaAppConnector ztnaAppConnectorGroupList '{"ztnaAppConnectorGroupListInput":{"filter":{"search":{"search":"string"}},"paging":{"from":1,"limit":1}}}'
+catocli query ztnaAppConnector ztnaAppConnectorGroupList '{"accountId":"id","ztnaAppConnectorGroupListInput":{"filter":{"search":{"search":"string"}},"paging":{"from":1,"limit":1}}}'
 
 catocli query ztnaAppConnector ztnaAppConnectorGroupList '{
+    "accountId": "id",
     "ztnaAppConnectorGroupListInput": {
         "filter": {
             "search": {

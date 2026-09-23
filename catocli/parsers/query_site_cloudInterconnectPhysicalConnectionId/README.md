@@ -11,9 +11,10 @@ catocli query site cloudInterconnectPhysicalConnectionId <json>
 
 catocli query site cloudInterconnectPhysicalConnectionId --json-file query.site.cloudInterconnectPhysicalConnectionId.json
 
-catocli query site cloudInterconnectPhysicalConnectionId '{"cloudInterconnectPhysicalConnectionIdInput":{"haRole":"PRIMARY","site":{"by":"ID","input":"string"}}}'
+catocli query site cloudInterconnectPhysicalConnectionId '{"accountId":"id","cloudInterconnectPhysicalConnectionIdInput":{"haRole":"PRIMARY","site":{"by":"ID","input":"string"}}}'
 
 catocli query site cloudInterconnectPhysicalConnectionId '{
+    "accountId": "id",
     "cloudInterconnectPhysicalConnectionIdInput": {
         "haRole": "PRIMARY",
         "site": {

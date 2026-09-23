@@ -11,9 +11,10 @@ catocli mutation ztnaAppConnector unassignSocketFromZtnaAppConnector <json>
 
 catocli mutation ztnaAppConnector unassignSocketFromZtnaAppConnector --json-file mutation.ztnaAppConnector.unassignSocketFromZtnaAppConnector.json
 
-catocli mutation ztnaAppConnector unassignSocketFromZtnaAppConnector '{"unassignSocketFromZtnaAppConnectorInput":{"ztnaAppConnector":{"by":"ID","input":"string"}}}'
+catocli mutation ztnaAppConnector unassignSocketFromZtnaAppConnector '{"accountId":"id","unassignSocketFromZtnaAppConnectorInput":{"ztnaAppConnector":{"by":"ID","input":"string"}}}'
 
 catocli mutation ztnaAppConnector unassignSocketFromZtnaAppConnector '{
+    "accountId": "id",
     "unassignSocketFromZtnaAppConnectorInput": {
         "ztnaAppConnector": {
             "by": "ID",

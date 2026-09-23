@@ -11,9 +11,10 @@ catocli mutation policy dynamicIpAllocation addRule <json>
 
 catocli mutation policy dynamicIpAllocation addRule --json-file mutation.policy.dynamicIpAllocation.addRule.json
 
-catocli mutation policy dynamicIpAllocation addRule '{"dynamicIpAllocationAddRuleInput":{"at":{"position":"AFTER_RULE","ref":"id"},"rule":{"country":{"by":"ID","input":"string"},"description":"string","enabled":true,"name":"string","platform":"WINDOWS","range":{"globalIpRange":{"by":"ID","input":"string"}},"source":{"user":{"by":"ID","input":"string"},"usersGroup":{"by":"ID","input":"string"}}}},"dynamicIpAllocationPolicyMutationInput":{"revision":{"id":"id"}}}'
+catocli mutation policy dynamicIpAllocation addRule '{"accountId":"id","dynamicIpAllocationAddRuleInput":{"at":{"position":"AFTER_RULE","ref":"id"},"rule":{"country":{"by":"ID","input":"string"},"description":"string","enabled":true,"name":"string","platform":"WINDOWS","range":{"globalIpRange":{"by":"ID","input":"string"}},"source":{"user":{"by":"ID","input":"string"},"usersGroup":{"by":"ID","input":"string"}}}},"dynamicIpAllocationPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy dynamicIpAllocation addRule '{
+    "accountId": "id",
     "dynamicIpAllocationAddRuleInput": {
         "at": {
             "position": "AFTER_RULE",

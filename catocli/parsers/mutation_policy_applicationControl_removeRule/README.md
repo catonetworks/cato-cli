@@ -11,9 +11,10 @@ catocli mutation policy applicationControl removeRule <json>
 
 catocli mutation policy applicationControl removeRule --json-file mutation.policy.applicationControl.removeRule.json
 
-catocli mutation policy applicationControl removeRule '{"applicationControlPolicyMutationInput":{"revision":{"id":"id"}},"applicationControlRemoveRuleInput":{"id":"id"}}'
+catocli mutation policy applicationControl removeRule '{"accountId":"id","applicationControlPolicyMutationInput":{"revision":{"id":"id"}},"applicationControlRemoveRuleInput":{"id":"id"}}'
 
 catocli mutation policy applicationControl removeRule '{
+    "accountId": "id",
     "applicationControlPolicyMutationInput": {
         "revision": {
             "id": "id"

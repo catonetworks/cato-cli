@@ -11,9 +11,10 @@ catocli mutation notification deleteMailingList <json>
 
 catocli mutation notification deleteMailingList --json-file mutation.notification.deleteMailingList.json
 
-catocli mutation notification deleteMailingList '{"mailingListRefInput":{"by":"ID","input":"string"}}'
+catocli mutation notification deleteMailingList '{"accountId":"id","mailingListRefInput":{"by":"ID","input":"string"}}'
 
 catocli mutation notification deleteMailingList '{
+    "accountId": "id",
     "mailingListRefInput": {
         "by": "ID",
         "input": "string"

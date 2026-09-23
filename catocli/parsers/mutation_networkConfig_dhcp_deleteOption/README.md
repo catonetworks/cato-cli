@@ -11,9 +11,10 @@ catocli mutation networkConfig dhcp deleteOption <json>
 
 catocli mutation networkConfig dhcp deleteOption --json-file mutation.networkConfig.dhcp.deleteOption.json
 
-catocli mutation networkConfig dhcp deleteOption '{"networkConfigDhcpDeleteOptionInput":{"id":["id1","id2"]}}'
+catocli mutation networkConfig dhcp deleteOption '{"accountId":"id","networkConfigDhcpDeleteOptionInput":{"id":["id1","id2"]}}'
 
 catocli mutation networkConfig dhcp deleteOption '{
+    "accountId": "id",
     "networkConfigDhcpDeleteOptionInput": {
         "id": [
             "id1",

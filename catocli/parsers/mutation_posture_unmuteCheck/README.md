@@ -11,9 +11,10 @@ catocli mutation posture unmuteCheck <json>
 
 catocli mutation posture unmuteCheck --json-file mutation.posture.unmuteCheck.json
 
-catocli mutation posture unmuteCheck '{"postureUnmuteCheckInput":{"checkId":"id"}}'
+catocli mutation posture unmuteCheck '{"accountId":"id","postureUnmuteCheckInput":{"checkId":"id"}}'
 
 catocli mutation posture unmuteCheck '{
+    "accountId": "id",
     "postureUnmuteCheckInput": {
         "checkId": "id"
     }

@@ -11,9 +11,10 @@ catocli mutation externalAccess revokePartnerAccess <json>
 
 catocli mutation externalAccess revokePartnerAccess --json-file mutation.externalAccess.revokePartnerAccess.json
 
-catocli mutation externalAccess revokePartnerAccess '{"revokePartnerAccessInput":{"invitationId":"id","reason":"string"}}'
+catocli mutation externalAccess revokePartnerAccess '{"accountId":"id","revokePartnerAccessInput":{"invitationId":"id","reason":"string"}}'
 
 catocli mutation externalAccess revokePartnerAccess '{
+    "accountId": "id",
     "revokePartnerAccessInput": {
         "invitationId": "id",
         "reason": "string"

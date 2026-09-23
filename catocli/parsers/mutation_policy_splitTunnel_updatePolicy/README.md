@@ -11,9 +11,10 @@ catocli mutation policy splitTunnel updatePolicy <json>
 
 catocli mutation policy splitTunnel updatePolicy --json-file mutation.policy.splitTunnel.updatePolicy.json
 
-catocli mutation policy splitTunnel updatePolicy '{"splitTunnelPolicyMutationInput":{"revision":{"id":"id"}},"splitTunnelPolicyUpdateInput":{"state":"ENABLED"}}'
+catocli mutation policy splitTunnel updatePolicy '{"accountId":"id","splitTunnelPolicyMutationInput":{"revision":{"id":"id"}},"splitTunnelPolicyUpdateInput":{"state":"ENABLED"}}'
 
 catocli mutation policy splitTunnel updatePolicy '{
+    "accountId": "id",
     "splitTunnelPolicyMutationInput": {
         "revision": {
             "id": "id"

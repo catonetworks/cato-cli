@@ -11,9 +11,10 @@ catocli mutation policy wanNetwork updatePolicy <json>
 
 catocli mutation policy wanNetwork updatePolicy --json-file mutation.policy.wanNetwork.updatePolicy.json
 
-catocli mutation policy wanNetwork updatePolicy '{"wanNetworkPolicyMutationInput":{"revision":{"id":"id"}},"wanNetworkPolicyUpdateInput":{"state":"ENABLED"}}'
+catocli mutation policy wanNetwork updatePolicy '{"accountId":"id","wanNetworkPolicyMutationInput":{"revision":{"id":"id"}},"wanNetworkPolicyUpdateInput":{"state":"ENABLED"}}'
 
 catocli mutation policy wanNetwork updatePolicy '{
+    "accountId": "id",
     "wanNetworkPolicyMutationInput": {
         "revision": {
             "id": "id"

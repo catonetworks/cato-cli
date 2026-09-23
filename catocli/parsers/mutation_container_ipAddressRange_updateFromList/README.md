@@ -11,9 +11,10 @@ catocli mutation container ipAddressRange updateFromList <json>
 
 catocli mutation container ipAddressRange updateFromList --json-file mutation.container.ipAddressRange.updateFromList.json
 
-catocli mutation container ipAddressRange updateFromList '{"updateIpAddressRangeContainerFromListInput":{"description":"string","ref":{"by":"ID","input":"string"},"values":{"from":"example_value","to":"example_value"}}}'
+catocli mutation container ipAddressRange updateFromList '{"accountId":"id","updateIpAddressRangeContainerFromListInput":{"description":"string","ref":{"by":"ID","input":"string"},"values":{"from":"example_value","to":"example_value"}}}'
 
 catocli mutation container ipAddressRange updateFromList '{
+    "accountId": "id",
     "updateIpAddressRangeContainerFromListInput": {
         "description": "string",
         "ref": {

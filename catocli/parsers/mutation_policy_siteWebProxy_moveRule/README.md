@@ -11,9 +11,10 @@ catocli mutation policy siteWebProxy moveRule <json>
 
 catocli mutation policy siteWebProxy moveRule --json-file mutation.policy.siteWebProxy.moveRule.json
 
-catocli mutation policy siteWebProxy moveRule '{"policyMoveRuleInput":{"id":"id","to":{"position":"AFTER_RULE","ref":"id"}},"siteWebProxyPolicyMutationInput":{"revision":{"id":"id"}}}'
+catocli mutation policy siteWebProxy moveRule '{"accountId":"id","policyMoveRuleInput":{"id":"id","to":{"position":"AFTER_RULE","ref":"id"}},"siteWebProxyPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy siteWebProxy moveRule '{
+    "accountId": "id",
     "policyMoveRuleInput": {
         "id": "id",
         "to": {

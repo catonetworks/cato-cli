@@ -11,9 +11,10 @@ catocli query site staticHost <json>
 
 catocli query site staticHost --json-file query.site.staticHost.json
 
-catocli query site staticHost '{"hostId":"id","siteRefInput":{"by":"ID","input":"string"}}'
+catocli query site staticHost '{"accountId":"id","hostId":"id","siteRefInput":{"by":"ID","input":"string"}}'
 
 catocli query site staticHost '{
+    "accountId": "id",
     "hostId": "id",
     "siteRefInput": {
         "by": "ID",

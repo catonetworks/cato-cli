@@ -11,9 +11,10 @@ catocli query accountBySubdomain <json>
 
 catocli query accountBySubdomain --json-file query.accountBySubdomain.json
 
-catocli query accountBySubdomain '{"subdomains":["string1","string2"]}'
+catocli query accountBySubdomain '{"accountID":"id","subdomains":["string1","string2"]}'
 
 catocli query accountBySubdomain '{
+    "accountID": "id",
     "subdomains": [
         "string1",
         "string2"

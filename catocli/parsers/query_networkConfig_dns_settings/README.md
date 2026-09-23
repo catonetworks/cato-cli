@@ -11,6 +11,13 @@ catocli query networkConfig dns settings <json>
 
 catocli query networkConfig dns settings --json-file query.networkConfig.dns.settings.json
 
+catocli query networkConfig dns settings '{"accountId":"id"}'
+
+catocli query networkConfig dns settings '{
+    "accountId": "id"
+}'
+```
+
 #### Operation Arguments for query.networkConfig.dns.settings ####
 
 `accountId` [ID] - (required) N/A    

@@ -11,9 +11,10 @@ catocli mutation policy socketBypass updateSection <json>
 
 catocli mutation policy socketBypass updateSection --json-file mutation.policy.socketBypass.updateSection.json
 
-catocli mutation policy socketBypass updateSection '{"policyUpdateSectionInput":{"id":"id","section":{"name":"string"}},"socketBypassPolicyMutationInput":{"revision":{"id":"id"}}}'
+catocli mutation policy socketBypass updateSection '{"accountId":"id","policyUpdateSectionInput":{"id":"id","section":{"name":"string"}},"socketBypassPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy socketBypass updateSection '{
+    "accountId": "id",
     "policyUpdateSectionInput": {
         "id": "id",
         "section": {

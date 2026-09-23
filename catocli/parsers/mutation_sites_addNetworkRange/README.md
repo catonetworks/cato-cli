@@ -11,9 +11,10 @@ catocli mutation sites addNetworkRange <json>
 
 catocli mutation sites addNetworkRange --json-file mutation.sites.addNetworkRange.json
 
-catocli mutation sites addNetworkRange '{"addNetworkRangeInput":{"azureFloatingIp":"example_value","dhcpSettings":{"dhcpMicrosegmentation":true,"dhcpType":"DHCP_RELAY","ipRange":"example_value","relayGroupId":"id"},"gateway":"example_value","internetOnly":true,"localIp":"example_value","mdnsReflector":true,"name":"string","rangeType":"Routed","subnet":"example_value","translatedSubnet":"example_value","vlan":1},"lanSocketInterfaceId":"id"}'
+catocli mutation sites addNetworkRange '{"accountId":"id","addNetworkRangeInput":{"azureFloatingIp":"example_value","dhcpSettings":{"dhcpMicrosegmentation":true,"dhcpType":"DHCP_RELAY","ipRange":"example_value","relayGroupId":"id"},"gateway":"example_value","internetOnly":true,"localIp":"example_value","mdnsReflector":true,"name":"string","rangeType":"Routed","subnet":"example_value","translatedSubnet":"example_value","vlan":1},"lanSocketInterfaceId":"id"}'
 
 catocli mutation sites addNetworkRange '{
+    "accountId": "id",
     "addNetworkRangeInput": {
         "azureFloatingIp": "example_value",
         "dhcpSettings": {

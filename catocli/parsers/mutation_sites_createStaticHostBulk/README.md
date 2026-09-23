@@ -11,9 +11,10 @@ catocli mutation sites createStaticHostBulk <json>
 
 catocli mutation sites createStaticHostBulk --json-file mutation.sites.createStaticHostBulk.json
 
-catocli mutation sites createStaticHostBulk '{"createStaticHostBulkInput":{"host":{"ip":"example_value","macAddress":"example_value","name":"string"},"site":{"by":"ID","input":"string"}}}'
+catocli mutation sites createStaticHostBulk '{"accountId":"id","createStaticHostBulkInput":{"host":{"ip":"example_value","macAddress":"example_value","name":"string"},"site":{"by":"ID","input":"string"}}}'
 
 catocli mutation sites createStaticHostBulk '{
+    "accountId": "id",
     "createStaticHostBulkInput": {
         "host": {
             "ip": "example_value",

@@ -11,9 +11,10 @@ catocli mutation networkConfig dns deleteServerSet <json>
 
 catocli mutation networkConfig dns deleteServerSet --json-file mutation.networkConfig.dns.deleteServerSet.json
 
-catocli mutation networkConfig dns deleteServerSet '{"networkConfigDnsDeleteServerSetInput":{"id":["id1","id2"]}}'
+catocli mutation networkConfig dns deleteServerSet '{"accountId":"id","networkConfigDnsDeleteServerSetInput":{"id":["id1","id2"]}}'
 
 catocli mutation networkConfig dns deleteServerSet '{
+    "accountId": "id",
     "networkConfigDnsDeleteServerSetInput": {
         "id": [
             "id1",

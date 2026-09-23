@@ -11,9 +11,10 @@ catocli query policy socketBypass policy <json>
 
 catocli query policy socketBypass policy --json-file query.policy.socketBypass.policy.json
 
-catocli query policy socketBypass policy '{"socketBypassPolicyInput":{"revision":{"id":"id","type":"PRIVATE"}}}'
+catocli query policy socketBypass policy '{"accountId":"id","socketBypassPolicyInput":{"revision":{"id":"id","type":"PRIVATE"}}}'
 
 catocli query policy socketBypass policy '{
+    "accountId": "id",
     "socketBypassPolicyInput": {
         "revision": {
             "id": "id",

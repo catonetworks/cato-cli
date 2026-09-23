@@ -11,9 +11,10 @@ catocli mutation policy internetFirewall addSection <json>
 
 catocli mutation policy internetFirewall addSection --json-file mutation.policy.internetFirewall.addSection.json
 
-catocli mutation policy internetFirewall addSection '{"internetFirewallPolicyMutationInput":{"revision":{"id":"id"}},"policyAddSectionInput":{"at":{"position":"AFTER_SECTION","ref":"id"},"section":{"name":"string"}}}'
+catocli mutation policy internetFirewall addSection '{"accountId":"id","internetFirewallPolicyMutationInput":{"revision":{"id":"id"}},"policyAddSectionInput":{"at":{"position":"AFTER_SECTION","ref":"id"},"section":{"name":"string"}}}'
 
 catocli mutation policy internetFirewall addSection '{
+    "accountId": "id",
     "internetFirewallPolicyMutationInput": {
         "revision": {
             "id": "id"

@@ -11,9 +11,10 @@ catocli mutation policy socketBypass removeRule <json>
 
 catocli mutation policy socketBypass removeRule --json-file mutation.policy.socketBypass.removeRule.json
 
-catocli mutation policy socketBypass removeRule '{"socketBypassPolicyMutationInput":{"revision":{"id":"id"}},"socketBypassRemoveRuleInput":{"id":"id"}}'
+catocli mutation policy socketBypass removeRule '{"accountId":"id","socketBypassPolicyMutationInput":{"revision":{"id":"id"}},"socketBypassRemoveRuleInput":{"id":"id"}}'
 
 catocli mutation policy socketBypass removeRule '{
+    "accountId": "id",
     "socketBypassPolicyMutationInput": {
         "revision": {
             "id": "id"

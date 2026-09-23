@@ -11,9 +11,10 @@ catocli mutation policy socketBypass removeSection <json>
 
 catocli mutation policy socketBypass removeSection --json-file mutation.policy.socketBypass.removeSection.json
 
-catocli mutation policy socketBypass removeSection '{"policyRemoveSectionInput":{"id":"id"},"socketBypassPolicyMutationInput":{"revision":{"id":"id"}}}'
+catocli mutation policy socketBypass removeSection '{"accountId":"id","policyRemoveSectionInput":{"id":"id"},"socketBypassPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy socketBypass removeSection '{
+    "accountId": "id",
     "policyRemoveSectionInput": {
         "id": "id"
     },

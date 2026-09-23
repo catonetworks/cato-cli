@@ -11,9 +11,10 @@ catocli mutation networkConfig dhcp createOption <json>
 
 catocli mutation networkConfig dhcp createOption --json-file mutation.networkConfig.dhcp.createOption.json
 
-catocli mutation networkConfig dhcp createOption '{"networkConfigDhcpCreateOptionInput":{"option":{"description":"string","tag":1,"type":"ASCII","value":"string"}}}'
+catocli mutation networkConfig dhcp createOption '{"accountId":"id","networkConfigDhcpCreateOptionInput":{"option":{"description":"string","tag":1,"type":"ASCII","value":"string"}}}'
 
 catocli mutation networkConfig dhcp createOption '{
+    "accountId": "id",
     "networkConfigDhcpCreateOptionInput": {
         "option": {
             "description": "string",

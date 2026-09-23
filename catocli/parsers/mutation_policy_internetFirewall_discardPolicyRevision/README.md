@@ -11,9 +11,10 @@ catocli mutation policy internetFirewall discardPolicyRevision <json>
 
 catocli mutation policy internetFirewall discardPolicyRevision --json-file mutation.policy.internetFirewall.discardPolicyRevision.json
 
-catocli mutation policy internetFirewall discardPolicyRevision '{"internetFirewallPolicyMutationInput":{"revision":{"id":"id"}},"policyDiscardRevisionInput":{"id":"id"}}'
+catocli mutation policy internetFirewall discardPolicyRevision '{"accountId":"id","internetFirewallPolicyMutationInput":{"revision":{"id":"id"}},"policyDiscardRevisionInput":{"id":"id"}}'
 
 catocli mutation policy internetFirewall discardPolicyRevision '{
+    "accountId": "id",
     "internetFirewallPolicyMutationInput": {
         "revision": {
             "id": "id"

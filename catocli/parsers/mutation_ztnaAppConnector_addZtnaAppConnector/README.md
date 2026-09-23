@@ -11,9 +11,10 @@ catocli mutation ztnaAppConnector addZtnaAppConnector <json>
 
 catocli mutation ztnaAppConnector addZtnaAppConnector --json-file mutation.ztnaAppConnector.addZtnaAppConnector.json
 
-catocli mutation ztnaAppConnector addZtnaAppConnector '{"addZtnaAppConnectorInput":{"description":"string","groupName":"string","location":{"address":"string","city":"string","countryCode":"string","stateCode":"string","timezone":"example_value"},"name":"string","preferredPopLocation":{"automatic":true,"preferredOnly":true,"primary":{"by":"ID","input":"string"},"secondary":{"by":"ID","input":"string"}},"type":"VIRTUAL"}}'
+catocli mutation ztnaAppConnector addZtnaAppConnector '{"accountId":"id","addZtnaAppConnectorInput":{"description":"string","groupName":"string","location":{"address":"string","city":"string","countryCode":"string","stateCode":"string","timezone":"example_value"},"name":"string","preferredPopLocation":{"automatic":true,"preferredOnly":true,"primary":{"by":"ID","input":"string"},"secondary":{"by":"ID","input":"string"}},"type":"VIRTUAL"}}'
 
 catocli mutation ztnaAppConnector addZtnaAppConnector '{
+    "accountId": "id",
     "addZtnaAppConnectorInput": {
         "description": "string",
         "groupName": "string",

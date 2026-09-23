@@ -11,9 +11,10 @@ catocli mutation policy socketBypass publishPolicyRevision <json>
 
 catocli mutation policy socketBypass publishPolicyRevision --json-file mutation.policy.socketBypass.publishPolicyRevision.json
 
-catocli mutation policy socketBypass publishPolicyRevision '{"policyPublishRevisionInput":{"description":"string","name":"string"},"socketBypassPolicyMutationInput":{"revision":{"id":"id"}}}'
+catocli mutation policy socketBypass publishPolicyRevision '{"accountId":"id","policyPublishRevisionInput":{"description":"string","name":"string"},"socketBypassPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy socketBypass publishPolicyRevision '{
+    "accountId": "id",
     "policyPublishRevisionInput": {
         "description": "string",
         "name": "string"

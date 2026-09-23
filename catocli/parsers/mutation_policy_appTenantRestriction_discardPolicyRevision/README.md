@@ -11,9 +11,10 @@ catocli mutation policy appTenantRestriction discardPolicyRevision <json>
 
 catocli mutation policy appTenantRestriction discardPolicyRevision --json-file mutation.policy.appTenantRestriction.discardPolicyRevision.json
 
-catocli mutation policy appTenantRestriction discardPolicyRevision '{"appTenantRestrictionPolicyMutationInput":{"revision":{"id":"id"}},"policyDiscardRevisionInput":{"id":"id"}}'
+catocli mutation policy appTenantRestriction discardPolicyRevision '{"accountId":"id","appTenantRestrictionPolicyMutationInput":{"revision":{"id":"id"}},"policyDiscardRevisionInput":{"id":"id"}}'
 
 catocli mutation policy appTenantRestriction discardPolicyRevision '{
+    "accountId": "id",
     "appTenantRestrictionPolicyMutationInput": {
         "revision": {
             "id": "id"

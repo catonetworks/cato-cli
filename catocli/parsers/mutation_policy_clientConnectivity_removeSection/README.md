@@ -11,9 +11,10 @@ catocli mutation policy clientConnectivity removeSection <json>
 
 catocli mutation policy clientConnectivity removeSection --json-file mutation.policy.clientConnectivity.removeSection.json
 
-catocli mutation policy clientConnectivity removeSection '{"clientConnectivityPolicyMutationInput":{"revision":{"id":"id"}},"policyRemoveSectionInput":{"id":"id"}}'
+catocli mutation policy clientConnectivity removeSection '{"accountId":"id","clientConnectivityPolicyMutationInput":{"revision":{"id":"id"}},"policyRemoveSectionInput":{"id":"id"}}'
 
 catocli mutation policy clientConnectivity removeSection '{
+    "accountId": "id",
     "clientConnectivityPolicyMutationInput": {
         "revision": {
             "id": "id"

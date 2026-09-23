@@ -11,9 +11,10 @@ catocli query container fqdn testFromURL <json>
 
 catocli query container fqdn testFromURL --json-file query.container.fqdn.testFromURL.json
 
-catocli query container fqdn testFromURL '{"testContainerFromUrlInput":{"fileType":"STIX","url":"example_value"}}'
+catocli query container fqdn testFromURL '{"accountId":"id","testContainerFromUrlInput":{"fileType":"STIX","url":"example_value"}}'
 
 catocli query container fqdn testFromURL '{
+    "accountId": "id",
     "testContainerFromUrlInput": {
         "fileType": "STIX",
         "url": "example_value"

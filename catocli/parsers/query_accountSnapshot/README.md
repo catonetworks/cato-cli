@@ -11,9 +11,10 @@ catocli query accountSnapshot <json>
 
 catocli query accountSnapshot --json-file query.accountSnapshot.json
 
-catocli query accountSnapshot '{"siteIDs":["id1","id2"],"userIDs":["id1","id2"]}'
+catocli query accountSnapshot '{"accountID":"id","siteIDs":["id1","id2"],"userIDs":["id1","id2"]}'
 
 catocli query accountSnapshot '{
+    "accountID": "id",
     "siteIDs": [
         "id1",
         "id2"

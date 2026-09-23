@@ -11,9 +11,10 @@ catocli mutation site updateBgpPeers <json>
 
 catocli mutation site updateBgpPeers --json-file mutation.site.updateBgpPeers.json
 
-catocli mutation site updateBgpPeers '{"updateBgpPeersInput":{"site":{"by":"ID","input":"string"}}}'
+catocli mutation site updateBgpPeers '{"accountId":"id","updateBgpPeersInput":{"site":{"by":"ID","input":"string"}}}'
 
 catocli mutation site updateBgpPeers '{
+    "accountId": "id",
     "updateBgpPeersInput": {
         "site": {
             "by": "ID",

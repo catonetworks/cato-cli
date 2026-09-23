@@ -11,9 +11,10 @@ catocli query policy wanFirewall policyList <json>
 
 catocli query policy wanFirewall policyList --json-file query.policy.wanFirewall.policyList.json
 
-catocli query policy wanFirewall policyList '{"wanFirewallPolicyListInput":{"filter":{"id":{"eq":"id","in":["id1","id2"],"neq":"id","nin":["id1","id2"]},"name":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"policyLevel":{"eq":"MAIN","in":"MAIN","neq":"MAIN","nin":"MAIN"}},"paging":{"from":1,"limit":1},"sort":{"name":{"direction":"ASC","priority":1},"policyLevel":{"direction":"ASC","priority":1}}}}'
+catocli query policy wanFirewall policyList '{"accountId":"id","wanFirewallPolicyListInput":{"filter":{"id":{"eq":"id","in":["id1","id2"],"neq":"id","nin":["id1","id2"]},"name":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"policyLevel":{"eq":"MAIN","in":"MAIN","neq":"MAIN","nin":"MAIN"}},"paging":{"from":1,"limit":1},"sort":{"name":{"direction":"ASC","priority":1},"policyLevel":{"direction":"ASC","priority":1}}}}'
 
 catocli query policy wanFirewall policyList '{
+    "accountId": "id",
     "wanFirewallPolicyListInput": {
         "filter": {
             "id": {

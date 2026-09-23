@@ -11,9 +11,10 @@ catocli mutation xdr updateInvestigationDetails <json>
 
 catocli mutation xdr updateInvestigationDetails --json-file mutation.xdr.updateInvestigationDetails.json
 
-catocli mutation xdr updateInvestigationDetails '{"updateInvestigationDetailsInput":{"investigationStatus":"string","managedServiceTicketLink":"string","storyId":"id"}}'
+catocli mutation xdr updateInvestigationDetails '{"accountId":"id","updateInvestigationDetailsInput":{"investigationStatus":"string","managedServiceTicketLink":"string","storyId":"id"}}'
 
 catocli mutation xdr updateInvestigationDetails '{
+    "accountId": "id",
     "updateInvestigationDetailsInput": {
         "investigationStatus": "string",
         "managedServiceTicketLink": "string",

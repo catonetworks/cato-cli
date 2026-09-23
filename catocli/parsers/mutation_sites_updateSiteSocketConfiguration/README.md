@@ -11,9 +11,10 @@ catocli mutation sites updateSiteSocketConfiguration <json>
 
 catocli mutation sites updateSiteSocketConfiguration --json-file mutation.sites.updateSiteSocketConfiguration.json
 
-catocli mutation sites updateSiteSocketConfiguration '{"updateSiteSocketConfigurationInput":{"primarySocketConfiguration":{"description":"string"},"secondarySocketConfiguration":{"description":"string"},"site":{"by":"ID","input":"string"}}}'
+catocli mutation sites updateSiteSocketConfiguration '{"accountId":"id","updateSiteSocketConfigurationInput":{"primarySocketConfiguration":{"description":"string"},"secondarySocketConfiguration":{"description":"string"},"site":{"by":"ID","input":"string"}}}'
 
 catocli mutation sites updateSiteSocketConfiguration '{
+    "accountId": "id",
     "updateSiteSocketConfigurationInput": {
         "primarySocketConfiguration": {
             "description": "string"

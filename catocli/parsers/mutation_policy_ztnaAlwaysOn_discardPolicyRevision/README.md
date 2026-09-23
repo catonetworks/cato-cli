@@ -11,9 +11,10 @@ catocli mutation policy ztnaAlwaysOn discardPolicyRevision <json>
 
 catocli mutation policy ztnaAlwaysOn discardPolicyRevision --json-file mutation.policy.ztnaAlwaysOn.discardPolicyRevision.json
 
-catocli mutation policy ztnaAlwaysOn discardPolicyRevision '{"policyDiscardRevisionInput":{"id":"id"},"ztnaAlwaysOnPolicyMutationInput":{"revision":{"id":"id"}}}'
+catocli mutation policy ztnaAlwaysOn discardPolicyRevision '{"accountId":"id","policyDiscardRevisionInput":{"id":"id"},"ztnaAlwaysOnPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy ztnaAlwaysOn discardPolicyRevision '{
+    "accountId": "id",
     "policyDiscardRevisionInput": {
         "id": "id"
     },

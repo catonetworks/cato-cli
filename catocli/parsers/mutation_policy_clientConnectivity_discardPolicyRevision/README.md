@@ -11,9 +11,10 @@ catocli mutation policy clientConnectivity discardPolicyRevision <json>
 
 catocli mutation policy clientConnectivity discardPolicyRevision --json-file mutation.policy.clientConnectivity.discardPolicyRevision.json
 
-catocli mutation policy clientConnectivity discardPolicyRevision '{"clientConnectivityPolicyMutationInput":{"revision":{"id":"id"}},"policyDiscardRevisionInput":{"id":"id"}}'
+catocli mutation policy clientConnectivity discardPolicyRevision '{"accountId":"id","clientConnectivityPolicyMutationInput":{"revision":{"id":"id"}},"policyDiscardRevisionInput":{"id":"id"}}'
 
 catocli mutation policy clientConnectivity discardPolicyRevision '{
+    "accountId": "id",
     "clientConnectivityPolicyMutationInput": {
         "revision": {
             "id": "id"

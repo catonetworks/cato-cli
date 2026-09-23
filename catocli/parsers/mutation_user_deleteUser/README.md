@@ -11,9 +11,10 @@ catocli mutation user deleteUser <json>
 
 catocli mutation user deleteUser --json-file mutation.user.deleteUser.json
 
-catocli mutation user deleteUser '{"deleteUserInput":{"userId":["example1","example2"]}}'
+catocli mutation user deleteUser '{"accountId":"id","deleteUserInput":{"userId":["example1","example2"]}}'
 
 catocli mutation user deleteUser '{
+    "accountId": "id",
     "deleteUserInput": {
         "userId": [
             "example1",

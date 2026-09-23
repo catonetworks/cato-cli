@@ -11,9 +11,10 @@ catocli query catalogs catalogApplication fqdn <json>
 
 catocli query catalogs catalogApplication fqdn --json-file query.catalogs.catalogApplication.fqdn.json
 
-catocli query catalogs catalogApplication fqdn '{"applicationRefInput":{"by":"ID","input":"string"}}'
+catocli query catalogs catalogApplication fqdn '{"accountId":"id","applicationRefInput":{"by":"ID","input":"string"}}'
 
 catocli query catalogs catalogApplication fqdn '{
+    "accountId": "id",
     "applicationRefInput": {
         "by": "ID",
         "input": "string"

@@ -11,9 +11,10 @@ catocli mutation policy applicationControl createPolicyRevision <json>
 
 catocli mutation policy applicationControl createPolicyRevision --json-file mutation.policy.applicationControl.createPolicyRevision.json
 
-catocli mutation policy applicationControl createPolicyRevision '{"applicationControlPolicyMutationInput":{"revision":{"id":"id"}},"policyCreateRevisionInput":{"description":"string","name":"string"}}'
+catocli mutation policy applicationControl createPolicyRevision '{"accountId":"id","applicationControlPolicyMutationInput":{"revision":{"id":"id"}},"policyCreateRevisionInput":{"description":"string","name":"string"}}'
 
 catocli mutation policy applicationControl createPolicyRevision '{
+    "accountId": "id",
     "applicationControlPolicyMutationInput": {
         "revision": {
             "id": "id"

@@ -11,9 +11,10 @@ catocli mutation policy applicationControl updatePolicy <json>
 
 catocli mutation policy applicationControl updatePolicy --json-file mutation.policy.applicationControl.updatePolicy.json
 
-catocli mutation policy applicationControl updatePolicy '{"applicationControlPolicyMutationInput":{"revision":{"id":"id"}},"applicationControlPolicyUpdateInput":{"additionalAttributes":{"dataControlEnabled":"ENABLED"},"state":"ENABLED"}}'
+catocli mutation policy applicationControl updatePolicy '{"accountId":"id","applicationControlPolicyMutationInput":{"revision":{"id":"id"}},"applicationControlPolicyUpdateInput":{"additionalAttributes":{"dataControlEnabled":"ENABLED"},"state":"ENABLED"}}'
 
 catocli mutation policy applicationControl updatePolicy '{
+    "accountId": "id",
     "applicationControlPolicyMutationInput": {
         "revision": {
             "id": "id"

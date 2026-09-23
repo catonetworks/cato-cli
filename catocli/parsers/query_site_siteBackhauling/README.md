@@ -11,9 +11,10 @@ catocli query site siteBackhauling <json>
 
 catocli query site siteBackhauling --json-file query.site.siteBackhauling.json
 
-catocli query site siteBackhauling '{"siteRefInput":{"by":"ID","input":"string"}}'
+catocli query site siteBackhauling '{"accountId":"id","siteRefInput":{"by":"ID","input":"string"}}'
 
 catocli query site siteBackhauling '{
+    "accountId": "id",
     "siteRefInput": {
         "by": "ID",
         "input": "string"

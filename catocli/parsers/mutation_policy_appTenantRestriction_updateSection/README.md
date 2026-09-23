@@ -11,9 +11,10 @@ catocli mutation policy appTenantRestriction updateSection <json>
 
 catocli mutation policy appTenantRestriction updateSection --json-file mutation.policy.appTenantRestriction.updateSection.json
 
-catocli mutation policy appTenantRestriction updateSection '{"appTenantRestrictionPolicyMutationInput":{"revision":{"id":"id"}},"policyUpdateSectionInput":{"id":"id","section":{"name":"string"}}}'
+catocli mutation policy appTenantRestriction updateSection '{"accountId":"id","appTenantRestrictionPolicyMutationInput":{"revision":{"id":"id"}},"policyUpdateSectionInput":{"id":"id","section":{"name":"string"}}}'
 
 catocli mutation policy appTenantRestriction updateSection '{
+    "accountId": "id",
     "appTenantRestrictionPolicyMutationInput": {
         "revision": {
             "id": "id"

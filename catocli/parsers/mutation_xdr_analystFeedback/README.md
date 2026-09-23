@@ -11,9 +11,10 @@ catocli mutation xdr analystFeedback <json>
 
 catocli mutation xdr analystFeedback --json-file mutation.xdr.analystFeedback.json
 
-catocli mutation xdr analystFeedback '{"analystFeedbackInput":{"additionalInfo":"string","severity":"High","status":"Open","storyId":"id","threatClassification":"string","threatType":{"details":"string","name":"string","recommendedAction":"string"},"verdict":"Suspicious"}}'
+catocli mutation xdr analystFeedback '{"accountId":"id","analystFeedbackInput":{"additionalInfo":"string","severity":"High","status":"Open","storyId":"id","threatClassification":"string","threatType":{"details":"string","name":"string","recommendedAction":"string"},"verdict":"Suspicious"}}'
 
 catocli mutation xdr analystFeedback '{
+    "accountId": "id",
     "analystFeedbackInput": {
         "additionalInfo": "string",
         "severity": "High",

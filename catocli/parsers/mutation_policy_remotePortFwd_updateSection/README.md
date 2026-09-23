@@ -11,9 +11,10 @@ catocli mutation policy remotePortFwd updateSection <json>
 
 catocli mutation policy remotePortFwd updateSection --json-file mutation.policy.remotePortFwd.updateSection.json
 
-catocli mutation policy remotePortFwd updateSection '{"policyUpdateSectionInput":{"id":"id","section":{"name":"string"}},"remotePortFwdPolicyMutationInput":{"revision":{"id":"id"}}}'
+catocli mutation policy remotePortFwd updateSection '{"accountId":"id","policyUpdateSectionInput":{"id":"id","section":{"name":"string"}},"remotePortFwdPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy remotePortFwd updateSection '{
+    "accountId": "id",
     "policyUpdateSectionInput": {
         "id": "id",
         "section": {

@@ -37,12 +37,8 @@ query notification ( $accountId:ID! $mailingListRefInput:MailingListRefInput! $w
 					id
 					name
 					... on AdminRef {
-						id
-						name
 					}
 					... on ApiKeyRef {
-						id
-						name
 					}
 				}
 			}
@@ -97,23 +93,23 @@ query notification ( $accountId:ID! $mailingListRefInput:MailingListRefInput! $w
 				auth {
 					authType
 					... on BearerTokenAuth {
-						authType
 					}
 					... on BasicAuth {
-						authType
 						username
 					}
 					... on CustomHeaderAuth {
-						authType
 						name
 					}
 					... on CustomHeadersAuth {
-						authType
-						plainHeaders
-						secretHeaders
+						plainHeaders {
+							name
+							value
+						}
+						secretHeaders {
+							name
+						}
 					}
 					... on NoAuth {
-						authType
 					}
 				}
 				header {
@@ -172,23 +168,23 @@ query notification ( $accountId:ID! $mailingListRefInput:MailingListRefInput! $w
 				auth {
 					authType
 					... on BearerTokenAuth {
-						authType
 					}
 					... on BasicAuth {
-						authType
 						username
 					}
 					... on CustomHeaderAuth {
-						authType
 						name
 					}
 					... on CustomHeadersAuth {
-						authType
-						plainHeaders
-						secretHeaders
+						plainHeaders {
+							name
+							value
+						}
+						secretHeaders {
+							name
+						}
 					}
 					... on NoAuth {
-						authType
 					}
 				}
 				header {
@@ -226,12 +222,8 @@ query notification ( $accountId:ID! $mailingListRefInput:MailingListRefInput! $w
 							id
 							name
 							... on AdminRef {
-								id
-								name
 							}
 							... on ApiKeyRef {
-								id
-								name
 							}
 						}
 					}
@@ -246,23 +238,23 @@ query notification ( $accountId:ID! $mailingListRefInput:MailingListRefInput! $w
 						auth {
 							authType
 							... on BearerTokenAuth {
-								authType
 							}
 							... on BasicAuth {
-								authType
 								username
 							}
 							... on CustomHeaderAuth {
-								authType
 								name
 							}
 							... on CustomHeadersAuth {
-								authType
-								plainHeaders
-								secretHeaders
+								plainHeaders {
+									name
+									value
+								}
+								secretHeaders {
+									name
+								}
 							}
 							... on NoAuth {
-								authType
 							}
 						}
 						header {

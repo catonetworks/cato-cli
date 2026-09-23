@@ -11,9 +11,10 @@ catocli mutation site updateSiteNetworkRanges <json>
 
 catocli mutation site updateSiteNetworkRanges --json-file mutation.site.updateSiteNetworkRanges.json
 
-catocli mutation site updateSiteNetworkRanges '{"updateSiteNetworkRangesInput":{"networkRange":{"azureFloatingIp":"example_value","dhcpSettings":{"dhcpMicrosegmentation":true,"dhcpType":"DHCP_RELAY","ipRange":"example_value","relayGroupId":"id"},"gateway":"example_value","internetOnly":true,"lanSocketInterfaceId":"id","localIp":"example_value","mdnsReflector":true,"name":"string","rangeType":"Routed","subnet":"example_value","translatedSubnet":"example_value","vlan":1},"networkRangeToAdd":{"azureFloatingIp":"example_value","dhcpSettings":{"dhcpMicrosegmentation":true,"dhcpType":"DHCP_RELAY","ipRange":"example_value","relayGroupId":"id"},"gateway":"example_value","internetOnly":true,"lanSocketInterfaceId":"id","localIp":"example_value","mdnsReflector":true,"name":"string","rangeType":"Routed","subnet":"example_value","translatedSubnet":"example_value","vlan":1},"networkRangeToRemove":{"networkRangeId":"id"},"site":{"by":"ID","input":"string"}}}'
+catocli mutation site updateSiteNetworkRanges '{"accountId":"id","updateSiteNetworkRangesInput":{"networkRange":{"azureFloatingIp":"example_value","dhcpSettings":{"dhcpMicrosegmentation":true,"dhcpType":"DHCP_RELAY","ipRange":"example_value","relayGroupId":"id"},"gateway":"example_value","internetOnly":true,"lanSocketInterfaceId":"id","localIp":"example_value","mdnsReflector":true,"name":"string","rangeType":"Routed","subnet":"example_value","translatedSubnet":"example_value","vlan":1},"networkRangeToAdd":{"azureFloatingIp":"example_value","dhcpSettings":{"dhcpMicrosegmentation":true,"dhcpType":"DHCP_RELAY","ipRange":"example_value","relayGroupId":"id"},"gateway":"example_value","internetOnly":true,"lanSocketInterfaceId":"id","localIp":"example_value","mdnsReflector":true,"name":"string","rangeType":"Routed","subnet":"example_value","translatedSubnet":"example_value","vlan":1},"networkRangeToRemove":{"networkRangeId":"id"},"site":{"by":"ID","input":"string"}}}'
 
 catocli mutation site updateSiteNetworkRanges '{
+    "accountId": "id",
     "updateSiteNetworkRangesInput": {
         "networkRange": {
             "azureFloatingIp": "example_value",

@@ -11,9 +11,10 @@ catocli query site siteBgpStatus <json>
 
 catocli query site siteBgpStatus --json-file query.site.siteBgpStatus.json
 
-catocli query site siteBgpStatus '{"siteBgpStatusInput":{"site":{"by":"ID","input":"string"}}}'
+catocli query site siteBgpStatus '{"accountId":"id","siteBgpStatusInput":{"site":{"by":"ID","input":"string"}}}'
 
 catocli query site siteBgpStatus '{
+    "accountId": "id",
     "siteBgpStatusInput": {
         "site": {
             "by": "ID",

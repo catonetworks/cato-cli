@@ -11,9 +11,10 @@ catocli query policy internetFirewall policyList <json>
 
 catocli query policy internetFirewall policyList --json-file query.policy.internetFirewall.policyList.json
 
-catocli query policy internetFirewall policyList '{"internetFirewallPolicyListInput":{"filter":{"id":{"eq":"id","in":["id1","id2"],"neq":"id","nin":["id1","id2"]},"name":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"policyLevel":{"eq":"MAIN","in":"MAIN","neq":"MAIN","nin":"MAIN"}},"paging":{"from":1,"limit":1},"sort":{"name":{"direction":"ASC","priority":1},"policyLevel":{"direction":"ASC","priority":1}}}}'
+catocli query policy internetFirewall policyList '{"accountId":"id","internetFirewallPolicyListInput":{"filter":{"id":{"eq":"id","in":["id1","id2"],"neq":"id","nin":["id1","id2"]},"name":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"policyLevel":{"eq":"MAIN","in":"MAIN","neq":"MAIN","nin":"MAIN"}},"paging":{"from":1,"limit":1},"sort":{"name":{"direction":"ASC","priority":1},"policyLevel":{"direction":"ASC","priority":1}}}}'
 
 catocli query policy internetFirewall policyList '{
+    "accountId": "id",
     "internetFirewallPolicyListInput": {
         "filter": {
             "id": {

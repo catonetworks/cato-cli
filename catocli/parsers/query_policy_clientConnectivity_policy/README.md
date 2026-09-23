@@ -11,9 +11,10 @@ catocli query policy clientConnectivity policy <json>
 
 catocli query policy clientConnectivity policy --json-file query.policy.clientConnectivity.policy.json
 
-catocli query policy clientConnectivity policy '{"clientConnectivityPolicyInput":{"revision":{"id":"id","type":"PRIVATE"}}}'
+catocli query policy clientConnectivity policy '{"accountId":"id","clientConnectivityPolicyInput":{"revision":{"id":"id","type":"PRIVATE"}}}'
 
 catocli query policy clientConnectivity policy '{
+    "accountId": "id",
     "clientConnectivityPolicyInput": {
         "revision": {
             "id": "id",

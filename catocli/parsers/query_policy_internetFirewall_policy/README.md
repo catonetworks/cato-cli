@@ -11,9 +11,10 @@ catocli query policy internetFirewall policy <json>
 
 catocli query policy internetFirewall policy --json-file query.policy.internetFirewall.policy.json
 
-catocli query policy internetFirewall policy '{"internetFirewallPolicyInput":{"revision":{"id":"id","type":"PRIVATE"}}}'
+catocli query policy internetFirewall policy '{"accountId":"id","internetFirewallPolicyInput":{"revision":{"id":"id","type":"PRIVATE"}}}'
 
 catocli query policy internetFirewall policy '{
+    "accountId": "id",
     "internetFirewallPolicyInput": {
         "revision": {
             "id": "id",

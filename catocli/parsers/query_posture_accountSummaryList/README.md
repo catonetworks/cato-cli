@@ -11,9 +11,10 @@ catocli query posture accountSummaryList <json>
 
 catocli query posture accountSummaryList --json-file query.posture.accountSummaryList.json
 
-catocli query posture accountSummaryList '{"postureAccountSummaryListInput":{"sort":{"accountName":{"direction":"ASC","priority":1},"score":{"direction":"ASC","priority":1}}}}'
+catocli query posture accountSummaryList '{"accountId":"id","postureAccountSummaryListInput":{"sort":{"accountName":{"direction":"ASC","priority":1},"score":{"direction":"ASC","priority":1}}}}'
 
 catocli query posture accountSummaryList '{
+    "accountId": "id",
     "postureAccountSummaryListInput": {
         "sort": {
             "accountName": {

@@ -11,9 +11,10 @@ catocli mutation policy appTenantRestriction moveSection <json>
 
 catocli mutation policy appTenantRestriction moveSection --json-file mutation.policy.appTenantRestriction.moveSection.json
 
-catocli mutation policy appTenantRestriction moveSection '{"appTenantRestrictionPolicyMutationInput":{"revision":{"id":"id"}},"policyMoveSectionInput":{"id":"id","to":{"position":"AFTER_SECTION","ref":"id"}}}'
+catocli mutation policy appTenantRestriction moveSection '{"accountId":"id","appTenantRestrictionPolicyMutationInput":{"revision":{"id":"id"}},"policyMoveSectionInput":{"id":"id","to":{"position":"AFTER_SECTION","ref":"id"}}}'
 
 catocli mutation policy appTenantRestriction moveSection '{
+    "accountId": "id",
     "appTenantRestrictionPolicyMutationInput": {
         "revision": {
             "id": "id"

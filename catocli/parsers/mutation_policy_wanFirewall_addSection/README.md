@@ -11,9 +11,10 @@ catocli mutation policy wanFirewall addSection <json>
 
 catocli mutation policy wanFirewall addSection --json-file mutation.policy.wanFirewall.addSection.json
 
-catocli mutation policy wanFirewall addSection '{"policyAddSectionInput":{"at":{"position":"AFTER_SECTION","ref":"id"},"section":{"name":"string"}},"wanFirewallPolicyMutationInput":{"revision":{"id":"id"}}}'
+catocli mutation policy wanFirewall addSection '{"accountId":"id","policyAddSectionInput":{"at":{"position":"AFTER_SECTION","ref":"id"},"section":{"name":"string"}},"wanFirewallPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy wanFirewall addSection '{
+    "accountId": "id",
     "policyAddSectionInput": {
         "at": {
             "position": "AFTER_SECTION",

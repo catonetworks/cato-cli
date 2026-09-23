@@ -11,9 +11,10 @@ catocli query posture definitionList <json>
 
 catocli query posture definitionList --json-file query.posture.definitionList.json
 
-catocli query posture definitionList '{"postureDefinitionListInput":{"sort":{"name":{"direction":"ASC","priority":1},"severity":{"direction":"ASC","priority":1}}}}'
+catocli query posture definitionList '{"accountId":"id","postureDefinitionListInput":{"sort":{"name":{"direction":"ASC","priority":1},"severity":{"direction":"ASC","priority":1}}}}'
 
 catocli query posture definitionList '{
+    "accountId": "id",
     "postureDefinitionListInput": {
         "sort": {
             "name": {

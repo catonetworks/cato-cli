@@ -11,9 +11,10 @@ catocli query networkConfig dns forwardingRule <json>
 
 catocli query networkConfig dns forwardingRule --json-file query.networkConfig.dns.forwardingRule.json
 
-catocli query networkConfig dns forwardingRule '{"networkConfigDnsForwardingRuleRefInput":{"by":"ID","input":"string"}}'
+catocli query networkConfig dns forwardingRule '{"accountId":"id","networkConfigDnsForwardingRuleRefInput":{"by":"ID","input":"string"}}'
 
 catocli query networkConfig dns forwardingRule '{
+    "accountId": "id",
     "networkConfigDnsForwardingRuleRefInput": {
         "by": "ID",
         "input": "string"

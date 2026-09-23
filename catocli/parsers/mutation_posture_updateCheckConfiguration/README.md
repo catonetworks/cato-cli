@@ -11,9 +11,10 @@ catocli mutation posture updateCheckConfiguration <json>
 
 catocli mutation posture updateCheckConfiguration --json-file mutation.posture.updateCheckConfiguration.json
 
-catocli mutation posture updateCheckConfiguration '{"postureUpdateCheckConfigurationInput":{"suppressedCheckStatus":{"id":"string","status":"ENABLED"}}}'
+catocli mutation posture updateCheckConfiguration '{"accountId":"id","postureUpdateCheckConfigurationInput":{"suppressedCheckStatus":{"id":"string","status":"ENABLED"}}}'
 
 catocli mutation posture updateCheckConfiguration '{
+    "accountId": "id",
     "postureUpdateCheckConfigurationInput": {
         "suppressedCheckStatus": {
             "id": "string",

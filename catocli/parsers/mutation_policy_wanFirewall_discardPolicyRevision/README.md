@@ -11,9 +11,10 @@ catocli mutation policy wanFirewall discardPolicyRevision <json>
 
 catocli mutation policy wanFirewall discardPolicyRevision --json-file mutation.policy.wanFirewall.discardPolicyRevision.json
 
-catocli mutation policy wanFirewall discardPolicyRevision '{"policyDiscardRevisionInput":{"id":"id"},"wanFirewallPolicyMutationInput":{"revision":{"id":"id"}}}'
+catocli mutation policy wanFirewall discardPolicyRevision '{"accountId":"id","policyDiscardRevisionInput":{"id":"id"},"wanFirewallPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy wanFirewall discardPolicyRevision '{
+    "accountId": "id",
     "policyDiscardRevisionInput": {
         "id": "id"
     },

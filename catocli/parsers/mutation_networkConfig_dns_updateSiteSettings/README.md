@@ -11,9 +11,10 @@ catocli mutation networkConfig dns updateSiteSettings <json>
 
 catocli mutation networkConfig dns updateSiteSettings --json-file mutation.networkConfig.dns.updateSiteSettings.json
 
-catocli mutation networkConfig dns updateSiteSettings '{"networkConfigDnsUpdateSiteSettingsInput":{"siteSettings":{"primaryServer":"example_value","secondaryServer":"example_value","site":{"by":"ID","input":"string"},"suffix":["example1","example2"]}}}'
+catocli mutation networkConfig dns updateSiteSettings '{"accountId":"id","networkConfigDnsUpdateSiteSettingsInput":{"siteSettings":{"primaryServer":"example_value","secondaryServer":"example_value","site":{"by":"ID","input":"string"},"suffix":["example1","example2"]}}}'
 
 catocli mutation networkConfig dns updateSiteSettings '{
+    "accountId": "id",
     "networkConfigDnsUpdateSiteSettingsInput": {
         "siteSettings": {
             "primaryServer": "example_value",

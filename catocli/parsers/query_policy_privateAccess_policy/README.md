@@ -11,9 +11,10 @@ catocli query policy privateAccess policy <json>
 
 catocli query policy privateAccess policy --json-file query.policy.privateAccess.policy.json
 
-catocli query policy privateAccess policy '{"privateAccessPolicyInput":{"revision":{"id":"id","type":"PRIVATE"}}}'
+catocli query policy privateAccess policy '{"accountId":"id","privateAccessPolicyInput":{"revision":{"id":"id","type":"PRIVATE"}}}'
 
 catocli query policy privateAccess policy '{
+    "accountId": "id",
     "privateAccessPolicyInput": {
         "revision": {
             "id": "id",

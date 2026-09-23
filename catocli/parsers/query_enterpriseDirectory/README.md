@@ -11,9 +11,10 @@ catocli query enterpriseDirectory <json>
 
 catocli query enterpriseDirectory --json-file query.enterpriseDirectory.json
 
-catocli query enterpriseDirectory '{"enterpriseDirectoryLocationListInput":{"filter":{"account":{"accountInclusion":"ALL_ACCOUNTS","in":["id1","id2"]},"countryCode":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"freeText":{"search":"string"},"id":{"eq":"id","in":["id1","id2"],"neq":"id","nin":["id1","id2"]},"includeArchived":true,"isShippingLocation":true,"name":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"type":{"eq":"BRANCH","in":"BRANCH","neq":"BRANCH","nin":"BRANCH"}},"paging":{"from":1,"limit":1},"sort":{"country":{"direction":"ASC","priority":1},"name":{"direction":"ASC","priority":1},"type":{"direction":"ASC","priority":1}}}}'
+catocli query enterpriseDirectory '{"accountId":"id","enterpriseDirectoryLocationListInput":{"filter":{"account":{"accountInclusion":"ALL_ACCOUNTS","in":["id1","id2"]},"countryCode":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"freeText":{"search":"string"},"id":{"eq":"id","in":["id1","id2"],"neq":"id","nin":["id1","id2"]},"includeArchived":true,"isShippingLocation":true,"name":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"type":{"eq":"BRANCH","in":"BRANCH","neq":"BRANCH","nin":"BRANCH"}},"paging":{"from":1,"limit":1},"sort":{"country":{"direction":"ASC","priority":1},"name":{"direction":"ASC","priority":1},"type":{"direction":"ASC","priority":1}}}}'
 
 catocli query enterpriseDirectory '{
+    "accountId": "id",
     "enterpriseDirectoryLocationListInput": {
         "filter": {
             "account": {

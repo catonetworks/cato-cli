@@ -11,9 +11,10 @@ catocli mutation policy appTenantRestriction createPolicyRevision <json>
 
 catocli mutation policy appTenantRestriction createPolicyRevision --json-file mutation.policy.appTenantRestriction.createPolicyRevision.json
 
-catocli mutation policy appTenantRestriction createPolicyRevision '{"appTenantRestrictionPolicyMutationInput":{"revision":{"id":"id"}},"policyCreateRevisionInput":{"description":"string","name":"string"}}'
+catocli mutation policy appTenantRestriction createPolicyRevision '{"accountId":"id","appTenantRestrictionPolicyMutationInput":{"revision":{"id":"id"}},"policyCreateRevisionInput":{"description":"string","name":"string"}}'
 
 catocli mutation policy appTenantRestriction createPolicyRevision '{
+    "accountId": "id",
     "appTenantRestrictionPolicyMutationInput": {
         "revision": {
             "id": "id"

@@ -11,9 +11,10 @@ catocli mutation licensing addLicenseToManagedAccount <json>
 
 catocli mutation licensing addLicenseToManagedAccount --json-file mutation.licensing.addLicenseToManagedAccount.json
 
-catocli mutation licensing addLicenseToManagedAccount '{"addLicenseToManagedAccountInput":{"bw":1,"licenseId":"id","managedAccountId":"id","users":1}}'
+catocli mutation licensing addLicenseToManagedAccount '{"accountId":"id","addLicenseToManagedAccountInput":{"bw":1,"licenseId":"id","managedAccountId":"id","users":1}}'
 
 catocli mutation licensing addLicenseToManagedAccount '{
+    "accountId": "id",
     "addLicenseToManagedAccountInput": {
         "bw": 1,
         "licenseId": "id",

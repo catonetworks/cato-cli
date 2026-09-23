@@ -11,9 +11,10 @@ catocli mutation policy socketBypass moveRule <json>
 
 catocli mutation policy socketBypass moveRule --json-file mutation.policy.socketBypass.moveRule.json
 
-catocli mutation policy socketBypass moveRule '{"policyMoveRuleInput":{"id":"id","to":{"position":"AFTER_RULE","ref":"id"}},"socketBypassPolicyMutationInput":{"revision":{"id":"id"}}}'
+catocli mutation policy socketBypass moveRule '{"accountId":"id","policyMoveRuleInput":{"id":"id","to":{"position":"AFTER_RULE","ref":"id"}},"socketBypassPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy socketBypass moveRule '{
+    "accountId": "id",
     "policyMoveRuleInput": {
         "id": "id",
         "to": {

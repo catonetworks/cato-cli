@@ -11,9 +11,10 @@ catocli mutation networkConfig dns removeSiteSettings <json>
 
 catocli mutation networkConfig dns removeSiteSettings --json-file mutation.networkConfig.dns.removeSiteSettings.json
 
-catocli mutation networkConfig dns removeSiteSettings '{"networkConfigDnsRemoveSiteSettingsInput":{"site":{"by":"ID","input":"string"}}}'
+catocli mutation networkConfig dns removeSiteSettings '{"accountId":"id","networkConfigDnsRemoveSiteSettingsInput":{"site":{"by":"ID","input":"string"}}}'
 
 catocli mutation networkConfig dns removeSiteSettings '{
+    "accountId": "id",
     "networkConfigDnsRemoveSiteSettingsInput": {
         "site": {
             "by": "ID",

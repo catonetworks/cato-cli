@@ -11,9 +11,10 @@ catocli mutation policy clientConnectivity createPolicyRevision <json>
 
 catocli mutation policy clientConnectivity createPolicyRevision --json-file mutation.policy.clientConnectivity.createPolicyRevision.json
 
-catocli mutation policy clientConnectivity createPolicyRevision '{"clientConnectivityPolicyMutationInput":{"revision":{"id":"id"}},"policyCreateRevisionInput":{"description":"string","name":"string"}}'
+catocli mutation policy clientConnectivity createPolicyRevision '{"accountId":"id","clientConnectivityPolicyMutationInput":{"revision":{"id":"id"}},"policyCreateRevisionInput":{"description":"string","name":"string"}}'
 
 catocli mutation policy clientConnectivity createPolicyRevision '{
+    "accountId": "id",
     "clientConnectivityPolicyMutationInput": {
         "revision": {
             "id": "id"

@@ -11,9 +11,10 @@ catocli query networkConfig dns siteSettings <json>
 
 catocli query networkConfig dns siteSettings --json-file query.networkConfig.dns.siteSettings.json
 
-catocli query networkConfig dns siteSettings '{"siteRefInput":{"by":"ID","input":"string"}}'
+catocli query networkConfig dns siteSettings '{"accountId":"id","siteRefInput":{"by":"ID","input":"string"}}'
 
 catocli query networkConfig dns siteSettings '{
+    "accountId": "id",
     "siteRefInput": {
         "by": "ID",
         "input": "string"

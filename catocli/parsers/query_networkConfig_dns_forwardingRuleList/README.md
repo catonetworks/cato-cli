@@ -11,9 +11,10 @@ catocli query networkConfig dns forwardingRuleList <json>
 
 catocli query networkConfig dns forwardingRuleList --json-file query.networkConfig.dns.forwardingRuleList.json
 
-catocli query networkConfig dns forwardingRuleList '{"networkConfigDnsForwardingRuleListInput":{"filter":{"domain":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"],"regex":"string"}},"paging":{"from":1,"limit":1},"sort":{"domain":{"direction":"ASC","priority":1}}}}'
+catocli query networkConfig dns forwardingRuleList '{"accountId":"id","networkConfigDnsForwardingRuleListInput":{"filter":{"domain":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"],"regex":"string"}},"paging":{"from":1,"limit":1},"sort":{"domain":{"direction":"ASC","priority":1}}}}'
 
 catocli query networkConfig dns forwardingRuleList '{
+    "accountId": "id",
     "networkConfigDnsForwardingRuleListInput": {
         "filter": {
             "domain": {

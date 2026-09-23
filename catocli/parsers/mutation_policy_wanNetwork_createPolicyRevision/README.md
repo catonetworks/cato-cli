@@ -11,9 +11,10 @@ catocli mutation policy wanNetwork createPolicyRevision <json>
 
 catocli mutation policy wanNetwork createPolicyRevision --json-file mutation.policy.wanNetwork.createPolicyRevision.json
 
-catocli mutation policy wanNetwork createPolicyRevision '{"policyCreateRevisionInput":{"description":"string","name":"string"},"wanNetworkPolicyMutationInput":{"revision":{"id":"id"}}}'
+catocli mutation policy wanNetwork createPolicyRevision '{"accountId":"id","policyCreateRevisionInput":{"description":"string","name":"string"},"wanNetworkPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy wanNetwork createPolicyRevision '{
+    "accountId": "id",
     "policyCreateRevisionInput": {
         "description": "string",
         "name": "string"

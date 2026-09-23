@@ -11,6 +11,13 @@ catocli mutation accountManagement removeAccount <json>
 
 catocli mutation accountManagement removeAccount --json-file mutation.accountManagement.removeAccount.json
 
+catocli mutation accountManagement removeAccount '{"accountId":"id"}'
+
+catocli mutation accountManagement removeAccount '{
+    "accountId": "id"
+}'
+```
+
 #### Operation Arguments for mutation.accountManagement.removeAccount ####
 
 `accountId` [ID] - (required) N/A    

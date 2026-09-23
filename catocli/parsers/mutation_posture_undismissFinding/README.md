@@ -11,9 +11,10 @@ catocli mutation posture undismissFinding <json>
 
 catocli mutation posture undismissFinding --json-file mutation.posture.undismissFinding.json
 
-catocli mutation posture undismissFinding '{"postureUndismissFindingInput":{"findingId":"id"}}'
+catocli mutation posture undismissFinding '{"accountId":"id","postureUndismissFindingInput":{"findingId":"id"}}'
 
 catocli mutation posture undismissFinding '{
+    "accountId": "id",
     "postureUndismissFindingInput": {
         "findingId": "id"
     }

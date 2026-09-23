@@ -11,9 +11,10 @@ catocli mutation posture addCheckComment <json>
 
 catocli mutation posture addCheckComment --json-file mutation.posture.addCheckComment.json
 
-catocli mutation posture addCheckComment '{"addCheckCommentInput":{"checkId":"id","text":"string"}}'
+catocli mutation posture addCheckComment '{"accountId":"id","addCheckCommentInput":{"checkId":"id","text":"string"}}'
 
 catocli mutation posture addCheckComment '{
+    "accountId": "id",
     "addCheckCommentInput": {
         "checkId": "id",
         "text": "string"

@@ -11,9 +11,10 @@ catocli mutation networkConfig dns deleteForwardingRule <json>
 
 catocli mutation networkConfig dns deleteForwardingRule --json-file mutation.networkConfig.dns.deleteForwardingRule.json
 
-catocli mutation networkConfig dns deleteForwardingRule '{"networkConfigDnsDeleteForwardingRuleInput":{"id":["id1","id2"]}}'
+catocli mutation networkConfig dns deleteForwardingRule '{"accountId":"id","networkConfigDnsDeleteForwardingRuleInput":{"id":["id1","id2"]}}'
 
 catocli mutation networkConfig dns deleteForwardingRule '{
+    "accountId": "id",
     "networkConfigDnsDeleteForwardingRuleInput": {
         "id": [
             "id1",

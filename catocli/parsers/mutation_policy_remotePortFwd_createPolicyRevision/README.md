@@ -11,9 +11,10 @@ catocli mutation policy remotePortFwd createPolicyRevision <json>
 
 catocli mutation policy remotePortFwd createPolicyRevision --json-file mutation.policy.remotePortFwd.createPolicyRevision.json
 
-catocli mutation policy remotePortFwd createPolicyRevision '{"policyCreateRevisionInput":{"description":"string","name":"string"},"remotePortFwdPolicyMutationInput":{"revision":{"id":"id"}}}'
+catocli mutation policy remotePortFwd createPolicyRevision '{"accountId":"id","policyCreateRevisionInput":{"description":"string","name":"string"},"remotePortFwdPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy remotePortFwd createPolicyRevision '{
+    "accountId": "id",
     "policyCreateRevisionInput": {
         "description": "string",
         "name": "string"

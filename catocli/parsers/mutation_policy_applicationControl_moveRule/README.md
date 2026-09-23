@@ -11,9 +11,10 @@ catocli mutation policy applicationControl moveRule <json>
 
 catocli mutation policy applicationControl moveRule --json-file mutation.policy.applicationControl.moveRule.json
 
-catocli mutation policy applicationControl moveRule '{"applicationControlPolicyMutationInput":{"revision":{"id":"id"}},"policyMoveRuleInput":{"id":"id","to":{"position":"AFTER_RULE","ref":"id"}}}'
+catocli mutation policy applicationControl moveRule '{"accountId":"id","applicationControlPolicyMutationInput":{"revision":{"id":"id"}},"policyMoveRuleInput":{"id":"id","to":{"position":"AFTER_RULE","ref":"id"}}}'
 
 catocli mutation policy applicationControl moveRule '{
+    "accountId": "id",
     "applicationControlPolicyMutationInput": {
         "revision": {
             "id": "id"

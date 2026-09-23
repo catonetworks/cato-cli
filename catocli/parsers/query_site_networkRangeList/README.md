@@ -11,9 +11,10 @@ catocli query site networkRangeList <json>
 
 catocli query site networkRangeList --json-file query.site.networkRangeList.json
 
-catocli query site networkRangeList '{"networkRangeListInput":{"site":{"by":"ID","input":"string"}}}'
+catocli query site networkRangeList '{"accountId":"id","networkRangeListInput":{"site":{"by":"ID","input":"string"}}}'
 
 catocli query site networkRangeList '{
+    "accountId": "id",
     "networkRangeListInput": {
         "site": {
             "by": "ID",

@@ -11,9 +11,10 @@ catocli mutation policy terminalServer createPolicyRevision <json>
 
 catocli mutation policy terminalServer createPolicyRevision --json-file mutation.policy.terminalServer.createPolicyRevision.json
 
-catocli mutation policy terminalServer createPolicyRevision '{"policyCreateRevisionInput":{"description":"string","name":"string"},"terminalServerPolicyMutationInput":{"revision":{"id":"id"}}}'
+catocli mutation policy terminalServer createPolicyRevision '{"accountId":"id","policyCreateRevisionInput":{"description":"string","name":"string"},"terminalServerPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy terminalServer createPolicyRevision '{
+    "accountId": "id",
     "policyCreateRevisionInput": {
         "description": "string",
         "name": "string"

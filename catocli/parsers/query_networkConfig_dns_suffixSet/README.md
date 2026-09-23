@@ -11,9 +11,10 @@ catocli query networkConfig dns suffixSet <json>
 
 catocli query networkConfig dns suffixSet --json-file query.networkConfig.dns.suffixSet.json
 
-catocli query networkConfig dns suffixSet '{"networkConfigDnsSuffixSetRefInput":{"by":"ID","input":"string"}}'
+catocli query networkConfig dns suffixSet '{"accountId":"id","networkConfigDnsSuffixSetRefInput":{"by":"ID","input":"string"}}'
 
 catocli query networkConfig dns suffixSet '{
+    "accountId": "id",
     "networkConfigDnsSuffixSetRefInput": {
         "by": "ID",
         "input": "string"

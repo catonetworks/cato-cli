@@ -11,9 +11,10 @@ catocli mutation policy socketLan publishPolicyRevision <json>
 
 catocli mutation policy socketLan publishPolicyRevision --json-file mutation.policy.socketLan.publishPolicyRevision.json
 
-catocli mutation policy socketLan publishPolicyRevision '{"policyPublishRevisionInput":{"description":"string","name":"string"},"socketLanPolicyMutationInput":{"revision":{"id":"id"}}}'
+catocli mutation policy socketLan publishPolicyRevision '{"accountId":"id","policyPublishRevisionInput":{"description":"string","name":"string"},"socketLanPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy socketLan publishPolicyRevision '{
+    "accountId": "id",
     "policyPublishRevisionInput": {
         "description": "string",
         "name": "string"

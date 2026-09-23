@@ -11,9 +11,10 @@ catocli query container ipAddressRange search <json>
 
 catocli query container ipAddressRange search --json-file query.container.ipAddressRange.search.json
 
-catocli query container ipAddressRange search '{"ipAddressRangeContainerSearchInput":{"ref":{"by":"ID","input":"string"}}}'
+catocli query container ipAddressRange search '{"accountId":"id","ipAddressRangeContainerSearchInput":{"ref":{"by":"ID","input":"string"}}}'
 
 catocli query container ipAddressRange search '{
+    "accountId": "id",
     "ipAddressRangeContainerSearchInput": {
         "ref": {
             "by": "ID",

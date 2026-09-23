@@ -11,9 +11,10 @@ catocli mutation policy socketBypass discardPolicyRevision <json>
 
 catocli mutation policy socketBypass discardPolicyRevision --json-file mutation.policy.socketBypass.discardPolicyRevision.json
 
-catocli mutation policy socketBypass discardPolicyRevision '{"policyDiscardRevisionInput":{"id":"id"},"socketBypassPolicyMutationInput":{"revision":{"id":"id"}}}'
+catocli mutation policy socketBypass discardPolicyRevision '{"accountId":"id","policyDiscardRevisionInput":{"id":"id"},"socketBypassPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy socketBypass discardPolicyRevision '{
+    "accountId": "id",
     "policyDiscardRevisionInput": {
         "id": "id"
     },

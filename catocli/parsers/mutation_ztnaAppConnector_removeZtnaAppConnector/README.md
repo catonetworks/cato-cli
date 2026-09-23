@@ -11,9 +11,10 @@ catocli mutation ztnaAppConnector removeZtnaAppConnector <json>
 
 catocli mutation ztnaAppConnector removeZtnaAppConnector --json-file mutation.ztnaAppConnector.removeZtnaAppConnector.json
 
-catocli mutation ztnaAppConnector removeZtnaAppConnector '{"removeZtnaAppConnectorInput":{"ztnaAppConnector":{"by":"ID","input":"string"}}}'
+catocli mutation ztnaAppConnector removeZtnaAppConnector '{"accountId":"id","removeZtnaAppConnectorInput":{"ztnaAppConnector":{"by":"ID","input":"string"}}}'
 
 catocli mutation ztnaAppConnector removeZtnaAppConnector '{
+    "accountId": "id",
     "removeZtnaAppConnectorInput": {
         "ztnaAppConnector": {
             "by": "ID",

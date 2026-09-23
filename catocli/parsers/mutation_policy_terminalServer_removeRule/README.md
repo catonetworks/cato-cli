@@ -11,9 +11,10 @@ catocli mutation policy terminalServer removeRule <json>
 
 catocli mutation policy terminalServer removeRule --json-file mutation.policy.terminalServer.removeRule.json
 
-catocli mutation policy terminalServer removeRule '{"terminalServerPolicyMutationInput":{"revision":{"id":"id"}},"terminalServerRemoveRuleInput":{"id":"id"}}'
+catocli mutation policy terminalServer removeRule '{"accountId":"id","terminalServerPolicyMutationInput":{"revision":{"id":"id"}},"terminalServerRemoveRuleInput":{"id":"id"}}'
 
 catocli mutation policy terminalServer removeRule '{
+    "accountId": "id",
     "terminalServerPolicyMutationInput": {
         "revision": {
             "id": "id"

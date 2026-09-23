@@ -11,9 +11,10 @@ catocli mutation site addSocketSite <json>
 
 catocli mutation site addSocketSite --json-file mutation.site.addSocketSite.json
 
-catocli mutation site addSocketSite '{"addSocketSiteInput":{"connectionType":"SOCKET_X1500","description":"string","name":"string","nativeNetworkRange":"example_value","secondaryVSocket":{"aws":{"eniIpAddress":"example_value","eniIpSubnet":"example_value","routeTableId":"string"},"azure":{"floatingIp":"example_value","interfaceIp":"example_value"},"gcp":{"interfaceIp":"example_value","loadBalancerIp":"example_value"}},"siteLocation":{"address":"string","city":"string","countryCode":"string","stateCode":"string","timezone":"string"},"siteType":"BRANCH","translatedSubnet":"example_value","vlan":"example_value"}}'
+catocli mutation site addSocketSite '{"accountId":"id","addSocketSiteInput":{"connectionType":"SOCKET_X1500","description":"string","name":"string","nativeNetworkRange":"example_value","secondaryVSocket":{"aws":{"eniIpAddress":"example_value","eniIpSubnet":"example_value","routeTableId":"string"},"azure":{"floatingIp":"example_value","interfaceIp":"example_value"},"gcp":{"interfaceIp":"example_value","loadBalancerIp":"example_value"}},"siteLocation":{"address":"string","city":"string","countryCode":"string","stateCode":"string","timezone":"string"},"siteType":"BRANCH","translatedSubnet":"example_value","vlan":"example_value"}}'
 
 catocli mutation site addSocketSite '{
+    "accountId": "id",
     "addSocketSiteInput": {
         "connectionType": "SOCKET_X1500",
         "description": "string",

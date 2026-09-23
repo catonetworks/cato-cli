@@ -11,9 +11,10 @@ catocli mutation policy siteWebProxy moveSection <json>
 
 catocli mutation policy siteWebProxy moveSection --json-file mutation.policy.siteWebProxy.moveSection.json
 
-catocli mutation policy siteWebProxy moveSection '{"policyMoveSectionInput":{"id":"id","to":{"position":"AFTER_SECTION","ref":"id"}},"siteWebProxyPolicyMutationInput":{"revision":{"id":"id"}}}'
+catocli mutation policy siteWebProxy moveSection '{"accountId":"id","policyMoveSectionInput":{"id":"id","to":{"position":"AFTER_SECTION","ref":"id"}},"siteWebProxyPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy siteWebProxy moveSection '{
+    "accountId": "id",
     "policyMoveSectionInput": {
         "id": "id",
         "to": {

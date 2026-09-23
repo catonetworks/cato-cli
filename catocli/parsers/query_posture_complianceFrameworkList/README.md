@@ -11,6 +11,13 @@ catocli query posture complianceFrameworkList <json>
 
 catocli query posture complianceFrameworkList --json-file query.posture.complianceFrameworkList.json
 
+catocli query posture complianceFrameworkList '{"accountId":"id"}'
+
+catocli query posture complianceFrameworkList '{
+    "accountId": "id"
+}'
+```
+
 #### Operation Arguments for query.posture.complianceFrameworkList ####
 
 `accountId` [ID] - (required) N/A    

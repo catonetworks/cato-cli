@@ -1,5 +1,5 @@
 query accountSnapshot ( $siteIDs:[ID!] $userIDs:[ID!]) {
-	accountSnapshot ( ) {
+	accountSnapshot {
 		id
 		sites ( siteIDs:$siteIDs  )  {
 			id
@@ -201,32 +201,7 @@ query accountSnapshot ( $siteIDs:[ID!] $userIDs:[ID!]) {
 							lastConnectedDate
 						}
 					}
- {
-						__typename
-						... on DegradedStatusSocketVersionsArgs {
-							primaryVersion
-							secondaryVersion
-						}
-						... on DegradedStatusBasicDataArgs {
-							deviceName
-							lastConnectedDate
-						}
-						... on DegradedStatusSocketArgs {
-							deviceName
-							portID
-							portName
-							lastConnectedDate
-						}
-						... on DegradedStatusLastConnectedArgs {
-							lastConnectedDate
-						}
-						... on DegradedStatusMultiTunnelArgs {
-							deviceName
-							tunnelID
-							tunnelName
-							lastConnectedDate
-						}
-					}
+
 				}
 			}
 		}

@@ -18,14 +18,6 @@ mutation notificationDeleteSubscriptionGroup ( $accountId:ID! $subscriptionGroup
 						updatedBy {
 							id
 							name
-							... on AdminRef {
-								id
-								name
-							}
-							... on ApiKeyRef {
-								id
-								name
-							}
 						}
 					}
 				}
@@ -38,24 +30,20 @@ mutation notificationDeleteSubscriptionGroup ( $accountId:ID! $subscriptionGroup
 						requestMethod
 						auth {
 							authType
-							... on BearerTokenAuth {
-								authType
-							}
 							... on BasicAuth {
-								authType
 								username
 							}
 							... on CustomHeaderAuth {
-								authType
 								name
 							}
 							... on CustomHeadersAuth {
-								authType
-								plainHeaders
-								secretHeaders
-							}
-							... on NoAuth {
-								authType
+								plainHeaders {
+									name
+									value
+								}
+								secretHeaders {
+									name
+								}
 							}
 						}
 						header {

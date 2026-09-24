@@ -316,6 +316,7 @@ def processOperation(operationType, operationName):
         parsedOperation = parseOperationWithDepthTracking(operation_data, childOperations, max_depth=50, operation_path=operationName)
         parsedOperation = getOperationArgs(parsedOperation["type"]["definition"], parsedOperation)
         parsedOperation["path"] = operationName
+        renameNestedAccountVariables(parsedOperation)
         
         for argName in parsedOperation["args"]:
             arg = parsedOperation["args"][argName]
@@ -372,6 +373,31 @@ def processOperation(operationType, operationName):
     except Exception as e:
         print(f"Error in processOperation {operationName}: {e}")
         raise
+
+
+def renameNestedAccountVariables(operation):
+    """Keep nested account arguments separate from the CLI account context."""
+    if operation.get("path") != "mutation.accountManagement.removeAccount":
+        return
+
+    def visit(value):
+        if isinstance(value, dict):
+            for item in value.values():
+                if isinstance(item, dict) and item.get("path") == "removeAccount.accountId":
+                    old_var_name = item.get("varName", "accountId")
+                    new_var_name = "accountIdToRemove"
+                    item["varName"] = new_var_name
+                    for key in ("requestStr", "responseStr"):
+                        if key in item:
+                            item[key] = item[key].replace(
+                                f"${old_var_name}", f"${new_var_name}"
+                            )
+                visit(item)
+        elif isinstance(value, list):
+            for item in value:
+                visit(item)
+
+    visit(operation)
 
 def parseOperationWithDepthTracking(curOperation, childOperations, max_depth=50, operation_path=None):
     """Parse operation with recursion depth tracking to prevent stack overflow"""
@@ -491,10 +517,20 @@ def getNestedInterfaceDefinitions(possibleTypesAry, parentParamPath, childOperat
 def generateExampleVariables(operation):
     """Generate example variables for operation"""
     variablesObj = {}
+    root_account_paths = {
+        arg.get("path")
+        for arg in operation.get("args", {}).values()
+        if arg.get("name", "").lower() in {"accountid", "account_id"}
+    }
     for argName in operation["operationArgs"]:
         arg = operation["operationArgs"][argName]
+        if (
+            arg.get("path") in root_account_paths
+            and arg.get("name", "").lower() in {"accountid", "account_id"}
+        ):
+            continue
         if "SCALAR" in arg["type"]["kind"] or "ENUM" in arg["type"]["kind"]:
-            variablesObj[arg["name"]] = renderInputFieldVal(arg)
+            variablesObj[arg["varName"]] = renderInputFieldVal(arg)
         else:
             argTD = arg["type"]["definition"]
             variablesObj[arg["varName"]] = {}
@@ -504,10 +540,6 @@ def generateExampleVariables(operation):
                     # Use actual field name, not varName, for nested input fields
                     variablesObj[arg["varName"]][inputField["name"]] = parseNestedArgFields(inputField)
     
-    if "accountID" in variablesObj:
-        del variablesObj["accountID"]
-    if "accountId" in variablesObj:
-        del variablesObj["accountId"]
     return variablesObj
 
 def parseNestedArgFields(fieldObj):
@@ -567,6 +599,8 @@ def renderInputFieldVal(arg):
             value = enum_values[0].get("name", "ENUM_VALUE")
         else:
             value = "ENUM_VALUE"
+        if "LIST" in arg["type"]["kind"]:
+            value = [value]
     
     return value
 
@@ -1255,7 +1289,7 @@ catocli {operationCmd} '{example_json_pretty}'
                         required_status = "required" if arg.get("required", False) else "optional"
                         description = arg.get("description", "No description available")
                         values_str = "Default Value: " + str(arg["values"]) if len(arg.get("values", [])) > 0 else ""
-                        readmeStr += f'`{argName}` [{arg_type}] - ({required_status}) {description} {values_str}   \n'
+                        readmeStr += f'`{argName}` [{arg_type}] - ({required_status}) {description} {values_str}\n'
                 
                 parserPath = "../catocli/parsers/"+parserName
                 if not os.path.exists(parserPath):

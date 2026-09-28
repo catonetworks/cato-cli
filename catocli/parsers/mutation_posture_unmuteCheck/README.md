@@ -22,5 +22,5 @@ catocli mutation posture unmuteCheck '{
 
 #### Operation Arguments for mutation.posture.unmuteCheck ####
 
-`accountId` [ID] - (required) N/A    
-`postureUnmuteCheckInput` [PostureUnmuteCheckInput] - (required) N/A    
+`accountId` [ID] - (required) ID of the account whose Posture configuration or findings are modified.    
+`postureUnmuteCheckInput` [PostureUnmuteCheckInput] - (required) Check result id to restore from a muted state.    

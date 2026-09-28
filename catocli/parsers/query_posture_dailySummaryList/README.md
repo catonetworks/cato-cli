@@ -24,5 +24,5 @@ catocli query posture dailySummaryList '{
 
 #### Operation Arguments for query.posture.dailySummaryList ####
 
-`accountId` [ID] - (required) N/A    
-`postureDailySummaryListInput` [PostureDailySummaryListInput] - (required) N/A    
+`accountId` [ID] - (required) ID of the account whose Posture data is queried.    
+`postureDailySummaryListInput` [PostureDailySummaryListInput] - (required) Time-range filter for daily Posture summary snapshots.    

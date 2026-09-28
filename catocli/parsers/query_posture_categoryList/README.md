@@ -27,5 +27,5 @@ catocli query posture categoryList '{
 
 #### Operation Arguments for query.posture.categoryList ####
 
-`accountId` [ID] - (required) N/A    
-`postureCategoryListInput` [PostureCategoryListInput] - (required) N/A    
+`accountId` [ID] - (required) ID of the account whose Posture data is queried.    
+`postureCategoryListInput` [PostureCategoryListInput] - (required) Optional sort settings for the categories.    

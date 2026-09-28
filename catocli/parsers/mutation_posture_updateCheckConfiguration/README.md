@@ -25,5 +25,5 @@ catocli mutation posture updateCheckConfiguration '{
 
 #### Operation Arguments for mutation.posture.updateCheckConfiguration ####
 
-`accountId` [ID] - (required) N/A    
-`postureUpdateCheckConfigurationInput` [PostureUpdateCheckConfigurationInput] - (required) N/A    
+`accountId` [ID] - (required) ID of the account whose Posture configuration or findings are modified.    
+`postureUpdateCheckConfigurationInput` [PostureUpdateCheckConfigurationInput] - (required) Checks to enable or disable and their desired statuses.    

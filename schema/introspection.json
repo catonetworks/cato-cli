@@ -658,79 +658,6 @@
               "deprecationReason": null
             },
             {
-              "name": "auditFeed",
-              "description": "Audit Feed for account changes",
-              "args": [
-                {
-                  "name": "accountIDs",
-                  "description": "List of Unique Account Identifiers.",
-                  "type": {
-                    "kind": "LIST",
-                    "name": null,
-                    "ofType": {
-                      "kind": "NON_NULL",
-                      "name": null,
-                      "ofType": {
-                        "kind": "SCALAR",
-                        "name": "ID",
-                        "ofType": null
-                      }
-                    }
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "name": "timeFrame",
-                  "description": null,
-                  "type": {
-                    "kind": "NON_NULL",
-                    "name": null,
-                    "ofType": {
-                      "kind": "SCALAR",
-                      "name": "TimeFrame",
-                      "ofType": null
-                    }
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "name": "filters",
-                  "description": null,
-                  "type": {
-                    "kind": "LIST",
-                    "name": null,
-                    "ofType": {
-                      "kind": "NON_NULL",
-                      "name": null,
-                      "ofType": {
-                        "kind": "INPUT_OBJECT",
-                        "name": "AuditFieldFilterInput",
-                        "ofType": null
-                      }
-                    }
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "name": "marker",
-                  "description": "Marker to use to get results from",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                }
-              ],
-              "type": {
-                "kind": "OBJECT",
-                "name": "AuditFeed",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
               "name": "admins",
               "description": null,
               "args": [
@@ -1111,6 +1038,79 @@
                     }
                   }
                 }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "auditFeed",
+              "description": "Audit Feed for account changes",
+              "args": [
+                {
+                  "name": "accountIDs",
+                  "description": "List of Unique Account Identifiers.",
+                  "type": {
+                    "kind": "LIST",
+                    "name": null,
+                    "ofType": {
+                      "kind": "NON_NULL",
+                      "name": null,
+                      "ofType": {
+                        "kind": "SCALAR",
+                        "name": "ID",
+                        "ofType": null
+                      }
+                    }
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "timeFrame",
+                  "description": null,
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "TimeFrame",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "filters",
+                  "description": null,
+                  "type": {
+                    "kind": "LIST",
+                    "name": null,
+                    "ofType": {
+                      "kind": "NON_NULL",
+                      "name": null,
+                      "ofType": {
+                        "kind": "INPUT_OBJECT",
+                        "name": "AuditFieldFilterInput",
+                        "ofType": null
+                      }
+                    }
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "marker",
+                  "description": "Marker to use to get results from",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "AuditFeed",
+                "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -1541,11 +1541,11 @@
             },
             {
               "name": "posture",
-              "description": null,
+              "description": "Entry point for all Posture query operations for an account.",
               "args": [
                 {
                   "name": "accountId",
-                  "description": null,
+                  "description": "ID of the account whose Posture data is queried.",
                   "type": {
                     "kind": "NON_NULL",
                     "name": null,
@@ -2402,11 +2402,11 @@
             },
             {
               "name": "posture",
-              "description": null,
+              "description": "Entry point for all Posture mutation operations for an account.",
               "args": [
                 {
                   "name": "accountId",
-                  "description": null,
+                  "description": "ID of the account whose Posture configuration or findings are modified.",
                   "type": {
                     "kind": "NON_NULL",
                     "name": null,
@@ -21835,41 +21835,6 @@
           "possibleTypes": null
         },
         {
-          "kind": "ENUM",
-          "name": "ImportType",
-          "description": "Shows if user was created or imported from an IdP.",
-          "fields": null,
-          "inputFields": null,
-          "interfaces": null,
-          "enumValues": [
-            {
-              "name": "MANUAL",
-              "description": "User was created manually.",
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "LDAP",
-              "description": "User was imported from LDAP.",
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "SCIM",
-              "description": "User was imported from SCIM.",
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "INTEGRATION",
-              "description": "User was imported from an integration.",
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
-          "possibleTypes": null
-        },
-        {
           "kind": "OBJECT",
           "name": "SiteMutations",
           "description": null,
@@ -26809,7 +26774,7 @@
             },
             {
               "name": "publicIp",
-              "description": null,
+              "description": "The public IP of the primary Socket, for sites where Off-Cloud traffic reaches this link through port forwarding.",
               "type": {
                 "kind": "SCALAR",
                 "name": "IPAddress",
@@ -26819,7 +26784,7 @@
             },
             {
               "name": "publicStaticPort",
-              "description": null,
+              "description": "The static port of the primary Socket, for sites where Off-Cloud traffic reaches this link through port forwarding.",
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",
@@ -32954,549 +32919,6 @@
           "possibleTypes": null
         },
         {
-          "kind": "OBJECT",
-          "name": "AuditFeedAccountRecords",
-          "description": null,
-          "fields": [
-            {
-              "name": "id",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "records",
-              "description": null,
-              "args": [
-                {
-                  "name": "fieldNames",
-                  "description": null,
-                  "type": {
-                    "kind": "LIST",
-                    "name": null,
-                    "ofType": {
-                      "kind": "NON_NULL",
-                      "name": null,
-                      "ofType": {
-                        "kind": "ENUM",
-                        "name": "AuditFieldName",
-                        "ofType": null
-                      }
-                    }
-                  },
-                  "defaultValue": null
-                }
-              ],
-              "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "AuditRecord",
-                    "ofType": null
-                  }
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [],
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "OBJECT",
-          "name": "AuditFeed",
-          "description": null,
-          "fields": [
-            {
-              "name": "from",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "DateTime",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "to",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "DateTime",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "marker",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "fetchedCount",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "hasMore",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "accounts",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "OBJECT",
-                  "name": "AuditFeedAccountRecords",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [],
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "ENUM",
-          "name": "ElasticOperator",
-          "description": "Search operators on ElasticSearch. Between operators are applicable only to numeric fields\nNote that not operators are slower",
-          "fields": null,
-          "inputFields": null,
-          "interfaces": null,
-          "enumValues": [
-            {
-              "name": "is",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "is_not",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "in",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "not_in",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "exists",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "not_exists",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "between",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "not_between",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
-          "possibleTypes": null
-        },
-        {
-          "kind": "INPUT_OBJECT",
-          "name": "FieldNameInput",
-          "description": "FieldName for the different types of FieldName inputs\nUse the EventFieldName for events, and AuditFieldName for audit",
-          "fields": null,
-          "inputFields": [
-            {
-              "name": "AuditFieldName",
-              "description": null,
-              "type": {
-                "kind": "ENUM",
-                "name": "AuditFieldName",
-                "ofType": null
-              },
-              "defaultValue": null
-            }
-          ],
-          "interfaces": null,
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "INPUT_OBJECT",
-          "name": "AuditFieldFilterInput",
-          "description": null,
-          "fields": null,
-          "inputFields": [
-            {
-              "name": "fieldName",
-              "description": null,
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "FieldNameInput",
-                  "ofType": null
-                }
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "operator",
-              "description": "Use AuditFieldName for audits",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "ENUM",
-                  "name": "ElasticOperator",
-                  "ofType": null
-                }
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "values",
-              "description": null,
-              "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                }
-              },
-              "defaultValue": null
-            }
-          ],
-          "interfaces": null,
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "OBJECT",
-          "name": "AuditRecord",
-          "description": "Represents a single event in the audit database",
-          "fields": [
-            {
-              "name": "admin",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "OBJECT",
-                "name": "Entity",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "apiKey",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "OBJECT",
-                "name": "Entity",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "object",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "OBJECT",
-                "name": "Entity",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "account",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "OBJECT",
-                "name": "EntityInfo",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "time",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "DateTime",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "fields",
-              "description": "All fields in the audit record (including the admin and object)",
-              "args": [],
-              "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "AuditField",
-                    "ofType": null
-                  }
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "fieldsMap",
-              "description": "fields in map format (see Map scalar)",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "Map",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "flatFields",
-              "description": "Simplified fields, as array of name value tuples, e.g: [ [ \"name\", \"val\" ], [ \"name2\", \"val2\" ] ... ]",
-              "args": [],
-              "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "NON_NULL",
-                    "name": null,
-                    "ofType": {
-                      "kind": "SCALAR",
-                      "name": "String",
-                      "ofType": null
-                    }
-                  }
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [],
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "OBJECT",
-          "name": "AuditField",
-          "description": null,
-          "fields": [
-            {
-              "name": "name",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "value",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "UNION",
-                  "name": "Value",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [],
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "ENUM",
-          "name": "AuditFieldName",
-          "description": null,
-          "fields": null,
-          "inputFields": null,
-          "interfaces": null,
-          "enumValues": [
-            {
-              "name": "admin",
-              "description": "The admin whose action generated the record",
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "apiKey",
-              "description": "The api key whose action generated the record",
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "model_name",
-              "description": "The name of the object that was affected, e.g. 'My Site'",
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "admin_id",
-              "description": "The ID of the admin whose action generated the record",
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "module",
-              "description": "Less granular than model_name, a general marker of the modified area: administration, configuration, security",
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "audit_creation_type",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "insertion_date",
-              "description": "Time the record was committed to storage",
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "change_type",
-              "description": "the nature of the change: `CREATED, DELETED, MODIFIED, ENABLED, DISABLED, SKIPPED`",
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "creation_date",
-              "description": "Time the record was created",
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "model_type",
-              "description": "The type of object that was affected. e.g. Site, Socket, SocketInterface",
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "account",
-              "description": "The name of the account on which the record was created",
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "account_id",
-              "description": "The id of the account on which the record was created",
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
-          "possibleTypes": null
-        },
-        {
           "kind": "ENUM",
           "name": "EntityType",
           "description": null,
@@ -36877,6 +36299,11 @@
             {
               "kind": "OBJECT",
               "name": "ZtnaAppConnectorRef",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "SocketRef",
               "ofType": null
             },
             {
@@ -45418,6 +44845,549 @@
               "ofType": null
             }
           ]
+        },
+        {
+          "kind": "OBJECT",
+          "name": "AuditFeedAccountRecords",
+          "description": null,
+          "fields": [
+            {
+              "name": "id",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "records",
+              "description": null,
+              "args": [
+                {
+                  "name": "fieldNames",
+                  "description": null,
+                  "type": {
+                    "kind": "LIST",
+                    "name": null,
+                    "ofType": {
+                      "kind": "NON_NULL",
+                      "name": null,
+                      "ofType": {
+                        "kind": "ENUM",
+                        "name": "AuditFieldName",
+                        "ofType": null
+                      }
+                    }
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "AuditRecord",
+                    "ofType": null
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "AuditFeed",
+          "description": null,
+          "fields": [
+            {
+              "name": "from",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "DateTime",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "to",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "DateTime",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "marker",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "fetchedCount",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "hasMore",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "accounts",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "AuditFeedAccountRecords",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "ENUM",
+          "name": "ElasticOperator",
+          "description": "Search operators on ElasticSearch. Between operators are applicable only to numeric fields\nNote that not operators are slower",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": [
+            {
+              "name": "is",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "is_not",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "in",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "not_in",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "exists",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "not_exists",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "between",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "not_between",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "FieldNameInput",
+          "description": "FieldName for the different types of FieldName inputs\nUse the EventFieldName for events, and AuditFieldName for audit",
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "AuditFieldName",
+              "description": null,
+              "type": {
+                "kind": "ENUM",
+                "name": "AuditFieldName",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "AuditFieldFilterInput",
+          "description": null,
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "fieldName",
+              "description": null,
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "FieldNameInput",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "operator",
+              "description": "Use AuditFieldName for audits",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "ElasticOperator",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "values",
+              "description": null,
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                }
+              },
+              "defaultValue": null
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "AuditRecord",
+          "description": "Represents a single event in the audit database",
+          "fields": [
+            {
+              "name": "admin",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Entity",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "apiKey",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Entity",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "object",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Entity",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "account",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "EntityInfo",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "time",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "DateTime",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "fields",
+              "description": "All fields in the audit record (including the admin and object)",
+              "args": [],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "AuditField",
+                    "ofType": null
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "fieldsMap",
+              "description": "fields in map format (see Map scalar)",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Map",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "flatFields",
+              "description": "Simplified fields, as array of name value tuples, e.g: [ [ \"name\", \"val\" ], [ \"name2\", \"val2\" ] ... ]",
+              "args": [],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "String",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "AuditField",
+          "description": null,
+          "fields": [
+            {
+              "name": "name",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "value",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "UNION",
+                  "name": "Value",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "ENUM",
+          "name": "AuditFieldName",
+          "description": null,
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": [
+            {
+              "name": "admin",
+              "description": "The admin whose action generated the record",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "apiKey",
+              "description": "The api key whose action generated the record",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "model_name",
+              "description": "The name of the object that was affected, e.g. 'My Site'",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "admin_id",
+              "description": "The ID of the admin whose action generated the record",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "module",
+              "description": "Less granular than model_name, a general marker of the modified area: administration, configuration, security",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "audit_creation_type",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "insertion_date",
+              "description": "Time the record was committed to storage",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "change_type",
+              "description": "the nature of the change: `CREATED, DELETED, MODIFIED, ENABLED, DISABLED, SKIPPED`",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "creation_date",
+              "description": "Time the record was created",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "model_type",
+              "description": "The type of object that was affected. e.g. Site, Socket, SocketInterface",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "account",
+              "description": "The name of the account on which the record was created",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "account_id",
+              "description": "The id of the account on which the record was created",
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "possibleTypes": null
         },
         {
           "kind": "OBJECT",
@@ -55201,22 +55171,6 @@
               "deprecationReason": null
             },
             {
-              "name": "importType",
-              "description": "Source for user imported to Cato",
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "ENUM",
-                  "name": "ImportType",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": true,
-              "deprecationReason": "use userImportType instead. Planned end-of-life (EoL) date: 09 13, 2026."
-            },
-            {
               "name": "userImportType",
               "description": "Source for user imported to Cato",
               "args": [],
@@ -55778,73 +55732,6 @@
                   "ofType": {
                     "kind": "ENUM",
                     "name": "RiskScore",
-                    "ofType": null
-                  }
-                }
-              },
-              "defaultValue": null
-            }
-          ],
-          "interfaces": null,
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "INPUT_OBJECT",
-          "name": "ImportTypeFilterInput",
-          "description": "Input for filtering users by import type.",
-          "fields": null,
-          "inputFields": [
-            {
-              "name": "eq",
-              "description": "Matches users with the specified import type.",
-              "type": {
-                "kind": "ENUM",
-                "name": "ImportType",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "neq",
-              "description": "Matches users that do not have the specified import type.",
-              "type": {
-                "kind": "ENUM",
-                "name": "ImportType",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "in",
-              "description": "Matches users with any of the specified import types.",
-              "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "ENUM",
-                    "name": "ImportType",
-                    "ofType": null
-                  }
-                }
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "nin",
-              "description": "Matches users with none of the specified import types.",
-              "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "ENUM",
-                    "name": "ImportType",
                     "ofType": null
                   }
                 }
@@ -57012,7 +56899,7 @@
               "args": [
                 {
                   "name": "input",
-                  "description": null,
+                  "description": "Time-range filter for daily Posture summary snapshots.",
                   "type": {
                     "kind": "NON_NULL",
                     "name": null,
@@ -57039,7 +56926,7 @@
               "args": [
                 {
                   "name": "input",
-                  "description": null,
+                  "description": "Optional sort settings for the account summaries.",
                   "type": {
                     "kind": "INPUT_OBJECT",
                     "name": "PostureAccountSummaryListInput",
@@ -57062,7 +56949,7 @@
               "args": [
                 {
                   "name": "input",
-                  "description": null,
+                  "description": "Optional check filters and threshold for classifying checks as new.",
                   "type": {
                     "kind": "INPUT_OBJECT",
                     "name": "PostureCheckSummaryInput",
@@ -57085,7 +56972,7 @@
               "args": [
                 {
                   "name": "input",
-                  "description": null,
+                  "description": "Filter, sort, and paging settings for the check results.",
                   "type": {
                     "kind": "NON_NULL",
                     "name": null,
@@ -57112,7 +56999,7 @@
               "args": [
                 {
                   "name": "input",
-                  "description": null,
+                  "description": "Filter, sort, and paging settings for the findings.",
                   "type": {
                     "kind": "NON_NULL",
                     "name": null,
@@ -57139,7 +57026,7 @@
               "args": [
                 {
                   "name": "input",
-                  "description": null,
+                  "description": "Optional finding filters and limit for finding-derived breakdown buckets.",
                   "type": {
                     "kind": "INPUT_OBJECT",
                     "name": "PostureFindingSummaryInput",
@@ -57162,7 +57049,7 @@
               "args": [
                 {
                   "name": "input",
-                  "description": null,
+                  "description": "Optional sort settings for the check definitions.",
                   "type": {
                     "kind": "INPUT_OBJECT",
                     "name": "PostureDefinitionListInput",
@@ -57197,7 +57084,7 @@
               "args": [
                 {
                   "name": "input",
-                  "description": null,
+                  "description": "Optional sort settings for the categories.",
                   "type": {
                     "kind": "INPUT_OBJECT",
                     "name": "PostureCategoryListInput",
@@ -57231,7 +57118,7 @@
               "args": [
                 {
                   "name": "input",
-                  "description": null,
+                  "description": "Check result id and comment text.",
                   "type": {
                     "kind": "NON_NULL",
                     "name": null,
@@ -57258,7 +57145,7 @@
               "args": [
                 {
                   "name": "input",
-                  "description": null,
+                  "description": "Checks to enable or disable and their desired statuses.",
                   "type": {
                     "kind": "NON_NULL",
                     "name": null,
@@ -57297,7 +57184,7 @@
               "args": [
                 {
                   "name": "input",
-                  "description": null,
+                  "description": "Check result id, mute duration, and optional reason.",
                   "type": {
                     "kind": "NON_NULL",
                     "name": null,
@@ -57324,7 +57211,7 @@
               "args": [
                 {
                   "name": "input",
-                  "description": null,
+                  "description": "Check result id to restore from a muted state.",
                   "type": {
                     "kind": "NON_NULL",
                     "name": null,
@@ -57351,7 +57238,7 @@
               "args": [
                 {
                   "name": "input",
-                  "description": null,
+                  "description": "Finding id, mute duration, and optional reason.",
                   "type": {
                     "kind": "NON_NULL",
                     "name": null,
@@ -57378,7 +57265,7 @@
               "args": [
                 {
                   "name": "input",
-                  "description": null,
+                  "description": "Finding id to restore from a muted state.",
                   "type": {
                     "kind": "NON_NULL",
                     "name": null,
@@ -57405,7 +57292,7 @@
               "args": [
                 {
                   "name": "input",
-                  "description": null,
+                  "description": "Finding id to dismiss and an optional reason.",
                   "type": {
                     "kind": "NON_NULL",
                     "name": null,
@@ -57432,7 +57319,7 @@
               "args": [
                 {
                   "name": "input",
-                  "description": null,
+                  "description": "Finding id to restore from a dismissed state.",
                   "type": {
                     "kind": "NON_NULL",
                     "name": null,
@@ -58027,12 +57914,102 @@
         {
           "kind": "INPUT_OBJECT",
           "name": "PostureCheckResultSortInput",
-          "description": null,
+          "description": "Sort options for the check result list.",
           "fields": null,
           "inputFields": [
             {
+              "name": "areaId",
+              "description": "Sort by area id.",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "SortOrderInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "categoryId",
+              "description": "Sort by category id.",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "SortOrderInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "checkId",
+              "description": "Sort by check definition id.",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "SortOrderInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
               "name": "severity",
               "description": "Sort by check severity.",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "SortOrderInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "status",
+              "description": "Sort by current check result status.",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "SortOrderInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "suppressedStatus",
+              "description": "Sort by check suppression status.",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "SortOrderInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "muteStatus",
+              "description": "Sort by check mute status.",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "SortOrderInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "complianceFramework",
+              "description": "Sort by compliance framework.",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "SortOrderInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "complianceControl",
+              "description": "Sort by compliance control.",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "SortOrderInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "label",
+              "description": "Sort by check label.",
               "type": {
                 "kind": "INPUT_OBJECT",
                 "name": "SortOrderInput",
@@ -58061,8 +58038,28 @@
               "defaultValue": null
             },
             {
+              "name": "checkType",
+              "description": "Sort by check type.",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "SortOrderInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
               "name": "securityDomain",
               "description": "Sort by security domain.",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "SortOrderInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "findingName",
+              "description": "Sort by the lowest associated finding name.",
               "type": {
                 "kind": "INPUT_OBJECT",
                 "name": "SortOrderInput",
@@ -58088,7 +58085,7 @@
         {
           "kind": "INPUT_OBJECT",
           "name": "PostureFindingListInput",
-          "description": null,
+          "description": "Input for the `findingList` query, with filtering, sorting, and paging options.",
           "fields": null,
           "inputFields": [
             {
@@ -58137,7 +58134,7 @@
         {
           "kind": "INPUT_OBJECT",
           "name": "PostureFindingListFilterInput",
-          "description": null,
+          "description": "Filter criteria for Posture findings and their associated checks.",
           "fields": null,
           "inputFields": [
             {
@@ -58472,12 +58469,52 @@
         {
           "kind": "INPUT_OBJECT",
           "name": "PostureFindingSortInput",
-          "description": null,
+          "description": "Sort options for the finding list.",
           "fields": null,
           "inputFields": [
             {
+              "name": "id",
+              "description": "Sort by finding id.",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "SortOrderInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "checkId",
+              "description": "Sort by check result id.",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "SortOrderInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
               "name": "severity",
               "description": "Sort by finding severity.",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "SortOrderInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "resolutionStatus",
+              "description": "Sort by finding resolution status.",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "SortOrderInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "muteStatus",
+              "description": "Sort by finding mute status.",
               "type": {
                 "kind": "INPUT_OBJECT",
                 "name": "SortOrderInput",
@@ -58496,8 +58533,118 @@
               "defaultValue": null
             },
             {
-              "name": "resolutionStatus",
-              "description": "Sort by finding resolution status.",
+              "name": "appInstance",
+              "description": "Sort by application instance.",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "SortOrderInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "areaId",
+              "description": "Sort by the owning check's area id.",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "SortOrderInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "categoryId",
+              "description": "Sort by the owning check's category id.",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "SortOrderInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "checkSeverity",
+              "description": "Sort by the owning check's severity.",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "SortOrderInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "suppressedStatus",
+              "description": "Sort by the owning check's suppression status.",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "SortOrderInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "complianceFramework",
+              "description": "Sort by the owning check's compliance framework.",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "SortOrderInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "complianceControl",
+              "description": "Sort by the owning check's compliance control.",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "SortOrderInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "label",
+              "description": "Sort by the owning check's label.",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "SortOrderInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "checkName",
+              "description": "Sort by the owning check's name.",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "SortOrderInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "application",
+              "description": "Sort by the owning check's application.",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "SortOrderInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "checkType",
+              "description": "Sort by the owning check's type.",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "SortOrderInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "securityDomain",
+              "description": "Sort by the owning check's security domain.",
               "type": {
                 "kind": "INPUT_OBJECT",
                 "name": "SortOrderInput",
@@ -58544,7 +58691,7 @@
         {
           "kind": "INPUT_OBJECT",
           "name": "PostureResolutionStatusFilterInput",
-          "description": null,
+          "description": "Comparison operators for filtering findings by resolution status.",
           "fields": null,
           "inputFields": [
             {
@@ -58611,7 +58758,7 @@
         {
           "kind": "INPUT_OBJECT",
           "name": "PostureCheckResultSeverityFilterInput",
-          "description": null,
+          "description": "Comparison operators for filtering checks or findings by severity.",
           "fields": null,
           "inputFields": [
             {
@@ -58678,7 +58825,7 @@
         {
           "kind": "INPUT_OBJECT",
           "name": "PostureResultStatusFilterInput",
-          "description": null,
+          "description": "Comparison operators for filtering checks by evaluation result status.",
           "fields": null,
           "inputFields": [
             {
@@ -58745,7 +58892,7 @@
         {
           "kind": "INPUT_OBJECT",
           "name": "PostureSuppressedStatusFilterInput",
-          "description": null,
+          "description": "Comparison operators for filtering checks by enabled or disabled status.",
           "fields": null,
           "inputFields": [
             {
@@ -58812,7 +58959,7 @@
         {
           "kind": "INPUT_OBJECT",
           "name": "PostureMuteStatusFilterInput",
-          "description": null,
+          "description": "Comparison operators for filtering checks or findings by mute status.",
           "fields": null,
           "inputFields": [
             {
@@ -58907,7 +59054,7 @@
             },
             {
               "name": "paging",
-              "description": null,
+              "description": "Paging metadata for this list response.",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -58934,7 +59081,7 @@
           "fields": [
             {
               "name": "items",
-              "description": null,
+              "description": "Posture summaries for accounts visible to the caller.",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -58958,7 +59105,7 @@
             },
             {
               "name": "paging",
-              "description": null,
+              "description": "Paging metadata for this list response.",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -59028,7 +59175,7 @@
           "fields": [
             {
               "name": "items",
-              "description": null,
+              "description": "Posture Check results matching the requested filter and sort order.",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -59052,7 +59199,7 @@
             },
             {
               "name": "paging",
-              "description": null,
+              "description": "Paging metadata for this list response.",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -59079,7 +59226,7 @@
           "fields": [
             {
               "name": "items",
-              "description": null,
+              "description": "Findings matching the requested filter and sort order.",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -59103,7 +59250,7 @@
             },
             {
               "name": "paging",
-              "description": null,
+              "description": "Paging metadata for this list response.",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -59617,7 +59764,7 @@
           "fields": [
             {
               "name": "items",
-              "description": null,
+              "description": "Check definitions from the Posture Check Catalog in the requested sort order.",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -59641,7 +59788,7 @@
             },
             {
               "name": "paging",
-              "description": null,
+              "description": "Paging metadata for this list response.",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -59863,7 +60010,7 @@
         {
           "kind": "OBJECT",
           "name": "PostureAccountComparison",
-          "description": null,
+          "description": "Peer-group comparison metrics for an account's Posture score.",
           "fields": [
             {
               "name": "comparisonType",
@@ -59934,26 +60081,26 @@
         {
           "kind": "ENUM",
           "name": "PostureComparisonType",
-          "description": null,
+          "description": "Dimensions available for peer-group Posture score comparisons.",
           "fields": null,
           "inputFields": null,
           "interfaces": null,
           "enumValues": [
             {
               "name": "VERTICAL",
-              "description": null,
+              "description": "Comparison with accounts in the same industry vertical.",
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
               "name": "REGION",
-              "description": null,
+              "description": "Comparison with accounts in the same region.",
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
               "name": "ALL_ACCOUNTS",
-              "description": null,
+              "description": "Comparison across all accounts in the peer-comparison dataset.",
               "isDeprecated": false,
               "deprecationReason": null
             }
@@ -59963,7 +60110,7 @@
         {
           "kind": "OBJECT",
           "name": "PostureDailySummary",
-          "description": null,
+          "description": "A dated snapshot of an account's Posture summary.",
           "fields": [
             {
               "name": "evaluatedAt",
@@ -60006,7 +60153,7 @@
         {
           "kind": "OBJECT",
           "name": "PostureStats",
-          "description": null,
+          "description": "Pass, fail, and disabled counters grouped by Posture hierarchy level.",
           "fields": [
             {
               "name": "categories",
@@ -60061,7 +60208,7 @@
         {
           "kind": "OBJECT",
           "name": "PostureStatsDetails",
-          "description": null,
+          "description": "Pass, fail, disabled, and total counters for a Posture hierarchy level.",
           "fields": [
             {
               "name": "total",
@@ -60438,7 +60585,7 @@
         {
           "kind": "OBJECT",
           "name": "PostureCheckSummaryBreakdown",
-          "description": null,
+          "description": "Score and state-count summary for one Posture Check breakdown bucket.",
           "fields": [
             {
               "name": "key",
@@ -60509,7 +60656,7 @@
         {
           "kind": "OBJECT",
           "name": "PostureCheckSummaryAreaBreakdown",
-          "description": null,
+          "description": "Score and state-count summary for an area and its categories.",
           "fields": [
             {
               "name": "key",
@@ -60604,7 +60751,7 @@
         {
           "kind": "OBJECT",
           "name": "PostureCheckSummaryComplianceFrameworkBreakdown",
-          "description": null,
+          "description": "Score and state-count summary for a compliance framework and its controls.",
           "fields": [
             {
               "name": "key",
@@ -60699,7 +60846,7 @@
         {
           "kind": "OBJECT",
           "name": "PostureCheckSummaryComplianceControlBreakdown",
-          "description": null,
+          "description": "Score and state-count summary for a compliance control.",
           "fields": [
             {
               "name": "key",
@@ -60774,7 +60921,7 @@
         {
           "kind": "OBJECT",
           "name": "PostureCheckCountsPerState",
-          "description": null,
+          "description": "Counts of Posture Checks by evaluation state.",
           "fields": [
             {
               "name": "total",
@@ -60996,11 +61143,11 @@
         {
           "kind": "OBJECT",
           "name": "PostureCheckFindingsCount",
-          "description": null,
+          "description": "Aggregated finding counts for a Posture Check result.",
           "fields": [
             {
               "name": "breakdown",
-              "description": null,
+              "description": "Finding counts grouped by mute status and resolution status.",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -61169,7 +61316,7 @@
         {
           "kind": "OBJECT",
           "name": "PostureCheckComparison",
-          "description": null,
+          "description": "Peer-group percentile comparison for a Posture Check.",
           "fields": [
             {
               "name": "comparisonType",
@@ -61487,44 +61634,44 @@
         {
           "kind": "ENUM",
           "name": "PostureImpact",
-          "description": null,
+          "description": "Severity levels assigned to Posture Checks and findings.",
           "fields": null,
           "inputFields": null,
           "interfaces": null,
           "enumValues": [
             {
               "name": "INFORMATIONAL",
-              "description": null,
+              "description": "Informational severity.",
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
               "name": "LOW",
-              "description": null,
+              "description": "Low severity.",
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
               "name": "MEDIUM",
-              "description": null,
+              "description": "Medium severity.",
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
               "name": "HIGH",
-              "description": null,
+              "description": "High severity.",
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
               "name": "CRITICAL",
-              "description": null,
+              "description": "Critical severity.",
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
               "name": "NONE",
-              "description": null,
+              "description": "No assigned impact level.",
               "isDeprecated": false,
               "deprecationReason": null
             }
@@ -61534,7 +61681,7 @@
         {
           "kind": "OBJECT",
           "name": "PostureRecommendedAction",
-          "description": null,
+          "description": "A recommended remediation action for a Posture Check.",
           "fields": [
             {
               "name": "recommendedAction",
@@ -61573,7 +61720,7 @@
         {
           "kind": "OBJECT",
           "name": "PostureRecommendedActionLink",
-          "description": null,
+          "description": "An optional external link associated with a recommended action.",
           "fields": [
             {
               "name": "text",
@@ -61616,20 +61763,20 @@
         {
           "kind": "ENUM",
           "name": "PostureSuppressedStatus",
-          "description": null,
+          "description": "Whether a Posture Check is enabled or disabled.",
           "fields": null,
           "inputFields": null,
           "interfaces": null,
           "enumValues": [
             {
               "name": "ENABLED",
-              "description": null,
+              "description": "The check is enabled.",
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
               "name": "DISABLED",
-              "description": null,
+              "description": "The check is disabled.",
               "isDeprecated": false,
               "deprecationReason": null
             }
@@ -61639,7 +61786,7 @@
         {
           "kind": "OBJECT",
           "name": "PostureCategory",
-          "description": null,
+          "description": "Basic metadata for a Posture Check category.",
           "fields": [
             {
               "name": "id",
@@ -61682,7 +61829,7 @@
         {
           "kind": "OBJECT",
           "name": "PostureDomain",
-          "description": null,
+          "description": "Basic metadata for a Posture Check domain.",
           "fields": [
             {
               "name": "id",
@@ -61725,7 +61872,7 @@
         {
           "kind": "OBJECT",
           "name": "PostureArea",
-          "description": null,
+          "description": "Basic metadata for a Posture Check area.",
           "fields": [
             {
               "name": "id",
@@ -61768,7 +61915,7 @@
         {
           "kind": "OBJECT",
           "name": "PostureDomainScore",
-          "description": null,
+          "description": "Posture score and check count for a domain.",
           "fields": [
             {
               "name": "domain",
@@ -61827,7 +61974,7 @@
         {
           "kind": "OBJECT",
           "name": "PostureAreaScore",
-          "description": null,
+          "description": "Posture score, check count, and category scores for an area.",
           "fields": [
             {
               "name": "area",
@@ -61910,7 +62057,7 @@
         {
           "kind": "OBJECT",
           "name": "PostureCategoryScore",
-          "description": null,
+          "description": "Posture score and state counts for a category.",
           "fields": [
             {
               "name": "category",
@@ -61969,7 +62116,7 @@
         {
           "kind": "OBJECT",
           "name": "PostureSecurityDomainScore",
-          "description": null,
+          "description": "Posture score and state counts for a security domain.",
           "fields": [
             {
               "name": "securityDomain",
@@ -62028,7 +62175,7 @@
         {
           "kind": "OBJECT",
           "name": "PostureApplicationScore",
-          "description": null,
+          "description": "Posture score and state counts for an application.",
           "fields": [
             {
               "name": "application",
@@ -62222,32 +62369,32 @@
         {
           "kind": "ENUM",
           "name": "PostureResultStatus",
-          "description": null,
+          "description": "Evaluation states for a Posture Check result.",
           "fields": null,
           "inputFields": null,
           "interfaces": null,
           "enumValues": [
             {
               "name": "PASSED",
-              "description": null,
+              "description": "The check passed, or all associated findings are resolved or otherwise handled.",
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
               "name": "FAILED",
-              "description": null,
+              "description": "The check failed and still requires attention.",
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
               "name": "PENDING",
-              "description": null,
+              "description": "Remediation has been applied and the check is awaiting confirmation by reevaluation.",
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
               "name": "NOT_APPLICABLE",
-              "description": null,
+              "description": "The check does not apply to the account's current configuration.",
               "isDeprecated": false,
               "deprecationReason": null
             }
@@ -62257,26 +62404,26 @@
         {
           "kind": "ENUM",
           "name": "PostureMuteStatus",
-          "description": null,
+          "description": "Mute and dismissal states for a Posture Check or finding.",
           "fields": null,
           "inputFields": null,
           "interfaces": null,
           "enumValues": [
             {
               "name": "MUTED",
-              "description": null,
+              "description": "The check or finding is temporarily muted.",
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
               "name": "DISMISSED",
-              "description": null,
+              "description": "The finding is dismissed until it is explicitly restored.",
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
               "name": "NONE",
-              "description": null,
+              "description": "The check or finding is neither muted nor dismissed.",
               "isDeprecated": false,
               "deprecationReason": null
             }
@@ -62286,20 +62433,20 @@
         {
           "kind": "ENUM",
           "name": "PostureResolutionStatus",
-          "description": null,
+          "description": "Resolution states for a Posture Check finding.",
           "fields": null,
           "inputFields": null,
           "interfaces": null,
           "enumValues": [
             {
               "name": "OPEN",
-              "description": null,
+              "description": "The finding has not been resolved.",
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
               "name": "RESOLVED",
-              "description": null,
+              "description": "The finding has been resolved.",
               "isDeprecated": false,
               "deprecationReason": null
             }
@@ -62309,7 +62456,7 @@
         {
           "kind": "OBJECT",
           "name": "PostureImpactedEntity",
-          "description": null,
+          "description": "An entity affected by a Posture Check result or finding.",
           "fields": [
             {
               "name": "id",
@@ -62368,62 +62515,62 @@
         {
           "kind": "ENUM",
           "name": "PostureImpactedEntityType",
-          "description": null,
+          "description": "Kinds of entities that can be affected by a Posture Check.",
           "fields": null,
           "inputFields": null,
           "interfaces": null,
           "enumValues": [
             {
               "name": "RULE",
-              "description": null,
+              "description": "A policy rule.",
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
               "name": "SITE",
-              "description": null,
+              "description": "A site.",
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
               "name": "ACCOUNT",
-              "description": null,
+              "description": "An account.",
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
               "name": "DEVICE",
-              "description": null,
+              "description": "A device.",
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
               "name": "APPLICATION",
-              "description": null,
+              "description": "An application.",
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
               "name": "USER",
-              "description": null,
+              "description": "A user.",
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
               "name": "EXTERNAL",
-              "description": null,
+              "description": "An entity from an external system.",
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
               "name": "INSTANCE",
-              "description": null,
+              "description": "An application instance.",
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
               "name": "OTHER",
-              "description": null,
+              "description": "An entity that does not fall into another listed category.",
               "isDeprecated": false,
               "deprecationReason": null
             }
@@ -62433,7 +62580,7 @@
         {
           "kind": "OBJECT",
           "name": "PostureCheckFinding",
-          "description": null,
+          "description": "A specific issue identified while evaluating a Posture Check.",
           "fields": [
             {
               "name": "id",
@@ -62668,7 +62815,7 @@
         {
           "kind": "OBJECT",
           "name": "PostureCheckFindingDetail",
-          "description": null,
+          "description": "A key-value detail associated with a Posture Check finding.",
           "fields": [
             {
               "name": "key",
@@ -62838,68 +62985,68 @@
         {
           "kind": "ENUM",
           "name": "PostureCheckEventType",
-          "description": null,
+          "description": "Event types recorded in a Posture Check audit trail.",
           "fields": null,
           "inputFields": null,
           "interfaces": null,
           "enumValues": [
             {
               "name": "CREATED",
-              "description": null,
+              "description": "A check result was created.",
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
               "name": "COMMENT_ADDED",
-              "description": null,
+              "description": "A comment was added to a check result.",
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
               "name": "STATUS_CHANGED",
-              "description": null,
+              "description": "The evaluation status of a check result changed.",
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
               "name": "SUPPRESSED_STATUS_CHANGED",
-              "description": null,
+              "description": "A check was enabled or disabled.",
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
               "name": "CHECK_MUTED",
-              "description": null,
+              "description": "A check was muted.",
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
               "name": "CHECK_UNMUTED",
-              "description": null,
+              "description": "A check was unmuted.",
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
               "name": "FINDING_MUTED",
-              "description": null,
+              "description": "A finding was muted.",
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
               "name": "FINDING_UNMUTED",
-              "description": null,
+              "description": "A finding was unmuted.",
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
               "name": "FINDING_DISMISSED",
-              "description": null,
+              "description": "A finding was dismissed.",
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
               "name": "FINDING_UNDISMISSED",
-              "description": null,
+              "description": "A dismissed finding was restored.",
               "isDeprecated": false,
               "deprecationReason": null
             }
@@ -62909,7 +63056,7 @@
         {
           "kind": "OBJECT",
           "name": "PostureCheckEventActor",
-          "description": null,
+          "description": "The user or system responsible for a Posture Check event.",
           "fields": [
             {
               "name": "name",
@@ -62952,20 +63099,20 @@
         {
           "kind": "ENUM",
           "name": "PostureCheckEventActorType",
-          "description": null,
+          "description": "Kinds of actors that can trigger Posture Check events.",
           "fields": null,
           "inputFields": null,
           "interfaces": null,
           "enumValues": [
             {
               "name": "USER",
-              "description": null,
+              "description": "A user initiated the event.",
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
               "name": "SYSTEM",
-              "description": null,
+              "description": "The system generated the event.",
               "isDeprecated": false,
               "deprecationReason": null
             }
@@ -66513,6 +66660,55 @@
           ],
           "inputFields": null,
           "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "SocketRef",
+          "description": "Reference identifying a Socket by its unique identifier or name.",
+          "fields": [
+            {
+              "name": "id",
+              "description": "Unique Socket identifier.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "name",
+              "description": "Socket name.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [
+            {
+              "kind": "INTERFACE",
+              "name": "ObjectRef",
+              "ofType": null
+            }
+          ],
           "enumValues": null,
           "possibleTypes": null
         },
@@ -99742,6 +99938,33 @@
               },
               "isDeprecated": false,
               "deprecationReason": null
+            },
+            {
+              "name": "startServiceTrial",
+              "description": "BETA - Starts a self-service trial of a service for the account. The requested duration is\nvalidated per service (currently up to 30 days for CATO_ASTS_SEC_1_5K) and the trial starts immediately.\nA service can be tried once per commercial account.",
+              "args": [
+                {
+                  "name": "input",
+                  "description": null,
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "LicensingStartServiceTrialInput",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "LicensingStartServiceTrialPayload",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
             }
           ],
           "inputFields": null,
@@ -109117,6 +109340,163 @@
                 "ofType": {
                   "kind": "INTERFACE",
                   "name": "License",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "LicensingStartServiceTrialInput",
+          "description": "Input for starting a self-service trial on the account.",
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "service",
+              "description": "The service to start a trial for. Currently only CATO_ASTS_SEC_1_5K supports trials.",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "LicenseSku",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "durationDays",
+              "description": "The requested trial duration in days. CATO_ASTS_SEC_1_5K accepts values from 1 through 30.",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "LicensingStartServiceTrialPayload",
+          "description": "The service trial state written to the account's CC2 plan.",
+          "fields": [
+            {
+              "name": "trial",
+              "description": "The active trial represented by the updated CC2 plan.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "LicensingServiceTrial",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "LicensingServiceTrial",
+          "description": "A self-service trial stored in the account's CC2 plan.",
+          "fields": [
+            {
+              "name": "service",
+              "description": "The service enabled by the trial.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "LicenseSku",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "plan",
+              "description": "The plan type applied to the service.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "LicensePlan",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "status",
+              "description": "The current activation status of the trial.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "LicenseStatus",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "startDate",
+              "description": "The time at which the trial started.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "DateTime",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "expirationDate",
+              "description": "The time at which CC2 will revoke trial access.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "DateTime",
                   "ofType": null
                 }
               },
@@ -130594,6 +130974,12 @@
               "deprecationReason": null
             },
             {
+              "name": "harness",
+              "description": "Identifies the agent environment or client generating the interaction. CMA Name: Harness",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "host_ip",
               "description": "IP address of host related to event. CMA Name: Host IP",
               "isDeprecated": false,
@@ -130644,6 +131030,12 @@
             {
               "name": "initial_object_status",
               "description": "The initial status of the object, before any policy was applied. CMA Name: Initial Object Status",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "initiated_by",
+              "description": "Indicates if the Socket upgrade or rollback occurred during the maintenance window or was initiated by Support (Cato Admin). CMA Name: Initiated By",
               "isDeprecated": false,
               "deprecationReason": null
             },
@@ -133439,6 +133831,70 @@
               "deprecationReason": null
             },
             {
+              "name": "isCrownJewel",
+              "description": "Whether the device is currently a crown jewel (critical asset)",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "crownJewelSource",
+              "description": "How the crown-jewel state was set: manually by an admin, detected by research, or cleared",
+              "args": [],
+              "type": {
+                "kind": "ENUM",
+                "name": "DeviceCrownJewelSource",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "researchReasonTypes",
+              "description": "Research-detected crown-jewel reason types (open taxonomy). Empty when research gave none",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "String",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "customerReasonType",
+              "description": "Customer-supplied crown-jewel reason, set when a customer manually marks the device",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "nics",
               "description": "List of network interface cards (NICs) associated with the device. Each entry represents a distinct interface",
               "args": [],
@@ -133969,6 +134425,35 @@
             {
               "name": "HIGH",
               "description": "Device classification is strongly validated by multiple signals",
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "possibleTypes": null
+        },
+        {
+          "kind": "ENUM",
+          "name": "DeviceCrownJewelSource",
+          "description": null,
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": [
+            {
+              "name": "MANUAL",
+              "description": "Set by an administrator",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "RESEARCH",
+              "description": "Detected by research",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "CLEARED",
+              "description": "Cleared by an administrator (device is no longer marked a crown jewel)",
               "isDeprecated": false,
               "deprecationReason": null
             }
@@ -134639,6 +135124,24 @@
             {
               "name": "isManaged",
               "description": "Filter by management status",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "BooleanFilterInput",
+                    "ofType": null
+                  }
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "isCrownJewel",
+              "description": "Filter by crown jewel state",
               "type": {
                 "kind": "LIST",
                 "name": null,
@@ -151831,6 +152334,12 @@
             {
               "name": "categories",
               "description": "Cato system category. CMA Name: Categories",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "categories_current_state",
+              "description": "Current effective categories of the application. CMA Name: Categories Current State",
               "isDeprecated": false,
               "deprecationReason": null
             },

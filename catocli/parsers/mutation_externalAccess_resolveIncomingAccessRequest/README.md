@@ -24,5 +24,5 @@ catocli mutation externalAccess resolveIncomingAccessRequest '{
 
 #### Operation Arguments for mutation.externalAccess.resolveIncomingAccessRequest ####
 
-`accountId` [ID] - (required) N/A    
-`resolveIncomingAccessRequestInput` [ResolveIncomingAccessRequestInput] - (required) N/A    
+`accountId` [ID] - (required) N/A 
+`resolveIncomingAccessRequestInput` [ResolveIncomingAccessRequestInput] - (required) N/A 

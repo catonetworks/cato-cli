@@ -25,5 +25,5 @@ catocli query container fqdn search '{
 
 #### Operation Arguments for query.container.fqdn.search ####
 
-`accountId` [ID] - (required) N/A    
-`fqdnContainerSearchInput` [FqdnContainerSearchInput] - (required) N/A    
+`accountId` [ID] - (required) N/A 
+`fqdnContainerSearchInput` [FqdnContainerSearchInput] - (required) N/A 

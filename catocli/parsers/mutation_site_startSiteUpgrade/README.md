@@ -31,5 +31,5 @@ catocli mutation site startSiteUpgrade '{
 
 #### Operation Arguments for mutation.site.startSiteUpgrade ####
 
-`accountId` [ID] - (required) N/A    
-`startSiteUpgradeInput` [StartSiteUpgradeInput] - (required) N/A    
+`accountId` [ID] - (required) N/A 
+`startSiteUpgradeInput` [StartSiteUpgradeInput] - (required) N/A 

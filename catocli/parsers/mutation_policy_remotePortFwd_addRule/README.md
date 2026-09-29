@@ -84,6 +84,6 @@ catocli mutation policy remotePortFwd addRule '{
 
 #### Operation Arguments for mutation.policy.remotePortFwd.addRule ####
 
-`accountId` [ID] - (required) N/A    
-`remotePortFwdAddRuleInput` [RemotePortFwdAddRuleInput] - (required) N/A    
-`remotePortFwdPolicyMutationInput` [RemotePortFwdPolicyMutationInput] - (required) N/A    
+`accountId` [ID] - (required) N/A 
+`remotePortFwdAddRuleInput` [RemotePortFwdAddRuleInput] - (required) N/A 
+`remotePortFwdPolicyMutationInput` [RemotePortFwdPolicyMutationInput] - (required) N/A 

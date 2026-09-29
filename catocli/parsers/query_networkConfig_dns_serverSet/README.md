@@ -23,5 +23,5 @@ catocli query networkConfig dns serverSet '{
 
 #### Operation Arguments for query.networkConfig.dns.serverSet ####
 
-`accountId` [ID] - (required) N/A    
-`networkConfigDnsServerSetRefInput` [NetworkConfigDnsServerSetRefInput] - (required) N/A    
+`accountId` [ID] - (required) N/A 
+`networkConfigDnsServerSetRefInput` [NetworkConfigDnsServerSetRefInput] - (required) N/A 

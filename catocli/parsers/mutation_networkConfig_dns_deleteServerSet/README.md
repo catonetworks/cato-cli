@@ -25,5 +25,5 @@ catocli mutation networkConfig dns deleteServerSet '{
 
 #### Operation Arguments for mutation.networkConfig.dns.deleteServerSet ####
 
-`accountId` [ID] - (required) N/A    
-`networkConfigDnsDeleteServerSetInput` [NetworkConfigDnsDeleteServerSetInput] - (required) N/A    
+`accountId` [ID] - (required) N/A 
+`networkConfigDnsDeleteServerSetInput` [NetworkConfigDnsDeleteServerSetInput] - (required) N/A 

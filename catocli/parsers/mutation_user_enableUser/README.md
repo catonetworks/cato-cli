@@ -25,5 +25,5 @@ catocli mutation user enableUser '{
 
 #### Operation Arguments for mutation.user.enableUser ####
 
-`accountId` [ID] - (required) Unique identifier of the Cato account.    
-`enableUserInput` [EnableUserInput] - (required) N/A    
+`accountId` [ID] - (required) Unique identifier of the Cato account. 
+`enableUserInput` [EnableUserInput] - (required) N/A 

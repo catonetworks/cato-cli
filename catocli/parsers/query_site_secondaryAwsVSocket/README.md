@@ -20,5 +20,5 @@ catocli query site secondaryAwsVSocket '{
 
 #### Operation Arguments for query.site.secondaryAwsVSocket ####
 
-`accountId` [ID] - (required) N/A    
-`socketId` [ID] - (required) N/A    
+`accountId` [ID] - (required) N/A 
+`socketId` [ID] - (required) N/A 

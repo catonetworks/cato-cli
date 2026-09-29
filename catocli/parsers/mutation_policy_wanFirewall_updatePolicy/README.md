@@ -27,6 +27,6 @@ catocli mutation policy wanFirewall updatePolicy '{
 
 #### Operation Arguments for mutation.policy.wanFirewall.updatePolicy ####
 
-`accountId` [ID] - (required) N/A    
-`wanFirewallPolicyMutationInput` [WanFirewallPolicyMutationInput] - (required) N/A    
-`wanFirewallPolicyUpdateInput` [WanFirewallPolicyUpdateInput] - (required) N/A    
+`accountId` [ID] - (required) N/A 
+`wanFirewallPolicyMutationInput` [WanFirewallPolicyMutationInput] - (required) N/A 
+`wanFirewallPolicyUpdateInput` [WanFirewallPolicyUpdateInput] - (required) N/A 

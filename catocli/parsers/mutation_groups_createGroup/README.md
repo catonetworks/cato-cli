@@ -65,6 +65,6 @@ catocli mutation groups createGroup '{
 
 #### Operation Arguments for mutation.groups.createGroup ####
 
-`accountId` [ID] - (required) N/A    
-`createGroupInput` [CreateGroupInput] - (required) N/A    
-`groupMembersListInput` [GroupMembersListInput] - (required) N/A    
+`accountId` [ID] - (required) N/A 
+`createGroupInput` [CreateGroupInput] - (required) N/A 
+`groupMembersListInput` [GroupMembersListInput] - (required) N/A 

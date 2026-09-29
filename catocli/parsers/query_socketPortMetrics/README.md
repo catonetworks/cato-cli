@@ -189,12 +189,12 @@ Format: `"utc.YYYY-MM-{DD/HH:MM:SS--DD/HH:MM:SS}"`
 
 #### Operation Arguments for query.socketPortMetrics ####
 
-`accountID` [ID] - (required) Account ID    
-`from` [Int] - (required) N/A    
-`limit` [Int] - (required) N/A    
-`socketPortMetricsDimension` [SocketPortMetricsDimension[]] - (required) N/A    
-`socketPortMetricsFilter` [SocketPortMetricsFilter[]] - (required) N/A    
-`socketPortMetricsMeasure` [SocketPortMetricsMeasure[]] - (required) N/A    
-`socketPortMetricsPostAggFilter` [SocketPortMetricsPostAggFilter[]] - (required) N/A    
-`socketPortMetricsSort` [SocketPortMetricsSort[]] - (required) N/A    
-`timeFrame` [TimeFrame] - (required) N/A    
+`accountID` [ID] - (required) Account ID 
+`from` [Int] - (required) N/A 
+`limit` [Int] - (required) N/A 
+`socketPortMetricsDimension` [SocketPortMetricsDimension[]] - (required) N/A 
+`socketPortMetricsFilter` [SocketPortMetricsFilter[]] - (required) N/A 
+`socketPortMetricsMeasure` [SocketPortMetricsMeasure[]] - (required) N/A 
+`socketPortMetricsPostAggFilter` [SocketPortMetricsPostAggFilter[]] - (required) N/A 
+`socketPortMetricsSort` [SocketPortMetricsSort[]] - (required) N/A 
+`timeFrame` [TimeFrame] - (required) N/A 

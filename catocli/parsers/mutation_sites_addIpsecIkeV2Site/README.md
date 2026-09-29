@@ -33,5 +33,5 @@ catocli mutation sites addIpsecIkeV2Site '{
 
 #### Operation Arguments for mutation.sites.addIpsecIkeV2Site ####
 
-`accountId` [ID] - (required) N/A    
-`addIpsecIkeV2SiteInput` [AddIpsecIkeV2SiteInput] - (required) N/A    
+`accountId` [ID] - (required) N/A 
+`addIpsecIkeV2SiteInput` [AddIpsecIkeV2SiteInput] - (required) N/A 

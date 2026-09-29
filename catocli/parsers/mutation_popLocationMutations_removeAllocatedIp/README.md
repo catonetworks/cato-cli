@@ -23,5 +23,5 @@ catocli mutation popLocationMutations removeAllocatedIp '{
 
 #### Operation Arguments for mutation.popLocationMutations.removeAllocatedIp ####
 
-`accountId` [ID] - (required) N/A    
-`popLocationRemoveAllocatedIpInput` [PopLocationRemoveAllocatedIpInput] - (required) N/A    
+`accountId` [ID] - (required) N/A 
+`popLocationRemoveAllocatedIpInput` [PopLocationRemoveAllocatedIpInput] - (required) N/A 

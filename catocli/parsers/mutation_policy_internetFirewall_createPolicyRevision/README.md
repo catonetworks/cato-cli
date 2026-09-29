@@ -28,6 +28,6 @@ catocli mutation policy internetFirewall createPolicyRevision '{
 
 #### Operation Arguments for mutation.policy.internetFirewall.createPolicyRevision ####
 
-`accountId` [ID] - (required) N/A    
-`internetFirewallPolicyMutationInput` [InternetFirewallPolicyMutationInput] - (required) N/A    
-`policyCreateRevisionInput` [PolicyCreateRevisionInput] - (required) N/A    
+`accountId` [ID] - (required) N/A 
+`internetFirewallPolicyMutationInput` [InternetFirewallPolicyMutationInput] - (required) N/A 
+`policyCreateRevisionInput` [PolicyCreateRevisionInput] - (required) N/A 

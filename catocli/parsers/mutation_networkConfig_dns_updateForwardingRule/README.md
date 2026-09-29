@@ -29,5 +29,5 @@ catocli mutation networkConfig dns updateForwardingRule '{
 
 #### Operation Arguments for mutation.networkConfig.dns.updateForwardingRule ####
 
-`accountId` [ID] - (required) N/A    
-`networkConfigDnsUpdateForwardingRuleInput` [NetworkConfigDnsUpdateForwardingRuleInput] - (required) N/A    
+`accountId` [ID] - (required) N/A 
+`networkConfigDnsUpdateForwardingRuleInput` [NetworkConfigDnsUpdateForwardingRuleInput] - (required) N/A 

@@ -25,5 +25,5 @@ catocli mutation customAppData deleteCustomApplication '{
 
 #### Operation Arguments for mutation.customAppData.deleteCustomApplication ####
 
-`accountId` [ID] - (required) N/A    
-`deleteCustomApplicationInput` [DeleteCustomApplicationInput] - (required) N/A    
+`accountId` [ID] - (required) N/A 
+`deleteCustomApplicationInput` [DeleteCustomApplicationInput] - (required) N/A 

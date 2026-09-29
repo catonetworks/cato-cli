@@ -31,6 +31,6 @@ catocli mutation policy siteWebProxy moveRule '{
 
 #### Operation Arguments for mutation.policy.siteWebProxy.moveRule ####
 
-`accountId` [ID] - (required) N/A    
-`policyMoveRuleInput` [PolicyMoveRuleInput] - (required) N/A    
-`siteWebProxyPolicyMutationInput` [SiteWebProxyPolicyMutationInput] - (required) N/A    
+`accountId` [ID] - (required) N/A 
+`policyMoveRuleInput` [PolicyMoveRuleInput] - (required) N/A 
+`siteWebProxyPolicyMutationInput` [SiteWebProxyPolicyMutationInput] - (required) N/A 

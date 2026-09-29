@@ -23,5 +23,5 @@ catocli query site siteGeneralDetails '{
 
 #### Operation Arguments for query.site.siteGeneralDetails ####
 
-`accountId` [ID] - (required) N/A    
-`siteRefInput` [SiteRefInput] - (required) N/A    
+`accountId` [ID] - (required) N/A 
+`siteRefInput` [SiteRefInput] - (required) N/A 

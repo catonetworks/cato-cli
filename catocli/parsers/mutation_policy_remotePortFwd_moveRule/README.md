@@ -31,6 +31,6 @@ catocli mutation policy remotePortFwd moveRule '{
 
 #### Operation Arguments for mutation.policy.remotePortFwd.moveRule ####
 
-`accountId` [ID] - (required) N/A    
-`policyMoveRuleInput` [PolicyMoveRuleInput] - (required) N/A    
-`remotePortFwdPolicyMutationInput` [RemotePortFwdPolicyMutationInput] - (required) N/A    
+`accountId` [ID] - (required) N/A 
+`policyMoveRuleInput` [PolicyMoveRuleInput] - (required) N/A 
+`remotePortFwdPolicyMutationInput` [RemotePortFwdPolicyMutationInput] - (required) N/A 

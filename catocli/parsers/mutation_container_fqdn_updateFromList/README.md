@@ -30,5 +30,5 @@ catocli mutation container fqdn updateFromList '{
 
 #### Operation Arguments for mutation.container.fqdn.updateFromList ####
 
-`accountId` [ID] - (required) N/A    
-`updateFqdnContainerFromListInput` [UpdateFqdnContainerFromListInput] - (required) N/A    
+`accountId` [ID] - (required) N/A 
+`updateFqdnContainerFromListInput` [UpdateFqdnContainerFromListInput] - (required) N/A 

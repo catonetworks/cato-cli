@@ -20,4 +20,4 @@ catocli mutation accountManagement disableAccount '{
 
 #### Operation Arguments for mutation.accountManagement.disableAccount ####
 
-`accountId` [ID] - (required) N/A    
+`accountId` [ID] - (required) N/A 

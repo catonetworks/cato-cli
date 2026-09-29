@@ -20,5 +20,5 @@ catocli mutation site removeNetworkRange '{
 
 #### Operation Arguments for mutation.site.removeNetworkRange ####
 
-`accountId` [ID] - (required) N/A    
-`networkRangeId` [ID] - (required) N/A    
+`accountId` [ID] - (required) N/A 
+`networkRangeId` [ID] - (required) N/A 

@@ -444,13 +444,13 @@ Format: `"utc.YYYY-MM-{DD/HH:MM:SS--DD/HH:MM:SS}"`
 
 #### Operation Arguments for query.appStats ####
 
-`accountID` [ID] - (required) Account ID    
-`appStatsFilter` [AppStatsFilter[]] - (required) N/A    
-`appStatsPostAggFilter` [AppStatsPostAggFilter[]] - (required) N/A    
-`appStatsSort` [AppStatsSort[]] - (required) N/A    
-`dimension` [Dimension[]] - (required) N/A    
-`from` [Int] - (required) N/A    
-`includeEmptyDimension` [Boolean] - (required) When true, rows with empty/null values for a grouped dimension (e.g., country, device type) are returned as an empty group rather than excluded. This ensures consistent totals in API queries and surfaces previously hidden data in CMA dashboards and reports. Defaults to false.    
-`limit` [Int] - (required) N/A    
-`measure` [Measure[]] - (required) N/A    
-`timeFrame` [TimeFrame] - (required) N/A    
+`accountID` [ID] - (required) Account ID 
+`appStatsFilter` [AppStatsFilter[]] - (required) N/A 
+`appStatsPostAggFilter` [AppStatsPostAggFilter[]] - (required) N/A 
+`appStatsSort` [AppStatsSort[]] - (required) N/A 
+`dimension` [Dimension[]] - (required) N/A 
+`from` [Int] - (required) N/A 
+`includeEmptyDimension` [Boolean] - (required) When true, rows with empty/null values for a grouped dimension (e.g., country, device type) are returned as an empty group rather than excluded. This ensures consistent totals in API queries and surfaces previously hidden data in CMA dashboards and reports. Defaults to false. 
+`limit` [Int] - (required) N/A 
+`measure` [Measure[]] - (required) N/A 
+`timeFrame` [TimeFrame] - (required) N/A 

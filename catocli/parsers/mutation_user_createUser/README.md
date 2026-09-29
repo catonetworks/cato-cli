@@ -27,5 +27,5 @@ catocli mutation user createUser '{
 
 #### Operation Arguments for mutation.user.createUser ####
 
-`accountId` [ID] - (required) Unique identifier of the Cato account.    
-`createUserInput` [CreateUserInput] - (required) N/A    
+`accountId` [ID] - (required) Unique identifier of the Cato account. 
+`createUserInput` [CreateUserInput] - (required) N/A 

@@ -39,5 +39,5 @@ catocli mutation sites createWifiRadioProfile '{
 
 #### Operation Arguments for mutation.sites.createWifiRadioProfile ####
 
-`accountId` [ID] - (required) N/A    
-`createWifiRadioProfileInput` [CreateWifiRadioProfileInput] - (required) N/A    
+`accountId` [ID] - (required) N/A 
+`createWifiRadioProfileInput` [CreateWifiRadioProfileInput] - (required) N/A 

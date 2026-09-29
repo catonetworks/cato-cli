@@ -22,5 +22,5 @@ catocli mutation posture unmuteFinding '{
 
 #### Operation Arguments for mutation.posture.unmuteFinding ####
 
-`accountId` [ID] - (required) N/A    
-`postureUnmuteFindingInput` [PostureUnmuteFindingInput] - (required) N/A    
+`accountId` [ID] - (required) ID of the account whose Posture configuration or findings are modified. 
+`postureUnmuteFindingInput` [PostureUnmuteFindingInput] - (required) Finding id to restore from a muted state. 

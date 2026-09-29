@@ -31,6 +31,6 @@ catocli mutation policy socketLan firewall moveRule '{
 
 #### Operation Arguments for mutation.policy.socketLan.firewall.moveRule ####
 
-`accountId` [ID] - (required) N/A    
-`policyMoveSubRuleInput` [PolicyMoveSubRuleInput] - (required) N/A    
-`socketLanPolicyMutationInput` [SocketLanPolicyMutationInput] - (required) N/A    
+`accountId` [ID] - (required) N/A 
+`policyMoveSubRuleInput` [PolicyMoveSubRuleInput] - (required) N/A 
+`socketLanPolicyMutationInput` [SocketLanPolicyMutationInput] - (required) N/A 

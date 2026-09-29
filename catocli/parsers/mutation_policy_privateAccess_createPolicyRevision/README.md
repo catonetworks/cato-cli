@@ -28,6 +28,6 @@ catocli mutation policy privateAccess createPolicyRevision '{
 
 #### Operation Arguments for mutation.policy.privateAccess.createPolicyRevision ####
 
-`accountId` [ID] - (required) N/A    
-`policyCreateRevisionInput` [PolicyCreateRevisionInput] - (required) N/A    
-`privateAccessPolicyMutationInput` [PrivateAccessPolicyMutationInput] - (required) N/A    
+`accountId` [ID] - (required) N/A 
+`policyCreateRevisionInput` [PolicyCreateRevisionInput] - (required) N/A 
+`privateAccessPolicyMutationInput` [PrivateAccessPolicyMutationInput] - (required) N/A 

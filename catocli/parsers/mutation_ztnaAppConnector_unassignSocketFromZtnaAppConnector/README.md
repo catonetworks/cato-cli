@@ -25,5 +25,5 @@ catocli mutation ztnaAppConnector unassignSocketFromZtnaAppConnector '{
 
 #### Operation Arguments for mutation.ztnaAppConnector.unassignSocketFromZtnaAppConnector ####
 
-`accountId` [ID] - (required) N/A    
-`unassignSocketFromZtnaAppConnectorInput` [UnassignSocketFromZtnaAppConnectorInput] - (required) N/A    
+`accountId` [ID] - (required) N/A 
+`unassignSocketFromZtnaAppConnectorInput` [UnassignSocketFromZtnaAppConnectorInput] - (required) N/A 

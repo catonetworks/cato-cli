@@ -29,5 +29,5 @@ catocli mutation sites deleteBgpPeerBulk '{
 
 #### Operation Arguments for mutation.sites.deleteBgpPeerBulk ####
 
-`accountId` [ID] - (required) N/A    
-`deleteBgpPeerBulkInput` [DeleteBgpPeerBulkInput] - (required) N/A    
+`accountId` [ID] - (required) N/A 
+`deleteBgpPeerBulkInput` [DeleteBgpPeerBulkInput] - (required) N/A 

@@ -25,5 +25,5 @@ catocli mutation sites addSecondaryKvmVSocket '{
 
 #### Operation Arguments for mutation.sites.addSecondaryKvmVSocket ####
 
-`accountId` [ID] - (required) N/A    
-`addSecondaryKvmVSocketInput` [AddSecondaryKvmVSocketInput] - (required) N/A    
+`accountId` [ID] - (required) N/A 
+`addSecondaryKvmVSocketInput` [AddSecondaryKvmVSocketInput] - (required) N/A 

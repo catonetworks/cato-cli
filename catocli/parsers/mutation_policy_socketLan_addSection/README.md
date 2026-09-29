@@ -33,6 +33,6 @@ catocli mutation policy socketLan addSection '{
 
 #### Operation Arguments for mutation.policy.socketLan.addSection ####
 
-`accountId` [ID] - (required) N/A    
-`policyAddSectionInput` [PolicyAddSectionInput] - (required) N/A    
-`socketLanPolicyMutationInput` [SocketLanPolicyMutationInput] - (required) N/A    
+`accountId` [ID] - (required) N/A 
+`policyAddSectionInput` [PolicyAddSectionInput] - (required) N/A 
+`socketLanPolicyMutationInput` [SocketLanPolicyMutationInput] - (required) N/A 

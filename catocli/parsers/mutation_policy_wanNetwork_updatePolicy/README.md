@@ -27,6 +27,6 @@ catocli mutation policy wanNetwork updatePolicy '{
 
 #### Operation Arguments for mutation.policy.wanNetwork.updatePolicy ####
 
-`accountId` [ID] - (required) N/A    
-`wanNetworkPolicyMutationInput` [WanNetworkPolicyMutationInput] - (required) N/A    
-`wanNetworkPolicyUpdateInput` [WanNetworkPolicyUpdateInput] - (required) N/A    
+`accountId` [ID] - (required) N/A 
+`wanNetworkPolicyMutationInput` [WanNetworkPolicyMutationInput] - (required) N/A 
+`wanNetworkPolicyUpdateInput` [WanNetworkPolicyUpdateInput] - (required) N/A 

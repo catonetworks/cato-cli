@@ -29,5 +29,5 @@ catocli mutation sites addSecondaryGcpVSocket '{
 
 #### Operation Arguments for mutation.sites.addSecondaryGcpVSocket ####
 
-`accountId` [ID] - (required) N/A    
-`addSecondaryGcpVSocketInput` [AddSecondaryGcpVSocketInput] - (required) N/A    
+`accountId` [ID] - (required) N/A 
+`addSecondaryGcpVSocketInput` [AddSecondaryGcpVSocketInput] - (required) N/A 

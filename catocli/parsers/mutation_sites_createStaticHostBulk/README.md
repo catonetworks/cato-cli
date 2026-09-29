@@ -30,5 +30,5 @@ catocli mutation sites createStaticHostBulk '{
 
 #### Operation Arguments for mutation.sites.createStaticHostBulk ####
 
-`accountId` [ID] - (required) N/A    
-`createStaticHostBulkInput` [CreateStaticHostBulkInput] - (required) N/A    
+`accountId` [ID] - (required) N/A 
+`createStaticHostBulkInput` [CreateStaticHostBulkInput] - (required) N/A 

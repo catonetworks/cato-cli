@@ -24,5 +24,5 @@ catocli mutation posture muteCheck '{
 
 #### Operation Arguments for mutation.posture.muteCheck ####
 
-`accountId` [ID] - (required) N/A    
-`postureMuteCheckInput` [PostureMuteCheckInput] - (required) N/A    
+`accountId` [ID] - (required) ID of the account whose Posture configuration or findings are modified. 
+`postureMuteCheckInput` [PostureMuteCheckInput] - (required) Check result id, mute duration, and optional reason. 

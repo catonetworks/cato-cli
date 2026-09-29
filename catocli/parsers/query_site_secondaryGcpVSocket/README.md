@@ -22,5 +22,5 @@ catocli query site secondaryGcpVSocket '{
 
 #### Operation Arguments for query.site.secondaryGcpVSocket ####
 
-`accountId` [ID] - (required) N/A    
-`secondaryGcpVSocketInput` [SecondaryGcpVSocketInput] - (required) N/A    
+`accountId` [ID] - (required) N/A 
+`secondaryGcpVSocketInput` [SecondaryGcpVSocketInput] - (required) N/A 

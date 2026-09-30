@@ -23,5 +23,5 @@ catocli mutation ztnaAppConnector addZtnaAppConnectorsConfiguration '{
 
 #### Operation Arguments for mutation.ztnaAppConnector.addZtnaAppConnectorsConfiguration ####
 
-`accountId` [ID] - (required) N/A    
-`addZtnaAppConnectorsConfigurationInput` [AddZtnaAppConnectorsConfigurationInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`addZtnaAppConnectorsConfigurationInput` [AddZtnaAppConnectorsConfigurationInput] - (required) N/A

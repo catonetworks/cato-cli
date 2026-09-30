@@ -20,5 +20,5 @@ catocli mutation accountManagement removeAccount '{
 
 #### Operation Arguments for mutation.accountManagement.removeAccount ####
 
-`accountId` [ID] - (required) N/A    
+`accountId` [ID] - (required) N/A
 `accountIdToRemove` [ID] - (required) N/A

@@ -95,5 +95,5 @@ catocli query enterpriseDirectory '{
 
 #### Operation Arguments for query.enterpriseDirectory ####
 
-`accountId` [ID] - (required) N/A    
-`enterpriseDirectoryLocationListInput` [EnterpriseDirectoryLocationListInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`enterpriseDirectoryLocationListInput` [EnterpriseDirectoryLocationListInput] - (required) N/A

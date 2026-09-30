@@ -1289,7 +1289,7 @@ catocli {operationCmd} '{example_json_pretty}'
                         required_status = "required" if arg.get("required", False) else "optional"
                         description = arg.get("description", "No description available")
                         values_str = "Default Value: " + str(arg["values"]) if len(arg.get("values", [])) > 0 else ""
-                        readmeStr += f'`{argName}` [{arg_type}] - ({required_status}) {description} {values_str}\n'
+                        readmeStr += f'`{argName}` [{arg_type}] - ({required_status}) {description} {values_str}'.rstrip() + "\n"
                 
                 parserPath = "../catocli/parsers/"+parserName
                 if not os.path.exists(parserPath):

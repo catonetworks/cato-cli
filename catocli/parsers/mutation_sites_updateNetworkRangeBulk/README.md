@@ -47,5 +47,5 @@ catocli mutation sites updateNetworkRangeBulk '{
 
 #### Operation Arguments for mutation.sites.updateNetworkRangeBulk ####
 
-`accountId` [ID] - (required) N/A    
-`updateNetworkRangeBulkInput` [UpdateNetworkRangeBulkInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`updateNetworkRangeBulkInput` [UpdateNetworkRangeBulkInput] - (required) N/A

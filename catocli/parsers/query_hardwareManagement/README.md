@@ -93,6 +93,6 @@ catocli query hardwareManagement '{
 
 #### Operation Arguments for query.hardwareManagement ####
 
-`accountId` [ID] - (required) N/A    
-`socketInventoryDistributionInput` [SocketInventoryDistributionInput] - (required) N/A    
-`socketInventoryInput` [SocketInventoryInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`socketInventoryDistributionInput` [SocketInventoryDistributionInput] - (required) N/A
+`socketInventoryInput` [SocketInventoryInput] - (required) N/A

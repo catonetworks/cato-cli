@@ -23,5 +23,5 @@ catocli query container fqdn downloadFile '{
 
 #### Operation Arguments for query.container.fqdn.downloadFile ####
 
-`accountId` [ID] - (required) N/A    
-`downloadFqdnContainerFileInput` [DownloadFqdnContainerFileInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`downloadFqdnContainerFileInput` [DownloadFqdnContainerFileInput] - (required) N/A

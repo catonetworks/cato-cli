@@ -28,5 +28,5 @@ catocli mutation user updateUser '{
 
 #### Operation Arguments for mutation.user.updateUser ####
 
-`accountId` [ID] - (required) Unique identifier of the Cato account.    
-`updateUserInput` [UpdateUserInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`updateUserInput` [UpdateUserInput] - (required) N/A

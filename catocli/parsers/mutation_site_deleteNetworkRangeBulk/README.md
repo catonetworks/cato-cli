@@ -28,5 +28,5 @@ catocli mutation site deleteNetworkRangeBulk '{
 
 #### Operation Arguments for mutation.site.deleteNetworkRangeBulk ####
 
-`accountId` [ID] - (required) N/A    
-`deleteNetworkRangeBulkInput` [DeleteNetworkRangeBulkInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`deleteNetworkRangeBulkInput` [DeleteNetworkRangeBulkInput] - (required) N/A

@@ -23,5 +23,5 @@ catocli query accountBySubdomain '{
 
 #### Operation Arguments for query.accountBySubdomain ####
 
-`accountID` [ID] - (required) N/A    
-`subdomains` [String[]] - (required) a list of required subdomains    
+`accountID` [ID] - (required) N/A
+`subdomains` [String[]] - (required) N/A

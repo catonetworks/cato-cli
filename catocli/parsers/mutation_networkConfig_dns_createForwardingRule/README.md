@@ -28,5 +28,5 @@ catocli mutation networkConfig dns createForwardingRule '{
 
 #### Operation Arguments for mutation.networkConfig.dns.createForwardingRule ####
 
-`accountId` [ID] - (required) N/A    
-`networkConfigDnsCreateForwardingRuleInput` [NetworkConfigDnsCreateForwardingRuleInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`networkConfigDnsCreateForwardingRuleInput` [NetworkConfigDnsCreateForwardingRuleInput] - (required) N/A

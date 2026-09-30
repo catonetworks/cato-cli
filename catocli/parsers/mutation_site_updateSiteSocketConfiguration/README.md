@@ -31,5 +31,5 @@ catocli mutation site updateSiteSocketConfiguration '{
 
 #### Operation Arguments for mutation.site.updateSiteSocketConfiguration ####
 
-`accountId` [ID] - (required) N/A    
-`updateSiteSocketConfigurationInput` [UpdateSiteSocketConfigurationInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`updateSiteSocketConfigurationInput` [UpdateSiteSocketConfigurationInput] - (required) N/A

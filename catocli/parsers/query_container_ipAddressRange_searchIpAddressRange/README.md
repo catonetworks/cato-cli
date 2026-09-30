@@ -25,5 +25,5 @@ catocli query container ipAddressRange searchIpAddressRange '{
 
 #### Operation Arguments for query.container.ipAddressRange.searchIpAddressRange ####
 
-`accountId` [ID] - (required) N/A    
-`ipAddressRangeContainerSearchIpAddressRangeInput` [IpAddressRangeContainerSearchIpAddressRangeInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`ipAddressRangeContainerSearchIpAddressRangeInput` [IpAddressRangeContainerSearchIpAddressRangeInput] - (required) N/A

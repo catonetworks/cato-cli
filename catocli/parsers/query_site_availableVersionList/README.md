@@ -25,5 +25,5 @@ catocli query site availableVersionList '{
 
 #### Operation Arguments for query.site.availableVersionList ####
 
-`accountId` [ID] - (required) N/A    
-`availableVersionListInput` [AvailableVersionListInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`availableVersionListInput` [AvailableVersionListInput] - (required) N/A

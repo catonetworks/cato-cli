@@ -44,5 +44,5 @@ catocli mutation ztnaAppConnector updateZtnaAppConnector '{
 
 #### Operation Arguments for mutation.ztnaAppConnector.updateZtnaAppConnector ####
 
-`accountId` [ID] - (required) N/A    
-`updateZtnaAppConnectorInput` [UpdateZtnaAppConnectorInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`updateZtnaAppConnectorInput` [UpdateZtnaAppConnectorInput] - (required) N/A

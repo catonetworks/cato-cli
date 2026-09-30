@@ -31,6 +31,6 @@ catocli mutation policy clientConnectivity moveSection '{
 
 #### Operation Arguments for mutation.policy.clientConnectivity.moveSection ####
 
-`accountId` [ID] - (required) N/A    
-`clientConnectivityPolicyMutationInput` [ClientConnectivityPolicyMutationInput] - (required) N/A    
-`policyMoveSectionInput` [PolicyMoveSectionInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`clientConnectivityPolicyMutationInput` [ClientConnectivityPolicyMutationInput] - (required) N/A
+`policyMoveSectionInput` [PolicyMoveSectionInput] - (required) N/A

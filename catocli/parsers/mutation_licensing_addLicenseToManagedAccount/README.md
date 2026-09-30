@@ -25,5 +25,5 @@ catocli mutation licensing addLicenseToManagedAccount '{
 
 #### Operation Arguments for mutation.licensing.addLicenseToManagedAccount ####
 
-`accountId` [ID] - (required) N/A    
-`addLicenseToManagedAccountInput` [AddLicenseToManagedAccountInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`addLicenseToManagedAccountInput` [AddLicenseToManagedAccountInput] - (required) N/A

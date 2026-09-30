@@ -310,12 +310,12 @@ Format: `"utc.YYYY-MM-{DD/HH:MM:SS--DD/HH:MM:SS}"`
 
 #### Operation Arguments for query.socketPortMetricsTimeSeries ####
 
-`accountID` [ID] - (required) Account ID    
-`buckets` [Int] - (required) N/A    
-`perSecond` [Boolean] - (required) whether to normalize the data into per second (i.e. divide by granularity)    
-`socketPortMetricsDimension` [SocketPortMetricsDimension[]] - (required) N/A    
-`socketPortMetricsFilter` [SocketPortMetricsFilter[]] - (required) N/A    
-`socketPortMetricsMeasure` [SocketPortMetricsMeasure[]] - (required) N/A    
-`timeFrame` [TimeFrame] - (required) N/A    
-`useDefaultSizeBucket` [Boolean] - (required) In case we want to have the default size bucket (from properties)    
-`withMissingData` [Boolean] - (required) If false, the data field will be set to '0' for buckets with no reported data. Otherwise it will be set to -1    
+`accountID` [ID] - (required) N/A
+`buckets` [Int] - (required) N/A
+`perSecond` [Boolean] - (required) N/A
+`socketPortMetricsDimension` [SocketPortMetricsDimension[]] - (required) N/A
+`socketPortMetricsFilter` [SocketPortMetricsFilter[]] - (required) N/A
+`socketPortMetricsMeasure` [SocketPortMetricsMeasure[]] - (required) N/A
+`timeFrame` [TimeFrame] - (required) N/A
+`useDefaultSizeBucket` [Boolean] - (required) N/A
+`withMissingData` [Boolean] - (required) N/A

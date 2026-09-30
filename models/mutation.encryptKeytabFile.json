@@ -36,7 +36,7 @@
                     "inputFields": {
                         "file": {
                             "defaultValue": null,
-                            "description": "Keytab file uploaded via GraphQL multipart/form-data.",
+                            "description": null,
                             "id_str": "input___file",
                             "name": "file",
                             "path": "input.file",
@@ -72,7 +72,7 @@
     },
     "childOperations": {},
     "deprecationReason": null,
-    "description": "Uploads a Kerberos keytab file for Site Web Proxy and returns an encrypted payload.\nThis operation is a pre-step for configuring Kerberos authentication in siteWebProxy policy.\n\nThe request must be sent as a GraphQL multipart/form-data upload\n(graphql-multipart-request-spec): `input.file` is `null` in `operations`, and the\nfile bytes are sent as a separate form-data part mapped to it via `map`.\n\n```bash\ncurl -X POST \"https://api.catonetworks.com/api/v1/graphql2\" \\\n  -H \"x-api-key: <API_KEY>\" \\\n  -F 'operations={\"query\":\"mutation encryptKeytabFile($accountId: ID!, $input: EncryptKeytabFileInput!) { encryptKeytabFile(accountId: $accountId, input: $input) { encryptedFile } }\",\"variables\":{\"accountId\":\"123\",\"input\":{\"file\":null}}}' \\\n  -F 'map={\"0\":[\"variables.input.file\"]}' \\\n  -F '0=@/path/to/file.keytab'\n```",
+    "description": null,
     "fieldTypes": {},
     "isDeprecated": false,
     "name": "encryptKeytabFile",
@@ -113,7 +113,7 @@
                     "inputFields": {
                         "file": {
                             "defaultValue": null,
-                            "description": "Keytab file uploaded via GraphQL multipart/form-data.",
+                            "description": null,
                             "id_str": "input___file",
                             "name": "file",
                             "path": "input.file",
@@ -156,7 +156,7 @@
                 "encryptedFile": {
                     "args": {},
                     "deprecationReason": null,
-                    "description": "Encrypted keytab payload. Use this value in Kerberos configuration file of siteWebProxy mutations.",
+                    "description": null,
                     "id_str": "encryptedFile",
                     "isDeprecated": false,
                     "name": "encryptedFile",

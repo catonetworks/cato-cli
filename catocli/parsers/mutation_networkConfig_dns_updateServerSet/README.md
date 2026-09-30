@@ -29,5 +29,5 @@ catocli mutation networkConfig dns updateServerSet '{
 
 #### Operation Arguments for mutation.networkConfig.dns.updateServerSet ####
 
-`accountId` [ID] - (required) N/A    
-`networkConfigDnsUpdateServerSetInput` [NetworkConfigDnsUpdateServerSetInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`networkConfigDnsUpdateServerSetInput` [NetworkConfigDnsUpdateServerSetInput] - (required) N/A

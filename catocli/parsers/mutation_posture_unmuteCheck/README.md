@@ -22,5 +22,5 @@ catocli mutation posture unmuteCheck '{
 
 #### Operation Arguments for mutation.posture.unmuteCheck ####
 
-`accountId` [ID] - (required) N/A    
-`postureUnmuteCheckInput` [PostureUnmuteCheckInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`postureUnmuteCheckInput` [PostureUnmuteCheckInput] - (required) N/A

@@ -29,5 +29,5 @@ catocli mutation container fqdn addValues '{
 
 #### Operation Arguments for mutation.container.fqdn.addValues ####
 
-`accountId` [ID] - (required) N/A    
-`fqdnContainerAddValuesInput` [FqdnContainerAddValuesInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`fqdnContainerAddValuesInput` [FqdnContainerAddValuesInput] - (required) N/A

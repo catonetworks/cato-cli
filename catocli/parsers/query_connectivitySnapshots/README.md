@@ -353,7 +353,7 @@ catocli query connectivitySnapshots '{
 
 #### Operation Arguments for query.connectivitySnapshots ####
 
-`accountId` [ID] - (required) N/A    
-`ztnaAppConnectorGroupSnapshotInput` [ZtnaAppConnectorGroupSnapshotInput] - (required) N/A    
-`ztnaAppConnectorSnapshotInput` [ZtnaAppConnectorSnapshotInput] - (required) N/A    
-`ztnaAppConnectorSnapshotSummaryInput` [ZtnaAppConnectorSnapshotSummaryInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`ztnaAppConnectorGroupSnapshotInput` [ZtnaAppConnectorGroupSnapshotInput] - (required) N/A
+`ztnaAppConnectorSnapshotInput` [ZtnaAppConnectorSnapshotInput] - (required) N/A
+`ztnaAppConnectorSnapshotSummaryInput` [ZtnaAppConnectorSnapshotSummaryInput] - (required) N/A

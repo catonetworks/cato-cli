@@ -21,7 +21,7 @@
         }
     },
     "deprecationReason": null,
-    "description": "Entry point for AI Security queries, scoped to a single account.",
+    "description": null,
     "fieldTypes": {},
     "isDeprecated": false,
     "name": "aiSecurity",
@@ -106,13 +106,13 @@
             "responseStr": "input:$aiSecurityEndUsersSessionConversationInput ",
             "type": {
                 "definition": {
-                    "description": "Input for fetching a single end-user conversation's PSI by message id.",
+                    "description": " Input for fetching a single end-user conversation's PSI by message id. ",
                     "enumValues": null,
                     "fields": null,
                     "inputFields": {
                         "appId": {
                             "defaultValue": null,
-                            "description": "Canonical id of the application the conversation belongs to.",
+                            "description": null,
                             "id_str": "sessionConversation___input___appId",
                             "name": "appId",
                             "path": "sessionConversation.input.appId",
@@ -131,7 +131,7 @@
                         },
                         "messageId": {
                             "defaultValue": null,
-                            "description": "Identifier of the message (conversation) to fetch. Together with sessionId this identifies the conversation uniquely.",
+                            "description": null,
                             "id_str": "sessionConversation___input___messageId",
                             "name": "messageId",
                             "path": "sessionConversation.input.messageId",
@@ -150,7 +150,7 @@
                         },
                         "sessionId": {
                             "defaultValue": null,
-                            "description": "Identifier of the chat session the conversation belongs to.",
+                            "description": null,
                             "id_str": "sessionConversation___input___sessionId",
                             "name": "sessionId",
                             "path": "sessionConversation.input.sessionId",
@@ -169,7 +169,7 @@
                         },
                         "userId": {
                             "defaultValue": null,
-                            "description": "Optional end-user identifier. Used only to narrow the underlying lookup for performance; it does not scope the result per user \u2014 sessionId and messageId already identify the conversation uniquely, so omitting it never returns a different user's conversation.",
+                            "description": null,
                             "id_str": "sessionConversation___input___userId",
                             "name": "userId",
                             "path": "sessionConversation.input.userId",
@@ -205,13 +205,13 @@
     "path": "query.aiSecurity",
     "type": {
         "definition": {
-            "description": "Root of the AI Security query namespace for an account.",
+            "description": " Root of the AI Security query namespace for an account. ",
             "enumValues": null,
             "fields": {
                 "apps": {
                     "args": {},
                     "deprecationReason": null,
-                    "description": "AI App Protection queries (invocations to and from LLMs in your AI applications).",
+                    "description": null,
                     "id_str": "apps",
                     "isDeprecated": false,
                     "name": "apps",
@@ -221,7 +221,7 @@
                     "responseStr": "apps:$aiSecurityAppsQueries ",
                     "type": {
                         "definition": {
-                            "description": "Root of the AI App Protection query namespace.",
+                            "description": " Root of the AI App Protection query namespace. ",
                             "enumValues": null,
                             "fields": {
                                 "invocation": {
@@ -278,7 +278,7 @@
                                         }
                                     },
                                     "deprecationReason": null,
-                                    "description": "Fetch a single invocation by its ID.",
+                                    "description": null,
                                     "id_str": "apps___invocation",
                                     "isDeprecated": false,
                                     "name": "invocation",
@@ -288,13 +288,13 @@
                                     "responseStr": "invocation:$aiSecurityAppsInvocation ",
                                     "type": {
                                         "definition": {
-                                            "description": "A single invocation (any call to or response from an LLM) intercepted by the AI Security guard.",
+                                            "description": " A single invocation (any call to or response from an LLM) intercepted by the AI Security guard. ",
                                             "enumValues": null,
                                             "fields": {
                                                 "action": {
                                                     "args": {},
                                                     "deprecationReason": null,
-                                                    "description": "The enforcement outcome applied to this invocation.",
+                                                    "description": null,
                                                     "id_str": "apps___invocation___action",
                                                     "isDeprecated": false,
                                                     "name": "action",
@@ -304,29 +304,29 @@
                                                     "responseStr": "action:$action ",
                                                     "type": {
                                                         "definition": {
-                                                            "description": "The enforcement outcome applied to an invocation.",
+                                                            "description": " The enforcement outcome applied to an invocation. ",
                                                             "enumValues": [
                                                                 {
                                                                     "deprecationReason": null,
-                                                                    "description": "The request or response was blocked.",
+                                                                    "description": " The request or response was blocked. ",
                                                                     "isDeprecated": false,
                                                                     "name": "BLOCK"
                                                                 },
                                                                 {
                                                                     "deprecationReason": null,
-                                                                    "description": "Sensitive content was masked before forwarding.",
+                                                                    "description": " Sensitive content was masked before forwarding. ",
                                                                     "isDeprecated": false,
                                                                     "name": "ANONYMIZE"
                                                                 },
                                                                 {
                                                                     "deprecationReason": null,
-                                                                    "description": "No action was taken \u2014 all matched rules are in monitor mode.",
+                                                                    "description": " No action was taken \u2014 all matched rules are in monitor mode. ",
                                                                     "isDeprecated": false,
                                                                     "name": "MONITOR"
                                                                 },
                                                                 {
                                                                     "deprecationReason": null,
-                                                                    "description": "No action was taken \u2014 no rules matched.",
+                                                                    "description": " No action was taken \u2014 no rules matched. ",
                                                                     "isDeprecated": false,
                                                                     "name": "NONE"
                                                                 }
@@ -351,7 +351,7 @@
                                                 "data": {
                                                     "args": {},
                                                     "deprecationReason": null,
-                                                    "description": "Invocation messages (original, not anonymized). Caller must have AiSecurityForAppsGuardsSensitive RBAC permission.",
+                                                    "description": null,
                                                     "id_str": "apps___invocation___data",
                                                     "isDeprecated": false,
                                                     "name": "data",
@@ -361,7 +361,7 @@
                                                     "responseStr": "data:$aiSecurityAppsInvocationData ",
                                                     "type": {
                                                         "definition": {
-                                                            "description": "The input data of an invocation.",
+                                                            "description": " The input data of an invocation. ",
                                                             "enumValues": null,
                                                             "fields": {
                                                                 "message": {
@@ -377,13 +377,13 @@
                                                                     "responseStr": "message:$aiSecurityAppsInvocationMessage ",
                                                                     "type": {
                                                                         "definition": {
-                                                                            "description": "A single message within an invocation's chat.",
+                                                                            "description": " A single message within an invocation's chat. ",
                                                                             "enumValues": null,
                                                                             "fields": {
                                                                                 "content": {
                                                                                     "args": {},
                                                                                     "deprecationReason": null,
-                                                                                    "description": "The content of the message.",
+                                                                                    "description": null,
                                                                                     "id_str": "apps___invocation___data___message___content",
                                                                                     "isDeprecated": false,
                                                                                     "name": "content",
@@ -393,13 +393,13 @@
                                                                                     "responseStr": "content:$aiSecurityAppsInvocationMessageContent ",
                                                                                     "type": {
                                                                                         "definition": {
-                                                                                            "description": "A single content item within a message.",
+                                                                                            "description": " A single content item within a message. ",
                                                                                             "enumValues": null,
                                                                                             "fields": {
                                                                                                 "text": {
                                                                                                     "args": {},
                                                                                                     "deprecationReason": null,
-                                                                                                    "description": "The text of the message.",
+                                                                                                    "description": null,
                                                                                                     "id_str": "apps___invocation___data___message___content___text",
                                                                                                     "isDeprecated": false,
                                                                                                     "name": "text",
@@ -438,7 +438,7 @@
                                                                                 "role": {
                                                                                     "args": {},
                                                                                     "deprecationReason": null,
-                                                                                    "description": "The role of the message author (well-known values: USER, ASSISTANT, TOOL_CALL, TOOL_MESSAGE; custom roles are also possible).",
+                                                                                    "description": null,
                                                                                     "id_str": "apps___invocation___data___message___role",
                                                                                     "isDeprecated": false,
                                                                                     "name": "role",
@@ -495,7 +495,7 @@
                                                 "guard": {
                                                     "args": {},
                                                     "deprecationReason": null,
-                                                    "description": "The guard that received this invocation.",
+                                                    "description": null,
                                                     "id_str": "apps___invocation___guard",
                                                     "isDeprecated": false,
                                                     "name": "guard",
@@ -505,7 +505,7 @@
                                                     "responseStr": "guard:$aiSecurityAppsGuardRef ",
                                                     "type": {
                                                         "definition": {
-                                                            "description": "Reference to an AI security guard.",
+                                                            "description": " Reference to an AI security guard. ",
                                                             "enumValues": null,
                                                             "fields": {
                                                                 "id": {
@@ -569,7 +569,7 @@
                                                 "id": {
                                                     "args": {},
                                                     "deprecationReason": null,
-                                                    "description": "Globally unique identifier for this invocation.",
+                                                    "description": null,
                                                     "id_str": "apps___invocation___id",
                                                     "isDeprecated": false,
                                                     "name": "id",
@@ -590,7 +590,7 @@
                                                 "sessionId": {
                                                     "args": {},
                                                     "deprecationReason": null,
-                                                    "description": "Identifier grouping invocations that belong to the same conversation session.",
+                                                    "description": null,
                                                     "id_str": "apps___invocation___sessionId",
                                                     "isDeprecated": false,
                                                     "name": "sessionId",
@@ -610,7 +610,7 @@
                                                 "timestamp": {
                                                     "args": {},
                                                     "deprecationReason": null,
-                                                    "description": "UTC timestamp of when the invocation was intercepted.",
+                                                    "description": null,
                                                     "id_str": "apps___invocation___timestamp",
                                                     "isDeprecated": false,
                                                     "name": "timestamp",
@@ -631,7 +631,7 @@
                                                 "tokenCount": {
                                                     "args": {},
                                                     "deprecationReason": null,
-                                                    "description": "Total number of tokens in the invocation (prompt + completion).",
+                                                    "description": null,
                                                     "id_str": "apps___invocation___tokenCount",
                                                     "isDeprecated": false,
                                                     "name": "tokenCount",
@@ -684,7 +684,7 @@
                 "endUsers": {
                     "args": {},
                     "deprecationReason": null,
-                    "description": "User Protection queries (end-user interactions with public AI tools).",
+                    "description": null,
                     "id_str": "endUsers",
                     "isDeprecated": false,
                     "name": "endUsers",
@@ -694,7 +694,7 @@
                     "responseStr": "endUsers:$aiSecurityEndUsersQueries ",
                     "type": {
                         "definition": {
-                            "description": "Root of the User Protection query namespace.",
+                            "description": " Root of the User Protection query namespace. ",
                             "enumValues": null,
                             "fields": {
                                 "sessionConversation": {
@@ -710,13 +710,13 @@
                                             "responseStr": "input:$aiSecurityEndUsersSessionConversationInput ",
                                             "type": {
                                                 "definition": {
-                                                    "description": "Input for fetching a single end-user conversation's PSI by message id.",
+                                                    "description": " Input for fetching a single end-user conversation's PSI by message id. ",
                                                     "enumValues": null,
                                                     "fields": null,
                                                     "inputFields": {
                                                         "appId": {
                                                             "defaultValue": null,
-                                                            "description": "Canonical id of the application the conversation belongs to.",
+                                                            "description": null,
                                                             "id_str": "sessionConversation___input___appId",
                                                             "name": "appId",
                                                             "path": "sessionConversation.input.appId",
@@ -735,7 +735,7 @@
                                                         },
                                                         "messageId": {
                                                             "defaultValue": null,
-                                                            "description": "Identifier of the message (conversation) to fetch. Together with sessionId this identifies the conversation uniquely.",
+                                                            "description": null,
                                                             "id_str": "sessionConversation___input___messageId",
                                                             "name": "messageId",
                                                             "path": "sessionConversation.input.messageId",
@@ -754,7 +754,7 @@
                                                         },
                                                         "sessionId": {
                                                             "defaultValue": null,
-                                                            "description": "Identifier of the chat session the conversation belongs to.",
+                                                            "description": null,
                                                             "id_str": "sessionConversation___input___sessionId",
                                                             "name": "sessionId",
                                                             "path": "sessionConversation.input.sessionId",
@@ -773,7 +773,7 @@
                                                         },
                                                         "userId": {
                                                             "defaultValue": null,
-                                                            "description": "Optional end-user identifier. Used only to narrow the underlying lookup for performance; it does not scope the result per user \u2014 sessionId and messageId already identify the conversation uniquely, so omitting it never returns a different user's conversation.",
+                                                            "description": null,
                                                             "id_str": "sessionConversation___input___userId",
                                                             "name": "userId",
                                                             "path": "sessionConversation.input.userId",
@@ -807,7 +807,7 @@
                                         }
                                     },
                                     "deprecationReason": null,
-                                    "description": "Fetch a single end-user conversation by its message id, together with its prompt sensitive information (PSI). Returns null when no matching conversation exists. Caller must have AiSecurityEndUsersPromptSensitive RBAC permission.",
+                                    "description": null,
                                     "id_str": "endUsers___sessionConversation",
                                     "isDeprecated": false,
                                     "name": "sessionConversation",
@@ -817,13 +817,13 @@
                                     "responseStr": "sessionConversation:$aiSecurityEndUsersConversation ",
                                     "type": {
                                         "definition": {
-                                            "description": "A single end-user conversation's prompt sensitive information (PSI).",
+                                            "description": " A single end-user conversation's prompt sensitive information (PSI). ",
                                             "enumValues": null,
                                             "fields": {
                                                 "llmResponse": {
                                                     "args": {},
                                                     "deprecationReason": null,
-                                                    "description": "The LLM response, including any sensitive information it contains (not redacted). Null when the conversation has no response (e.g. the prompt was blocked before reaching the model).",
+                                                    "description": null,
                                                     "id_str": "endUsers___sessionConversation___llmResponse",
                                                     "isDeprecated": false,
                                                     "name": "llmResponse",
@@ -843,7 +843,7 @@
                                                 "userPrompt": {
                                                     "args": {},
                                                     "deprecationReason": null,
-                                                    "description": "The prompt as sent by the end user, including any sensitive information it contains (not redacted).",
+                                                    "description": null,
                                                     "id_str": "endUsers___sessionConversation___userPrompt",
                                                     "isDeprecated": false,
                                                     "name": "userPrompt",

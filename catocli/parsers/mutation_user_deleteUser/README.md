@@ -25,5 +25,5 @@ catocli mutation user deleteUser '{
 
 #### Operation Arguments for mutation.user.deleteUser ####
 
-`accountId` [ID] - (required) Unique identifier of the Cato account.    
-`deleteUserInput` [DeleteUserInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`deleteUserInput` [DeleteUserInput] - (required) N/A

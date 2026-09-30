@@ -91,6 +91,21 @@ class GeneratedGraphQLPayloadTest(unittest.TestCase):
         self.assertNotIn("accountSnapshot ( )", account_snapshot)
         self.assertIn("accountSnapshot {", account_snapshot)
 
+    def test_user_operations_use_current_import_type(self):
+        self.assertNotIn("importType", self.schema.get_type("User").fields)
+        for operation_name in (
+            "query.user",
+            "mutation.user.createUser",
+            "mutation.user.updateUser",
+            "mutation.user.enableUser",
+            "mutation.user.disableUser",
+        ):
+            with self.subTest(operation=operation_name):
+                query = generated_query(operation_name)
+                self.assertNotRegex(query, r"\bimportType\b")
+                self.assertIn("userImportType", query)
+                self.assertEqual([], validate(self.schema, parse(query)))
+
     def test_union_is_rendered_once(self):
         query = generated_query("query.auditFeed")
 

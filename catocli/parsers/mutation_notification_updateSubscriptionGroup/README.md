@@ -50,5 +50,5 @@ catocli mutation notification updateSubscriptionGroup '{
 
 #### Operation Arguments for mutation.notification.updateSubscriptionGroup ####
 
-`accountId` [ID] - (required) N/A    
-`updateSubscriptionGroupInput` [UpdateSubscriptionGroupInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`updateSubscriptionGroupInput` [UpdateSubscriptionGroupInput] - (required) N/A

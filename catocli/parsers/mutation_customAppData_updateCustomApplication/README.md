@@ -63,5 +63,5 @@ catocli mutation customAppData updateCustomApplication '{
 
 #### Operation Arguments for mutation.customAppData.updateCustomApplication ####
 
-`accountId` [ID] - (required) N/A    
-`updateCustomApplicationInput` [UpdateCustomApplicationInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`updateCustomApplicationInput` [UpdateCustomApplicationInput] - (required) N/A

@@ -20,5 +20,5 @@ catocli mutation sites removeSecondaryAwsVSocket '{
 
 #### Operation Arguments for mutation.sites.removeSecondaryAwsVSocket ####
 
-`accountId` [ID] - (required) N/A    
-`socketId` [ID] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`socketId` [ID] - (required) N/A

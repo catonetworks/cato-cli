@@ -27,6 +27,6 @@ catocli query accountSnapshot '{
 
 #### Operation Arguments for query.accountSnapshot ####
 
-`accountID` [ID] - (required) Unique Identifier of Account.    
-`siteIDs` [ID[]] - (required) List of Unique Site Identifiers. If specified, only sites in list will be returned    
-`userIDs` [ID[]] - (required) request specific IDs, regardless of if connected or not    
+`accountID` [ID] - (required) N/A
+`siteIDs` [ID[]] - (required) N/A
+`userIDs` [ID[]] - (required) N/A

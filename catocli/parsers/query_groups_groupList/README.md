@@ -160,6 +160,6 @@ catocli raw '{
 
 #### Operation Arguments for query.groups.groupList ####
 
-`accountId` [ID] - (required) N/A    
-`groupListInput` [GroupListInput] - (required) N/A    
-`groupMembersListInput` [GroupMembersListInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`groupListInput` [GroupListInput] - (required) N/A
+`groupMembersListInput` [GroupMembersListInput] - (required) N/A

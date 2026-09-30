@@ -29,5 +29,5 @@ catocli mutation networkConfig dhcp setRelayGroup '{
 
 #### Operation Arguments for mutation.networkConfig.dhcp.setRelayGroup ####
 
-`accountId` [ID] - (required) N/A    
-`networkConfigDhcpSetRelayGroupInput` [NetworkConfigDhcpSetRelayGroupInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`networkConfigDhcpSetRelayGroupInput` [NetworkConfigDhcpSetRelayGroupInput] - (required) N/A

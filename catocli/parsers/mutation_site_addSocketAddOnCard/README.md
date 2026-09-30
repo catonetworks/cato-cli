@@ -29,5 +29,5 @@ catocli mutation site addSocketAddOnCard '{
 
 #### Operation Arguments for mutation.site.addSocketAddOnCard ####
 
-`accountId` [ID] - (required) N/A    
-`addSocketAddOnCardInput` [AddSocketAddOnCardInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`addSocketAddOnCardInput` [AddSocketAddOnCardInput] - (required) N/A

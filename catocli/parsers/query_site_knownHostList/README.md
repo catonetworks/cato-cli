@@ -29,5 +29,5 @@ catocli query site knownHostList '{
 
 #### Operation Arguments for query.site.knownHostList ####
 
-`accountId` [ID] - (required) N/A    
-`siteKnownHostListInput` [SiteKnownHostListInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`siteKnownHostListInput` [SiteKnownHostListInput] - (required) N/A

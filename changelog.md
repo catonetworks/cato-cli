@@ -220,3 +220,11 @@
 
 ## 3.1.3 (2026-09-16)
 - Add new parsing update to support networkConfig and posture child operations, regenerated from new schema
+
+## 3.1.4 (2026-10-01)
+- Refreshed the GraphQL schema, generated commands, models, payloads, and command documentation; added `licensing.startServiceTrial`.
+- Fixed GraphQL payload rendering for nested account arguments, operations without arguments, complex selections, unions, and conflicting interface fields.
+- Updated user operations to select `userImportType` after removal of the schema field `importType`.
+- Preserved JSON string values containing `//` when stripping comments and corrected model lookup when a workspace path contains `schema`.
+- Improved generated examples and API test fixtures, and added regression checks validating generated operations against the introspection schema.
+- Added scheduled schema update automation and downstream SDK generation from an immutable CLI commit.

@@ -11,19 +11,19 @@ catocli mutation container fqdn createFromFile <json>
 
 catocli mutation container fqdn createFromFile --json-file mutation.container.fqdn.createFromFile.json
 
-catocli mutation container fqdn createFromFile '{"createFqdnContainerFromFileInput":{"description":"string","fileType":"STIX","name":"string","uploadFile":"example_value"}}'
+catocli mutation container fqdn createFromFile '{"createFqdnContainerFromFileInput":{"description":"string","fileType":"STIX","name":"string","uploadFile":"path/to/file"}}'
 
 catocli mutation container fqdn createFromFile '{
     "createFqdnContainerFromFileInput": {
         "description": "string",
         "fileType": "STIX",
         "name": "string",
-        "uploadFile": "example_value"
+        "uploadFile": "path/to/file"
     }
 }'
 ```
 
 #### Operation Arguments for mutation.container.fqdn.createFromFile ####
 
-`accountId` [ID] - (required) N/A    
-`createFqdnContainerFromFileInput` [CreateFqdnContainerFromFileInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`createFqdnContainerFromFileInput` [CreateFqdnContainerFromFileInput] - (required) N/A

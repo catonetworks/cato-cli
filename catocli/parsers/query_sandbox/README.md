@@ -11,55 +11,58 @@ catocli query sandbox <json>
 
 catocli query sandbox --json-file query.sandbox.json
 
-catocli query sandbox '{"sandboxReportsInput":{"filter":{"fileHash":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"fileName":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"reportCreateDate":{"between":["example1","example2"],"eq":"example_value","gt":"example_value","gte":"example_value","in":["example1","example2"],"lt":"example_value","lte":"example_value","neq":"example_value","nin":["example1","example2"]}},"paging":{"from":1,"limit":1},"sort":{"fileName":{"direction":"ASC","priority":1},"reportCreateDate":{"direction":"ASC","priority":1}}}}'
+catocli query sandbox '{"sandboxReportsInput":{"filter":{"fileHash":[{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]}],"fileName":[{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]}],"reportCreateDate":[{"between":["2026-01-02T15:04:05Z"],"eq":"2026-01-02T15:04:05Z","gt":"2026-01-02T15:04:05Z","gte":"2026-01-02T15:04:05Z","in":["2026-01-02T15:04:05Z"],"lt":"2026-01-02T15:04:05Z","lte":"2026-01-02T15:04:05Z","neq":"2026-01-02T15:04:05Z","nin":["2026-01-02T15:04:05Z"]}]},"paging":{"from":1,"limit":1},"sort":{"fileName":{"direction":"ASC","priority":1},"reportCreateDate":{"direction":"ASC","priority":1}}}}'
 
 catocli query sandbox '{
     "sandboxReportsInput": {
         "filter": {
-            "fileHash": {
-                "eq": "string",
-                "in": [
-                    "string1",
-                    "string2"
-                ],
-                "neq": "string",
-                "nin": [
-                    "string1",
-                    "string2"
-                ]
-            },
-            "fileName": {
-                "eq": "string",
-                "in": [
-                    "string1",
-                    "string2"
-                ],
-                "neq": "string",
-                "nin": [
-                    "string1",
-                    "string2"
-                ]
-            },
-            "reportCreateDate": {
-                "between": [
-                    "example1",
-                    "example2"
-                ],
-                "eq": "example_value",
-                "gt": "example_value",
-                "gte": "example_value",
-                "in": [
-                    "example1",
-                    "example2"
-                ],
-                "lt": "example_value",
-                "lte": "example_value",
-                "neq": "example_value",
-                "nin": [
-                    "example1",
-                    "example2"
-                ]
-            }
+            "fileHash": [
+                {
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
+                }
+            ],
+            "fileName": [
+                {
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
+                }
+            ],
+            "reportCreateDate": [
+                {
+                    "between": [
+                        "2026-01-02T15:04:05Z"
+                    ],
+                    "eq": "2026-01-02T15:04:05Z",
+                    "gt": "2026-01-02T15:04:05Z",
+                    "gte": "2026-01-02T15:04:05Z",
+                    "in": [
+                        "2026-01-02T15:04:05Z"
+                    ],
+                    "lt": "2026-01-02T15:04:05Z",
+                    "lte": "2026-01-02T15:04:05Z",
+                    "neq": "2026-01-02T15:04:05Z",
+                    "nin": [
+                        "2026-01-02T15:04:05Z"
+                    ]
+                }
+            ]
         },
         "paging": {
             "from": 1,
@@ -81,5 +84,5 @@ catocli query sandbox '{
 
 #### Operation Arguments for query.sandbox ####
 
-`accountId` [ID] - (required) N/A    
-`sandboxReportsInput` [SandboxReportsInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`sandboxReportsInput` [SandboxReportsInput] - (required) N/A

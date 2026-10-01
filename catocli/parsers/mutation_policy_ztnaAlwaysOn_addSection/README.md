@@ -33,6 +33,6 @@ catocli mutation policy ztnaAlwaysOn addSection '{
 
 #### Operation Arguments for mutation.policy.ztnaAlwaysOn.addSection ####
 
-`accountId` [ID] - (required) N/A    
-`policyAddSectionInput` [PolicyAddSectionInput] - (required) N/A    
-`ztnaAlwaysOnPolicyMutationInput` [ZtnaAlwaysOnPolicyMutationInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`policyAddSectionInput` [PolicyAddSectionInput] - (required) N/A
+`ztnaAlwaysOnPolicyMutationInput` [ZtnaAlwaysOnPolicyMutationInput] - (required) N/A

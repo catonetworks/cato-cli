@@ -11,31 +11,18 @@ catocli query socketPortMetrics <json>
 
 catocli query socketPortMetrics --json-file query.socketPortMetrics.json
 
-catocli query socketPortMetrics '{"from":1,"limit":1,"socketPortMetricsDimension":{"fieldName":"account_id"},"socketPortMetricsFilter":{"fieldName":"account_id","operator":"is","values":["string1","string2"]},"socketPortMetricsMeasure":{"aggType":"sum","alias":"string","fieldName":"account_id","trend":true},"socketPortMetricsPostAggFilter":{"aggType":"sum","filter":{"fieldName":"account_id","operator":"is","values":["string1","string2"]}},"socketPortMetricsSort":{"alias":"string","fieldName":"account_id","order":"asc"},"timeFrame":"example_value"}'
+catocli query socketPortMetrics '{"from":1,"limit":1,"socketPortMetricsDimension":[{"fieldName":"account_id"}],"socketPortMetricsFilter":[{"fieldName":"account_id","operator":"is","values":["string1","string2"]}],"socketPortMetricsMeasure":[{"aggType":"sum","alias":"string","fieldName":"account_id","trend":true}],"socketPortMetricsPostAggFilter":[{"aggType":"sum","filter":{"fieldName":"account_id","operator":"is","values":["string1","string2"]}}],"socketPortMetricsSort":[{"alias":"string","fieldName":"account_id","order":"asc"}],"timeFrame":"last.P1D"}'
 
 catocli query socketPortMetrics '{
     "from": 1,
     "limit": 1,
-    "socketPortMetricsDimension": {
-        "fieldName": "account_id"
-    },
-    "socketPortMetricsFilter": {
-        "fieldName": "account_id",
-        "operator": "is",
-        "values": [
-            "string1",
-            "string2"
-        ]
-    },
-    "socketPortMetricsMeasure": {
-        "aggType": "sum",
-        "alias": "string",
-        "fieldName": "account_id",
-        "trend": true
-    },
-    "socketPortMetricsPostAggFilter": {
-        "aggType": "sum",
-        "filter": {
+    "socketPortMetricsDimension": [
+        {
+            "fieldName": "account_id"
+        }
+    ],
+    "socketPortMetricsFilter": [
+        {
             "fieldName": "account_id",
             "operator": "is",
             "values": [
@@ -43,13 +30,36 @@ catocli query socketPortMetrics '{
                 "string2"
             ]
         }
-    },
-    "socketPortMetricsSort": {
-        "alias": "string",
-        "fieldName": "account_id",
-        "order": "asc"
-    },
-    "timeFrame": "example_value"
+    ],
+    "socketPortMetricsMeasure": [
+        {
+            "aggType": "sum",
+            "alias": "string",
+            "fieldName": "account_id",
+            "trend": true
+        }
+    ],
+    "socketPortMetricsPostAggFilter": [
+        {
+            "aggType": "sum",
+            "filter": {
+                "fieldName": "account_id",
+                "operator": "is",
+                "values": [
+                    "string1",
+                    "string2"
+                ]
+            }
+        }
+    ],
+    "socketPortMetricsSort": [
+        {
+            "alias": "string",
+            "fieldName": "account_id",
+            "order": "asc"
+        }
+    ],
+    "timeFrame": "last.P1D"
 }'
 ```
 
@@ -189,12 +199,12 @@ Format: `"utc.YYYY-MM-{DD/HH:MM:SS--DD/HH:MM:SS}"`
 
 #### Operation Arguments for query.socketPortMetrics ####
 
-`accountID` [ID] - (required) Account ID    
-`from` [Int] - (required) N/A    
-`limit` [Int] - (required) N/A    
-`socketPortMetricsDimension` [SocketPortMetricsDimension[]] - (required) N/A    
-`socketPortMetricsFilter` [SocketPortMetricsFilter[]] - (required) N/A    
-`socketPortMetricsMeasure` [SocketPortMetricsMeasure[]] - (required) N/A    
-`socketPortMetricsPostAggFilter` [SocketPortMetricsPostAggFilter[]] - (required) N/A    
-`socketPortMetricsSort` [SocketPortMetricsSort[]] - (required) N/A    
-`timeFrame` [TimeFrame] - (required) N/A    
+`accountID` [ID] - (required) N/A
+`from` [Int] - (required) N/A
+`limit` [Int] - (required) N/A
+`socketPortMetricsDimension` [SocketPortMetricsDimension[]] - (required) N/A
+`socketPortMetricsFilter` [SocketPortMetricsFilter[]] - (required) N/A
+`socketPortMetricsMeasure` [SocketPortMetricsMeasure[]] - (required) N/A
+`socketPortMetricsPostAggFilter` [SocketPortMetricsPostAggFilter[]] - (required) N/A
+`socketPortMetricsSort` [SocketPortMetricsSort[]] - (required) N/A
+`timeFrame` [TimeFrame] - (required) N/A

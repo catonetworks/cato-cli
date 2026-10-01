@@ -11,22 +11,22 @@ catocli mutation user updateUser <json>
 
 catocli mutation user updateUser --json-file mutation.user.updateUser.json
 
-catocli mutation user updateUser '{"updateUserInput":{"department":"string","email":"example_value","firstName":"string","id":"id","jobTitle":"string","lastName":"string","phoneNumber":"example_value"}}'
+catocli mutation user updateUser '{"updateUserInput":{"department":"string","email":"user@example.com","firstName":"string","id":"id","jobTitle":"string","lastName":"string","phoneNumber":"+15053334070"}}'
 
 catocli mutation user updateUser '{
     "updateUserInput": {
         "department": "string",
-        "email": "example_value",
+        "email": "user@example.com",
         "firstName": "string",
         "id": "id",
         "jobTitle": "string",
         "lastName": "string",
-        "phoneNumber": "example_value"
+        "phoneNumber": "+15053334070"
     }
 }'
 ```
 
 #### Operation Arguments for mutation.user.updateUser ####
 
-`accountId` [ID] - (required) Unique identifier of the Cato account.    
-`updateUserInput` [UpdateUserInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`updateUserInput` [UpdateUserInput] - (required) N/A

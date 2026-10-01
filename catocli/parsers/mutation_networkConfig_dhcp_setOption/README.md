@@ -11,22 +11,24 @@ catocli mutation networkConfig dhcp setOption <json>
 
 catocli mutation networkConfig dhcp setOption --json-file mutation.networkConfig.dhcp.setOption.json
 
-catocli mutation networkConfig dhcp setOption '{"networkConfigDhcpSetOptionInput":{"option":{"description":"string","id":"id","tag":1,"type":"ASCII","value":"string"}}}'
+catocli mutation networkConfig dhcp setOption '{"networkConfigDhcpSetOptionInput":{"option":[{"description":"string","id":"id","tag":1,"type":"ASCII","value":"string"}]}}'
 
 catocli mutation networkConfig dhcp setOption '{
     "networkConfigDhcpSetOptionInput": {
-        "option": {
-            "description": "string",
-            "id": "id",
-            "tag": 1,
-            "type": "ASCII",
-            "value": "string"
-        }
+        "option": [
+            {
+                "description": "string",
+                "id": "id",
+                "tag": 1,
+                "type": "ASCII",
+                "value": "string"
+            }
+        ]
     }
 }'
 ```
 
 #### Operation Arguments for mutation.networkConfig.dhcp.setOption ####
 
-`accountId` [ID] - (required) N/A    
-`networkConfigDhcpSetOptionInput` [NetworkConfigDhcpSetOptionInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`networkConfigDhcpSetOptionInput` [NetworkConfigDhcpSetOptionInput] - (required) N/A

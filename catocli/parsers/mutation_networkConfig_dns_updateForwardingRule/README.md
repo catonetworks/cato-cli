@@ -11,23 +11,24 @@ catocli mutation networkConfig dns updateForwardingRule <json>
 
 catocli mutation networkConfig dns updateForwardingRule --json-file mutation.networkConfig.dns.updateForwardingRule.json
 
-catocli mutation networkConfig dns updateForwardingRule '{"networkConfigDnsUpdateForwardingRuleInput":{"forwardingRule":{"domain":"example_value","id":"id","server":["example1","example2"]}}}'
+catocli mutation networkConfig dns updateForwardingRule '{"networkConfigDnsUpdateForwardingRuleInput":{"forwardingRule":[{"domain":"example.com","id":"id","server":["192.0.2.1"]}]}}'
 
 catocli mutation networkConfig dns updateForwardingRule '{
     "networkConfigDnsUpdateForwardingRuleInput": {
-        "forwardingRule": {
-            "domain": "example_value",
-            "id": "id",
-            "server": [
-                "example1",
-                "example2"
-            ]
-        }
+        "forwardingRule": [
+            {
+                "domain": "example.com",
+                "id": "id",
+                "server": [
+                    "192.0.2.1"
+                ]
+            }
+        ]
     }
 }'
 ```
 
 #### Operation Arguments for mutation.networkConfig.dns.updateForwardingRule ####
 
-`accountId` [ID] - (required) N/A    
-`networkConfigDnsUpdateForwardingRuleInput` [NetworkConfigDnsUpdateForwardingRuleInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`networkConfigDnsUpdateForwardingRuleInput` [NetworkConfigDnsUpdateForwardingRuleInput] - (required) N/A

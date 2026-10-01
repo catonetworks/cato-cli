@@ -11,23 +11,29 @@ catocli mutation sites updateSiteStaticHosts <json>
 
 catocli mutation sites updateSiteStaticHosts --json-file mutation.sites.updateSiteStaticHosts.json
 
-catocli mutation sites updateSiteStaticHosts '{"updateSiteStaticHostsInput":{"host":{"ip":"example_value","macAddress":"example_value","name":"string"},"hostToAdd":{"ip":"example_value","macAddress":"example_value","name":"string"},"hostToRemove":{"hostId":"id"},"site":{"by":"ID","input":"string"}}}'
+catocli mutation sites updateSiteStaticHosts '{"updateSiteStaticHostsInput":{"host":[{"ip":"192.0.2.1","macAddress":"02:00:00:00:00:01","name":"string"}],"hostToAdd":[{"ip":"192.0.2.1","macAddress":"02:00:00:00:00:01","name":"string"}],"hostToRemove":[{"hostId":"id"}],"site":{"by":"ID","input":"string"}}}'
 
 catocli mutation sites updateSiteStaticHosts '{
     "updateSiteStaticHostsInput": {
-        "host": {
-            "ip": "example_value",
-            "macAddress": "example_value",
-            "name": "string"
-        },
-        "hostToAdd": {
-            "ip": "example_value",
-            "macAddress": "example_value",
-            "name": "string"
-        },
-        "hostToRemove": {
-            "hostId": "id"
-        },
+        "host": [
+            {
+                "ip": "192.0.2.1",
+                "macAddress": "02:00:00:00:00:01",
+                "name": "string"
+            }
+        ],
+        "hostToAdd": [
+            {
+                "ip": "192.0.2.1",
+                "macAddress": "02:00:00:00:00:01",
+                "name": "string"
+            }
+        ],
+        "hostToRemove": [
+            {
+                "hostId": "id"
+            }
+        ],
         "site": {
             "by": "ID",
             "input": "string"
@@ -38,5 +44,5 @@ catocli mutation sites updateSiteStaticHosts '{
 
 #### Operation Arguments for mutation.sites.updateSiteStaticHosts ####
 
-`accountId` [ID] - (required) N/A    
-`updateSiteStaticHostsInput` [UpdateSiteStaticHostsInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`updateSiteStaticHostsInput` [UpdateSiteStaticHostsInput] - (required) N/A

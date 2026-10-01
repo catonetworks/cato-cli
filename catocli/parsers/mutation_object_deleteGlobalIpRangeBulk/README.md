@@ -11,17 +11,19 @@ catocli mutation object deleteGlobalIpRangeBulk <json>
 
 catocli mutation object deleteGlobalIpRangeBulk --json-file mutation.object.deleteGlobalIpRangeBulk.json
 
-catocli mutation object deleteGlobalIpRangeBulk '{"globalIpRangeRefInput":{"by":"ID","input":"string"}}'
+catocli mutation object deleteGlobalIpRangeBulk '{"globalIpRangeRefInput":[{"by":"ID","input":"string"}]}'
 
 catocli mutation object deleteGlobalIpRangeBulk '{
-    "globalIpRangeRefInput": {
-        "by": "ID",
-        "input": "string"
-    }
+    "globalIpRangeRefInput": [
+        {
+            "by": "ID",
+            "input": "string"
+        }
+    ]
 }'
 ```
 
 #### Operation Arguments for mutation.object.deleteGlobalIpRangeBulk ####
 
-`accountId` [ID] - (required) N/A    
-`globalIpRangeRefInput` [GlobalIpRangeRefInput[]] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`globalIpRangeRefInput` [GlobalIpRangeRefInput[]] - (required) N/A

@@ -3,19 +3,25 @@
     "query": "mutation siteUpdateSiteStaticHosts ( $accountId:ID! $updateSiteStaticHostsInput:UpdateSiteStaticHostsInput!) {\n\tsite ( accountId:$accountId ) {\n\t\tupdateSiteStaticHosts ( input:$updateSiteStaticHostsInput  )  {\n\t\t\thost {\n\t\t\t\thostId\n\t\t\t\tname\n\t\t\t\tip\n\t\t\t\tmacAddress\n\t\t\t}\n\t\t}\n\t}\t\n}",
     "variables": {
         "updateSiteStaticHostsInput": {
-            "host": {
-                "ip": "example_value",
-                "macAddress": "example_value",
-                "name": "string"
-            },
-            "hostToAdd": {
-                "ip": "example_value",
-                "macAddress": "example_value",
-                "name": "string"
-            },
-            "hostToRemove": {
-                "hostId": "id"
-            },
+            "host": [
+                {
+                    "ip": "192.0.2.1",
+                    "macAddress": "02:00:00:00:00:01",
+                    "name": "string"
+                }
+            ],
+            "hostToAdd": [
+                {
+                    "ip": "192.0.2.1",
+                    "macAddress": "02:00:00:00:00:01",
+                    "name": "string"
+                }
+            ],
+            "hostToRemove": [
+                {
+                    "hostId": "id"
+                }
+            ],
             "site": {
                 "by": "ID",
                 "input": "string"

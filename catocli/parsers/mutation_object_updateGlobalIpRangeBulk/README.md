@@ -11,19 +11,21 @@ catocli mutation object updateGlobalIpRangeBulk <json>
 
 catocli mutation object updateGlobalIpRangeBulk --json-file mutation.object.updateGlobalIpRangeBulk.json
 
-catocli mutation object updateGlobalIpRangeBulk '{"updateGlobalIpRangeInput":{"description":"string","id":"id","ipRange":"example_value","name":"string"}}'
+catocli mutation object updateGlobalIpRangeBulk '{"updateGlobalIpRangeInput":[{"description":"string","id":"id","ipRange":"192.0.2.10-192.0.2.20","name":"string"}]}'
 
 catocli mutation object updateGlobalIpRangeBulk '{
-    "updateGlobalIpRangeInput": {
-        "description": "string",
-        "id": "id",
-        "ipRange": "example_value",
-        "name": "string"
-    }
+    "updateGlobalIpRangeInput": [
+        {
+            "description": "string",
+            "id": "id",
+            "ipRange": "192.0.2.10-192.0.2.20",
+            "name": "string"
+        }
+    ]
 }'
 ```
 
 #### Operation Arguments for mutation.object.updateGlobalIpRangeBulk ####
 
-`accountId` [ID] - (required) N/A    
-`updateGlobalIpRangeInput` [UpdateGlobalIpRangeInput[]] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`updateGlobalIpRangeInput` [UpdateGlobalIpRangeInput[]] - (required) N/A

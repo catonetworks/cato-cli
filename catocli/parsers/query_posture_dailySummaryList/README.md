@@ -11,12 +11,12 @@ catocli query posture dailySummaryList <json>
 
 catocli query posture dailySummaryList --json-file query.posture.dailySummaryList.json
 
-catocli query posture dailySummaryList '{"postureDailySummaryListInput":{"filter":{"timeFrame":"example_value"}}}'
+catocli query posture dailySummaryList '{"postureDailySummaryListInput":{"filter":{"timeFrame":"last.P1D"}}}'
 
 catocli query posture dailySummaryList '{
     "postureDailySummaryListInput": {
         "filter": {
-            "timeFrame": "example_value"
+            "timeFrame": "last.P1D"
         }
     }
 }'
@@ -24,5 +24,5 @@ catocli query posture dailySummaryList '{
 
 #### Operation Arguments for query.posture.dailySummaryList ####
 
-`accountId` [ID] - (required) N/A    
-`postureDailySummaryListInput` [PostureDailySummaryListInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`postureDailySummaryListInput` [PostureDailySummaryListInput] - (required) N/A

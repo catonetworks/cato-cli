@@ -11,7 +11,7 @@ catocli mutation container ipAddressRange removeValues <json>
 
 catocli mutation container ipAddressRange removeValues --json-file mutation.container.ipAddressRange.removeValues.json
 
-catocli mutation container ipAddressRange removeValues '{"ipAddressRangeContainerRemoveValuesInput":{"ref":{"by":"ID","input":"string"},"values":{"from":"example_value","to":"example_value"}}}'
+catocli mutation container ipAddressRange removeValues '{"ipAddressRangeContainerRemoveValuesInput":{"ref":{"by":"ID","input":"string"},"values":[{"from":"192.0.2.1","to":"192.0.2.1"}]}}'
 
 catocli mutation container ipAddressRange removeValues '{
     "ipAddressRangeContainerRemoveValuesInput": {
@@ -19,15 +19,17 @@ catocli mutation container ipAddressRange removeValues '{
             "by": "ID",
             "input": "string"
         },
-        "values": {
-            "from": "example_value",
-            "to": "example_value"
-        }
+        "values": [
+            {
+                "from": "192.0.2.1",
+                "to": "192.0.2.1"
+            }
+        ]
     }
 }'
 ```
 
 #### Operation Arguments for mutation.container.ipAddressRange.removeValues ####
 
-`accountId` [ID] - (required) N/A    
-`ipAddressRangeContainerRemoveValuesInput` [IpAddressRangeContainerRemoveValuesInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`ipAddressRangeContainerRemoveValuesInput` [IpAddressRangeContainerRemoveValuesInput] - (required) N/A

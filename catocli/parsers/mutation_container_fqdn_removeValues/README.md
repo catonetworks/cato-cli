@@ -11,7 +11,7 @@ catocli mutation container fqdn removeValues <json>
 
 catocli mutation container fqdn removeValues --json-file mutation.container.fqdn.removeValues.json
 
-catocli mutation container fqdn removeValues '{"fqdnContainerRemoveValuesInput":{"ref":{"by":"ID","input":"string"},"values":["example1","example2"]}}'
+catocli mutation container fqdn removeValues '{"fqdnContainerRemoveValuesInput":{"ref":{"by":"ID","input":"string"},"values":["host.example.com"]}}'
 
 catocli mutation container fqdn removeValues '{
     "fqdnContainerRemoveValuesInput": {
@@ -20,8 +20,7 @@ catocli mutation container fqdn removeValues '{
             "input": "string"
         },
         "values": [
-            "example1",
-            "example2"
+            "host.example.com"
         ]
     }
 }'
@@ -29,5 +28,5 @@ catocli mutation container fqdn removeValues '{
 
 #### Operation Arguments for mutation.container.fqdn.removeValues ####
 
-`accountId` [ID] - (required) N/A    
-`fqdnContainerRemoveValuesInput` [FqdnContainerRemoveValuesInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`fqdnContainerRemoveValuesInput` [FqdnContainerRemoveValuesInput] - (required) N/A

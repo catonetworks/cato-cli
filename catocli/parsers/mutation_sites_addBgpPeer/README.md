@@ -11,7 +11,7 @@ catocli mutation sites addBgpPeer <json>
 
 catocli mutation sites addBgpPeer --json-file mutation.sites.addBgpPeer.json
 
-catocli mutation sites addBgpPeer '{"addBgpPeerInput":{"advertiseAllRoutes":true,"advertiseDefaultRoute":true,"advertiseSummaryRoutes":true,"bfdEnabled":true,"bfdSettings":{"multiplier":1,"receiveInterval":1,"transmitInterval":1},"catoAsn":"example_value","defaultAction":"DROP","defaultActionExclusion":{"bgpRouteExactAndInclusiveFilterRule":{"ge":1,"globalIpRange":{"by":"ID","input":"string"},"globalIpRangeException":{"by":"ID","input":"string"},"le":1,"networkSubnet":["example1","example2"],"networkSubnetException":["example1","example2"]},"bgpRouteExactFilterRule":{"globalIpRange":{"by":"ID","input":"string"},"networkSubnet":["example1","example2"]},"communityFilterRule":{"community":{"from":"example_value","to":"example_value"},"predicate":"EQUAL"}},"defaultRouteCommunities":{"from":"example_value","to":"example_value"},"holdTime":1,"keepaliveInterval":1,"md5AuthKey":"string","metric":1,"name":"string","peerAsn":"example_value","peerIp":"example_value","performNat":true,"site":{"by":"ID","input":"string"},"summaryRoute":{"community":{"from":"example_value","to":"example_value"},"route":"example_value"},"tracking":{"alertFrequency":"HOURLY","enabled":true,"subscriptionId":"id"}}}'
+catocli mutation sites addBgpPeer '{"addBgpPeerInput":{"advertiseAllRoutes":true,"advertiseDefaultRoute":true,"advertiseSummaryRoutes":true,"bfdEnabled":true,"bfdSettings":{"multiplier":1,"receiveInterval":1,"transmitInterval":1},"catoAsn":64512,"defaultAction":"DROP","defaultActionExclusion":[{"bgpRouteExactAndInclusiveFilterRule":{"ge":1,"globalIpRange":[{"by":"ID","input":"string"}],"globalIpRangeException":[{"by":"ID","input":"string"}],"le":1,"networkSubnet":["192.0.2.0/24"],"networkSubnetException":["192.0.2.0/24"]},"bgpRouteExactFilterRule":{"globalIpRange":[{"by":"ID","input":"string"}],"networkSubnet":["192.0.2.0/24"]},"communityFilterRule":{"community":[{"from":64512,"to":64512}],"predicate":"EQUAL"}}],"defaultRouteCommunities":[{"from":64512,"to":64512}],"holdTime":1,"keepaliveInterval":1,"md5AuthKey":"string","metric":1,"name":"string","peerAsn":65536,"peerIp":"192.0.2.1","performNat":true,"site":{"by":"ID","input":"string"},"summaryRoute":[{"community":[{"from":64512,"to":64512}],"route":"192.0.2.0/24"}],"tracking":{"alertFrequency":"HOURLY","enabled":true,"subscriptionId":"id"}}}'
 
 catocli mutation sites addBgpPeer '{
     "addBgpPeerInput": {
@@ -24,70 +24,83 @@ catocli mutation sites addBgpPeer '{
             "receiveInterval": 1,
             "transmitInterval": 1
         },
-        "catoAsn": "example_value",
+        "catoAsn": 64512,
         "defaultAction": "DROP",
-        "defaultActionExclusion": {
-            "bgpRouteExactAndInclusiveFilterRule": {
-                "ge": 1,
-                "globalIpRange": {
-                    "by": "ID",
-                    "input": "string"
+        "defaultActionExclusion": [
+            {
+                "bgpRouteExactAndInclusiveFilterRule": {
+                    "ge": 1,
+                    "globalIpRange": [
+                        {
+                            "by": "ID",
+                            "input": "string"
+                        }
+                    ],
+                    "globalIpRangeException": [
+                        {
+                            "by": "ID",
+                            "input": "string"
+                        }
+                    ],
+                    "le": 1,
+                    "networkSubnet": [
+                        "192.0.2.0/24"
+                    ],
+                    "networkSubnetException": [
+                        "192.0.2.0/24"
+                    ]
                 },
-                "globalIpRangeException": {
-                    "by": "ID",
-                    "input": "string"
+                "bgpRouteExactFilterRule": {
+                    "globalIpRange": [
+                        {
+                            "by": "ID",
+                            "input": "string"
+                        }
+                    ],
+                    "networkSubnet": [
+                        "192.0.2.0/24"
+                    ]
                 },
-                "le": 1,
-                "networkSubnet": [
-                    "example1",
-                    "example2"
-                ],
-                "networkSubnetException": [
-                    "example1",
-                    "example2"
-                ]
-            },
-            "bgpRouteExactFilterRule": {
-                "globalIpRange": {
-                    "by": "ID",
-                    "input": "string"
-                },
-                "networkSubnet": [
-                    "example1",
-                    "example2"
-                ]
-            },
-            "communityFilterRule": {
-                "community": {
-                    "from": "example_value",
-                    "to": "example_value"
-                },
-                "predicate": "EQUAL"
+                "communityFilterRule": {
+                    "community": [
+                        {
+                            "from": 64512,
+                            "to": 64512
+                        }
+                    ],
+                    "predicate": "EQUAL"
+                }
             }
-        },
-        "defaultRouteCommunities": {
-            "from": "example_value",
-            "to": "example_value"
-        },
+        ],
+        "defaultRouteCommunities": [
+            {
+                "from": 64512,
+                "to": 64512
+            }
+        ],
         "holdTime": 1,
         "keepaliveInterval": 1,
         "md5AuthKey": "string",
         "metric": 1,
         "name": "string",
-        "peerAsn": "example_value",
-        "peerIp": "example_value",
+        "peerAsn": 65536,
+        "peerIp": "192.0.2.1",
         "performNat": true,
         "site": {
             "by": "ID",
             "input": "string"
         },
-        "summaryRoute": {
-            "community": {
-                "from": "example_value",
-                "to": "example_value"
-            },
-            "route": "example_value"
-        },
+        "summaryRoute": [
+            {
+                "community": [
+                    {
+                        "from": 64512,
+                        "to": 64512
+                    }
+                ],
+                "route": "192.0.2.0/24"
+            }
+        ],
         "tracking": {
             "alertFrequency": "HOURLY",
             "enabled": true,
@@ -99,5 +112,5 @@ catocli mutation sites addBgpPeer '{
 
 #### Operation Arguments for mutation.sites.addBgpPeer ####
 
-`accountId` [ID] - (required) N/A    
-`addBgpPeerInput` [AddBgpPeerInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`addBgpPeerInput` [AddBgpPeerInput] - (required) N/A

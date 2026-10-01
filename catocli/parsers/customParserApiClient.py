@@ -14,6 +14,7 @@ Key improvements over the original:
 """
 
 import codecs
+import shlex
 import json
 import os
 import sys
@@ -592,7 +593,7 @@ def createRequest(args, configuration):
         try:
             query_payload_file = f"queryPayloads/{operation_name}.json"
             query_payload = loadJSON(query_payload_file)
-            print(f"\nExample: catocli {operation_name.replace('.', ' ')} {json.dumps(query_payload['variables'])}")
+            print(f"\nExample: catocli {operation_name.replace('.', ' ')} {shlex.quote(json.dumps(query_payload['variables']))}")
         except Exception as e:
             print(f"ERROR: Could not load query example: {e}")
 

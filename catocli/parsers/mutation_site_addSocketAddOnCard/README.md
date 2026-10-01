@@ -11,14 +11,16 @@ catocli mutation site addSocketAddOnCard <json>
 
 catocli mutation site addSocketAddOnCard --json-file mutation.site.addSocketAddOnCard.json
 
-catocli mutation site addSocketAddOnCard '{"addSocketAddOnCardInput":{"addOns":{"expansionSlotNumber":"SLOT_1","type":"FOUR_1G_COPPER"},"site":{"by":"ID","input":"string"}}}'
+catocli mutation site addSocketAddOnCard '{"addSocketAddOnCardInput":{"addOns":[{"expansionSlotNumber":"SLOT_1","type":"FOUR_1G_COPPER"}],"site":{"by":"ID","input":"string"}}}'
 
 catocli mutation site addSocketAddOnCard '{
     "addSocketAddOnCardInput": {
-        "addOns": {
-            "expansionSlotNumber": "SLOT_1",
-            "type": "FOUR_1G_COPPER"
-        },
+        "addOns": [
+            {
+                "expansionSlotNumber": "SLOT_1",
+                "type": "FOUR_1G_COPPER"
+            }
+        ],
         "site": {
             "by": "ID",
             "input": "string"
@@ -29,5 +31,5 @@ catocli mutation site addSocketAddOnCard '{
 
 #### Operation Arguments for mutation.site.addSocketAddOnCard ####
 
-`accountId` [ID] - (required) N/A    
-`addSocketAddOnCardInput` [AddSocketAddOnCardInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`addSocketAddOnCardInput` [AddSocketAddOnCardInput] - (required) N/A

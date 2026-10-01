@@ -1,55 +1,42 @@
 {
     "ignoreOperations": {
-        // Skipping query operations covered in custom payloads used in MCP
-        "query.appStats": {},
-        "query.appStatsTimeSeries": {},
-        "query.eventsFeed": {},
-        "query.eventsTimeSeries": {},
-        "query.socketPortMetricsTimeSeries": {},
-        "query.socketPortMetrics": {},
-        "query.xdr.stories": {},
-        "query.xdr.story": {},
         // The following require additional configuration
         "query.site.secondaryAwsVSocket": {},
         "query.site.secondaryAzureVSocket": {},
-        // // The following queries need investigation
+        // Device response selection and group-list members are rejected by the CI server
         "query.devices": {},
-        "query.container.ipAddressRange.search": {},
-        "query.container.ipAddressRange.searchIpAddressRange": {},
         "query.groups.groupList": {},
+        // Existing LAN policy violates non-null SocketLanFirewallRulePayload.access
         "query.policy.socketLan.policy": {},
-        "query.policy.terminalServer.policy": {},
-        "query.catalogs.catalogApplication": {},
+        // Catalog API rollout is unavailable even with valid paging input
         "query.catalogs.catalogApplicationList": {},
         // Invocation IDs exist, but sessionConversation returns an internal server error
         "query.aiSecurity": {},
-        // No BGP profiles exist; this combined query requires a valid profile ID
+        // Pop-location resolver reports missing account tag; no BGP profile fixture exists
         "query.popLocations": {},
         // No Cloud Interconnect site or physical connection exists
         "query.site.cloudInterconnectConnectionConnectivity": {},
         "query.site.cloudInterconnectPhysicalConnection": {},
         "query.site.cloudInterconnectPhysicalConnectionId": {},
-        // Real site references still return an internal server error
-        "query.site.knownHostList": {},
         // No private PoP/Cloud Interconnect fixture exists
         "query.site.retrieveUsedVlanIDs": {},
         // No secondary GCP vSocket exists
         "query.site.secondaryGcpVSocket": {},
-        // wifiRadioProfileList returns zero profiles; by-site lookup also violates its schema
+        // No Wi-Fi radio profile fixture exists for the CI account
         "query.site.wifiRadioProfile": {},
         "query.site.wifiRadioProfileBySite": {},
-        // These APIs are entitlement-, rollout-, or server-schema-dependent
+        // Business Platform is not rolled out; notification has server-schema/audit errors
         "query.businessPlatform": {},
-        "query.externalAccess": {},
         "query.notification": {},
-        "query.user": {},
+        // CI account lacks privileges for the anti-malware file-hash policy
+        "query.policy.antiMalwareFileHash.policy": {},
+        // CI endpoint lacks PostureHistoricalSummary.comparisons from the upstream schema
+        "query.posture.dailySummaryList": {},
         // DNS APIs are not rolled out to this account
         "query.networkConfig.dns.serverSet": {},
         "query.networkConfig.dns.serverSetList": {},
         "query.networkConfig.dns.suffixSet": {},
-        "query.networkConfig.dns.suffixSetList": {},
-        // Returns an internal server error for every valid site ID
-        "query.networkConfig.dns.siteSettings": {}
+        "query.networkConfig.dns.suffixSetList": {}
     },
     "defaultValues": {
         "timeFrame": "last.P1D",
@@ -59,15 +46,223 @@
         ]
     },
     "overrideOperationPayload": {
+        "query.catalogs.catalogApplicationList": {
+            "payload": {
+                "catalogApplicationListInput": {
+                    "paging": {"from": 0, "limit": 1}
+                }
+            },
+            "assertions": ["catalogs.catalogApplicationList"]
+        },
+        "query.appStats": {
+            "payload": {
+                "appStatsFilter": [
+                    {
+                        "fieldName": "risk_score",
+                        "operator": "gte",
+                        "values": [
+                            "5"
+                        ]
+                    }
+                ],
+                "appStatsSort": [
+                    {
+                        "fieldName": "risk_score",
+                        "order": "desc"
+                    }
+                ],
+                "dimension": [
+                    {
+                        "fieldName": "application_name"
+                    },
+                    {
+                        "fieldName": "risk_score"
+                    },
+                    {
+                        "fieldName": "user_name"
+                    }
+                ],
+                "measure": [
+                    {
+                        "aggType": "sum",
+                        "fieldName": "traffic"
+                    },
+                    {
+                        "aggType": "sum",
+                        "fieldName": "flows_created"
+                    }
+                ],
+                "timeFrame": "last.P1D"
+            },
+            "assertions": [
+                "appStats",
+                "appStats.records"
+            ]
+        },
+        "query.appStatsTimeSeries": {
+            "payload": {
+                "buckets": 24,
+                "dimension": [
+                    {
+                        "fieldName": "user_name"
+                    },
+                    {
+                        "fieldName": "application_name"
+                    }
+                ],
+                "perSecond": false,
+                "measure": [
+                    {
+                        "aggType": "sum",
+                        "fieldName": "upstream"
+                    },
+                    {
+                        "aggType": "sum",
+                        "fieldName": "downstream"
+                    },
+                    {
+                        "aggType": "sum",
+                        "fieldName": "traffic"
+                    }
+                ],
+                "timeFrame": "last.P1D"
+            },
+            "assertions": [
+                "appStatsTimeSeries"
+            ]
+        },
+        "query.eventsTimeSeries": {
+            "payload": {
+                "buckets": 168,
+                "eventsDimension": [
+                    {
+                        "fieldName": "rule_name"
+                    }
+                ],
+                "eventsFilter": [
+                    {
+                        "fieldName": "event_sub_type",
+                        "operator": "is",
+                        "values": [
+                            "Internet Firewall"
+                        ]
+                    }
+                ],
+                "eventsMeasure": [
+                    {
+                        "aggType": "sum",
+                        "fieldName": "event_count"
+                    }
+                ],
+                "perSecond": false,
+                "timeFrame": "last.P1D"
+            },
+            "assertions": [
+                "eventsTimeSeries"
+            ]
+        },
+        "query.socketPortMetrics": {
+            "payload": {
+                "socketPortMetricsDimension": [
+                    {
+                        "fieldName": "socket_interface"
+                    },
+                    {
+                        "fieldName": "site_name"
+                    }
+                ],
+                "socketPortMetricsMeasure": [
+                    {
+                        "aggType": "sum",
+                        "fieldName": "bytes_total"
+                    }
+                ],
+                "timeFrame": "last.P1D"
+            },
+            "assertions": [
+                "socketPortMetrics.records"
+            ]
+        },
+        "query.socketPortMetricsTimeSeries": {
+            "payload": {
+                "buckets": 24,
+                "socketPortMetricsDimension": [
+                    {
+                        "fieldName": "socket_interface"
+                    },
+                    {
+                        "fieldName": "site_name"
+                    }
+                ],
+                "socketPortMetricsMeasure": [
+                    {
+                        "aggType": "sum",
+                        "fieldName": "bytes_downstream"
+                    },
+                    {
+                        "aggType": "sum",
+                        "fieldName": "bytes_upstream"
+                    },
+                    {
+                        "aggType": "sum",
+                        "fieldName": "bytes_total"
+                    }
+                ],
+                "perSecond": false,
+                "timeFrame": "last.P1D"
+            },
+            "assertions": [
+                "socketPortMetricsTimeSeries.summary",
+                "socketPortMetricsTimeSeries.series"
+            ]
+        },
+        "query.user": {
+            "payload": {
+                "userListInput": {
+                    "paging": {
+                        "from": 0,
+                        "limit": 1
+                    }
+                }
+            },
+            "assertions": [
+                {
+                    "path": "data.user.userList.items",
+                    "operator": "type",
+                    "value": "array"
+                }
+            ]
+        },
+        "query.site.knownHostList": {
+            "payload": {
+                "siteKnownHostListInput": {
+                    "paging": {
+                        "from": 0,
+                        "limit": 1
+                    },
+                    "site": {
+                        "by": "ID",
+                        "input": "218735"
+                    }
+                }
+            },
+            "assertions": [
+                {
+                    "path": "data.site.knownHostList.knownHost",
+                    "operator": "type",
+                    "value": "array"
+                }
+            ]
+        },
         "query.networkConfig.dns.siteSettings": {
             "payload": {
                 "siteRefInput": {
                     "by": "ID",
-                    "input": "213005"
+                    "input": "218128"
                 }
             },
             "assertions": [
-                "networkConfig.dns.siteSettings"
+                {"path": "data.networkConfig.dns.siteSettings", "operator": "type", "value": "object"}
             ]
         },
         "query.connectivitySnapshots": {
@@ -301,8 +496,8 @@
             "payload": {
                 "ipAddressRangeContainerSearchIpAddressRangeInput": {
                     "ipAddressRange": {
-                        "from": "1.2.3.4",
-                        "to": "1.2.3.5"
+                        "from": "10.1.1.1",
+                        "to": "10.1.1.1"
                     }
                 }
             },
@@ -595,7 +790,7 @@
         },
         "query.site.staticHost": {
             "payload": {
-                "hostId": "3493011",
+                "hostId": "3493015",
                 "siteRefInput": {
                     "by": "ID",
                     "input": "218735"
@@ -703,10 +898,10 @@
         "query.xdr.story": {
             "payload": {
                 "perSecond": false,
-                "storyId": "689affd12fbfda452b652f99"
+                "storyId": "6a9629b32c9963526f7fb55c"
             },
             "assertions": [
-                "xdr.story"
+                {"path": "data.xdr.story", "operator": "type", "value": "object"}
             ]
         }
     }

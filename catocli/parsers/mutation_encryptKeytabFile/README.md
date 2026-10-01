@@ -11,16 +11,16 @@ catocli mutation encryptKeytabFile <json>
 
 catocli mutation encryptKeytabFile --json-file mutation.encryptKeytabFile.json
 
-catocli mutation encryptKeytabFile '{"encryptKeytabFileInput":{"file":"example_value"}}'
+catocli mutation encryptKeytabFile '{"encryptKeytabFileInput":{"file":"path/to/file"}}'
 
 catocli mutation encryptKeytabFile '{
     "encryptKeytabFileInput": {
-        "file": "example_value"
+        "file": "path/to/file"
     }
 }'
 ```
 
 #### Operation Arguments for mutation.encryptKeytabFile ####
 
-`accountId` [ID] - (required) N/A    
-`encryptKeytabFileInput` [EncryptKeytabFileInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`encryptKeytabFileInput` [EncryptKeytabFileInput] - (required) N/A

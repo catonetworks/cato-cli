@@ -11,51 +11,57 @@ catocli mutation site updateSiteNetworkRanges <json>
 
 catocli mutation site updateSiteNetworkRanges --json-file mutation.site.updateSiteNetworkRanges.json
 
-catocli mutation site updateSiteNetworkRanges '{"updateSiteNetworkRangesInput":{"networkRange":{"azureFloatingIp":"example_value","dhcpSettings":{"dhcpMicrosegmentation":true,"dhcpType":"DHCP_RELAY","ipRange":"example_value","relayGroupId":"id"},"gateway":"example_value","internetOnly":true,"lanSocketInterfaceId":"id","localIp":"example_value","mdnsReflector":true,"name":"string","rangeType":"Routed","subnet":"example_value","translatedSubnet":"example_value","vlan":1},"networkRangeToAdd":{"azureFloatingIp":"example_value","dhcpSettings":{"dhcpMicrosegmentation":true,"dhcpType":"DHCP_RELAY","ipRange":"example_value","relayGroupId":"id"},"gateway":"example_value","internetOnly":true,"lanSocketInterfaceId":"id","localIp":"example_value","mdnsReflector":true,"name":"string","rangeType":"Routed","subnet":"example_value","translatedSubnet":"example_value","vlan":1},"networkRangeToRemove":{"networkRangeId":"id"},"site":{"by":"ID","input":"string"}}}'
+catocli mutation site updateSiteNetworkRanges '{"updateSiteNetworkRangesInput":{"networkRange":[{"azureFloatingIp":"192.0.2.1","dhcpSettings":{"dhcpMicrosegmentation":true,"dhcpType":"DHCP_RELAY","ipRange":"192.0.2.10-192.0.2.20","relayGroupId":"id"},"gateway":"192.0.2.1","internetOnly":true,"lanSocketInterfaceId":"id","localIp":"192.0.2.1","mdnsReflector":true,"name":"string","rangeType":"Routed","subnet":"192.0.2.0/24","translatedSubnet":"192.0.2.0/24","vlan":1}],"networkRangeToAdd":[{"azureFloatingIp":"192.0.2.1","dhcpSettings":{"dhcpMicrosegmentation":true,"dhcpType":"DHCP_RELAY","ipRange":"192.0.2.10-192.0.2.20","relayGroupId":"id"},"gateway":"192.0.2.1","internetOnly":true,"lanSocketInterfaceId":"id","localIp":"192.0.2.1","mdnsReflector":true,"name":"string","rangeType":"Routed","subnet":"192.0.2.0/24","translatedSubnet":"192.0.2.0/24","vlan":1}],"networkRangeToRemove":[{"networkRangeId":"id"}],"site":{"by":"ID","input":"string"}}}'
 
 catocli mutation site updateSiteNetworkRanges '{
     "updateSiteNetworkRangesInput": {
-        "networkRange": {
-            "azureFloatingIp": "example_value",
-            "dhcpSettings": {
-                "dhcpMicrosegmentation": true,
-                "dhcpType": "DHCP_RELAY",
-                "ipRange": "example_value",
-                "relayGroupId": "id"
-            },
-            "gateway": "example_value",
-            "internetOnly": true,
-            "lanSocketInterfaceId": "id",
-            "localIp": "example_value",
-            "mdnsReflector": true,
-            "name": "string",
-            "rangeType": "Routed",
-            "subnet": "example_value",
-            "translatedSubnet": "example_value",
-            "vlan": 1
-        },
-        "networkRangeToAdd": {
-            "azureFloatingIp": "example_value",
-            "dhcpSettings": {
-                "dhcpMicrosegmentation": true,
-                "dhcpType": "DHCP_RELAY",
-                "ipRange": "example_value",
-                "relayGroupId": "id"
-            },
-            "gateway": "example_value",
-            "internetOnly": true,
-            "lanSocketInterfaceId": "id",
-            "localIp": "example_value",
-            "mdnsReflector": true,
-            "name": "string",
-            "rangeType": "Routed",
-            "subnet": "example_value",
-            "translatedSubnet": "example_value",
-            "vlan": 1
-        },
-        "networkRangeToRemove": {
-            "networkRangeId": "id"
-        },
+        "networkRange": [
+            {
+                "azureFloatingIp": "192.0.2.1",
+                "dhcpSettings": {
+                    "dhcpMicrosegmentation": true,
+                    "dhcpType": "DHCP_RELAY",
+                    "ipRange": "192.0.2.10-192.0.2.20",
+                    "relayGroupId": "id"
+                },
+                "gateway": "192.0.2.1",
+                "internetOnly": true,
+                "lanSocketInterfaceId": "id",
+                "localIp": "192.0.2.1",
+                "mdnsReflector": true,
+                "name": "string",
+                "rangeType": "Routed",
+                "subnet": "192.0.2.0/24",
+                "translatedSubnet": "192.0.2.0/24",
+                "vlan": 1
+            }
+        ],
+        "networkRangeToAdd": [
+            {
+                "azureFloatingIp": "192.0.2.1",
+                "dhcpSettings": {
+                    "dhcpMicrosegmentation": true,
+                    "dhcpType": "DHCP_RELAY",
+                    "ipRange": "192.0.2.10-192.0.2.20",
+                    "relayGroupId": "id"
+                },
+                "gateway": "192.0.2.1",
+                "internetOnly": true,
+                "lanSocketInterfaceId": "id",
+                "localIp": "192.0.2.1",
+                "mdnsReflector": true,
+                "name": "string",
+                "rangeType": "Routed",
+                "subnet": "192.0.2.0/24",
+                "translatedSubnet": "192.0.2.0/24",
+                "vlan": 1
+            }
+        ],
+        "networkRangeToRemove": [
+            {
+                "networkRangeId": "id"
+            }
+        ],
         "site": {
             "by": "ID",
             "input": "string"
@@ -66,5 +72,5 @@ catocli mutation site updateSiteNetworkRanges '{
 
 #### Operation Arguments for mutation.site.updateSiteNetworkRanges ####
 
-`accountId` [ID] - (required) N/A    
-`updateSiteNetworkRangesInput` [UpdateSiteNetworkRangesInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`updateSiteNetworkRangesInput` [UpdateSiteNetworkRangesInput] - (required) N/A

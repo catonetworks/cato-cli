@@ -11,20 +11,11 @@ catocli query appStats <json>
 
 catocli query appStats --json-file query.appStats.json
 
-catocli query appStats '{"appStatsFilter":{"fieldName":"account_id","operator":"is","values":["string1","string2"]},"appStatsPostAggFilter":{"aggType":"sum","filter":{"fieldName":"account_id","operator":"is","values":["string1","string2"]}},"appStatsSort":{"alias":"string","fieldName":"account_id","order":"asc"},"dimension":{"fieldName":"account_id"},"from":1,"includeEmptyDimension":true,"limit":1,"measure":{"aggType":"sum","alias":"string","fieldName":"account_id","trend":true},"timeFrame":"example_value"}'
+catocli query appStats '{"appStatsFilter":[{"fieldName":"account_id","operator":"is","values":["string1","string2"]}],"appStatsPostAggFilter":[{"aggType":"sum","filter":{"fieldName":"account_id","operator":"is","values":["string1","string2"]}}],"appStatsSort":[{"alias":"string","fieldName":"account_id","order":"asc"}],"dimension":[{"fieldName":"account_id"}],"from":1,"includeEmptyDimension":true,"limit":1,"measure":[{"aggType":"sum","alias":"string","fieldName":"account_id","trend":true}],"timeFrame":"last.P1D"}'
 
 catocli query appStats '{
-    "appStatsFilter": {
-        "fieldName": "account_id",
-        "operator": "is",
-        "values": [
-            "string1",
-            "string2"
-        ]
-    },
-    "appStatsPostAggFilter": {
-        "aggType": "sum",
-        "filter": {
+    "appStatsFilter": [
+        {
             "fieldName": "account_id",
             "operator": "is",
             "values": [
@@ -32,25 +23,44 @@ catocli query appStats '{
                 "string2"
             ]
         }
-    },
-    "appStatsSort": {
-        "alias": "string",
-        "fieldName": "account_id",
-        "order": "asc"
-    },
-    "dimension": {
-        "fieldName": "account_id"
-    },
+    ],
+    "appStatsPostAggFilter": [
+        {
+            "aggType": "sum",
+            "filter": {
+                "fieldName": "account_id",
+                "operator": "is",
+                "values": [
+                    "string1",
+                    "string2"
+                ]
+            }
+        }
+    ],
+    "appStatsSort": [
+        {
+            "alias": "string",
+            "fieldName": "account_id",
+            "order": "asc"
+        }
+    ],
+    "dimension": [
+        {
+            "fieldName": "account_id"
+        }
+    ],
     "from": 1,
     "includeEmptyDimension": true,
     "limit": 1,
-    "measure": {
-        "aggType": "sum",
-        "alias": "string",
-        "fieldName": "account_id",
-        "trend": true
-    },
-    "timeFrame": "example_value"
+    "measure": [
+        {
+            "aggType": "sum",
+            "alias": "string",
+            "fieldName": "account_id",
+            "trend": true
+        }
+    ],
+    "timeFrame": "last.P1D"
 }'
 ```
 
@@ -444,13 +454,13 @@ Format: `"utc.YYYY-MM-{DD/HH:MM:SS--DD/HH:MM:SS}"`
 
 #### Operation Arguments for query.appStats ####
 
-`accountID` [ID] - (required) Account ID    
-`appStatsFilter` [AppStatsFilter[]] - (required) N/A    
-`appStatsPostAggFilter` [AppStatsPostAggFilter[]] - (required) N/A    
-`appStatsSort` [AppStatsSort[]] - (required) N/A    
-`dimension` [Dimension[]] - (required) N/A    
-`from` [Int] - (required) N/A    
-`includeEmptyDimension` [Boolean] - (required) When true, rows with empty/null values for a grouped dimension (e.g., country, device type) are returned as an empty group rather than excluded. This ensures consistent totals in API queries and surfaces previously hidden data in CMA dashboards and reports. Defaults to false.    
-`limit` [Int] - (required) N/A    
-`measure` [Measure[]] - (required) N/A    
-`timeFrame` [TimeFrame] - (required) N/A    
+`accountID` [ID] - (required) N/A
+`appStatsFilter` [AppStatsFilter[]] - (required) N/A
+`appStatsPostAggFilter` [AppStatsPostAggFilter[]] - (required) N/A
+`appStatsSort` [AppStatsSort[]] - (required) N/A
+`dimension` [Dimension[]] - (required) N/A
+`from` [Int] - (required) N/A
+`includeEmptyDimension` [Boolean] - (required) N/A
+`limit` [Int] - (required) N/A
+`measure` [Measure[]] - (required) N/A
+`timeFrame` [TimeFrame] - (required) N/A

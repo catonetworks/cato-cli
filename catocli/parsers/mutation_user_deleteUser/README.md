@@ -11,13 +11,12 @@ catocli mutation user deleteUser <json>
 
 catocli mutation user deleteUser --json-file mutation.user.deleteUser.json
 
-catocli mutation user deleteUser '{"deleteUserInput":{"userId":["example1","example2"]}}'
+catocli mutation user deleteUser '{"deleteUserInput":{"userId":[1]}}'
 
 catocli mutation user deleteUser '{
     "deleteUserInput": {
         "userId": [
-            "example1",
-            "example2"
+            1
         ]
     }
 }'
@@ -25,5 +24,5 @@ catocli mutation user deleteUser '{
 
 #### Operation Arguments for mutation.user.deleteUser ####
 
-`accountId` [ID] - (required) Unique identifier of the Cato account.    
-`deleteUserInput` [DeleteUserInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`deleteUserInput` [DeleteUserInput] - (required) N/A

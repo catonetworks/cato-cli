@@ -11,49 +11,52 @@ catocli mutation customAppData updateCustomApplication <json>
 
 catocli mutation customAppData updateCustomApplication --json-file mutation.customAppData.updateCustomApplication.json
 
-catocli mutation customAppData updateCustomApplication '{"updateCustomApplicationInput":{"category":{"by":"ID","input":"string"},"criteria":{"destination":{"destinationIp":{"ip":["example1","example2"],"ipRange":{"from":"example_value","to":"example_value"},"subnet":["example1","example2"]},"domain":["example1","example2"],"fqdn":["example1","example2"]},"port":["example1","example2"],"portRange":{"from":"example_value","to":"example_value"},"protocol":"ANY"},"description":"string","id":"id","name":"string"}}'
+catocli mutation customAppData updateCustomApplication '{"updateCustomApplicationInput":{"category":[{"by":"ID","input":"string"}],"criteria":[{"destination":{"destinationIp":{"ip":["192.0.2.1"],"ipRange":[{"from":"192.0.2.1","to":"192.0.2.1"}],"subnet":["192.0.2.0/24"]},"domain":["internal.example.com"],"fqdn":["host.example.com"]},"port":[443],"portRange":[{"from":443,"to":443}],"protocol":"ANY"}],"description":"string","id":"id","name":"string"}}'
 
 catocli mutation customAppData updateCustomApplication '{
     "updateCustomApplicationInput": {
-        "category": {
-            "by": "ID",
-            "input": "string"
-        },
-        "criteria": {
-            "destination": {
-                "destinationIp": {
-                    "ip": [
-                        "example1",
-                        "example2"
-                    ],
-                    "ipRange": {
-                        "from": "example_value",
-                        "to": "example_value"
+        "category": [
+            {
+                "by": "ID",
+                "input": "string"
+            }
+        ],
+        "criteria": [
+            {
+                "destination": {
+                    "destinationIp": {
+                        "ip": [
+                            "192.0.2.1"
+                        ],
+                        "ipRange": [
+                            {
+                                "from": "192.0.2.1",
+                                "to": "192.0.2.1"
+                            }
+                        ],
+                        "subnet": [
+                            "192.0.2.0/24"
+                        ]
                     },
-                    "subnet": [
-                        "example1",
-                        "example2"
+                    "domain": [
+                        "internal.example.com"
+                    ],
+                    "fqdn": [
+                        "host.example.com"
                     ]
                 },
-                "domain": [
-                    "example1",
-                    "example2"
+                "port": [
+                    443
                 ],
-                "fqdn": [
-                    "example1",
-                    "example2"
-                ]
-            },
-            "port": [
-                "example1",
-                "example2"
-            ],
-            "portRange": {
-                "from": "example_value",
-                "to": "example_value"
-            },
-            "protocol": "ANY"
-        },
+                "portRange": [
+                    {
+                        "from": 443,
+                        "to": 443
+                    }
+                ],
+                "protocol": "ANY"
+            }
+        ],
         "description": "string",
         "id": "id",
         "name": "string"
@@ -63,5 +66,5 @@ catocli mutation customAppData updateCustomApplication '{
 
 #### Operation Arguments for mutation.customAppData.updateCustomApplication ####
 
-`accountId` [ID] - (required) N/A    
-`updateCustomApplicationInput` [UpdateCustomApplicationInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`updateCustomApplicationInput` [UpdateCustomApplicationInput] - (required) N/A

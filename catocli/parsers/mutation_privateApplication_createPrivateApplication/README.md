@@ -11,13 +11,13 @@ catocli mutation privateApplication createPrivateApplication <json>
 
 catocli mutation privateApplication createPrivateApplication --json-file mutation.privateApplication.createPrivateApplication.json
 
-catocli mutation privateApplication createPrivateApplication '{"createPrivateApplicationInput":{"allowIcmpProtocol":true,"description":"string","internalAppAddress":"example_value","name":"string","privateAppProbing":{"faultThresholdDown":1,"id":"id","interval":1,"type":"string"},"probingEnabled":true,"protocolPorts":{"port":["example1","example2"],"portRange":{"from":"example_value","to":"example_value"},"protocol":"ANY"},"published":true,"publishedAppDomain":{"catoIp":"example_value","connectorGroupName":"string","creationTime":"example_value","id":"id","publishedAppDomain":"string"}}}'
+catocli mutation privateApplication createPrivateApplication '{"createPrivateApplicationInput":{"allowIcmpProtocol":true,"description":"string","internalAppAddress":"host.example.com","name":"string","privateAppProbing":{"faultThresholdDown":1,"id":"id","interval":1,"type":"string"},"probingEnabled":true,"protocolPorts":[{"port":[443],"portRange":{"from":443,"to":443},"protocol":"ANY"}],"published":true,"publishedAppDomain":{"catoIp":"192.0.2.1","connectorGroupName":"string","creationTime":"2026-01-02T15:04:05Z","id":"id","publishedAppDomain":"string"}}}'
 
 catocli mutation privateApplication createPrivateApplication '{
     "createPrivateApplicationInput": {
         "allowIcmpProtocol": true,
         "description": "string",
-        "internalAppAddress": "example_value",
+        "internalAppAddress": "host.example.com",
         "name": "string",
         "privateAppProbing": {
             "faultThresholdDown": 1,
@@ -26,22 +26,23 @@ catocli mutation privateApplication createPrivateApplication '{
             "type": "string"
         },
         "probingEnabled": true,
-        "protocolPorts": {
-            "port": [
-                "example1",
-                "example2"
-            ],
-            "portRange": {
-                "from": "example_value",
-                "to": "example_value"
-            },
-            "protocol": "ANY"
-        },
+        "protocolPorts": [
+            {
+                "port": [
+                    443
+                ],
+                "portRange": {
+                    "from": 443,
+                    "to": 443
+                },
+                "protocol": "ANY"
+            }
+        ],
         "published": true,
         "publishedAppDomain": {
-            "catoIp": "example_value",
+            "catoIp": "192.0.2.1",
             "connectorGroupName": "string",
-            "creationTime": "example_value",
+            "creationTime": "2026-01-02T15:04:05Z",
             "id": "id",
             "publishedAppDomain": "string"
         }
@@ -51,5 +52,5 @@ catocli mutation privateApplication createPrivateApplication '{
 
 #### Operation Arguments for mutation.privateApplication.createPrivateApplication ####
 
-`accountId` [ID] - (required) N/A    
-`createPrivateApplicationInput` [CreatePrivateApplicationInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`createPrivateApplicationInput` [CreatePrivateApplicationInput] - (required) N/A

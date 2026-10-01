@@ -11,13 +11,12 @@ catocli mutation user disableUser <json>
 
 catocli mutation user disableUser --json-file mutation.user.disableUser.json
 
-catocli mutation user disableUser '{"disableUserInput":{"userId":["example1","example2"]}}'
+catocli mutation user disableUser '{"disableUserInput":{"userId":[1]}}'
 
 catocli mutation user disableUser '{
     "disableUserInput": {
         "userId": [
-            "example1",
-            "example2"
+            1
         ]
     }
 }'
@@ -25,5 +24,5 @@ catocli mutation user disableUser '{
 
 #### Operation Arguments for mutation.user.disableUser ####
 
-`accountId` [ID] - (required) Unique identifier of the Cato account.    
-`disableUserInput` [DisableUserInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`disableUserInput` [DisableUserInput] - (required) N/A

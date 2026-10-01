@@ -11,18 +11,20 @@ catocli mutation object createGlobalIpRangeBulk <json>
 
 catocli mutation object createGlobalIpRangeBulk --json-file mutation.object.createGlobalIpRangeBulk.json
 
-catocli mutation object createGlobalIpRangeBulk '{"createGlobalIpRangeInput":{"description":"string","ipRange":"example_value","name":"string"}}'
+catocli mutation object createGlobalIpRangeBulk '{"createGlobalIpRangeInput":[{"description":"string","ipRange":"192.0.2.10-192.0.2.20","name":"string"}]}'
 
 catocli mutation object createGlobalIpRangeBulk '{
-    "createGlobalIpRangeInput": {
-        "description": "string",
-        "ipRange": "example_value",
-        "name": "string"
-    }
+    "createGlobalIpRangeInput": [
+        {
+            "description": "string",
+            "ipRange": "192.0.2.10-192.0.2.20",
+            "name": "string"
+        }
+    ]
 }'
 ```
 
 #### Operation Arguments for mutation.object.createGlobalIpRangeBulk ####
 
-`accountId` [ID] - (required) N/A    
-`createGlobalIpRangeInput` [CreateGlobalIpRangeInput[]] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`createGlobalIpRangeInput` [CreateGlobalIpRangeInput[]] - (required) N/A

@@ -20,5 +20,5 @@ catocli query site networkRange '{
 
 #### Operation Arguments for query.site.networkRange ####
 
-`accountId` [ID] - (required) N/A    
-`networkRangeId` [ID] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`networkRangeId` [ID] - (required) N/A

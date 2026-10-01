@@ -11,7 +11,7 @@ catocli mutation site updateIpsecIkeV2SiteGeneralDetails <json>
 
 catocli mutation site updateIpsecIkeV2SiteGeneralDetails --json-file mutation.site.updateIpsecIkeV2SiteGeneralDetails.json
 
-catocli mutation site updateIpsecIkeV2SiteGeneralDetails '{"siteId":"id","updateIpsecIkeV2SiteGeneralDetailsInput":{"authMessage":{"cipher":"NONE","dhGroup":"NONE","integrity":"NONE","prf":"NONE"},"connectionMode":"RESPONDER_ONLY","identificationType":"IPV4","initMessage":{"cipher":"NONE","dhGroup":"NONE","integrity":"NONE","prf":"NONE"},"networkRanges":["example1","example2"]}}'
+catocli mutation site updateIpsecIkeV2SiteGeneralDetails '{"siteId":"id","updateIpsecIkeV2SiteGeneralDetailsInput":{"authMessage":{"cipher":"NONE","dhGroup":"NONE","integrity":"NONE","prf":"NONE"},"connectionMode":"RESPONDER_ONLY","identificationType":"IPV4","initMessage":{"cipher":"NONE","dhGroup":"NONE","integrity":"NONE","prf":"NONE"},"networkRanges":["192.0.2.0/24"]}}'
 
 catocli mutation site updateIpsecIkeV2SiteGeneralDetails '{
     "siteId": "id",
@@ -31,8 +31,7 @@ catocli mutation site updateIpsecIkeV2SiteGeneralDetails '{
             "prf": "NONE"
         },
         "networkRanges": [
-            "example1",
-            "example2"
+            "192.0.2.0/24"
         ]
     }
 }'
@@ -40,6 +39,6 @@ catocli mutation site updateIpsecIkeV2SiteGeneralDetails '{
 
 #### Operation Arguments for mutation.site.updateIpsecIkeV2SiteGeneralDetails ####
 
-`accountId` [ID] - (required) N/A    
-`siteId` [ID] - (required) N/A    
-`updateIpsecIkeV2SiteGeneralDetailsInput` [UpdateIpsecIkeV2SiteGeneralDetailsInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`siteId` [ID] - (required) N/A
+`updateIpsecIkeV2SiteGeneralDetailsInput` [UpdateIpsecIkeV2SiteGeneralDetailsInput] - (required) N/A

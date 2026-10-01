@@ -11,15 +11,17 @@ catocli mutation sites createStaticHostBulk <json>
 
 catocli mutation sites createStaticHostBulk --json-file mutation.sites.createStaticHostBulk.json
 
-catocli mutation sites createStaticHostBulk '{"createStaticHostBulkInput":{"host":{"ip":"example_value","macAddress":"example_value","name":"string"},"site":{"by":"ID","input":"string"}}}'
+catocli mutation sites createStaticHostBulk '{"createStaticHostBulkInput":{"host":[{"ip":"192.0.2.1","macAddress":"02:00:00:00:00:01","name":"string"}],"site":{"by":"ID","input":"string"}}}'
 
 catocli mutation sites createStaticHostBulk '{
     "createStaticHostBulkInput": {
-        "host": {
-            "ip": "example_value",
-            "macAddress": "example_value",
-            "name": "string"
-        },
+        "host": [
+            {
+                "ip": "192.0.2.1",
+                "macAddress": "02:00:00:00:00:01",
+                "name": "string"
+            }
+        ],
         "site": {
             "by": "ID",
             "input": "string"
@@ -30,5 +32,5 @@ catocli mutation sites createStaticHostBulk '{
 
 #### Operation Arguments for mutation.sites.createStaticHostBulk ####
 
-`accountId` [ID] - (required) N/A    
-`createStaticHostBulkInput` [CreateStaticHostBulkInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`createStaticHostBulkInput` [CreateStaticHostBulkInput] - (required) N/A

@@ -11,7 +11,7 @@ catocli mutation container ipAddressRange addValues <json>
 
 catocli mutation container ipAddressRange addValues --json-file mutation.container.ipAddressRange.addValues.json
 
-catocli mutation container ipAddressRange addValues '{"ipAddressRangeContainerAddValuesInput":{"ref":{"by":"ID","input":"string"},"values":{"from":"example_value","to":"example_value"}}}'
+catocli mutation container ipAddressRange addValues '{"ipAddressRangeContainerAddValuesInput":{"ref":{"by":"ID","input":"string"},"values":[{"from":"192.0.2.1","to":"192.0.2.1"}]}}'
 
 catocli mutation container ipAddressRange addValues '{
     "ipAddressRangeContainerAddValuesInput": {
@@ -19,15 +19,17 @@ catocli mutation container ipAddressRange addValues '{
             "by": "ID",
             "input": "string"
         },
-        "values": {
-            "from": "example_value",
-            "to": "example_value"
-        }
+        "values": [
+            {
+                "from": "192.0.2.1",
+                "to": "192.0.2.1"
+            }
+        ]
     }
 }'
 ```
 
 #### Operation Arguments for mutation.container.ipAddressRange.addValues ####
 
-`accountId` [ID] - (required) N/A    
-`ipAddressRangeContainerAddValuesInput` [IpAddressRangeContainerAddValuesInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`ipAddressRangeContainerAddValuesInput` [IpAddressRangeContainerAddValuesInput] - (required) N/A

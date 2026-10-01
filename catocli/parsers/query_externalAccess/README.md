@@ -11,49 +11,43 @@ catocli query externalAccess <json>
 
 catocli query externalAccess --json-file query.externalAccess.json
 
-catocli query externalAccess '{"incomingAccessRequestListInput":{"filter":{"expirationDate":{"between":["example1","example2"],"eq":"example_value","gt":"example_value","gte":"example_value","in":["example1","example2"],"lt":"example_value","lte":"example_value","neq":"example_value","nin":["example1","example2"]},"requestedDate":{"between":["example1","example2"],"eq":"example_value","gt":"example_value","gte":"example_value","in":["example1","example2"],"lt":"example_value","lte":"example_value","neq":"example_value","nin":["example1","example2"]},"search":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"status":{"eq":"PENDING","in":"PENDING","neq":"PENDING","nin":"PENDING"}},"paging":{"from":1,"limit":1},"sort":{"activeDate":{"direction":"ASC","priority":1},"expirationDate":{"direction":"ASC","priority":1},"id":{"direction":"ASC","priority":1},"requestedDate":{"direction":"ASC","priority":1},"status":{"direction":"ASC","priority":1}}},"partnerAccessRequestListInput":{"filter":{"expirationDate":{"between":["example1","example2"],"eq":"example_value","gt":"example_value","gte":"example_value","in":["example1","example2"],"lt":"example_value","lte":"example_value","neq":"example_value","nin":["example1","example2"]},"requestedDate":{"between":["example1","example2"],"eq":"example_value","gt":"example_value","gte":"example_value","in":["example1","example2"],"lt":"example_value","lte":"example_value","neq":"example_value","nin":["example1","example2"]},"search":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"status":{"eq":"PENDING","in":"PENDING","neq":"PENDING","nin":"PENDING"},"type":{"eq":"STANDARD","in":"STANDARD","neq":"STANDARD","nin":"STANDARD"}},"paging":{"from":1,"limit":1},"sort":{"accountName":{"direction":"ASC","priority":1},"activeDate":{"direction":"ASC","priority":1},"expirationDate":{"direction":"ASC","priority":1},"id":{"direction":"ASC","priority":1},"requestedDate":{"direction":"ASC","priority":1},"status":{"direction":"ASC","priority":1},"type":{"direction":"ASC","priority":1}}}}'
+catocli query externalAccess '{"incomingAccessRequestListInput":{"filter":{"expirationDate":{"between":["2026-01-02T15:04:05Z"],"eq":"2026-01-02T15:04:05Z","gt":"2026-01-02T15:04:05Z","gte":"2026-01-02T15:04:05Z","in":["2026-01-02T15:04:05Z"],"lt":"2026-01-02T15:04:05Z","lte":"2026-01-02T15:04:05Z","neq":"2026-01-02T15:04:05Z","nin":["2026-01-02T15:04:05Z"]},"requestedDate":{"between":["2026-01-02T15:04:05Z"],"eq":"2026-01-02T15:04:05Z","gt":"2026-01-02T15:04:05Z","gte":"2026-01-02T15:04:05Z","in":["2026-01-02T15:04:05Z"],"lt":"2026-01-02T15:04:05Z","lte":"2026-01-02T15:04:05Z","neq":"2026-01-02T15:04:05Z","nin":["2026-01-02T15:04:05Z"]},"search":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"status":{"eq":"PENDING","in":["PENDING"],"neq":"PENDING","nin":["PENDING"]}},"paging":{"from":1,"limit":1},"sort":{"activeDate":{"direction":"ASC","priority":1},"expirationDate":{"direction":"ASC","priority":1},"id":{"direction":"ASC","priority":1},"requestedDate":{"direction":"ASC","priority":1},"status":{"direction":"ASC","priority":1}}},"partnerAccessRequestListInput":{"filter":{"expirationDate":{"between":["2026-01-02T15:04:05Z"],"eq":"2026-01-02T15:04:05Z","gt":"2026-01-02T15:04:05Z","gte":"2026-01-02T15:04:05Z","in":["2026-01-02T15:04:05Z"],"lt":"2026-01-02T15:04:05Z","lte":"2026-01-02T15:04:05Z","neq":"2026-01-02T15:04:05Z","nin":["2026-01-02T15:04:05Z"]},"requestedDate":{"between":["2026-01-02T15:04:05Z"],"eq":"2026-01-02T15:04:05Z","gt":"2026-01-02T15:04:05Z","gte":"2026-01-02T15:04:05Z","in":["2026-01-02T15:04:05Z"],"lt":"2026-01-02T15:04:05Z","lte":"2026-01-02T15:04:05Z","neq":"2026-01-02T15:04:05Z","nin":["2026-01-02T15:04:05Z"]},"search":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"status":{"eq":"PENDING","in":["PENDING"],"neq":"PENDING","nin":["PENDING"]},"type":{"eq":"STANDARD","in":["STANDARD"],"neq":"STANDARD","nin":["STANDARD"]}},"paging":{"from":1,"limit":1},"sort":{"accountName":{"direction":"ASC","priority":1},"activeDate":{"direction":"ASC","priority":1},"expirationDate":{"direction":"ASC","priority":1},"id":{"direction":"ASC","priority":1},"requestedDate":{"direction":"ASC","priority":1},"status":{"direction":"ASC","priority":1},"type":{"direction":"ASC","priority":1}}}}'
 
 catocli query externalAccess '{
     "incomingAccessRequestListInput": {
         "filter": {
             "expirationDate": {
                 "between": [
-                    "example1",
-                    "example2"
+                    "2026-01-02T15:04:05Z"
                 ],
-                "eq": "example_value",
-                "gt": "example_value",
-                "gte": "example_value",
+                "eq": "2026-01-02T15:04:05Z",
+                "gt": "2026-01-02T15:04:05Z",
+                "gte": "2026-01-02T15:04:05Z",
                 "in": [
-                    "example1",
-                    "example2"
+                    "2026-01-02T15:04:05Z"
                 ],
-                "lt": "example_value",
-                "lte": "example_value",
-                "neq": "example_value",
+                "lt": "2026-01-02T15:04:05Z",
+                "lte": "2026-01-02T15:04:05Z",
+                "neq": "2026-01-02T15:04:05Z",
                 "nin": [
-                    "example1",
-                    "example2"
+                    "2026-01-02T15:04:05Z"
                 ]
             },
             "requestedDate": {
                 "between": [
-                    "example1",
-                    "example2"
+                    "2026-01-02T15:04:05Z"
                 ],
-                "eq": "example_value",
-                "gt": "example_value",
-                "gte": "example_value",
+                "eq": "2026-01-02T15:04:05Z",
+                "gt": "2026-01-02T15:04:05Z",
+                "gte": "2026-01-02T15:04:05Z",
                 "in": [
-                    "example1",
-                    "example2"
+                    "2026-01-02T15:04:05Z"
                 ],
-                "lt": "example_value",
-                "lte": "example_value",
-                "neq": "example_value",
+                "lt": "2026-01-02T15:04:05Z",
+                "lte": "2026-01-02T15:04:05Z",
+                "neq": "2026-01-02T15:04:05Z",
                 "nin": [
-                    "example1",
-                    "example2"
+                    "2026-01-02T15:04:05Z"
                 ]
             },
             "search": {
@@ -70,9 +64,13 @@ catocli query externalAccess '{
             },
             "status": {
                 "eq": "PENDING",
-                "in": "PENDING",
+                "in": [
+                    "PENDING"
+                ],
                 "neq": "PENDING",
-                "nin": "PENDING"
+                "nin": [
+                    "PENDING"
+                ]
             }
         },
         "paging": {
@@ -106,42 +104,36 @@ catocli query externalAccess '{
         "filter": {
             "expirationDate": {
                 "between": [
-                    "example1",
-                    "example2"
+                    "2026-01-02T15:04:05Z"
                 ],
-                "eq": "example_value",
-                "gt": "example_value",
-                "gte": "example_value",
+                "eq": "2026-01-02T15:04:05Z",
+                "gt": "2026-01-02T15:04:05Z",
+                "gte": "2026-01-02T15:04:05Z",
                 "in": [
-                    "example1",
-                    "example2"
+                    "2026-01-02T15:04:05Z"
                 ],
-                "lt": "example_value",
-                "lte": "example_value",
-                "neq": "example_value",
+                "lt": "2026-01-02T15:04:05Z",
+                "lte": "2026-01-02T15:04:05Z",
+                "neq": "2026-01-02T15:04:05Z",
                 "nin": [
-                    "example1",
-                    "example2"
+                    "2026-01-02T15:04:05Z"
                 ]
             },
             "requestedDate": {
                 "between": [
-                    "example1",
-                    "example2"
+                    "2026-01-02T15:04:05Z"
                 ],
-                "eq": "example_value",
-                "gt": "example_value",
-                "gte": "example_value",
+                "eq": "2026-01-02T15:04:05Z",
+                "gt": "2026-01-02T15:04:05Z",
+                "gte": "2026-01-02T15:04:05Z",
                 "in": [
-                    "example1",
-                    "example2"
+                    "2026-01-02T15:04:05Z"
                 ],
-                "lt": "example_value",
-                "lte": "example_value",
-                "neq": "example_value",
+                "lt": "2026-01-02T15:04:05Z",
+                "lte": "2026-01-02T15:04:05Z",
+                "neq": "2026-01-02T15:04:05Z",
                 "nin": [
-                    "example1",
-                    "example2"
+                    "2026-01-02T15:04:05Z"
                 ]
             },
             "search": {
@@ -158,15 +150,23 @@ catocli query externalAccess '{
             },
             "status": {
                 "eq": "PENDING",
-                "in": "PENDING",
+                "in": [
+                    "PENDING"
+                ],
                 "neq": "PENDING",
-                "nin": "PENDING"
+                "nin": [
+                    "PENDING"
+                ]
             },
             "type": {
                 "eq": "STANDARD",
-                "in": "STANDARD",
+                "in": [
+                    "STANDARD"
+                ],
                 "neq": "STANDARD",
-                "nin": "STANDARD"
+                "nin": [
+                    "STANDARD"
+                ]
             }
         },
         "paging": {
@@ -209,6 +209,6 @@ catocli query externalAccess '{
 
 #### Operation Arguments for query.externalAccess ####
 
-`accountId` [ID] - (required) N/A    
-`incomingAccessRequestListInput` [IncomingAccessRequestListInput] - (required) N/A    
-`partnerAccessRequestListInput` [PartnerAccessRequestListInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`incomingAccessRequestListInput` [IncomingAccessRequestListInput] - (required) N/A
+`partnerAccessRequestListInput` [PartnerAccessRequestListInput] - (required) N/A

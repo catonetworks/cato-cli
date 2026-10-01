@@ -11,11 +11,13 @@ catocli mutation site removeSocketAddOnCard <json>
 
 catocli mutation site removeSocketAddOnCard --json-file mutation.site.removeSocketAddOnCard.json
 
-catocli mutation site removeSocketAddOnCard '{"removeSocketAddOnCardInput":{"expansionSlotNumbers":"SLOT_1","site":{"by":"ID","input":"string"}}}'
+catocli mutation site removeSocketAddOnCard '{"removeSocketAddOnCardInput":{"expansionSlotNumbers":["SLOT_1"],"site":{"by":"ID","input":"string"}}}'
 
 catocli mutation site removeSocketAddOnCard '{
     "removeSocketAddOnCardInput": {
-        "expansionSlotNumbers": "SLOT_1",
+        "expansionSlotNumbers": [
+            "SLOT_1"
+        ],
         "site": {
             "by": "ID",
             "input": "string"
@@ -26,5 +28,5 @@ catocli mutation site removeSocketAddOnCard '{
 
 #### Operation Arguments for mutation.site.removeSocketAddOnCard ####
 
-`accountId` [ID] - (required) N/A    
-`removeSocketAddOnCardInput` [RemoveSocketAddOnCardInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`removeSocketAddOnCardInput` [RemoveSocketAddOnCardInput] - (required) N/A

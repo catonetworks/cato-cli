@@ -11,7 +11,7 @@ catocli mutation ztnaAppConnector updateZtnaAppConnector <json>
 
 catocli mutation ztnaAppConnector updateZtnaAppConnector --json-file mutation.ztnaAppConnector.updateZtnaAppConnector.json
 
-catocli mutation ztnaAppConnector updateZtnaAppConnector '{"updateZtnaAppConnectorInput":{"description":"string","groupName":"string","id":"id","location":{"address":"string","city":"string","countryCode":"string","stateCode":"string","timezone":"example_value"},"name":"string","preferredPopLocation":{"automatic":true,"preferredOnly":true,"primary":{"by":"ID","input":"string"},"secondary":{"by":"ID","input":"string"}}}}'
+catocli mutation ztnaAppConnector updateZtnaAppConnector '{"updateZtnaAppConnectorInput":{"description":"string","groupName":"string","id":"id","location":{"address":"string","city":"string","countryCode":"string","stateCode":"string","timezone":"America/New_York"},"name":"string","preferredPopLocation":{"automatic":true,"preferredOnly":true,"primary":{"by":"ID","input":"string"},"secondary":{"by":"ID","input":"string"}}}}'
 
 catocli mutation ztnaAppConnector updateZtnaAppConnector '{
     "updateZtnaAppConnectorInput": {
@@ -23,7 +23,7 @@ catocli mutation ztnaAppConnector updateZtnaAppConnector '{
             "city": "string",
             "countryCode": "string",
             "stateCode": "string",
-            "timezone": "example_value"
+            "timezone": "America/New_York"
         },
         "name": "string",
         "preferredPopLocation": {
@@ -44,5 +44,5 @@ catocli mutation ztnaAppConnector updateZtnaAppConnector '{
 
 #### Operation Arguments for mutation.ztnaAppConnector.updateZtnaAppConnector ####
 
-`accountId` [ID] - (required) N/A    
-`updateZtnaAppConnectorInput` [UpdateZtnaAppConnectorInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`updateZtnaAppConnectorInput` [UpdateZtnaAppConnectorInput] - (required) N/A

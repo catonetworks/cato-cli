@@ -11,34 +11,37 @@ catocli mutation notification updateMailingList <json>
 
 catocli mutation notification updateMailingList --json-file mutation.notification.updateMailingList.json
 
-catocli mutation notification updateMailingList '{"updateMailingListInput":{"address":["example1","example2"],"addressToAdd":["example1","example2"],"addressToRemove":["example1","example2"],"admin":{"by":"ID","input":"string"},"adminToAdd":{"by":"ID","input":"string"},"adminToRemove":{"by":"ID","input":"string"},"mailingList":{"by":"ID","input":"string"},"name":"string"}}'
+catocli mutation notification updateMailingList '{"updateMailingListInput":{"address":["user@example.com"],"addressToAdd":["user@example.com"],"addressToRemove":["user@example.com"],"admin":[{"by":"ID","input":"string"}],"adminToAdd":[{"by":"ID","input":"string"}],"adminToRemove":[{"by":"ID","input":"string"}],"mailingList":{"by":"ID","input":"string"},"name":"string"}}'
 
 catocli mutation notification updateMailingList '{
     "updateMailingListInput": {
         "address": [
-            "example1",
-            "example2"
+            "user@example.com"
         ],
         "addressToAdd": [
-            "example1",
-            "example2"
+            "user@example.com"
         ],
         "addressToRemove": [
-            "example1",
-            "example2"
+            "user@example.com"
         ],
-        "admin": {
-            "by": "ID",
-            "input": "string"
-        },
-        "adminToAdd": {
-            "by": "ID",
-            "input": "string"
-        },
-        "adminToRemove": {
-            "by": "ID",
-            "input": "string"
-        },
+        "admin": [
+            {
+                "by": "ID",
+                "input": "string"
+            }
+        ],
+        "adminToAdd": [
+            {
+                "by": "ID",
+                "input": "string"
+            }
+        ],
+        "adminToRemove": [
+            {
+                "by": "ID",
+                "input": "string"
+            }
+        ],
         "mailingList": {
             "by": "ID",
             "input": "string"
@@ -50,5 +53,5 @@ catocli mutation notification updateMailingList '{
 
 #### Operation Arguments for mutation.notification.updateMailingList ####
 
-`accountId` [ID] - (required) N/A    
-`updateMailingListInput` [UpdateMailingListInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`updateMailingListInput` [UpdateMailingListInput] - (required) N/A

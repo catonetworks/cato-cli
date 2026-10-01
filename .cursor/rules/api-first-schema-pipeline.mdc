@@ -1,0 +1,28 @@
+---
+description: Preserve CLI responsibilities in the API-first schema pipeline
+alwaysApply: true
+---
+
+# API-First CLI Contract
+
+Treat this repository as the reviewed GraphQL operation producer.
+
+- Keep `queryPayloads/*.txt` as SDK operation input. SDK must not consume CLI models, parsers, docs, tests, or site-location data.
+- Make generation deterministic. Validate every generated operation against the fetched introspection schema.
+- Keep payload regression tests in the existing GitHub Actions PR flow. Do not duplicate them in Jenkins schema automation.
+- Keep GeoNames/site-location refresh independent from schema generation. Never include unrelated `siteLocation.db` or `siteLocation.json` churn in schema PRs.
+- Fail generation on operation errors or artifact mismatches; never publish a partial generated tree.
+- Preserve generator fixes for nested `accountId`, complex selections, and conflicting interface/union fields.
+
+## SDK Handoff
+
+- Trigger SDK generation from the exact 40-character CLI PR commit SHA, never a branch name.
+- Pass the CLI PR URL with the SHA. If the CLI branch advances, regenerate from the new SHA.
+- SDK merge/tag stays blocked until that exact commit reaches CLI `main`.
+- Do not merge, tag, release, poll, or auto-fix downstream CI unless explicitly requested.
+
+## Required Checks
+
+- Run `python -m pytest tests/test_generated_graphql_payloads.py`.
+- Confirm generated operation count and model/JSON/TXT parity.
+- Confirm the worktree contains no unrelated live-data churn.

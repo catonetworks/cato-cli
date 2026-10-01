@@ -11,7 +11,7 @@ catocli mutation policy ztnaAlwaysOn addRule <json>
 
 catocli mutation policy ztnaAlwaysOn addRule --json-file mutation.policy.ztnaAlwaysOn.addRule.json
 
-catocli mutation policy ztnaAlwaysOn addRule '{"ztnaAlwaysOnAddRuleInput":{"at":{"position":"AFTER_RULE","ref":"id"},"rule":{"action":"ENFORCE","allowFailOpen":true,"allowUserBypass":true,"antiTamperMode":"OFF","bypassDuration":{"time":1,"unit":"MINUTES"},"description":"string","devicePostureProfile":{"by":"ID","input":"string"},"enabled":true,"name":"string","platform":"WINDOWS","source":{"user":{"by":"ID","input":"string"},"usersGroup":{"by":"ID","input":"string"}}}},"ztnaAlwaysOnPolicyMutationInput":{"revision":{"id":"id"}}}'
+catocli mutation policy ztnaAlwaysOn addRule '{"ztnaAlwaysOnAddRuleInput":{"at":{"position":"AFTER_RULE","ref":"id"},"rule":{"action":"ENFORCE","allowFailOpen":true,"allowUserBypass":true,"antiTamperMode":"OFF","bypassDuration":{"time":1,"unit":"MINUTES"},"description":"string","devicePostureProfile":[{"by":"ID","input":"string"}],"enabled":true,"name":"string","platform":["WINDOWS"],"source":{"user":[{"by":"ID","input":"string"}],"usersGroup":[{"by":"ID","input":"string"}]}}},"ztnaAlwaysOnPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy ztnaAlwaysOn addRule '{
     "ztnaAlwaysOnAddRuleInput": {
@@ -29,22 +29,30 @@ catocli mutation policy ztnaAlwaysOn addRule '{
                 "unit": "MINUTES"
             },
             "description": "string",
-            "devicePostureProfile": {
-                "by": "ID",
-                "input": "string"
-            },
-            "enabled": true,
-            "name": "string",
-            "platform": "WINDOWS",
-            "source": {
-                "user": {
-                    "by": "ID",
-                    "input": "string"
-                },
-                "usersGroup": {
+            "devicePostureProfile": [
+                {
                     "by": "ID",
                     "input": "string"
                 }
+            ],
+            "enabled": true,
+            "name": "string",
+            "platform": [
+                "WINDOWS"
+            ],
+            "source": {
+                "user": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ],
+                "usersGroup": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ]
             }
         }
     },
@@ -58,6 +66,6 @@ catocli mutation policy ztnaAlwaysOn addRule '{
 
 #### Operation Arguments for mutation.policy.ztnaAlwaysOn.addRule ####
 
-`accountId` [ID] - (required) N/A    
-`ztnaAlwaysOnAddRuleInput` [ZtnaAlwaysOnAddRuleInput] - (required) N/A    
-`ztnaAlwaysOnPolicyMutationInput` [ZtnaAlwaysOnPolicyMutationInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`ztnaAlwaysOnAddRuleInput` [ZtnaAlwaysOnAddRuleInput] - (required) N/A
+`ztnaAlwaysOnPolicyMutationInput` [ZtnaAlwaysOnPolicyMutationInput] - (required) N/A

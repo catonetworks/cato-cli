@@ -11,12 +11,12 @@ catocli mutation sites updateStaticHost <json>
 
 catocli mutation sites updateStaticHost --json-file mutation.sites.updateStaticHost.json
 
-catocli mutation sites updateStaticHost '{"hostId":"id","updateStaticHostInput":{"ip":"example_value","macAddress":"string","name":"string"}}'
+catocli mutation sites updateStaticHost '{"hostId":"id","updateStaticHostInput":{"ip":"192.0.2.1","macAddress":"string","name":"string"}}'
 
 catocli mutation sites updateStaticHost '{
     "hostId": "id",
     "updateStaticHostInput": {
-        "ip": "example_value",
+        "ip": "192.0.2.1",
         "macAddress": "string",
         "name": "string"
     }
@@ -25,6 +25,6 @@ catocli mutation sites updateStaticHost '{
 
 #### Operation Arguments for mutation.sites.updateStaticHost ####
 
-`accountId` [ID] - (required) N/A    
-`hostId` [ID] - (required) N/A    
-`updateStaticHostInput` [UpdateStaticHostInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`hostId` [ID] - (required) N/A
+`updateStaticHostInput` [UpdateStaticHostInput] - (required) N/A

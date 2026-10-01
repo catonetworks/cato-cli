@@ -11,7 +11,7 @@ catocli mutation container ipAddressRange updateFromList <json>
 
 catocli mutation container ipAddressRange updateFromList --json-file mutation.container.ipAddressRange.updateFromList.json
 
-catocli mutation container ipAddressRange updateFromList '{"updateIpAddressRangeContainerFromListInput":{"description":"string","ref":{"by":"ID","input":"string"},"values":{"from":"example_value","to":"example_value"}}}'
+catocli mutation container ipAddressRange updateFromList '{"updateIpAddressRangeContainerFromListInput":{"description":"string","ref":{"by":"ID","input":"string"},"values":[{"from":"192.0.2.1","to":"192.0.2.1"}]}}'
 
 catocli mutation container ipAddressRange updateFromList '{
     "updateIpAddressRangeContainerFromListInput": {
@@ -20,15 +20,17 @@ catocli mutation container ipAddressRange updateFromList '{
             "by": "ID",
             "input": "string"
         },
-        "values": {
-            "from": "example_value",
-            "to": "example_value"
-        }
+        "values": [
+            {
+                "from": "192.0.2.1",
+                "to": "192.0.2.1"
+            }
+        ]
     }
 }'
 ```
 
 #### Operation Arguments for mutation.container.ipAddressRange.updateFromList ####
 
-`accountId` [ID] - (required) N/A    
-`updateIpAddressRangeContainerFromListInput` [UpdateIpAddressRangeContainerFromListInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`updateIpAddressRangeContainerFromListInput` [UpdateIpAddressRangeContainerFromListInput] - (required) N/A

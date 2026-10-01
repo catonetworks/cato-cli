@@ -11,15 +11,14 @@ catocli mutation container fqdn createFromList <json>
 
 catocli mutation container fqdn createFromList --json-file mutation.container.fqdn.createFromList.json
 
-catocli mutation container fqdn createFromList '{"createFqdnContainerFromListInput":{"description":"string","name":"string","values":["example1","example2"]}}'
+catocli mutation container fqdn createFromList '{"createFqdnContainerFromListInput":{"description":"string","name":"string","values":["host.example.com"]}}'
 
 catocli mutation container fqdn createFromList '{
     "createFqdnContainerFromListInput": {
         "description": "string",
         "name": "string",
         "values": [
-            "example1",
-            "example2"
+            "host.example.com"
         ]
     }
 }'
@@ -27,5 +26,5 @@ catocli mutation container fqdn createFromList '{
 
 #### Operation Arguments for mutation.container.fqdn.createFromList ####
 
-`accountId` [ID] - (required) N/A    
-`createFqdnContainerFromListInput` [CreateFqdnContainerFromListInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`createFqdnContainerFromListInput` [CreateFqdnContainerFromListInput] - (required) N/A

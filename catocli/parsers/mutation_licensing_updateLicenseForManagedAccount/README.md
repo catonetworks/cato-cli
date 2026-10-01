@@ -25,5 +25,5 @@ catocli mutation licensing updateLicenseForManagedAccount '{
 
 #### Operation Arguments for mutation.licensing.updateLicenseForManagedAccount ####
 
-`accountId` [ID] - (required) N/A    
-`updateLicenseForManagedAccountInput` [UpdateLicenseForManagedAccountInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`updateLicenseForManagedAccountInput` [UpdateLicenseForManagedAccountInput] - (required) N/A

@@ -11,36 +11,36 @@ catocli mutation site addCloudInterconnectPhysicalConnection <json>
 
 catocli mutation site addCloudInterconnectPhysicalConnection --json-file mutation.site.addCloudInterconnectPhysicalConnection.json
 
-catocli mutation site addCloudInterconnectPhysicalConnection '{"addCloudInterconnectPhysicalConnectionInput":{"QinQVlanConfiguration":{"cVlan":"example_value","sVlan":"example_value"},"downstreamBwLimit":"example_value","encapsulationMethod":"DOT1Q","haRole":"PRIMARY","popLocation":{"by":"ID","input":"string"},"privateCatoIp":"example_value","privateSiteIp":"example_value","serviceProviderName":"string","site":{"by":"ID","input":"string"},"subnet":"example_value","upstreamBwLimit":"example_value","vlan":"example_value"}}'
+catocli mutation site addCloudInterconnectPhysicalConnection '{"addCloudInterconnectPhysicalConnectionInput":{"QinQVlanConfiguration":{"cVlan":100,"sVlan":100},"downstreamBwLimit":100,"encapsulationMethod":"DOT1Q","haRole":"PRIMARY","popLocation":{"by":"ID","input":"string"},"privateCatoIp":"192.0.2.1","privateSiteIp":"192.0.2.1","serviceProviderName":"string","site":{"by":"ID","input":"string"},"subnet":"192.0.2.0/24","upstreamBwLimit":100,"vlan":100}}'
 
 catocli mutation site addCloudInterconnectPhysicalConnection '{
     "addCloudInterconnectPhysicalConnectionInput": {
         "QinQVlanConfiguration": {
-            "cVlan": "example_value",
-            "sVlan": "example_value"
+            "cVlan": 100,
+            "sVlan": 100
         },
-        "downstreamBwLimit": "example_value",
+        "downstreamBwLimit": 100,
         "encapsulationMethod": "DOT1Q",
         "haRole": "PRIMARY",
         "popLocation": {
             "by": "ID",
             "input": "string"
         },
-        "privateCatoIp": "example_value",
-        "privateSiteIp": "example_value",
+        "privateCatoIp": "192.0.2.1",
+        "privateSiteIp": "192.0.2.1",
         "serviceProviderName": "string",
         "site": {
             "by": "ID",
             "input": "string"
         },
-        "subnet": "example_value",
-        "upstreamBwLimit": "example_value",
-        "vlan": "example_value"
+        "subnet": "192.0.2.0/24",
+        "upstreamBwLimit": 100,
+        "vlan": 100
     }
 }'
 ```
 
 #### Operation Arguments for mutation.site.addCloudInterconnectPhysicalConnection ####
 
-`accountId` [ID] - (required) N/A    
-`addCloudInterconnectPhysicalConnectionInput` [AddCloudInterconnectPhysicalConnectionInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`addCloudInterconnectPhysicalConnectionInput` [AddCloudInterconnectPhysicalConnectionInput] - (required) N/A

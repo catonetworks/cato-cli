@@ -23,5 +23,5 @@ catocli query networkConfig dhcp option '{
 
 #### Operation Arguments for query.networkConfig.dhcp.option ####
 
-`accountId` [ID] - (required) N/A    
-`networkConfigDhcpOptionRefInput` [NetworkConfigDhcpOptionRefInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`networkConfigDhcpOptionRefInput` [NetworkConfigDhcpOptionRefInput] - (required) N/A

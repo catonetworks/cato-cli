@@ -27,5 +27,5 @@ catocli mutation popLocationMutations addAllocatedIp '{
 
 #### Operation Arguments for mutation.popLocationMutations.addAllocatedIp ####
 
-`accountId` [ID] - (required) N/A    
-`popLocationAddAllocatedIpInput` [PopLocationAddAllocatedIpInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`popLocationAddAllocatedIpInput` [PopLocationAddAllocatedIpInput] - (required) N/A

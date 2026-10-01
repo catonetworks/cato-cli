@@ -11,13 +11,12 @@ catocli mutation user revokeUserSession <json>
 
 catocli mutation user revokeUserSession --json-file mutation.user.revokeUserSession.json
 
-catocli mutation user revokeUserSession '{"revokeUserSessionInput":{"userId":["example1","example2"]}}'
+catocli mutation user revokeUserSession '{"revokeUserSessionInput":{"userId":[1]}}'
 
 catocli mutation user revokeUserSession '{
     "revokeUserSessionInput": {
         "userId": [
-            "example1",
-            "example2"
+            1
         ]
     }
 }'
@@ -25,5 +24,5 @@ catocli mutation user revokeUserSession '{
 
 #### Operation Arguments for mutation.user.revokeUserSession ####
 
-`accountId` [ID] - (required) Unique identifier of the Cato account.    
-`revokeUserSessionInput` [RevokeUserSessionInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`revokeUserSessionInput` [RevokeUserSessionInput] - (required) N/A

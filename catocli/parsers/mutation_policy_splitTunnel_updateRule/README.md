@@ -11,7 +11,7 @@ catocli mutation policy splitTunnel updateRule <json>
 
 catocli mutation policy splitTunnel updateRule --json-file mutation.policy.splitTunnel.updateRule.json
 
-catocli mutation policy splitTunnel updateRule '{"splitTunnelPolicyMutationInput":{"revision":{"id":"id"}},"splitTunnelUpdateRuleInput":{"id":"id","rule":{"action":"EXCLUDE","country":{"by":"ID","input":"string"},"coverage":"ALL","description":"string","destination":{"application":{"by":"ID","input":"string"},"domain":["example1","example2"],"fqdn":["example1","example2"],"globalIpRange":{"by":"ID","input":"string"}},"dnsExclusion":{"domain":["example1","example2"]},"enabled":true,"name":"string","platform":"WINDOWS","routingPriority":"LAN","source":{"user":{"by":"ID","input":"string"},"usersGroup":{"by":"ID","input":"string"}},"sourceNetwork":{"sourceNetworkType":"ANY"}}}}'
+catocli mutation policy splitTunnel updateRule '{"splitTunnelPolicyMutationInput":{"revision":{"id":"id"}},"splitTunnelUpdateRuleInput":{"id":"id","rule":{"action":"EXCLUDE","country":[{"by":"ID","input":"string"}],"coverage":"ALL","description":"string","destination":{"application":[{"by":"ID","input":"string"}],"domain":["example.com"],"fqdn":["host.example.com"],"globalIpRange":[{"by":"ID","input":"string"}]},"dnsExclusion":{"domain":["example.com"]},"enabled":true,"name":"string","platform":["WINDOWS"],"routingPriority":"LAN","source":{"user":[{"by":"ID","input":"string"}],"usersGroup":[{"by":"ID","input":"string"}]},"sourceNetwork":{"sourceNetworkType":"ANY"}}}}'
 
 catocli mutation policy splitTunnel updateRule '{
     "splitTunnelPolicyMutationInput": {
@@ -23,49 +23,58 @@ catocli mutation policy splitTunnel updateRule '{
         "id": "id",
         "rule": {
             "action": "EXCLUDE",
-            "country": {
-                "by": "ID",
-                "input": "string"
-            },
-            "coverage": "ALL",
-            "description": "string",
-            "destination": {
-                "application": {
-                    "by": "ID",
-                    "input": "string"
-                },
-                "domain": [
-                    "example1",
-                    "example2"
-                ],
-                "fqdn": [
-                    "example1",
-                    "example2"
-                ],
-                "globalIpRange": {
+            "country": [
+                {
                     "by": "ID",
                     "input": "string"
                 }
+            ],
+            "coverage": "ALL",
+            "description": "string",
+            "destination": {
+                "application": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ],
+                "domain": [
+                    "example.com"
+                ],
+                "fqdn": [
+                    "host.example.com"
+                ],
+                "globalIpRange": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ]
             },
             "dnsExclusion": {
                 "domain": [
-                    "example1",
-                    "example2"
+                    "example.com"
                 ]
             },
             "enabled": true,
             "name": "string",
-            "platform": "WINDOWS",
+            "platform": [
+                "WINDOWS"
+            ],
             "routingPriority": "LAN",
             "source": {
-                "user": {
-                    "by": "ID",
-                    "input": "string"
-                },
-                "usersGroup": {
-                    "by": "ID",
-                    "input": "string"
-                }
+                "user": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ],
+                "usersGroup": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ]
             },
             "sourceNetwork": {
                 "sourceNetworkType": "ANY"
@@ -77,6 +86,6 @@ catocli mutation policy splitTunnel updateRule '{
 
 #### Operation Arguments for mutation.policy.splitTunnel.updateRule ####
 
-`accountId` [ID] - (required) N/A    
-`splitTunnelPolicyMutationInput` [SplitTunnelPolicyMutationInput] - (required) N/A    
-`splitTunnelUpdateRuleInput` [SplitTunnelUpdateRuleInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`splitTunnelPolicyMutationInput` [SplitTunnelPolicyMutationInput] - (required) N/A
+`splitTunnelUpdateRuleInput` [SplitTunnelUpdateRuleInput] - (required) N/A

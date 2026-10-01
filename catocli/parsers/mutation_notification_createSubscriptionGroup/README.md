@@ -11,18 +11,22 @@ catocli mutation notification createSubscriptionGroup <json>
 
 catocli mutation notification createSubscriptionGroup --json-file mutation.notification.createSubscriptionGroup.json
 
-catocli mutation notification createSubscriptionGroup '{"createSubscriptionGroupInput":{"integration":{"by":"ID","input":"string"},"mailingList":{"by":"ID","input":"string"},"name":"string"}}'
+catocli mutation notification createSubscriptionGroup '{"createSubscriptionGroupInput":{"integration":[{"by":"ID","input":"string"}],"mailingList":[{"by":"ID","input":"string"}],"name":"string"}}'
 
 catocli mutation notification createSubscriptionGroup '{
     "createSubscriptionGroupInput": {
-        "integration": {
-            "by": "ID",
-            "input": "string"
-        },
-        "mailingList": {
-            "by": "ID",
-            "input": "string"
-        },
+        "integration": [
+            {
+                "by": "ID",
+                "input": "string"
+            }
+        ],
+        "mailingList": [
+            {
+                "by": "ID",
+                "input": "string"
+            }
+        ],
         "name": "string"
     }
 }'
@@ -30,5 +34,5 @@ catocli mutation notification createSubscriptionGroup '{
 
 #### Operation Arguments for mutation.notification.createSubscriptionGroup ####
 
-`accountId` [ID] - (required) N/A    
-`createSubscriptionGroupInput` [CreateSubscriptionGroupInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`createSubscriptionGroupInput` [CreateSubscriptionGroupInput] - (required) N/A

@@ -11,26 +11,30 @@ catocli query auditFeed <json>
 
 catocli query auditFeed --json-file query.auditFeed.json
 
-catocli query auditFeed '{"accountIDs":["id1","id2"],"auditFieldFilterInput":{"fieldName":{"AuditFieldName":"admin"},"operator":"is","values":["string1","string2"]},"fieldNames":"admin","marker":"string","timeFrame":"example_value"}'
+catocli query auditFeed '{"accountIDs":["id1","id2"],"auditFieldFilterInput":[{"fieldName":{"AuditFieldName":"admin"},"operator":"is","values":["string1","string2"]}],"fieldNames":["admin"],"marker":"string","timeFrame":"last.P1D"}'
 
 catocli query auditFeed '{
     "accountIDs": [
         "id1",
         "id2"
     ],
-    "auditFieldFilterInput": {
-        "fieldName": {
-            "AuditFieldName": "admin"
-        },
-        "operator": "is",
-        "values": [
-            "string1",
-            "string2"
-        ]
-    },
-    "fieldNames": "admin",
+    "auditFieldFilterInput": [
+        {
+            "fieldName": {
+                "AuditFieldName": "admin"
+            },
+            "operator": "is",
+            "values": [
+                "string1",
+                "string2"
+            ]
+        }
+    ],
+    "fieldNames": [
+        "admin"
+    ],
     "marker": "string",
-    "timeFrame": "example_value"
+    "timeFrame": "last.P1D"
 }'
 ```
 
@@ -57,8 +61,8 @@ Format: `"utc.YYYY-MM-{DD/HH:MM:SS--DD/HH:MM:SS}"`
 
 #### Operation Arguments for query.auditFeed ####
 
-`accountIDs` [ID[]] - (required) List of Unique Account Identifiers.    
-`auditFieldFilterInput` [AuditFieldFilterInput[]] - (required) N/A    
-`fieldNames` [AuditFieldName[]] - (required) N/A Default Value: ['admin', 'apiKey', 'model_name', 'admin_id', 'module', 'audit_creation_type', 'insertion_date', 'change_type', 'creation_date', 'model_type', 'account', 'account_id']   
-`marker` [String] - (required) Marker to use to get results from    
-`timeFrame` [TimeFrame] - (required) N/A    
+`accountIDs` [ID[]] - (required) N/A
+`auditFieldFilterInput` [AuditFieldFilterInput[]] - (required) N/A
+`fieldNames` [AuditFieldName[]] - (required) N/A Default Value: ['admin', 'apiKey', 'model_name', 'admin_id', 'module', 'audit_creation_type', 'insertion_date', 'change_type', 'creation_date', 'model_type', 'account', 'account_id']
+`marker` [String] - (required) N/A
+`timeFrame` [TimeFrame] - (required) N/A

@@ -23,5 +23,5 @@ catocli query site wifiRadioProfile '{
 
 #### Operation Arguments for query.site.wifiRadioProfile ####
 
-`accountId` [ID] - (required) N/A    
-`wifiRadioProfileRefInput` [WifiRadioProfileRefInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`wifiRadioProfileRefInput` [WifiRadioProfileRefInput] - (required) N/A

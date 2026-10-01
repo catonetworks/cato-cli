@@ -11,7 +11,7 @@ catocli mutation policy terminalServer updateRule <json>
 
 catocli mutation policy terminalServer updateRule --json-file mutation.policy.terminalServer.updateRule.json
 
-catocli mutation policy terminalServer updateRule '{"terminalServerPolicyMutationInput":{"revision":{"id":"id"}},"terminalServerUpdateRuleInput":{"id":"id","rule":{"allowedHostIP":{"by":"ID","input":"string"},"description":"string","enabled":true,"excludeTraffic":{"by":"ID","input":"string"},"name":"string"}}}'
+catocli mutation policy terminalServer updateRule '{"terminalServerPolicyMutationInput":{"revision":{"id":"id"}},"terminalServerUpdateRuleInput":{"id":"id","rule":{"allowedHostIP":{"by":"ID","input":"string"},"description":"string","enabled":true,"excludeTraffic":[{"by":"ID","input":"string"}],"name":"string"}}}'
 
 catocli mutation policy terminalServer updateRule '{
     "terminalServerPolicyMutationInput": {
@@ -28,10 +28,12 @@ catocli mutation policy terminalServer updateRule '{
             },
             "description": "string",
             "enabled": true,
-            "excludeTraffic": {
-                "by": "ID",
-                "input": "string"
-            },
+            "excludeTraffic": [
+                {
+                    "by": "ID",
+                    "input": "string"
+                }
+            ],
             "name": "string"
         }
     }
@@ -40,6 +42,6 @@ catocli mutation policy terminalServer updateRule '{
 
 #### Operation Arguments for mutation.policy.terminalServer.updateRule ####
 
-`accountId` [ID] - (required) N/A    
-`terminalServerPolicyMutationInput` [TerminalServerPolicyMutationInput] - (required) N/A    
-`terminalServerUpdateRuleInput` [TerminalServerUpdateRuleInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`terminalServerPolicyMutationInput` [TerminalServerPolicyMutationInput] - (required) N/A
+`terminalServerUpdateRuleInput` [TerminalServerUpdateRuleInput] - (required) N/A

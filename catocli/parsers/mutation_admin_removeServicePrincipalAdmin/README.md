@@ -20,5 +20,5 @@ catocli mutation admin removeServicePrincipalAdmin '{
 
 #### Operation Arguments for mutation.admin.removeServicePrincipalAdmin ####
 
-`accountId` [ID] - (required) N/A    
-`adminID` [ID] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`adminID` [ID] - (required) N/A

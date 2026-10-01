@@ -11,18 +11,19 @@ catocli mutation notification createMailingList <json>
 
 catocli mutation notification createMailingList --json-file mutation.notification.createMailingList.json
 
-catocli mutation notification createMailingList '{"createMailingListInput":{"address":["example1","example2"],"admin":{"by":"ID","input":"string"},"name":"string"}}'
+catocli mutation notification createMailingList '{"createMailingListInput":{"address":["user@example.com"],"admin":[{"by":"ID","input":"string"}],"name":"string"}}'
 
 catocli mutation notification createMailingList '{
     "createMailingListInput": {
         "address": [
-            "example1",
-            "example2"
+            "user@example.com"
         ],
-        "admin": {
-            "by": "ID",
-            "input": "string"
-        },
+        "admin": [
+            {
+                "by": "ID",
+                "input": "string"
+            }
+        ],
         "name": "string"
     }
 }'
@@ -30,5 +31,5 @@ catocli mutation notification createMailingList '{
 
 #### Operation Arguments for mutation.notification.createMailingList ####
 
-`accountId` [ID] - (required) N/A    
-`createMailingListInput` [CreateMailingListInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`createMailingListInput` [CreateMailingListInput] - (required) N/A

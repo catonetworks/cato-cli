@@ -11,11 +11,11 @@ catocli mutation popLocationMutations removeAllocatedIp <json>
 
 catocli mutation popLocationMutations removeAllocatedIp --json-file mutation.popLocationMutations.removeAllocatedIp.json
 
-catocli mutation popLocationMutations removeAllocatedIp '{"popLocationRemoveAllocatedIpInput":{"ip":"example_value","type":"SYSTEM"}}'
+catocli mutation popLocationMutations removeAllocatedIp '{"popLocationRemoveAllocatedIpInput":{"ip":"192.0.2.1","type":"SYSTEM"}}'
 
 catocli mutation popLocationMutations removeAllocatedIp '{
     "popLocationRemoveAllocatedIpInput": {
-        "ip": "example_value",
+        "ip": "192.0.2.1",
         "type": "SYSTEM"
     }
 }'
@@ -23,5 +23,5 @@ catocli mutation popLocationMutations removeAllocatedIp '{
 
 #### Operation Arguments for mutation.popLocationMutations.removeAllocatedIp ####
 
-`accountId` [ID] - (required) N/A    
-`popLocationRemoveAllocatedIpInput` [PopLocationRemoveAllocatedIpInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`popLocationRemoveAllocatedIpInput` [PopLocationRemoveAllocatedIpInput] - (required) N/A

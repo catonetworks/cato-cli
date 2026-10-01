@@ -31,6 +31,6 @@ catocli mutation policy wanFirewall moveRule '{
 
 #### Operation Arguments for mutation.policy.wanFirewall.moveRule ####
 
-`accountId` [ID] - (required) N/A    
-`policyMoveRuleInput` [PolicyMoveRuleInput] - (required) N/A    
-`wanFirewallPolicyMutationInput` [WanFirewallPolicyMutationInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`policyMoveRuleInput` [PolicyMoveRuleInput] - (required) N/A
+`wanFirewallPolicyMutationInput` [WanFirewallPolicyMutationInput] - (required) N/A

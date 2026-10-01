@@ -11,19 +11,19 @@ catocli mutation sites updateWifiSsid <json>
 
 catocli mutation sites updateWifiSsid --json-file mutation.sites.updateWifiSsid.json
 
-catocli mutation sites updateWifiSsid '{"updateWifiSsidInput":{"band":"BAND_2P4G","category":"GUEST","dhcp":{"dhcpSubnet":"example_value"},"enabled":true,"id":"id","internetOnly":true,"localIp":"example_value","mdnsEnabled":true,"microsegmentationEnabled":true,"name":"string","security":{"authProtocol":"WPA2","mode":"OPEN","psk":{"passkey":"example_value"},"trackAuthentication":true},"subnet":"example_value","visible":true}}'
+catocli mutation sites updateWifiSsid '{"updateWifiSsidInput":{"band":"BAND_2P4G","category":"GUEST","dhcp":{"dhcpSubnet":"192.0.2.0/24"},"enabled":true,"id":"id","internetOnly":true,"localIp":"192.0.2.1","mdnsEnabled":true,"microsegmentationEnabled":true,"name":"string","security":{"authProtocol":"WPA2","mode":"OPEN","psk":{"passkey":"replace-with-your-secret"},"trackAuthentication":true},"subnet":"192.0.2.0/24","visible":true}}'
 
 catocli mutation sites updateWifiSsid '{
     "updateWifiSsidInput": {
         "band": "BAND_2P4G",
         "category": "GUEST",
         "dhcp": {
-            "dhcpSubnet": "example_value"
+            "dhcpSubnet": "192.0.2.0/24"
         },
         "enabled": true,
         "id": "id",
         "internetOnly": true,
-        "localIp": "example_value",
+        "localIp": "192.0.2.1",
         "mdnsEnabled": true,
         "microsegmentationEnabled": true,
         "name": "string",
@@ -31,11 +31,11 @@ catocli mutation sites updateWifiSsid '{
             "authProtocol": "WPA2",
             "mode": "OPEN",
             "psk": {
-                "passkey": "example_value"
+                "passkey": "replace-with-your-secret"
             },
             "trackAuthentication": true
         },
-        "subnet": "example_value",
+        "subnet": "192.0.2.0/24",
         "visible": true
     }
 }'
@@ -43,5 +43,5 @@ catocli mutation sites updateWifiSsid '{
 
 #### Operation Arguments for mutation.sites.updateWifiSsid ####
 
-`accountId` [ID] - (required) N/A    
-`updateWifiSsidInput` [UpdateWifiSsidInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`updateWifiSsidInput` [UpdateWifiSsidInput] - (required) N/A

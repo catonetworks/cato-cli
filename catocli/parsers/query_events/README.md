@@ -11,29 +11,16 @@ catocli query events <json>
 
 catocli query events --json-file query.events.json
 
-catocli query events '{"eventsDimension":{"fieldName":"access_method"},"eventsFilter":{"fieldName":"access_method","operator":"is","values":["string1","string2"]},"eventsMeasure":{"aggType":"sum","alias":"string","fieldName":"access_method","trend":true},"eventsPostAggFilter":{"aggType":"sum","filter":{"fieldName":"access_method","operator":"is","values":["string1","string2"]}},"eventsSort":{"alias":"string","fieldName":"access_method","order":"asc"},"from":1,"includeEmptyDimension":true,"limit":1,"timeFrame":"example_value"}'
+catocli query events '{"eventsDimension":[{"fieldName":"access_method"}],"eventsFilter":[{"fieldName":"access_method","operator":"is","values":["string1","string2"]}],"eventsMeasure":[{"aggType":"sum","alias":"string","fieldName":"access_method","trend":true}],"eventsPostAggFilter":[{"aggType":"sum","filter":{"fieldName":"access_method","operator":"is","values":["string1","string2"]}}],"eventsSort":[{"alias":"string","fieldName":"access_method","order":"asc"}],"from":1,"includeEmptyDimension":true,"limit":1,"timeFrame":"last.P1D"}'
 
 catocli query events '{
-    "eventsDimension": {
-        "fieldName": "access_method"
-    },
-    "eventsFilter": {
-        "fieldName": "access_method",
-        "operator": "is",
-        "values": [
-            "string1",
-            "string2"
-        ]
-    },
-    "eventsMeasure": {
-        "aggType": "sum",
-        "alias": "string",
-        "fieldName": "access_method",
-        "trend": true
-    },
-    "eventsPostAggFilter": {
-        "aggType": "sum",
-        "filter": {
+    "eventsDimension": [
+        {
+            "fieldName": "access_method"
+        }
+    ],
+    "eventsFilter": [
+        {
             "fieldName": "access_method",
             "operator": "is",
             "values": [
@@ -41,16 +28,39 @@ catocli query events '{
                 "string2"
             ]
         }
-    },
-    "eventsSort": {
-        "alias": "string",
-        "fieldName": "access_method",
-        "order": "asc"
-    },
+    ],
+    "eventsMeasure": [
+        {
+            "aggType": "sum",
+            "alias": "string",
+            "fieldName": "access_method",
+            "trend": true
+        }
+    ],
+    "eventsPostAggFilter": [
+        {
+            "aggType": "sum",
+            "filter": {
+                "fieldName": "access_method",
+                "operator": "is",
+                "values": [
+                    "string1",
+                    "string2"
+                ]
+            }
+        }
+    ],
+    "eventsSort": [
+        {
+            "alias": "string",
+            "fieldName": "access_method",
+            "order": "asc"
+        }
+    ],
     "from": 1,
     "includeEmptyDimension": true,
     "limit": 1,
-    "timeFrame": "example_value"
+    "timeFrame": "last.P1D"
 }'
 ```
 
@@ -77,13 +87,13 @@ Format: `"utc.YYYY-MM-{DD/HH:MM:SS--DD/HH:MM:SS}"`
 
 #### Operation Arguments for query.events ####
 
-`accountID` [ID] - (required) Account ID    
-`eventsDimension` [EventsDimension[]] - (required) N/A    
-`eventsFilter` [EventsFilter[]] - (required) N/A    
-`eventsMeasure` [EventsMeasure[]] - (required) N/A    
-`eventsPostAggFilter` [EventsPostAggFilter[]] - (required) N/A    
-`eventsSort` [EventsSort[]] - (required) N/A    
-`from` [Int] - (required) N/A    
-`includeEmptyDimension` [Boolean] - (required) When true, rows with empty/null values for a grouped dimension (e.g., country, device type) are returned as an empty group rather than excluded. This ensures consistent totals in API queries and surfaces previously hidden data in CMA dashboards and reports. Defaults to false.    
-`limit` [Int] - (required) N/A    
-`timeFrame` [TimeFrame] - (required) N/A    
+`accountID` [ID] - (required) N/A
+`eventsDimension` [EventsDimension[]] - (required) N/A
+`eventsFilter` [EventsFilter[]] - (required) N/A
+`eventsMeasure` [EventsMeasure[]] - (required) N/A
+`eventsPostAggFilter` [EventsPostAggFilter[]] - (required) N/A
+`eventsSort` [EventsSort[]] - (required) N/A
+`from` [Int] - (required) N/A
+`includeEmptyDimension` [Boolean] - (required) N/A
+`limit` [Int] - (required) N/A
+`timeFrame` [TimeFrame] - (required) N/A

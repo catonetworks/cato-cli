@@ -11,18 +11,18 @@ catocli mutation site updateSecondaryAzureVSocket <json>
 
 catocli mutation site updateSecondaryAzureVSocket --json-file mutation.site.updateSecondaryAzureVSocket.json
 
-catocli mutation site updateSecondaryAzureVSocket '{"updateSecondaryAzureVSocketInput":{"floatingIp":"example_value","id":"id","interfaceIp":"example_value"}}'
+catocli mutation site updateSecondaryAzureVSocket '{"updateSecondaryAzureVSocketInput":{"floatingIp":"192.0.2.1","id":"id","interfaceIp":"192.0.2.1"}}'
 
 catocli mutation site updateSecondaryAzureVSocket '{
     "updateSecondaryAzureVSocketInput": {
-        "floatingIp": "example_value",
+        "floatingIp": "192.0.2.1",
         "id": "id",
-        "interfaceIp": "example_value"
+        "interfaceIp": "192.0.2.1"
     }
 }'
 ```
 
 #### Operation Arguments for mutation.site.updateSecondaryAzureVSocket ####
 
-`accountId` [ID] - (required) N/A    
-`updateSecondaryAzureVSocketInput` [UpdateSecondaryAzureVSocketInput] - (required) N/A    
+`accountId` [ID] - (required) N/A
+`updateSecondaryAzureVSocketInput` [UpdateSecondaryAzureVSocketInput] - (required) N/A

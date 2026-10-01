@@ -3,7 +3,7 @@ import sys
 import unittest
 from pathlib import Path
 
-from graphql import build_client_schema, parse, validate
+from graphql import DirectiveLocation, build_client_schema, parse, validate
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -60,7 +60,14 @@ class GeneratedGraphQLPayloadTest(unittest.TestCase):
     def setUpClass(cls):
         load_introspection()
         with (ROOT / "schema/introspection.json").open(encoding="utf-8") as handle:
-            cls.schema = build_client_schema(json.load(handle)["data"])
+            data = json.load(handle)["data"]
+        # Vendor directive locations do not affect generated operation validation.
+        for directive in data["__schema"]["directives"]:
+            directive["locations"] = [
+                location for location in directive["locations"]
+                if location in DirectiveLocation.__members__
+            ]
+        cls.schema = build_client_schema(data)
 
     def test_all_generated_operations_validate_against_introspection(self):
         failures = []

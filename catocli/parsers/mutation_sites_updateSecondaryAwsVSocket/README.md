@@ -11,14 +11,14 @@ catocli mutation sites updateSecondaryAwsVSocket <json>
 
 catocli mutation sites updateSecondaryAwsVSocket --json-file mutation.sites.updateSecondaryAwsVSocket.json
 
-catocli mutation sites updateSecondaryAwsVSocket '{"updateSecondaryAwsVSocketInput":{"id":"id","ipAddress":"example_value","routeTableId":"string","subnet":"example_value"}}'
+catocli mutation sites updateSecondaryAwsVSocket '{"updateSecondaryAwsVSocketInput":{"id":"id","ipAddress":"192.0.2.1","routeTableId":"string","subnet":"192.0.2.0/24"}}'
 
 catocli mutation sites updateSecondaryAwsVSocket '{
     "updateSecondaryAwsVSocketInput": {
         "id": "id",
-        "ipAddress": "example_value",
+        "ipAddress": "192.0.2.1",
         "routeTableId": "string",
-        "subnet": "example_value"
+        "subnet": "192.0.2.0/24"
     }
 }'
 ```

@@ -11,16 +11,15 @@ catocli mutation networkConfig dns updateSettings <json>
 
 catocli mutation networkConfig dns updateSettings --json-file mutation.networkConfig.dns.updateSettings.json
 
-catocli mutation networkConfig dns updateSettings '{"networkConfigDnsUpdateSettingsInput":{"acceptDnsRequestsOnLanInterfaceIp":true,"primaryServer":"example_value","secondaryServer":"example_value","suffix":["example1","example2"]}}'
+catocli mutation networkConfig dns updateSettings '{"networkConfigDnsUpdateSettingsInput":{"acceptDnsRequestsOnLanInterfaceIp":true,"primaryServer":"192.0.2.1","secondaryServer":"192.0.2.1","suffix":["example.com"]}}'
 
 catocli mutation networkConfig dns updateSettings '{
     "networkConfigDnsUpdateSettingsInput": {
         "acceptDnsRequestsOnLanInterfaceIp": true,
-        "primaryServer": "example_value",
-        "secondaryServer": "example_value",
+        "primaryServer": "192.0.2.1",
+        "secondaryServer": "192.0.2.1",
         "suffix": [
-            "example1",
-            "example2"
+            "example.com"
         ]
     }
 }'

@@ -11,17 +11,19 @@ catocli mutation networkConfig dhcp updateOption <json>
 
 catocli mutation networkConfig dhcp updateOption --json-file mutation.networkConfig.dhcp.updateOption.json
 
-catocli mutation networkConfig dhcp updateOption '{"networkConfigDhcpUpdateOptionInput":{"option":{"description":"string","id":"id","tag":1,"type":"ASCII","value":"string"}}}'
+catocli mutation networkConfig dhcp updateOption '{"networkConfigDhcpUpdateOptionInput":{"option":[{"description":"string","id":"id","tag":1,"type":"ASCII","value":"string"}]}}'
 
 catocli mutation networkConfig dhcp updateOption '{
     "networkConfigDhcpUpdateOptionInput": {
-        "option": {
-            "description": "string",
-            "id": "id",
-            "tag": 1,
-            "type": "ASCII",
-            "value": "string"
-        }
+        "option": [
+            {
+                "description": "string",
+                "id": "id",
+                "tag": 1,
+                "type": "ASCII",
+                "value": "string"
+            }
+        ]
     }
 }'
 ```

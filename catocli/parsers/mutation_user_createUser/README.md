@@ -11,16 +11,16 @@ catocli mutation user createUser <json>
 
 catocli mutation user createUser --json-file mutation.user.createUser.json
 
-catocli mutation user createUser '{"createUserInput":{"department":"string","email":"example_value","firstName":"string","jobTitle":"string","lastName":"string","phoneNumber":"example_value"}}'
+catocli mutation user createUser '{"createUserInput":{"department":"string","email":"user@example.com","firstName":"string","jobTitle":"string","lastName":"string","phoneNumber":"+15053334070"}}'
 
 catocli mutation user createUser '{
     "createUserInput": {
         "department": "string",
-        "email": "example_value",
+        "email": "user@example.com",
         "firstName": "string",
         "jobTitle": "string",
         "lastName": "string",
-        "phoneNumber": "example_value"
+        "phoneNumber": "+15053334070"
     }
 }'
 ```

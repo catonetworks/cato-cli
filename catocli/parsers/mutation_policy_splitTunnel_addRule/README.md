@@ -11,7 +11,7 @@ catocli mutation policy splitTunnel addRule <json>
 
 catocli mutation policy splitTunnel addRule --json-file mutation.policy.splitTunnel.addRule.json
 
-catocli mutation policy splitTunnel addRule '{"splitTunnelAddRuleInput":{"at":{"position":"AFTER_RULE","ref":"id"},"rule":{"action":"EXCLUDE","country":{"by":"ID","input":"string"},"coverage":"ALL","description":"string","destination":{"application":{"by":"ID","input":"string"},"domain":["example1","example2"],"fqdn":["example1","example2"],"globalIpRange":{"by":"ID","input":"string"}},"dnsExclusion":{"domain":["example1","example2"]},"enabled":true,"name":"string","platform":"WINDOWS","routingPriority":"LAN","source":{"user":{"by":"ID","input":"string"},"usersGroup":{"by":"ID","input":"string"}},"sourceNetwork":{"sourceNetworkType":"ANY"}}},"splitTunnelPolicyMutationInput":{"revision":{"id":"id"}}}'
+catocli mutation policy splitTunnel addRule '{"splitTunnelAddRuleInput":{"at":{"position":"AFTER_RULE","ref":"id"},"rule":{"action":"EXCLUDE","country":[{"by":"ID","input":"string"}],"coverage":"ALL","description":"string","destination":{"application":[{"by":"ID","input":"string"}],"domain":["example.com"],"fqdn":["host.example.com"],"globalIpRange":[{"by":"ID","input":"string"}]},"dnsExclusion":{"domain":["example.com"]},"enabled":true,"name":"string","platform":["WINDOWS"],"routingPriority":"LAN","source":{"user":[{"by":"ID","input":"string"}],"usersGroup":[{"by":"ID","input":"string"}]},"sourceNetwork":{"sourceNetworkType":"ANY"}}},"splitTunnelPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy splitTunnel addRule '{
     "splitTunnelAddRuleInput": {
@@ -21,49 +21,58 @@ catocli mutation policy splitTunnel addRule '{
         },
         "rule": {
             "action": "EXCLUDE",
-            "country": {
-                "by": "ID",
-                "input": "string"
-            },
-            "coverage": "ALL",
-            "description": "string",
-            "destination": {
-                "application": {
-                    "by": "ID",
-                    "input": "string"
-                },
-                "domain": [
-                    "example1",
-                    "example2"
-                ],
-                "fqdn": [
-                    "example1",
-                    "example2"
-                ],
-                "globalIpRange": {
+            "country": [
+                {
                     "by": "ID",
                     "input": "string"
                 }
+            ],
+            "coverage": "ALL",
+            "description": "string",
+            "destination": {
+                "application": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ],
+                "domain": [
+                    "example.com"
+                ],
+                "fqdn": [
+                    "host.example.com"
+                ],
+                "globalIpRange": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ]
             },
             "dnsExclusion": {
                 "domain": [
-                    "example1",
-                    "example2"
+                    "example.com"
                 ]
             },
             "enabled": true,
             "name": "string",
-            "platform": "WINDOWS",
+            "platform": [
+                "WINDOWS"
+            ],
             "routingPriority": "LAN",
             "source": {
-                "user": {
-                    "by": "ID",
-                    "input": "string"
-                },
-                "usersGroup": {
-                    "by": "ID",
-                    "input": "string"
-                }
+                "user": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ],
+                "usersGroup": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ]
             },
             "sourceNetwork": {
                 "sourceNetworkType": "ANY"

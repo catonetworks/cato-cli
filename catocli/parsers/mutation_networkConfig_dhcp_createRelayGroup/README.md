@@ -11,17 +11,18 @@ catocli mutation networkConfig dhcp createRelayGroup <json>
 
 catocli mutation networkConfig dhcp createRelayGroup --json-file mutation.networkConfig.dhcp.createRelayGroup.json
 
-catocli mutation networkConfig dhcp createRelayGroup '{"networkConfigDhcpCreateRelayGroupInput":{"relayGroup":{"name":"string","server":["example1","example2"]}}}'
+catocli mutation networkConfig dhcp createRelayGroup '{"networkConfigDhcpCreateRelayGroupInput":{"relayGroup":[{"name":"string","server":["192.0.2.1"]}]}}'
 
 catocli mutation networkConfig dhcp createRelayGroup '{
     "networkConfigDhcpCreateRelayGroupInput": {
-        "relayGroup": {
-            "name": "string",
-            "server": [
-                "example1",
-                "example2"
-            ]
-        }
+        "relayGroup": [
+            {
+                "name": "string",
+                "server": [
+                    "192.0.2.1"
+                ]
+            }
+        ]
     }
 }'
 ```

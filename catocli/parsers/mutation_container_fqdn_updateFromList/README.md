@@ -11,7 +11,7 @@ catocli mutation container fqdn updateFromList <json>
 
 catocli mutation container fqdn updateFromList --json-file mutation.container.fqdn.updateFromList.json
 
-catocli mutation container fqdn updateFromList '{"updateFqdnContainerFromListInput":{"description":"string","ref":{"by":"ID","input":"string"},"values":["example1","example2"]}}'
+catocli mutation container fqdn updateFromList '{"updateFqdnContainerFromListInput":{"description":"string","ref":{"by":"ID","input":"string"},"values":["host.example.com"]}}'
 
 catocli mutation container fqdn updateFromList '{
     "updateFqdnContainerFromListInput": {
@@ -21,8 +21,7 @@ catocli mutation container fqdn updateFromList '{
             "input": "string"
         },
         "values": [
-            "example1",
-            "example2"
+            "host.example.com"
         ]
     }
 }'

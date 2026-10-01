@@ -11,7 +11,7 @@ catocli mutation policy applicationControl addRule <json>
 
 catocli mutation policy applicationControl addRule --json-file mutation.policy.applicationControl.addRule.json
 
-catocli mutation policy applicationControl addRule '{"applicationControlAddRuleInput":{"at":{"position":"AFTER_RULE","ref":"id"},"rule":{"applicationRule":{"accessMethod":{"accessMethod":"USER_AGENT","operator":"IS","value":"string","valueSet":{"by":"ID","input":"string"}},"action":"BLOCK","actionConfig":{"userNotification":{"by":"ID","input":"string"}},"application":{"appCategory":{"by":"ID","input":"string"},"application":{"by":"ID","input":"string"},"applicationType":"APPLICATION","customApp":{"by":"ID","input":"string"},"customCategory":{"by":"ID","input":"string"},"sanctionedAppsCategory":{"by":"ID","input":"string"}},"applicationActivity":{"activity":{"by":"ID","input":"string"},"field":{"by":"ID","input":"string"},"operator":"IS","value":"string","valueSet":{"by":"ID","input":"string"}},"applicationActivitySatisfy":"ANY","applicationContext":{"applicationTenant":{"operator":"IS","value":"string","valueSet":{"by":"ID","input":"string"}}},"applicationCriteria":{"attributes":{"complianceAttributes":{"hippa":"ANY","isae3402":"ANY","iso27001":"ANY","pciDss":"ANY","soc1":"ANY","soc2":"ANY","soc3":"ANY","sox":"ANY"},"securityAttributes":{"auditTrail":"ANY","encryptionAtRest":"ANY","httpSecurityHeaders":"ANY","mfa":"ANY","rbac":"ANY","rememberPassword":"ANY","sso":"ANY","tlsEnforcement":"ANY","trustedCertificate":"ANY"}},"originCountry":{"by":"ID","input":"string"},"risk":{"risk":"example_value","riskOperator":"IS"}},"applicationCriteriaSatisfy":"ANY","device":{"by":"ID","input":"string"},"schedule":{"activeOn":"ALWAYS","customRecurring":{"days":"SUNDAY","from":"example_value","to":"example_value"},"customTimeframe":{"from":"example_value","to":"example_value"}},"severity":"HIGH","source":{"country":{"by":"ID","input":"string"},"floatingSubnet":{"by":"ID","input":"string"},"globalIpRange":{"by":"ID","input":"string"},"group":{"by":"ID","input":"string"},"host":{"by":"ID","input":"string"},"ip":["example1","example2"],"ipRange":{"from":"example_value","to":"example_value"},"networkInterface":{"by":"ID","input":"string"},"site":{"by":"ID","input":"string"},"siteNetworkSubnet":{"by":"ID","input":"string"},"subnet":["example1","example2"],"systemGroup":{"by":"ID","input":"string"},"user":{"by":"ID","input":"string"},"usersGroup":{"by":"ID","input":"string"}},"tracking":{"alert":{"enabled":true,"frequency":"HOURLY","mailingList":{"by":"ID","input":"string"},"subscriptionGroup":{"by":"ID","input":"string"},"webhook":{"by":"ID","input":"string"}},"event":{"enabled":true}}},"dataRule":{"accessMethod":{"accessMethod":"USER_AGENT","operator":"IS","value":"string","valueSet":{"by":"ID","input":"string"}},"action":"BLOCK","actionConfig":{"userNotification":{"by":"ID","input":"string"}},"application":{"appCategory":{"by":"ID","input":"string"},"application":{"by":"ID","input":"string"},"applicationType":"APPLICATION","customApp":{"by":"ID","input":"string"},"customCategory":{"by":"ID","input":"string"},"sanctionedAppsCategory":{"by":"ID","input":"string"}},"applicationActivity":{"activity":{"by":"ID","input":"string"},"field":{"by":"ID","input":"string"},"operator":"IS","value":"string","valueSet":{"by":"ID","input":"string"}},"applicationActivitySatisfy":"ANY","applicationContext":{"applicationTenant":{"operator":"IS","value":"string","valueSet":{"by":"ID","input":"string"}}},"applicationCriteria":{"attributes":{"complianceAttributes":{"hippa":"ANY","isae3402":"ANY","iso27001":"ANY","pciDss":"ANY","soc1":"ANY","soc2":"ANY","soc3":"ANY","sox":"ANY"},"securityAttributes":{"auditTrail":"ANY","encryptionAtRest":"ANY","httpSecurityHeaders":"ANY","mfa":"ANY","rbac":"ANY","rememberPassword":"ANY","sso":"ANY","tlsEnforcement":"ANY","trustedCertificate":"ANY"}},"originCountry":{"by":"ID","input":"string"},"risk":{"risk":"example_value","riskOperator":"IS"}},"applicationCriteriaSatisfy":"ANY","device":{"by":"ID","input":"string"},"dlpProfile":{"contentProfile":{"by":"ID","input":"string"},"edmProfile":{"by":"ID","input":"string"}},"fileAttribute":{"contentTypeGroupValues":{"by":"ID","input":"string"},"contentTypeValues":{"by":"ID","input":"string"},"fileAttribute":"CONTENT_TYPE","operator":"IS","value":"string"},"fileAttributeSatisfy":"ANY","schedule":{"activeOn":"ALWAYS","customRecurring":{"days":"SUNDAY","from":"example_value","to":"example_value"},"customTimeframe":{"from":"example_value","to":"example_value"}},"severity":"HIGH","source":{"country":{"by":"ID","input":"string"},"floatingSubnet":{"by":"ID","input":"string"},"globalIpRange":{"by":"ID","input":"string"},"group":{"by":"ID","input":"string"},"host":{"by":"ID","input":"string"},"ip":["example1","example2"],"ipRange":{"from":"example_value","to":"example_value"},"networkInterface":{"by":"ID","input":"string"},"site":{"by":"ID","input":"string"},"siteNetworkSubnet":{"by":"ID","input":"string"},"subnet":["example1","example2"],"systemGroup":{"by":"ID","input":"string"},"user":{"by":"ID","input":"string"},"usersGroup":{"by":"ID","input":"string"}},"tracking":{"alert":{"enabled":true,"frequency":"HOURLY","mailingList":{"by":"ID","input":"string"},"subscriptionGroup":{"by":"ID","input":"string"},"webhook":{"by":"ID","input":"string"}},"event":{"enabled":true}}},"description":"string","enabled":true,"fileRule":{"accessMethod":{"accessMethod":"USER_AGENT","operator":"IS","value":"string","valueSet":{"by":"ID","input":"string"}},"action":"BLOCK","actionConfig":{"userNotification":{"by":"ID","input":"string"}},"application":{"appCategory":{"by":"ID","input":"string"},"application":{"by":"ID","input":"string"},"applicationType":"APPLICATION","customApp":{"by":"ID","input":"string"},"customCategory":{"by":"ID","input":"string"},"sanctionedAppsCategory":{"by":"ID","input":"string"}},"applicationActivity":{"activity":{"by":"ID","input":"string"},"field":{"by":"ID","input":"string"},"operator":"IS","value":"string","valueSet":{"by":"ID","input":"string"}},"applicationActivitySatisfy":"ANY","applicationContext":{"applicationTenant":{"operator":"IS","value":"string","valueSet":{"by":"ID","input":"string"}}},"applicationCriteria":{"attributes":{"complianceAttributes":{"hippa":"ANY","isae3402":"ANY","iso27001":"ANY","pciDss":"ANY","soc1":"ANY","soc2":"ANY","soc3":"ANY","sox":"ANY"},"securityAttributes":{"auditTrail":"ANY","encryptionAtRest":"ANY","httpSecurityHeaders":"ANY","mfa":"ANY","rbac":"ANY","rememberPassword":"ANY","sso":"ANY","tlsEnforcement":"ANY","trustedCertificate":"ANY"}},"originCountry":{"by":"ID","input":"string"},"risk":{"risk":"example_value","riskOperator":"IS"}},"applicationCriteriaSatisfy":"ANY","device":{"by":"ID","input":"string"},"fileAttribute":{"contentTypeGroupValues":{"by":"ID","input":"string"},"contentTypeValues":{"by":"ID","input":"string"},"fileAttribute":"CONTENT_TYPE","operator":"IS","value":"string"},"fileAttributeSatisfy":"ANY","schedule":{"activeOn":"ALWAYS","customRecurring":{"days":"SUNDAY","from":"example_value","to":"example_value"},"customTimeframe":{"from":"example_value","to":"example_value"}},"severity":"HIGH","source":{"country":{"by":"ID","input":"string"},"floatingSubnet":{"by":"ID","input":"string"},"globalIpRange":{"by":"ID","input":"string"},"group":{"by":"ID","input":"string"},"host":{"by":"ID","input":"string"},"ip":["example1","example2"],"ipRange":{"from":"example_value","to":"example_value"},"networkInterface":{"by":"ID","input":"string"},"site":{"by":"ID","input":"string"},"siteNetworkSubnet":{"by":"ID","input":"string"},"subnet":["example1","example2"],"systemGroup":{"by":"ID","input":"string"},"user":{"by":"ID","input":"string"},"usersGroup":{"by":"ID","input":"string"}},"tracking":{"alert":{"enabled":true,"frequency":"HOURLY","mailingList":{"by":"ID","input":"string"},"subscriptionGroup":{"by":"ID","input":"string"},"webhook":{"by":"ID","input":"string"}},"event":{"enabled":true}}},"name":"string","ruleType":"APPLICATION"}},"applicationControlPolicyMutationInput":{"revision":{"id":"id"}}}'
+catocli mutation policy applicationControl addRule '{"applicationControlAddRuleInput":{"at":{"position":"AFTER_RULE","ref":"id"},"rule":{"applicationRule":{"accessMethod":[{"accessMethod":"USER_AGENT","operator":"IS","value":"string","valueSet":{"by":"ID","input":"string"}}],"action":"BLOCK","actionConfig":{"userNotification":[{"by":"ID","input":"string"}]},"application":{"appCategory":{"by":"ID","input":"string"},"application":{"by":"ID","input":"string"},"applicationType":["APPLICATION"],"customApp":{"by":"ID","input":"string"},"customCategory":{"by":"ID","input":"string"},"sanctionedAppsCategory":{"by":"ID","input":"string"}},"applicationActivity":[{"activity":{"by":"ID","input":"string"},"field":{"by":"ID","input":"string"},"operator":"IS","value":"string","valueSet":{"by":"ID","input":"string"}}],"applicationActivitySatisfy":"ANY","applicationContext":{"applicationTenant":[{"operator":"IS","value":"string","valueSet":{"by":"ID","input":"string"}}]},"applicationCriteria":{"attributes":{"complianceAttributes":{"hippa":"ANY","isae3402":"ANY","iso27001":"ANY","pciDss":"ANY","soc1":"ANY","soc2":"ANY","soc3":"ANY","sox":"ANY"},"securityAttributes":{"auditTrail":"ANY","encryptionAtRest":"ANY","httpSecurityHeaders":"ANY","mfa":"ANY","rbac":"ANY","rememberPassword":"ANY","sso":"ANY","tlsEnforcement":"ANY","trustedCertificate":"ANY"}},"originCountry":[{"by":"ID","input":"string"}],"risk":[{"risk":3,"riskOperator":"IS"}]},"applicationCriteriaSatisfy":"ANY","device":[{"by":"ID","input":"string"}],"schedule":{"activeOn":"ALWAYS","customRecurring":{"days":["SUNDAY"],"from":"12:34:56","to":"12:34:56"},"customTimeframe":{"from":"2026-01-02T15:04:05Z","to":"2026-01-02T15:04:05Z"}},"severity":"HIGH","source":{"country":[{"by":"ID","input":"string"}],"floatingSubnet":[{"by":"ID","input":"string"}],"globalIpRange":[{"by":"ID","input":"string"}],"group":[{"by":"ID","input":"string"}],"host":[{"by":"ID","input":"string"}],"ip":["192.0.2.1"],"ipRange":[{"from":"192.0.2.1","to":"192.0.2.1"}],"networkInterface":[{"by":"ID","input":"string"}],"site":[{"by":"ID","input":"string"}],"siteNetworkSubnet":[{"by":"ID","input":"string"}],"subnet":["192.0.2.0/24"],"systemGroup":[{"by":"ID","input":"string"}],"user":[{"by":"ID","input":"string"}],"usersGroup":[{"by":"ID","input":"string"}]},"tracking":{"alert":{"enabled":true,"frequency":"HOURLY","mailingList":[{"by":"ID","input":"string"}],"subscriptionGroup":[{"by":"ID","input":"string"}],"webhook":[{"by":"ID","input":"string"}]},"event":{"enabled":true}}},"dataRule":{"accessMethod":[{"accessMethod":"USER_AGENT","operator":"IS","value":"string","valueSet":{"by":"ID","input":"string"}}],"action":"BLOCK","actionConfig":{"userNotification":[{"by":"ID","input":"string"}]},"application":{"appCategory":{"by":"ID","input":"string"},"application":{"by":"ID","input":"string"},"applicationType":["APPLICATION"],"customApp":{"by":"ID","input":"string"},"customCategory":{"by":"ID","input":"string"},"sanctionedAppsCategory":{"by":"ID","input":"string"}},"applicationActivity":[{"activity":{"by":"ID","input":"string"},"field":{"by":"ID","input":"string"},"operator":"IS","value":"string","valueSet":{"by":"ID","input":"string"}}],"applicationActivitySatisfy":"ANY","applicationContext":{"applicationTenant":[{"operator":"IS","value":"string","valueSet":{"by":"ID","input":"string"}}]},"applicationCriteria":{"attributes":{"complianceAttributes":{"hippa":"ANY","isae3402":"ANY","iso27001":"ANY","pciDss":"ANY","soc1":"ANY","soc2":"ANY","soc3":"ANY","sox":"ANY"},"securityAttributes":{"auditTrail":"ANY","encryptionAtRest":"ANY","httpSecurityHeaders":"ANY","mfa":"ANY","rbac":"ANY","rememberPassword":"ANY","sso":"ANY","tlsEnforcement":"ANY","trustedCertificate":"ANY"}},"originCountry":[{"by":"ID","input":"string"}],"risk":[{"risk":3,"riskOperator":"IS"}]},"applicationCriteriaSatisfy":"ANY","device":[{"by":"ID","input":"string"}],"dlpProfile":{"contentProfile":[{"by":"ID","input":"string"}],"edmProfile":[{"by":"ID","input":"string"}]},"fileAttribute":[{"contentTypeGroupValues":[{"by":"ID","input":"string"}],"contentTypeValues":[{"by":"ID","input":"string"}],"fileAttribute":"CONTENT_TYPE","operator":"IS","value":"string"}],"fileAttributeSatisfy":"ANY","schedule":{"activeOn":"ALWAYS","customRecurring":{"days":["SUNDAY"],"from":"12:34:56","to":"12:34:56"},"customTimeframe":{"from":"2026-01-02T15:04:05Z","to":"2026-01-02T15:04:05Z"}},"severity":"HIGH","source":{"country":[{"by":"ID","input":"string"}],"floatingSubnet":[{"by":"ID","input":"string"}],"globalIpRange":[{"by":"ID","input":"string"}],"group":[{"by":"ID","input":"string"}],"host":[{"by":"ID","input":"string"}],"ip":["192.0.2.1"],"ipRange":[{"from":"192.0.2.1","to":"192.0.2.1"}],"networkInterface":[{"by":"ID","input":"string"}],"site":[{"by":"ID","input":"string"}],"siteNetworkSubnet":[{"by":"ID","input":"string"}],"subnet":["192.0.2.0/24"],"systemGroup":[{"by":"ID","input":"string"}],"user":[{"by":"ID","input":"string"}],"usersGroup":[{"by":"ID","input":"string"}]},"tracking":{"alert":{"enabled":true,"frequency":"HOURLY","mailingList":[{"by":"ID","input":"string"}],"subscriptionGroup":[{"by":"ID","input":"string"}],"webhook":[{"by":"ID","input":"string"}]},"event":{"enabled":true}}},"description":"string","enabled":true,"fileRule":{"accessMethod":[{"accessMethod":"USER_AGENT","operator":"IS","value":"string","valueSet":{"by":"ID","input":"string"}}],"action":"BLOCK","actionConfig":{"userNotification":[{"by":"ID","input":"string"}]},"application":{"appCategory":{"by":"ID","input":"string"},"application":{"by":"ID","input":"string"},"applicationType":["APPLICATION"],"customApp":{"by":"ID","input":"string"},"customCategory":{"by":"ID","input":"string"},"sanctionedAppsCategory":{"by":"ID","input":"string"}},"applicationActivity":[{"activity":{"by":"ID","input":"string"},"field":{"by":"ID","input":"string"},"operator":"IS","value":"string","valueSet":{"by":"ID","input":"string"}}],"applicationActivitySatisfy":"ANY","applicationContext":{"applicationTenant":[{"operator":"IS","value":"string","valueSet":{"by":"ID","input":"string"}}]},"applicationCriteria":{"attributes":{"complianceAttributes":{"hippa":"ANY","isae3402":"ANY","iso27001":"ANY","pciDss":"ANY","soc1":"ANY","soc2":"ANY","soc3":"ANY","sox":"ANY"},"securityAttributes":{"auditTrail":"ANY","encryptionAtRest":"ANY","httpSecurityHeaders":"ANY","mfa":"ANY","rbac":"ANY","rememberPassword":"ANY","sso":"ANY","tlsEnforcement":"ANY","trustedCertificate":"ANY"}},"originCountry":[{"by":"ID","input":"string"}],"risk":[{"risk":3,"riskOperator":"IS"}]},"applicationCriteriaSatisfy":"ANY","device":[{"by":"ID","input":"string"}],"fileAttribute":[{"contentTypeGroupValues":[{"by":"ID","input":"string"}],"contentTypeValues":[{"by":"ID","input":"string"}],"fileAttribute":"CONTENT_TYPE","operator":"IS","value":"string"}],"fileAttributeSatisfy":"ANY","schedule":{"activeOn":"ALWAYS","customRecurring":{"days":["SUNDAY"],"from":"12:34:56","to":"12:34:56"},"customTimeframe":{"from":"2026-01-02T15:04:05Z","to":"2026-01-02T15:04:05Z"}},"severity":"HIGH","source":{"country":[{"by":"ID","input":"string"}],"floatingSubnet":[{"by":"ID","input":"string"}],"globalIpRange":[{"by":"ID","input":"string"}],"group":[{"by":"ID","input":"string"}],"host":[{"by":"ID","input":"string"}],"ip":["192.0.2.1"],"ipRange":[{"from":"192.0.2.1","to":"192.0.2.1"}],"networkInterface":[{"by":"ID","input":"string"}],"site":[{"by":"ID","input":"string"}],"siteNetworkSubnet":[{"by":"ID","input":"string"}],"subnet":["192.0.2.0/24"],"systemGroup":[{"by":"ID","input":"string"}],"user":[{"by":"ID","input":"string"}],"usersGroup":[{"by":"ID","input":"string"}]},"tracking":{"alert":{"enabled":true,"frequency":"HOURLY","mailingList":[{"by":"ID","input":"string"}],"subscriptionGroup":[{"by":"ID","input":"string"}],"webhook":[{"by":"ID","input":"string"}]},"event":{"enabled":true}}},"name":"string","ruleType":"APPLICATION"}},"applicationControlPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy applicationControl addRule '{
     "applicationControlAddRuleInput": {
@@ -21,21 +21,25 @@ catocli mutation policy applicationControl addRule '{
         },
         "rule": {
             "applicationRule": {
-                "accessMethod": {
-                    "accessMethod": "USER_AGENT",
-                    "operator": "IS",
-                    "value": "string",
-                    "valueSet": {
-                        "by": "ID",
-                        "input": "string"
+                "accessMethod": [
+                    {
+                        "accessMethod": "USER_AGENT",
+                        "operator": "IS",
+                        "value": "string",
+                        "valueSet": {
+                            "by": "ID",
+                            "input": "string"
+                        }
                     }
-                },
+                ],
                 "action": "BLOCK",
                 "actionConfig": {
-                    "userNotification": {
-                        "by": "ID",
-                        "input": "string"
-                    }
+                    "userNotification": [
+                        {
+                            "by": "ID",
+                            "input": "string"
+                        }
+                    ]
                 },
                 "application": {
                     "appCategory": {
@@ -46,7 +50,9 @@ catocli mutation policy applicationControl addRule '{
                         "by": "ID",
                         "input": "string"
                     },
-                    "applicationType": "APPLICATION",
+                    "applicationType": [
+                        "APPLICATION"
+                    ],
                     "customApp": {
                         "by": "ID",
                         "input": "string"
@@ -60,25 +66,16 @@ catocli mutation policy applicationControl addRule '{
                         "input": "string"
                     }
                 },
-                "applicationActivity": {
-                    "activity": {
-                        "by": "ID",
-                        "input": "string"
-                    },
-                    "field": {
-                        "by": "ID",
-                        "input": "string"
-                    },
-                    "operator": "IS",
-                    "value": "string",
-                    "valueSet": {
-                        "by": "ID",
-                        "input": "string"
-                    }
-                },
-                "applicationActivitySatisfy": "ANY",
-                "applicationContext": {
-                    "applicationTenant": {
+                "applicationActivity": [
+                    {
+                        "activity": {
+                            "by": "ID",
+                            "input": "string"
+                        },
+                        "field": {
+                            "by": "ID",
+                            "input": "string"
+                        },
                         "operator": "IS",
                         "value": "string",
                         "valueSet": {
@@ -86,6 +83,19 @@ catocli mutation policy applicationControl addRule '{
                             "input": "string"
                         }
                     }
+                ],
+                "applicationActivitySatisfy": "ANY",
+                "applicationContext": {
+                    "applicationTenant": [
+                        {
+                            "operator": "IS",
+                            "value": "string",
+                            "valueSet": {
+                                "by": "ID",
+                                "input": "string"
+                            }
+                        }
+                    ]
                 },
                 "applicationCriteria": {
                     "attributes": {
@@ -111,107 +121,143 @@ catocli mutation policy applicationControl addRule '{
                             "trustedCertificate": "ANY"
                         }
                     },
-                    "originCountry": {
-                        "by": "ID",
-                        "input": "string"
-                    },
-                    "risk": {
-                        "risk": "example_value",
-                        "riskOperator": "IS"
-                    }
+                    "originCountry": [
+                        {
+                            "by": "ID",
+                            "input": "string"
+                        }
+                    ],
+                    "risk": [
+                        {
+                            "risk": 3,
+                            "riskOperator": "IS"
+                        }
+                    ]
                 },
                 "applicationCriteriaSatisfy": "ANY",
-                "device": {
-                    "by": "ID",
-                    "input": "string"
-                },
+                "device": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ],
                 "schedule": {
                     "activeOn": "ALWAYS",
                     "customRecurring": {
-                        "days": "SUNDAY",
-                        "from": "example_value",
-                        "to": "example_value"
+                        "days": [
+                            "SUNDAY"
+                        ],
+                        "from": "12:34:56",
+                        "to": "12:34:56"
                     },
                     "customTimeframe": {
-                        "from": "example_value",
-                        "to": "example_value"
+                        "from": "2026-01-02T15:04:05Z",
+                        "to": "2026-01-02T15:04:05Z"
                     }
                 },
                 "severity": "HIGH",
                 "source": {
-                    "country": {
-                        "by": "ID",
-                        "input": "string"
-                    },
-                    "floatingSubnet": {
-                        "by": "ID",
-                        "input": "string"
-                    },
-                    "globalIpRange": {
-                        "by": "ID",
-                        "input": "string"
-                    },
-                    "group": {
-                        "by": "ID",
-                        "input": "string"
-                    },
-                    "host": {
-                        "by": "ID",
-                        "input": "string"
-                    },
+                    "country": [
+                        {
+                            "by": "ID",
+                            "input": "string"
+                        }
+                    ],
+                    "floatingSubnet": [
+                        {
+                            "by": "ID",
+                            "input": "string"
+                        }
+                    ],
+                    "globalIpRange": [
+                        {
+                            "by": "ID",
+                            "input": "string"
+                        }
+                    ],
+                    "group": [
+                        {
+                            "by": "ID",
+                            "input": "string"
+                        }
+                    ],
+                    "host": [
+                        {
+                            "by": "ID",
+                            "input": "string"
+                        }
+                    ],
                     "ip": [
-                        "example1",
-                        "example2"
+                        "192.0.2.1"
                     ],
-                    "ipRange": {
-                        "from": "example_value",
-                        "to": "example_value"
-                    },
-                    "networkInterface": {
-                        "by": "ID",
-                        "input": "string"
-                    },
-                    "site": {
-                        "by": "ID",
-                        "input": "string"
-                    },
-                    "siteNetworkSubnet": {
-                        "by": "ID",
-                        "input": "string"
-                    },
+                    "ipRange": [
+                        {
+                            "from": "192.0.2.1",
+                            "to": "192.0.2.1"
+                        }
+                    ],
+                    "networkInterface": [
+                        {
+                            "by": "ID",
+                            "input": "string"
+                        }
+                    ],
+                    "site": [
+                        {
+                            "by": "ID",
+                            "input": "string"
+                        }
+                    ],
+                    "siteNetworkSubnet": [
+                        {
+                            "by": "ID",
+                            "input": "string"
+                        }
+                    ],
                     "subnet": [
-                        "example1",
-                        "example2"
+                        "192.0.2.0/24"
                     ],
-                    "systemGroup": {
-                        "by": "ID",
-                        "input": "string"
-                    },
-                    "user": {
-                        "by": "ID",
-                        "input": "string"
-                    },
-                    "usersGroup": {
-                        "by": "ID",
-                        "input": "string"
-                    }
+                    "systemGroup": [
+                        {
+                            "by": "ID",
+                            "input": "string"
+                        }
+                    ],
+                    "user": [
+                        {
+                            "by": "ID",
+                            "input": "string"
+                        }
+                    ],
+                    "usersGroup": [
+                        {
+                            "by": "ID",
+                            "input": "string"
+                        }
+                    ]
                 },
                 "tracking": {
                     "alert": {
                         "enabled": true,
                         "frequency": "HOURLY",
-                        "mailingList": {
-                            "by": "ID",
-                            "input": "string"
-                        },
-                        "subscriptionGroup": {
-                            "by": "ID",
-                            "input": "string"
-                        },
-                        "webhook": {
-                            "by": "ID",
-                            "input": "string"
-                        }
+                        "mailingList": [
+                            {
+                                "by": "ID",
+                                "input": "string"
+                            }
+                        ],
+                        "subscriptionGroup": [
+                            {
+                                "by": "ID",
+                                "input": "string"
+                            }
+                        ],
+                        "webhook": [
+                            {
+                                "by": "ID",
+                                "input": "string"
+                            }
+                        ]
                     },
                     "event": {
                         "enabled": true
@@ -219,21 +265,25 @@ catocli mutation policy applicationControl addRule '{
                 }
             },
             "dataRule": {
-                "accessMethod": {
-                    "accessMethod": "USER_AGENT",
-                    "operator": "IS",
-                    "value": "string",
-                    "valueSet": {
-                        "by": "ID",
-                        "input": "string"
+                "accessMethod": [
+                    {
+                        "accessMethod": "USER_AGENT",
+                        "operator": "IS",
+                        "value": "string",
+                        "valueSet": {
+                            "by": "ID",
+                            "input": "string"
+                        }
                     }
-                },
+                ],
                 "action": "BLOCK",
                 "actionConfig": {
-                    "userNotification": {
-                        "by": "ID",
-                        "input": "string"
-                    }
+                    "userNotification": [
+                        {
+                            "by": "ID",
+                            "input": "string"
+                        }
+                    ]
                 },
                 "application": {
                     "appCategory": {
@@ -244,7 +294,9 @@ catocli mutation policy applicationControl addRule '{
                         "by": "ID",
                         "input": "string"
                     },
-                    "applicationType": "APPLICATION",
+                    "applicationType": [
+                        "APPLICATION"
+                    ],
                     "customApp": {
                         "by": "ID",
                         "input": "string"
@@ -258,25 +310,16 @@ catocli mutation policy applicationControl addRule '{
                         "input": "string"
                     }
                 },
-                "applicationActivity": {
-                    "activity": {
-                        "by": "ID",
-                        "input": "string"
-                    },
-                    "field": {
-                        "by": "ID",
-                        "input": "string"
-                    },
-                    "operator": "IS",
-                    "value": "string",
-                    "valueSet": {
-                        "by": "ID",
-                        "input": "string"
-                    }
-                },
-                "applicationActivitySatisfy": "ANY",
-                "applicationContext": {
-                    "applicationTenant": {
+                "applicationActivity": [
+                    {
+                        "activity": {
+                            "by": "ID",
+                            "input": "string"
+                        },
+                        "field": {
+                            "by": "ID",
+                            "input": "string"
+                        },
                         "operator": "IS",
                         "value": "string",
                         "valueSet": {
@@ -284,6 +327,19 @@ catocli mutation policy applicationControl addRule '{
                             "input": "string"
                         }
                     }
+                ],
+                "applicationActivitySatisfy": "ANY",
+                "applicationContext": {
+                    "applicationTenant": [
+                        {
+                            "operator": "IS",
+                            "value": "string",
+                            "valueSet": {
+                                "by": "ID",
+                                "input": "string"
+                            }
+                        }
+                    ]
                 },
                 "applicationCriteria": {
                     "attributes": {
@@ -309,131 +365,177 @@ catocli mutation policy applicationControl addRule '{
                             "trustedCertificate": "ANY"
                         }
                     },
-                    "originCountry": {
-                        "by": "ID",
-                        "input": "string"
-                    },
-                    "risk": {
-                        "risk": "example_value",
-                        "riskOperator": "IS"
-                    }
+                    "originCountry": [
+                        {
+                            "by": "ID",
+                            "input": "string"
+                        }
+                    ],
+                    "risk": [
+                        {
+                            "risk": 3,
+                            "riskOperator": "IS"
+                        }
+                    ]
                 },
                 "applicationCriteriaSatisfy": "ANY",
-                "device": {
-                    "by": "ID",
-                    "input": "string"
-                },
-                "dlpProfile": {
-                    "contentProfile": {
-                        "by": "ID",
-                        "input": "string"
-                    },
-                    "edmProfile": {
+                "device": [
+                    {
                         "by": "ID",
                         "input": "string"
                     }
+                ],
+                "dlpProfile": {
+                    "contentProfile": [
+                        {
+                            "by": "ID",
+                            "input": "string"
+                        }
+                    ],
+                    "edmProfile": [
+                        {
+                            "by": "ID",
+                            "input": "string"
+                        }
+                    ]
                 },
-                "fileAttribute": {
-                    "contentTypeGroupValues": {
-                        "by": "ID",
-                        "input": "string"
-                    },
-                    "contentTypeValues": {
-                        "by": "ID",
-                        "input": "string"
-                    },
-                    "fileAttribute": "CONTENT_TYPE",
-                    "operator": "IS",
-                    "value": "string"
-                },
+                "fileAttribute": [
+                    {
+                        "contentTypeGroupValues": [
+                            {
+                                "by": "ID",
+                                "input": "string"
+                            }
+                        ],
+                        "contentTypeValues": [
+                            {
+                                "by": "ID",
+                                "input": "string"
+                            }
+                        ],
+                        "fileAttribute": "CONTENT_TYPE",
+                        "operator": "IS",
+                        "value": "string"
+                    }
+                ],
                 "fileAttributeSatisfy": "ANY",
                 "schedule": {
                     "activeOn": "ALWAYS",
                     "customRecurring": {
-                        "days": "SUNDAY",
-                        "from": "example_value",
-                        "to": "example_value"
+                        "days": [
+                            "SUNDAY"
+                        ],
+                        "from": "12:34:56",
+                        "to": "12:34:56"
                     },
                     "customTimeframe": {
-                        "from": "example_value",
-                        "to": "example_value"
+                        "from": "2026-01-02T15:04:05Z",
+                        "to": "2026-01-02T15:04:05Z"
                     }
                 },
                 "severity": "HIGH",
                 "source": {
-                    "country": {
-                        "by": "ID",
-                        "input": "string"
-                    },
-                    "floatingSubnet": {
-                        "by": "ID",
-                        "input": "string"
-                    },
-                    "globalIpRange": {
-                        "by": "ID",
-                        "input": "string"
-                    },
-                    "group": {
-                        "by": "ID",
-                        "input": "string"
-                    },
-                    "host": {
-                        "by": "ID",
-                        "input": "string"
-                    },
+                    "country": [
+                        {
+                            "by": "ID",
+                            "input": "string"
+                        }
+                    ],
+                    "floatingSubnet": [
+                        {
+                            "by": "ID",
+                            "input": "string"
+                        }
+                    ],
+                    "globalIpRange": [
+                        {
+                            "by": "ID",
+                            "input": "string"
+                        }
+                    ],
+                    "group": [
+                        {
+                            "by": "ID",
+                            "input": "string"
+                        }
+                    ],
+                    "host": [
+                        {
+                            "by": "ID",
+                            "input": "string"
+                        }
+                    ],
                     "ip": [
-                        "example1",
-                        "example2"
+                        "192.0.2.1"
                     ],
-                    "ipRange": {
-                        "from": "example_value",
-                        "to": "example_value"
-                    },
-                    "networkInterface": {
-                        "by": "ID",
-                        "input": "string"
-                    },
-                    "site": {
-                        "by": "ID",
-                        "input": "string"
-                    },
-                    "siteNetworkSubnet": {
-                        "by": "ID",
-                        "input": "string"
-                    },
+                    "ipRange": [
+                        {
+                            "from": "192.0.2.1",
+                            "to": "192.0.2.1"
+                        }
+                    ],
+                    "networkInterface": [
+                        {
+                            "by": "ID",
+                            "input": "string"
+                        }
+                    ],
+                    "site": [
+                        {
+                            "by": "ID",
+                            "input": "string"
+                        }
+                    ],
+                    "siteNetworkSubnet": [
+                        {
+                            "by": "ID",
+                            "input": "string"
+                        }
+                    ],
                     "subnet": [
-                        "example1",
-                        "example2"
+                        "192.0.2.0/24"
                     ],
-                    "systemGroup": {
-                        "by": "ID",
-                        "input": "string"
-                    },
-                    "user": {
-                        "by": "ID",
-                        "input": "string"
-                    },
-                    "usersGroup": {
-                        "by": "ID",
-                        "input": "string"
-                    }
+                    "systemGroup": [
+                        {
+                            "by": "ID",
+                            "input": "string"
+                        }
+                    ],
+                    "user": [
+                        {
+                            "by": "ID",
+                            "input": "string"
+                        }
+                    ],
+                    "usersGroup": [
+                        {
+                            "by": "ID",
+                            "input": "string"
+                        }
+                    ]
                 },
                 "tracking": {
                     "alert": {
                         "enabled": true,
                         "frequency": "HOURLY",
-                        "mailingList": {
-                            "by": "ID",
-                            "input": "string"
-                        },
-                        "subscriptionGroup": {
-                            "by": "ID",
-                            "input": "string"
-                        },
-                        "webhook": {
-                            "by": "ID",
-                            "input": "string"
-                        }
+                        "mailingList": [
+                            {
+                                "by": "ID",
+                                "input": "string"
+                            }
+                        ],
+                        "subscriptionGroup": [
+                            {
+                                "by": "ID",
+                                "input": "string"
+                            }
+                        ],
+                        "webhook": [
+                            {
+                                "by": "ID",
+                                "input": "string"
+                            }
+                        ]
                     },
                     "event": {
                         "enabled": true
@@ -443,21 +545,25 @@ catocli mutation policy applicationControl addRule '{
             "description": "string",
             "enabled": true,
             "fileRule": {
-                "accessMethod": {
-                    "accessMethod": "USER_AGENT",
-                    "operator": "IS",
-                    "value": "string",
-                    "valueSet": {
-                        "by": "ID",
-                        "input": "string"
+                "accessMethod": [
+                    {
+                        "accessMethod": "USER_AGENT",
+                        "operator": "IS",
+                        "value": "string",
+                        "valueSet": {
+                            "by": "ID",
+                            "input": "string"
+                        }
                     }
-                },
+                ],
                 "action": "BLOCK",
                 "actionConfig": {
-                    "userNotification": {
-                        "by": "ID",
-                        "input": "string"
-                    }
+                    "userNotification": [
+                        {
+                            "by": "ID",
+                            "input": "string"
+                        }
+                    ]
                 },
                 "application": {
                     "appCategory": {
@@ -468,7 +574,9 @@ catocli mutation policy applicationControl addRule '{
                         "by": "ID",
                         "input": "string"
                     },
-                    "applicationType": "APPLICATION",
+                    "applicationType": [
+                        "APPLICATION"
+                    ],
                     "customApp": {
                         "by": "ID",
                         "input": "string"
@@ -482,25 +590,16 @@ catocli mutation policy applicationControl addRule '{
                         "input": "string"
                     }
                 },
-                "applicationActivity": {
-                    "activity": {
-                        "by": "ID",
-                        "input": "string"
-                    },
-                    "field": {
-                        "by": "ID",
-                        "input": "string"
-                    },
-                    "operator": "IS",
-                    "value": "string",
-                    "valueSet": {
-                        "by": "ID",
-                        "input": "string"
-                    }
-                },
-                "applicationActivitySatisfy": "ANY",
-                "applicationContext": {
-                    "applicationTenant": {
+                "applicationActivity": [
+                    {
+                        "activity": {
+                            "by": "ID",
+                            "input": "string"
+                        },
+                        "field": {
+                            "by": "ID",
+                            "input": "string"
+                        },
                         "operator": "IS",
                         "value": "string",
                         "valueSet": {
@@ -508,6 +607,19 @@ catocli mutation policy applicationControl addRule '{
                             "input": "string"
                         }
                     }
+                ],
+                "applicationActivitySatisfy": "ANY",
+                "applicationContext": {
+                    "applicationTenant": [
+                        {
+                            "operator": "IS",
+                            "value": "string",
+                            "valueSet": {
+                                "by": "ID",
+                                "input": "string"
+                            }
+                        }
+                    ]
                 },
                 "applicationCriteria": {
                     "attributes": {
@@ -533,121 +645,163 @@ catocli mutation policy applicationControl addRule '{
                             "trustedCertificate": "ANY"
                         }
                     },
-                    "originCountry": {
-                        "by": "ID",
-                        "input": "string"
-                    },
-                    "risk": {
-                        "risk": "example_value",
-                        "riskOperator": "IS"
-                    }
+                    "originCountry": [
+                        {
+                            "by": "ID",
+                            "input": "string"
+                        }
+                    ],
+                    "risk": [
+                        {
+                            "risk": 3,
+                            "riskOperator": "IS"
+                        }
+                    ]
                 },
                 "applicationCriteriaSatisfy": "ANY",
-                "device": {
-                    "by": "ID",
-                    "input": "string"
-                },
-                "fileAttribute": {
-                    "contentTypeGroupValues": {
+                "device": [
+                    {
                         "by": "ID",
                         "input": "string"
-                    },
-                    "contentTypeValues": {
-                        "by": "ID",
-                        "input": "string"
-                    },
-                    "fileAttribute": "CONTENT_TYPE",
-                    "operator": "IS",
-                    "value": "string"
-                },
+                    }
+                ],
+                "fileAttribute": [
+                    {
+                        "contentTypeGroupValues": [
+                            {
+                                "by": "ID",
+                                "input": "string"
+                            }
+                        ],
+                        "contentTypeValues": [
+                            {
+                                "by": "ID",
+                                "input": "string"
+                            }
+                        ],
+                        "fileAttribute": "CONTENT_TYPE",
+                        "operator": "IS",
+                        "value": "string"
+                    }
+                ],
                 "fileAttributeSatisfy": "ANY",
                 "schedule": {
                     "activeOn": "ALWAYS",
                     "customRecurring": {
-                        "days": "SUNDAY",
-                        "from": "example_value",
-                        "to": "example_value"
+                        "days": [
+                            "SUNDAY"
+                        ],
+                        "from": "12:34:56",
+                        "to": "12:34:56"
                     },
                     "customTimeframe": {
-                        "from": "example_value",
-                        "to": "example_value"
+                        "from": "2026-01-02T15:04:05Z",
+                        "to": "2026-01-02T15:04:05Z"
                     }
                 },
                 "severity": "HIGH",
                 "source": {
-                    "country": {
-                        "by": "ID",
-                        "input": "string"
-                    },
-                    "floatingSubnet": {
-                        "by": "ID",
-                        "input": "string"
-                    },
-                    "globalIpRange": {
-                        "by": "ID",
-                        "input": "string"
-                    },
-                    "group": {
-                        "by": "ID",
-                        "input": "string"
-                    },
-                    "host": {
-                        "by": "ID",
-                        "input": "string"
-                    },
+                    "country": [
+                        {
+                            "by": "ID",
+                            "input": "string"
+                        }
+                    ],
+                    "floatingSubnet": [
+                        {
+                            "by": "ID",
+                            "input": "string"
+                        }
+                    ],
+                    "globalIpRange": [
+                        {
+                            "by": "ID",
+                            "input": "string"
+                        }
+                    ],
+                    "group": [
+                        {
+                            "by": "ID",
+                            "input": "string"
+                        }
+                    ],
+                    "host": [
+                        {
+                            "by": "ID",
+                            "input": "string"
+                        }
+                    ],
                     "ip": [
-                        "example1",
-                        "example2"
+                        "192.0.2.1"
                     ],
-                    "ipRange": {
-                        "from": "example_value",
-                        "to": "example_value"
-                    },
-                    "networkInterface": {
-                        "by": "ID",
-                        "input": "string"
-                    },
-                    "site": {
-                        "by": "ID",
-                        "input": "string"
-                    },
-                    "siteNetworkSubnet": {
-                        "by": "ID",
-                        "input": "string"
-                    },
+                    "ipRange": [
+                        {
+                            "from": "192.0.2.1",
+                            "to": "192.0.2.1"
+                        }
+                    ],
+                    "networkInterface": [
+                        {
+                            "by": "ID",
+                            "input": "string"
+                        }
+                    ],
+                    "site": [
+                        {
+                            "by": "ID",
+                            "input": "string"
+                        }
+                    ],
+                    "siteNetworkSubnet": [
+                        {
+                            "by": "ID",
+                            "input": "string"
+                        }
+                    ],
                     "subnet": [
-                        "example1",
-                        "example2"
+                        "192.0.2.0/24"
                     ],
-                    "systemGroup": {
-                        "by": "ID",
-                        "input": "string"
-                    },
-                    "user": {
-                        "by": "ID",
-                        "input": "string"
-                    },
-                    "usersGroup": {
-                        "by": "ID",
-                        "input": "string"
-                    }
+                    "systemGroup": [
+                        {
+                            "by": "ID",
+                            "input": "string"
+                        }
+                    ],
+                    "user": [
+                        {
+                            "by": "ID",
+                            "input": "string"
+                        }
+                    ],
+                    "usersGroup": [
+                        {
+                            "by": "ID",
+                            "input": "string"
+                        }
+                    ]
                 },
                 "tracking": {
                     "alert": {
                         "enabled": true,
                         "frequency": "HOURLY",
-                        "mailingList": {
-                            "by": "ID",
-                            "input": "string"
-                        },
-                        "subscriptionGroup": {
-                            "by": "ID",
-                            "input": "string"
-                        },
-                        "webhook": {
-                            "by": "ID",
-                            "input": "string"
-                        }
+                        "mailingList": [
+                            {
+                                "by": "ID",
+                                "input": "string"
+                            }
+                        ],
+                        "subscriptionGroup": [
+                            {
+                                "by": "ID",
+                                "input": "string"
+                            }
+                        ],
+                        "webhook": [
+                            {
+                                "by": "ID",
+                                "input": "string"
+                            }
+                        ]
                     },
                     "event": {
                         "enabled": true

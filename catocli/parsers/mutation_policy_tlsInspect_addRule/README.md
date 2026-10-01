@@ -11,7 +11,7 @@ catocli mutation policy tlsInspect addRule <json>
 
 catocli mutation policy tlsInspect addRule --json-file mutation.policy.tlsInspect.addRule.json
 
-catocli mutation policy tlsInspect addRule '{"tlsInspectAddRuleInput":{"at":{"position":"AFTER_RULE","ref":"id"},"rule":{"action":"INSPECT","application":{"appCategory":{"by":"ID","input":"string"},"application":{"by":"ID","input":"string"},"country":{"by":"ID","input":"string"},"customApp":{"by":"ID","input":"string"},"customCategory":{"by":"ID","input":"string"},"customService":{"port":["example1","example2"],"portRange":{"from":"example_value","to":"example_value"},"protocol":"ANY"},"customServiceIp":{"ip":"example_value","ipRange":{"from":"example_value","to":"example_value"},"name":"string"},"domain":["example1","example2"],"fqdn":["example1","example2"],"globalIpRange":{"by":"ID","input":"string"},"ip":["example1","example2"],"ipRange":{"from":"example_value","to":"example_value"},"remoteAsn":["example1","example2"],"service":{"by":"ID","input":"string"},"subnet":["example1","example2"],"tlsInspectCategory":"POPULAR_CLOUD_APPS"},"connectionOrigin":"ANY","country":{"by":"ID","input":"string"},"description":"string","devicePostureProfile":{"by":"ID","input":"string"},"enabled":true,"name":"string","platform":"WINDOWS","source":{"floatingSubnet":{"by":"ID","input":"string"},"globalIpRange":{"by":"ID","input":"string"},"group":{"by":"ID","input":"string"},"host":{"by":"ID","input":"string"},"ip":["example1","example2"],"ipRange":{"from":"example_value","to":"example_value"},"networkInterface":{"by":"ID","input":"string"},"site":{"by":"ID","input":"string"},"siteNetworkSubnet":{"by":"ID","input":"string"},"subnet":["example1","example2"],"systemGroup":{"by":"ID","input":"string"},"user":{"by":"ID","input":"string"},"usersGroup":{"by":"ID","input":"string"}},"untrustedCertificateAction":"ALLOW"}},"tlsInspectPolicyMutationInput":{"revision":{"id":"id"}}}'
+catocli mutation policy tlsInspect addRule '{"tlsInspectAddRuleInput":{"at":{"position":"AFTER_RULE","ref":"id"},"rule":{"action":"INSPECT","application":{"appCategory":[{"by":"ID","input":"string"}],"application":[{"by":"ID","input":"string"}],"country":[{"by":"ID","input":"string"}],"customApp":[{"by":"ID","input":"string"}],"customCategory":[{"by":"ID","input":"string"}],"customService":[{"port":[443],"portRange":{"from":443,"to":443},"protocol":"ANY"}],"customServiceIp":[{"ip":"192.0.2.1","ipRange":{"from":"192.0.2.1","to":"192.0.2.1"},"name":"string"}],"domain":["internal.example.com"],"fqdn":["host.example.com"],"globalIpRange":[{"by":"ID","input":"string"}],"ip":["192.0.2.1"],"ipRange":[{"from":"192.0.2.1","to":"192.0.2.1"}],"remoteAsn":[65536],"service":[{"by":"ID","input":"string"}],"subnet":["192.0.2.0/24"],"tlsInspectCategory":["POPULAR_CLOUD_APPS"]},"connectionOrigin":"ANY","country":[{"by":"ID","input":"string"}],"description":"string","devicePostureProfile":[{"by":"ID","input":"string"}],"enabled":true,"name":"string","platform":["WINDOWS"],"source":{"floatingSubnet":[{"by":"ID","input":"string"}],"globalIpRange":[{"by":"ID","input":"string"}],"group":[{"by":"ID","input":"string"}],"host":[{"by":"ID","input":"string"}],"ip":["192.0.2.1"],"ipRange":[{"from":"192.0.2.1","to":"192.0.2.1"}],"networkInterface":[{"by":"ID","input":"string"}],"site":[{"by":"ID","input":"string"}],"siteNetworkSubnet":[{"by":"ID","input":"string"}],"subnet":["192.0.2.0/24"],"systemGroup":[{"by":"ID","input":"string"}],"user":[{"by":"ID","input":"string"}],"usersGroup":[{"by":"ID","input":"string"}]},"untrustedCertificateAction":"ALLOW"}},"tlsInspectPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy tlsInspect addRule '{
     "tlsInspectAddRuleInput": {
@@ -22,145 +22,187 @@ catocli mutation policy tlsInspect addRule '{
         "rule": {
             "action": "INSPECT",
             "application": {
-                "appCategory": {
-                    "by": "ID",
-                    "input": "string"
-                },
-                "application": {
-                    "by": "ID",
-                    "input": "string"
-                },
-                "country": {
-                    "by": "ID",
-                    "input": "string"
-                },
-                "customApp": {
-                    "by": "ID",
-                    "input": "string"
-                },
-                "customCategory": {
-                    "by": "ID",
-                    "input": "string"
-                },
-                "customService": {
-                    "port": [
-                        "example1",
-                        "example2"
-                    ],
-                    "portRange": {
-                        "from": "example_value",
-                        "to": "example_value"
-                    },
-                    "protocol": "ANY"
-                },
-                "customServiceIp": {
-                    "ip": "example_value",
-                    "ipRange": {
-                        "from": "example_value",
-                        "to": "example_value"
-                    },
-                    "name": "string"
-                },
+                "appCategory": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ],
+                "application": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ],
+                "country": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ],
+                "customApp": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ],
+                "customCategory": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ],
+                "customService": [
+                    {
+                        "port": [
+                            443
+                        ],
+                        "portRange": {
+                            "from": 443,
+                            "to": 443
+                        },
+                        "protocol": "ANY"
+                    }
+                ],
+                "customServiceIp": [
+                    {
+                        "ip": "192.0.2.1",
+                        "ipRange": {
+                            "from": "192.0.2.1",
+                            "to": "192.0.2.1"
+                        },
+                        "name": "string"
+                    }
+                ],
                 "domain": [
-                    "example1",
-                    "example2"
+                    "internal.example.com"
                 ],
                 "fqdn": [
-                    "example1",
-                    "example2"
+                    "host.example.com"
                 ],
-                "globalIpRange": {
-                    "by": "ID",
-                    "input": "string"
-                },
+                "globalIpRange": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ],
                 "ip": [
-                    "example1",
-                    "example2"
+                    "192.0.2.1"
                 ],
-                "ipRange": {
-                    "from": "example_value",
-                    "to": "example_value"
-                },
+                "ipRange": [
+                    {
+                        "from": "192.0.2.1",
+                        "to": "192.0.2.1"
+                    }
+                ],
                 "remoteAsn": [
-                    "example1",
-                    "example2"
+                    65536
                 ],
-                "service": {
-                    "by": "ID",
-                    "input": "string"
-                },
+                "service": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ],
                 "subnet": [
-                    "example1",
-                    "example2"
+                    "192.0.2.0/24"
                 ],
-                "tlsInspectCategory": "POPULAR_CLOUD_APPS"
+                "tlsInspectCategory": [
+                    "POPULAR_CLOUD_APPS"
+                ]
             },
             "connectionOrigin": "ANY",
-            "country": {
-                "by": "ID",
-                "input": "string"
-            },
-            "description": "string",
-            "devicePostureProfile": {
-                "by": "ID",
-                "input": "string"
-            },
-            "enabled": true,
-            "name": "string",
-            "platform": "WINDOWS",
-            "source": {
-                "floatingSubnet": {
-                    "by": "ID",
-                    "input": "string"
-                },
-                "globalIpRange": {
-                    "by": "ID",
-                    "input": "string"
-                },
-                "group": {
-                    "by": "ID",
-                    "input": "string"
-                },
-                "host": {
-                    "by": "ID",
-                    "input": "string"
-                },
-                "ip": [
-                    "example1",
-                    "example2"
-                ],
-                "ipRange": {
-                    "from": "example_value",
-                    "to": "example_value"
-                },
-                "networkInterface": {
-                    "by": "ID",
-                    "input": "string"
-                },
-                "site": {
-                    "by": "ID",
-                    "input": "string"
-                },
-                "siteNetworkSubnet": {
-                    "by": "ID",
-                    "input": "string"
-                },
-                "subnet": [
-                    "example1",
-                    "example2"
-                ],
-                "systemGroup": {
-                    "by": "ID",
-                    "input": "string"
-                },
-                "user": {
-                    "by": "ID",
-                    "input": "string"
-                },
-                "usersGroup": {
+            "country": [
+                {
                     "by": "ID",
                     "input": "string"
                 }
+            ],
+            "description": "string",
+            "devicePostureProfile": [
+                {
+                    "by": "ID",
+                    "input": "string"
+                }
+            ],
+            "enabled": true,
+            "name": "string",
+            "platform": [
+                "WINDOWS"
+            ],
+            "source": {
+                "floatingSubnet": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ],
+                "globalIpRange": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ],
+                "group": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ],
+                "host": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ],
+                "ip": [
+                    "192.0.2.1"
+                ],
+                "ipRange": [
+                    {
+                        "from": "192.0.2.1",
+                        "to": "192.0.2.1"
+                    }
+                ],
+                "networkInterface": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ],
+                "site": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ],
+                "siteNetworkSubnet": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ],
+                "subnet": [
+                    "192.0.2.0/24"
+                ],
+                "systemGroup": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ],
+                "user": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ],
+                "usersGroup": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ]
             },
             "untrustedCertificateAction": "ALLOW"
         }

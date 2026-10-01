@@ -11,40 +11,52 @@ catocli mutation groups createGroup <json>
 
 catocli mutation groups createGroup --json-file mutation.groups.createGroup.json
 
-catocli mutation groups createGroup '{"createGroupInput":{"description":"string","members":{"by":"ID","input":"string","type":"SITE"},"name":"string"},"groupMembersListInput":{"filter":{"name":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"],"regex":"string"},"type":{"eq":"SITE","in":"SITE","neq":"SITE","nin":"SITE"}},"paging":{"from":1,"limit":1},"sort":{"name":{"direction":"ASC","priority":1},"type":{"direction":"ASC","priority":1}}}}'
+catocli mutation groups createGroup '{"createGroupInput":{"description":"string","members":[{"by":"ID","input":"string","type":"SITE"}],"name":"string"},"groupMembersListInput":{"filter":[{"name":[{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"],"regex":"string"}],"type":[{"eq":"SITE","in":["SITE"],"neq":"SITE","nin":["SITE"]}]}],"paging":{"from":1,"limit":1},"sort":{"name":{"direction":"ASC","priority":1},"type":{"direction":"ASC","priority":1}}}}'
 
 catocli mutation groups createGroup '{
     "createGroupInput": {
         "description": "string",
-        "members": {
-            "by": "ID",
-            "input": "string",
-            "type": "SITE"
-        },
+        "members": [
+            {
+                "by": "ID",
+                "input": "string",
+                "type": "SITE"
+            }
+        ],
         "name": "string"
     },
     "groupMembersListInput": {
-        "filter": {
-            "name": {
-                "eq": "string",
-                "in": [
-                    "string1",
-                    "string2"
+        "filter": [
+            {
+                "name": [
+                    {
+                        "eq": "string",
+                        "in": [
+                            "string1",
+                            "string2"
+                        ],
+                        "neq": "string",
+                        "nin": [
+                            "string1",
+                            "string2"
+                        ],
+                        "regex": "string"
+                    }
                 ],
-                "neq": "string",
-                "nin": [
-                    "string1",
-                    "string2"
-                ],
-                "regex": "string"
-            },
-            "type": {
-                "eq": "SITE",
-                "in": "SITE",
-                "neq": "SITE",
-                "nin": "SITE"
+                "type": [
+                    {
+                        "eq": "SITE",
+                        "in": [
+                            "SITE"
+                        ],
+                        "neq": "SITE",
+                        "nin": [
+                            "SITE"
+                        ]
+                    }
+                ]
             }
-        },
+        ],
         "paging": {
             "from": 1,
             "limit": 1

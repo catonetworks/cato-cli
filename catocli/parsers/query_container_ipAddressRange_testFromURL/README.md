@@ -11,12 +11,12 @@ catocli query container ipAddressRange testFromURL <json>
 
 catocli query container ipAddressRange testFromURL --json-file query.container.ipAddressRange.testFromURL.json
 
-catocli query container ipAddressRange testFromURL '{"testContainerFromUrlInput":{"fileType":"STIX","url":"example_value"}}'
+catocli query container ipAddressRange testFromURL '{"testContainerFromUrlInput":{"fileType":"STIX","url":"https://example.com/"}}'
 
 catocli query container ipAddressRange testFromURL '{
     "testContainerFromUrlInput": {
         "fileType": "STIX",
-        "url": "example_value"
+        "url": "https://example.com/"
     }
 }'
 ```

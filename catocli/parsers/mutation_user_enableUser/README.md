@@ -11,13 +11,12 @@ catocli mutation user enableUser <json>
 
 catocli mutation user enableUser --json-file mutation.user.enableUser.json
 
-catocli mutation user enableUser '{"enableUserInput":{"userId":["example1","example2"]}}'
+catocli mutation user enableUser '{"enableUserInput":{"userId":[1]}}'
 
 catocli mutation user enableUser '{
     "enableUserInput": {
         "userId": [
-            "example1",
-            "example2"
+            1
         ]
     }
 }'

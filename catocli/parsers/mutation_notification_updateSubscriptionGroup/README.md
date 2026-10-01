@@ -11,34 +11,46 @@ catocli mutation notification updateSubscriptionGroup <json>
 
 catocli mutation notification updateSubscriptionGroup --json-file mutation.notification.updateSubscriptionGroup.json
 
-catocli mutation notification updateSubscriptionGroup '{"updateSubscriptionGroupInput":{"integration":{"by":"ID","input":"string"},"integrationToAdd":{"by":"ID","input":"string"},"integrationToRemove":{"by":"ID","input":"string"},"mailingList":{"by":"ID","input":"string"},"mailingListToAdd":{"by":"ID","input":"string"},"mailingListToRemove":{"by":"ID","input":"string"},"name":"string","subscriptionGroup":{"by":"ID","input":"string"}}}'
+catocli mutation notification updateSubscriptionGroup '{"updateSubscriptionGroupInput":{"integration":[{"by":"ID","input":"string"}],"integrationToAdd":[{"by":"ID","input":"string"}],"integrationToRemove":[{"by":"ID","input":"string"}],"mailingList":[{"by":"ID","input":"string"}],"mailingListToAdd":[{"by":"ID","input":"string"}],"mailingListToRemove":[{"by":"ID","input":"string"}],"name":"string","subscriptionGroup":{"by":"ID","input":"string"}}}'
 
 catocli mutation notification updateSubscriptionGroup '{
     "updateSubscriptionGroupInput": {
-        "integration": {
-            "by": "ID",
-            "input": "string"
-        },
-        "integrationToAdd": {
-            "by": "ID",
-            "input": "string"
-        },
-        "integrationToRemove": {
-            "by": "ID",
-            "input": "string"
-        },
-        "mailingList": {
-            "by": "ID",
-            "input": "string"
-        },
-        "mailingListToAdd": {
-            "by": "ID",
-            "input": "string"
-        },
-        "mailingListToRemove": {
-            "by": "ID",
-            "input": "string"
-        },
+        "integration": [
+            {
+                "by": "ID",
+                "input": "string"
+            }
+        ],
+        "integrationToAdd": [
+            {
+                "by": "ID",
+                "input": "string"
+            }
+        ],
+        "integrationToRemove": [
+            {
+                "by": "ID",
+                "input": "string"
+            }
+        ],
+        "mailingList": [
+            {
+                "by": "ID",
+                "input": "string"
+            }
+        ],
+        "mailingListToAdd": [
+            {
+                "by": "ID",
+                "input": "string"
+            }
+        ],
+        "mailingListToRemove": [
+            {
+                "by": "ID",
+                "input": "string"
+            }
+        ],
         "name": "string",
         "subscriptionGroup": {
             "by": "ID",

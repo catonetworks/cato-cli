@@ -11,7 +11,7 @@ catocli mutation policy terminalServer addRule <json>
 
 catocli mutation policy terminalServer addRule --json-file mutation.policy.terminalServer.addRule.json
 
-catocli mutation policy terminalServer addRule '{"terminalServerAddRuleInput":{"at":{"position":"AFTER_RULE","ref":"id"},"rule":{"allowedHostIP":{"by":"ID","input":"string"},"description":"string","enabled":true,"excludeTraffic":{"by":"ID","input":"string"},"name":"string"}},"terminalServerPolicyMutationInput":{"revision":{"id":"id"}}}'
+catocli mutation policy terminalServer addRule '{"terminalServerAddRuleInput":{"at":{"position":"AFTER_RULE","ref":"id"},"rule":{"allowedHostIP":{"by":"ID","input":"string"},"description":"string","enabled":true,"excludeTraffic":[{"by":"ID","input":"string"}],"name":"string"}},"terminalServerPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy terminalServer addRule '{
     "terminalServerAddRuleInput": {
@@ -26,10 +26,12 @@ catocli mutation policy terminalServer addRule '{
             },
             "description": "string",
             "enabled": true,
-            "excludeTraffic": {
-                "by": "ID",
-                "input": "string"
-            },
+            "excludeTraffic": [
+                {
+                    "by": "ID",
+                    "input": "string"
+                }
+            ],
             "name": "string"
         }
     },

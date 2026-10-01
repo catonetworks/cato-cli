@@ -11,27 +11,27 @@ catocli mutation sites addSocketSite <json>
 
 catocli mutation sites addSocketSite --json-file mutation.sites.addSocketSite.json
 
-catocli mutation sites addSocketSite '{"addSocketSiteInput":{"connectionType":"SOCKET_X1500","description":"string","name":"string","nativeNetworkRange":"example_value","secondaryVSocket":{"aws":{"eniIpAddress":"example_value","eniIpSubnet":"example_value","routeTableId":"string"},"azure":{"floatingIp":"example_value","interfaceIp":"example_value"},"gcp":{"interfaceIp":"example_value","loadBalancerIp":"example_value"}},"siteLocation":{"address":"string","city":"string","countryCode":"string","stateCode":"string","timezone":"string"},"siteType":"BRANCH","translatedSubnet":"example_value","vlan":"example_value"}}'
+catocli mutation sites addSocketSite '{"addSocketSiteInput":{"connectionType":"SOCKET_X1500","description":"string","name":"string","nativeNetworkRange":"192.0.2.0/24","secondaryVSocket":{"aws":{"eniIpAddress":"192.0.2.1","eniIpSubnet":"192.0.2.0/24","routeTableId":"string"},"azure":{"floatingIp":"192.0.2.1","interfaceIp":"192.0.2.1"},"gcp":{"interfaceIp":"192.0.2.1","loadBalancerIp":"192.0.2.1"}},"siteLocation":{"address":"string","city":"string","countryCode":"string","stateCode":"string","timezone":"string"},"siteType":"BRANCH","translatedSubnet":"192.0.2.0/24","vlan":100}}'
 
 catocli mutation sites addSocketSite '{
     "addSocketSiteInput": {
         "connectionType": "SOCKET_X1500",
         "description": "string",
         "name": "string",
-        "nativeNetworkRange": "example_value",
+        "nativeNetworkRange": "192.0.2.0/24",
         "secondaryVSocket": {
             "aws": {
-                "eniIpAddress": "example_value",
-                "eniIpSubnet": "example_value",
+                "eniIpAddress": "192.0.2.1",
+                "eniIpSubnet": "192.0.2.0/24",
                 "routeTableId": "string"
             },
             "azure": {
-                "floatingIp": "example_value",
-                "interfaceIp": "example_value"
+                "floatingIp": "192.0.2.1",
+                "interfaceIp": "192.0.2.1"
             },
             "gcp": {
-                "interfaceIp": "example_value",
-                "loadBalancerIp": "example_value"
+                "interfaceIp": "192.0.2.1",
+                "loadBalancerIp": "192.0.2.1"
             }
         },
         "siteLocation": {
@@ -42,8 +42,8 @@ catocli mutation sites addSocketSite '{
             "timezone": "string"
         },
         "siteType": "BRANCH",
-        "translatedSubnet": "example_value",
-        "vlan": "example_value"
+        "translatedSubnet": "192.0.2.0/24",
+        "vlan": 100
     }
 }'
 ```

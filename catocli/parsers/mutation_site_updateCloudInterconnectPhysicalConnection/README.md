@@ -11,27 +11,27 @@ catocli mutation site updateCloudInterconnectPhysicalConnection <json>
 
 catocli mutation site updateCloudInterconnectPhysicalConnection --json-file mutation.site.updateCloudInterconnectPhysicalConnection.json
 
-catocli mutation site updateCloudInterconnectPhysicalConnection '{"updateCloudInterconnectPhysicalConnectionInput":{"QinQVlanConfiguration":{"cVlan":"example_value","sVlan":"example_value"},"downstreamBwLimit":"example_value","encapsulationMethod":"DOT1Q","id":"id","popLocation":{"by":"ID","input":"string"},"privateCatoIp":"example_value","privateSiteIp":"example_value","serviceProviderName":"string","subnet":"example_value","upstreamBwLimit":"example_value","vlan":"example_value"}}'
+catocli mutation site updateCloudInterconnectPhysicalConnection '{"updateCloudInterconnectPhysicalConnectionInput":{"QinQVlanConfiguration":{"cVlan":100,"sVlan":100},"downstreamBwLimit":100,"encapsulationMethod":"DOT1Q","id":"id","popLocation":{"by":"ID","input":"string"},"privateCatoIp":"192.0.2.1","privateSiteIp":"192.0.2.1","serviceProviderName":"string","subnet":"192.0.2.0/24","upstreamBwLimit":100,"vlan":100}}'
 
 catocli mutation site updateCloudInterconnectPhysicalConnection '{
     "updateCloudInterconnectPhysicalConnectionInput": {
         "QinQVlanConfiguration": {
-            "cVlan": "example_value",
-            "sVlan": "example_value"
+            "cVlan": 100,
+            "sVlan": 100
         },
-        "downstreamBwLimit": "example_value",
+        "downstreamBwLimit": 100,
         "encapsulationMethod": "DOT1Q",
         "id": "id",
         "popLocation": {
             "by": "ID",
             "input": "string"
         },
-        "privateCatoIp": "example_value",
-        "privateSiteIp": "example_value",
+        "privateCatoIp": "192.0.2.1",
+        "privateSiteIp": "192.0.2.1",
         "serviceProviderName": "string",
-        "subnet": "example_value",
-        "upstreamBwLimit": "example_value",
-        "vlan": "example_value"
+        "subnet": "192.0.2.0/24",
+        "upstreamBwLimit": 100,
+        "vlan": 100
     }
 }'
 ```

@@ -11,19 +11,21 @@ catocli query accountMetrics <json>
 
 catocli query accountMetrics --json-file query.accountMetrics.json
 
-catocli query accountMetrics '{"buckets":1,"groupDevices":true,"groupInterfaces":true,"labels":"bytesUpstream","perSecond":true,"siteIDs":["id1","id2"],"timeFrame":"example_value","toRate":true,"types":["string1","string2"],"useDefaultSizeBucket":true,"userIDs":["id1","id2"],"withMissingData":true}'
+catocli query accountMetrics '{"buckets":1,"groupDevices":true,"groupInterfaces":true,"labels":["bytesUpstream"],"perSecond":true,"siteIDs":["id1","id2"],"timeFrame":"last.P1D","toRate":true,"types":["string1","string2"],"useDefaultSizeBucket":true,"userIDs":["id1","id2"],"withMissingData":true}'
 
 catocli query accountMetrics '{
     "buckets": 1,
     "groupDevices": true,
     "groupInterfaces": true,
-    "labels": "bytesUpstream",
+    "labels": [
+        "bytesUpstream"
+    ],
     "perSecond": true,
     "siteIDs": [
         "id1",
         "id2"
     ],
-    "timeFrame": "example_value",
+    "timeFrame": "last.P1D",
     "toRate": true,
     "types": [
         "string1",

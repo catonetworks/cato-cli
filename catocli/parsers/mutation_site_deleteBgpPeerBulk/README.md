@@ -11,14 +11,16 @@ catocli mutation site deleteBgpPeerBulk <json>
 
 catocli mutation site deleteBgpPeerBulk --json-file mutation.site.deleteBgpPeerBulk.json
 
-catocli mutation site deleteBgpPeerBulk '{"deleteBgpPeerBulkInput":{"bgpPeer":{"by":"ID","input":"string"},"site":{"by":"ID","input":"string"}}}'
+catocli mutation site deleteBgpPeerBulk '{"deleteBgpPeerBulkInput":{"bgpPeer":[{"by":"ID","input":"string"}],"site":{"by":"ID","input":"string"}}}'
 
 catocli mutation site deleteBgpPeerBulk '{
     "deleteBgpPeerBulkInput": {
-        "bgpPeer": {
-            "by": "ID",
-            "input": "string"
-        },
+        "bgpPeer": [
+            {
+                "by": "ID",
+                "input": "string"
+            }
+        ],
         "site": {
             "by": "ID",
             "input": "string"

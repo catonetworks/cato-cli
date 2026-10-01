@@ -11,7 +11,7 @@ catocli mutation policy siteWebProxy updateRule <json>
 
 catocli mutation policy siteWebProxy updateRule --json-file mutation.policy.siteWebProxy.updateRule.json
 
-catocli mutation policy siteWebProxy updateRule '{"siteWebProxyPolicyMutationInput":{"revision":{"id":"id"}},"siteWebProxyUpdateRuleInput":{"id":"id","rule":{"associatedSite":{"by":"ID","input":"string"},"authenticationConfig":{"kerberosConfig":{"encryptedKeytab":"string","isEnabled":true},"method":"NONE"},"description":"string","enabled":true,"fqdn":"example_value","name":"string","port":"example_value","shouldAssociateWithAllSites":true}}}'
+catocli mutation policy siteWebProxy updateRule '{"siteWebProxyPolicyMutationInput":{"revision":{"id":"id"}},"siteWebProxyUpdateRuleInput":{"id":"id","rule":{"associatedSite":[{"by":"ID","input":"string"}],"authenticationConfig":{"kerberosConfig":{"encryptedKeytab":"string","isEnabled":true},"method":"NONE"},"description":"string","enabled":true,"fqdn":"host.example.com","name":"string","port":443,"shouldAssociateWithAllSites":true}}}'
 
 catocli mutation policy siteWebProxy updateRule '{
     "siteWebProxyPolicyMutationInput": {
@@ -22,10 +22,12 @@ catocli mutation policy siteWebProxy updateRule '{
     "siteWebProxyUpdateRuleInput": {
         "id": "id",
         "rule": {
-            "associatedSite": {
-                "by": "ID",
-                "input": "string"
-            },
+            "associatedSite": [
+                {
+                    "by": "ID",
+                    "input": "string"
+                }
+            ],
             "authenticationConfig": {
                 "kerberosConfig": {
                     "encryptedKeytab": "string",
@@ -35,9 +37,9 @@ catocli mutation policy siteWebProxy updateRule '{
             },
             "description": "string",
             "enabled": true,
-            "fqdn": "example_value",
+            "fqdn": "host.example.com",
             "name": "string",
-            "port": "example_value",
+            "port": 443,
             "shouldAssociateWithAllSites": true
         }
     }

@@ -11,11 +11,11 @@ catocli query container fqdn searchFqdn <json>
 
 catocli query container fqdn searchFqdn --json-file query.container.fqdn.searchFqdn.json
 
-catocli query container fqdn searchFqdn '{"fqdnContainerSearchFqdnInput":{"fqdn":"example_value"}}'
+catocli query container fqdn searchFqdn '{"fqdnContainerSearchFqdnInput":{"fqdn":"host.example.com"}}'
 
 catocli query container fqdn searchFqdn '{
     "fqdnContainerSearchFqdnInput": {
-        "fqdn": "example_value"
+        "fqdn": "host.example.com"
     }
 }'
 ```

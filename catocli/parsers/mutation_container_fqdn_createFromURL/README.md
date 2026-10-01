@@ -11,7 +11,7 @@ catocli mutation container fqdn createFromURL <json>
 
 catocli mutation container fqdn createFromURL --json-file mutation.container.fqdn.createFromURL.json
 
-catocli mutation container fqdn createFromURL '{"createFqdnContainerFromUrlInput":{"description":"string","fileType":"STIX","name":"string","syncData":{"notifications":{"mailingList":{"by":"ID","input":"string"},"subscriptionGroup":{"by":"ID","input":"string"},"webhook":{"by":"ID","input":"string"}},"timeInterval":1,"timeUnit":"HOUR","url":"example_value"}}}'
+catocli mutation container fqdn createFromURL '{"createFqdnContainerFromUrlInput":{"description":"string","fileType":"STIX","name":"string","syncData":{"notifications":{"mailingList":[{"by":"ID","input":"string"}],"subscriptionGroup":[{"by":"ID","input":"string"}],"webhook":[{"by":"ID","input":"string"}]},"timeInterval":1,"timeUnit":"HOUR","url":"https://example.com/"}}}'
 
 catocli mutation container fqdn createFromURL '{
     "createFqdnContainerFromUrlInput": {
@@ -20,22 +20,28 @@ catocli mutation container fqdn createFromURL '{
         "name": "string",
         "syncData": {
             "notifications": {
-                "mailingList": {
-                    "by": "ID",
-                    "input": "string"
-                },
-                "subscriptionGroup": {
-                    "by": "ID",
-                    "input": "string"
-                },
-                "webhook": {
-                    "by": "ID",
-                    "input": "string"
-                }
+                "mailingList": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ],
+                "subscriptionGroup": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ],
+                "webhook": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ]
             },
             "timeInterval": 1,
             "timeUnit": "HOUR",
-            "url": "example_value"
+            "url": "https://example.com/"
         }
     }
 }'

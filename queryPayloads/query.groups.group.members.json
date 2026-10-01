@@ -3,27 +3,37 @@
     "query": "query groupsGroupMembers ( $accountId:ID! $groupRefInput:GroupRefInput! $groupMembersListInput:GroupMembersListInput!) {\n\tgroups ( accountId:$accountId ) {\n\t\tgroup ( input:$groupRefInput  )  {\n\t\t\tmembers ( input:$groupMembersListInput   ) {\n\t\t\t\titems {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t\ttype\n\t\t\t\t}\n\t\t\t\tpaging {\n\t\t\t\t\ttotal\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\t\n}",
     "variables": {
         "groupMembersListInput": {
-            "filter": {
-                "name": {
-                    "eq": "string",
-                    "in": [
-                        "string1",
-                        "string2"
+            "filter": [
+                {
+                    "name": [
+                        {
+                            "eq": "string",
+                            "in": [
+                                "string1",
+                                "string2"
+                            ],
+                            "neq": "string",
+                            "nin": [
+                                "string1",
+                                "string2"
+                            ],
+                            "regex": "string"
+                        }
                     ],
-                    "neq": "string",
-                    "nin": [
-                        "string1",
-                        "string2"
-                    ],
-                    "regex": "string"
-                },
-                "type": {
-                    "eq": "SITE",
-                    "in": "SITE",
-                    "neq": "SITE",
-                    "nin": "SITE"
+                    "type": [
+                        {
+                            "eq": "SITE",
+                            "in": [
+                                "SITE"
+                            ],
+                            "neq": "SITE",
+                            "nin": [
+                                "SITE"
+                            ]
+                        }
+                    ]
                 }
-            },
+            ],
             "paging": {
                 "from": 1,
                 "limit": 1

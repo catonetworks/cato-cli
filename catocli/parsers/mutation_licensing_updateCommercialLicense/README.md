@@ -11,12 +11,12 @@ catocli mutation licensing updateCommercialLicense <json>
 
 catocli mutation licensing updateCommercialLicense --json-file mutation.licensing.updateCommercialLicense.json
 
-catocli mutation licensing updateCommercialLicense '{"updateCommercialLicenseInput":{"licenseId":"id","startDate":"example_value"}}'
+catocli mutation licensing updateCommercialLicense '{"updateCommercialLicenseInput":{"licenseId":"id","startDate":"2026-01-02T15:04:05Z"}}'
 
 catocli mutation licensing updateCommercialLicense '{
     "updateCommercialLicenseInput": {
         "licenseId": "id",
-        "startDate": "example_value"
+        "startDate": "2026-01-02T15:04:05Z"
     }
 }'
 ```

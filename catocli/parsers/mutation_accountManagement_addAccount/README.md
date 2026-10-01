@@ -11,14 +11,14 @@ catocli mutation accountManagement addAccount <json>
 
 catocli mutation accountManagement addAccount --json-file mutation.accountManagement.addAccount.json
 
-catocli mutation accountManagement addAccount '{"addAccountInput":{"description":"string","name":"string","tenancy":"SINGLE_TENANT","timezone":"example_value","type":"CUSTOMER"}}'
+catocli mutation accountManagement addAccount '{"addAccountInput":{"description":"string","name":"string","tenancy":"SINGLE_TENANT","timezone":"America/New_York","type":"CUSTOMER"}}'
 
 catocli mutation accountManagement addAccount '{
     "addAccountInput": {
         "description": "string",
         "name": "string",
         "tenancy": "SINGLE_TENANT",
-        "timezone": "example_value",
+        "timezone": "America/New_York",
         "type": "CUSTOMER"
     }
 }'

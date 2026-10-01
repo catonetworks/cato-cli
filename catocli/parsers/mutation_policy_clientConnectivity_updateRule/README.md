@@ -11,7 +11,7 @@ catocli mutation policy clientConnectivity updateRule <json>
 
 catocli mutation policy clientConnectivity updateRule --json-file mutation.policy.clientConnectivity.updateRule.json
 
-catocli mutation policy clientConnectivity updateRule '{"clientConnectivityPolicyMutationInput":{"revision":{"id":"id"}},"clientConnectivityUpdateRuleInput":{"id":"id","rule":{"action":"ALLOW","confidenceLevel":"HIGH","connectionOrigin":"ANY","country":{"by":"ID","input":"string"},"description":"string","device":{"by":"ID","input":"string"},"enabled":true,"name":"string","platform":"WINDOWS","source":{"user":{"by":"ID","input":"string"},"usersGroup":{"by":"ID","input":"string"}},"sourceRange":{"globalIpRange":{"by":"ID","input":"string"}}}}}'
+catocli mutation policy clientConnectivity updateRule '{"clientConnectivityPolicyMutationInput":{"revision":{"id":"id"}},"clientConnectivityUpdateRuleInput":{"id":"id","rule":{"action":"ALLOW","confidenceLevel":"HIGH","connectionOrigin":["ANY"],"country":[{"by":"ID","input":"string"}],"description":"string","device":[{"by":"ID","input":"string"}],"enabled":true,"name":"string","platform":["WINDOWS"],"source":{"user":[{"by":"ID","input":"string"}],"usersGroup":[{"by":"ID","input":"string"}]},"sourceRange":[{"globalIpRange":{"by":"ID","input":"string"}}]}}}'
 
 catocli mutation policy clientConnectivity updateRule '{
     "clientConnectivityPolicyMutationInput": {
@@ -24,35 +24,49 @@ catocli mutation policy clientConnectivity updateRule '{
         "rule": {
             "action": "ALLOW",
             "confidenceLevel": "HIGH",
-            "connectionOrigin": "ANY",
-            "country": {
-                "by": "ID",
-                "input": "string"
-            },
+            "connectionOrigin": [
+                "ANY"
+            ],
+            "country": [
+                {
+                    "by": "ID",
+                    "input": "string"
+                }
+            ],
             "description": "string",
-            "device": {
-                "by": "ID",
-                "input": "string"
-            },
+            "device": [
+                {
+                    "by": "ID",
+                    "input": "string"
+                }
+            ],
             "enabled": true,
             "name": "string",
-            "platform": "WINDOWS",
+            "platform": [
+                "WINDOWS"
+            ],
             "source": {
-                "user": {
-                    "by": "ID",
-                    "input": "string"
-                },
-                "usersGroup": {
-                    "by": "ID",
-                    "input": "string"
-                }
+                "user": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ],
+                "usersGroup": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ]
             },
-            "sourceRange": {
-                "globalIpRange": {
-                    "by": "ID",
-                    "input": "string"
+            "sourceRange": [
+                {
+                    "globalIpRange": {
+                        "by": "ID",
+                        "input": "string"
+                    }
                 }
-            }
+            ]
         }
     }
 }'

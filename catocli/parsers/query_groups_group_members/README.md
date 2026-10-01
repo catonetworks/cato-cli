@@ -11,31 +11,41 @@ catocli query groups group members <json>
 
 catocli query groups group members --json-file query.groups.group.members.json
 
-catocli query groups group members '{"groupMembersListInput":{"filter":{"name":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"],"regex":"string"},"type":{"eq":"SITE","in":"SITE","neq":"SITE","nin":"SITE"}},"paging":{"from":1,"limit":1},"sort":{"name":{"direction":"ASC","priority":1},"type":{"direction":"ASC","priority":1}}},"groupRefInput":{"by":"ID","input":"string"}}'
+catocli query groups group members '{"groupMembersListInput":{"filter":[{"name":[{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"],"regex":"string"}],"type":[{"eq":"SITE","in":["SITE"],"neq":"SITE","nin":["SITE"]}]}],"paging":{"from":1,"limit":1},"sort":{"name":{"direction":"ASC","priority":1},"type":{"direction":"ASC","priority":1}}},"groupRefInput":{"by":"ID","input":"string"}}'
 
 catocli query groups group members '{
     "groupMembersListInput": {
-        "filter": {
-            "name": {
-                "eq": "string",
-                "in": [
-                    "string1",
-                    "string2"
+        "filter": [
+            {
+                "name": [
+                    {
+                        "eq": "string",
+                        "in": [
+                            "string1",
+                            "string2"
+                        ],
+                        "neq": "string",
+                        "nin": [
+                            "string1",
+                            "string2"
+                        ],
+                        "regex": "string"
+                    }
                 ],
-                "neq": "string",
-                "nin": [
-                    "string1",
-                    "string2"
-                ],
-                "regex": "string"
-            },
-            "type": {
-                "eq": "SITE",
-                "in": "SITE",
-                "neq": "SITE",
-                "nin": "SITE"
+                "type": [
+                    {
+                        "eq": "SITE",
+                        "in": [
+                            "SITE"
+                        ],
+                        "neq": "SITE",
+                        "nin": [
+                            "SITE"
+                        ]
+                    }
+                ]
             }
-        },
+        ],
         "paging": {
             "from": 1,
             "limit": 1

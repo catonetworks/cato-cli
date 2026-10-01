@@ -11,18 +11,19 @@ catocli mutation networkConfig dns setForwardingRule <json>
 
 catocli mutation networkConfig dns setForwardingRule --json-file mutation.networkConfig.dns.setForwardingRule.json
 
-catocli mutation networkConfig dns setForwardingRule '{"networkConfigDnsSetForwardingRuleInput":{"forwardingRule":{"domain":"example_value","id":"id","server":["example1","example2"]}}}'
+catocli mutation networkConfig dns setForwardingRule '{"networkConfigDnsSetForwardingRuleInput":{"forwardingRule":[{"domain":"example.com","id":"id","server":["192.0.2.1"]}]}}'
 
 catocli mutation networkConfig dns setForwardingRule '{
     "networkConfigDnsSetForwardingRuleInput": {
-        "forwardingRule": {
-            "domain": "example_value",
-            "id": "id",
-            "server": [
-                "example1",
-                "example2"
-            ]
-        }
+        "forwardingRule": [
+            {
+                "domain": "example.com",
+                "id": "id",
+                "server": [
+                    "192.0.2.1"
+                ]
+            }
+        ]
     }
 }'
 ```

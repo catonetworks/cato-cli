@@ -11,30 +11,36 @@ catocli query appStatsTimeSeries <json>
 
 catocli query appStatsTimeSeries --json-file query.appStatsTimeSeries.json
 
-catocli query appStatsTimeSeries '{"appStatsFilter":{"fieldName":"account_id","operator":"is","values":["string1","string2"]},"buckets":1,"dimension":{"fieldName":"account_id"},"includeEmptyDimension":true,"measure":{"aggType":"sum","alias":"string","fieldName":"account_id","trend":true},"perSecond":true,"timeFrame":"example_value","useDefaultSizeBucket":true,"withMissingData":true}'
+catocli query appStatsTimeSeries '{"appStatsFilter":[{"fieldName":"account_id","operator":"is","values":["string1","string2"]}],"buckets":1,"dimension":[{"fieldName":"account_id"}],"includeEmptyDimension":true,"measure":[{"aggType":"sum","alias":"string","fieldName":"account_id","trend":true}],"perSecond":true,"timeFrame":"last.P1D","useDefaultSizeBucket":true,"withMissingData":true}'
 
 catocli query appStatsTimeSeries '{
-    "appStatsFilter": {
-        "fieldName": "account_id",
-        "operator": "is",
-        "values": [
-            "string1",
-            "string2"
-        ]
-    },
+    "appStatsFilter": [
+        {
+            "fieldName": "account_id",
+            "operator": "is",
+            "values": [
+                "string1",
+                "string2"
+            ]
+        }
+    ],
     "buckets": 1,
-    "dimension": {
-        "fieldName": "account_id"
-    },
+    "dimension": [
+        {
+            "fieldName": "account_id"
+        }
+    ],
     "includeEmptyDimension": true,
-    "measure": {
-        "aggType": "sum",
-        "alias": "string",
-        "fieldName": "account_id",
-        "trend": true
-    },
+    "measure": [
+        {
+            "aggType": "sum",
+            "alias": "string",
+            "fieldName": "account_id",
+            "trend": true
+        }
+    ],
     "perSecond": true,
-    "timeFrame": "example_value",
+    "timeFrame": "last.P1D",
     "useDefaultSizeBucket": true,
     "withMissingData": true
 }'

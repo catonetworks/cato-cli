@@ -11,15 +11,19 @@ catocli query container list <json>
 
 catocli query container list --json-file query.container.list.json
 
-catocli query container list '{"containerSearchInput":{"refs":{"by":"ID","input":"string"},"types":"IP_RANGE"}}'
+catocli query container list '{"containerSearchInput":{"refs":[{"by":"ID","input":"string"}],"types":["IP_RANGE"]}}'
 
 catocli query container list '{
     "containerSearchInput": {
-        "refs": {
-            "by": "ID",
-            "input": "string"
-        },
-        "types": "IP_RANGE"
+        "refs": [
+            {
+                "by": "ID",
+                "input": "string"
+            }
+        ],
+        "types": [
+            "IP_RANGE"
+        ]
     }
 }'
 ```

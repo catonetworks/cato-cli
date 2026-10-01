@@ -11,42 +11,50 @@ catocli mutation admin updateServicePrincipalAdmin <json>
 
 catocli mutation admin updateServicePrincipalAdmin --json-file mutation.admin.updateServicePrincipalAdmin.json
 
-catocli mutation admin updateServicePrincipalAdmin '{"adminID":"id","updateServicePrincipalAdminInput":{"managedRoles":{"allowedAccounts":["id1","id2"],"allowedEntities":{"id":"id","name":"string","type":"site"},"role":{"id":"id","name":"string"}},"name":"string","resellerRoles":{"allowedAccounts":["id1","id2"],"allowedEntities":{"id":"id","name":"string","type":"site"},"role":{"id":"id","name":"string"}}}}'
+catocli mutation admin updateServicePrincipalAdmin '{"adminID":"id","updateServicePrincipalAdminInput":{"managedRoles":[{"allowedAccounts":["id1","id2"],"allowedEntities":[{"id":"id","name":"string","type":"site"}],"role":{"id":"id","name":"string"}}],"name":"string","resellerRoles":[{"allowedAccounts":["id1","id2"],"allowedEntities":[{"id":"id","name":"string","type":"site"}],"role":{"id":"id","name":"string"}}]}}'
 
 catocli mutation admin updateServicePrincipalAdmin '{
     "adminID": "id",
     "updateServicePrincipalAdminInput": {
-        "managedRoles": {
-            "allowedAccounts": [
-                "id1",
-                "id2"
-            ],
-            "allowedEntities": {
-                "id": "id",
-                "name": "string",
-                "type": "site"
-            },
-            "role": {
-                "id": "id",
-                "name": "string"
+        "managedRoles": [
+            {
+                "allowedAccounts": [
+                    "id1",
+                    "id2"
+                ],
+                "allowedEntities": [
+                    {
+                        "id": "id",
+                        "name": "string",
+                        "type": "site"
+                    }
+                ],
+                "role": {
+                    "id": "id",
+                    "name": "string"
+                }
             }
-        },
+        ],
         "name": "string",
-        "resellerRoles": {
-            "allowedAccounts": [
-                "id1",
-                "id2"
-            ],
-            "allowedEntities": {
-                "id": "id",
-                "name": "string",
-                "type": "site"
-            },
-            "role": {
-                "id": "id",
-                "name": "string"
+        "resellerRoles": [
+            {
+                "allowedAccounts": [
+                    "id1",
+                    "id2"
+                ],
+                "allowedEntities": [
+                    {
+                        "id": "id",
+                        "name": "string",
+                        "type": "site"
+                    }
+                ],
+                "role": {
+                    "id": "id",
+                    "name": "string"
+                }
             }
-        }
+        ]
     }
 }'
 ```

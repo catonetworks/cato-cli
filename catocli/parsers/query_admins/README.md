@@ -11,7 +11,7 @@ catocli query admins <json>
 
 catocli query admins --json-file query.admins.json
 
-catocli query admins '{"adminIDs":["id1","id2"],"from":1,"limit":1,"search":"string","sortInput":{"field":"string","order":"asc"}}'
+catocli query admins '{"adminIDs":["id1","id2"],"from":1,"limit":1,"search":"string","sortInput":[{"field":"string","order":"asc"}]}'
 
 catocli query admins '{
     "adminIDs": [
@@ -21,10 +21,12 @@ catocli query admins '{
     "from": 1,
     "limit": 1,
     "search": "string",
-    "sortInput": {
-        "field": "string",
-        "order": "asc"
-    }
+    "sortInput": [
+        {
+            "field": "string",
+            "order": "asc"
+        }
+    ]
 }'
 ```
 

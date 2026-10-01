@@ -11,7 +11,7 @@ catocli mutation container fqdn addValues <json>
 
 catocli mutation container fqdn addValues --json-file mutation.container.fqdn.addValues.json
 
-catocli mutation container fqdn addValues '{"fqdnContainerAddValuesInput":{"ref":{"by":"ID","input":"string"},"values":["example1","example2"]}}'
+catocli mutation container fqdn addValues '{"fqdnContainerAddValuesInput":{"ref":{"by":"ID","input":"string"},"values":["host.example.com"]}}'
 
 catocli mutation container fqdn addValues '{
     "fqdnContainerAddValuesInput": {
@@ -20,8 +20,7 @@ catocli mutation container fqdn addValues '{
             "input": "string"
         },
         "values": [
-            "example1",
-            "example2"
+            "host.example.com"
         ]
     }
 }'

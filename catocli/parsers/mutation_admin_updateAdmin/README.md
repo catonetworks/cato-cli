@@ -11,44 +11,52 @@ catocli mutation admin updateAdmin <json>
 
 catocli mutation admin updateAdmin --json-file mutation.admin.updateAdmin.json
 
-catocli mutation admin updateAdmin '{"adminID":"id","updateAdminInput":{"firstName":"string","lastName":"string","managedRoles":{"allowedAccounts":["id1","id2"],"allowedEntities":{"id":"id","name":"string","type":"site"},"role":{"id":"id","name":"string"}},"passwordNeverExpires":true,"resellerRoles":{"allowedAccounts":["id1","id2"],"allowedEntities":{"id":"id","name":"string","type":"site"},"role":{"id":"id","name":"string"}}}}'
+catocli mutation admin updateAdmin '{"adminID":"id","updateAdminInput":{"firstName":"string","lastName":"string","managedRoles":[{"allowedAccounts":["id1","id2"],"allowedEntities":[{"id":"id","name":"string","type":"site"}],"role":{"id":"id","name":"string"}}],"passwordNeverExpires":true,"resellerRoles":[{"allowedAccounts":["id1","id2"],"allowedEntities":[{"id":"id","name":"string","type":"site"}],"role":{"id":"id","name":"string"}}]}}'
 
 catocli mutation admin updateAdmin '{
     "adminID": "id",
     "updateAdminInput": {
         "firstName": "string",
         "lastName": "string",
-        "managedRoles": {
-            "allowedAccounts": [
-                "id1",
-                "id2"
-            ],
-            "allowedEntities": {
-                "id": "id",
-                "name": "string",
-                "type": "site"
-            },
-            "role": {
-                "id": "id",
-                "name": "string"
+        "managedRoles": [
+            {
+                "allowedAccounts": [
+                    "id1",
+                    "id2"
+                ],
+                "allowedEntities": [
+                    {
+                        "id": "id",
+                        "name": "string",
+                        "type": "site"
+                    }
+                ],
+                "role": {
+                    "id": "id",
+                    "name": "string"
+                }
             }
-        },
+        ],
         "passwordNeverExpires": true,
-        "resellerRoles": {
-            "allowedAccounts": [
-                "id1",
-                "id2"
-            ],
-            "allowedEntities": {
-                "id": "id",
-                "name": "string",
-                "type": "site"
-            },
-            "role": {
-                "id": "id",
-                "name": "string"
+        "resellerRoles": [
+            {
+                "allowedAccounts": [
+                    "id1",
+                    "id2"
+                ],
+                "allowedEntities": [
+                    {
+                        "id": "id",
+                        "name": "string",
+                        "type": "site"
+                    }
+                ],
+                "role": {
+                    "id": "id",
+                    "name": "string"
+                }
             }
-        }
+        ]
     }
 }'
 ```

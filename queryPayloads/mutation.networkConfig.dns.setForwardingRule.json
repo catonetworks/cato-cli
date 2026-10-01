@@ -3,14 +3,15 @@
     "query": "mutation networkConfigDnsSetForwardingRule ( $accountId:ID! $networkConfigDnsSetForwardingRuleInput:NetworkConfigDnsSetForwardingRuleInput!) {\n\tnetworkConfig ( accountId:$accountId ) {\n\t\tdns {\n\t\t\tsetForwardingRule ( input:$networkConfigDnsSetForwardingRuleInput   ) {\n\t\t\t\tforwardingRule {\n\t\t\t\t\tid\n\t\t\t\t\tdomain\n\t\t\t\t\tserver\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\t\n}",
     "variables": {
         "networkConfigDnsSetForwardingRuleInput": {
-            "forwardingRule": {
-                "domain": "example_value",
-                "id": "id",
-                "server": [
-                    "example1",
-                    "example2"
-                ]
-            }
+            "forwardingRule": [
+                {
+                    "domain": "example.com",
+                    "id": "id",
+                    "server": [
+                        "192.0.2.1"
+                    ]
+                }
+            ]
         }
     }
 }

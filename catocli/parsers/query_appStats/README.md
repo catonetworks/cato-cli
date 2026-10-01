@@ -11,20 +11,11 @@ catocli query appStats <json>
 
 catocli query appStats --json-file query.appStats.json
 
-catocli query appStats '{"appStatsFilter":{"fieldName":"account_id","operator":"is","values":["string1","string2"]},"appStatsPostAggFilter":{"aggType":"sum","filter":{"fieldName":"account_id","operator":"is","values":["string1","string2"]}},"appStatsSort":{"alias":"string","fieldName":"account_id","order":"asc"},"dimension":{"fieldName":"account_id"},"from":1,"includeEmptyDimension":true,"limit":1,"measure":{"aggType":"sum","alias":"string","fieldName":"account_id","trend":true},"timeFrame":"example_value"}'
+catocli query appStats '{"appStatsFilter":[{"fieldName":"account_id","operator":"is","values":["string1","string2"]}],"appStatsPostAggFilter":[{"aggType":"sum","filter":{"fieldName":"account_id","operator":"is","values":["string1","string2"]}}],"appStatsSort":[{"alias":"string","fieldName":"account_id","order":"asc"}],"dimension":[{"fieldName":"account_id"}],"from":1,"includeEmptyDimension":true,"limit":1,"measure":[{"aggType":"sum","alias":"string","fieldName":"account_id","trend":true}],"timeFrame":"last.P1D"}'
 
 catocli query appStats '{
-    "appStatsFilter": {
-        "fieldName": "account_id",
-        "operator": "is",
-        "values": [
-            "string1",
-            "string2"
-        ]
-    },
-    "appStatsPostAggFilter": {
-        "aggType": "sum",
-        "filter": {
+    "appStatsFilter": [
+        {
             "fieldName": "account_id",
             "operator": "is",
             "values": [
@@ -32,25 +23,44 @@ catocli query appStats '{
                 "string2"
             ]
         }
-    },
-    "appStatsSort": {
-        "alias": "string",
-        "fieldName": "account_id",
-        "order": "asc"
-    },
-    "dimension": {
-        "fieldName": "account_id"
-    },
+    ],
+    "appStatsPostAggFilter": [
+        {
+            "aggType": "sum",
+            "filter": {
+                "fieldName": "account_id",
+                "operator": "is",
+                "values": [
+                    "string1",
+                    "string2"
+                ]
+            }
+        }
+    ],
+    "appStatsSort": [
+        {
+            "alias": "string",
+            "fieldName": "account_id",
+            "order": "asc"
+        }
+    ],
+    "dimension": [
+        {
+            "fieldName": "account_id"
+        }
+    ],
     "from": 1,
     "includeEmptyDimension": true,
     "limit": 1,
-    "measure": {
-        "aggType": "sum",
-        "alias": "string",
-        "fieldName": "account_id",
-        "trend": true
-    },
-    "timeFrame": "example_value"
+    "measure": [
+        {
+            "aggType": "sum",
+            "alias": "string",
+            "fieldName": "account_id",
+            "trend": true
+        }
+    ],
+    "timeFrame": "last.P1D"
 }'
 ```
 

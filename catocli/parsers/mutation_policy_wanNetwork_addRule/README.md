@@ -11,7 +11,7 @@ catocli mutation policy wanNetwork addRule <json>
 
 catocli mutation policy wanNetwork addRule --json-file mutation.policy.wanNetwork.addRule.json
 
-catocli mutation policy wanNetwork addRule '{"wanNetworkAddRuleInput":{"at":{"position":"AFTER_RULE","ref":"id"},"rule":{"application":{"appCategory":{"by":"ID","input":"string"},"application":{"by":"ID","input":"string"},"customApp":{"by":"ID","input":"string"},"customCategory":{"by":"ID","input":"string"},"customService":{"port":["example1","example2"],"portRange":{"from":"example_value","to":"example_value"},"protocol":"ANY"},"customServiceIp":{"ip":"example_value","ipRange":{"from":"example_value","to":"example_value"},"name":"string"},"domain":["example1","example2"],"fqdn":["example1","example2"],"service":{"by":"ID","input":"string"}},"bandwidthPriority":{"by":"ID","input":"string"},"configuration":{"activeTcpAcceleration":true,"allocationIp":{"by":"ID","input":"string"},"backhaulingSite":{"by":"ID","input":"string"},"packetLossMitigation":true,"popLocation":{"by":"ID","input":"string"},"preserveSourcePort":true,"primaryTransport":{"primaryInterfaceRole":"AUTOMATIC","secondaryInterfaceRole":"AUTOMATIC","transportType":"AUTOMATIC"},"secondaryTransport":{"primaryInterfaceRole":"AUTOMATIC","secondaryInterfaceRole":"AUTOMATIC","transportType":"AUTOMATIC"}},"description":"string","destination":{"floatingSubnet":{"by":"ID","input":"string"},"globalIpRange":{"by":"ID","input":"string"},"group":{"by":"ID","input":"string"},"host":{"by":"ID","input":"string"},"ip":["example1","example2"],"ipRange":{"from":"example_value","to":"example_value"},"networkInterface":{"by":"ID","input":"string"},"site":{"by":"ID","input":"string"},"siteNetworkSubnet":{"by":"ID","input":"string"},"subnet":["example1","example2"],"systemGroup":{"by":"ID","input":"string"},"user":{"by":"ID","input":"string"},"usersGroup":{"by":"ID","input":"string"}},"enabled":true,"exceptions":{"application":{"appCategory":{"by":"ID","input":"string"},"application":{"by":"ID","input":"string"},"customApp":{"by":"ID","input":"string"},"customCategory":{"by":"ID","input":"string"},"customService":{"port":["example1","example2"],"portRange":{"from":"example_value","to":"example_value"},"protocol":"ANY"},"customServiceIp":{"ip":"example_value","ipRange":{"from":"example_value","to":"example_value"},"name":"string"},"domain":["example1","example2"],"fqdn":["example1","example2"],"service":{"by":"ID","input":"string"}},"destination":{"floatingSubnet":{"by":"ID","input":"string"},"globalIpRange":{"by":"ID","input":"string"},"group":{"by":"ID","input":"string"},"host":{"by":"ID","input":"string"},"ip":["example1","example2"],"ipRange":{"from":"example_value","to":"example_value"},"networkInterface":{"by":"ID","input":"string"},"site":{"by":"ID","input":"string"},"siteNetworkSubnet":{"by":"ID","input":"string"},"subnet":["example1","example2"],"systemGroup":{"by":"ID","input":"string"},"user":{"by":"ID","input":"string"},"usersGroup":{"by":"ID","input":"string"}},"name":"string","source":{"floatingSubnet":{"by":"ID","input":"string"},"globalIpRange":{"by":"ID","input":"string"},"group":{"by":"ID","input":"string"},"host":{"by":"ID","input":"string"},"ip":["example1","example2"],"ipRange":{"from":"example_value","to":"example_value"},"networkInterface":{"by":"ID","input":"string"},"site":{"by":"ID","input":"string"},"siteNetworkSubnet":{"by":"ID","input":"string"},"subnet":["example1","example2"],"systemGroup":{"by":"ID","input":"string"},"user":{"by":"ID","input":"string"},"usersGroup":{"by":"ID","input":"string"}}},"name":"string","routeType":"NONE","ruleType":"WAN","source":{"floatingSubnet":{"by":"ID","input":"string"},"globalIpRange":{"by":"ID","input":"string"},"group":{"by":"ID","input":"string"},"host":{"by":"ID","input":"string"},"ip":["example1","example2"],"ipRange":{"from":"example_value","to":"example_value"},"networkInterface":{"by":"ID","input":"string"},"site":{"by":"ID","input":"string"},"siteNetworkSubnet":{"by":"ID","input":"string"},"subnet":["example1","example2"],"systemGroup":{"by":"ID","input":"string"},"user":{"by":"ID","input":"string"},"usersGroup":{"by":"ID","input":"string"}}}},"wanNetworkPolicyMutationInput":{"revision":{"id":"id"}}}'
+catocli mutation policy wanNetwork addRule '{"wanNetworkAddRuleInput":{"at":{"position":"AFTER_RULE","ref":"id"},"rule":{"application":{"appCategory":[{"by":"ID","input":"string"}],"application":[{"by":"ID","input":"string"}],"customApp":[{"by":"ID","input":"string"}],"customCategory":[{"by":"ID","input":"string"}],"customService":[{"port":[443],"portRange":{"from":443,"to":443},"protocol":"ANY"}],"customServiceIp":[{"ip":"192.0.2.1","ipRange":{"from":"192.0.2.1","to":"192.0.2.1"},"name":"string"}],"domain":["example.com"],"fqdn":["host.example.com"],"service":[{"by":"ID","input":"string"}]},"bandwidthPriority":{"by":"ID","input":"string"},"configuration":{"activeTcpAcceleration":true,"allocationIp":[{"by":"ID","input":"string"}],"backhaulingSite":[{"by":"ID","input":"string"}],"packetLossMitigation":true,"popLocation":[{"by":"ID","input":"string"}],"preserveSourcePort":true,"primaryTransport":{"primaryInterfaceRole":"AUTOMATIC","secondaryInterfaceRole":"AUTOMATIC","transportType":"AUTOMATIC"},"secondaryTransport":{"primaryInterfaceRole":"AUTOMATIC","secondaryInterfaceRole":"AUTOMATIC","transportType":"AUTOMATIC"}},"description":"string","destination":{"floatingSubnet":[{"by":"ID","input":"string"}],"globalIpRange":[{"by":"ID","input":"string"}],"group":[{"by":"ID","input":"string"}],"host":[{"by":"ID","input":"string"}],"ip":["192.0.2.1"],"ipRange":[{"from":"192.0.2.1","to":"192.0.2.1"}],"networkInterface":[{"by":"ID","input":"string"}],"site":[{"by":"ID","input":"string"}],"siteNetworkSubnet":[{"by":"ID","input":"string"}],"subnet":["192.0.2.0/24"],"systemGroup":[{"by":"ID","input":"string"}],"user":[{"by":"ID","input":"string"}],"usersGroup":[{"by":"ID","input":"string"}]},"enabled":true,"exceptions":[{"application":{"appCategory":[{"by":"ID","input":"string"}],"application":[{"by":"ID","input":"string"}],"customApp":[{"by":"ID","input":"string"}],"customCategory":[{"by":"ID","input":"string"}],"customService":[{"port":[443],"portRange":{"from":443,"to":443},"protocol":"ANY"}],"customServiceIp":[{"ip":"192.0.2.1","ipRange":{"from":"192.0.2.1","to":"192.0.2.1"},"name":"string"}],"domain":["example.com"],"fqdn":["host.example.com"],"service":[{"by":"ID","input":"string"}]},"destination":{"floatingSubnet":[{"by":"ID","input":"string"}],"globalIpRange":[{"by":"ID","input":"string"}],"group":[{"by":"ID","input":"string"}],"host":[{"by":"ID","input":"string"}],"ip":["192.0.2.1"],"ipRange":[{"from":"192.0.2.1","to":"192.0.2.1"}],"networkInterface":[{"by":"ID","input":"string"}],"site":[{"by":"ID","input":"string"}],"siteNetworkSubnet":[{"by":"ID","input":"string"}],"subnet":["192.0.2.0/24"],"systemGroup":[{"by":"ID","input":"string"}],"user":[{"by":"ID","input":"string"}],"usersGroup":[{"by":"ID","input":"string"}]},"name":"string","source":{"floatingSubnet":[{"by":"ID","input":"string"}],"globalIpRange":[{"by":"ID","input":"string"}],"group":[{"by":"ID","input":"string"}],"host":[{"by":"ID","input":"string"}],"ip":["192.0.2.1"],"ipRange":[{"from":"192.0.2.1","to":"192.0.2.1"}],"networkInterface":[{"by":"ID","input":"string"}],"site":[{"by":"ID","input":"string"}],"siteNetworkSubnet":[{"by":"ID","input":"string"}],"subnet":["192.0.2.0/24"],"systemGroup":[{"by":"ID","input":"string"}],"user":[{"by":"ID","input":"string"}],"usersGroup":[{"by":"ID","input":"string"}]}}],"name":"string","routeType":"NONE","ruleType":"WAN","source":{"floatingSubnet":[{"by":"ID","input":"string"}],"globalIpRange":[{"by":"ID","input":"string"}],"group":[{"by":"ID","input":"string"}],"host":[{"by":"ID","input":"string"}],"ip":["192.0.2.1"],"ipRange":[{"from":"192.0.2.1","to":"192.0.2.1"}],"networkInterface":[{"by":"ID","input":"string"}],"site":[{"by":"ID","input":"string"}],"siteNetworkSubnet":[{"by":"ID","input":"string"}],"subnet":["192.0.2.0/24"],"systemGroup":[{"by":"ID","input":"string"}],"user":[{"by":"ID","input":"string"}],"usersGroup":[{"by":"ID","input":"string"}]}}},"wanNetworkPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy wanNetwork addRule '{
     "wanNetworkAddRuleInput": {
@@ -21,53 +21,64 @@ catocli mutation policy wanNetwork addRule '{
         },
         "rule": {
             "application": {
-                "appCategory": {
-                    "by": "ID",
-                    "input": "string"
-                },
-                "application": {
-                    "by": "ID",
-                    "input": "string"
-                },
-                "customApp": {
-                    "by": "ID",
-                    "input": "string"
-                },
-                "customCategory": {
-                    "by": "ID",
-                    "input": "string"
-                },
-                "customService": {
-                    "port": [
-                        "example1",
-                        "example2"
-                    ],
-                    "portRange": {
-                        "from": "example_value",
-                        "to": "example_value"
-                    },
-                    "protocol": "ANY"
-                },
-                "customServiceIp": {
-                    "ip": "example_value",
-                    "ipRange": {
-                        "from": "example_value",
-                        "to": "example_value"
-                    },
-                    "name": "string"
-                },
+                "appCategory": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ],
+                "application": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ],
+                "customApp": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ],
+                "customCategory": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ],
+                "customService": [
+                    {
+                        "port": [
+                            443
+                        ],
+                        "portRange": {
+                            "from": 443,
+                            "to": 443
+                        },
+                        "protocol": "ANY"
+                    }
+                ],
+                "customServiceIp": [
+                    {
+                        "ip": "192.0.2.1",
+                        "ipRange": {
+                            "from": "192.0.2.1",
+                            "to": "192.0.2.1"
+                        },
+                        "name": "string"
+                    }
+                ],
                 "domain": [
-                    "example1",
-                    "example2"
+                    "example.com"
                 ],
                 "fqdn": [
-                    "example1",
-                    "example2"
+                    "host.example.com"
                 ],
-                "service": {
-                    "by": "ID",
-                    "input": "string"
-                }
+                "service": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ]
             },
             "bandwidthPriority": {
                 "by": "ID",
@@ -75,19 +86,25 @@ catocli mutation policy wanNetwork addRule '{
             },
             "configuration": {
                 "activeTcpAcceleration": true,
-                "allocationIp": {
-                    "by": "ID",
-                    "input": "string"
-                },
-                "backhaulingSite": {
-                    "by": "ID",
-                    "input": "string"
-                },
+                "allocationIp": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ],
+                "backhaulingSite": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ],
                 "packetLossMitigation": true,
-                "popLocation": {
-                    "by": "ID",
-                    "input": "string"
-                },
+                "popLocation": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ],
                 "preserveSourcePort": true,
                 "primaryTransport": {
                     "primaryInterfaceRole": "AUTOMATIC",
@@ -102,276 +119,369 @@ catocli mutation policy wanNetwork addRule '{
             },
             "description": "string",
             "destination": {
-                "floatingSubnet": {
-                    "by": "ID",
-                    "input": "string"
-                },
-                "globalIpRange": {
-                    "by": "ID",
-                    "input": "string"
-                },
-                "group": {
-                    "by": "ID",
-                    "input": "string"
-                },
-                "host": {
-                    "by": "ID",
-                    "input": "string"
-                },
+                "floatingSubnet": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ],
+                "globalIpRange": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ],
+                "group": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ],
+                "host": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ],
                 "ip": [
-                    "example1",
-                    "example2"
+                    "192.0.2.1"
                 ],
-                "ipRange": {
-                    "from": "example_value",
-                    "to": "example_value"
-                },
-                "networkInterface": {
-                    "by": "ID",
-                    "input": "string"
-                },
-                "site": {
-                    "by": "ID",
-                    "input": "string"
-                },
-                "siteNetworkSubnet": {
-                    "by": "ID",
-                    "input": "string"
-                },
+                "ipRange": [
+                    {
+                        "from": "192.0.2.1",
+                        "to": "192.0.2.1"
+                    }
+                ],
+                "networkInterface": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ],
+                "site": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ],
+                "siteNetworkSubnet": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ],
                 "subnet": [
-                    "example1",
-                    "example2"
+                    "192.0.2.0/24"
                 ],
-                "systemGroup": {
-                    "by": "ID",
-                    "input": "string"
-                },
-                "user": {
-                    "by": "ID",
-                    "input": "string"
-                },
-                "usersGroup": {
-                    "by": "ID",
-                    "input": "string"
-                }
+                "systemGroup": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ],
+                "user": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ],
+                "usersGroup": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ]
             },
             "enabled": true,
-            "exceptions": {
-                "application": {
-                    "appCategory": {
-                        "by": "ID",
-                        "input": "string"
-                    },
+            "exceptions": [
+                {
                     "application": {
-                        "by": "ID",
-                        "input": "string"
-                    },
-                    "customApp": {
-                        "by": "ID",
-                        "input": "string"
-                    },
-                    "customCategory": {
-                        "by": "ID",
-                        "input": "string"
-                    },
-                    "customService": {
-                        "port": [
-                            "example1",
-                            "example2"
+                        "appCategory": [
+                            {
+                                "by": "ID",
+                                "input": "string"
+                            }
                         ],
-                        "portRange": {
-                            "from": "example_value",
-                            "to": "example_value"
-                        },
-                        "protocol": "ANY"
+                        "application": [
+                            {
+                                "by": "ID",
+                                "input": "string"
+                            }
+                        ],
+                        "customApp": [
+                            {
+                                "by": "ID",
+                                "input": "string"
+                            }
+                        ],
+                        "customCategory": [
+                            {
+                                "by": "ID",
+                                "input": "string"
+                            }
+                        ],
+                        "customService": [
+                            {
+                                "port": [
+                                    443
+                                ],
+                                "portRange": {
+                                    "from": 443,
+                                    "to": 443
+                                },
+                                "protocol": "ANY"
+                            }
+                        ],
+                        "customServiceIp": [
+                            {
+                                "ip": "192.0.2.1",
+                                "ipRange": {
+                                    "from": "192.0.2.1",
+                                    "to": "192.0.2.1"
+                                },
+                                "name": "string"
+                            }
+                        ],
+                        "domain": [
+                            "example.com"
+                        ],
+                        "fqdn": [
+                            "host.example.com"
+                        ],
+                        "service": [
+                            {
+                                "by": "ID",
+                                "input": "string"
+                            }
+                        ]
                     },
-                    "customServiceIp": {
-                        "ip": "example_value",
-                        "ipRange": {
-                            "from": "example_value",
-                            "to": "example_value"
-                        },
-                        "name": "string"
+                    "destination": {
+                        "floatingSubnet": [
+                            {
+                                "by": "ID",
+                                "input": "string"
+                            }
+                        ],
+                        "globalIpRange": [
+                            {
+                                "by": "ID",
+                                "input": "string"
+                            }
+                        ],
+                        "group": [
+                            {
+                                "by": "ID",
+                                "input": "string"
+                            }
+                        ],
+                        "host": [
+                            {
+                                "by": "ID",
+                                "input": "string"
+                            }
+                        ],
+                        "ip": [
+                            "192.0.2.1"
+                        ],
+                        "ipRange": [
+                            {
+                                "from": "192.0.2.1",
+                                "to": "192.0.2.1"
+                            }
+                        ],
+                        "networkInterface": [
+                            {
+                                "by": "ID",
+                                "input": "string"
+                            }
+                        ],
+                        "site": [
+                            {
+                                "by": "ID",
+                                "input": "string"
+                            }
+                        ],
+                        "siteNetworkSubnet": [
+                            {
+                                "by": "ID",
+                                "input": "string"
+                            }
+                        ],
+                        "subnet": [
+                            "192.0.2.0/24"
+                        ],
+                        "systemGroup": [
+                            {
+                                "by": "ID",
+                                "input": "string"
+                            }
+                        ],
+                        "user": [
+                            {
+                                "by": "ID",
+                                "input": "string"
+                            }
+                        ],
+                        "usersGroup": [
+                            {
+                                "by": "ID",
+                                "input": "string"
+                            }
+                        ]
                     },
-                    "domain": [
-                        "example1",
-                        "example2"
-                    ],
-                    "fqdn": [
-                        "example1",
-                        "example2"
-                    ],
-                    "service": {
-                        "by": "ID",
-                        "input": "string"
-                    }
-                },
-                "destination": {
-                    "floatingSubnet": {
-                        "by": "ID",
-                        "input": "string"
-                    },
-                    "globalIpRange": {
-                        "by": "ID",
-                        "input": "string"
-                    },
-                    "group": {
-                        "by": "ID",
-                        "input": "string"
-                    },
-                    "host": {
-                        "by": "ID",
-                        "input": "string"
-                    },
-                    "ip": [
-                        "example1",
-                        "example2"
-                    ],
-                    "ipRange": {
-                        "from": "example_value",
-                        "to": "example_value"
-                    },
-                    "networkInterface": {
-                        "by": "ID",
-                        "input": "string"
-                    },
-                    "site": {
-                        "by": "ID",
-                        "input": "string"
-                    },
-                    "siteNetworkSubnet": {
-                        "by": "ID",
-                        "input": "string"
-                    },
-                    "subnet": [
-                        "example1",
-                        "example2"
-                    ],
-                    "systemGroup": {
-                        "by": "ID",
-                        "input": "string"
-                    },
-                    "user": {
-                        "by": "ID",
-                        "input": "string"
-                    },
-                    "usersGroup": {
-                        "by": "ID",
-                        "input": "string"
-                    }
-                },
-                "name": "string",
-                "source": {
-                    "floatingSubnet": {
-                        "by": "ID",
-                        "input": "string"
-                    },
-                    "globalIpRange": {
-                        "by": "ID",
-                        "input": "string"
-                    },
-                    "group": {
-                        "by": "ID",
-                        "input": "string"
-                    },
-                    "host": {
-                        "by": "ID",
-                        "input": "string"
-                    },
-                    "ip": [
-                        "example1",
-                        "example2"
-                    ],
-                    "ipRange": {
-                        "from": "example_value",
-                        "to": "example_value"
-                    },
-                    "networkInterface": {
-                        "by": "ID",
-                        "input": "string"
-                    },
-                    "site": {
-                        "by": "ID",
-                        "input": "string"
-                    },
-                    "siteNetworkSubnet": {
-                        "by": "ID",
-                        "input": "string"
-                    },
-                    "subnet": [
-                        "example1",
-                        "example2"
-                    ],
-                    "systemGroup": {
-                        "by": "ID",
-                        "input": "string"
-                    },
-                    "user": {
-                        "by": "ID",
-                        "input": "string"
-                    },
-                    "usersGroup": {
-                        "by": "ID",
-                        "input": "string"
+                    "name": "string",
+                    "source": {
+                        "floatingSubnet": [
+                            {
+                                "by": "ID",
+                                "input": "string"
+                            }
+                        ],
+                        "globalIpRange": [
+                            {
+                                "by": "ID",
+                                "input": "string"
+                            }
+                        ],
+                        "group": [
+                            {
+                                "by": "ID",
+                                "input": "string"
+                            }
+                        ],
+                        "host": [
+                            {
+                                "by": "ID",
+                                "input": "string"
+                            }
+                        ],
+                        "ip": [
+                            "192.0.2.1"
+                        ],
+                        "ipRange": [
+                            {
+                                "from": "192.0.2.1",
+                                "to": "192.0.2.1"
+                            }
+                        ],
+                        "networkInterface": [
+                            {
+                                "by": "ID",
+                                "input": "string"
+                            }
+                        ],
+                        "site": [
+                            {
+                                "by": "ID",
+                                "input": "string"
+                            }
+                        ],
+                        "siteNetworkSubnet": [
+                            {
+                                "by": "ID",
+                                "input": "string"
+                            }
+                        ],
+                        "subnet": [
+                            "192.0.2.0/24"
+                        ],
+                        "systemGroup": [
+                            {
+                                "by": "ID",
+                                "input": "string"
+                            }
+                        ],
+                        "user": [
+                            {
+                                "by": "ID",
+                                "input": "string"
+                            }
+                        ],
+                        "usersGroup": [
+                            {
+                                "by": "ID",
+                                "input": "string"
+                            }
+                        ]
                     }
                 }
-            },
+            ],
             "name": "string",
             "routeType": "NONE",
             "ruleType": "WAN",
             "source": {
-                "floatingSubnet": {
-                    "by": "ID",
-                    "input": "string"
-                },
-                "globalIpRange": {
-                    "by": "ID",
-                    "input": "string"
-                },
-                "group": {
-                    "by": "ID",
-                    "input": "string"
-                },
-                "host": {
-                    "by": "ID",
-                    "input": "string"
-                },
+                "floatingSubnet": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ],
+                "globalIpRange": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ],
+                "group": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ],
+                "host": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ],
                 "ip": [
-                    "example1",
-                    "example2"
+                    "192.0.2.1"
                 ],
-                "ipRange": {
-                    "from": "example_value",
-                    "to": "example_value"
-                },
-                "networkInterface": {
-                    "by": "ID",
-                    "input": "string"
-                },
-                "site": {
-                    "by": "ID",
-                    "input": "string"
-                },
-                "siteNetworkSubnet": {
-                    "by": "ID",
-                    "input": "string"
-                },
+                "ipRange": [
+                    {
+                        "from": "192.0.2.1",
+                        "to": "192.0.2.1"
+                    }
+                ],
+                "networkInterface": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ],
+                "site": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ],
+                "siteNetworkSubnet": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ],
                 "subnet": [
-                    "example1",
-                    "example2"
+                    "192.0.2.0/24"
                 ],
-                "systemGroup": {
-                    "by": "ID",
-                    "input": "string"
-                },
-                "user": {
-                    "by": "ID",
-                    "input": "string"
-                },
-                "usersGroup": {
-                    "by": "ID",
-                    "input": "string"
-                }
+                "systemGroup": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ],
+                "user": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ],
+                "usersGroup": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ]
             }
         }
     },

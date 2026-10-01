@@ -11,14 +11,14 @@ catocli mutation sites updateHa <json>
 
 catocli mutation sites updateHa --json-file mutation.sites.updateHa.json
 
-catocli mutation sites updateHa '{"siteId":"id","updateHaInput":{"isCloudRouter":true,"primaryManagementIp":"example_value","secondaryManagementIp":"example_value","vrid":1}}'
+catocli mutation sites updateHa '{"siteId":"id","updateHaInput":{"isCloudRouter":true,"primaryManagementIp":"192.0.2.1","secondaryManagementIp":"192.0.2.1","vrid":1}}'
 
 catocli mutation sites updateHa '{
     "siteId": "id",
     "updateHaInput": {
         "isCloudRouter": true,
-        "primaryManagementIp": "example_value",
-        "secondaryManagementIp": "example_value",
+        "primaryManagementIp": "192.0.2.1",
+        "secondaryManagementIp": "192.0.2.1",
         "vrid": 1
     }
 }'

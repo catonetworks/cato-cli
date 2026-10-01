@@ -11,26 +11,30 @@ catocli query auditFeed <json>
 
 catocli query auditFeed --json-file query.auditFeed.json
 
-catocli query auditFeed '{"accountIDs":["id1","id2"],"auditFieldFilterInput":{"fieldName":{"AuditFieldName":"admin"},"operator":"is","values":["string1","string2"]},"fieldNames":"admin","marker":"string","timeFrame":"example_value"}'
+catocli query auditFeed '{"accountIDs":["id1","id2"],"auditFieldFilterInput":[{"fieldName":{"AuditFieldName":"admin"},"operator":"is","values":["string1","string2"]}],"fieldNames":["admin"],"marker":"string","timeFrame":"last.P1D"}'
 
 catocli query auditFeed '{
     "accountIDs": [
         "id1",
         "id2"
     ],
-    "auditFieldFilterInput": {
-        "fieldName": {
-            "AuditFieldName": "admin"
-        },
-        "operator": "is",
-        "values": [
-            "string1",
-            "string2"
-        ]
-    },
-    "fieldNames": "admin",
+    "auditFieldFilterInput": [
+        {
+            "fieldName": {
+                "AuditFieldName": "admin"
+            },
+            "operator": "is",
+            "values": [
+                "string1",
+                "string2"
+            ]
+        }
+    ],
+    "fieldNames": [
+        "admin"
+    ],
     "marker": "string",
-    "timeFrame": "example_value"
+    "timeFrame": "last.P1D"
 }'
 ```
 

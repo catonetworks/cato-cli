@@ -529,80 +529,9 @@ def generateExampleVariables(operation):
             and arg.get("name", "").lower() in {"accountid", "account_id"}
         ):
             continue
-        if "SCALAR" in arg["type"]["kind"] or "ENUM" in arg["type"]["kind"]:
-            variablesObj[arg["varName"]] = renderInputFieldVal(arg)
-        else:
-            argTD = arg["type"]["definition"]
-            variablesObj[arg["varName"]] = {}
-            if "inputFields" in argTD and argTD["inputFields"] != None:
-                for inputFieldName in argTD["inputFields"]:
-                    inputField = argTD["inputFields"][inputFieldName]
-                    # Use actual field name, not varName, for nested input fields
-                    variablesObj[arg["varName"]][inputField["name"]] = parseNestedArgFields(inputField)
-    
+        variablesObj[arg["varName"]] = parseNestedArgFields(arg)
+
     return variablesObj
-
-def parseNestedArgFields(fieldObj):
-    """Parse nested argument fields with realistic examples"""
-    if "SCALAR" in fieldObj["type"]["kind"] or "ENUM" in fieldObj["type"]["kind"]:
-        return renderInputFieldVal(fieldObj)
-    else:
-        # For complex types, create a nested object with realistic examples
-        subVariableObj = {}
-        if "type" in fieldObj and "definition" in fieldObj["type"] and "inputFields" in fieldObj["type"]["definition"]:
-            inputFields = fieldObj["type"]["definition"]["inputFields"]
-            if inputFields:
-                for inputFieldName, inputField in inputFields.items():
-                    if isinstance(inputField, dict):
-                        subVariableObj[inputField["name"]] = parseNestedArgFields(inputField)
-        return subVariableObj
-
-def renderInputFieldVal(arg):
-    """Render input field values with realistic JSON examples"""
-    value = "string"
-    
-    if "SCALAR" in arg["type"]["kind"]:
-        type_name = arg["type"]["name"]
-        if "LIST" in arg["type"]["kind"]:
-            # Return array of realistic values based on scalar type
-            if type_name == "String":
-                value = ["string1", "string2"]
-            elif type_name == "Int":
-                value = [1, 2]
-            elif type_name == "Float":
-                value = [1.5, 2.5]
-            elif type_name == "Boolean":
-                value = [True, False]
-            elif type_name == "ID":
-                value = ["id1", "id2"]
-            else:
-                value = ["example1", "example2"]
-        else:
-            # Return single realistic value based on scalar type
-            if type_name == "String":
-                value = "string"
-            elif type_name == "Int":
-                value = 1
-            elif type_name == "Float":
-                value = 1.5
-            elif type_name == "Boolean":
-                value = True
-            elif type_name == "ID":
-                value = "id"
-            else:
-                value = "example_value"
-    elif "ENUM" in arg["type"]["kind"]:
-        # For enums, get the first available value if possible, otherwise generic example
-        enum_definition = arg.get("type", {}).get("definition", {})
-        enum_values = enum_definition.get("enumValues", [])
-        if enum_values and len(enum_values) > 0:
-            value = enum_values[0].get("name", "ENUM_VALUE")
-        else:
-            value = "ENUM_VALUE"
-        if "LIST" in arg["type"]["kind"]:
-            value = [value]
-    
-    return value
 
 def writeCliDriver(catoApiSchema):
     """Write CLI driver - thread-safe implementation"""
@@ -1596,65 +1525,62 @@ def getOperationArgs(curType, curOperation):
 # Local renderArgsAndFields wrapper removed - now using shared function directly
 
 
+# Custom scalar examples follow the formats documented in introspection.json.
+SCALAR_EXAMPLES = {
+    "String": "string", "Int": 1, "Float": 1.5, "Boolean": True, "ID": "id",
+    "TimeFrame": "last.P1D", "TimeZone": "America/New_York", "Time": "12:34:56",
+    "DateTime": "2026-01-02T15:04:05Z", "Date": "2026-01-02",
+    "IPSubnet": "192.0.2.0/24", "IPRange": "192.0.2.10-192.0.2.20",
+    "NetworkBandwidth": 100, "ApplicationRisk": 3,
+    "Secret": "replace-with-your-secret", "Upload": "path/to/file",
+    "Map": {"key": "value"}, "IPAddress": "192.0.2.1",
+    "IPAddressOrFqdn": "host.example.com", "NetworkSubnet": "192.0.2.0/24",
+    "Domain": "example.com", "CustomDomain": "internal.example.com",
+    "Fqdn": "host.example.com", "Vlan": 100, "SHA_256": "0" * 64,
+    "Email": "user@example.com", "Phone": "+15053334070", "Port": 443,
+    "Asn16": 64512, "Asn32": 65536, "Url": "https://example.com/",
+    "MacAddress": "02:00:00:00:00:01", "HttpHeaderName": "X-Example",
+    "HttpHeaderValue": "example", "Long": 1,
+}
+
+
+def _wrap_example_lists(value, type_info):
+    for kind in reversed(type_info["kind"]):
+        if kind == "LIST":
+            value = [value]
+    return value
+
+
 def parseNestedArgFields(fieldObj):
-    """Parse nested argument fields with realistic examples"""
-    if "SCALAR" in fieldObj["type"]["kind"] or "ENUM" in fieldObj["type"]["kind"]:
+    """Render input values recursively, preserving GraphQL list wrappers."""
+    type_info = fieldObj["type"]
+    if "SCALAR" in type_info["kind"] or "ENUM" in type_info["kind"]:
         return renderInputFieldVal(fieldObj)
-    else:
-        # For complex types, create a nested object with realistic examples
-        subVariableObj = {}
-        if "type" in fieldObj and "definition" in fieldObj["type"] and "inputFields" in fieldObj["type"]["definition"]:
-            inputFields = fieldObj["type"]["definition"]["inputFields"]
-            if inputFields:
-                for inputFieldName, inputField in inputFields.items():
-                    if isinstance(inputField, dict):
-                        subVariableObj[inputField["name"]] = parseNestedArgFields(inputField)
-        return subVariableObj
+    fields = type_info.get("definition", {}).get("inputFields") or {}
+    value = {field["name"]: parseNestedArgFields(field) for field in fields.values()}
+    return _wrap_example_lists(value, type_info)
+
 
 def renderInputFieldVal(arg):
-    """Render input field values with realistic JSON examples"""
-    value = "string"
-    
-    if "SCALAR" in arg["type"]["kind"]:
-        type_name = arg["type"]["name"]
-        if "LIST" in arg["type"]["kind"]:
-            # Return array of realistic values based on scalar type
-            if type_name == "String":
-                value = ["string1", "string2"]
-            elif type_name == "Int":
-                value = [1, 2]
-            elif type_name == "Float":
-                value = [1.5, 2.5]
-            elif type_name == "Boolean":
-                value = [True, False]
-            elif type_name == "ID":
-                value = ["id1", "id2"]
-            else:
-                value = ["example1", "example2"]
-        else:
-            # Return single realistic value based on scalar type
-            if type_name == "String":
-                value = "string"
-            elif type_name == "Int":
-                value = 1
-            elif type_name == "Float":
-                value = 1.5
-            elif type_name == "Boolean":
-                value = True
-            elif type_name == "ID":
-                value = "id"
-            else:
-                value = "example_value"
-    elif "ENUM" in arg["type"]["kind"]:
-        # For enums, get the first available value if possible, otherwise generic example
-        enum_definition = arg.get("type", {}).get("definition", {})
-        enum_values = enum_definition.get("enumValues", [])
-        if enum_values and len(enum_values) > 0:
-            value = enum_values[0].get("name", "ENUM_VALUE")
-        else:
-            value = "ENUM_VALUE"
-    
-    return value
+    """Render scalar formats and enum members from the declared input type."""
+    type_info = arg["type"]
+    if "ENUM" in type_info["kind"]:
+        values = type_info.get("definition", {}).get("enumValues") or []
+        active_values = [value for value in values if not value.get("isDeprecated")]
+        value = (active_values or values)[0]["name"] if values else "ENUM_VALUE"
+    else:
+        value = copy.deepcopy(SCALAR_EXAMPLES.get(type_info["name"], "example_value"))
+    if "SCALAR" in type_info["kind"] and "LIST" in type_info["kind"]:
+        primitive_lists = {
+            "String": ["string1", "string2"], "Int": [1, 2],
+            "Float": [1.5, 2.5], "Boolean": [True, False], "ID": ["id1", "id2"],
+        }
+        if type_info["name"] in primitive_lists:
+            value = primitive_lists[type_info["name"]]
+            for _ in range(type_info["kind"].count("LIST") - 1):
+                value = [value]
+            return value
+    return _wrap_example_lists(value, type_info)
 
 def getNestedInterfaceDefinitions(possibleTypesAry, parentParamPath, childOperations, parentFields, operation_path=None):
     """Get nested interface definitions - returns expanded possibleTypes dict keyed by interface name"""

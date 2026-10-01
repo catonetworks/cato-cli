@@ -11,29 +11,16 @@ catocli query events <json>
 
 catocli query events --json-file query.events.json
 
-catocli query events '{"eventsDimension":{"fieldName":"access_method"},"eventsFilter":{"fieldName":"access_method","operator":"is","values":["string1","string2"]},"eventsMeasure":{"aggType":"sum","alias":"string","fieldName":"access_method","trend":true},"eventsPostAggFilter":{"aggType":"sum","filter":{"fieldName":"access_method","operator":"is","values":["string1","string2"]}},"eventsSort":{"alias":"string","fieldName":"access_method","order":"asc"},"from":1,"includeEmptyDimension":true,"limit":1,"timeFrame":"example_value"}'
+catocli query events '{"eventsDimension":[{"fieldName":"access_method"}],"eventsFilter":[{"fieldName":"access_method","operator":"is","values":["string1","string2"]}],"eventsMeasure":[{"aggType":"sum","alias":"string","fieldName":"access_method","trend":true}],"eventsPostAggFilter":[{"aggType":"sum","filter":{"fieldName":"access_method","operator":"is","values":["string1","string2"]}}],"eventsSort":[{"alias":"string","fieldName":"access_method","order":"asc"}],"from":1,"includeEmptyDimension":true,"limit":1,"timeFrame":"last.P1D"}'
 
 catocli query events '{
-    "eventsDimension": {
-        "fieldName": "access_method"
-    },
-    "eventsFilter": {
-        "fieldName": "access_method",
-        "operator": "is",
-        "values": [
-            "string1",
-            "string2"
-        ]
-    },
-    "eventsMeasure": {
-        "aggType": "sum",
-        "alias": "string",
-        "fieldName": "access_method",
-        "trend": true
-    },
-    "eventsPostAggFilter": {
-        "aggType": "sum",
-        "filter": {
+    "eventsDimension": [
+        {
+            "fieldName": "access_method"
+        }
+    ],
+    "eventsFilter": [
+        {
             "fieldName": "access_method",
             "operator": "is",
             "values": [
@@ -41,16 +28,39 @@ catocli query events '{
                 "string2"
             ]
         }
-    },
-    "eventsSort": {
-        "alias": "string",
-        "fieldName": "access_method",
-        "order": "asc"
-    },
+    ],
+    "eventsMeasure": [
+        {
+            "aggType": "sum",
+            "alias": "string",
+            "fieldName": "access_method",
+            "trend": true
+        }
+    ],
+    "eventsPostAggFilter": [
+        {
+            "aggType": "sum",
+            "filter": {
+                "fieldName": "access_method",
+                "operator": "is",
+                "values": [
+                    "string1",
+                    "string2"
+                ]
+            }
+        }
+    ],
+    "eventsSort": [
+        {
+            "alias": "string",
+            "fieldName": "access_method",
+            "order": "asc"
+        }
+    ],
     "from": 1,
     "includeEmptyDimension": true,
     "limit": 1,
-    "timeFrame": "example_value"
+    "timeFrame": "last.P1D"
 }'
 ```
 

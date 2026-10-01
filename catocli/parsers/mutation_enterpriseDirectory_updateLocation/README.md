@@ -11,7 +11,7 @@ catocli mutation enterpriseDirectory updateLocation <json>
 
 catocli mutation enterpriseDirectory updateLocation --json-file mutation.enterpriseDirectory.updateLocation.json
 
-catocli mutation enterpriseDirectory updateLocation '{"enterpriseDirectoryUpdateLocationInput":{"businessUnit":"string","description":"string","details":{"companyName":"string","contact":{"email":"example_value","name":"string","phone":"example_value"},"postalAddress":{"address1":"string","address2":"string","cityName":"string","country":{"by":"ID","input":"string"},"stateName":"string","zipCode":"string"},"vatId":"string"},"id":"id","name":"string","type":"BRANCH"}}'
+catocli mutation enterpriseDirectory updateLocation '{"enterpriseDirectoryUpdateLocationInput":{"businessUnit":"string","description":"string","details":{"companyName":"string","contact":{"email":"user@example.com","name":"string","phone":"+15053334070"},"postalAddress":{"address1":"string","address2":"string","cityName":"string","country":{"by":"ID","input":"string"},"stateName":"string","zipCode":"string"},"vatId":"string"},"id":"id","name":"string","type":"BRANCH"}}'
 
 catocli mutation enterpriseDirectory updateLocation '{
     "enterpriseDirectoryUpdateLocationInput": {
@@ -20,9 +20,9 @@ catocli mutation enterpriseDirectory updateLocation '{
         "details": {
             "companyName": "string",
             "contact": {
-                "email": "example_value",
+                "email": "user@example.com",
                 "name": "string",
-                "phone": "example_value"
+                "phone": "+15053334070"
             },
             "postalAddress": {
                 "address1": "string",

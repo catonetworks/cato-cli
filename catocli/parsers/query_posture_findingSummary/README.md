@@ -275,5 +275,5 @@ catocli query posture findingSummary '{
 
 #### Operation Arguments for query.posture.findingSummary ####
 
-`accountId` [ID] - (required) N/A
-`postureFindingSummaryInput` [PostureFindingSummaryInput] - (required) N/A
+`accountId` [ID] - (required) ID of the account whose Posture data is queried.
+`postureFindingSummaryInput` [PostureFindingSummaryInput] - (required) Optional finding filters and limit for finding-derived breakdown buckets.

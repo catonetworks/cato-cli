@@ -1,4 +1,4 @@
-query aiSecurity ( $accountId:ID! $aiSecurityAppsInvocationInput:AiSecurityAppsInvocationInput! $aiSecurityEndUsersSessionConversationInput:AiSecurityEndUsersSessionConversationInput!) {
+query aiSecurity ( $accountId:ID! $aiSecurityAppsInvocationInput:AiSecurityAppsInvocationInput! $aiSecurityEndUsersSessionConversationInput:AiSecurityEndUsersSessionConversationInput! $aiSecurityAgentsSessionInput:AiSecurityAgentsSessionInput! $aiSecurityAgentsEventInput:AiSecurityAgentsEventInput!) {
 	aiSecurity ( accountId:$accountId ) {
 		apps {
 			invocation ( input:$aiSecurityAppsInvocationInput   ) {
@@ -25,6 +25,25 @@ query aiSecurity ( $accountId:ID! $aiSecurityAppsInvocationInput:AiSecurityAppsI
 			sessionConversation ( input:$aiSecurityEndUsersSessionConversationInput   ) {
 				userPrompt
 				llmResponse
+			}
+		}
+		agents {
+			session ( input:$aiSecurityAgentsSessionInput   ) {
+				items {
+					interactionId
+					appActivityType
+					time
+					content
+				}
+				paging {
+					total
+				}
+			}
+			event ( input:$aiSecurityAgentsEventInput   ) {
+				interactionId
+				appActivityType
+				time
+				content
 			}
 		}
 	}	

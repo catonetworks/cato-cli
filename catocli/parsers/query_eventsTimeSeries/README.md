@@ -329,13 +329,13 @@ Format: `"utc.YYYY-MM-{DD/HH:MM:SS--DD/HH:MM:SS}"`
 
 #### Operation Arguments for query.eventsTimeSeries ####
 
-`accountID` [ID] - (required) N/A
+`accountID` [ID] - (required) Account ID
 `buckets` [Int] - (required) N/A
 `eventsDimension` [EventsDimension[]] - (required) N/A
 `eventsFilter` [EventsFilter[]] - (required) N/A
 `eventsMeasure` [EventsMeasure[]] - (required) N/A
-`includeEmptyDimension` [Boolean] - (required) N/A
-`perSecond` [Boolean] - (required) N/A
+`includeEmptyDimension` [Boolean] - (required) When true, rows with empty/null values for a grouped dimension (e.g., country, device type) are returned as an empty group rather than excluded. This ensures consistent totals in API queries and surfaces previously hidden data in CMA dashboards and reports. Defaults to false.
+`perSecond` [Boolean] - (required) whether to normalize the data into per second (i.e. divide by granularity)
 `timeFrame` [TimeFrame] - (required) N/A
-`useDefaultSizeBucket` [Boolean] - (required) N/A
-`withMissingData` [Boolean] - (required) N/A
+`useDefaultSizeBucket` [Boolean] - (required) In case we want to have the default size bucket (from properties)
+`withMissingData` [Boolean] - (required) If false, the data field will be set to '0' for buckets with no reported data. Otherwise it will be set to -1

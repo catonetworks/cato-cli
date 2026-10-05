@@ -352,5 +352,5 @@ catocli query posture findingList '{
 
 #### Operation Arguments for query.posture.findingList ####
 
-`accountId` [ID] - (required) N/A
-`postureFindingListInput` [PostureFindingListInput] - (required) N/A
+`accountId` [ID] - (required) ID of the account whose Posture data is queried.
+`postureFindingListInput` [PostureFindingListInput] - (required) Filter, sort, and paging settings for the findings.

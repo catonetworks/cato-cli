@@ -23,5 +23,5 @@ catocli mutation posture addCheckComment '{
 
 #### Operation Arguments for mutation.posture.addCheckComment ####
 
-`accountId` [ID] - (required) N/A
-`addCheckCommentInput` [AddCheckCommentInput] - (required) N/A
+`accountId` [ID] - (required) ID of the account whose Posture configuration or findings are modified.
+`addCheckCommentInput` [AddCheckCommentInput] - (required) Check result id and comment text.

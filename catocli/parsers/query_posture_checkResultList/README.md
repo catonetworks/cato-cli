@@ -303,5 +303,5 @@ catocli query posture checkResultList '{
 
 #### Operation Arguments for query.posture.checkResultList ####
 
-`accountId` [ID] - (required) N/A
-`postureCheckResultListInput` [PostureCheckResultListInput] - (required) N/A
+`accountId` [ID] - (required) ID of the account whose Posture data is queried.
+`postureCheckResultListInput` [PostureCheckResultListInput] - (required) Filter, sort, and paging settings for the check results.

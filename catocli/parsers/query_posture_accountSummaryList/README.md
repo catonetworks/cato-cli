@@ -31,5 +31,5 @@ catocli query posture accountSummaryList '{
 
 #### Operation Arguments for query.posture.accountSummaryList ####
 
-`accountId` [ID] - (required) N/A
-`postureAccountSummaryListInput` [PostureAccountSummaryListInput] - (required) N/A
+`accountId` [ID] - (required) ID of the account whose Posture data is queried.
+`postureAccountSummaryListInput` [PostureAccountSummaryListInput] - (required) Optional sort settings for the account summaries.

@@ -234,5 +234,5 @@ catocli query posture checkSummary '{
 
 #### Operation Arguments for query.posture.checkSummary ####
 
-`accountId` [ID] - (required) N/A
-`postureCheckSummaryInput` [PostureCheckSummaryInput] - (required) N/A
+`accountId` [ID] - (required) ID of the account whose Posture data is queried.
+`postureCheckSummaryInput` [PostureCheckSummaryInput] - (required) Optional check filters and threshold for classifying checks as new.

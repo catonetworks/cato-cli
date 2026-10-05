@@ -24,5 +24,5 @@ catocli mutation user disableUser '{
 
 #### Operation Arguments for mutation.user.disableUser ####
 
-`accountId` [ID] - (required) N/A
+`accountId` [ID] - (required) Unique identifier of the Cato account.
 `disableUserInput` [DisableUserInput] - (required) N/A

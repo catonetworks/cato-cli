@@ -199,7 +199,7 @@ Format: `"utc.YYYY-MM-{DD/HH:MM:SS--DD/HH:MM:SS}"`
 
 #### Operation Arguments for query.socketPortMetrics ####
 
-`accountID` [ID] - (required) N/A
+`accountID` [ID] - (required) Account ID
 `from` [Int] - (required) N/A
 `limit` [Int] - (required) N/A
 `socketPortMetricsDimension` [SocketPortMetricsDimension[]] - (required) N/A

@@ -181,7 +181,7 @@
                                                 },
                                                 "aiRisk": {
                                                     "defaultValue": null,
-                                                    "description": null,
+                                                    "description": "Filter by the AI security risk classification",
                                                     "id_str": "catalogApplicationList___input___filter___aiRisk",
                                                     "name": "aiRisk",
                                                     "path": "catalogApplicationList.input.filter.aiRisk",
@@ -687,9 +687,57 @@
                                                     },
                                                     "varName": "catalogApplicationCategoryFilterInput"
                                                 },
+                                                "fqdnOrIp": {
+                                                    "defaultValue": null,
+                                                    "description": "Matches the single application that owns a complete domain name (for example\n`translate.google.com`) or IP address literal (for example `203.0.113.7`). The owner is the\nholder of the most specific claim eligible for this request, so `orders.pizzahut.com` is\nmatched through `pizzahut.com`, while `myfakepizzahut.com` is not. Normal public requests\nconsider visible applications only; a hidden, more-specific claim therefore does not shadow a\nbroader visible claim. Never resolved through DNS.\n\nExact, so it matches at most one application per filter entry. A value that is neither a\ncomplete domain nor an address literal, and one that nothing in the catalog owns, both match\nnothing - the two are deliberately indistinguishable. Use `freeText` to search on a partial\nvalue.\n\nLike every other criterion it is ANDed with the rest of its own filter entry and ORed across\nentries, so several entries each carrying a `fqdnOrIp` resolve several owners in one query.",
+                                                    "id_str": "catalogApplicationList___input___filter___fqdnOrIp",
+                                                    "name": "fqdnOrIp",
+                                                    "path": "catalogApplicationList.input.filter.fqdnOrIp",
+                                                    "requestStr": "$catalogApplicationFqdnOrIpFilterInput:CatalogApplicationFqdnOrIpFilterInput ",
+                                                    "required": false,
+                                                    "responseStr": "fqdnOrIp:$catalogApplicationFqdnOrIpFilterInput ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": "Filters applications by ownership of one complete domain name or IP address.",
+                                                            "enumValues": null,
+                                                            "fields": null,
+                                                            "inputFields": {
+                                                                "eq": {
+                                                                    "defaultValue": null,
+                                                                    "description": "Matches the one application owning this exact domain name or IP address.",
+                                                                    "id_str": "catalogApplicationList___input___filter___fqdnOrIp___eq",
+                                                                    "name": "eq",
+                                                                    "path": "catalogApplicationList.input.filter.fqdnOrIp.eq",
+                                                                    "requestStr": "$eq:IPAddressOrFqdn ",
+                                                                    "required": false,
+                                                                    "responseStr": "eq:$eq ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "IPAddressOrFqdn",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "eq"
+                                                                }
+                                                            },
+                                                            "interfaces": null,
+                                                            "kind": "INPUT_OBJECT",
+                                                            "name": "CatalogApplicationFqdnOrIpFilterInput",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "input_object",
+                                                        "kind": [
+                                                            "INPUT_OBJECT"
+                                                        ],
+                                                        "name": "CatalogApplicationFqdnOrIpFilterInput",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "catalogApplicationFqdnOrIpFilterInput"
+                                                },
                                                 "freeText": {
                                                     "defaultValue": null,
-                                                    "description": null,
+                                                    "description": "Free-text search across name, activity and activity fields. For accounts enabled by the\n`APP_CATALOG_DOMAIN_IP_SEARCH` tag, a term that is itself a complete domain or IP address\nadditionally matches the application owning it, with the same ownership-matching semantics as\n`fqdnOrIp`; a partial domain does not.",
                                                     "id_str": "catalogApplicationList___input___filter___freeText",
                                                     "name": "freeText",
                                                     "path": "catalogApplicationList.input.filter.freeText",
@@ -1062,7 +1110,7 @@
                                                 },
                                                 "overridden": {
                                                     "defaultValue": null,
-                                                    "description": null,
+                                                    "description": "Matches applications whose catalog values were overridden for this account",
                                                     "id_str": "catalogApplicationList___input___filter___overridden",
                                                     "name": "overridden",
                                                     "path": "catalogApplicationList.input.filter.overridden",
@@ -1071,13 +1119,13 @@
                                                     "responseStr": "overridden:$catalogApplicationOverriddenFilterInput ",
                                                     "type": {
                                                         "definition": {
-                                                            "description": " Filters applications by whether their catalog values were overridden for this account ",
+                                                            "description": "Filters applications by whether their catalog values were overridden for this account",
                                                             "enumValues": null,
                                                             "fields": null,
                                                             "inputFields": {
                                                                 "category": {
                                                                     "defaultValue": null,
-                                                                    "description": null,
+                                                                    "description": "Matches applications with overridden categories",
                                                                     "id_str": "catalogApplicationList___input___filter___overridden___category",
                                                                     "name": "category",
                                                                     "path": "catalogApplicationList.input.filter.overridden.category",
@@ -1143,7 +1191,7 @@
                                                                 },
                                                                 "risk": {
                                                                     "defaultValue": null,
-                                                                    "description": null,
+                                                                    "description": "Matches applications with an overridden risk score",
                                                                     "id_str": "catalogApplicationList___input___filter___overridden___risk",
                                                                     "name": "risk",
                                                                     "path": "catalogApplicationList.input.filter.overridden.risk",
@@ -1806,7 +1854,7 @@
                                     "varName": "catalogApplicationFilterInput"
                                 },
                                 "paging": {
-                                    "defaultValue": "{ limit: 100, from: 0 }",
+                                    "defaultValue": "{limit: 100, from: 0}",
                                     "description": null,
                                     "id_str": "catalogApplicationList___input___paging",
                                     "name": "paging",
@@ -2604,7 +2652,7 @@
                                         },
                                         "aiRisk": {
                                             "defaultValue": null,
-                                            "description": null,
+                                            "description": "Filter by the AI security risk classification",
                                             "id_str": "catalogApplicationList___input___filter___aiRisk",
                                             "name": "aiRisk",
                                             "path": "catalogApplicationList.input.filter.aiRisk",
@@ -3110,9 +3158,57 @@
                                             },
                                             "varName": "catalogApplicationCategoryFilterInput"
                                         },
+                                        "fqdnOrIp": {
+                                            "defaultValue": null,
+                                            "description": "Matches the single application that owns a complete domain name (for example\n`translate.google.com`) or IP address literal (for example `203.0.113.7`). The owner is the\nholder of the most specific claim eligible for this request, so `orders.pizzahut.com` is\nmatched through `pizzahut.com`, while `myfakepizzahut.com` is not. Normal public requests\nconsider visible applications only; a hidden, more-specific claim therefore does not shadow a\nbroader visible claim. Never resolved through DNS.\n\nExact, so it matches at most one application per filter entry. A value that is neither a\ncomplete domain nor an address literal, and one that nothing in the catalog owns, both match\nnothing - the two are deliberately indistinguishable. Use `freeText` to search on a partial\nvalue.\n\nLike every other criterion it is ANDed with the rest of its own filter entry and ORed across\nentries, so several entries each carrying a `fqdnOrIp` resolve several owners in one query.",
+                                            "id_str": "catalogApplicationList___input___filter___fqdnOrIp",
+                                            "name": "fqdnOrIp",
+                                            "path": "catalogApplicationList.input.filter.fqdnOrIp",
+                                            "requestStr": "$catalogApplicationFqdnOrIpFilterInput:CatalogApplicationFqdnOrIpFilterInput ",
+                                            "required": false,
+                                            "responseStr": "fqdnOrIp:$catalogApplicationFqdnOrIpFilterInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": "Filters applications by ownership of one complete domain name or IP address.",
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "eq": {
+                                                            "defaultValue": null,
+                                                            "description": "Matches the one application owning this exact domain name or IP address.",
+                                                            "id_str": "catalogApplicationList___input___filter___fqdnOrIp___eq",
+                                                            "name": "eq",
+                                                            "path": "catalogApplicationList.input.filter.fqdnOrIp.eq",
+                                                            "requestStr": "$eq:IPAddressOrFqdn ",
+                                                            "required": false,
+                                                            "responseStr": "eq:$eq ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "IPAddressOrFqdn",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "eq"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "CatalogApplicationFqdnOrIpFilterInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "CatalogApplicationFqdnOrIpFilterInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "catalogApplicationFqdnOrIpFilterInput"
+                                        },
                                         "freeText": {
                                             "defaultValue": null,
-                                            "description": null,
+                                            "description": "Free-text search across name, activity and activity fields. For accounts enabled by the\n`APP_CATALOG_DOMAIN_IP_SEARCH` tag, a term that is itself a complete domain or IP address\nadditionally matches the application owning it, with the same ownership-matching semantics as\n`fqdnOrIp`; a partial domain does not.",
                                             "id_str": "catalogApplicationList___input___filter___freeText",
                                             "name": "freeText",
                                             "path": "catalogApplicationList.input.filter.freeText",
@@ -3485,7 +3581,7 @@
                                         },
                                         "overridden": {
                                             "defaultValue": null,
-                                            "description": null,
+                                            "description": "Matches applications whose catalog values were overridden for this account",
                                             "id_str": "catalogApplicationList___input___filter___overridden",
                                             "name": "overridden",
                                             "path": "catalogApplicationList.input.filter.overridden",
@@ -3494,13 +3590,13 @@
                                             "responseStr": "overridden:$catalogApplicationOverriddenFilterInput ",
                                             "type": {
                                                 "definition": {
-                                                    "description": " Filters applications by whether their catalog values were overridden for this account ",
+                                                    "description": "Filters applications by whether their catalog values were overridden for this account",
                                                     "enumValues": null,
                                                     "fields": null,
                                                     "inputFields": {
                                                         "category": {
                                                             "defaultValue": null,
-                                                            "description": null,
+                                                            "description": "Matches applications with overridden categories",
                                                             "id_str": "catalogApplicationList___input___filter___overridden___category",
                                                             "name": "category",
                                                             "path": "catalogApplicationList.input.filter.overridden.category",
@@ -3566,7 +3662,7 @@
                                                         },
                                                         "risk": {
                                                             "defaultValue": null,
-                                                            "description": null,
+                                                            "description": "Matches applications with an overridden risk score",
                                                             "id_str": "catalogApplicationList___input___filter___overridden___risk",
                                                             "name": "risk",
                                                             "path": "catalogApplicationList.input.filter.overridden.risk",
@@ -4229,7 +4325,7 @@
                             "varName": "catalogApplicationFilterInput"
                         },
                         "paging": {
-                            "defaultValue": "{ limit: 100, from: 0 }",
+                            "defaultValue": "{limit: 100, from: 0}",
                             "description": null,
                             "id_str": "catalogApplicationList___input___paging",
                             "name": "paging",
@@ -4999,7 +5095,7 @@
                                                         },
                                                         "aiRisk": {
                                                             "defaultValue": null,
-                                                            "description": null,
+                                                            "description": "Filter by the AI security risk classification",
                                                             "id_str": "catalogApplicationList___input___filter___aiRisk",
                                                             "name": "aiRisk",
                                                             "path": "catalogApplicationList.input.filter.aiRisk",
@@ -5505,9 +5601,57 @@
                                                             },
                                                             "varName": "catalogApplicationCategoryFilterInput"
                                                         },
+                                                        "fqdnOrIp": {
+                                                            "defaultValue": null,
+                                                            "description": "Matches the single application that owns a complete domain name (for example\n`translate.google.com`) or IP address literal (for example `203.0.113.7`). The owner is the\nholder of the most specific claim eligible for this request, so `orders.pizzahut.com` is\nmatched through `pizzahut.com`, while `myfakepizzahut.com` is not. Normal public requests\nconsider visible applications only; a hidden, more-specific claim therefore does not shadow a\nbroader visible claim. Never resolved through DNS.\n\nExact, so it matches at most one application per filter entry. A value that is neither a\ncomplete domain nor an address literal, and one that nothing in the catalog owns, both match\nnothing - the two are deliberately indistinguishable. Use `freeText` to search on a partial\nvalue.\n\nLike every other criterion it is ANDed with the rest of its own filter entry and ORed across\nentries, so several entries each carrying a `fqdnOrIp` resolve several owners in one query.",
+                                                            "id_str": "catalogApplicationList___input___filter___fqdnOrIp",
+                                                            "name": "fqdnOrIp",
+                                                            "path": "catalogApplicationList.input.filter.fqdnOrIp",
+                                                            "requestStr": "$catalogApplicationFqdnOrIpFilterInput:CatalogApplicationFqdnOrIpFilterInput ",
+                                                            "required": false,
+                                                            "responseStr": "fqdnOrIp:$catalogApplicationFqdnOrIpFilterInput ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": "Filters applications by ownership of one complete domain name or IP address.",
+                                                                    "enumValues": null,
+                                                                    "fields": null,
+                                                                    "inputFields": {
+                                                                        "eq": {
+                                                                            "defaultValue": null,
+                                                                            "description": "Matches the one application owning this exact domain name or IP address.",
+                                                                            "id_str": "catalogApplicationList___input___filter___fqdnOrIp___eq",
+                                                                            "name": "eq",
+                                                                            "path": "catalogApplicationList.input.filter.fqdnOrIp.eq",
+                                                                            "requestStr": "$eq:IPAddressOrFqdn ",
+                                                                            "required": false,
+                                                                            "responseStr": "eq:$eq ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "IPAddressOrFqdn",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "eq"
+                                                                        }
+                                                                    },
+                                                                    "interfaces": null,
+                                                                    "kind": "INPUT_OBJECT",
+                                                                    "name": "CatalogApplicationFqdnOrIpFilterInput",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "input_object",
+                                                                "kind": [
+                                                                    "INPUT_OBJECT"
+                                                                ],
+                                                                "name": "CatalogApplicationFqdnOrIpFilterInput",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "catalogApplicationFqdnOrIpFilterInput"
+                                                        },
                                                         "freeText": {
                                                             "defaultValue": null,
-                                                            "description": null,
+                                                            "description": "Free-text search across name, activity and activity fields. For accounts enabled by the\n`APP_CATALOG_DOMAIN_IP_SEARCH` tag, a term that is itself a complete domain or IP address\nadditionally matches the application owning it, with the same ownership-matching semantics as\n`fqdnOrIp`; a partial domain does not.",
                                                             "id_str": "catalogApplicationList___input___filter___freeText",
                                                             "name": "freeText",
                                                             "path": "catalogApplicationList.input.filter.freeText",
@@ -5880,7 +6024,7 @@
                                                         },
                                                         "overridden": {
                                                             "defaultValue": null,
-                                                            "description": null,
+                                                            "description": "Matches applications whose catalog values were overridden for this account",
                                                             "id_str": "catalogApplicationList___input___filter___overridden",
                                                             "name": "overridden",
                                                             "path": "catalogApplicationList.input.filter.overridden",
@@ -5889,13 +6033,13 @@
                                                             "responseStr": "overridden:$catalogApplicationOverriddenFilterInput ",
                                                             "type": {
                                                                 "definition": {
-                                                                    "description": " Filters applications by whether their catalog values were overridden for this account ",
+                                                                    "description": "Filters applications by whether their catalog values were overridden for this account",
                                                                     "enumValues": null,
                                                                     "fields": null,
                                                                     "inputFields": {
                                                                         "category": {
                                                                             "defaultValue": null,
-                                                                            "description": null,
+                                                                            "description": "Matches applications with overridden categories",
                                                                             "id_str": "catalogApplicationList___input___filter___overridden___category",
                                                                             "name": "category",
                                                                             "path": "catalogApplicationList.input.filter.overridden.category",
@@ -5961,7 +6105,7 @@
                                                                         },
                                                                         "risk": {
                                                                             "defaultValue": null,
-                                                                            "description": null,
+                                                                            "description": "Matches applications with an overridden risk score",
                                                                             "id_str": "catalogApplicationList___input___filter___overridden___risk",
                                                                             "name": "risk",
                                                                             "path": "catalogApplicationList.input.filter.overridden.risk",
@@ -6624,7 +6768,7 @@
                                             "varName": "catalogApplicationFilterInput"
                                         },
                                         "paging": {
-                                            "defaultValue": "{ limit: 100, from: 0 }",
+                                            "defaultValue": "{limit: 100, from: 0}",
                                             "description": null,
                                             "id_str": "catalogApplicationList___input___paging",
                                             "name": "paging",
@@ -7803,7 +7947,7 @@
                                                 "asn": {
                                                     "args": {},
                                                     "deprecationReason": null,
-                                                    "description": null,
+                                                    "description": "Autonomous System Numbers (ASNs) that this application is identified by.",
                                                     "id_str": "catalogApplicationList___application___asn",
                                                     "isDeprecated": false,
                                                     "name": "asn",
@@ -7937,7 +8081,7 @@
                                                     "responseStr": "category:$applicationCategoryRef ",
                                                     "type": {
                                                         "definition": {
-                                                            "description": " A reference identifying the ApplicationCategory object. ID: Unique ApplicationCategory Identifier, Name: The ApplicationCategory Name ",
+                                                            "description": "A reference identifying the ApplicationCategory object. ID: Unique ApplicationCategory Identifier, Name: The ApplicationCategory Name",
                                                             "enumValues": null,
                                                             "fields": {
                                                                 "id": {
@@ -8004,7 +8148,7 @@
                                                 "childApp": {
                                                     "args": {},
                                                     "deprecationReason": null,
-                                                    "description": null,
+                                                    "description": "Applications that are children of this application within the application hierarchy.",
                                                     "id_str": "catalogApplicationList___application___childApp",
                                                     "isDeprecated": false,
                                                     "name": "childApp",
@@ -8014,7 +8158,7 @@
                                                     "responseStr": "childApp:$applicationRef ",
                                                     "type": {
                                                         "definition": {
-                                                            "description": " A reference identifying the Application object. ID: Unique Application Identifier, Name: The Application Name ",
+                                                            "description": "A reference identifying the Application object. ID: Unique Application Identifier, Name: The Application Name",
                                                             "enumValues": null,
                                                             "fields": {
                                                                 "id": {
@@ -9842,7 +9986,7 @@
                                                 "defaultCategory": {
                                                     "args": {},
                                                     "deprecationReason": null,
-                                                    "description": null,
+                                                    "description": "The Cato-defined default categories of the application",
                                                     "id_str": "catalogApplicationList___application___defaultCategory",
                                                     "isDeprecated": false,
                                                     "name": "defaultCategory",
@@ -9852,7 +9996,7 @@
                                                     "responseStr": "defaultCategory:$applicationCategoryRef ",
                                                     "type": {
                                                         "definition": {
-                                                            "description": " A reference identifying the ApplicationCategory object. ID: Unique ApplicationCategory Identifier, Name: The ApplicationCategory Name ",
+                                                            "description": "A reference identifying the ApplicationCategory object. ID: Unique ApplicationCategory Identifier, Name: The ApplicationCategory Name",
                                                             "enumValues": null,
                                                             "fields": {
                                                                 "id": {
@@ -9959,7 +10103,7 @@
                                                 "dynamicIpSource": {
                                                     "args": {},
                                                     "deprecationReason": null,
-                                                    "description": null,
+                                                    "description": "Sources of the dynamically updated IP feeds that this application is identified by.\nThe IP addresses themselves are fetched from these sources and are not part of the catalog.",
                                                     "id_str": "catalogApplicationList___application___dynamicIpSource",
                                                     "isDeprecated": false,
                                                     "name": "dynamicIpSource",
@@ -10263,55 +10407,55 @@
                                                             "enumValues": [
                                                                 {
                                                                     "deprecationReason": null,
-                                                                    "description": " 1-10 employees ",
+                                                                    "description": "1-10 employees",
                                                                     "isDeprecated": false,
                                                                     "name": "BETWEEN_00001_00010"
                                                                 },
                                                                 {
                                                                     "deprecationReason": null,
-                                                                    "description": " 11-50 employees ",
+                                                                    "description": "11-50 employees",
                                                                     "isDeprecated": false,
                                                                     "name": "BETWEEN_00011_00050"
                                                                 },
                                                                 {
                                                                     "deprecationReason": null,
-                                                                    "description": " 51-100 employees ",
+                                                                    "description": "51-100 employees",
                                                                     "isDeprecated": false,
                                                                     "name": "BETWEEN_00051_00100"
                                                                 },
                                                                 {
                                                                     "deprecationReason": null,
-                                                                    "description": " 101-250 employees ",
+                                                                    "description": "101-250 employees",
                                                                     "isDeprecated": false,
                                                                     "name": "BETWEEN_00101_00250"
                                                                 },
                                                                 {
                                                                     "deprecationReason": null,
-                                                                    "description": " 251-500 employees ",
+                                                                    "description": "251-500 employees",
                                                                     "isDeprecated": false,
                                                                     "name": "BETWEEN_00251_00500"
                                                                 },
                                                                 {
                                                                     "deprecationReason": null,
-                                                                    "description": " 501-1,000 employees ",
+                                                                    "description": "501-1,000 employees",
                                                                     "isDeprecated": false,
                                                                     "name": "BETWEEN_00501_01000"
                                                                 },
                                                                 {
                                                                     "deprecationReason": null,
-                                                                    "description": " 1,001-5,000 employees ",
+                                                                    "description": "1,001-5,000 employees",
                                                                     "isDeprecated": false,
                                                                     "name": "BETWEEN_01001_05000"
                                                                 },
                                                                 {
                                                                     "deprecationReason": null,
-                                                                    "description": " 5,001-10,000 employees ",
+                                                                    "description": "5,001-10,000 employees",
                                                                     "isDeprecated": false,
                                                                     "name": "BETWEEN_05001_10000"
                                                                 },
                                                                 {
                                                                     "deprecationReason": null,
-                                                                    "description": " 10,000+ employees ",
+                                                                    "description": "10,000+ employees",
                                                                     "isDeprecated": false,
                                                                     "name": "BETWEEN_10001_MAX"
                                                                 }
@@ -10345,7 +10489,7 @@
                                                     "responseStr": "originCountry:$countryRef ",
                                                     "type": {
                                                         "definition": {
-                                                            "description": " A reference identifying the Country object. ID: Unique Country Identifier, Name: The Country Name ",
+                                                            "description": "A reference identifying the Country object. ID: Unique Country Identifier, Name: The Country Name",
                                                             "enumValues": null,
                                                             "fields": {
                                                                 "id": {
@@ -10409,7 +10553,7 @@
                                                 "parentApp": {
                                                     "args": {},
                                                     "deprecationReason": null,
-                                                    "description": null,
+                                                    "description": "Applications that this application is a child of within the application hierarchy.",
                                                     "id_str": "catalogApplicationList___application___parentApp",
                                                     "isDeprecated": false,
                                                     "name": "parentApp",
@@ -10419,7 +10563,7 @@
                                                     "responseStr": "parentApp:$applicationRef ",
                                                     "type": {
                                                         "definition": {
-                                                            "description": " A reference identifying the Application object. ID: Unique Application Identifier, Name: The Application Name ",
+                                                            "description": "A reference identifying the Application object. ID: Unique Application Identifier, Name: The Application Name",
                                                             "enumValues": null,
                                                             "fields": {
                                                                 "id": {
@@ -11718,7 +11862,7 @@
                                                     "responseStr": "standardPorts:$customService ",
                                                     "type": {
                                                         "definition": {
-                                                            "description": " Returns data for Custom Service defined by a combination of L4 ports and an IP Protocol ",
+                                                            "description": "Returns data for Custom Service defined by a combination of L4 ports and an IP Protocol",
                                                             "enumValues": null,
                                                             "fields": {
                                                                 "port": {
@@ -11756,7 +11900,7 @@
                                                                     "responseStr": "portRange:$portRange ",
                                                                     "type": {
                                                                         "definition": {
-                                                                            "description": " Inclusive network port range ",
+                                                                            "description": "Inclusive network port range",
                                                                             "enumValues": null,
                                                                             "fields": {
                                                                                 "from": {
@@ -11846,7 +11990,7 @@
                                                                                 },
                                                                                 {
                                                                                     "deprecationReason": null,
-                                                                                    "description": " TCP or UDP ",
+                                                                                    "description": "TCP or UDP",
                                                                                     "isDeprecated": false,
                                                                                     "name": "TCP_UDP"
                                                                                 },
@@ -11902,7 +12046,7 @@
                                                 "staticIpRange": {
                                                     "args": {},
                                                     "deprecationReason": null,
-                                                    "description": null,
+                                                    "description": "Static IP ranges, in CIDR notation, that this application is identified by.",
                                                     "id_str": "catalogApplicationList___application___staticIpRange",
                                                     "isDeprecated": false,
                                                     "name": "staticIpRange",
@@ -12340,112 +12484,155 @@
     },
     "variablesPayload": {
         "catalogApplicationListInput": {
-            "filter": {
-                "activity": {
-                    "hasAny": {
-                        "by": "ID",
-                        "input": "string"
-                    }
-                },
-                "aiRisk": {
-                    "eq": "LOW",
-                    "in": "LOW",
-                    "neq": "LOW",
-                    "nin": "LOW"
-                },
-                "capability": {
-                    "hasAny": "APP_CONTROL_INLINE"
-                },
-                "category": {
-                    "hasAny": {
-                        "by": "ID",
-                        "input": "string"
-                    }
-                },
-                "freeText": {
-                    "search": "string"
-                },
-                "id": {
-                    "eq": "id",
-                    "in": [
-                        "id1",
-                        "id2"
+            "filter": [
+                {
+                    "activity": [
+                        {
+                            "hasAny": [
+                                {
+                                    "by": "ID",
+                                    "input": "string"
+                                }
+                            ]
+                        }
                     ],
-                    "neq": "id",
-                    "nin": [
-                        "id1",
-                        "id2"
-                    ]
-                },
-                "name": {
-                    "eq": "string",
-                    "in": [
-                        "string1",
-                        "string2"
+                    "aiRisk": [
+                        {
+                            "eq": "LOW",
+                            "in": [
+                                "LOW"
+                            ],
+                            "neq": "LOW",
+                            "nin": [
+                                "LOW"
+                            ]
+                        }
                     ],
-                    "neq": "string",
-                    "nin": [
-                        "string1",
-                        "string2"
-                    ]
-                },
-                "originCountry": {
-                    "eq": "string",
-                    "in": [
-                        "string1",
-                        "string2"
+                    "capability": [
+                        {
+                            "hasAny": [
+                                "APP_CONTROL_INLINE"
+                            ]
+                        }
                     ],
-                    "neq": "string",
-                    "nin": [
-                        "string1",
-                        "string2"
-                    ]
-                },
-                "overridden": {
-                    "category": {
-                        "eq": true,
-                        "neq": true
+                    "category": [
+                        {
+                            "hasAny": [
+                                {
+                                    "by": "ID",
+                                    "input": "string"
+                                }
+                            ]
+                        }
+                    ],
+                    "fqdnOrIp": {
+                        "eq": "host.example.com"
                     },
-                    "risk": {
-                        "eq": true,
-                        "neq": true
-                    }
-                },
-                "recentlyAdded": {
-                    "eq": true,
-                    "neq": true
-                },
-                "risk": {
-                    "between": [
-                        1,
-                        2
+                    "freeText": {
+                        "search": "string"
+                    },
+                    "id": [
+                        {
+                            "eq": "id",
+                            "in": [
+                                "id1",
+                                "id2"
+                            ],
+                            "neq": "id",
+                            "nin": [
+                                "id1",
+                                "id2"
+                            ]
+                        }
                     ],
-                    "eq": 1,
-                    "gt": 1,
-                    "gte": 1,
-                    "in": [
-                        1,
-                        2
+                    "name": [
+                        {
+                            "eq": "string",
+                            "in": [
+                                "string1",
+                                "string2"
+                            ],
+                            "neq": "string",
+                            "nin": [
+                                "string1",
+                                "string2"
+                            ]
+                        }
                     ],
-                    "lt": 1,
-                    "lte": 1,
-                    "neq": 1,
-                    "nin": [
-                        1,
-                        2
+                    "originCountry": [
+                        {
+                            "eq": "string",
+                            "in": [
+                                "string1",
+                                "string2"
+                            ],
+                            "neq": "string",
+                            "nin": [
+                                "string1",
+                                "string2"
+                            ]
+                        }
+                    ],
+                    "overridden": [
+                        {
+                            "category": {
+                                "eq": true,
+                                "neq": true
+                            },
+                            "risk": {
+                                "eq": true,
+                                "neq": true
+                            }
+                        }
+                    ],
+                    "recentlyAdded": [
+                        {
+                            "eq": true,
+                            "neq": true
+                        }
+                    ],
+                    "risk": [
+                        {
+                            "between": [
+                                1,
+                                2
+                            ],
+                            "eq": 1,
+                            "gt": 1,
+                            "gte": 1,
+                            "in": [
+                                1,
+                                2
+                            ],
+                            "lt": 1,
+                            "lte": 1,
+                            "neq": 1,
+                            "nin": [
+                                1,
+                                2
+                            ]
+                        }
+                    ],
+                    "tenantActivity": [
+                        {
+                            "eq": true,
+                            "neq": true
+                        }
+                    ],
+                    "type": [
+                        {
+                            "eq": "APPLICATION",
+                            "in": [
+                                "APPLICATION"
+                            ],
+                            "neq": "APPLICATION",
+                            "nin": [
+                                "APPLICATION"
+                            ]
+                        }
                     ]
-                },
-                "tenantActivity": {
-                    "eq": true,
-                    "neq": true
-                },
-                "type": {
-                    "eq": "APPLICATION",
-                    "in": "APPLICATION",
-                    "neq": "APPLICATION",
-                    "nin": "APPLICATION"
                 }
-            },
+            ],
             "paging": {
                 "from": 1,
                 "limit": 1

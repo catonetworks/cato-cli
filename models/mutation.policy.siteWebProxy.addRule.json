@@ -40,7 +40,7 @@
                             "inputFields": {
                                 "at": {
                                     "defaultValue": null,
-                                    "description": null,
+                                    "description": "Position of the rule in the policy",
                                     "id_str": "addRule___input___at",
                                     "name": "at",
                                     "path": "addRule.input.at",
@@ -49,13 +49,13 @@
                                     "responseStr": "at:$policyRulePositionInput ",
                                     "type": {
                                         "definition": {
-                                            "description": " Parameters required to define the rule position ",
+                                            "description": "Parameters required to define the rule position",
                                             "enumValues": null,
                                             "fields": null,
                                             "inputFields": {
                                                 "position": {
                                                     "defaultValue": null,
-                                                    "description": null,
+                                                    "description": "Position relative to a policy, a section or another rule",
                                                     "id_str": "addRule___input___at___position",
                                                     "name": "position",
                                                     "path": "addRule.input.at.position",
@@ -64,41 +64,41 @@
                                                     "responseStr": "position:$position ",
                                                     "type": {
                                                         "definition": {
-                                                            "description": " Enum for the position of a rule within a policy ",
+                                                            "description": "Enum for the position of a rule within a policy",
                                                             "enumValues": [
                                                                 {
                                                                     "deprecationReason": null,
-                                                                    "description": " The rule position is after the pre-existing specified rule ",
+                                                                    "description": "The rule position is after the pre-existing specified rule",
                                                                     "isDeprecated": false,
                                                                     "name": "AFTER_RULE"
                                                                 },
                                                                 {
                                                                     "deprecationReason": null,
-                                                                    "description": " The rule position is before the pre-existing specified rule ",
+                                                                    "description": "The rule position is before the pre-existing specified rule",
                                                                     "isDeprecated": false,
                                                                     "name": "BEFORE_RULE"
                                                                 },
                                                                 {
                                                                     "deprecationReason": null,
-                                                                    "description": " The rule position is first in the specified section ",
+                                                                    "description": "The rule position is first in the specified section",
                                                                     "isDeprecated": false,
                                                                     "name": "FIRST_IN_SECTION"
                                                                 },
                                                                 {
                                                                     "deprecationReason": null,
-                                                                    "description": " The rule position is last in the specified section ",
+                                                                    "description": "The rule position is last in the specified section",
                                                                     "isDeprecated": false,
                                                                     "name": "LAST_IN_SECTION"
                                                                 },
                                                                 {
                                                                     "deprecationReason": null,
-                                                                    "description": " The rule position is immediately after the system rules (first non-system rule) ",
+                                                                    "description": "The rule position is immediately after the system rules (first non-system rule)",
                                                                     "isDeprecated": false,
                                                                     "name": "FIRST_IN_POLICY"
                                                                 },
                                                                 {
                                                                     "deprecationReason": null,
-                                                                    "description": " The rule position is last in the policy ",
+                                                                    "description": "The rule position is last in the policy",
                                                                     "isDeprecated": false,
                                                                     "name": "LAST_IN_POLICY"
                                                                 }
@@ -121,7 +121,7 @@
                                                 },
                                                 "ref": {
                                                     "defaultValue": null,
-                                                    "description": null,
+                                                    "description": "The identifier of the object (e.g. a rule, a section) relative to which the position of the added rule is defined",
                                                     "id_str": "addRule___input___at___ref",
                                                     "name": "ref",
                                                     "path": "addRule.input.at.ref",
@@ -154,7 +154,7 @@
                                 },
                                 "rule": {
                                     "defaultValue": null,
-                                    "description": null,
+                                    "description": "Parameters for the rule you are adding",
                                     "id_str": "addRule___input___rule",
                                     "name": "rule",
                                     "path": "addRule.input.rule",
@@ -167,9 +167,57 @@
                                             "enumValues": null,
                                             "fields": null,
                                             "inputFields": {
+                                                "allowedDestinationProtocol": {
+                                                    "defaultValue": "BOTH",
+                                                    "description": "The protocol used for allowed destinations when routing traffic through the web proxy",
+                                                    "id_str": "addRule___input___rule___allowedDestinationProtocol",
+                                                    "name": "allowedDestinationProtocol",
+                                                    "path": "addRule.input.rule.allowedDestinationProtocol",
+                                                    "requestStr": "$allowedDestinationProtocol:SiteWebProxyAllowedDestinationProtocol ",
+                                                    "required": false,
+                                                    "responseStr": "allowedDestinationProtocol:$allowedDestinationProtocol ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": "The protocol allowed for destinations when routing traffic through the web proxy.",
+                                                            "enumValues": [
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "HTTPS"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "HTTP"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "BOTH"
+                                                                }
+                                                            ],
+                                                            "fields": null,
+                                                            "inputFields": null,
+                                                            "interfaces": null,
+                                                            "kind": "ENUM",
+                                                            "name": "SiteWebProxyAllowedDestinationProtocol",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "enum",
+                                                        "kind": [
+                                                            "ENUM"
+                                                        ],
+                                                        "name": "SiteWebProxyAllowedDestinationProtocol",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "allowedDestinationProtocol"
+                                                },
                                                 "associatedSite": {
                                                     "defaultValue": "[]",
-                                                    "description": null,
+                                                    "description": "The sites associated with this web proxy configuration.\nThis indicates which sites will use this web proxy for handling their web traffic.",
                                                     "id_str": "addRule___input___rule___associatedSite",
                                                     "name": "associatedSite",
                                                     "path": "addRule.input.rule.associatedSite",
@@ -263,8 +311,8 @@
                                                     "varName": "siteRefInput"
                                                 },
                                                 "authenticationConfig": {
-                                                    "defaultValue": "{ kerberosConfig: { isEnabled: false } }",
-                                                    "description": null,
+                                                    "defaultValue": "{kerberosConfig: {isEnabled: false}}",
+                                                    "description": "The authentication configuration for the web proxy, that specifies how the proxy should authenticate users.",
                                                     "id_str": "addRule___input___rule___authenticationConfig",
                                                     "name": "authenticationConfig",
                                                     "path": "addRule.input.rule.authenticationConfig",
@@ -273,13 +321,13 @@
                                                     "responseStr": "authenticationConfig:$siteWebProxyAuthenticationConfigInput ",
                                                     "type": {
                                                         "definition": {
-                                                            "description": " Authentication configuration for the web proxy, including any required protocol-specific settings. ",
+                                                            "description": "Authentication configuration for the web proxy, including any required protocol-specific settings.",
                                                             "enumValues": null,
                                                             "fields": null,
                                                             "inputFields": {
                                                                 "kerberosConfig": {
-                                                                    "defaultValue": "{ isEnabled: false }",
-                                                                    "description": null,
+                                                                    "defaultValue": "{isEnabled: false}",
+                                                                    "description": "Configuration settings for the web proxy when Kerberos authentication is required. Required when method is KERBEROS; ignored when method is NONE.",
                                                                     "id_str": "addRule___input___rule___authenticationConfig___kerberosConfig",
                                                                     "name": "kerberosConfig",
                                                                     "path": "addRule.input.rule.authenticationConfig.kerberosConfig",
@@ -288,13 +336,13 @@
                                                                     "responseStr": "kerberosConfig:$siteWebProxyKerberosConfigInput ",
                                                                     "type": {
                                                                         "definition": {
-                                                                            "description": " Kerberos authentication settings for the web proxy. ",
+                                                                            "description": "Kerberos authentication settings for the web proxy.",
                                                                             "enumValues": null,
                                                                             "fields": null,
                                                                             "inputFields": {
                                                                                 "encryptedKeytab": {
                                                                                     "defaultValue": null,
-                                                                                    "description": null,
+                                                                                    "description": "Keytab file content, encrypted and Base64-encoded. Required when authenticationConfig.method is KERBEROS; ignored when method is NONE.",
                                                                                     "id_str": "addRule___input___rule___authenticationConfig___kerberosConfig___encryptedKeytab",
                                                                                     "name": "encryptedKeytab",
                                                                                     "path": "addRule.input.rule.authenticationConfig.kerberosConfig.encryptedKeytab",
@@ -312,7 +360,7 @@
                                                                                 },
                                                                                 "isEnabled": {
                                                                                     "defaultValue": "false",
-                                                                                    "description": null,
+                                                                                    "description": "Legacy on/off switch for Kerberos authentication - superseded by SiteWebProxyAuthenticationConfig.method.\nKept for backward compatibility during migration; clients should move to `method` and may omit this flag.\nTRUE = Proxy authentication is enabled. FALSE = Proxy authentication is disabled.",
                                                                                     "id_str": "addRule___input___rule___authenticationConfig___kerberosConfig___isEnabled",
                                                                                     "name": "isEnabled",
                                                                                     "path": "addRule.input.rule.authenticationConfig.kerberosConfig.isEnabled",
@@ -346,7 +394,7 @@
                                                                 },
                                                                 "method": {
                                                                     "defaultValue": null,
-                                                                    "description": null,
+                                                                    "description": "The authentication method the web proxy enforces.\nNONE = no authentication (kerberosConfig is ignored).\nKERBEROS = Kerberos authentication (kerberosConfig.encryptedKeytab is required).",
                                                                     "id_str": "addRule___input___rule___authenticationConfig___method",
                                                                     "name": "method",
                                                                     "path": "addRule.input.rule.authenticationConfig.method",
@@ -355,17 +403,17 @@
                                                                     "responseStr": "method:$method ",
                                                                     "type": {
                                                                         "definition": {
-                                                                            "description": " Authentication method used by the web proxy. ",
+                                                                            "description": "Authentication method used by the web proxy.",
                                                                             "enumValues": [
                                                                                 {
                                                                                     "deprecationReason": null,
-                                                                                    "description": " No authentication - traffic is forwarded without authenticating users. ",
+                                                                                    "description": "No authentication - traffic is forwarded without authenticating users.",
                                                                                     "isDeprecated": false,
                                                                                     "name": "NONE"
                                                                                 },
                                                                                 {
                                                                                     "deprecationReason": null,
-                                                                                    "description": " Kerberos (keytab-based) authentication. ",
+                                                                                    "description": "Kerberos (keytab-based) authentication.",
                                                                                     "isDeprecated": false,
                                                                                     "name": "KERBEROS"
                                                                                 }
@@ -442,7 +490,7 @@
                                                 },
                                                 "fqdn": {
                                                     "defaultValue": null,
-                                                    "description": null,
+                                                    "description": "The FQDN of the web proxy endpoint. Fro instance: example.proxy.local",
                                                     "id_str": "addRule___input___rule___fqdn",
                                                     "name": "fqdn",
                                                     "path": "addRule.input.rule.fqdn",
@@ -480,7 +528,7 @@
                                                 },
                                                 "port": {
                                                     "defaultValue": null,
-                                                    "description": null,
+                                                    "description": "The port where the web proxy endpoint listens for incoming traffic.",
                                                     "id_str": "addRule___input___rule___port",
                                                     "name": "port",
                                                     "path": "addRule.input.rule.port",
@@ -499,7 +547,7 @@
                                                 },
                                                 "shouldAssociateWithAllSites": {
                                                     "defaultValue": "false",
-                                                    "description": null,
+                                                    "description": "If true, the web proxy is associated with all sites in the account.\nOtherwise, associatedSite determines which sites use this web proxy for handling their web traffic.",
                                                     "id_str": "addRule___input___rule___shouldAssociateWithAllSites",
                                                     "name": "shouldAssociateWithAllSites",
                                                     "path": "addRule.input.rule.shouldAssociateWithAllSites",
@@ -697,7 +745,7 @@
                     "inputFields": {
                         "at": {
                             "defaultValue": null,
-                            "description": null,
+                            "description": "Position of the rule in the policy",
                             "id_str": "addRule___input___at",
                             "name": "at",
                             "path": "addRule.input.at",
@@ -706,13 +754,13 @@
                             "responseStr": "at:$policyRulePositionInput ",
                             "type": {
                                 "definition": {
-                                    "description": " Parameters required to define the rule position ",
+                                    "description": "Parameters required to define the rule position",
                                     "enumValues": null,
                                     "fields": null,
                                     "inputFields": {
                                         "position": {
                                             "defaultValue": null,
-                                            "description": null,
+                                            "description": "Position relative to a policy, a section or another rule",
                                             "id_str": "addRule___input___at___position",
                                             "name": "position",
                                             "path": "addRule.input.at.position",
@@ -721,41 +769,41 @@
                                             "responseStr": "position:$position ",
                                             "type": {
                                                 "definition": {
-                                                    "description": " Enum for the position of a rule within a policy ",
+                                                    "description": "Enum for the position of a rule within a policy",
                                                     "enumValues": [
                                                         {
                                                             "deprecationReason": null,
-                                                            "description": " The rule position is after the pre-existing specified rule ",
+                                                            "description": "The rule position is after the pre-existing specified rule",
                                                             "isDeprecated": false,
                                                             "name": "AFTER_RULE"
                                                         },
                                                         {
                                                             "deprecationReason": null,
-                                                            "description": " The rule position is before the pre-existing specified rule ",
+                                                            "description": "The rule position is before the pre-existing specified rule",
                                                             "isDeprecated": false,
                                                             "name": "BEFORE_RULE"
                                                         },
                                                         {
                                                             "deprecationReason": null,
-                                                            "description": " The rule position is first in the specified section ",
+                                                            "description": "The rule position is first in the specified section",
                                                             "isDeprecated": false,
                                                             "name": "FIRST_IN_SECTION"
                                                         },
                                                         {
                                                             "deprecationReason": null,
-                                                            "description": " The rule position is last in the specified section ",
+                                                            "description": "The rule position is last in the specified section",
                                                             "isDeprecated": false,
                                                             "name": "LAST_IN_SECTION"
                                                         },
                                                         {
                                                             "deprecationReason": null,
-                                                            "description": " The rule position is immediately after the system rules (first non-system rule) ",
+                                                            "description": "The rule position is immediately after the system rules (first non-system rule)",
                                                             "isDeprecated": false,
                                                             "name": "FIRST_IN_POLICY"
                                                         },
                                                         {
                                                             "deprecationReason": null,
-                                                            "description": " The rule position is last in the policy ",
+                                                            "description": "The rule position is last in the policy",
                                                             "isDeprecated": false,
                                                             "name": "LAST_IN_POLICY"
                                                         }
@@ -778,7 +826,7 @@
                                         },
                                         "ref": {
                                             "defaultValue": null,
-                                            "description": null,
+                                            "description": "The identifier of the object (e.g. a rule, a section) relative to which the position of the added rule is defined",
                                             "id_str": "addRule___input___at___ref",
                                             "name": "ref",
                                             "path": "addRule.input.at.ref",
@@ -811,7 +859,7 @@
                         },
                         "rule": {
                             "defaultValue": null,
-                            "description": null,
+                            "description": "Parameters for the rule you are adding",
                             "id_str": "addRule___input___rule",
                             "name": "rule",
                             "path": "addRule.input.rule",
@@ -824,9 +872,57 @@
                                     "enumValues": null,
                                     "fields": null,
                                     "inputFields": {
+                                        "allowedDestinationProtocol": {
+                                            "defaultValue": "BOTH",
+                                            "description": "The protocol used for allowed destinations when routing traffic through the web proxy",
+                                            "id_str": "addRule___input___rule___allowedDestinationProtocol",
+                                            "name": "allowedDestinationProtocol",
+                                            "path": "addRule.input.rule.allowedDestinationProtocol",
+                                            "requestStr": "$allowedDestinationProtocol:SiteWebProxyAllowedDestinationProtocol ",
+                                            "required": false,
+                                            "responseStr": "allowedDestinationProtocol:$allowedDestinationProtocol ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": "The protocol allowed for destinations when routing traffic through the web proxy.",
+                                                    "enumValues": [
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "HTTPS"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "HTTP"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "BOTH"
+                                                        }
+                                                    ],
+                                                    "fields": null,
+                                                    "inputFields": null,
+                                                    "interfaces": null,
+                                                    "kind": "ENUM",
+                                                    "name": "SiteWebProxyAllowedDestinationProtocol",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "enum",
+                                                "kind": [
+                                                    "ENUM"
+                                                ],
+                                                "name": "SiteWebProxyAllowedDestinationProtocol",
+                                                "non_null": false
+                                            },
+                                            "varName": "allowedDestinationProtocol"
+                                        },
                                         "associatedSite": {
                                             "defaultValue": "[]",
-                                            "description": null,
+                                            "description": "The sites associated with this web proxy configuration.\nThis indicates which sites will use this web proxy for handling their web traffic.",
                                             "id_str": "addRule___input___rule___associatedSite",
                                             "name": "associatedSite",
                                             "path": "addRule.input.rule.associatedSite",
@@ -920,8 +1016,8 @@
                                             "varName": "siteRefInput"
                                         },
                                         "authenticationConfig": {
-                                            "defaultValue": "{ kerberosConfig: { isEnabled: false } }",
-                                            "description": null,
+                                            "defaultValue": "{kerberosConfig: {isEnabled: false}}",
+                                            "description": "The authentication configuration for the web proxy, that specifies how the proxy should authenticate users.",
                                             "id_str": "addRule___input___rule___authenticationConfig",
                                             "name": "authenticationConfig",
                                             "path": "addRule.input.rule.authenticationConfig",
@@ -930,13 +1026,13 @@
                                             "responseStr": "authenticationConfig:$siteWebProxyAuthenticationConfigInput ",
                                             "type": {
                                                 "definition": {
-                                                    "description": " Authentication configuration for the web proxy, including any required protocol-specific settings. ",
+                                                    "description": "Authentication configuration for the web proxy, including any required protocol-specific settings.",
                                                     "enumValues": null,
                                                     "fields": null,
                                                     "inputFields": {
                                                         "kerberosConfig": {
-                                                            "defaultValue": "{ isEnabled: false }",
-                                                            "description": null,
+                                                            "defaultValue": "{isEnabled: false}",
+                                                            "description": "Configuration settings for the web proxy when Kerberos authentication is required. Required when method is KERBEROS; ignored when method is NONE.",
                                                             "id_str": "addRule___input___rule___authenticationConfig___kerberosConfig",
                                                             "name": "kerberosConfig",
                                                             "path": "addRule.input.rule.authenticationConfig.kerberosConfig",
@@ -945,13 +1041,13 @@
                                                             "responseStr": "kerberosConfig:$siteWebProxyKerberosConfigInput ",
                                                             "type": {
                                                                 "definition": {
-                                                                    "description": " Kerberos authentication settings for the web proxy. ",
+                                                                    "description": "Kerberos authentication settings for the web proxy.",
                                                                     "enumValues": null,
                                                                     "fields": null,
                                                                     "inputFields": {
                                                                         "encryptedKeytab": {
                                                                             "defaultValue": null,
-                                                                            "description": null,
+                                                                            "description": "Keytab file content, encrypted and Base64-encoded. Required when authenticationConfig.method is KERBEROS; ignored when method is NONE.",
                                                                             "id_str": "addRule___input___rule___authenticationConfig___kerberosConfig___encryptedKeytab",
                                                                             "name": "encryptedKeytab",
                                                                             "path": "addRule.input.rule.authenticationConfig.kerberosConfig.encryptedKeytab",
@@ -969,7 +1065,7 @@
                                                                         },
                                                                         "isEnabled": {
                                                                             "defaultValue": "false",
-                                                                            "description": null,
+                                                                            "description": "Legacy on/off switch for Kerberos authentication - superseded by SiteWebProxyAuthenticationConfig.method.\nKept for backward compatibility during migration; clients should move to `method` and may omit this flag.\nTRUE = Proxy authentication is enabled. FALSE = Proxy authentication is disabled.",
                                                                             "id_str": "addRule___input___rule___authenticationConfig___kerberosConfig___isEnabled",
                                                                             "name": "isEnabled",
                                                                             "path": "addRule.input.rule.authenticationConfig.kerberosConfig.isEnabled",
@@ -1003,7 +1099,7 @@
                                                         },
                                                         "method": {
                                                             "defaultValue": null,
-                                                            "description": null,
+                                                            "description": "The authentication method the web proxy enforces.\nNONE = no authentication (kerberosConfig is ignored).\nKERBEROS = Kerberos authentication (kerberosConfig.encryptedKeytab is required).",
                                                             "id_str": "addRule___input___rule___authenticationConfig___method",
                                                             "name": "method",
                                                             "path": "addRule.input.rule.authenticationConfig.method",
@@ -1012,17 +1108,17 @@
                                                             "responseStr": "method:$method ",
                                                             "type": {
                                                                 "definition": {
-                                                                    "description": " Authentication method used by the web proxy. ",
+                                                                    "description": "Authentication method used by the web proxy.",
                                                                     "enumValues": [
                                                                         {
                                                                             "deprecationReason": null,
-                                                                            "description": " No authentication - traffic is forwarded without authenticating users. ",
+                                                                            "description": "No authentication - traffic is forwarded without authenticating users.",
                                                                             "isDeprecated": false,
                                                                             "name": "NONE"
                                                                         },
                                                                         {
                                                                             "deprecationReason": null,
-                                                                            "description": " Kerberos (keytab-based) authentication. ",
+                                                                            "description": "Kerberos (keytab-based) authentication.",
                                                                             "isDeprecated": false,
                                                                             "name": "KERBEROS"
                                                                         }
@@ -1099,7 +1195,7 @@
                                         },
                                         "fqdn": {
                                             "defaultValue": null,
-                                            "description": null,
+                                            "description": "The FQDN of the web proxy endpoint. Fro instance: example.proxy.local",
                                             "id_str": "addRule___input___rule___fqdn",
                                             "name": "fqdn",
                                             "path": "addRule.input.rule.fqdn",
@@ -1137,7 +1233,7 @@
                                         },
                                         "port": {
                                             "defaultValue": null,
-                                            "description": null,
+                                            "description": "The port where the web proxy endpoint listens for incoming traffic.",
                                             "id_str": "addRule___input___rule___port",
                                             "name": "port",
                                             "path": "addRule.input.rule.port",
@@ -1156,7 +1252,7 @@
                                         },
                                         "shouldAssociateWithAllSites": {
                                             "defaultValue": "false",
-                                            "description": null,
+                                            "description": "If true, the web proxy is associated with all sites in the account.\nOtherwise, associatedSite determines which sites use this web proxy for handling their web traffic.",
                                             "id_str": "addRule___input___rule___shouldAssociateWithAllSites",
                                             "name": "shouldAssociateWithAllSites",
                                             "path": "addRule.input.rule.shouldAssociateWithAllSites",
@@ -1404,7 +1500,7 @@
                                                     "inputFields": {
                                                         "at": {
                                                             "defaultValue": null,
-                                                            "description": null,
+                                                            "description": "Position of the rule in the policy",
                                                             "id_str": "addRule___input___at",
                                                             "name": "at",
                                                             "path": "addRule.input.at",
@@ -1413,13 +1509,13 @@
                                                             "responseStr": "at:$policyRulePositionInput ",
                                                             "type": {
                                                                 "definition": {
-                                                                    "description": " Parameters required to define the rule position ",
+                                                                    "description": "Parameters required to define the rule position",
                                                                     "enumValues": null,
                                                                     "fields": null,
                                                                     "inputFields": {
                                                                         "position": {
                                                                             "defaultValue": null,
-                                                                            "description": null,
+                                                                            "description": "Position relative to a policy, a section or another rule",
                                                                             "id_str": "addRule___input___at___position",
                                                                             "name": "position",
                                                                             "path": "addRule.input.at.position",
@@ -1428,41 +1524,41 @@
                                                                             "responseStr": "position:$position ",
                                                                             "type": {
                                                                                 "definition": {
-                                                                                    "description": " Enum for the position of a rule within a policy ",
+                                                                                    "description": "Enum for the position of a rule within a policy",
                                                                                     "enumValues": [
                                                                                         {
                                                                                             "deprecationReason": null,
-                                                                                            "description": " The rule position is after the pre-existing specified rule ",
+                                                                                            "description": "The rule position is after the pre-existing specified rule",
                                                                                             "isDeprecated": false,
                                                                                             "name": "AFTER_RULE"
                                                                                         },
                                                                                         {
                                                                                             "deprecationReason": null,
-                                                                                            "description": " The rule position is before the pre-existing specified rule ",
+                                                                                            "description": "The rule position is before the pre-existing specified rule",
                                                                                             "isDeprecated": false,
                                                                                             "name": "BEFORE_RULE"
                                                                                         },
                                                                                         {
                                                                                             "deprecationReason": null,
-                                                                                            "description": " The rule position is first in the specified section ",
+                                                                                            "description": "The rule position is first in the specified section",
                                                                                             "isDeprecated": false,
                                                                                             "name": "FIRST_IN_SECTION"
                                                                                         },
                                                                                         {
                                                                                             "deprecationReason": null,
-                                                                                            "description": " The rule position is last in the specified section ",
+                                                                                            "description": "The rule position is last in the specified section",
                                                                                             "isDeprecated": false,
                                                                                             "name": "LAST_IN_SECTION"
                                                                                         },
                                                                                         {
                                                                                             "deprecationReason": null,
-                                                                                            "description": " The rule position is immediately after the system rules (first non-system rule) ",
+                                                                                            "description": "The rule position is immediately after the system rules (first non-system rule)",
                                                                                             "isDeprecated": false,
                                                                                             "name": "FIRST_IN_POLICY"
                                                                                         },
                                                                                         {
                                                                                             "deprecationReason": null,
-                                                                                            "description": " The rule position is last in the policy ",
+                                                                                            "description": "The rule position is last in the policy",
                                                                                             "isDeprecated": false,
                                                                                             "name": "LAST_IN_POLICY"
                                                                                         }
@@ -1485,7 +1581,7 @@
                                                                         },
                                                                         "ref": {
                                                                             "defaultValue": null,
-                                                                            "description": null,
+                                                                            "description": "The identifier of the object (e.g. a rule, a section) relative to which the position of the added rule is defined",
                                                                             "id_str": "addRule___input___at___ref",
                                                                             "name": "ref",
                                                                             "path": "addRule.input.at.ref",
@@ -1518,7 +1614,7 @@
                                                         },
                                                         "rule": {
                                                             "defaultValue": null,
-                                                            "description": null,
+                                                            "description": "Parameters for the rule you are adding",
                                                             "id_str": "addRule___input___rule",
                                                             "name": "rule",
                                                             "path": "addRule.input.rule",
@@ -1531,9 +1627,57 @@
                                                                     "enumValues": null,
                                                                     "fields": null,
                                                                     "inputFields": {
+                                                                        "allowedDestinationProtocol": {
+                                                                            "defaultValue": "BOTH",
+                                                                            "description": "The protocol used for allowed destinations when routing traffic through the web proxy",
+                                                                            "id_str": "addRule___input___rule___allowedDestinationProtocol",
+                                                                            "name": "allowedDestinationProtocol",
+                                                                            "path": "addRule.input.rule.allowedDestinationProtocol",
+                                                                            "requestStr": "$allowedDestinationProtocol:SiteWebProxyAllowedDestinationProtocol ",
+                                                                            "required": false,
+                                                                            "responseStr": "allowedDestinationProtocol:$allowedDestinationProtocol ",
+                                                                            "type": {
+                                                                                "definition": {
+                                                                                    "description": "The protocol allowed for destinations when routing traffic through the web proxy.",
+                                                                                    "enumValues": [
+                                                                                        {
+                                                                                            "deprecationReason": null,
+                                                                                            "description": null,
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "HTTPS"
+                                                                                        },
+                                                                                        {
+                                                                                            "deprecationReason": null,
+                                                                                            "description": null,
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "HTTP"
+                                                                                        },
+                                                                                        {
+                                                                                            "deprecationReason": null,
+                                                                                            "description": null,
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "BOTH"
+                                                                                        }
+                                                                                    ],
+                                                                                    "fields": null,
+                                                                                    "inputFields": null,
+                                                                                    "interfaces": null,
+                                                                                    "kind": "ENUM",
+                                                                                    "name": "SiteWebProxyAllowedDestinationProtocol",
+                                                                                    "possibleTypes": null
+                                                                                },
+                                                                                "indexType": "enum",
+                                                                                "kind": [
+                                                                                    "ENUM"
+                                                                                ],
+                                                                                "name": "SiteWebProxyAllowedDestinationProtocol",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "allowedDestinationProtocol"
+                                                                        },
                                                                         "associatedSite": {
                                                                             "defaultValue": "[]",
-                                                                            "description": null,
+                                                                            "description": "The sites associated with this web proxy configuration.\nThis indicates which sites will use this web proxy for handling their web traffic.",
                                                                             "id_str": "addRule___input___rule___associatedSite",
                                                                             "name": "associatedSite",
                                                                             "path": "addRule.input.rule.associatedSite",
@@ -1627,8 +1771,8 @@
                                                                             "varName": "siteRefInput"
                                                                         },
                                                                         "authenticationConfig": {
-                                                                            "defaultValue": "{ kerberosConfig: { isEnabled: false } }",
-                                                                            "description": null,
+                                                                            "defaultValue": "{kerberosConfig: {isEnabled: false}}",
+                                                                            "description": "The authentication configuration for the web proxy, that specifies how the proxy should authenticate users.",
                                                                             "id_str": "addRule___input___rule___authenticationConfig",
                                                                             "name": "authenticationConfig",
                                                                             "path": "addRule.input.rule.authenticationConfig",
@@ -1637,13 +1781,13 @@
                                                                             "responseStr": "authenticationConfig:$siteWebProxyAuthenticationConfigInput ",
                                                                             "type": {
                                                                                 "definition": {
-                                                                                    "description": " Authentication configuration for the web proxy, including any required protocol-specific settings. ",
+                                                                                    "description": "Authentication configuration for the web proxy, including any required protocol-specific settings.",
                                                                                     "enumValues": null,
                                                                                     "fields": null,
                                                                                     "inputFields": {
                                                                                         "kerberosConfig": {
-                                                                                            "defaultValue": "{ isEnabled: false }",
-                                                                                            "description": null,
+                                                                                            "defaultValue": "{isEnabled: false}",
+                                                                                            "description": "Configuration settings for the web proxy when Kerberos authentication is required. Required when method is KERBEROS; ignored when method is NONE.",
                                                                                             "id_str": "addRule___input___rule___authenticationConfig___kerberosConfig",
                                                                                             "name": "kerberosConfig",
                                                                                             "path": "addRule.input.rule.authenticationConfig.kerberosConfig",
@@ -1652,13 +1796,13 @@
                                                                                             "responseStr": "kerberosConfig:$siteWebProxyKerberosConfigInput ",
                                                                                             "type": {
                                                                                                 "definition": {
-                                                                                                    "description": " Kerberos authentication settings for the web proxy. ",
+                                                                                                    "description": "Kerberos authentication settings for the web proxy.",
                                                                                                     "enumValues": null,
                                                                                                     "fields": null,
                                                                                                     "inputFields": {
                                                                                                         "encryptedKeytab": {
                                                                                                             "defaultValue": null,
-                                                                                                            "description": null,
+                                                                                                            "description": "Keytab file content, encrypted and Base64-encoded. Required when authenticationConfig.method is KERBEROS; ignored when method is NONE.",
                                                                                                             "id_str": "addRule___input___rule___authenticationConfig___kerberosConfig___encryptedKeytab",
                                                                                                             "name": "encryptedKeytab",
                                                                                                             "path": "addRule.input.rule.authenticationConfig.kerberosConfig.encryptedKeytab",
@@ -1676,7 +1820,7 @@
                                                                                                         },
                                                                                                         "isEnabled": {
                                                                                                             "defaultValue": "false",
-                                                                                                            "description": null,
+                                                                                                            "description": "Legacy on/off switch for Kerberos authentication - superseded by SiteWebProxyAuthenticationConfig.method.\nKept for backward compatibility during migration; clients should move to `method` and may omit this flag.\nTRUE = Proxy authentication is enabled. FALSE = Proxy authentication is disabled.",
                                                                                                             "id_str": "addRule___input___rule___authenticationConfig___kerberosConfig___isEnabled",
                                                                                                             "name": "isEnabled",
                                                                                                             "path": "addRule.input.rule.authenticationConfig.kerberosConfig.isEnabled",
@@ -1710,7 +1854,7 @@
                                                                                         },
                                                                                         "method": {
                                                                                             "defaultValue": null,
-                                                                                            "description": null,
+                                                                                            "description": "The authentication method the web proxy enforces.\nNONE = no authentication (kerberosConfig is ignored).\nKERBEROS = Kerberos authentication (kerberosConfig.encryptedKeytab is required).",
                                                                                             "id_str": "addRule___input___rule___authenticationConfig___method",
                                                                                             "name": "method",
                                                                                             "path": "addRule.input.rule.authenticationConfig.method",
@@ -1719,17 +1863,17 @@
                                                                                             "responseStr": "method:$method ",
                                                                                             "type": {
                                                                                                 "definition": {
-                                                                                                    "description": " Authentication method used by the web proxy. ",
+                                                                                                    "description": "Authentication method used by the web proxy.",
                                                                                                     "enumValues": [
                                                                                                         {
                                                                                                             "deprecationReason": null,
-                                                                                                            "description": " No authentication - traffic is forwarded without authenticating users. ",
+                                                                                                            "description": "No authentication - traffic is forwarded without authenticating users.",
                                                                                                             "isDeprecated": false,
                                                                                                             "name": "NONE"
                                                                                                         },
                                                                                                         {
                                                                                                             "deprecationReason": null,
-                                                                                                            "description": " Kerberos (keytab-based) authentication. ",
+                                                                                                            "description": "Kerberos (keytab-based) authentication.",
                                                                                                             "isDeprecated": false,
                                                                                                             "name": "KERBEROS"
                                                                                                         }
@@ -1806,7 +1950,7 @@
                                                                         },
                                                                         "fqdn": {
                                                                             "defaultValue": null,
-                                                                            "description": null,
+                                                                            "description": "The FQDN of the web proxy endpoint. Fro instance: example.proxy.local",
                                                                             "id_str": "addRule___input___rule___fqdn",
                                                                             "name": "fqdn",
                                                                             "path": "addRule.input.rule.fqdn",
@@ -1844,7 +1988,7 @@
                                                                         },
                                                                         "port": {
                                                                             "defaultValue": null,
-                                                                            "description": null,
+                                                                            "description": "The port where the web proxy endpoint listens for incoming traffic.",
                                                                             "id_str": "addRule___input___rule___port",
                                                                             "name": "port",
                                                                             "path": "addRule.input.rule.port",
@@ -1863,7 +2007,7 @@
                                                                         },
                                                                         "shouldAssociateWithAllSites": {
                                                                             "defaultValue": "false",
-                                                                            "description": null,
+                                                                            "description": "If true, the web proxy is associated with all sites in the account.\nOtherwise, associatedSite determines which sites use this web proxy for handling their web traffic.",
                                                                             "id_str": "addRule___input___rule___shouldAssociateWithAllSites",
                                                                             "name": "shouldAssociateWithAllSites",
                                                                             "path": "addRule.input.rule.shouldAssociateWithAllSites",
@@ -2015,7 +2159,7 @@
                                                     "responseStr": "revision:$policyRevision ",
                                                     "type": {
                                                         "definition": {
-                                                            "description": " Returns data about the policy revision, such as when the change was made, how many rules were changed, etc. ",
+                                                            "description": "Returns data about the policy revision, such as when the change was made, how many rules were changed, etc.",
                                                             "enumValues": null,
                                                             "fields": {
                                                                 "changes": {
@@ -2042,7 +2186,7 @@
                                                                 "createdTime": {
                                                                     "args": {},
                                                                     "deprecationReason": null,
-                                                                    "description": null,
+                                                                    "description": "Date and time when the revision was created.",
                                                                     "id_str": "siteWebProxy___addRule___revision___createdTime",
                                                                     "isDeprecated": false,
                                                                     "name": "createdTime",
@@ -2126,7 +2270,7 @@
                                                                 "updatedTime": {
                                                                     "args": {},
                                                                     "deprecationReason": null,
-                                                                    "description": null,
+                                                                    "description": "Date and time when the revision was last updated.",
                                                                     "id_str": "siteWebProxy___addRule___revision___updatedTime",
                                                                     "isDeprecated": false,
                                                                     "name": "updatedTime",
@@ -2195,7 +2339,7 @@
                                                                                 "updatedBy": {
                                                                                     "args": {},
                                                                                     "deprecationReason": null,
-                                                                                    "description": null,
+                                                                                    "description": "The admin, or the API-key, that performed the last update",
                                                                                     "id_str": "siteWebProxy___addRule___rule___audit___updatedBy",
                                                                                     "isDeprecated": false,
                                                                                     "name": "updatedBy",
@@ -2216,7 +2360,7 @@
                                                                                 "updatedTime": {
                                                                                     "args": {},
                                                                                     "deprecationReason": null,
-                                                                                    "description": null,
+                                                                                    "description": "The last date and time the rule was updated",
                                                                                     "id_str": "siteWebProxy___addRule___rule___audit___updatedTime",
                                                                                     "isDeprecated": false,
                                                                                     "name": "updatedTime",
@@ -2264,13 +2408,13 @@
                                                                     "responseStr": "metadata:$policyElementMetadata ",
                                                                     "type": {
                                                                         "definition": {
-                                                                            "description": " Additional metadata attached to a rule or section ",
+                                                                            "description": "Additional metadata attached to a rule or section",
                                                                             "enumValues": null,
                                                                             "fields": {
                                                                                 "lock": {
                                                                                     "args": {},
                                                                                     "deprecationReason": null,
-                                                                                    "description": null,
+                                                                                    "description": "Lock information; non-null only when the item has the LOCKED property",
                                                                                     "id_str": "siteWebProxy___addRule___rule___metadata___lock",
                                                                                     "isDeprecated": false,
                                                                                     "name": "lock",
@@ -2280,13 +2424,13 @@
                                                                                     "responseStr": "lock:$policyElementLock ",
                                                                                     "type": {
                                                                                         "definition": {
-                                                                                            "description": " Lock info for a rule or section held by another revision ",
+                                                                                            "description": "Lock info for a rule or section held by another revision",
                                                                                             "enumValues": null,
                                                                                             "fields": {
                                                                                                 "lockingAdminEmail": {
                                                                                                     "args": {},
                                                                                                     "deprecationReason": null,
-                                                                                                    "description": null,
+                                                                                                    "description": "Email of the admin whose revision holds this item locked",
                                                                                                     "id_str": "siteWebProxy___addRule___rule___metadata___lock___lockingAdminEmail",
                                                                                                     "isDeprecated": false,
                                                                                                     "name": "lockingAdminEmail",
@@ -2307,7 +2451,7 @@
                                                                                                 "lockingRevisionId": {
                                                                                                     "args": {},
                                                                                                     "deprecationReason": null,
-                                                                                                    "description": null,
+                                                                                                    "description": "The ID of the revision that currently holds the lock",
                                                                                                     "id_str": "siteWebProxy___addRule___rule___metadata___lock___lockingRevisionId",
                                                                                                     "isDeprecated": false,
                                                                                                     "name": "lockingRevisionId",
@@ -2328,7 +2472,7 @@
                                                                                                 "lockingTime": {
                                                                                                     "args": {},
                                                                                                     "deprecationReason": null,
-                                                                                                    "description": null,
+                                                                                                    "description": "Timestamp when this rule/section was locked",
                                                                                                     "id_str": "siteWebProxy___addRule___rule___metadata___lock___lockingTime",
                                                                                                     "isDeprecated": false,
                                                                                                     "name": "lockingTime",
@@ -2391,35 +2535,35 @@
                                                                     "responseStr": "properties:$properties ",
                                                                     "type": {
                                                                         "definition": {
-                                                                            "description": " Attributes describing the rule state or type ",
+                                                                            "description": "Attributes describing the rule state or type",
                                                                             "enumValues": [
                                                                                 {
                                                                                     "deprecationReason": null,
-                                                                                    "description": " New (added) rule ",
+                                                                                    "description": "New (added) rule",
                                                                                     "isDeprecated": false,
                                                                                     "name": "ADDED"
                                                                                 },
                                                                                 {
                                                                                     "deprecationReason": null,
-                                                                                    "description": " Updated (modified) existing rule ",
+                                                                                    "description": "Updated (modified) existing rule",
                                                                                     "isDeprecated": false,
                                                                                     "name": "UPDATED"
                                                                                 },
                                                                                 {
                                                                                     "deprecationReason": null,
-                                                                                    "description": " Removed (deleted) rule ",
+                                                                                    "description": "Removed (deleted) rule",
                                                                                     "isDeprecated": false,
                                                                                     "name": "REMOVED"
                                                                                 },
                                                                                 {
                                                                                     "deprecationReason": null,
-                                                                                    "description": " A rule moved to a different position ",
+                                                                                    "description": "A rule moved to a different position",
                                                                                     "isDeprecated": false,
                                                                                     "name": "MOVED"
                                                                                 },
                                                                                 {
                                                                                     "deprecationReason": null,
-                                                                                    "description": " A rule locked for changes by other admins ",
+                                                                                    "description": "A rule locked for changes by other admins",
                                                                                     "isDeprecated": false,
                                                                                     "name": "LOCKED"
                                                                                 },
@@ -2431,7 +2575,7 @@
                                                                                 },
                                                                                 {
                                                                                     "deprecationReason": null,
-                                                                                    "description": " A pre-defined (system) rule that cannot be modified or removed ",
+                                                                                    "description": "A pre-defined (system) rule that cannot be modified or removed",
                                                                                     "isDeprecated": false,
                                                                                     "name": "SYSTEM"
                                                                                 }
@@ -2471,10 +2615,60 @@
                                                                             "description": null,
                                                                             "enumValues": null,
                                                                             "fields": {
+                                                                                "allowedDestinationProtocol": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "The protocol used for allowed destinations when routing traffic through the web proxy",
+                                                                                    "id_str": "siteWebProxy___addRule___rule___rule___allowedDestinationProtocol",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "allowedDestinationProtocol",
+                                                                                    "path": "siteWebProxy.addRule.rule.rule.allowedDestinationProtocol",
+                                                                                    "requestStr": "$allowedDestinationProtocol:SiteWebProxyAllowedDestinationProtocol ",
+                                                                                    "required": false,
+                                                                                    "responseStr": "allowedDestinationProtocol:$allowedDestinationProtocol ",
+                                                                                    "type": {
+                                                                                        "definition": {
+                                                                                            "description": "The protocol allowed for destinations when routing traffic through the web proxy.",
+                                                                                            "enumValues": [
+                                                                                                {
+                                                                                                    "deprecationReason": null,
+                                                                                                    "description": null,
+                                                                                                    "isDeprecated": false,
+                                                                                                    "name": "HTTPS"
+                                                                                                },
+                                                                                                {
+                                                                                                    "deprecationReason": null,
+                                                                                                    "description": null,
+                                                                                                    "isDeprecated": false,
+                                                                                                    "name": "HTTP"
+                                                                                                },
+                                                                                                {
+                                                                                                    "deprecationReason": null,
+                                                                                                    "description": null,
+                                                                                                    "isDeprecated": false,
+                                                                                                    "name": "BOTH"
+                                                                                                }
+                                                                                            ],
+                                                                                            "fields": null,
+                                                                                            "inputFields": null,
+                                                                                            "interfaces": null,
+                                                                                            "kind": "ENUM",
+                                                                                            "name": "SiteWebProxyAllowedDestinationProtocol",
+                                                                                            "possibleTypes": null
+                                                                                        },
+                                                                                        "indexType": "enum",
+                                                                                        "kind": [
+                                                                                            "ENUM"
+                                                                                        ],
+                                                                                        "name": "SiteWebProxyAllowedDestinationProtocol",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "allowedDestinationProtocol"
+                                                                                },
                                                                                 "associatedSite": {
                                                                                     "args": {},
                                                                                     "deprecationReason": null,
-                                                                                    "description": null,
+                                                                                    "description": "The sites associated with this web proxy configuration.\nThis indicates which sites will use this web proxy for handling their web traffic.",
                                                                                     "id_str": "siteWebProxy___addRule___rule___rule___associatedSite",
                                                                                     "isDeprecated": false,
                                                                                     "name": "associatedSite",
@@ -2484,7 +2678,7 @@
                                                                                     "responseStr": "associatedSite:$siteRef ",
                                                                                     "type": {
                                                                                         "definition": {
-                                                                                            "description": " A reference identifying the Site object. ID: Unique Site Identifier, Name: The Site Name ",
+                                                                                            "description": "A reference identifying the Site object. ID: Unique Site Identifier, Name: The Site Name",
                                                                                             "enumValues": null,
                                                                                             "fields": {
                                                                                                 "id": {
@@ -2551,7 +2745,7 @@
                                                                                 "authenticationConfig": {
                                                                                     "args": {},
                                                                                     "deprecationReason": null,
-                                                                                    "description": null,
+                                                                                    "description": "The authentication configuration for the web proxy, that specifies how the proxy should authenticate users.",
                                                                                     "id_str": "siteWebProxy___addRule___rule___rule___authenticationConfig",
                                                                                     "isDeprecated": false,
                                                                                     "name": "authenticationConfig",
@@ -2561,13 +2755,13 @@
                                                                                     "responseStr": "authenticationConfig:$siteWebProxyAuthenticationConfig ",
                                                                                     "type": {
                                                                                         "definition": {
-                                                                                            "description": " Authentication configuration for the web proxy, including any required protocol-specific settings. ",
+                                                                                            "description": "Authentication configuration for the web proxy, including any required protocol-specific settings.",
                                                                                             "enumValues": null,
                                                                                             "fields": {
                                                                                                 "kerberosConfig": {
                                                                                                     "args": {},
                                                                                                     "deprecationReason": null,
-                                                                                                    "description": null,
+                                                                                                    "description": "Configuration settings for the web proxy when Kerberos authentication is required. Required when method is KERBEROS; ignored when method is NONE.",
                                                                                                     "id_str": "siteWebProxy___addRule___rule___rule___authenticationConfig___kerberosConfig",
                                                                                                     "isDeprecated": false,
                                                                                                     "name": "kerberosConfig",
@@ -2577,13 +2771,13 @@
                                                                                                     "responseStr": "kerberosConfig:$siteWebProxyKerberosConfig ",
                                                                                                     "type": {
                                                                                                         "definition": {
-                                                                                                            "description": " Kerberos authentication settings for the web proxy. ",
+                                                                                                            "description": "Kerberos authentication settings for the web proxy.",
                                                                                                             "enumValues": null,
                                                                                                             "fields": {
                                                                                                                 "encryptedKeytab": {
                                                                                                                     "args": {},
                                                                                                                     "deprecationReason": null,
-                                                                                                                    "description": null,
+                                                                                                                    "description": "Keytab file content, encrypted and Base64-encoded. Required when authenticationConfig.method is KERBEROS; ignored when method is NONE.",
                                                                                                                     "id_str": "siteWebProxy___addRule___rule___rule___authenticationConfig___kerberosConfig___encryptedKeytab",
                                                                                                                     "isDeprecated": false,
                                                                                                                     "name": "encryptedKeytab",
@@ -2603,7 +2797,7 @@
                                                                                                                 "isEnabled": {
                                                                                                                     "args": {},
                                                                                                                     "deprecationReason": null,
-                                                                                                                    "description": null,
+                                                                                                                    "description": "Legacy on/off switch for Kerberos authentication - superseded by SiteWebProxyAuthenticationConfig.method.\nKept for backward compatibility during migration; clients should move to `method` and may omit this flag.\nTRUE = Proxy authentication is enabled. FALSE = Proxy authentication is disabled.",
                                                                                                                     "id_str": "siteWebProxy___addRule___rule___rule___authenticationConfig___kerberosConfig___isEnabled",
                                                                                                                     "isDeprecated": false,
                                                                                                                     "name": "isEnabled",
@@ -2640,7 +2834,7 @@
                                                                                                 "method": {
                                                                                                     "args": {},
                                                                                                     "deprecationReason": null,
-                                                                                                    "description": null,
+                                                                                                    "description": "The authentication method the web proxy enforces.\nNONE = no authentication (kerberosConfig is ignored).\nKERBEROS = Kerberos authentication (kerberosConfig.encryptedKeytab is required).",
                                                                                                     "id_str": "siteWebProxy___addRule___rule___rule___authenticationConfig___method",
                                                                                                     "isDeprecated": false,
                                                                                                     "name": "method",
@@ -2650,17 +2844,17 @@
                                                                                                     "responseStr": "method:$method ",
                                                                                                     "type": {
                                                                                                         "definition": {
-                                                                                                            "description": " Authentication method used by the web proxy. ",
+                                                                                                            "description": "Authentication method used by the web proxy.",
                                                                                                             "enumValues": [
                                                                                                                 {
                                                                                                                     "deprecationReason": null,
-                                                                                                                    "description": " No authentication - traffic is forwarded without authenticating users. ",
+                                                                                                                    "description": "No authentication - traffic is forwarded without authenticating users.",
                                                                                                                     "isDeprecated": false,
                                                                                                                     "name": "NONE"
                                                                                                                 },
                                                                                                                 {
                                                                                                                     "deprecationReason": null,
-                                                                                                                    "description": " Kerberos (keytab-based) authentication. ",
+                                                                                                                    "description": "Kerberos (keytab-based) authentication.",
                                                                                                                     "isDeprecated": false,
                                                                                                                     "name": "KERBEROS"
                                                                                                                 }
@@ -2701,7 +2895,7 @@
                                                                                 "description": {
                                                                                     "args": {},
                                                                                     "deprecationReason": null,
-                                                                                    "description": null,
+                                                                                    "description": "Description for the rule",
                                                                                     "id_str": "siteWebProxy___addRule___rule___rule___description",
                                                                                     "isDeprecated": false,
                                                                                     "name": "description",
@@ -2722,7 +2916,7 @@
                                                                                 "enabled": {
                                                                                     "args": {},
                                                                                     "deprecationReason": null,
-                                                                                    "description": null,
+                                                                                    "description": "TRUE = Rule is enabled \n FALSE = Rule is disabled",
                                                                                     "id_str": "siteWebProxy___addRule___rule___rule___enabled",
                                                                                     "isDeprecated": false,
                                                                                     "name": "enabled",
@@ -2743,7 +2937,7 @@
                                                                                 "fqdn": {
                                                                                     "args": {},
                                                                                     "deprecationReason": null,
-                                                                                    "description": null,
+                                                                                    "description": "The FQDN of the web proxy endpoint. Fro instance: example.proxy.local",
                                                                                     "id_str": "siteWebProxy___addRule___rule___rule___fqdn",
                                                                                     "isDeprecated": false,
                                                                                     "name": "fqdn",
@@ -2764,7 +2958,7 @@
                                                                                 "id": {
                                                                                     "args": {},
                                                                                     "deprecationReason": null,
-                                                                                    "description": null,
+                                                                                    "description": "Rule ID",
                                                                                     "id_str": "siteWebProxy___addRule___rule___rule___id",
                                                                                     "isDeprecated": false,
                                                                                     "name": "id",
@@ -2785,7 +2979,7 @@
                                                                                 "index": {
                                                                                     "args": {},
                                                                                     "deprecationReason": null,
-                                                                                    "description": null,
+                                                                                    "description": "Position / priority of rule",
                                                                                     "id_str": "siteWebProxy___addRule___rule___rule___index",
                                                                                     "isDeprecated": false,
                                                                                     "name": "index",
@@ -2806,7 +3000,7 @@
                                                                                 "name": {
                                                                                     "args": {},
                                                                                     "deprecationReason": null,
-                                                                                    "description": null,
+                                                                                    "description": "Name of the rule",
                                                                                     "id_str": "siteWebProxy___addRule___rule___rule___name",
                                                                                     "isDeprecated": false,
                                                                                     "name": "name",
@@ -2827,7 +3021,7 @@
                                                                                 "port": {
                                                                                     "args": {},
                                                                                     "deprecationReason": null,
-                                                                                    "description": null,
+                                                                                    "description": "The port where the web proxy endpoint listens for incoming traffic.",
                                                                                     "id_str": "siteWebProxy___addRule___rule___rule___port",
                                                                                     "isDeprecated": false,
                                                                                     "name": "port",
@@ -2848,7 +3042,7 @@
                                                                                 "section": {
                                                                                     "args": {},
                                                                                     "deprecationReason": null,
-                                                                                    "description": null,
+                                                                                    "description": "Policy section where the rule is located",
                                                                                     "id_str": "siteWebProxy___addRule___rule___rule___section",
                                                                                     "isDeprecated": false,
                                                                                     "name": "section",
@@ -2858,7 +3052,7 @@
                                                                                     "responseStr": "section:$policySectionInfo ",
                                                                                     "type": {
                                                                                         "definition": {
-                                                                                            "description": " Define settings for a policy section ",
+                                                                                            "description": "Define settings for a policy section",
                                                                                             "enumValues": null,
                                                                                             "fields": {
                                                                                                 "id": {
@@ -2923,7 +3117,7 @@
                                                                                 "shouldAssociateWithAllSites": {
                                                                                     "args": {},
                                                                                     "deprecationReason": null,
-                                                                                    "description": null,
+                                                                                    "description": "If true, the web proxy is associated with all sites in the account.\nOtherwise, associatedSite determines which sites use this web proxy for handling their web traffic.",
                                                                                     "id_str": "siteWebProxy___addRule___rule___rule___shouldAssociateWithAllSites",
                                                                                     "isDeprecated": false,
                                                                                     "name": "shouldAssociateWithAllSites",
@@ -2976,7 +3170,7 @@
                                                                                                                 "updatedBy": {
                                                                                                                     "args": {},
                                                                                                                     "deprecationReason": null,
-                                                                                                                    "description": null,
+                                                                                                                    "description": "The admin, or the API-key, that performed the last update",
                                                                                                                     "id_str": "siteWebProxy___addRule___rule___rule___webProxyTraffic___audit___updatedBy",
                                                                                                                     "isDeprecated": false,
                                                                                                                     "name": "updatedBy",
@@ -2997,7 +3191,7 @@
                                                                                                                 "updatedTime": {
                                                                                                                     "args": {},
                                                                                                                     "deprecationReason": null,
-                                                                                                                    "description": null,
+                                                                                                                    "description": "The last date and time the rule was updated",
                                                                                                                     "id_str": "siteWebProxy___addRule___rule___rule___webProxyTraffic___audit___updatedTime",
                                                                                                                     "isDeprecated": false,
                                                                                                                     "name": "updatedTime",
@@ -3045,13 +3239,13 @@
                                                                                                     "responseStr": "metadata:$policyElementMetadata ",
                                                                                                     "type": {
                                                                                                         "definition": {
-                                                                                                            "description": " Additional metadata attached to a rule or section ",
+                                                                                                            "description": "Additional metadata attached to a rule or section",
                                                                                                             "enumValues": null,
                                                                                                             "fields": {
                                                                                                                 "lock": {
                                                                                                                     "args": {},
                                                                                                                     "deprecationReason": null,
-                                                                                                                    "description": null,
+                                                                                                                    "description": "Lock information; non-null only when the item has the LOCKED property",
                                                                                                                     "id_str": "siteWebProxy___addRule___rule___rule___webProxyTraffic___metadata___lock",
                                                                                                                     "isDeprecated": false,
                                                                                                                     "name": "lock",
@@ -3061,13 +3255,13 @@
                                                                                                                     "responseStr": "lock:$policyElementLock ",
                                                                                                                     "type": {
                                                                                                                         "definition": {
-                                                                                                                            "description": " Lock info for a rule or section held by another revision ",
+                                                                                                                            "description": "Lock info for a rule or section held by another revision",
                                                                                                                             "enumValues": null,
                                                                                                                             "fields": {
                                                                                                                                 "lockingAdminEmail": {
                                                                                                                                     "args": {},
                                                                                                                                     "deprecationReason": null,
-                                                                                                                                    "description": null,
+                                                                                                                                    "description": "Email of the admin whose revision holds this item locked",
                                                                                                                                     "id_str": "siteWebProxy___addRule___rule___rule___webProxyTraffic___metadata___lock___lockingAdminEmail",
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "lockingAdminEmail",
@@ -3088,7 +3282,7 @@
                                                                                                                                 "lockingRevisionId": {
                                                                                                                                     "args": {},
                                                                                                                                     "deprecationReason": null,
-                                                                                                                                    "description": null,
+                                                                                                                                    "description": "The ID of the revision that currently holds the lock",
                                                                                                                                     "id_str": "siteWebProxy___addRule___rule___rule___webProxyTraffic___metadata___lock___lockingRevisionId",
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "lockingRevisionId",
@@ -3109,7 +3303,7 @@
                                                                                                                                 "lockingTime": {
                                                                                                                                     "args": {},
                                                                                                                                     "deprecationReason": null,
-                                                                                                                                    "description": null,
+                                                                                                                                    "description": "Timestamp when this rule/section was locked",
                                                                                                                                     "id_str": "siteWebProxy___addRule___rule___rule___webProxyTraffic___metadata___lock___lockingTime",
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "lockingTime",
@@ -3172,35 +3366,35 @@
                                                                                                     "responseStr": "properties:$properties ",
                                                                                                     "type": {
                                                                                                         "definition": {
-                                                                                                            "description": " Attributes describing the rule state or type ",
+                                                                                                            "description": "Attributes describing the rule state or type",
                                                                                                             "enumValues": [
                                                                                                                 {
                                                                                                                     "deprecationReason": null,
-                                                                                                                    "description": " New (added) rule ",
+                                                                                                                    "description": "New (added) rule",
                                                                                                                     "isDeprecated": false,
                                                                                                                     "name": "ADDED"
                                                                                                                 },
                                                                                                                 {
                                                                                                                     "deprecationReason": null,
-                                                                                                                    "description": " Updated (modified) existing rule ",
+                                                                                                                    "description": "Updated (modified) existing rule",
                                                                                                                     "isDeprecated": false,
                                                                                                                     "name": "UPDATED"
                                                                                                                 },
                                                                                                                 {
                                                                                                                     "deprecationReason": null,
-                                                                                                                    "description": " Removed (deleted) rule ",
+                                                                                                                    "description": "Removed (deleted) rule",
                                                                                                                     "isDeprecated": false,
                                                                                                                     "name": "REMOVED"
                                                                                                                 },
                                                                                                                 {
                                                                                                                     "deprecationReason": null,
-                                                                                                                    "description": " A rule moved to a different position ",
+                                                                                                                    "description": "A rule moved to a different position",
                                                                                                                     "isDeprecated": false,
                                                                                                                     "name": "MOVED"
                                                                                                                 },
                                                                                                                 {
                                                                                                                     "deprecationReason": null,
-                                                                                                                    "description": " A rule locked for changes by other admins ",
+                                                                                                                    "description": "A rule locked for changes by other admins",
                                                                                                                     "isDeprecated": false,
                                                                                                                     "name": "LOCKED"
                                                                                                                 },
@@ -3212,7 +3406,7 @@
                                                                                                                 },
                                                                                                                 {
                                                                                                                     "deprecationReason": null,
-                                                                                                                    "description": " A pre-defined (system) rule that cannot be modified or removed ",
+                                                                                                                    "description": "A pre-defined (system) rule that cannot be modified or removed",
                                                                                                                     "isDeprecated": false,
                                                                                                                     "name": "SYSTEM"
                                                                                                                 }
@@ -3255,7 +3449,7 @@
                                                                                                                 "action": {
                                                                                                                     "args": {},
                                                                                                                     "deprecationReason": null,
-                                                                                                                    "description": null,
+                                                                                                                    "description": "The action to be taken when the rule is matched.",
                                                                                                                     "id_str": "siteWebProxy___addRule___rule___rule___webProxyTraffic___rule___action",
                                                                                                                     "isDeprecated": false,
                                                                                                                     "name": "action",
@@ -3265,23 +3459,23 @@
                                                                                                                     "responseStr": "action:$action ",
                                                                                                                     "type": {
                                                                                                                         "definition": {
-                                                                                                                            "description": " Action that the web proxy applies to traffic matching the rule. ",
+                                                                                                                            "description": "Action that the web proxy applies to traffic matching the rule.",
                                                                                                                             "enumValues": [
                                                                                                                                 {
                                                                                                                                     "deprecationReason": null,
-                                                                                                                                    "description": " Specifies that the web proxy should not authenticate users and should forward traffic as is. ",
+                                                                                                                                    "description": "Specifies that the web proxy should not authenticate users and should forward traffic as is.",
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "ALLOW"
                                                                                                                                 },
                                                                                                                                 {
                                                                                                                                     "deprecationReason": null,
-                                                                                                                                    "description": " Specifies that the web proxy should authenticate users using the chosen authentication method. ",
+                                                                                                                                    "description": "Specifies that the web proxy should authenticate users using the chosen authentication method.",
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "AUTHENTICATE"
                                                                                                                                 },
                                                                                                                                 {
                                                                                                                                     "deprecationReason": null,
-                                                                                                                                    "description": " Specifies that the web proxy should block the traffic. ",
+                                                                                                                                    "description": "Specifies that the web proxy should block the traffic.",
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "BLOCK"
                                                                                                                                 }
@@ -3306,7 +3500,7 @@
                                                                                                                 "description": {
                                                                                                                     "args": {},
                                                                                                                     "deprecationReason": null,
-                                                                                                                    "description": null,
+                                                                                                                    "description": "Description for the rule",
                                                                                                                     "id_str": "siteWebProxy___addRule___rule___rule___webProxyTraffic___rule___description",
                                                                                                                     "isDeprecated": false,
                                                                                                                     "name": "description",
@@ -3327,7 +3521,7 @@
                                                                                                                 "destination": {
                                                                                                                     "args": {},
                                                                                                                     "deprecationReason": null,
-                                                                                                                    "description": null,
+                                                                                                                    "description": "Types of destinations that a config should apply to.",
                                                                                                                     "id_str": "siteWebProxy___addRule___rule___rule___webProxyTraffic___rule___destination",
                                                                                                                     "isDeprecated": false,
                                                                                                                     "name": "destination",
@@ -3337,13 +3531,13 @@
                                                                                                                     "responseStr": "destination:$siteWebProxyDestination ",
                                                                                                                     "type": {
                                                                                                                         "definition": {
-                                                                                                                            "description": " Destination criteria matched by a web proxy traffic rule. To specify 'ANY' destination, an empty list must be provided for each match criteria field (e.g. fqdn: [], ip: []). ",
+                                                                                                                            "description": "Destination criteria matched by a web proxy traffic rule. To specify 'ANY' destination, an empty list must be provided for each match criteria field (e.g. fqdn: [], ip: []).",
                                                                                                                             "enumValues": null,
                                                                                                                             "fields": {
                                                                                                                                 "domain": {
                                                                                                                                     "args": {},
                                                                                                                                     "deprecationReason": null,
-                                                                                                                                    "description": null,
+                                                                                                                                    "description": "Top-level domains (e.g. example.com). Matches all hosts under the domain.",
                                                                                                                                     "id_str": "siteWebProxy___addRule___rule___rule___webProxyTraffic___rule___destination___domain",
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "domain",
@@ -3366,7 +3560,7 @@
                                                                                                                                 "fqdn": {
                                                                                                                                     "args": {},
                                                                                                                                     "deprecationReason": null,
-                                                                                                                                    "description": null,
+                                                                                                                                    "description": "An exact match of the fully qualified domain (FQDN). Example: www.my.example.com.",
                                                                                                                                     "id_str": "siteWebProxy___addRule___rule___rule___webProxyTraffic___rule___destination___fqdn",
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "fqdn",
@@ -3389,7 +3583,7 @@
                                                                                                                                 "ip": {
                                                                                                                                     "args": {},
                                                                                                                                     "deprecationReason": null,
-                                                                                                                                    "description": null,
+                                                                                                                                    "description": "IPv4 addresses",
                                                                                                                                     "id_str": "siteWebProxy___addRule___rule___rule___webProxyTraffic___rule___destination___ip",
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "ip",
@@ -3429,7 +3623,7 @@
                                                                                                                 "enabled": {
                                                                                                                     "args": {},
                                                                                                                     "deprecationReason": null,
-                                                                                                                    "description": null,
+                                                                                                                    "description": "TRUE = Rule is enabled \n FALSE = Rule is disabled",
                                                                                                                     "id_str": "siteWebProxy___addRule___rule___rule___webProxyTraffic___rule___enabled",
                                                                                                                     "isDeprecated": false,
                                                                                                                     "name": "enabled",
@@ -3450,7 +3644,7 @@
                                                                                                                 "id": {
                                                                                                                     "args": {},
                                                                                                                     "deprecationReason": null,
-                                                                                                                    "description": null,
+                                                                                                                    "description": "Rule ID",
                                                                                                                     "id_str": "siteWebProxy___addRule___rule___rule___webProxyTraffic___rule___id",
                                                                                                                     "isDeprecated": false,
                                                                                                                     "name": "id",
@@ -3471,7 +3665,7 @@
                                                                                                                 "index": {
                                                                                                                     "args": {},
                                                                                                                     "deprecationReason": null,
-                                                                                                                    "description": null,
+                                                                                                                    "description": "Position / priority of rule",
                                                                                                                     "id_str": "siteWebProxy___addRule___rule___rule___webProxyTraffic___rule___index",
                                                                                                                     "isDeprecated": false,
                                                                                                                     "name": "index",
@@ -3492,7 +3686,7 @@
                                                                                                                 "name": {
                                                                                                                     "args": {},
                                                                                                                     "deprecationReason": null,
-                                                                                                                    "description": null,
+                                                                                                                    "description": "Name of the rule",
                                                                                                                     "id_str": "siteWebProxy___addRule___rule___rule___webProxyTraffic___rule___name",
                                                                                                                     "isDeprecated": false,
                                                                                                                     "name": "name",
@@ -3513,7 +3707,7 @@
                                                                                                                 "section": {
                                                                                                                     "args": {},
                                                                                                                     "deprecationReason": null,
-                                                                                                                    "description": null,
+                                                                                                                    "description": "Policy section where the rule is located",
                                                                                                                     "id_str": "siteWebProxy___addRule___rule___rule___webProxyTraffic___rule___section",
                                                                                                                     "isDeprecated": false,
                                                                                                                     "name": "section",
@@ -3523,7 +3717,7 @@
                                                                                                                     "responseStr": "section:$policySectionInfo ",
                                                                                                                     "type": {
                                                                                                                         "definition": {
-                                                                                                                            "description": " Define settings for a policy section ",
+                                                                                                                            "description": "Define settings for a policy section",
                                                                                                                             "enumValues": null,
                                                                                                                             "fields": {
                                                                                                                                 "id": {
@@ -3607,7 +3801,7 @@
                                                                                                                 "source": {
                                                                                                                     "args": {},
                                                                                                                     "deprecationReason": null,
-                                                                                                                    "description": null,
+                                                                                                                    "description": "Types of sources that a config should apply to.",
                                                                                                                     "id_str": "siteWebProxy___addRule___rule___rule___webProxyTraffic___rule___source",
                                                                                                                     "isDeprecated": false,
                                                                                                                     "name": "source",
@@ -3617,13 +3811,13 @@
                                                                                                                     "responseStr": "source:$siteWebProxySource ",
                                                                                                                     "type": {
                                                                                                                         "definition": {
-                                                                                                                            "description": " Source criteria matched by a web proxy traffic rule. To specify 'ANY' source, an empty list must be provided for each match criteria field (e.g. ip: [], site: [], etc...). ",
+                                                                                                                            "description": "Source criteria matched by a web proxy traffic rule. To specify 'ANY' source, an empty list must be provided for each match criteria field (e.g. ip: [], site: [], etc...).",
                                                                                                                             "enumValues": null,
                                                                                                                             "fields": {
                                                                                                                                 "globalIpRange": {
                                                                                                                                     "args": {},
                                                                                                                                     "deprecationReason": null,
-                                                                                                                                    "description": null,
+                                                                                                                                    "description": "Globally defined IP range, IP and subnet objects",
                                                                                                                                     "id_str": "siteWebProxy___addRule___rule___rule___webProxyTraffic___rule___source___globalIpRange",
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "globalIpRange",
@@ -3633,7 +3827,7 @@
                                                                                                                                     "responseStr": "globalIpRange:$globalIpRangeRef ",
                                                                                                                                     "type": {
                                                                                                                                         "definition": {
-                                                                                                                                            "description": " A reference identifying the GlobalIpRange object. ID: Unique GlobalIpRange Identifier, Name: The GlobalIpRange Name ",
+                                                                                                                                            "description": "A reference identifying the GlobalIpRange object. ID: Unique GlobalIpRange Identifier, Name: The GlobalIpRange Name",
                                                                                                                                             "enumValues": null,
                                                                                                                                             "fields": {
                                                                                                                                                 "id": {
@@ -3700,7 +3894,7 @@
                                                                                                                                 "group": {
                                                                                                                                     "args": {},
                                                                                                                                     "deprecationReason": null,
-                                                                                                                                    "description": null,
+                                                                                                                                    "description": "Groups defined for your account",
                                                                                                                                     "id_str": "siteWebProxy___addRule___rule___rule___webProxyTraffic___rule___source___group",
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "group",
@@ -3710,7 +3904,7 @@
                                                                                                                                     "responseStr": "group:$groupRef ",
                                                                                                                                     "type": {
                                                                                                                                         "definition": {
-                                                                                                                                            "description": " A reference identifying the Group object. ID: Unique Group Identifier, Name: The Group Name ",
+                                                                                                                                            "description": "A reference identifying the Group object. ID: Unique Group Identifier, Name: The Group Name",
                                                                                                                                             "enumValues": null,
                                                                                                                                             "fields": {
                                                                                                                                                 "id": {
@@ -3777,7 +3971,7 @@
                                                                                                                                 "ip": {
                                                                                                                                     "args": {},
                                                                                                                                     "deprecationReason": null,
-                                                                                                                                    "description": null,
+                                                                                                                                    "description": "IPv4 address",
                                                                                                                                     "id_str": "siteWebProxy___addRule___rule___rule___webProxyTraffic___rule___source___ip",
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "ip",
@@ -3800,7 +3994,7 @@
                                                                                                                                 "ipRange": {
                                                                                                                                     "args": {},
                                                                                                                                     "deprecationReason": null,
-                                                                                                                                    "description": null,
+                                                                                                                                    "description": "Multiple separate IP addresses or an IP range",
                                                                                                                                     "id_str": "siteWebProxy___addRule___rule___rule___webProxyTraffic___rule___source___ipRange",
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "ipRange",
@@ -3810,7 +4004,7 @@
                                                                                                                                     "responseStr": "ipRange:$ipAddressRange ",
                                                                                                                                     "type": {
                                                                                                                                         "definition": {
-                                                                                                                                            "description": " Inclusive range of IPs ",
+                                                                                                                                            "description": "Inclusive range of IPs",
                                                                                                                                             "enumValues": null,
                                                                                                                                             "fields": {
                                                                                                                                                 "from": {
@@ -3877,7 +4071,7 @@
                                                                                                                                 "networkInterface": {
                                                                                                                                     "args": {},
                                                                                                                                     "deprecationReason": null,
-                                                                                                                                    "description": null,
+                                                                                                                                    "description": "Network range defined for a site",
                                                                                                                                     "id_str": "siteWebProxy___addRule___rule___rule___webProxyTraffic___rule___source___networkInterface",
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "networkInterface",
@@ -3887,7 +4081,7 @@
                                                                                                                                     "responseStr": "networkInterface:$networkInterfaceRef ",
                                                                                                                                     "type": {
                                                                                                                                         "definition": {
-                                                                                                                                            "description": " A reference identifying the NetworkInterface object. ID: Unique NetworkInterface Identifier, Name: The NetworkInterface Name ",
+                                                                                                                                            "description": "A reference identifying the NetworkInterface object. ID: Unique NetworkInterface Identifier, Name: The NetworkInterface Name",
                                                                                                                                             "enumValues": null,
                                                                                                                                             "fields": {
                                                                                                                                                 "id": {
@@ -3954,7 +4148,7 @@
                                                                                                                                 "site": {
                                                                                                                                     "args": {},
                                                                                                                                     "deprecationReason": null,
-                                                                                                                                    "description": null,
+                                                                                                                                    "description": "Site defined for the account",
                                                                                                                                     "id_str": "siteWebProxy___addRule___rule___rule___webProxyTraffic___rule___source___site",
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "site",
@@ -3964,7 +4158,7 @@
                                                                                                                                     "responseStr": "site:$siteRef ",
                                                                                                                                     "type": {
                                                                                                                                         "definition": {
-                                                                                                                                            "description": " A reference identifying the Site object. ID: Unique Site Identifier, Name: The Site Name ",
+                                                                                                                                            "description": "A reference identifying the Site object. ID: Unique Site Identifier, Name: The Site Name",
                                                                                                                                             "enumValues": null,
                                                                                                                                             "fields": {
                                                                                                                                                 "id": {
@@ -4031,7 +4225,7 @@
                                                                                                                                 "siteNetworkSubnet": {
                                                                                                                                     "args": {},
                                                                                                                                     "deprecationReason": null,
-                                                                                                                                    "description": null,
+                                                                                                                                    "description": "GlobalRange + InterfaceSubnet",
                                                                                                                                     "id_str": "siteWebProxy___addRule___rule___rule___webProxyTraffic___rule___source___siteNetworkSubnet",
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "siteNetworkSubnet",
@@ -4041,7 +4235,7 @@
                                                                                                                                     "responseStr": "siteNetworkSubnet:$siteNetworkSubnetRef ",
                                                                                                                                     "type": {
                                                                                                                                         "definition": {
-                                                                                                                                            "description": " A reference identifying the SiteNetworkSubnet object. ID: Unique SiteNetworkSubnet Identifier, Name: The SiteNetworkSubnet Name ",
+                                                                                                                                            "description": "A reference identifying the SiteNetworkSubnet object. ID: Unique SiteNetworkSubnet Identifier, Name: The SiteNetworkSubnet Name",
                                                                                                                                             "enumValues": null,
                                                                                                                                             "fields": {
                                                                                                                                                 "id": {
@@ -4108,7 +4302,7 @@
                                                                                                                                 "subnet": {
                                                                                                                                     "args": {},
                                                                                                                                     "deprecationReason": null,
-                                                                                                                                    "description": null,
+                                                                                                                                    "description": "Subnets and network ranges defined for the LAN interfaces of a site",
                                                                                                                                     "id_str": "siteWebProxy___addRule___rule___rule___webProxyTraffic___rule___source___subnet",
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "subnet",
@@ -4227,7 +4421,7 @@
                                                     "responseStr": "status:$status ",
                                                     "type": {
                                                         "definition": {
-                                                            "description": " Enum for the status of a policy mutation ",
+                                                            "description": "Enum for the status of a policy mutation",
                                                             "enumValues": [
                                                                 {
                                                                     "deprecationReason": null,
@@ -4314,10 +4508,13 @@
                 "ref": "id"
             },
             "rule": {
-                "associatedSite": {
-                    "by": "ID",
-                    "input": "string"
-                },
+                "allowedDestinationProtocol": "HTTPS",
+                "associatedSite": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ],
                 "authenticationConfig": {
                     "kerberosConfig": {
                         "encryptedKeytab": "string",
@@ -4327,9 +4524,9 @@
                 },
                 "description": "string",
                 "enabled": true,
-                "fqdn": "example_value",
+                "fqdn": "host.example.com",
                 "name": "string",
-                "port": "example_value",
+                "port": 443,
                 "shouldAssociateWithAllSites": true
             }
         },

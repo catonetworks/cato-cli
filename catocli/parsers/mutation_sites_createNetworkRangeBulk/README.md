@@ -11,7 +11,7 @@ catocli mutation sites createNetworkRangeBulk <json>
 
 catocli mutation sites createNetworkRangeBulk --json-file mutation.sites.createNetworkRangeBulk.json
 
-catocli mutation sites createNetworkRangeBulk '{"createNetworkRangeBulkInput":{"networkRange":[{"azureFloatingIp":"192.0.2.1","dhcpSettings":{"dhcpMicrosegmentation":true,"dhcpType":"DHCP_RELAY","ipRange":"192.0.2.10-192.0.2.20","relayGroupId":"id"},"gateway":"192.0.2.1","internetOnly":true,"lanSocketInterfaceId":"id","localIp":"192.0.2.1","mdnsReflector":true,"name":"string","rangeType":"Routed","subnet":"192.0.2.0/24","translatedSubnet":"192.0.2.0/24","vlan":1}],"site":{"by":"ID","input":"string"}}}'
+catocli mutation sites createNetworkRangeBulk '{"createNetworkRangeBulkInput":{"networkRange":[{"azureFloatingIp":"192.0.2.1","dhcpSettings":{"dhcpMicrosegmentation":true,"dhcpType":"DHCP_RELAY","ipRange":"192.0.2.10-192.0.2.20","leaseTimeOverrideSettings":{"leaseTime":1,"timeUnit":"SECONDS"},"relayGroupId":"id"},"gateway":"192.0.2.1","internetOnly":true,"lanSocketInterfaceId":"id","localIp":"192.0.2.1","mdnsReflector":true,"name":"string","rangeType":"Routed","subnet":"192.0.2.0/24","translatedSubnet":"192.0.2.0/24","vlan":1}],"site":{"by":"ID","input":"string"}}}'
 
 catocli mutation sites createNetworkRangeBulk '{
     "createNetworkRangeBulkInput": {
@@ -22,6 +22,10 @@ catocli mutation sites createNetworkRangeBulk '{
                     "dhcpMicrosegmentation": true,
                     "dhcpType": "DHCP_RELAY",
                     "ipRange": "192.0.2.10-192.0.2.20",
+                    "leaseTimeOverrideSettings": {
+                        "leaseTime": 1,
+                        "timeUnit": "SECONDS"
+                    },
                     "relayGroupId": "id"
                 },
                 "gateway": "192.0.2.1",

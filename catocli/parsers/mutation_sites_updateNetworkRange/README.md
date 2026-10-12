@@ -11,7 +11,7 @@ catocli mutation sites updateNetworkRange <json>
 
 catocli mutation sites updateNetworkRange --json-file mutation.sites.updateNetworkRange.json
 
-catocli mutation sites updateNetworkRange '{"networkRangeId":"id","updateNetworkRangeInput":{"azureFloatingIp":"192.0.2.1","dhcpSettings":{"dhcpMicrosegmentation":true,"dhcpType":"DHCP_RELAY","ipRange":"192.0.2.10-192.0.2.20","relayGroupId":"id"},"gateway":"192.0.2.1","gcpLoadBalancerIp":"192.0.2.1","internetOnly":true,"localIp":"192.0.2.1","mdnsReflector":true,"name":"string","primaryManagementIp":"192.0.2.1","rangeType":"Routed","secondaryManagementIp":"192.0.2.1","subnet":"192.0.2.0/24","translatedSubnet":"192.0.2.0/24","vlan":1}}'
+catocli mutation sites updateNetworkRange '{"networkRangeId":"id","updateNetworkRangeInput":{"azureFloatingIp":"192.0.2.1","dhcpSettings":{"dhcpMicrosegmentation":true,"dhcpType":"DHCP_RELAY","ipRange":"192.0.2.10-192.0.2.20","leaseTimeOverrideSettings":{"leaseTime":1,"timeUnit":"SECONDS"},"relayGroupId":"id"},"gateway":"192.0.2.1","gcpLoadBalancerIp":"192.0.2.1","internetOnly":true,"localIp":"192.0.2.1","mdnsReflector":true,"name":"string","primaryManagementIp":"192.0.2.1","rangeType":"Routed","secondaryManagementIp":"192.0.2.1","subnet":"192.0.2.0/24","translatedSubnet":"192.0.2.0/24","vlan":1}}'
 
 catocli mutation sites updateNetworkRange '{
     "networkRangeId": "id",
@@ -21,6 +21,10 @@ catocli mutation sites updateNetworkRange '{
             "dhcpMicrosegmentation": true,
             "dhcpType": "DHCP_RELAY",
             "ipRange": "192.0.2.10-192.0.2.20",
+            "leaseTimeOverrideSettings": {
+                "leaseTime": 1,
+                "timeUnit": "SECONDS"
+            },
             "relayGroupId": "id"
         },
         "gateway": "192.0.2.1",

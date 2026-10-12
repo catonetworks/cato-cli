@@ -1,0 +1,39 @@
+mutation policySdpStaticIpAllocationMoveSection ( $accountId:ID! $sdpStaticIpAllocationPolicyMutationInput:SdpStaticIpAllocationPolicyMutationInput $policyMoveSectionInput:PolicyMoveSectionInput!) {
+	policy ( accountId:$accountId ) {
+		sdpStaticIpAllocation ( input:$sdpStaticIpAllocationPolicyMutationInput  )  {
+			moveSection ( input:$policyMoveSectionInput   ) {
+				section {
+					audit {
+						updatedTime
+						updatedBy
+					}
+					metadata {
+						lock {
+							lockingAdminEmail
+							lockingTime
+							lockingRevisionId
+						}
+					}
+					section {
+						id
+						name
+					}
+					properties
+				}
+				status
+				errors {
+					errorMessage
+					errorCode
+				}
+				revision {
+					id
+					name
+					description
+					changes
+					createdTime
+					updatedTime
+				}
+			}
+		}
+	}	
+}

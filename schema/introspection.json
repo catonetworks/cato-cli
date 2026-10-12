@@ -342,65 +342,6 @@
               "deprecationReason": null
             },
             {
-              "name": "eventsFeed",
-              "description": "Retrieve events from the account event queue. Use this query to fetch security, connectivity, system, routing, detection, and socket management events for one or more accounts. The API reads events sequentially from the queue and returns them in batches.\n\nTypical usage is to call eventsFeed without a marker. The API returns the current queue position in the marker field. This initial request may not return any event records.\n\nSubsequent requests should call eventsFeed using the marker returned in the previous response to retrieve events. Continue using the marker returned in each response to read events sequentially from the queue.",
-              "args": [
-                {
-                  "name": "accountIDs",
-                  "description": "List of unique account identifiers whose events should be returned.",
-                  "type": {
-                    "kind": "LIST",
-                    "name": null,
-                    "ofType": {
-                      "kind": "NON_NULL",
-                      "name": null,
-                      "ofType": {
-                        "kind": "SCALAR",
-                        "name": "ID",
-                        "ofType": null
-                      }
-                    }
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "name": "filters",
-                  "description": "Filters used to limit the returned events. Supported filter fields include event_type and event_sub_type. When filters are applied, the backend scans the event queue until matching events are found or a search limit is reached. The marker returned represents the queue position where the scan stopped.",
-                  "type": {
-                    "kind": "LIST",
-                    "name": null,
-                    "ofType": {
-                      "kind": "NON_NULL",
-                      "name": null,
-                      "ofType": {
-                        "kind": "INPUT_OBJECT",
-                        "name": "EventFeedFieldFilterInput",
-                        "ofType": null
-                      }
-                    }
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "name": "marker",
-                  "description": "Queue position marker. If omitted or empty, the API returns the current position in the event queue and may not return any event records.\n\nUse the marker returned in the previous response to fetch the next batch of events. Each response returns a new marker representing the next position in the queue.\n\nContinue using the returned marker in subsequent requests to read events sequentially. The queue retains events for approximately three days.\n\nAlways use the returned marker as-is and do not attempt to parse or modify it. When filters are used, the marker represents the position where the backend stopped scanning the queue and may not correspond to the last event returned in the response.",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                }
-              ],
-              "type": {
-                "kind": "OBJECT",
-                "name": "EventsFeedData",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
               "name": "hardwareManagement",
               "description": "Retrieve the account hardware inventory",
               "args": [
@@ -1689,6 +1630,65 @@
               "type": {
                 "kind": "OBJECT",
                 "name": "LicensingQueries",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "eventsFeed",
+              "description": "Retrieve events from the account event queue. Use this query to fetch security, connectivity, system, routing, detection, and socket management events for one or more accounts. The API reads events sequentially from the queue and returns them in batches.\n\nTypical usage is to call eventsFeed without a marker. The API returns the current queue position in the marker field. This initial request may not return any event records.\n\nSubsequent requests should call eventsFeed using the marker returned in the previous response to retrieve events. Continue using the marker returned in each response to read events sequentially from the queue.",
+              "args": [
+                {
+                  "name": "accountIDs",
+                  "description": "List of unique account identifiers whose events should be returned.",
+                  "type": {
+                    "kind": "LIST",
+                    "name": null,
+                    "ofType": {
+                      "kind": "NON_NULL",
+                      "name": null,
+                      "ofType": {
+                        "kind": "SCALAR",
+                        "name": "ID",
+                        "ofType": null
+                      }
+                    }
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "filters",
+                  "description": "Filters used to limit the returned events. Supported filter fields include event_type and event_sub_type. When filters are applied, the backend scans the event queue until matching events are found or a search limit is reached. The marker returned represents the queue position where the scan stopped.",
+                  "type": {
+                    "kind": "LIST",
+                    "name": null,
+                    "ofType": {
+                      "kind": "NON_NULL",
+                      "name": null,
+                      "ofType": {
+                        "kind": "INPUT_OBJECT",
+                        "name": "EventFeedFieldFilterInput",
+                        "ofType": null
+                      }
+                    }
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "marker",
+                  "description": "Queue position marker. If omitted or empty, the API returns the current position in the event queue and may not return any event records.\n\nUse the marker returned in the previous response to fetch the next batch of events. Each response returns a new marker representing the next position in the queue.\n\nContinue using the returned marker in subsequent requests to read events sequentially. The queue retains events for approximately three days.\n\nAlways use the returned marker as-is and do not attempt to parse or modify it. When filters are used, the marker represents the position where the backend stopped scanning the queue and may not correspond to the last event returned in the response.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "EventsFeedData",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -21753,6 +21753,18 @@
               "deprecationReason": null
             },
             {
+              "name": "sdpStaticIpAllocation",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "SdpStaticIpAllocationPolicyQueries",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "terminalServer",
               "description": null,
               "args": [],
@@ -29705,309 +29717,6 @@
           "possibleTypes": null
         },
         {
-          "kind": "OBJECT",
-          "name": "EventRecord",
-          "description": "Single event record returned by eventsFeed.",
-          "fields": [
-            {
-              "name": "time",
-              "description": "Timestamp when the event occurred.",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "DateTime",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "fieldsMap",
-              "description": "Map of event field names to their values. Keys correspond to the values defined in the EventFieldName enum.",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "Map",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "flatFields",
-              "description": "Event fields represented as name-value tuples. Example: [[\"event_type\",\"Security\"],[\"event_sub_type\",\"Internet Firewall\"]].",
-              "args": [],
-              "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "NON_NULL",
-                    "name": null,
-                    "ofType": {
-                      "kind": "SCALAR",
-                      "name": "String",
-                      "ofType": null
-                    }
-                  }
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [],
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "OBJECT",
-          "name": "EventsFeedAccountRecords",
-          "description": "Event feed results for a single account.",
-          "fields": [
-            {
-              "name": "id",
-              "description": "Account identifier.",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "errorString",
-              "description": "Error message returned if the API cannot retrieve events for the account.",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "records",
-              "description": "Event records retrieved for the account. Use fieldNames to limit the event fields returned in each record.",
-              "args": [
-                {
-                  "name": "fieldNames",
-                  "description": "Optional list of event fields to return for each event record. Limiting the returned fields can significantly reduce response size when exporting events to external systems. Example: [\"event_type\",\"event_sub_type\",\"src_ip\",\"dest_ip\",\"action\",\"time\"].",
-                  "type": {
-                    "kind": "LIST",
-                    "name": null,
-                    "ofType": {
-                      "kind": "NON_NULL",
-                      "name": null,
-                      "ofType": {
-                        "kind": "ENUM",
-                        "name": "EventFieldName",
-                        "ofType": null
-                      }
-                    }
-                  },
-                  "defaultValue": null
-                }
-              ],
-              "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "EventRecord",
-                    "ofType": null
-                  }
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [],
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "OBJECT",
-          "name": "EventsFeedData",
-          "description": "Paged response returned by eventsFeed.",
-          "fields": [
-            {
-              "name": "marker",
-              "description": "Marker representing the next position in the event queue. Use this value in the next request to continue reading events.",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "fetchedCount",
-              "description": "Number of event records returned in this response.",
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "accounts",
-              "description": "Event results grouped by account.",
-              "args": [],
-              "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "OBJECT",
-                  "name": "EventsFeedAccountRecords",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [],
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "INPUT_OBJECT",
-          "name": "EventFeedFieldFilterInput",
-          "description": "Filter definition used by the eventsFeed query.",
-          "fields": null,
-          "inputFields": [
-            {
-              "name": "fieldName",
-              "description": "Event field used for filtering. Supported values: event_type, event_sub_type.",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "ENUM",
-                  "name": "EventFeedFilterFieldName",
-                  "ofType": null
-                }
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "operator",
-              "description": "Operator used for the filter comparison.",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "ENUM",
-                  "name": "EventFeedFilterOperator",
-                  "ofType": null
-                }
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "values",
-              "description": "Values used for the filter comparison. Values must match the exact strings used in the event feed.",
-              "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                }
-              },
-              "defaultValue": null
-            }
-          ],
-          "interfaces": null,
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "ENUM",
-          "name": "EventFeedFilterOperator",
-          "description": "Operators used when filtering events.",
-          "fields": null,
-          "inputFields": null,
-          "interfaces": null,
-          "enumValues": [
-            {
-              "name": "is",
-              "description": "Match a single value.",
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "is_not",
-              "description": "Exclude a single value.",
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "in",
-              "description": "Match any value in the provided list.",
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "not_in",
-              "description": "Exclude all values in the provided list.",
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
-          "possibleTypes": null
-        },
-        {
-          "kind": "ENUM",
-          "name": "EventFeedFilterFieldName",
-          "description": null,
-          "fields": null,
-          "inputFields": null,
-          "interfaces": null,
-          "enumValues": [
-            {
-              "name": "event_sub_type",
-              "description": "Specific subtype of the event. Supported values include: Dynamic Prevention, AI FireWall, Socket Password Reset, Data Security Alert, VPN Never-Off Bypass, XDR CDR, AI Firewall, External Access Request Update, XDR Endpoint, Recovery via Alt. WAN, SaaS Security API Anti Malware, BGP Events Discarded, ILMM Link Update, Alt. WAN Disconnected, AI User Interaction, New External Access Request Created, Alt. WAN Connected, MDR, Cloud Alert, Endpoint Protection, Remote Access, XDR Anomaly, Socket Bypass, Identity Alert, IP Conflict, Apps Security API Notification, XDR Threat, BFD Session, XDR Network, Registration Code, QUOTA LIMIT, WiFi API, LAN Monitoring, Link-Aggregation, MAC Address Authentication, Off-Cloud Recovery, User, HA Ready, HA Not Ready, LAN port connected, Socket WebUI Access, Misclassification, SDP Portal, SaaS Anomaly, DC Connectivity Failure, Socket Fail-Over, Endpoint Alert, Directory Services, LAN port disconnected, BGP Session, Socket Upgrade, Passive Connected, Passive Disconnected, User Risk Event, LDAP Provisioning, Changed Pop, BGP Routing, Sdp license, Cato Management Application, Last-Mile Quality, SCIM Provisioning, SaaS Security API Data Protection, SDP Activity, ApiKey, Multiple Users Detected, Off-Cloud Transport Disconnect, NG Anti Malware, Off-Cloud Transport Connect, Reconnected, DNS Protection, Always-On Bypass, Authenticated, Application Sign-in, LAN Firewall, Client Connectivity Policy, DHCP Lease, Apps Security API, Suspicious Activity, TLS, Anti Malware, IPS, Disconnected, Connected, Apps Security, RPF, WAN Firewall, Internet Firewall.",
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "event_type",
-              "description": "High-level category of the event. Supported values: Security, Connectivity, System, Routing, Sockets Management, Detection and Response, AI Security, Research, Posture.",
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
-          "possibleTypes": null
-        },
-        {
           "kind": "INPUT_OBJECT",
           "name": "AddIpsecIkeV2SiteInput",
           "description": null,
@@ -32957,14 +32666,14 @@
               "deprecationReason": null
             },
             {
-              "name": "account",
-              "description": "A reference to a configured Account under reseller",
+              "name": "vpnUser",
+              "description": "A reference to the configured VPN User within Account",
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-              "name": "vpnUser",
-              "description": "A reference to the configured VPN User within Account",
+              "name": "account",
+              "description": "A reference to a configured Account under reseller",
               "isDeprecated": false,
               "deprecationReason": null
             },
@@ -36367,6 +36076,11 @@
             {
               "kind": "OBJECT",
               "name": "PopLocationServiceUnitRef",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "FullPolicyPolicyRef",
               "ofType": null
             },
             {
@@ -50989,6 +50703,29 @@
               "type": {
                 "kind": "OBJECT",
                 "name": "SplitTunnelPolicyMutations",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "sdpStaticIpAllocation",
+              "description": null,
+              "args": [
+                {
+                  "name": "input",
+                  "description": null,
+                  "type": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "SdpStaticIpAllocationPolicyMutationInput",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "SdpStaticIpAllocationPolicyMutations",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -66986,6 +66723,41 @@
           "possibleTypes": null
         },
         {
+          "kind": "ENUM",
+          "name": "LeaseTimeMeasureUnit",
+          "description": null,
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": [
+            {
+              "name": "SECONDS",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "MINUTES",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "HOURS",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "DAYS",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "possibleTypes": null
+        },
+        {
           "kind": "INPUT_OBJECT",
           "name": "GcpConfigInput",
           "description": null,
@@ -71671,6 +71443,11 @@
             },
             {
               "kind": "OBJECT",
+              "name": "SdpStaticIpAllocationPolicy",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
               "name": "SplitTunnelPolicy",
               "ofType": null
             },
@@ -71846,6 +71623,11 @@
             {
               "kind": "OBJECT",
               "name": "PrivateAccessPolicyMutationPayload",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "SdpStaticIpAllocationPolicyMutationPayload",
               "ofType": null
             },
             {
@@ -72045,6 +71827,11 @@
             },
             {
               "kind": "OBJECT",
+              "name": "SdpStaticIpAllocationRule",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
               "name": "SplitTunnelRule",
               "ofType": null
             },
@@ -72200,6 +71987,11 @@
             {
               "kind": "OBJECT",
               "name": "PrivateAccessRuleMutationPayload",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "SdpStaticIpAllocationRuleMutationPayload",
               "ofType": null
             },
             {
@@ -72363,6 +72155,11 @@
             {
               "kind": "OBJECT",
               "name": "PrivateAccessRulePayload",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "SdpStaticIpAllocationRulePayload",
               "ofType": null
             },
             {
@@ -73599,6 +73396,11 @@
           ],
           "enumValues": null,
           "possibleTypes": [
+            {
+              "kind": "OBJECT",
+              "name": "FullPolicyPolicyRef",
+              "ofType": null
+            },
             {
               "kind": "OBJECT",
               "name": "SocketLanFirewallPolicyRef",
@@ -75565,6 +75367,60 @@
               "ofType": null
             }
           ]
+        },
+        {
+          "kind": "OBJECT",
+          "name": "FullPolicyPolicyRef",
+          "description": null,
+          "fields": [
+            {
+              "name": "id",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "name",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [
+            {
+              "kind": "INTERFACE",
+              "name": "PolicyRef",
+              "ofType": null
+            },
+            {
+              "kind": "INTERFACE",
+              "name": "ObjectRef",
+              "ofType": null
+            }
+          ],
+          "enumValues": null,
+          "possibleTypes": null
         },
         {
           "kind": "OBJECT",
@@ -109645,6 +109501,309 @@
         },
         {
           "kind": "OBJECT",
+          "name": "EventRecord",
+          "description": "Single event record returned by eventsFeed.",
+          "fields": [
+            {
+              "name": "time",
+              "description": "Timestamp when the event occurred.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "DateTime",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "fieldsMap",
+              "description": "Map of event field names to their values. Keys correspond to the values defined in the EventFieldName enum.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Map",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "flatFields",
+              "description": "Event fields represented as name-value tuples. Example: [[\"event_type\",\"Security\"],[\"event_sub_type\",\"Internet Firewall\"]].",
+              "args": [],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "String",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "EventsFeedAccountRecords",
+          "description": "Event feed results for a single account.",
+          "fields": [
+            {
+              "name": "id",
+              "description": "Account identifier.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "errorString",
+              "description": "Error message returned if the API cannot retrieve events for the account.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "records",
+              "description": "Event records retrieved for the account. Use fieldNames to limit the event fields returned in each record.",
+              "args": [
+                {
+                  "name": "fieldNames",
+                  "description": "Optional list of event fields to return for each event record. Limiting the returned fields can significantly reduce response size when exporting events to external systems. Example: [\"event_type\",\"event_sub_type\",\"src_ip\",\"dest_ip\",\"action\",\"time\"].",
+                  "type": {
+                    "kind": "LIST",
+                    "name": null,
+                    "ofType": {
+                      "kind": "NON_NULL",
+                      "name": null,
+                      "ofType": {
+                        "kind": "ENUM",
+                        "name": "EventFieldName",
+                        "ofType": null
+                      }
+                    }
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "EventRecord",
+                    "ofType": null
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "EventsFeedData",
+          "description": "Paged response returned by eventsFeed.",
+          "fields": [
+            {
+              "name": "marker",
+              "description": "Marker representing the next position in the event queue. Use this value in the next request to continue reading events.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "fetchedCount",
+              "description": "Number of event records returned in this response.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "accounts",
+              "description": "Event results grouped by account.",
+              "args": [],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "EventsFeedAccountRecords",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "EventFeedFieldFilterInput",
+          "description": "Filter definition used by the eventsFeed query.",
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "fieldName",
+              "description": "Event field used for filtering. Supported values: event_type, event_sub_type.",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "EventFeedFilterFieldName",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "operator",
+              "description": "Operator used for the filter comparison.",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "EventFeedFilterOperator",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "values",
+              "description": "Values used for the filter comparison. Values must match the exact strings used in the event feed.",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                }
+              },
+              "defaultValue": null
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "ENUM",
+          "name": "EventFeedFilterOperator",
+          "description": "Operators used when filtering events.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": [
+            {
+              "name": "is",
+              "description": "Match a single value.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "is_not",
+              "description": "Exclude a single value.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "in",
+              "description": "Match any value in the provided list.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "not_in",
+              "description": "Exclude all values in the provided list.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "possibleTypes": null
+        },
+        {
+          "kind": "ENUM",
+          "name": "EventFeedFilterFieldName",
+          "description": null,
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": [
+            {
+              "name": "event_sub_type",
+              "description": "Specific subtype of the event. Supported values include: Dynamic Prevention, AI FireWall, Socket Password Reset, Data Security Alert, VPN Never-Off Bypass, XDR CDR, AI Firewall, External Access Request Update, XDR Endpoint, Recovery via Alt. WAN, SaaS Security API Anti Malware, BGP Events Discarded, ILMM Link Update, Alt. WAN Disconnected, AI User Interaction, New External Access Request Created, Alt. WAN Connected, MDR, Cloud Alert, Endpoint Protection, Remote Access, XDR Anomaly, Socket Bypass, Identity Alert, IP Conflict, Apps Security API Notification, XDR Threat, BFD Session, XDR Network, Registration Code, QUOTA LIMIT, WiFi API, LAN Monitoring, Link-Aggregation, MAC Address Authentication, Off-Cloud Recovery, User, HA Ready, HA Not Ready, LAN port connected, Socket WebUI Access, Misclassification, SDP Portal, SaaS Anomaly, DC Connectivity Failure, Socket Fail-Over, Endpoint Alert, Directory Services, LAN port disconnected, BGP Session, Socket Upgrade, Passive Connected, Passive Disconnected, User Risk Event, LDAP Provisioning, Changed Pop, BGP Routing, Sdp license, Cato Management Application, Last-Mile Quality, SCIM Provisioning, SaaS Security API Data Protection, SDP Activity, ApiKey, Multiple Users Detected, Off-Cloud Transport Disconnect, NG Anti Malware, Off-Cloud Transport Connect, Reconnected, DNS Protection, Always-On Bypass, Authenticated, Application Sign-in, LAN Firewall, Client Connectivity Policy, DHCP Lease, Apps Security API, Suspicious Activity, TLS, Anti Malware, IPS, Disconnected, Connected, Apps Security, RPF, WAN Firewall, Internet Firewall.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "event_type",
+              "description": "High-level category of the event. Supported values: Security, Connectivity, System, Routing, Sockets Management, Detection and Response, AI Security, Research, Posture.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
           "name": "NetworkRange",
           "description": "A network range configured on a site.",
           "fields": [
@@ -109913,6 +110072,61 @@
                 "ofType": {
                   "kind": "SCALAR",
                   "name": "Boolean",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "leaseTimeSettings",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "DhcpLeaseTimeSettings",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "DhcpLeaseTimeSettings",
+          "description": null,
+          "fields": [
+            {
+              "name": "leaseTime",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "timeUnit",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "LeaseTimeMeasureUnit",
                   "ofType": null
                 }
               },
@@ -110360,6 +110574,55 @@
                 "kind": "SCALAR",
                 "name": "Boolean",
                 "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "leaseTimeOverrideSettings",
+              "description": "DHCP Lease Time settings allow you to set how long a device may use an assigned IP before renewal.",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "DhcpLeaseTimeOverrideSettings",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "DhcpLeaseTimeOverrideSettings",
+          "description": null,
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "leaseTime",
+              "description": null,
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "timeUnit",
+              "description": null,
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "LeaseTimeMeasureUnit",
+                  "ofType": null
+                }
               },
               "defaultValue": null
             }
@@ -132174,6 +132437,12 @@
               "deprecationReason": null
             },
             {
+              "name": "user_status",
+              "description": "The user's status. CMA Name: User Status",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "vendor",
               "description": "The vendor that identified the incident, such as Cato or Microsoft. CMA Name: Vendor",
               "isDeprecated": false,
@@ -151324,6 +151593,20 @@
                 }
               },
               "defaultValue": "5"
+            },
+            {
+              "name": "multiHop",
+              "description": "Enable BFD Multi-Hop",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                }
+              },
+              "defaultValue": "false"
             }
           ],
           "interfaces": null,
@@ -151377,6 +151660,22 @@
                 "ofType": {
                   "kind": "SCALAR",
                   "name": "Int",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "multiHop",
+              "description": "Enable BFD Multi-Hop",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
                   "ofType": null
                 }
               },
@@ -166645,18 +166944,26 @@
               "defaultValue": "[]"
             },
             {
-              "name": "connectionOrigin",
-              "description": "Connection origin of the traffic",
+              "name": "connectionsOriginList",
+              "description": "Connection origin list of the traffic",
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
                 "ofType": {
-                  "kind": "ENUM",
-                  "name": "ConnectionOriginEnum",
-                  "ofType": null
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "ConnectionOriginsEnum",
+                      "ofType": null
+                    }
+                  }
                 }
               },
-              "defaultValue": "ANY"
+              "defaultValue": "[]"
             },
             {
               "name": "application",
@@ -168844,6 +169151,30 @@
                   "ofType": null
                 }
               },
+              "isDeprecated": true,
+              "deprecationReason": "use connectionsOriginList instead. Planned end-of-life (EoL) date: January 31, 2027."
+            },
+            {
+              "name": "connectionsOriginList",
+              "description": "Connection origin list of the traffic",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "ConnectionOriginsEnum",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
               "isDeprecated": false,
               "deprecationReason": null
             },
@@ -170068,12 +170399,20 @@
               "defaultValue": null
             },
             {
-              "name": "connectionOrigin",
-              "description": "Connection origin of the traffic",
+              "name": "connectionsOriginList",
+              "description": "Connection origin list of the traffic",
               "type": {
-                "kind": "ENUM",
-                "name": "ConnectionOriginEnum",
-                "ofType": null
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "ENUM",
+                    "name": "ConnectionOriginsEnum",
+                    "ofType": null
+                  }
+                }
               },
               "defaultValue": null
             },
@@ -177172,6 +177511,1285 @@
           "possibleTypes": null
         },
         {
+          "kind": "INPUT_OBJECT",
+          "name": "SdpStaticIpAllocationAddRuleDataInput",
+          "description": null,
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "enabled",
+              "description": null,
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "name",
+              "description": null,
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "description",
+              "description": null,
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "defaultValue": "\"\""
+            },
+            {
+              "name": "source",
+              "description": "User to allocate the static IP address to",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "SdpStaticIpAllocationSourceInput",
+                  "ofType": null
+                }
+              },
+              "defaultValue": "{}"
+            },
+            {
+              "name": "ip",
+              "description": "Static IP address to allocate from a pre-configured static IP range",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "IPAddress",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "SdpStaticIpAllocationAddRuleInput",
+          "description": null,
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "rule",
+              "description": "Parameters for the rule you are adding",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "SdpStaticIpAllocationAddRuleDataInput",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "at",
+              "description": "Position of the rule in the policy",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "PolicyRulePositionInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "SdpStaticIpAllocationPolicy",
+          "description": null,
+          "fields": [
+            {
+              "name": "enabled",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "rules",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "OBJECT",
+                      "name": "SdpStaticIpAllocationRulePayload",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "sections",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "OBJECT",
+                      "name": "PolicySectionPayload",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "audit",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "PolicyAudit",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "revision",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "PolicyRevision",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [
+            {
+              "kind": "INTERFACE",
+              "name": "IPolicy",
+              "ofType": null
+            }
+          ],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "SdpStaticIpAllocationPolicyInput",
+          "description": null,
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "revision",
+              "description": "A revision is a specific instance of the policy.\n Unpublished revisions are working copies of the policy available to a specific\n admin or a set of admins\n Published revisions are revisions that were applied to the account network.\n The last published revision is the active policy.",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "PolicyRevisionInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "SdpStaticIpAllocationPolicyMutationInput",
+          "description": null,
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "revision",
+              "description": null,
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "PolicyMutationRevisionInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "SdpStaticIpAllocationPolicyMutationPayload",
+          "description": null,
+          "fields": [
+            {
+              "name": "policy",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "SdpStaticIpAllocationPolicy",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "status",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "PolicyMutationStatus",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "errors",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "OBJECT",
+                      "name": "PolicyMutationError",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [
+            {
+              "kind": "INTERFACE",
+              "name": "IPolicyMutationPayload",
+              "ofType": null
+            }
+          ],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "SdpStaticIpAllocationPolicyMutations",
+          "description": null,
+          "fields": [
+            {
+              "name": "addRule",
+              "description": null,
+              "args": [
+                {
+                  "name": "input",
+                  "description": null,
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "SdpStaticIpAllocationAddRuleInput",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "SdpStaticIpAllocationRuleMutationPayload",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "updateRule",
+              "description": null,
+              "args": [
+                {
+                  "name": "input",
+                  "description": null,
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "SdpStaticIpAllocationUpdateRuleInput",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "SdpStaticIpAllocationRuleMutationPayload",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "removeRule",
+              "description": null,
+              "args": [
+                {
+                  "name": "input",
+                  "description": null,
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "SdpStaticIpAllocationRemoveRuleInput",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "SdpStaticIpAllocationRuleMutationPayload",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "moveRule",
+              "description": null,
+              "args": [
+                {
+                  "name": "input",
+                  "description": null,
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "PolicyMoveRuleInput",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "SdpStaticIpAllocationRuleMutationPayload",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "addSection",
+              "description": null,
+              "args": [
+                {
+                  "name": "input",
+                  "description": null,
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "PolicyAddSectionInput",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "PolicySectionMutationPayload",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "updateSection",
+              "description": null,
+              "args": [
+                {
+                  "name": "input",
+                  "description": null,
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "PolicyUpdateSectionInput",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "PolicySectionMutationPayload",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "removeSection",
+              "description": null,
+              "args": [
+                {
+                  "name": "input",
+                  "description": null,
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "PolicyRemoveSectionInput",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "PolicySectionMutationPayload",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "moveSection",
+              "description": null,
+              "args": [
+                {
+                  "name": "input",
+                  "description": null,
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "PolicyMoveSectionInput",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "PolicySectionMutationPayload",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "createPolicyRevision",
+              "description": null,
+              "args": [
+                {
+                  "name": "input",
+                  "description": null,
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "PolicyCreateRevisionInput",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "SdpStaticIpAllocationPolicyMutationPayload",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "publishPolicyRevision",
+              "description": null,
+              "args": [
+                {
+                  "name": "input",
+                  "description": null,
+                  "type": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "PolicyPublishRevisionInput",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "SdpStaticIpAllocationPolicyMutationPayload",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "discardPolicyRevision",
+              "description": null,
+              "args": [
+                {
+                  "name": "input",
+                  "description": null,
+                  "type": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "PolicyDiscardRevisionInput",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "SdpStaticIpAllocationPolicyMutationPayload",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "updatePolicy",
+              "description": null,
+              "args": [
+                {
+                  "name": "input",
+                  "description": null,
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "SdpStaticIpAllocationPolicyUpdateInput",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "SdpStaticIpAllocationPolicyMutationPayload",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "SdpStaticIpAllocationPolicyQueries",
+          "description": null,
+          "fields": [
+            {
+              "name": "policy",
+              "description": null,
+              "args": [
+                {
+                  "name": "input",
+                  "description": null,
+                  "type": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "SdpStaticIpAllocationPolicyInput",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "SdpStaticIpAllocationPolicy",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "revisions",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "PolicyRevisionsPayload",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "SdpStaticIpAllocationPolicyUpdateInput",
+          "description": null,
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "state",
+              "description": null,
+              "type": {
+                "kind": "ENUM",
+                "name": "PolicyToggleState",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "SdpStaticIpAllocationRemoveRuleInput",
+          "description": null,
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "id",
+              "description": null,
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "SdpStaticIpAllocationRule",
+          "description": null,
+          "fields": [
+            {
+              "name": "id",
+              "description": "Rule ID",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "name",
+              "description": "Name of the rule",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "description",
+              "description": "Description for the rule",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "index",
+              "description": "Position / priority of rule",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "section",
+              "description": "Policy section where the rule is located",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "PolicySectionInfo",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "enabled",
+              "description": "TRUE = Rule is enabled \n FALSE = Rule is disabled",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "source",
+              "description": "User to allocate the static IP address to",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "SdpStaticIpAllocationSource",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "ip",
+              "description": "Static IP address to allocate from a pre-configured static IP range",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "IPAddress",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [
+            {
+              "kind": "INTERFACE",
+              "name": "IPolicyRule",
+              "ofType": null
+            }
+          ],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "SdpStaticIpAllocationRuleMutationPayload",
+          "description": null,
+          "fields": [
+            {
+              "name": "rule",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "SdpStaticIpAllocationRulePayload",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "revision",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "PolicyRevision",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "status",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "PolicyMutationStatus",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "errors",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "OBJECT",
+                      "name": "PolicyMutationError",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [
+            {
+              "kind": "INTERFACE",
+              "name": "IPolicyRuleMutationPayload",
+              "ofType": null
+            }
+          ],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "SdpStaticIpAllocationRulePayload",
+          "description": null,
+          "fields": [
+            {
+              "name": "audit",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "PolicyElementAudit",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "metadata",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "PolicyElementMetadata",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "rule",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "SdpStaticIpAllocationRule",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "properties",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "PolicyElementPropertiesEnum",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [
+            {
+              "kind": "INTERFACE",
+              "name": "IPolicyRulePayload",
+              "ofType": null
+            }
+          ],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "SdpStaticIpAllocationSource",
+          "description": "User that the static IP allocation rule will apply to",
+          "fields": [
+            {
+              "name": "user",
+              "description": "Individual user defined for the account",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "UserRef",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "SdpStaticIpAllocationSourceInput",
+          "description": "User that the static IP allocation rule will apply to",
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "user",
+              "description": "Individual user defined for the account",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "UserRefInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "SdpStaticIpAllocationSourceUpdateInput",
+          "description": "User that the static IP allocation rule will apply to",
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "user",
+              "description": "Individual user defined for the account",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "UserRefInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "SdpStaticIpAllocationUpdateRuleDataInput",
+          "description": null,
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "enabled",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "name",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "description",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "source",
+              "description": "User to allocate the static IP address to",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "SdpStaticIpAllocationSourceUpdateInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "ip",
+              "description": "Static IP address to allocate from a pre-configured static IP range",
+              "type": {
+                "kind": "SCALAR",
+                "name": "IPAddress",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "SdpStaticIpAllocationUpdateRuleInput",
+          "description": null,
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "id",
+              "description": null,
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "rule",
+              "description": null,
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "SdpStaticIpAllocationUpdateRuleDataInput",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
           "kind": "ENUM",
           "name": "SplitTunnelActionEnum",
           "description": "The action applied by the split tunnel if the rule is matched",
@@ -177205,13 +178823,13 @@
             },
             {
               "name": "ROUTE_ALL_TO_CATO_EXCEPT",
-              "description": "Route all traffic to Cato - Not yet supported",
+              "description": "Route all traffic to Cato",
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
               "name": "ROUTE_ONLY_SELECTED",
-              "description": "Route all traffic Out-of-Tunnel - Not yet supported",
+              "description": "Route all traffic Out-of-Tunnel",
               "isDeprecated": false,
               "deprecationReason": null
             }

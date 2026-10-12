@@ -1,0 +1,78 @@
+mutation policySdpStaticIpAllocationDiscardPolicyRevision ( $accountId:ID! $sdpStaticIpAllocationPolicyMutationInput:SdpStaticIpAllocationPolicyMutationInput $policyDiscardRevisionInput:PolicyDiscardRevisionInput) {
+	policy ( accountId:$accountId ) {
+		sdpStaticIpAllocation ( input:$sdpStaticIpAllocationPolicyMutationInput  )  {
+			discardPolicyRevision ( input:$policyDiscardRevisionInput   ) {
+				policy {
+					enabled
+					rules {
+						audit {
+							updatedTime
+							updatedBy
+						}
+						metadata {
+							lock {
+								lockingAdminEmail
+								lockingTime
+								lockingRevisionId
+							}
+						}
+						rule {
+							id
+							name
+							description
+							index
+							section {
+								id
+								name
+							}
+							enabled
+							source {
+								user {
+									id
+									name
+								}
+							}
+							ip
+						}
+						properties
+					}
+					sections {
+						audit {
+							updatedTime
+							updatedBy
+						}
+						metadata {
+							lock {
+								lockingAdminEmail
+								lockingTime
+								lockingRevisionId
+							}
+						}
+						section {
+							id
+							name
+						}
+						properties
+					}
+					audit {
+						publishedTime
+						publishedBy
+					}
+					revision {
+						id
+						name
+						description
+						changes
+						createdTime
+						updatedTime
+					}
+				}
+				status
+				errors {
+					errorMessage
+					errorCode
+				}
+			}
+		}
+	}	
+}

@@ -1,0 +1,71 @@
+query policySdpStaticIpAllocationPolicy ( $accountId:ID! $sdpStaticIpAllocationPolicyInput:SdpStaticIpAllocationPolicyInput) {
+	policy ( accountId:$accountId ) {
+		sdpStaticIpAllocation {
+			policy ( input:$sdpStaticIpAllocationPolicyInput   ) {
+				enabled
+				rules {
+					audit {
+						updatedTime
+						updatedBy
+					}
+					metadata {
+						lock {
+							lockingAdminEmail
+							lockingTime
+							lockingRevisionId
+						}
+					}
+					rule {
+						id
+						name
+						description
+						index
+						section {
+							id
+							name
+						}
+						enabled
+						source {
+							user {
+								id
+								name
+							}
+						}
+						ip
+					}
+					properties
+				}
+				sections {
+					audit {
+						updatedTime
+						updatedBy
+					}
+					metadata {
+						lock {
+							lockingAdminEmail
+							lockingTime
+							lockingRevisionId
+						}
+					}
+					section {
+						id
+						name
+					}
+					properties
+				}
+				audit {
+					publishedTime
+					publishedBy
+				}
+				revision {
+					id
+					name
+					description
+					changes
+					createdTime
+					updatedTime
+				}
+			}
+		}
+	}	
+}

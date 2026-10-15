@@ -246,7 +246,7 @@ def format_to_csv(response_data: Dict[str, Any], operation_name: str) -> str:
             except ImportError:
                 from formatter_licensing import format_licensing
         return format_licensing(response_data, output_format='csv')
-    elif operation_name == 'query.popLocations':
+    elif operation_name in ('query.popLocations', 'query.popLocations.popLocationList'):
         # Dynamic import to avoid circular imports
         try:
             from .formatter_pop_locations import format_pop_locations

@@ -1,0 +1,41 @@
+query notificationIntegrationWebhook ( $accountId:ID! $webhookIntegrationRefInput:WebhookIntegrationRefInput!) {
+	notification ( accountId:$accountId ) {
+		integration {
+			webhook ( input:$webhookIntegrationRefInput   ) {
+				id
+				name
+				enabled
+				url
+				requestMethod
+				auth {
+					authType
+					... on BasicAuth {
+						username
+					}
+					... on CustomHeaderAuth {
+						name
+					}
+					... on CustomHeadersAuth {
+						plainHeaders {
+							name
+							value
+						}
+						secretHeaders {
+							name
+						}
+					}
+				}
+				header {
+					name
+					value
+				}
+				body
+				responseMapping {
+					key
+					value
+				}
+				relatedWebhookId
+			}
+		}
+	}	
+}

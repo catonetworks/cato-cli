@@ -1,0 +1,64 @@
+query devicesAttributesCatalog ( $accountId:ID! $sortOrderInput:SortOrderInput $deviceAttributeCatalogInput:DeviceAttributeCatalogInput $deviceComplianceCatalogInput:DeviceComplianceCatalogInput $deviceRiskCatalogInput:DeviceRiskCatalogInput) {
+	devices ( accountId:$accountId ) {
+		attributesCatalog {
+			category ( sort:$sortOrderInput   ) {
+				items
+				pageInfo {
+					total
+				}
+			}
+			type ( input:$deviceAttributeCatalogInput   ) {
+				items
+				pageInfo {
+					total
+				}
+			}
+			model ( input:$deviceAttributeCatalogInput   ) {
+				items
+				pageInfo {
+					total
+				}
+			}
+			manufacturer ( input:$deviceAttributeCatalogInput   ) {
+				items
+				pageInfo {
+					total
+				}
+			}
+			os ( input:$deviceAttributeCatalogInput   ) {
+				items
+				pageInfo {
+					total
+				}
+			}
+			compliance ( input:$deviceComplianceCatalogInput   ) {
+				items {
+					applicationConnector {
+						id
+						name
+					}
+					state
+				}
+				pageInfo {
+					total
+				}
+			}
+			risk ( input:$deviceRiskCatalogInput   ) {
+				items {
+					applicationConnector {
+						id
+						name
+					}
+					level {
+						id
+						min
+						max
+					}
+				}
+				pageInfo {
+					total
+				}
+			}
+		}
+	}	
+}

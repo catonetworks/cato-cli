@@ -1,0 +1,25 @@
+query popLocationsAllocatedIpList ( $accountId:ID! $popLocationAllocatedIpInput:PopLocationAllocatedIpInput) {
+	popLocations ( accountId:$accountId ) {
+		allocatedIpList ( input:$popLocationAllocatedIpInput  )  {
+			allocatedIp {
+				id
+				account {
+					id
+					name
+				}
+				ip
+				popLocation {
+					id
+					name
+				}
+				allocationType
+				description
+				subnet
+				state
+			}
+			paging {
+				total
+			}
+		}
+	}	
+}

@@ -1,0 +1,140 @@
+{
+    "operationName": "devicesAttributesCatalog",
+    "query": "query devicesAttributesCatalog ( $accountId:ID! $sortOrderInput:SortOrderInput $deviceAttributeCatalogInput:DeviceAttributeCatalogInput $deviceComplianceCatalogInput:DeviceComplianceCatalogInput $deviceRiskCatalogInput:DeviceRiskCatalogInput) {\n\tdevices ( accountId:$accountId ) {\n\t\tattributesCatalog {\n\t\t\tcategory ( sort:$sortOrderInput   ) {\n\t\t\t\titems\n\t\t\t\tpageInfo {\n\t\t\t\t\ttotal\n\t\t\t\t}\n\t\t\t}\n\t\t\ttype ( input:$deviceAttributeCatalogInput   ) {\n\t\t\t\titems\n\t\t\t\tpageInfo {\n\t\t\t\t\ttotal\n\t\t\t\t}\n\t\t\t}\n\t\t\tmodel ( input:$deviceAttributeCatalogInput   ) {\n\t\t\t\titems\n\t\t\t\tpageInfo {\n\t\t\t\t\ttotal\n\t\t\t\t}\n\t\t\t}\n\t\t\tmanufacturer ( input:$deviceAttributeCatalogInput   ) {\n\t\t\t\titems\n\t\t\t\tpageInfo {\n\t\t\t\t\ttotal\n\t\t\t\t}\n\t\t\t}\n\t\t\tos ( input:$deviceAttributeCatalogInput   ) {\n\t\t\t\titems\n\t\t\t\tpageInfo {\n\t\t\t\t\ttotal\n\t\t\t\t}\n\t\t\t}\n\t\t\tcompliance ( input:$deviceComplianceCatalogInput   ) {\n\t\t\t\titems {\n\t\t\t\t\tapplicationConnector {\n\t\t\t\t\t\tid\n\t\t\t\t\t\tname\n\t\t\t\t\t}\n\t\t\t\t\tstate\n\t\t\t\t}\n\t\t\t\tpageInfo {\n\t\t\t\t\ttotal\n\t\t\t\t}\n\t\t\t}\n\t\t\trisk ( input:$deviceRiskCatalogInput   ) {\n\t\t\t\titems {\n\t\t\t\t\tapplicationConnector {\n\t\t\t\t\t\tid\n\t\t\t\t\t\tname\n\t\t\t\t\t}\n\t\t\t\t\tlevel {\n\t\t\t\t\t\tid\n\t\t\t\t\t\tmin\n\t\t\t\t\t\tmax\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tpageInfo {\n\t\t\t\t\ttotal\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\t\n}",
+    "variables": {
+        "deviceAttributeCatalogInput": {
+            "filter": {
+                "eq": "string",
+                "in": [
+                    "string1",
+                    "string2"
+                ],
+                "neq": "string",
+                "nin": [
+                    "string1",
+                    "string2"
+                ]
+            },
+            "paging": {
+                "from": 1,
+                "limit": 1
+            },
+            "sort": {
+                "direction": "ASC",
+                "priority": 1
+            }
+        },
+        "deviceComplianceCatalogInput": {
+            "filter": {
+                "applicationConnector": {
+                    "id": {
+                        "eq": "id",
+                        "in": [
+                            "id1",
+                            "id2"
+                        ],
+                        "neq": "id",
+                        "nin": [
+                            "id1",
+                            "id2"
+                        ]
+                    },
+                    "name": {
+                        "eq": "string",
+                        "in": [
+                            "string1",
+                            "string2"
+                        ],
+                        "neq": "string",
+                        "nin": [
+                            "string1",
+                            "string2"
+                        ]
+                    }
+                },
+                "state": {
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
+                }
+            },
+            "paging": {
+                "from": 1,
+                "limit": 1
+            },
+            "sort": {
+                "applicationConnector": {
+                    "id": {
+                        "direction": "ASC",
+                        "priority": 1
+                    },
+                    "name": {
+                        "direction": "ASC",
+                        "priority": 1
+                    }
+                },
+                "state": {
+                    "direction": "ASC",
+                    "priority": 1
+                }
+            }
+        },
+        "deviceRiskCatalogInput": {
+            "filter": {
+                "applicationConnector": {
+                    "id": {
+                        "eq": "id",
+                        "in": [
+                            "id1",
+                            "id2"
+                        ],
+                        "neq": "id",
+                        "nin": [
+                            "id1",
+                            "id2"
+                        ]
+                    },
+                    "name": {
+                        "eq": "string",
+                        "in": [
+                            "string1",
+                            "string2"
+                        ],
+                        "neq": "string",
+                        "nin": [
+                            "string1",
+                            "string2"
+                        ]
+                    }
+                }
+            },
+            "paging": {
+                "from": 1,
+                "limit": 1
+            },
+            "sort": {
+                "applicationConnector": {
+                    "id": {
+                        "direction": "ASC",
+                        "priority": 1
+                    },
+                    "name": {
+                        "direction": "ASC",
+                        "priority": 1
+                    }
+                }
+            }
+        },
+        "sortOrderInput": {
+            "direction": "ASC",
+            "priority": 1
+        }
+    }
+}

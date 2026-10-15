@@ -1,0 +1,37 @@
+{
+    "operationName": "objectGlobalIpRangeList",
+    "query": "query objectGlobalIpRangeList ( $accountId:ID! $globalIpRangeListInput:GlobalIpRangeListInput) {\n\tobject ( accountId:$accountId ) {\n\t\tglobalIpRangeList ( input:$globalIpRangeListInput  )  {\n\t\t\titems {\n\t\t\t\tid\n\t\t\t\tname\n\t\t\t\tdescription\n\t\t\t\tipRange\n\t\t\t\tsubnet\n\t\t\t}\n\t\t\ttotal\n\t\t}\n\t}\t\n}",
+    "variables": {
+        "globalIpRangeListInput": {
+            "filter": {
+                "description": {
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
+                },
+                "ipRange": {
+                    "containedIn": "192.0.2.10-192.0.2.20"
+                },
+                "name": {
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,528 @@
+{
+    "args": {
+        "accountId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        }
+    },
+    "childOperations": {
+        "endUsers": {
+            "args": {},
+            "deprecationReason": null,
+            "description": "User Protection queries (end-user interactions with public AI tools).",
+            "isDeprecated": false,
+            "name": "endUsers",
+            "type": {
+                "kind": "OBJECT",
+                "name": "AiSecurityEndUsersQueries",
+                "ofType": null
+            }
+        },
+        "sessionConversation": {
+            "args": {
+                "sessionConversation___input": {
+                    "defaultValue": null,
+                    "description": null,
+                    "id_str": "sessionConversation___input",
+                    "name": "input",
+                    "path": "sessionConversation.input",
+                    "requestStr": "$aiSecurityEndUsersSessionConversationInput:AiSecurityEndUsersSessionConversationInput! ",
+                    "required": true,
+                    "responseStr": "input:$aiSecurityEndUsersSessionConversationInput ",
+                    "type": {
+                        "definition": {
+                            "description": "Input for fetching a single end-user conversation's PSI by message id.",
+                            "enumValues": null,
+                            "fields": null,
+                            "inputFields": {
+                                "appId": {
+                                    "defaultValue": null,
+                                    "description": "Canonical id of the application the conversation belongs to.",
+                                    "id_str": "sessionConversation___input___appId",
+                                    "name": "appId",
+                                    "path": "sessionConversation.input.appId",
+                                    "requestStr": "$appId:ID! ",
+                                    "required": true,
+                                    "responseStr": "appId:$appId ",
+                                    "type": {
+                                        "kind": [
+                                            "NON_NULL",
+                                            "SCALAR"
+                                        ],
+                                        "name": "ID",
+                                        "non_null": false
+                                    },
+                                    "varName": "appId"
+                                },
+                                "messageId": {
+                                    "defaultValue": null,
+                                    "description": "Identifier of the message (conversation) to fetch. Together with sessionId this identifies the conversation uniquely.",
+                                    "id_str": "sessionConversation___input___messageId",
+                                    "name": "messageId",
+                                    "path": "sessionConversation.input.messageId",
+                                    "requestStr": "$messageId:ID! ",
+                                    "required": true,
+                                    "responseStr": "messageId:$messageId ",
+                                    "type": {
+                                        "kind": [
+                                            "NON_NULL",
+                                            "SCALAR"
+                                        ],
+                                        "name": "ID",
+                                        "non_null": false
+                                    },
+                                    "varName": "messageId"
+                                },
+                                "sessionId": {
+                                    "defaultValue": null,
+                                    "description": "Identifier of the chat session the conversation belongs to.",
+                                    "id_str": "sessionConversation___input___sessionId",
+                                    "name": "sessionId",
+                                    "path": "sessionConversation.input.sessionId",
+                                    "requestStr": "$sessionId:ID! ",
+                                    "required": true,
+                                    "responseStr": "sessionId:$sessionId ",
+                                    "type": {
+                                        "kind": [
+                                            "NON_NULL",
+                                            "SCALAR"
+                                        ],
+                                        "name": "ID",
+                                        "non_null": false
+                                    },
+                                    "varName": "sessionId"
+                                },
+                                "userId": {
+                                    "defaultValue": null,
+                                    "description": "Optional end-user identifier. Used only to narrow the underlying lookup for performance; it does not scope the result per user \u2014 sessionId and messageId already identify the conversation uniquely, so omitting it never returns a different user's conversation.",
+                                    "id_str": "sessionConversation___input___userId",
+                                    "name": "userId",
+                                    "path": "sessionConversation.input.userId",
+                                    "requestStr": "$userId:ID ",
+                                    "required": false,
+                                    "responseStr": "userId:$userId ",
+                                    "type": {
+                                        "kind": [
+                                            "SCALAR"
+                                        ],
+                                        "name": "ID",
+                                        "non_null": false
+                                    },
+                                    "varName": "userId"
+                                }
+                            },
+                            "interfaces": null,
+                            "kind": "INPUT_OBJECT",
+                            "name": "AiSecurityEndUsersSessionConversationInput",
+                            "possibleTypes": null
+                        },
+                        "indexType": "input_object",
+                        "kind": [
+                            "NON_NULL",
+                            "INPUT_OBJECT"
+                        ],
+                        "name": "AiSecurityEndUsersSessionConversationInput",
+                        "non_null": false
+                    },
+                    "varName": "aiSecurityEndUsersSessionConversationInput"
+                }
+            },
+            "deprecationReason": null,
+            "description": "Fetch a single end-user conversation by its message id, together with its prompt sensitive information (PSI). Returns null when no matching conversation exists. Caller must have AiSecurityEndUsersPromptSensitive RBAC permission.",
+            "isDeprecated": false,
+            "name": "sessionConversation",
+            "type": {
+                "kind": "OBJECT",
+                "name": "AiSecurityEndUsersConversation",
+                "ofType": null
+            }
+        }
+    },
+    "deprecationReason": null,
+    "description": "Entry point for AI Security queries, scoped to a single account.",
+    "fieldTypes": {},
+    "isDeprecated": false,
+    "name": "aiSecurity",
+    "operationArgs": {
+        "accountId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        },
+        "aiSecurityEndUsersSessionConversationInput": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "sessionConversation___input",
+            "name": "input",
+            "path": "sessionConversation.input",
+            "requestStr": "$aiSecurityEndUsersSessionConversationInput:AiSecurityEndUsersSessionConversationInput! ",
+            "required": true,
+            "responseStr": "input:$aiSecurityEndUsersSessionConversationInput ",
+            "type": {
+                "definition": {
+                    "description": "Input for fetching a single end-user conversation's PSI by message id.",
+                    "enumValues": null,
+                    "fields": null,
+                    "inputFields": {
+                        "appId": {
+                            "defaultValue": null,
+                            "description": "Canonical id of the application the conversation belongs to.",
+                            "id_str": "sessionConversation___input___appId",
+                            "name": "appId",
+                            "path": "sessionConversation.input.appId",
+                            "requestStr": "$appId:ID! ",
+                            "required": true,
+                            "responseStr": "appId:$appId ",
+                            "type": {
+                                "kind": [
+                                    "NON_NULL",
+                                    "SCALAR"
+                                ],
+                                "name": "ID",
+                                "non_null": false
+                            },
+                            "varName": "appId"
+                        },
+                        "messageId": {
+                            "defaultValue": null,
+                            "description": "Identifier of the message (conversation) to fetch. Together with sessionId this identifies the conversation uniquely.",
+                            "id_str": "sessionConversation___input___messageId",
+                            "name": "messageId",
+                            "path": "sessionConversation.input.messageId",
+                            "requestStr": "$messageId:ID! ",
+                            "required": true,
+                            "responseStr": "messageId:$messageId ",
+                            "type": {
+                                "kind": [
+                                    "NON_NULL",
+                                    "SCALAR"
+                                ],
+                                "name": "ID",
+                                "non_null": false
+                            },
+                            "varName": "messageId"
+                        },
+                        "sessionId": {
+                            "defaultValue": null,
+                            "description": "Identifier of the chat session the conversation belongs to.",
+                            "id_str": "sessionConversation___input___sessionId",
+                            "name": "sessionId",
+                            "path": "sessionConversation.input.sessionId",
+                            "requestStr": "$sessionId:ID! ",
+                            "required": true,
+                            "responseStr": "sessionId:$sessionId ",
+                            "type": {
+                                "kind": [
+                                    "NON_NULL",
+                                    "SCALAR"
+                                ],
+                                "name": "ID",
+                                "non_null": false
+                            },
+                            "varName": "sessionId"
+                        },
+                        "userId": {
+                            "defaultValue": null,
+                            "description": "Optional end-user identifier. Used only to narrow the underlying lookup for performance; it does not scope the result per user \u2014 sessionId and messageId already identify the conversation uniquely, so omitting it never returns a different user's conversation.",
+                            "id_str": "sessionConversation___input___userId",
+                            "name": "userId",
+                            "path": "sessionConversation.input.userId",
+                            "requestStr": "$userId:ID ",
+                            "required": false,
+                            "responseStr": "userId:$userId ",
+                            "type": {
+                                "kind": [
+                                    "SCALAR"
+                                ],
+                                "name": "ID",
+                                "non_null": false
+                            },
+                            "varName": "userId"
+                        }
+                    },
+                    "interfaces": null,
+                    "kind": "INPUT_OBJECT",
+                    "name": "AiSecurityEndUsersSessionConversationInput",
+                    "possibleTypes": null
+                },
+                "indexType": "input_object",
+                "kind": [
+                    "NON_NULL",
+                    "INPUT_OBJECT"
+                ],
+                "name": "AiSecurityEndUsersSessionConversationInput",
+                "non_null": false
+            },
+            "varName": "aiSecurityEndUsersSessionConversationInput"
+        }
+    },
+    "path": "query.aiSecurity.endUsers.sessionConversation",
+    "type": {
+        "definition": {
+            "description": "Root of the AI Security query namespace for an account.",
+            "enumValues": null,
+            "fields": {
+                "endUsers": {
+                    "args": {},
+                    "deprecationReason": null,
+                    "description": "User Protection queries (end-user interactions with public AI tools).",
+                    "id_str": "endUsers",
+                    "isDeprecated": false,
+                    "name": "endUsers",
+                    "path": "endUsers",
+                    "requestStr": "$aiSecurityEndUsersQueries:AiSecurityEndUsersQueries ",
+                    "required": false,
+                    "responseStr": "endUsers:$aiSecurityEndUsersQueries ",
+                    "type": {
+                        "definition": {
+                            "description": "Root of the User Protection query namespace.",
+                            "enumValues": null,
+                            "fields": {
+                                "sessionConversation": {
+                                    "args": {
+                                        "sessionConversation___input": {
+                                            "defaultValue": null,
+                                            "description": null,
+                                            "id_str": "sessionConversation___input",
+                                            "name": "input",
+                                            "path": "sessionConversation.input",
+                                            "requestStr": "$aiSecurityEndUsersSessionConversationInput:AiSecurityEndUsersSessionConversationInput! ",
+                                            "required": true,
+                                            "responseStr": "input:$aiSecurityEndUsersSessionConversationInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": "Input for fetching a single end-user conversation's PSI by message id.",
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "appId": {
+                                                            "defaultValue": null,
+                                                            "description": "Canonical id of the application the conversation belongs to.",
+                                                            "id_str": "sessionConversation___input___appId",
+                                                            "name": "appId",
+                                                            "path": "sessionConversation.input.appId",
+                                                            "requestStr": "$appId:ID! ",
+                                                            "required": true,
+                                                            "responseStr": "appId:$appId ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "ID",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "appId"
+                                                        },
+                                                        "messageId": {
+                                                            "defaultValue": null,
+                                                            "description": "Identifier of the message (conversation) to fetch. Together with sessionId this identifies the conversation uniquely.",
+                                                            "id_str": "sessionConversation___input___messageId",
+                                                            "name": "messageId",
+                                                            "path": "sessionConversation.input.messageId",
+                                                            "requestStr": "$messageId:ID! ",
+                                                            "required": true,
+                                                            "responseStr": "messageId:$messageId ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "ID",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "messageId"
+                                                        },
+                                                        "sessionId": {
+                                                            "defaultValue": null,
+                                                            "description": "Identifier of the chat session the conversation belongs to.",
+                                                            "id_str": "sessionConversation___input___sessionId",
+                                                            "name": "sessionId",
+                                                            "path": "sessionConversation.input.sessionId",
+                                                            "requestStr": "$sessionId:ID! ",
+                                                            "required": true,
+                                                            "responseStr": "sessionId:$sessionId ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "ID",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "sessionId"
+                                                        },
+                                                        "userId": {
+                                                            "defaultValue": null,
+                                                            "description": "Optional end-user identifier. Used only to narrow the underlying lookup for performance; it does not scope the result per user \u2014 sessionId and messageId already identify the conversation uniquely, so omitting it never returns a different user's conversation.",
+                                                            "id_str": "sessionConversation___input___userId",
+                                                            "name": "userId",
+                                                            "path": "sessionConversation.input.userId",
+                                                            "requestStr": "$userId:ID ",
+                                                            "required": false,
+                                                            "responseStr": "userId:$userId ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "ID",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "userId"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "AiSecurityEndUsersSessionConversationInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "AiSecurityEndUsersSessionConversationInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "aiSecurityEndUsersSessionConversationInput"
+                                        }
+                                    },
+                                    "deprecationReason": null,
+                                    "description": "Fetch a single end-user conversation by its message id, together with its prompt sensitive information (PSI). Returns null when no matching conversation exists. Caller must have AiSecurityEndUsersPromptSensitive RBAC permission.",
+                                    "id_str": "endUsers___sessionConversation",
+                                    "isDeprecated": false,
+                                    "name": "sessionConversation",
+                                    "path": "endUsers.sessionConversation",
+                                    "requestStr": "$aiSecurityEndUsersConversation:AiSecurityEndUsersConversation ",
+                                    "required": false,
+                                    "responseStr": "sessionConversation:$aiSecurityEndUsersConversation ",
+                                    "type": {
+                                        "definition": {
+                                            "description": "A single end-user conversation's prompt sensitive information (PSI).",
+                                            "enumValues": null,
+                                            "fields": {
+                                                "llmResponse": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "The LLM response, including any sensitive information it contains (not redacted). Null when the conversation has no response (e.g. the prompt was blocked before reaching the model).",
+                                                    "id_str": "endUsers___sessionConversation___llmResponse",
+                                                    "isDeprecated": false,
+                                                    "name": "llmResponse",
+                                                    "path": "endUsers.sessionConversation.llmResponse",
+                                                    "requestStr": "$llmResponse:String ",
+                                                    "required": false,
+                                                    "responseStr": "llmResponse:$llmResponse ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "llmResponse"
+                                                },
+                                                "userPrompt": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "The prompt as sent by the end user, including any sensitive information it contains (not redacted).",
+                                                    "id_str": "endUsers___sessionConversation___userPrompt",
+                                                    "isDeprecated": false,
+                                                    "name": "userPrompt",
+                                                    "path": "endUsers.sessionConversation.userPrompt",
+                                                    "requestStr": "$userPrompt:String! ",
+                                                    "required": true,
+                                                    "responseStr": "userPrompt:$userPrompt ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "userPrompt"
+                                                }
+                                            },
+                                            "inputFields": null,
+                                            "interfaces": {},
+                                            "kind": "OBJECT",
+                                            "name": "AiSecurityEndUsersConversation",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "object",
+                                        "kind": [
+                                            "OBJECT"
+                                        ],
+                                        "name": "AiSecurityEndUsersConversation",
+                                        "non_null": false
+                                    },
+                                    "varName": "aiSecurityEndUsersConversation"
+                                }
+                            },
+                            "inputFields": null,
+                            "interfaces": {},
+                            "kind": "OBJECT",
+                            "name": "AiSecurityEndUsersQueries",
+                            "possibleTypes": null
+                        },
+                        "indexType": "object",
+                        "kind": [
+                            "OBJECT"
+                        ],
+                        "name": "AiSecurityEndUsersQueries",
+                        "non_null": false
+                    },
+                    "varName": "aiSecurityEndUsersQueries"
+                }
+            },
+            "inputFields": null,
+            "interfaces": [],
+            "kind": "OBJECT",
+            "name": "AiSecurityQueries",
+            "possibleTypes": null
+        },
+        "indexType": "object",
+        "kind": [
+            "OBJECT"
+        ],
+        "name": "AiSecurityQueries",
+        "non_null": false
+    },
+    "variablesPayload": {
+        "aiSecurityEndUsersSessionConversationInput": {
+            "appId": "id",
+            "messageId": "id",
+            "sessionId": "id",
+            "userId": "id"
+        }
+    }
+}

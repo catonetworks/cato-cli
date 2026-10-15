@@ -869,9 +869,10 @@ def renderArgsAndFields(response_arg_str, variables_obj, cur_operation, definiti
                     # This field represents a complex type that needs subfield selections
                     # Check if we already have proper definitions for it
                     has_proper_definition = (
-                        field.get("type") and field['type'].get('definition') and 
-                        (field['type']['definition'].get('fields') is not None or 
-                         field['type']['definition'].get('inputFields') is not None)
+                        field.get("type") and field['type'].get('definition') and
+                        (field['type']['definition'].get('fields') is not None or
+                         field['type']['definition'].get('inputFields') is not None or
+                         field['type']['definition'].get('possibleTypes') is not None)
                     )
                     if not has_proper_definition:
                         field_needs_introspection_expansion = True
@@ -1130,6 +1131,40 @@ def renderArgsAndFields(response_arg_str, variables_obj, cur_operation, definiti
 
             response_arg_str += f"{indent}}}\n"
         
+        # Handle top-level union/interface fields that expose possibleTypes but no
+        # plain `fields` (e.g. DeviceV2.networkInfo -> DeviceNetworkRef union). These
+        # must be rendered as `__typename` + inline fragments from the MODEL's
+        # possibleTypes. The introspection-based path (expandFieldWithIntrospection)
+        # cannot help here: catoApiIntrospection is only populated during schema
+        # generation, so it is empty at CLI runtime and would leave the field bare,
+        # causing a GRAPHQL_VALIDATION_FAILED "must have a selection of subfields".
+        elif field.get('type') and field['type'].get('definition') and field['type']['definition'].get('possibleTypes'):
+            response_arg_str += " {\n"
+            response_arg_str += f"{indent}\t__typename\n"
+            possible_types = field['type']['definition']['possibleTypes']
+            possible_types_iter = possible_types.values() if isinstance(possible_types, dict) else possible_types
+            for possible_type in possible_types_iter:
+                if not isinstance(possible_type, dict) or 'name' not in possible_type:
+                    continue
+                # Only emit a fragment when the possible type has selectable subfields
+                if possible_type.get('fields') or possible_type.get('inputFields'):
+                    fragment = renderArgsAndFields(
+                        "",
+                        variables_obj,
+                        cur_operation,
+                        possible_type,
+                        operation_name,
+                        indent + "\t\t",
+                        dynamic_operation_args,
+                        custom_client,
+                        True,
+                    )
+                    if fragment.strip():
+                        response_arg_str += f"{indent}\t... on {possible_type['name']} {{\n"
+                        response_arg_str += fragment
+                        response_arg_str += f"{indent}\t}}\n"
+            response_arg_str += f"{indent}}}\n"
+
         # Handle inputFields
         elif field.get('type') and field['type'].get('definition') and field['type']['definition'].get('inputFields'):
             response_arg_str += " {\n"

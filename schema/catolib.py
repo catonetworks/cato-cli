@@ -195,6 +195,7 @@ def parseSchema(schema):
     settings = loadJSON("../catocli/clisettings.json", __file__)
     childOperationParent = settings.get("childOperationParent", {})
     childOperationObjects = settings.get("childOperationObjects", {})
+    childOperationLeafObjects = settings.get("childOperationLeafObjects", {})
     
     mutationOperationsTMP = {}
     queryOperationsTMP = {}
@@ -243,7 +244,8 @@ def parseSchema(schema):
                 parentQueryOperationType,
                 parentQueryOperationType,
                 "query." + queryType,
-                childOperationObjects
+                childOperationObjects,
+                childOperationLeafObjects
             )
             query_futures.append((queryType, future))
         
@@ -256,7 +258,8 @@ def parseSchema(schema):
                 parentMutationOperationType,
                 parentMutationOperationType,
                 "mutation." + mutationType,
-                childOperationObjects
+                childOperationObjects,
+                childOperationLeafObjects
             )
             mutation_futures.append((mutationType, future))
         
@@ -421,9 +424,10 @@ def getOfTypeWithCache(type_kind, type_name, oftype_name, parent_param_path):
     # This is a simplified version - implement full caching if needed
     pass
 
-def getChildOperations(operationType, curType, parentType, parentPath, childOperationObjects):
+def getChildOperations(operationType, curType, parentType, parentPath, childOperationObjects, childOperationLeafObjects=None):
     """Thread-safe version of getChildOperations"""
     # Parse fields for nested args to map out all child operations
+    childOperationLeafObjects = childOperationLeafObjects or {}
     if "childOperations" not in parentType:
         parentType["childOperations"] = {}
     
@@ -447,14 +451,27 @@ def getChildOperations(operationType, curType, parentType, parentPath, childOper
         parentFields = []
         for field in curOfType["fields"]:
             curFieldObject = copy.deepcopy(field)
-            if (("args" in curFieldObject and len(curFieldObject["args"])>0) or 
-                (curFieldObject["name"] in childOperationObjects) or 
+            is_leaf_wrapper = ((curFieldObject["name"] in childOperationLeafObjects) or
+                               (curOfType["name"] in childOperationLeafObjects))
+            if is_leaf_wrapper:
+                # Terminal wrapper: force this field into the operation path as a child,
+                # but STOP recursion so all of its sub-fields (even arg-bearing ones like
+                # category/type/os/...) render together inside this single operation
+                # instead of each becoming its own command.
+                hasChildren = True
+                curParentType = copy.deepcopy(parentType)
+                curFieldObject["args"] = getNestedArgDefinitions(curFieldObject["args"], curFieldObject["name"], None, None)
+                curParentType["childOperations"][curFieldObject["name"]] = curFieldObject
+                with schema_lock:
+                    catoApiSchema[operationType][parentPath + "." + curFieldObject["name"]] = curParentType
+            elif (("args" in curFieldObject and len(curFieldObject["args"])>0) or
+                (curFieldObject["name"] in childOperationObjects) or
                 (curOfType["name"] in childOperationObjects)):
                 hasChildren = True
                 curParentType = copy.deepcopy(parentType)
                 curFieldObject["args"] = getNestedArgDefinitions(curFieldObject["args"], curFieldObject["name"], None, None)
                 curParentType["childOperations"][curFieldObject["name"]] = curFieldObject
-                getChildOperations(operationType, curFieldObject, curParentType, parentPath + "." + curFieldObject["name"], childOperationObjects)
+                getChildOperations(operationType, curFieldObject, curParentType, parentPath + "." + curFieldObject["name"], childOperationObjects, childOperationLeafObjects)
     
     if not hasChildren:
         with schema_lock:

@@ -1,0 +1,25 @@
+query aiSecurityAppsInvocation ( $accountId:ID! $aiSecurityAppsInvocationInput:AiSecurityAppsInvocationInput!) {
+	aiSecurity ( accountId:$accountId ) {
+		apps {
+			invocation ( input:$aiSecurityAppsInvocationInput   ) {
+				id
+				sessionId
+				timestamp
+				tokenCount
+				guard {
+					id
+					name
+				}
+				action
+				data {
+					message {
+						role
+						content {
+							text
+						}
+					}
+				}
+			}
+		}
+	}	
+}

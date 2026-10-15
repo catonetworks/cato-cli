@@ -1,0 +1,12 @@
+query aiSecurityAgentsEvent ( $accountId:ID! $aiSecurityAgentsEventInput:AiSecurityAgentsEventInput!) {
+	aiSecurity ( accountId:$accountId ) {
+		agents {
+			event ( input:$aiSecurityAgentsEventInput   ) {
+				interactionId
+				appActivityType
+				time
+				content
+			}
+		}
+	}	
+}

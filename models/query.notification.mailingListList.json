@@ -1,0 +1,547 @@
+{
+    "args": {
+        "accountId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        }
+    },
+    "childOperations": {
+        "mailingListList": {
+            "args": {},
+            "deprecationReason": null,
+            "description": "Retrieves all Mailing Lists available in the account.",
+            "isDeprecated": false,
+            "name": "mailingListList",
+            "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                    "kind": "OBJECT",
+                    "name": "MailingListListPayload",
+                    "ofType": null
+                }
+            }
+        }
+    },
+    "deprecationReason": null,
+    "description": null,
+    "fieldTypes": {},
+    "isDeprecated": false,
+    "name": "notification",
+    "operationArgs": {
+        "accountId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        }
+    },
+    "path": "query.notification.mailingListList",
+    "type": {
+        "definition": {
+            "description": null,
+            "enumValues": null,
+            "fields": {
+                "mailingListList": {
+                    "args": {},
+                    "deprecationReason": null,
+                    "description": "Retrieves all Mailing Lists available in the account.",
+                    "id_str": "mailingListList",
+                    "isDeprecated": false,
+                    "name": "mailingListList",
+                    "path": "mailingListList",
+                    "requestStr": "$mailingListListPayload:MailingListListPayload! ",
+                    "required": true,
+                    "responseStr": "mailingListList:$mailingListListPayload ",
+                    "type": {
+                        "definition": {
+                            "description": "Response payload for retrieving a list of Mailing Lists associated with an account",
+                            "enumValues": null,
+                            "fields": {
+                                "items": {
+                                    "args": {},
+                                    "deprecationReason": null,
+                                    "description": "List of Mailing List configured for the account.",
+                                    "id_str": "mailingListList___items",
+                                    "isDeprecated": false,
+                                    "name": "items",
+                                    "path": "mailingListList.items",
+                                    "requestStr": "$mailingList:[MailingList]! ",
+                                    "required": true,
+                                    "responseStr": "items:$mailingList ",
+                                    "type": {
+                                        "definition": {
+                                            "description": "Represents a Mailing List entity, including its\nunique ID, name, type, associated email addresses, administrators,\nand audit metadata.",
+                                            "enumValues": null,
+                                            "fields": {
+                                                "address": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "List of email addresses included in the Mailing List.",
+                                                    "id_str": "mailingListList___items___address",
+                                                    "isDeprecated": false,
+                                                    "name": "address",
+                                                    "path": "mailingListList.items.address",
+                                                    "requestStr": "$address:[Email]! ",
+                                                    "required": true,
+                                                    "responseStr": "address:$address ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "LIST",
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "Email",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "address"
+                                                },
+                                                "admin": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "List of account administrators assigned to manage the Mailing List.",
+                                                    "id_str": "mailingListList___items___admin",
+                                                    "isDeprecated": false,
+                                                    "name": "admin",
+                                                    "path": "mailingListList.items.admin",
+                                                    "requestStr": "$adminRef:[AdminRef]! ",
+                                                    "required": true,
+                                                    "responseStr": "admin:$adminRef ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": "A reference identifying the Admin object. ID: Unique Admin Identifier, Name: The Admin Name",
+                                                            "enumValues": null,
+                                                            "fields": {
+                                                                "id": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "id_str": "mailingListList___items___admin___id",
+                                                                    "isDeprecated": false,
+                                                                    "name": "id",
+                                                                    "path": "mailingListList.items.admin.id",
+                                                                    "requestStr": "$id:ID! ",
+                                                                    "required": true,
+                                                                    "responseStr": "id:$id ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "ID",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "id"
+                                                                },
+                                                                "name": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "id_str": "mailingListList___items___admin___name",
+                                                                    "isDeprecated": false,
+                                                                    "name": "name",
+                                                                    "path": "mailingListList.items.admin.name",
+                                                                    "requestStr": "$name:String! ",
+                                                                    "required": true,
+                                                                    "responseStr": "name:$name ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "String",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "name"
+                                                                }
+                                                            },
+                                                            "inputFields": null,
+                                                            "interfaces": {},
+                                                            "kind": "OBJECT",
+                                                            "name": "AdminRef",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "object",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "LIST",
+                                                            "NON_NULL",
+                                                            "OBJECT"
+                                                        ],
+                                                        "name": "AdminRef",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "adminRef"
+                                                },
+                                                "audit": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Audit metadata containing creation and modification details.",
+                                                    "id_str": "mailingListList___items___audit",
+                                                    "isDeprecated": false,
+                                                    "name": "audit",
+                                                    "path": "mailingListList.items.audit",
+                                                    "requestStr": "$auditingMetadata:AuditingMetadata! ",
+                                                    "required": true,
+                                                    "responseStr": "audit:$auditingMetadata ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": null,
+                                                            "enumValues": null,
+                                                            "fields": {
+                                                                "updatedBy": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "id_str": "mailingListList___items___audit___updatedBy",
+                                                                    "isDeprecated": false,
+                                                                    "name": "updatedBy",
+                                                                    "path": "mailingListList.items.audit.updatedBy",
+                                                                    "requestStr": "$actorRef:ActorRef! ",
+                                                                    "required": true,
+                                                                    "responseStr": "updatedBy:$actorRef ",
+                                                                    "type": {
+                                                                        "definition": {
+                                                                            "description": null,
+                                                                            "enumValues": null,
+                                                                            "fields": {
+                                                                                "id": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "id_str": "mailingListList___items___audit___updatedBy___id",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "id",
+                                                                                    "path": "mailingListList.items.audit.updatedBy.id",
+                                                                                    "requestStr": "$id:ID! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "id:$id ",
+                                                                                    "type": {
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "SCALAR"
+                                                                                        ],
+                                                                                        "name": "ID",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "id"
+                                                                                },
+                                                                                "name": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "id_str": "mailingListList___items___audit___updatedBy___name",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "name",
+                                                                                    "path": "mailingListList.items.audit.updatedBy.name",
+                                                                                    "requestStr": "$name:String! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "name:$name ",
+                                                                                    "type": {
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "SCALAR"
+                                                                                        ],
+                                                                                        "name": "String",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "name"
+                                                                                }
+                                                                            },
+                                                                            "inputFields": null,
+                                                                            "interfaces": [
+                                                                                {
+                                                                                    "kind": "INTERFACE",
+                                                                                    "name": "ObjectRef",
+                                                                                    "ofType": null
+                                                                                }
+                                                                            ],
+                                                                            "kind": "INTERFACE",
+                                                                            "name": "ActorRef",
+                                                                            "possibleTypes": {
+                                                                                "AdminRef": {
+                                                                                    "description": "A reference identifying the Admin object. ID: Unique Admin Identifier, Name: The Admin Name",
+                                                                                    "enumValues": null,
+                                                                                    "fields": {},
+                                                                                    "inputFields": null,
+                                                                                    "interfaces": {},
+                                                                                    "kind": "OBJECT",
+                                                                                    "name": "AdminRef",
+                                                                                    "possibleTypes": null
+                                                                                },
+                                                                                "ApiKeyRef": {
+                                                                                    "description": "A reference identifying the ApiKey object. ID: Unique ApiKey Identifier, Name: The ApiKey Name",
+                                                                                    "enumValues": null,
+                                                                                    "fields": {},
+                                                                                    "inputFields": null,
+                                                                                    "interfaces": {},
+                                                                                    "kind": "OBJECT",
+                                                                                    "name": "ApiKeyRef",
+                                                                                    "possibleTypes": null
+                                                                                }
+                                                                            }
+                                                                        },
+                                                                        "indexType": "interface",
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "INTERFACE"
+                                                                        ],
+                                                                        "name": "ActorRef",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "actorRef"
+                                                                },
+                                                                "updatedTime": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "id_str": "mailingListList___items___audit___updatedTime",
+                                                                    "isDeprecated": false,
+                                                                    "name": "updatedTime",
+                                                                    "path": "mailingListList.items.audit.updatedTime",
+                                                                    "requestStr": "$updatedTime:DateTime! ",
+                                                                    "required": true,
+                                                                    "responseStr": "updatedTime:$updatedTime ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "DateTime",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "updatedTime"
+                                                                }
+                                                            },
+                                                            "inputFields": null,
+                                                            "interfaces": {},
+                                                            "kind": "OBJECT",
+                                                            "name": "AuditingMetadata",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "object",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "OBJECT"
+                                                        ],
+                                                        "name": "AuditingMetadata",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "auditingMetadata"
+                                                },
+                                                "id": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Unique identifier of the Mailing List.",
+                                                    "id_str": "mailingListList___items___id",
+                                                    "isDeprecated": false,
+                                                    "name": "id",
+                                                    "path": "mailingListList.items.id",
+                                                    "requestStr": "$id:ID! ",
+                                                    "required": true,
+                                                    "responseStr": "id:$id ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "ID",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "id"
+                                                },
+                                                "name": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Name of the Mailing List",
+                                                    "id_str": "mailingListList___items___name",
+                                                    "isDeprecated": false,
+                                                    "name": "name",
+                                                    "path": "mailingListList.items.name",
+                                                    "requestStr": "$name:String! ",
+                                                    "required": true,
+                                                    "responseStr": "name:$name ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "name"
+                                                },
+                                                "type": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Specifies how the Mailing List addresses are defined (e.g., all admins, specific_emails, system).",
+                                                    "id_str": "mailingListList___items___type",
+                                                    "isDeprecated": false,
+                                                    "name": "type",
+                                                    "path": "mailingListList.items.type",
+                                                    "requestStr": "$type:MailingListAddressesType! ",
+                                                    "required": true,
+                                                    "responseStr": "type:$type ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": null,
+                                                            "enumValues": [
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "SPECIFIC_EMAILS"
+                                                                }
+                                                            ],
+                                                            "fields": null,
+                                                            "inputFields": null,
+                                                            "interfaces": null,
+                                                            "kind": "ENUM",
+                                                            "name": "MailingListAddressesType",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "enum",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "ENUM"
+                                                        ],
+                                                        "name": "MailingListAddressesType",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "type"
+                                                }
+                                            },
+                                            "inputFields": null,
+                                            "interfaces": {},
+                                            "kind": "OBJECT",
+                                            "name": "MailingList",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "object",
+                                        "kind": [
+                                            "NON_NULL",
+                                            "LIST",
+                                            "NON_NULL",
+                                            "OBJECT"
+                                        ],
+                                        "name": "MailingList",
+                                        "non_null": false
+                                    },
+                                    "varName": "mailingList"
+                                },
+                                "paging": {
+                                    "args": {},
+                                    "deprecationReason": null,
+                                    "description": "Pagination metadata for the list of Mailing List.",
+                                    "id_str": "mailingListList___paging",
+                                    "isDeprecated": false,
+                                    "name": "paging",
+                                    "path": "mailingListList.paging",
+                                    "requestStr": "$pageInfo:PageInfo! ",
+                                    "required": true,
+                                    "responseStr": "paging:$pageInfo ",
+                                    "type": {
+                                        "definition": {
+                                            "description": null,
+                                            "enumValues": null,
+                                            "fields": {
+                                                "total": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": null,
+                                                    "id_str": "mailingListList___paging___total",
+                                                    "isDeprecated": false,
+                                                    "name": "total",
+                                                    "path": "mailingListList.paging.total",
+                                                    "requestStr": "$total:Int! ",
+                                                    "required": true,
+                                                    "responseStr": "total:$total ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "Int",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "total"
+                                                }
+                                            },
+                                            "inputFields": null,
+                                            "interfaces": {},
+                                            "kind": "OBJECT",
+                                            "name": "PageInfo",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "object",
+                                        "kind": [
+                                            "NON_NULL",
+                                            "OBJECT"
+                                        ],
+                                        "name": "PageInfo",
+                                        "non_null": false
+                                    },
+                                    "varName": "pageInfo"
+                                }
+                            },
+                            "inputFields": null,
+                            "interfaces": {},
+                            "kind": "OBJECT",
+                            "name": "MailingListListPayload",
+                            "possibleTypes": null
+                        },
+                        "indexType": "object",
+                        "kind": [
+                            "NON_NULL",
+                            "OBJECT"
+                        ],
+                        "name": "MailingListListPayload",
+                        "non_null": false
+                    },
+                    "varName": "mailingListListPayload"
+                }
+            },
+            "inputFields": null,
+            "interfaces": [],
+            "kind": "OBJECT",
+            "name": "NotificationSubscriptionQueries",
+            "possibleTypes": null
+        },
+        "indexType": "object",
+        "kind": [
+            "OBJECT"
+        ],
+        "name": "NotificationSubscriptionQueries",
+        "non_null": false
+    },
+    "variablesPayload": {}
+}

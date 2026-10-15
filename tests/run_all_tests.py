@@ -1013,24 +1013,27 @@ try:
         def test_invalid_json_handling(self):
             """Test that invalid JSON input is handled gracefully"""
             result = subprocess.run(
-                [PYTHON_CMD, "-m", "catocli", "query", "devices", "{invalid json}"],
-                capture_output=True,
-                text=True,
-                cwd=str(PROJECT_ROOT),
-                timeout=10
-            )
-            assert "error" in result.stderr.lower() or "error" in result.stdout.lower()
-        
-        def test_missing_required_args_handling(self):
-            """Test that missing required arguments are handled"""
-            result = subprocess.run(
-                [PYTHON_CMD, "-m", "catocli", "query", "devices", "{}"],
+                [PYTHON_CMD, "-m", "catocli", "query", "devices", "list", "{invalid json}"],
                 capture_output=True,
                 text=True,
                 cwd=str(PROJECT_ROOT),
                 timeout=10
             )
             assert result.returncode in [0, 1]
+            assert "ERROR: Invalid JSON" in result.stdout
+        
+        def test_missing_required_args_handling(self):
+            """Test that missing required arguments are handled"""
+            result = subprocess.run(
+                [PYTHON_CMD, "-m", "catocli", "query", "devices", "csvExportStatus", "{}"],
+                capture_output=True,
+                text=True,
+                cwd=str(PROJECT_ROOT),
+                timeout=10
+            )
+            assert result.returncode in [0, 1]
+            assert "ERROR:" in result.stdout
+            assert "jobId" in result.stdout
     
     
     class TestPackaging:

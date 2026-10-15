@@ -4,16 +4,19 @@
         "query.site.secondaryAwsVSocket": {},
         "query.site.secondaryAzureVSocket": {},
         // Device response selection and group-list members are rejected by the CI server
-        "query.devices": {},
+        "query.devices.list": {},
         "query.groups.groupList": {},
         // Existing LAN policy violates non-null SocketLanFirewallRulePayload.access
         "query.policy.socketLan.policy": {},
         // Catalog API rollout is unavailable even with valid paging input
         "query.catalogs.catalogApplicationList": {},
-        // Invocation IDs exist, but sessionConversation returns an internal server error
-        "query.aiSecurity": {},
+        // No agent event/session fixture exists; session and invocation return server errors
+        "query.aiSecurity.agents.event": {},
+        "query.aiSecurity.agents.session": {},
+        "query.aiSecurity.apps.invocation": {},
         // Pop-location resolver reports missing account tag; no BGP profile fixture exists
-        "query.popLocations": {},
+        "query.popLocations.bgpProfile": {},
+        "query.popLocations.bgpProfileList": {},
         // No Cloud Interconnect site or physical connection exists
         "query.site.cloudInterconnectConnectionConnectivity": {},
         "query.site.cloudInterconnectPhysicalConnection": {},
@@ -25,9 +28,17 @@
         // No Wi-Fi radio profile fixture exists for the CI account
         "query.site.wifiRadioProfile": {},
         "query.site.wifiRadioProfileBySite": {},
-        // Business Platform is not rolled out; notification has server-schema/audit errors
+        // Business Platform is not rolled out
         "query.businessPlatform": {},
-        "query.notification": {},
+        // No template/webhook/mailing-list fixtures; remaining queries have schema/audit errors
+        "query.notification.integration.referenceBodyTemplate": {},
+        "query.notification.integration.referenceBodyTemplateList": {},
+        "query.notification.integration.webhook": {},
+        "query.notification.integration.webhookList": {},
+        "query.notification.mailingList": {},
+        "query.notification.mailingListList": {},
+        "query.notification.subscriptionGroup": {},
+        "query.notification.subscriptionGroupList": {},
         // CI account lacks privileges for the anti-malware file-hash policy
         "query.policy.antiMalwareFileHash.policy": {},
         // CI endpoint lacks PostureHistoricalSummary.comparisons from the upstream schema
@@ -588,7 +599,7 @@
                 "groups.whereUsed"
             ]
         },
-        "query.object": {
+        "query.object.globalIpRange": {
             "payload": {
                 "globalIpRangeRefInput": {
                     "by": "ID",
@@ -596,8 +607,7 @@
                 }
             },
             "assertions": [
-                "object.globalIpRange",
-                "object.globalIpRangeList"
+                "object.globalIpRange"
             ]
         },
         "query.privateApplication": {

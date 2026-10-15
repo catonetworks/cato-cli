@@ -372,12 +372,12 @@
                                                     "isDeprecated": false,
                                                     "name": "summary",
                                                     "path": "dailySummaryList.items.summary",
-                                                    "requestStr": "$postureSummary:PostureSummary! ",
+                                                    "requestStr": "$postureHistoricalSummary:PostureHistoricalSummary! ",
                                                     "required": true,
-                                                    "responseStr": "summary:$postureSummary ",
+                                                    "responseStr": "summary:$postureHistoricalSummary ",
                                                     "type": {
                                                         "definition": {
-                                                            "description": "Aggregated Posture summary for the account, including the Account Score\nand per-dimension breakdowns.",
+                                                            "description": "Aggregated Posture summary recorded in a historical snapshot: the Account Score with the\nper-dimension breakdowns stored for that snapshot. Unlike a live summary, breakdowns are limited\nto the dimensions kept in the score history, and only snapshots taken after a dimension started\nbeing recorded carry it.",
                                                             "enumValues": null,
                                                             "fields": {
                                                                 "applicationScores": {
@@ -577,7 +577,7 @@
                                                                 "areaScores": {
                                                                     "args": {},
                                                                     "deprecationReason": null,
-                                                                    "description": "Score breakdown by area.",
+                                                                    "description": "Score breakdown by area, each with its categories nested.",
                                                                     "id_str": "dailySummaryList___items___summary___areaScores",
                                                                     "isDeprecated": false,
                                                                     "name": "areaScores",
@@ -1222,160 +1222,12 @@
                                                                     },
                                                                     "varName": "postureCategoryScore"
                                                                 },
-                                                                "comparisons": {
-                                                                    "args": {},
-                                                                    "deprecationReason": null,
-                                                                    "description": "Peer comparisons for this account summary.",
-                                                                    "id_str": "dailySummaryList___items___summary___comparisons",
-                                                                    "isDeprecated": false,
-                                                                    "name": "comparisons",
-                                                                    "path": "dailySummaryList.items.summary.comparisons",
-                                                                    "requestStr": "$postureAccountComparison:[PostureAccountComparison]! ",
-                                                                    "required": true,
-                                                                    "responseStr": "comparisons:$postureAccountComparison ",
-                                                                    "type": {
-                                                                        "definition": {
-                                                                            "description": "Peer-group comparison metrics for an account's Posture score.",
-                                                                            "enumValues": null,
-                                                                            "fields": {
-                                                                                "average": {
-                                                                                    "args": {},
-                                                                                    "deprecationReason": null,
-                                                                                    "description": "Average score of the comparison group.",
-                                                                                    "id_str": "dailySummaryList___items___summary___comparisons___average",
-                                                                                    "isDeprecated": false,
-                                                                                    "name": "average",
-                                                                                    "path": "dailySummaryList.items.summary.comparisons.average",
-                                                                                    "requestStr": "$average:Int! ",
-                                                                                    "required": true,
-                                                                                    "responseStr": "average:$average ",
-                                                                                    "type": {
-                                                                                        "kind": [
-                                                                                            "NON_NULL",
-                                                                                            "SCALAR"
-                                                                                        ],
-                                                                                        "name": "Int",
-                                                                                        "non_null": false
-                                                                                    },
-                                                                                    "varName": "average"
-                                                                                },
-                                                                                "comparisonType": {
-                                                                                    "args": {},
-                                                                                    "deprecationReason": null,
-                                                                                    "description": "Dimension used for the comparison.",
-                                                                                    "id_str": "dailySummaryList___items___summary___comparisons___comparisonType",
-                                                                                    "isDeprecated": false,
-                                                                                    "name": "comparisonType",
-                                                                                    "path": "dailySummaryList.items.summary.comparisons.comparisonType",
-                                                                                    "requestStr": "$comparisonType:PostureComparisonType! ",
-                                                                                    "required": true,
-                                                                                    "responseStr": "comparisonType:$comparisonType ",
-                                                                                    "type": {
-                                                                                        "definition": {
-                                                                                            "description": "Dimensions available for peer-group Posture score comparisons.",
-                                                                                            "enumValues": [
-                                                                                                {
-                                                                                                    "deprecationReason": null,
-                                                                                                    "description": "Comparison with accounts in the same industry vertical.",
-                                                                                                    "isDeprecated": false,
-                                                                                                    "name": "VERTICAL"
-                                                                                                },
-                                                                                                {
-                                                                                                    "deprecationReason": null,
-                                                                                                    "description": "Comparison with accounts in the same region.",
-                                                                                                    "isDeprecated": false,
-                                                                                                    "name": "REGION"
-                                                                                                },
-                                                                                                {
-                                                                                                    "deprecationReason": null,
-                                                                                                    "description": "Comparison across all accounts in the peer-comparison dataset.",
-                                                                                                    "isDeprecated": false,
-                                                                                                    "name": "ALL_ACCOUNTS"
-                                                                                                }
-                                                                                            ],
-                                                                                            "fields": null,
-                                                                                            "inputFields": null,
-                                                                                            "interfaces": null,
-                                                                                            "kind": "ENUM",
-                                                                                            "name": "PostureComparisonType",
-                                                                                            "possibleTypes": null
-                                                                                        },
-                                                                                        "indexType": "enum",
-                                                                                        "kind": [
-                                                                                            "NON_NULL",
-                                                                                            "ENUM"
-                                                                                        ],
-                                                                                        "name": "PostureComparisonType",
-                                                                                        "non_null": false
-                                                                                    },
-                                                                                    "varName": "comparisonType"
-                                                                                },
-                                                                                "comparisonValue": {
-                                                                                    "args": {},
-                                                                                    "deprecationReason": null,
-                                                                                    "description": "Value in the selected comparison dimension.",
-                                                                                    "id_str": "dailySummaryList___items___summary___comparisons___comparisonValue",
-                                                                                    "isDeprecated": false,
-                                                                                    "name": "comparisonValue",
-                                                                                    "path": "dailySummaryList.items.summary.comparisons.comparisonValue",
-                                                                                    "requestStr": "$comparisonValue:String ",
-                                                                                    "required": false,
-                                                                                    "responseStr": "comparisonValue:$comparisonValue ",
-                                                                                    "type": {
-                                                                                        "kind": [
-                                                                                            "SCALAR"
-                                                                                        ],
-                                                                                        "name": "String",
-                                                                                        "non_null": false
-                                                                                    },
-                                                                                    "varName": "comparisonValue"
-                                                                                },
-                                                                                "percentile": {
-                                                                                    "args": {},
-                                                                                    "deprecationReason": null,
-                                                                                    "description": "Percentile rank within the comparison group.",
-                                                                                    "id_str": "dailySummaryList___items___summary___comparisons___percentile",
-                                                                                    "isDeprecated": false,
-                                                                                    "name": "percentile",
-                                                                                    "path": "dailySummaryList.items.summary.comparisons.percentile",
-                                                                                    "requestStr": "$percentile:Int! ",
-                                                                                    "required": true,
-                                                                                    "responseStr": "percentile:$percentile ",
-                                                                                    "type": {
-                                                                                        "kind": [
-                                                                                            "NON_NULL",
-                                                                                            "SCALAR"
-                                                                                        ],
-                                                                                        "name": "Int",
-                                                                                        "non_null": false
-                                                                                    },
-                                                                                    "varName": "percentile"
-                                                                                }
-                                                                            },
-                                                                            "inputFields": null,
-                                                                            "interfaces": {},
-                                                                            "kind": "OBJECT",
-                                                                            "name": "PostureAccountComparison",
-                                                                            "possibleTypes": null
-                                                                        },
-                                                                        "indexType": "object",
-                                                                        "kind": [
-                                                                            "NON_NULL",
-                                                                            "LIST",
-                                                                            "NON_NULL",
-                                                                            "OBJECT"
-                                                                        ],
-                                                                        "name": "PostureAccountComparison",
-                                                                        "non_null": false
-                                                                    },
-                                                                    "varName": "postureAccountComparison"
-                                                                },
                                                                 "domainScores": {
                                                                     "args": {},
-                                                                    "deprecationReason": null,
-                                                                    "description": "Score breakdown by domain.",
+                                                                    "deprecationReason": "use areaScores instead. Planned end-of-life (EoL) date: 03 31, 2027.",
+                                                                    "description": "Score breakdown by domain, kept for callers written against the previous summary type.\nCarries the same values as `areaScores` without the nested categories.",
                                                                     "id_str": "dailySummaryList___items___summary___domainScores",
-                                                                    "isDeprecated": false,
+                                                                    "isDeprecated": true,
                                                                     "name": "domainScores",
                                                                     "path": "dailySummaryList.items.summary.domainScores",
                                                                     "requestStr": "$postureDomainScore:[PostureDomainScore]! ",
@@ -1543,70 +1395,10 @@
                                                                     },
                                                                     "varName": "evaluatedAt"
                                                                 },
-                                                                "overallEffectiveAreaCriticality": {
-                                                                    "args": {},
-                                                                    "deprecationReason": null,
-                                                                    "description": "Weighted average effective area criticality across checks scored by the revamp.",
-                                                                    "id_str": "dailySummaryList___items___summary___overallEffectiveAreaCriticality",
-                                                                    "isDeprecated": false,
-                                                                    "name": "overallEffectiveAreaCriticality",
-                                                                    "path": "dailySummaryList.items.summary.overallEffectiveAreaCriticality",
-                                                                    "requestStr": "$overallEffectiveAreaCriticality:Float ",
-                                                                    "required": false,
-                                                                    "responseStr": "overallEffectiveAreaCriticality:$overallEffectiveAreaCriticality ",
-                                                                    "type": {
-                                                                        "kind": [
-                                                                            "SCALAR"
-                                                                        ],
-                                                                        "name": "Float",
-                                                                        "non_null": false
-                                                                    },
-                                                                    "varName": "overallEffectiveAreaCriticality"
-                                                                },
-                                                                "overallEffectiveBlastRadius": {
-                                                                    "args": {},
-                                                                    "deprecationReason": null,
-                                                                    "description": "Weighted average effective blast radius across checks scored by the revamp.",
-                                                                    "id_str": "dailySummaryList___items___summary___overallEffectiveBlastRadius",
-                                                                    "isDeprecated": false,
-                                                                    "name": "overallEffectiveBlastRadius",
-                                                                    "path": "dailySummaryList.items.summary.overallEffectiveBlastRadius",
-                                                                    "requestStr": "$overallEffectiveBlastRadius:Float ",
-                                                                    "required": false,
-                                                                    "responseStr": "overallEffectiveBlastRadius:$overallEffectiveBlastRadius ",
-                                                                    "type": {
-                                                                        "kind": [
-                                                                            "SCALAR"
-                                                                        ],
-                                                                        "name": "Float",
-                                                                        "non_null": false
-                                                                    },
-                                                                    "varName": "overallEffectiveBlastRadius"
-                                                                },
-                                                                "overallEffectiveFindingsSignal": {
-                                                                    "args": {},
-                                                                    "deprecationReason": null,
-                                                                    "description": "Weighted average effective findings signal across checks scored by the revamp.",
-                                                                    "id_str": "dailySummaryList___items___summary___overallEffectiveFindingsSignal",
-                                                                    "isDeprecated": false,
-                                                                    "name": "overallEffectiveFindingsSignal",
-                                                                    "path": "dailySummaryList.items.summary.overallEffectiveFindingsSignal",
-                                                                    "requestStr": "$overallEffectiveFindingsSignal:Float ",
-                                                                    "required": false,
-                                                                    "responseStr": "overallEffectiveFindingsSignal:$overallEffectiveFindingsSignal ",
-                                                                    "type": {
-                                                                        "kind": [
-                                                                            "SCALAR"
-                                                                        ],
-                                                                        "name": "Float",
-                                                                        "non_null": false
-                                                                    },
-                                                                    "varName": "overallEffectiveFindingsSignal"
-                                                                },
                                                                 "score": {
                                                                     "args": {},
                                                                     "deprecationReason": null,
-                                                                    "description": "Overall posture score for the account.",
+                                                                    "description": "Overall posture score for the account at the snapshot timestamp.",
                                                                     "id_str": "dailySummaryList___items___summary___score",
                                                                     "isDeprecated": false,
                                                                     "name": "score",
@@ -2204,7 +1996,7 @@
                                                             "inputFields": null,
                                                             "interfaces": {},
                                                             "kind": "OBJECT",
-                                                            "name": "PostureSummary",
+                                                            "name": "PostureHistoricalSummary",
                                                             "possibleTypes": null
                                                         },
                                                         "indexType": "object",
@@ -2212,10 +2004,10 @@
                                                             "NON_NULL",
                                                             "OBJECT"
                                                         ],
-                                                        "name": "PostureSummary",
+                                                        "name": "PostureHistoricalSummary",
                                                         "non_null": false
                                                     },
-                                                    "varName": "postureSummary"
+                                                    "varName": "postureHistoricalSummary"
                                                 }
                                             },
                                             "inputFields": null,

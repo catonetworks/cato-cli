@@ -1,0 +1,42 @@
+query notificationIntegrationReferenceBodyTemplateList ( $accountId:ID!) {
+	notification ( accountId:$accountId ) {
+		integration {
+			referenceBodyTemplateList {
+				items {
+					id
+					name
+					bodyTemplate
+					url
+					requestMethod
+					auth {
+						authType
+						... on BasicAuth {
+							username
+						}
+						... on CustomHeaderAuth {
+							name
+						}
+						... on CustomHeadersAuth {
+							plainHeaders {
+								name
+								value
+							}
+							secretHeaders {
+								name
+							}
+						}
+					}
+					header {
+						name
+						value
+					}
+					responseMapping {
+						key
+						value
+					}
+					webhookRelationType
+				}
+			}
+		}
+	}	
+}

@@ -7,21 +7,98 @@ def query_popLocations_parse(query_subparsers):
             help='popLocations() query operation', 
             usage=get_help("query_popLocations"), formatter_class=CustomSubparserHelpFormatter)
 
-    query_popLocations_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
-    query_popLocations_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
-    query_popLocations_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
-    query_popLocations_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
-    query_popLocations_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
-    query_popLocations_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
-    query_popLocations_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
-    query_popLocations_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
-    query_popLocations_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
-    query_popLocations_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
-    query_popLocations_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    def _show_query_popLocations_help(args, configuration=None):
+        """Show help when query_popLocations is called without subcommand"""
+        print("\ncatocli query popLocations <subcommand> [options]")
+        print("\nAvailable subcommands:")
+        print("  popLocationList                popLocationList operation\n  allocatedIpList                allocatedIpList operation\n  bgpProfile                     bgpProfile operation\n  bgpProfileList                 bgpProfileList operation")
+        print("\nFor help on a specific subcommand:")
+        print("  catocli query popLocations <subcommand> -h")
+        return None
 
+    query_popLocations_subparsers = query_popLocations_parser.add_subparsers()
+    query_popLocations_parser.set_defaults(func=_show_query_popLocations_help)
 
-    query_popLocations_parser.add_argument('-f', '--format', choices=['json', 'csv'], help='Output format (default: formatted json, use -raw for original json)')
-    query_popLocations_parser.add_argument('-raw', '--raw', dest='raw_output', action='store_true', help='Return raw/original JSON format (bypasses default formatting)')
-    query_popLocations_parser.add_argument('--csv-filename', dest='csv_filename', help='Override CSV file name (default: poplocations.csv)')
-    query_popLocations_parser.add_argument('--append-timestamp', dest='append_timestamp', action='store_true', help='Append timestamp to the CSV file name')
-    query_popLocations_parser.set_defaults(func=createRequest,operation_name='query.popLocations')
+    query_popLocations_popLocationList_parser = query_popLocations_subparsers.add_parser('popLocationList', 
+            help='popLocationList() popLocations operation', 
+            usage=get_help("query_popLocations_popLocationList"))
+
+    query_popLocations_popLocationList_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    query_popLocations_popLocationList_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    query_popLocations_popLocationList_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    query_popLocations_popLocationList_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    query_popLocations_popLocationList_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    query_popLocations_popLocationList_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    query_popLocations_popLocationList_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    query_popLocations_popLocationList_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    query_popLocations_popLocationList_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    query_popLocations_popLocationList_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_popLocations_popLocationList_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    query_popLocations_popLocationList_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    query_popLocations_popLocationList_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    query_popLocations_popLocationList_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    query_popLocations_popLocationList_parser.set_defaults(func=createRequest,operation_name='query.popLocations.popLocationList')
+
+    query_popLocations_popLocationList_parser.add_argument('-f', '--format', choices=['json', 'csv'], default='json', help='Output format (default: json)')
+    query_popLocations_popLocationList_parser.add_argument('--csv-filename', dest='csv_filename', help='Override CSV file name (default: accountmetrics.csv)')
+    query_popLocations_popLocationList_parser.add_argument('--append-timestamp', dest='append_timestamp', action='store_true', help='Append timestamp to the CSV file name')
+
+    query_popLocations_allocatedIpList_parser = query_popLocations_subparsers.add_parser('allocatedIpList', 
+            help='allocatedIpList() popLocations operation', 
+            usage=get_help("query_popLocations_allocatedIpList"))
+
+    query_popLocations_allocatedIpList_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    query_popLocations_allocatedIpList_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    query_popLocations_allocatedIpList_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    query_popLocations_allocatedIpList_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    query_popLocations_allocatedIpList_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    query_popLocations_allocatedIpList_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    query_popLocations_allocatedIpList_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    query_popLocations_allocatedIpList_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    query_popLocations_allocatedIpList_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    query_popLocations_allocatedIpList_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_popLocations_allocatedIpList_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    query_popLocations_allocatedIpList_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    query_popLocations_allocatedIpList_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    query_popLocations_allocatedIpList_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    query_popLocations_allocatedIpList_parser.set_defaults(func=createRequest,operation_name='query.popLocations.allocatedIpList')
+
+    query_popLocations_bgpProfile_parser = query_popLocations_subparsers.add_parser('bgpProfile', 
+            help='bgpProfile() popLocations operation', 
+            usage=get_help("query_popLocations_bgpProfile"))
+
+    query_popLocations_bgpProfile_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    query_popLocations_bgpProfile_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    query_popLocations_bgpProfile_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    query_popLocations_bgpProfile_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    query_popLocations_bgpProfile_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    query_popLocations_bgpProfile_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    query_popLocations_bgpProfile_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    query_popLocations_bgpProfile_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    query_popLocations_bgpProfile_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    query_popLocations_bgpProfile_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_popLocations_bgpProfile_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    query_popLocations_bgpProfile_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    query_popLocations_bgpProfile_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    query_popLocations_bgpProfile_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    query_popLocations_bgpProfile_parser.set_defaults(func=createRequest,operation_name='query.popLocations.bgpProfile')
+
+    query_popLocations_bgpProfileList_parser = query_popLocations_subparsers.add_parser('bgpProfileList', 
+            help='bgpProfileList() popLocations operation', 
+            usage=get_help("query_popLocations_bgpProfileList"))
+
+    query_popLocations_bgpProfileList_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    query_popLocations_bgpProfileList_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    query_popLocations_bgpProfileList_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    query_popLocations_bgpProfileList_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    query_popLocations_bgpProfileList_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    query_popLocations_bgpProfileList_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    query_popLocations_bgpProfileList_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    query_popLocations_bgpProfileList_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    query_popLocations_bgpProfileList_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    query_popLocations_bgpProfileList_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_popLocations_bgpProfileList_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    query_popLocations_bgpProfileList_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    query_popLocations_bgpProfileList_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    query_popLocations_bgpProfileList_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    query_popLocations_bgpProfileList_parser.set_defaults(func=createRequest,operation_name='query.popLocations.bgpProfileList')

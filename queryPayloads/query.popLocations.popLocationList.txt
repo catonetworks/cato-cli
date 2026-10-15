@@ -1,0 +1,20 @@
+query popLocationsPopLocationList ( $accountId:ID! $popLocationFilterInput:PopLocationFilterInput) {
+	popLocations ( accountId:$accountId ) {
+		popLocationList ( input:$popLocationFilterInput  )  {
+			items {
+				id
+				name
+				displayName
+				country {
+					id
+					name
+				}
+				isPrivate
+				cloudInterconnect {
+					taggingMethod
+					providerName
+				}
+			}
+		}
+	}	
+}

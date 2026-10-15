@@ -1,0 +1,400 @@
+
+## CATO-CLI - query.devices.csvExport:
+[Click here](https://api.catonetworks.com/documentation/#query-query.devices.csvExport) for documentation on this operation.
+
+### Usage for query.devices.csvExport:
+
+```bash
+catocli query devices csvExport -h
+
+catocli query devices csvExport <json>
+
+catocli query devices csvExport --json-file query.devices.csvExport.json
+
+catocli query devices csvExport '{"deviceCsvExportInput":{"filter":[{"category":[{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]}],"complianceState":[{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]}],"confidence":[{"eq":"LOW","in":["LOW"],"neq":"LOW","nin":["LOW"]}],"firstSeen":[{"between":["2026-01-02T15:04:05Z"],"eq":"2026-01-02T15:04:05Z","gt":"2026-01-02T15:04:05Z","gte":"2026-01-02T15:04:05Z","in":["2026-01-02T15:04:05Z"],"lt":"2026-01-02T15:04:05Z","lte":"2026-01-02T15:04:05Z","neq":"2026-01-02T15:04:05Z","nin":["2026-01-02T15:04:05Z"]}],"freeText":{"search":"string"},"hw":{"manufacturer":[{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]}],"model":[{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]}],"type":[{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]}]},"id":[{"eq":"id","in":["id1","id2"],"neq":"id","nin":["id1","id2"]}],"ipAddress":[{"between":["192.0.2.1"],"eq":"192.0.2.1","in":["192.0.2.1"],"neq":"192.0.2.1","nin":["192.0.2.1"],"nwithin":"192.0.2.0/24","within":"192.0.2.0/24"}],"isCrownJewel":[{"eq":true,"neq":true}],"isManaged":[{"eq":true,"neq":true}],"lastSeen":[{"between":["2026-01-02T15:04:05Z"],"eq":"2026-01-02T15:04:05Z","gt":"2026-01-02T15:04:05Z","gte":"2026-01-02T15:04:05Z","in":["2026-01-02T15:04:05Z"],"lt":"2026-01-02T15:04:05Z","lte":"2026-01-02T15:04:05Z","neq":"2026-01-02T15:04:05Z","nin":["2026-01-02T15:04:05Z"]}],"name":[{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]}],"network":{"networkName":[{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]}],"subnet":[{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]}]},"nic":{"macAddress":[{"eq":"02:00:00:00:00:01","in":["02:00:00:00:00:01"],"neq":"02:00:00:00:00:01","nin":["02:00:00:00:00:01"]}],"vendor":[{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]}]},"originTypes":[{"hasAll":["Unknown"],"in":["Unknown"],"nin":["Unknown"]}],"os":{"product":[{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]}],"vendor":[{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]}],"version":[{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]}]},"riskScore":[{"between":[1,2],"eq":1,"gt":1,"gte":1,"in":[1,2],"lt":1,"lte":1,"neq":1,"nin":[1,2]}],"site":[{"eq":{"by":"ID","input":"string"},"in":[{"by":"ID","input":"string"}],"neq":{"by":"ID","input":"string"},"nin":[{"by":"ID","input":"string"}]}],"user":[{"eq":{"by":"ID","input":"string"},"in":[{"by":"ID","input":"string"}],"neq":{"by":"ID","input":"string"},"nin":[{"by":"ID","input":"string"}]}]}],"timeFrame":{"from":"2026-01-02T15:04:05Z","to":"2026-01-02T15:04:05Z"}}}'
+
+catocli query devices csvExport '{
+    "deviceCsvExportInput": {
+        "filter": [
+            {
+                "category": [
+                    {
+                        "eq": "string",
+                        "in": [
+                            "string1",
+                            "string2"
+                        ],
+                        "neq": "string",
+                        "nin": [
+                            "string1",
+                            "string2"
+                        ]
+                    }
+                ],
+                "complianceState": [
+                    {
+                        "eq": "string",
+                        "in": [
+                            "string1",
+                            "string2"
+                        ],
+                        "neq": "string",
+                        "nin": [
+                            "string1",
+                            "string2"
+                        ]
+                    }
+                ],
+                "confidence": [
+                    {
+                        "eq": "LOW",
+                        "in": [
+                            "LOW"
+                        ],
+                        "neq": "LOW",
+                        "nin": [
+                            "LOW"
+                        ]
+                    }
+                ],
+                "firstSeen": [
+                    {
+                        "between": [
+                            "2026-01-02T15:04:05Z"
+                        ],
+                        "eq": "2026-01-02T15:04:05Z",
+                        "gt": "2026-01-02T15:04:05Z",
+                        "gte": "2026-01-02T15:04:05Z",
+                        "in": [
+                            "2026-01-02T15:04:05Z"
+                        ],
+                        "lt": "2026-01-02T15:04:05Z",
+                        "lte": "2026-01-02T15:04:05Z",
+                        "neq": "2026-01-02T15:04:05Z",
+                        "nin": [
+                            "2026-01-02T15:04:05Z"
+                        ]
+                    }
+                ],
+                "freeText": {
+                    "search": "string"
+                },
+                "hw": {
+                    "manufacturer": [
+                        {
+                            "eq": "string",
+                            "in": [
+                                "string1",
+                                "string2"
+                            ],
+                            "neq": "string",
+                            "nin": [
+                                "string1",
+                                "string2"
+                            ]
+                        }
+                    ],
+                    "model": [
+                        {
+                            "eq": "string",
+                            "in": [
+                                "string1",
+                                "string2"
+                            ],
+                            "neq": "string",
+                            "nin": [
+                                "string1",
+                                "string2"
+                            ]
+                        }
+                    ],
+                    "type": [
+                        {
+                            "eq": "string",
+                            "in": [
+                                "string1",
+                                "string2"
+                            ],
+                            "neq": "string",
+                            "nin": [
+                                "string1",
+                                "string2"
+                            ]
+                        }
+                    ]
+                },
+                "id": [
+                    {
+                        "eq": "id",
+                        "in": [
+                            "id1",
+                            "id2"
+                        ],
+                        "neq": "id",
+                        "nin": [
+                            "id1",
+                            "id2"
+                        ]
+                    }
+                ],
+                "ipAddress": [
+                    {
+                        "between": [
+                            "192.0.2.1"
+                        ],
+                        "eq": "192.0.2.1",
+                        "in": [
+                            "192.0.2.1"
+                        ],
+                        "neq": "192.0.2.1",
+                        "nin": [
+                            "192.0.2.1"
+                        ],
+                        "nwithin": "192.0.2.0/24",
+                        "within": "192.0.2.0/24"
+                    }
+                ],
+                "isCrownJewel": [
+                    {
+                        "eq": true,
+                        "neq": true
+                    }
+                ],
+                "isManaged": [
+                    {
+                        "eq": true,
+                        "neq": true
+                    }
+                ],
+                "lastSeen": [
+                    {
+                        "between": [
+                            "2026-01-02T15:04:05Z"
+                        ],
+                        "eq": "2026-01-02T15:04:05Z",
+                        "gt": "2026-01-02T15:04:05Z",
+                        "gte": "2026-01-02T15:04:05Z",
+                        "in": [
+                            "2026-01-02T15:04:05Z"
+                        ],
+                        "lt": "2026-01-02T15:04:05Z",
+                        "lte": "2026-01-02T15:04:05Z",
+                        "neq": "2026-01-02T15:04:05Z",
+                        "nin": [
+                            "2026-01-02T15:04:05Z"
+                        ]
+                    }
+                ],
+                "name": [
+                    {
+                        "eq": "string",
+                        "in": [
+                            "string1",
+                            "string2"
+                        ],
+                        "neq": "string",
+                        "nin": [
+                            "string1",
+                            "string2"
+                        ]
+                    }
+                ],
+                "network": {
+                    "networkName": [
+                        {
+                            "eq": "string",
+                            "in": [
+                                "string1",
+                                "string2"
+                            ],
+                            "neq": "string",
+                            "nin": [
+                                "string1",
+                                "string2"
+                            ]
+                        }
+                    ],
+                    "subnet": [
+                        {
+                            "eq": "string",
+                            "in": [
+                                "string1",
+                                "string2"
+                            ],
+                            "neq": "string",
+                            "nin": [
+                                "string1",
+                                "string2"
+                            ]
+                        }
+                    ]
+                },
+                "nic": {
+                    "macAddress": [
+                        {
+                            "eq": "02:00:00:00:00:01",
+                            "in": [
+                                "02:00:00:00:00:01"
+                            ],
+                            "neq": "02:00:00:00:00:01",
+                            "nin": [
+                                "02:00:00:00:00:01"
+                            ]
+                        }
+                    ],
+                    "vendor": [
+                        {
+                            "eq": "string",
+                            "in": [
+                                "string1",
+                                "string2"
+                            ],
+                            "neq": "string",
+                            "nin": [
+                                "string1",
+                                "string2"
+                            ]
+                        }
+                    ]
+                },
+                "originTypes": [
+                    {
+                        "hasAll": [
+                            "Unknown"
+                        ],
+                        "in": [
+                            "Unknown"
+                        ],
+                        "nin": [
+                            "Unknown"
+                        ]
+                    }
+                ],
+                "os": {
+                    "product": [
+                        {
+                            "eq": "string",
+                            "in": [
+                                "string1",
+                                "string2"
+                            ],
+                            "neq": "string",
+                            "nin": [
+                                "string1",
+                                "string2"
+                            ]
+                        }
+                    ],
+                    "vendor": [
+                        {
+                            "eq": "string",
+                            "in": [
+                                "string1",
+                                "string2"
+                            ],
+                            "neq": "string",
+                            "nin": [
+                                "string1",
+                                "string2"
+                            ]
+                        }
+                    ],
+                    "version": [
+                        {
+                            "eq": "string",
+                            "in": [
+                                "string1",
+                                "string2"
+                            ],
+                            "neq": "string",
+                            "nin": [
+                                "string1",
+                                "string2"
+                            ]
+                        }
+                    ]
+                },
+                "riskScore": [
+                    {
+                        "between": [
+                            1,
+                            2
+                        ],
+                        "eq": 1,
+                        "gt": 1,
+                        "gte": 1,
+                        "in": [
+                            1,
+                            2
+                        ],
+                        "lt": 1,
+                        "lte": 1,
+                        "neq": 1,
+                        "nin": [
+                            1,
+                            2
+                        ]
+                    }
+                ],
+                "site": [
+                    {
+                        "eq": {
+                            "by": "ID",
+                            "input": "string"
+                        },
+                        "in": [
+                            {
+                                "by": "ID",
+                                "input": "string"
+                            }
+                        ],
+                        "neq": {
+                            "by": "ID",
+                            "input": "string"
+                        },
+                        "nin": [
+                            {
+                                "by": "ID",
+                                "input": "string"
+                            }
+                        ]
+                    }
+                ],
+                "user": [
+                    {
+                        "eq": {
+                            "by": "ID",
+                            "input": "string"
+                        },
+                        "in": [
+                            {
+                                "by": "ID",
+                                "input": "string"
+                            }
+                        ],
+                        "neq": {
+                            "by": "ID",
+                            "input": "string"
+                        },
+                        "nin": [
+                            {
+                                "by": "ID",
+                                "input": "string"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "timeFrame": {
+            "from": "2026-01-02T15:04:05Z",
+            "to": "2026-01-02T15:04:05Z"
+        }
+    }
+}'
+```
+
+#### Operation Arguments for query.devices.csvExport ####
+
+`accountId` [ID] - (required) N/A
+`deviceCsvExportInput` [DeviceCsvExportInput] - (required) N/A

@@ -1,0 +1,17 @@
+query aiSecurityAgentsSession ( $accountId:ID! $aiSecurityAgentsSessionInput:AiSecurityAgentsSessionInput!) {
+	aiSecurity ( accountId:$accountId ) {
+		agents {
+			session ( input:$aiSecurityAgentsSessionInput   ) {
+				items {
+					interactionId
+					appActivityType
+					time
+					content
+				}
+				paging {
+					total
+				}
+			}
+		}
+	}	
+}

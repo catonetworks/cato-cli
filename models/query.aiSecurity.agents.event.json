@@ -1,0 +1,457 @@
+{
+    "args": {
+        "accountId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        }
+    },
+    "childOperations": {
+        "agents": {
+            "args": {},
+            "deprecationReason": null,
+            "description": "Agents queries (activity of AI agents running on your endpoints).",
+            "isDeprecated": false,
+            "name": "agents",
+            "type": {
+                "kind": "OBJECT",
+                "name": "AiSecurityAgentsQueries",
+                "ofType": null
+            }
+        },
+        "event": {
+            "args": {
+                "event___input": {
+                    "defaultValue": null,
+                    "description": null,
+                    "id_str": "event___input",
+                    "name": "input",
+                    "path": "event.input",
+                    "requestStr": "$aiSecurityAgentsEventInput:AiSecurityAgentsEventInput! ",
+                    "required": true,
+                    "responseStr": "input:$aiSecurityAgentsEventInput ",
+                    "type": {
+                        "definition": {
+                            "description": "Input for fetching a single agent event's PSI.",
+                            "enumValues": null,
+                            "fields": null,
+                            "inputFields": {
+                                "interactionId": {
+                                    "defaultValue": null,
+                                    "description": "Interaction identifier of the agent event, as returned by session.",
+                                    "id_str": "event___input___interactionId",
+                                    "name": "interactionId",
+                                    "path": "event.input.interactionId",
+                                    "requestStr": "$interactionId:ID! ",
+                                    "required": true,
+                                    "responseStr": "interactionId:$interactionId ",
+                                    "type": {
+                                        "kind": [
+                                            "NON_NULL",
+                                            "SCALAR"
+                                        ],
+                                        "name": "ID",
+                                        "non_null": false
+                                    },
+                                    "varName": "interactionId"
+                                },
+                                "sessionId": {
+                                    "defaultValue": null,
+                                    "description": "Identifier of the agent session.",
+                                    "id_str": "event___input___sessionId",
+                                    "name": "sessionId",
+                                    "path": "event.input.sessionId",
+                                    "requestStr": "$sessionId:ID! ",
+                                    "required": true,
+                                    "responseStr": "sessionId:$sessionId ",
+                                    "type": {
+                                        "kind": [
+                                            "NON_NULL",
+                                            "SCALAR"
+                                        ],
+                                        "name": "ID",
+                                        "non_null": false
+                                    },
+                                    "varName": "sessionId"
+                                }
+                            },
+                            "interfaces": null,
+                            "kind": "INPUT_OBJECT",
+                            "name": "AiSecurityAgentsEventInput",
+                            "possibleTypes": null
+                        },
+                        "indexType": "input_object",
+                        "kind": [
+                            "NON_NULL",
+                            "INPUT_OBJECT"
+                        ],
+                        "name": "AiSecurityAgentsEventInput",
+                        "non_null": false
+                    },
+                    "varName": "aiSecurityAgentsEventInput"
+                }
+            },
+            "deprecationReason": null,
+            "description": "Fetch the prompt sensitive information (PSI) of a single agent event. Content is not redacted. Returns null with a NOT_FOUND error when the session has no such event. Caller must have AiSecurityEndUsersPromptSensitive RBAC permission.",
+            "isDeprecated": false,
+            "name": "event",
+            "type": {
+                "kind": "OBJECT",
+                "name": "AiSecurityAgentsEvent",
+                "ofType": null
+            }
+        }
+    },
+    "deprecationReason": null,
+    "description": "Entry point for AI Security queries, scoped to a single account.",
+    "fieldTypes": {},
+    "isDeprecated": false,
+    "name": "aiSecurity",
+    "operationArgs": {
+        "accountId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        },
+        "aiSecurityAgentsEventInput": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "event___input",
+            "name": "input",
+            "path": "event.input",
+            "requestStr": "$aiSecurityAgentsEventInput:AiSecurityAgentsEventInput! ",
+            "required": true,
+            "responseStr": "input:$aiSecurityAgentsEventInput ",
+            "type": {
+                "definition": {
+                    "description": "Input for fetching a single agent event's PSI.",
+                    "enumValues": null,
+                    "fields": null,
+                    "inputFields": {
+                        "interactionId": {
+                            "defaultValue": null,
+                            "description": "Interaction identifier of the agent event, as returned by session.",
+                            "id_str": "event___input___interactionId",
+                            "name": "interactionId",
+                            "path": "event.input.interactionId",
+                            "requestStr": "$interactionId:ID! ",
+                            "required": true,
+                            "responseStr": "interactionId:$interactionId ",
+                            "type": {
+                                "kind": [
+                                    "NON_NULL",
+                                    "SCALAR"
+                                ],
+                                "name": "ID",
+                                "non_null": false
+                            },
+                            "varName": "interactionId"
+                        },
+                        "sessionId": {
+                            "defaultValue": null,
+                            "description": "Identifier of the agent session.",
+                            "id_str": "event___input___sessionId",
+                            "name": "sessionId",
+                            "path": "event.input.sessionId",
+                            "requestStr": "$sessionId:ID! ",
+                            "required": true,
+                            "responseStr": "sessionId:$sessionId ",
+                            "type": {
+                                "kind": [
+                                    "NON_NULL",
+                                    "SCALAR"
+                                ],
+                                "name": "ID",
+                                "non_null": false
+                            },
+                            "varName": "sessionId"
+                        }
+                    },
+                    "interfaces": null,
+                    "kind": "INPUT_OBJECT",
+                    "name": "AiSecurityAgentsEventInput",
+                    "possibleTypes": null
+                },
+                "indexType": "input_object",
+                "kind": [
+                    "NON_NULL",
+                    "INPUT_OBJECT"
+                ],
+                "name": "AiSecurityAgentsEventInput",
+                "non_null": false
+            },
+            "varName": "aiSecurityAgentsEventInput"
+        }
+    },
+    "path": "query.aiSecurity.agents.event",
+    "type": {
+        "definition": {
+            "description": "Root of the AI Security query namespace for an account.",
+            "enumValues": null,
+            "fields": {
+                "agents": {
+                    "args": {},
+                    "deprecationReason": null,
+                    "description": "Agents queries (activity of AI agents running on your endpoints).",
+                    "id_str": "agents",
+                    "isDeprecated": false,
+                    "name": "agents",
+                    "path": "agents",
+                    "requestStr": "$aiSecurityAgentsQueries:AiSecurityAgentsQueries ",
+                    "required": false,
+                    "responseStr": "agents:$aiSecurityAgentsQueries ",
+                    "type": {
+                        "definition": {
+                            "description": "Root of the Agents query namespace.",
+                            "enumValues": null,
+                            "fields": {
+                                "event": {
+                                    "args": {
+                                        "event___input": {
+                                            "defaultValue": null,
+                                            "description": null,
+                                            "id_str": "event___input",
+                                            "name": "input",
+                                            "path": "event.input",
+                                            "requestStr": "$aiSecurityAgentsEventInput:AiSecurityAgentsEventInput! ",
+                                            "required": true,
+                                            "responseStr": "input:$aiSecurityAgentsEventInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": "Input for fetching a single agent event's PSI.",
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "interactionId": {
+                                                            "defaultValue": null,
+                                                            "description": "Interaction identifier of the agent event, as returned by session.",
+                                                            "id_str": "event___input___interactionId",
+                                                            "name": "interactionId",
+                                                            "path": "event.input.interactionId",
+                                                            "requestStr": "$interactionId:ID! ",
+                                                            "required": true,
+                                                            "responseStr": "interactionId:$interactionId ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "ID",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "interactionId"
+                                                        },
+                                                        "sessionId": {
+                                                            "defaultValue": null,
+                                                            "description": "Identifier of the agent session.",
+                                                            "id_str": "event___input___sessionId",
+                                                            "name": "sessionId",
+                                                            "path": "event.input.sessionId",
+                                                            "requestStr": "$sessionId:ID! ",
+                                                            "required": true,
+                                                            "responseStr": "sessionId:$sessionId ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "ID",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "sessionId"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "AiSecurityAgentsEventInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "AiSecurityAgentsEventInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "aiSecurityAgentsEventInput"
+                                        }
+                                    },
+                                    "deprecationReason": null,
+                                    "description": "Fetch the prompt sensitive information (PSI) of a single agent event. Content is not redacted. Returns null with a NOT_FOUND error when the session has no such event. Caller must have AiSecurityEndUsersPromptSensitive RBAC permission.",
+                                    "id_str": "agents___event",
+                                    "isDeprecated": false,
+                                    "name": "event",
+                                    "path": "agents.event",
+                                    "requestStr": "$aiSecurityAgentsEvent:AiSecurityAgentsEvent ",
+                                    "required": false,
+                                    "responseStr": "event:$aiSecurityAgentsEvent ",
+                                    "type": {
+                                        "definition": {
+                                            "description": "The sensitive content of a single agent event.",
+                                            "enumValues": null,
+                                            "fields": {
+                                                "appActivityType": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "The agent activity of the event: User Prompt, LLM Response, Tool Call or Tool Message.",
+                                                    "id_str": "agents___event___appActivityType",
+                                                    "isDeprecated": false,
+                                                    "name": "appActivityType",
+                                                    "path": "agents.event.appActivityType",
+                                                    "requestStr": "$appActivityType:String! ",
+                                                    "required": true,
+                                                    "responseStr": "appActivityType:$appActivityType ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "appActivityType"
+                                                },
+                                                "content": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "The sensitive content, not redacted. Null when the event has no sensitive content, or it was not stored or could not be loaded.",
+                                                    "id_str": "agents___event___content",
+                                                    "isDeprecated": false,
+                                                    "name": "content",
+                                                    "path": "agents.event.content",
+                                                    "requestStr": "$content:String ",
+                                                    "required": false,
+                                                    "responseStr": "content:$content ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "content"
+                                                },
+                                                "interactionId": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Unique identifier of the agent interaction, the same as interaction_id on the CDP event.",
+                                                    "id_str": "agents___event___interactionId",
+                                                    "isDeprecated": false,
+                                                    "name": "interactionId",
+                                                    "path": "agents.event.interactionId",
+                                                    "requestStr": "$interactionId:ID! ",
+                                                    "required": true,
+                                                    "responseStr": "interactionId:$interactionId ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "ID",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "interactionId"
+                                                },
+                                                "time": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "UTC time of the event.",
+                                                    "id_str": "agents___event___time",
+                                                    "isDeprecated": false,
+                                                    "name": "time",
+                                                    "path": "agents.event.time",
+                                                    "requestStr": "$time:DateTime! ",
+                                                    "required": true,
+                                                    "responseStr": "time:$time ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "DateTime",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "time"
+                                                }
+                                            },
+                                            "inputFields": null,
+                                            "interfaces": {},
+                                            "kind": "OBJECT",
+                                            "name": "AiSecurityAgentsEvent",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "object",
+                                        "kind": [
+                                            "OBJECT"
+                                        ],
+                                        "name": "AiSecurityAgentsEvent",
+                                        "non_null": false
+                                    },
+                                    "varName": "aiSecurityAgentsEvent"
+                                }
+                            },
+                            "inputFields": null,
+                            "interfaces": {},
+                            "kind": "OBJECT",
+                            "name": "AiSecurityAgentsQueries",
+                            "possibleTypes": null
+                        },
+                        "indexType": "object",
+                        "kind": [
+                            "OBJECT"
+                        ],
+                        "name": "AiSecurityAgentsQueries",
+                        "non_null": false
+                    },
+                    "varName": "aiSecurityAgentsQueries"
+                }
+            },
+            "inputFields": null,
+            "interfaces": [],
+            "kind": "OBJECT",
+            "name": "AiSecurityQueries",
+            "possibleTypes": null
+        },
+        "indexType": "object",
+        "kind": [
+            "OBJECT"
+        ],
+        "name": "AiSecurityQueries",
+        "non_null": false
+    },
+    "variablesPayload": {
+        "aiSecurityAgentsEventInput": {
+            "interactionId": "id",
+            "sessionId": "id"
+        }
+    }
+}

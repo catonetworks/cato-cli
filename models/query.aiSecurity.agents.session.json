@@ -1,0 +1,699 @@
+{
+    "args": {
+        "accountId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        }
+    },
+    "childOperations": {
+        "agents": {
+            "args": {},
+            "deprecationReason": null,
+            "description": "Agents queries (activity of AI agents running on your endpoints).",
+            "isDeprecated": false,
+            "name": "agents",
+            "type": {
+                "kind": "OBJECT",
+                "name": "AiSecurityAgentsQueries",
+                "ofType": null
+            }
+        },
+        "session": {
+            "args": {
+                "session___input": {
+                    "defaultValue": null,
+                    "description": null,
+                    "id_str": "session___input",
+                    "name": "input",
+                    "path": "session.input",
+                    "requestStr": "$aiSecurityAgentsSessionInput:AiSecurityAgentsSessionInput! ",
+                    "required": true,
+                    "responseStr": "input:$aiSecurityAgentsSessionInput ",
+                    "type": {
+                        "definition": {
+                            "description": "Input for fetching an agent session's PSI.",
+                            "enumValues": null,
+                            "fields": null,
+                            "inputFields": {
+                                "paging": {
+                                    "defaultValue": "{limit: 100, from: 0}",
+                                    "description": "Pagination parameters. The limit is at most 100.",
+                                    "id_str": "session___input___paging",
+                                    "name": "paging",
+                                    "path": "session.input.paging",
+                                    "requestStr": "$pagingInput:PagingInput! ",
+                                    "required": true,
+                                    "responseStr": "paging:$pagingInput ",
+                                    "type": {
+                                        "definition": {
+                                            "description": null,
+                                            "enumValues": null,
+                                            "fields": null,
+                                            "inputFields": {
+                                                "from": {
+                                                    "defaultValue": "0",
+                                                    "description": null,
+                                                    "id_str": "session___input___paging___from",
+                                                    "name": "from",
+                                                    "path": "session.input.paging.from",
+                                                    "requestStr": "$from:Int! ",
+                                                    "required": true,
+                                                    "responseStr": "from:$from ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "Int",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "from"
+                                                },
+                                                "limit": {
+                                                    "defaultValue": "100",
+                                                    "description": null,
+                                                    "id_str": "session___input___paging___limit",
+                                                    "name": "limit",
+                                                    "path": "session.input.paging.limit",
+                                                    "requestStr": "$limit:Int! ",
+                                                    "required": true,
+                                                    "responseStr": "limit:$limit ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "Int",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "limit"
+                                                }
+                                            },
+                                            "interfaces": null,
+                                            "kind": "INPUT_OBJECT",
+                                            "name": "PagingInput",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "input_object",
+                                        "kind": [
+                                            "NON_NULL",
+                                            "INPUT_OBJECT"
+                                        ],
+                                        "name": "PagingInput",
+                                        "non_null": false
+                                    },
+                                    "varName": "pagingInput"
+                                },
+                                "sessionId": {
+                                    "defaultValue": null,
+                                    "description": "Identifier of the agent session.",
+                                    "id_str": "session___input___sessionId",
+                                    "name": "sessionId",
+                                    "path": "session.input.sessionId",
+                                    "requestStr": "$sessionId:ID! ",
+                                    "required": true,
+                                    "responseStr": "sessionId:$sessionId ",
+                                    "type": {
+                                        "kind": [
+                                            "NON_NULL",
+                                            "SCALAR"
+                                        ],
+                                        "name": "ID",
+                                        "non_null": false
+                                    },
+                                    "varName": "sessionId"
+                                }
+                            },
+                            "interfaces": null,
+                            "kind": "INPUT_OBJECT",
+                            "name": "AiSecurityAgentsSessionInput",
+                            "possibleTypes": null
+                        },
+                        "indexType": "input_object",
+                        "kind": [
+                            "NON_NULL",
+                            "INPUT_OBJECT"
+                        ],
+                        "name": "AiSecurityAgentsSessionInput",
+                        "non_null": false
+                    },
+                    "varName": "aiSecurityAgentsSessionInput"
+                }
+            },
+            "deprecationReason": null,
+            "description": "Fetch the prompt sensitive information (PSI) of an agent session, one entry per agent event, oldest first. Content is not redacted. Caller must have AiSecurityEndUsersPromptSensitive RBAC permission.",
+            "isDeprecated": false,
+            "name": "session",
+            "type": {
+                "kind": "OBJECT",
+                "name": "AiSecurityAgentsSessionPayload",
+                "ofType": null
+            }
+        }
+    },
+    "deprecationReason": null,
+    "description": "Entry point for AI Security queries, scoped to a single account.",
+    "fieldTypes": {},
+    "isDeprecated": false,
+    "name": "aiSecurity",
+    "operationArgs": {
+        "accountId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        },
+        "aiSecurityAgentsSessionInput": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "session___input",
+            "name": "input",
+            "path": "session.input",
+            "requestStr": "$aiSecurityAgentsSessionInput:AiSecurityAgentsSessionInput! ",
+            "required": true,
+            "responseStr": "input:$aiSecurityAgentsSessionInput ",
+            "type": {
+                "definition": {
+                    "description": "Input for fetching an agent session's PSI.",
+                    "enumValues": null,
+                    "fields": null,
+                    "inputFields": {
+                        "paging": {
+                            "defaultValue": "{limit: 100, from: 0}",
+                            "description": "Pagination parameters. The limit is at most 100.",
+                            "id_str": "session___input___paging",
+                            "name": "paging",
+                            "path": "session.input.paging",
+                            "requestStr": "$pagingInput:PagingInput! ",
+                            "required": true,
+                            "responseStr": "paging:$pagingInput ",
+                            "type": {
+                                "definition": {
+                                    "description": null,
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "from": {
+                                            "defaultValue": "0",
+                                            "description": null,
+                                            "id_str": "session___input___paging___from",
+                                            "name": "from",
+                                            "path": "session.input.paging.from",
+                                            "requestStr": "$from:Int! ",
+                                            "required": true,
+                                            "responseStr": "from:$from ",
+                                            "type": {
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "SCALAR"
+                                                ],
+                                                "name": "Int",
+                                                "non_null": false
+                                            },
+                                            "varName": "from"
+                                        },
+                                        "limit": {
+                                            "defaultValue": "100",
+                                            "description": null,
+                                            "id_str": "session___input___paging___limit",
+                                            "name": "limit",
+                                            "path": "session.input.paging.limit",
+                                            "requestStr": "$limit:Int! ",
+                                            "required": true,
+                                            "responseStr": "limit:$limit ",
+                                            "type": {
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "SCALAR"
+                                                ],
+                                                "name": "Int",
+                                                "non_null": false
+                                            },
+                                            "varName": "limit"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "PagingInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "NON_NULL",
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "PagingInput",
+                                "non_null": false
+                            },
+                            "varName": "pagingInput"
+                        },
+                        "sessionId": {
+                            "defaultValue": null,
+                            "description": "Identifier of the agent session.",
+                            "id_str": "session___input___sessionId",
+                            "name": "sessionId",
+                            "path": "session.input.sessionId",
+                            "requestStr": "$sessionId:ID! ",
+                            "required": true,
+                            "responseStr": "sessionId:$sessionId ",
+                            "type": {
+                                "kind": [
+                                    "NON_NULL",
+                                    "SCALAR"
+                                ],
+                                "name": "ID",
+                                "non_null": false
+                            },
+                            "varName": "sessionId"
+                        }
+                    },
+                    "interfaces": null,
+                    "kind": "INPUT_OBJECT",
+                    "name": "AiSecurityAgentsSessionInput",
+                    "possibleTypes": null
+                },
+                "indexType": "input_object",
+                "kind": [
+                    "NON_NULL",
+                    "INPUT_OBJECT"
+                ],
+                "name": "AiSecurityAgentsSessionInput",
+                "non_null": false
+            },
+            "varName": "aiSecurityAgentsSessionInput"
+        }
+    },
+    "path": "query.aiSecurity.agents.session",
+    "type": {
+        "definition": {
+            "description": "Root of the AI Security query namespace for an account.",
+            "enumValues": null,
+            "fields": {
+                "agents": {
+                    "args": {},
+                    "deprecationReason": null,
+                    "description": "Agents queries (activity of AI agents running on your endpoints).",
+                    "id_str": "agents",
+                    "isDeprecated": false,
+                    "name": "agents",
+                    "path": "agents",
+                    "requestStr": "$aiSecurityAgentsQueries:AiSecurityAgentsQueries ",
+                    "required": false,
+                    "responseStr": "agents:$aiSecurityAgentsQueries ",
+                    "type": {
+                        "definition": {
+                            "description": "Root of the Agents query namespace.",
+                            "enumValues": null,
+                            "fields": {
+                                "session": {
+                                    "args": {
+                                        "session___input": {
+                                            "defaultValue": null,
+                                            "description": null,
+                                            "id_str": "session___input",
+                                            "name": "input",
+                                            "path": "session.input",
+                                            "requestStr": "$aiSecurityAgentsSessionInput:AiSecurityAgentsSessionInput! ",
+                                            "required": true,
+                                            "responseStr": "input:$aiSecurityAgentsSessionInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": "Input for fetching an agent session's PSI.",
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "paging": {
+                                                            "defaultValue": "{limit: 100, from: 0}",
+                                                            "description": "Pagination parameters. The limit is at most 100.",
+                                                            "id_str": "session___input___paging",
+                                                            "name": "paging",
+                                                            "path": "session.input.paging",
+                                                            "requestStr": "$pagingInput:PagingInput! ",
+                                                            "required": true,
+                                                            "responseStr": "paging:$pagingInput ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": null,
+                                                                    "enumValues": null,
+                                                                    "fields": null,
+                                                                    "inputFields": {
+                                                                        "from": {
+                                                                            "defaultValue": "0",
+                                                                            "description": null,
+                                                                            "id_str": "session___input___paging___from",
+                                                                            "name": "from",
+                                                                            "path": "session.input.paging.from",
+                                                                            "requestStr": "$from:Int! ",
+                                                                            "required": true,
+                                                                            "responseStr": "from:$from ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "NON_NULL",
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "Int",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "from"
+                                                                        },
+                                                                        "limit": {
+                                                                            "defaultValue": "100",
+                                                                            "description": null,
+                                                                            "id_str": "session___input___paging___limit",
+                                                                            "name": "limit",
+                                                                            "path": "session.input.paging.limit",
+                                                                            "requestStr": "$limit:Int! ",
+                                                                            "required": true,
+                                                                            "responseStr": "limit:$limit ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "NON_NULL",
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "Int",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "limit"
+                                                                        }
+                                                                    },
+                                                                    "interfaces": null,
+                                                                    "kind": "INPUT_OBJECT",
+                                                                    "name": "PagingInput",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "input_object",
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "INPUT_OBJECT"
+                                                                ],
+                                                                "name": "PagingInput",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "pagingInput"
+                                                        },
+                                                        "sessionId": {
+                                                            "defaultValue": null,
+                                                            "description": "Identifier of the agent session.",
+                                                            "id_str": "session___input___sessionId",
+                                                            "name": "sessionId",
+                                                            "path": "session.input.sessionId",
+                                                            "requestStr": "$sessionId:ID! ",
+                                                            "required": true,
+                                                            "responseStr": "sessionId:$sessionId ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "ID",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "sessionId"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "AiSecurityAgentsSessionInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "AiSecurityAgentsSessionInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "aiSecurityAgentsSessionInput"
+                                        }
+                                    },
+                                    "deprecationReason": null,
+                                    "description": "Fetch the prompt sensitive information (PSI) of an agent session, one entry per agent event, oldest first. Content is not redacted. Caller must have AiSecurityEndUsersPromptSensitive RBAC permission.",
+                                    "id_str": "agents___session",
+                                    "isDeprecated": false,
+                                    "name": "session",
+                                    "path": "agents.session",
+                                    "requestStr": "$aiSecurityAgentsSessionPayload:AiSecurityAgentsSessionPayload ",
+                                    "required": false,
+                                    "responseStr": "session:$aiSecurityAgentsSessionPayload ",
+                                    "type": {
+                                        "definition": {
+                                            "description": "A page of an agent session's PSI.",
+                                            "enumValues": null,
+                                            "fields": {
+                                                "items": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "The agent events in this page.",
+                                                    "id_str": "agents___session___items",
+                                                    "isDeprecated": false,
+                                                    "name": "items",
+                                                    "path": "agents.session.items",
+                                                    "requestStr": "$aiSecurityAgentsEvent:[AiSecurityAgentsEvent]! ",
+                                                    "required": true,
+                                                    "responseStr": "items:$aiSecurityAgentsEvent ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": "The sensitive content of a single agent event.",
+                                                            "enumValues": null,
+                                                            "fields": {
+                                                                "appActivityType": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "The agent activity of the event: User Prompt, LLM Response, Tool Call or Tool Message.",
+                                                                    "id_str": "agents___session___items___appActivityType",
+                                                                    "isDeprecated": false,
+                                                                    "name": "appActivityType",
+                                                                    "path": "agents.session.items.appActivityType",
+                                                                    "requestStr": "$appActivityType:String! ",
+                                                                    "required": true,
+                                                                    "responseStr": "appActivityType:$appActivityType ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "String",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "appActivityType"
+                                                                },
+                                                                "content": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "The sensitive content, not redacted. Null when the event has no sensitive content, or it was not stored or could not be loaded.",
+                                                                    "id_str": "agents___session___items___content",
+                                                                    "isDeprecated": false,
+                                                                    "name": "content",
+                                                                    "path": "agents.session.items.content",
+                                                                    "requestStr": "$content:String ",
+                                                                    "required": false,
+                                                                    "responseStr": "content:$content ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "String",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "content"
+                                                                },
+                                                                "interactionId": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Unique identifier of the agent interaction, the same as interaction_id on the CDP event.",
+                                                                    "id_str": "agents___session___items___interactionId",
+                                                                    "isDeprecated": false,
+                                                                    "name": "interactionId",
+                                                                    "path": "agents.session.items.interactionId",
+                                                                    "requestStr": "$interactionId:ID! ",
+                                                                    "required": true,
+                                                                    "responseStr": "interactionId:$interactionId ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "ID",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "interactionId"
+                                                                },
+                                                                "time": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "UTC time of the event.",
+                                                                    "id_str": "agents___session___items___time",
+                                                                    "isDeprecated": false,
+                                                                    "name": "time",
+                                                                    "path": "agents.session.items.time",
+                                                                    "requestStr": "$time:DateTime! ",
+                                                                    "required": true,
+                                                                    "responseStr": "time:$time ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "DateTime",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "time"
+                                                                }
+                                                            },
+                                                            "inputFields": null,
+                                                            "interfaces": {},
+                                                            "kind": "OBJECT",
+                                                            "name": "AiSecurityAgentsEvent",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "object",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "LIST",
+                                                            "NON_NULL",
+                                                            "OBJECT"
+                                                        ],
+                                                        "name": "AiSecurityAgentsEvent",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "aiSecurityAgentsEvent"
+                                                },
+                                                "paging": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Pagination metadata.",
+                                                    "id_str": "agents___session___paging",
+                                                    "isDeprecated": false,
+                                                    "name": "paging",
+                                                    "path": "agents.session.paging",
+                                                    "requestStr": "$pageInfo:PageInfo! ",
+                                                    "required": true,
+                                                    "responseStr": "paging:$pageInfo ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": null,
+                                                            "enumValues": null,
+                                                            "fields": {
+                                                                "total": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "id_str": "agents___session___paging___total",
+                                                                    "isDeprecated": false,
+                                                                    "name": "total",
+                                                                    "path": "agents.session.paging.total",
+                                                                    "requestStr": "$total:Int! ",
+                                                                    "required": true,
+                                                                    "responseStr": "total:$total ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "Int",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "total"
+                                                                }
+                                                            },
+                                                            "inputFields": null,
+                                                            "interfaces": {},
+                                                            "kind": "OBJECT",
+                                                            "name": "PageInfo",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "object",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "OBJECT"
+                                                        ],
+                                                        "name": "PageInfo",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "pageInfo"
+                                                }
+                                            },
+                                            "inputFields": null,
+                                            "interfaces": {},
+                                            "kind": "OBJECT",
+                                            "name": "AiSecurityAgentsSessionPayload",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "object",
+                                        "kind": [
+                                            "OBJECT"
+                                        ],
+                                        "name": "AiSecurityAgentsSessionPayload",
+                                        "non_null": false
+                                    },
+                                    "varName": "aiSecurityAgentsSessionPayload"
+                                }
+                            },
+                            "inputFields": null,
+                            "interfaces": {},
+                            "kind": "OBJECT",
+                            "name": "AiSecurityAgentsQueries",
+                            "possibleTypes": null
+                        },
+                        "indexType": "object",
+                        "kind": [
+                            "OBJECT"
+                        ],
+                        "name": "AiSecurityAgentsQueries",
+                        "non_null": false
+                    },
+                    "varName": "aiSecurityAgentsQueries"
+                }
+            },
+            "inputFields": null,
+            "interfaces": [],
+            "kind": "OBJECT",
+            "name": "AiSecurityQueries",
+            "possibleTypes": null
+        },
+        "indexType": "object",
+        "kind": [
+            "OBJECT"
+        ],
+        "name": "AiSecurityQueries",
+        "non_null": false
+    },
+    "variablesPayload": {
+        "aiSecurityAgentsSessionInput": {
+            "paging": {
+                "from": 1,
+                "limit": 1
+            },
+            "sessionId": "id"
+        }
+    }
+}

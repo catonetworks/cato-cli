@@ -1,0 +1,908 @@
+{
+    "args": {
+        "accountId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        }
+    },
+    "childOperations": {
+        "integration": {
+            "args": {},
+            "deprecationReason": null,
+            "description": null,
+            "isDeprecated": false,
+            "name": "integration",
+            "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                    "kind": "OBJECT",
+                    "name": "IntegrationQueries",
+                    "ofType": null
+                }
+            }
+        },
+        "webhookList": {
+            "args": {},
+            "deprecationReason": null,
+            "description": "Retrieves all webhooks configured on the account.",
+            "isDeprecated": false,
+            "name": "webhookList",
+            "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                    "kind": "OBJECT",
+                    "name": "WebhookListPayload",
+                    "ofType": null
+                }
+            }
+        }
+    },
+    "deprecationReason": null,
+    "description": null,
+    "fieldTypes": {},
+    "isDeprecated": false,
+    "name": "notification",
+    "operationArgs": {
+        "accountId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        }
+    },
+    "path": "query.notification.integration.webhookList",
+    "type": {
+        "definition": {
+            "description": null,
+            "enumValues": null,
+            "fields": {
+                "integration": {
+                    "args": {},
+                    "deprecationReason": null,
+                    "description": null,
+                    "id_str": "integration",
+                    "isDeprecated": false,
+                    "name": "integration",
+                    "path": "integration",
+                    "requestStr": "$integrationQueries:IntegrationQueries! ",
+                    "required": true,
+                    "responseStr": "integration:$integrationQueries ",
+                    "type": {
+                        "definition": {
+                            "description": null,
+                            "enumValues": null,
+                            "fields": {
+                                "webhookList": {
+                                    "args": {},
+                                    "deprecationReason": null,
+                                    "description": "Retrieves all webhooks configured on the account.",
+                                    "id_str": "integration___webhookList",
+                                    "isDeprecated": false,
+                                    "name": "webhookList",
+                                    "path": "integration.webhookList",
+                                    "requestStr": "$webhookListPayload:WebhookListPayload! ",
+                                    "required": true,
+                                    "responseStr": "webhookList:$webhookListPayload ",
+                                    "type": {
+                                        "definition": {
+                                            "description": "Represents the response payload for a list of webhook integrations.",
+                                            "enumValues": null,
+                                            "fields": {
+                                                "items": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "List of webhook integrations configured for the account.",
+                                                    "id_str": "integration___webhookList___items",
+                                                    "isDeprecated": false,
+                                                    "name": "items",
+                                                    "path": "integration.webhookList.items",
+                                                    "requestStr": "$webhook:[Webhook]! ",
+                                                    "required": true,
+                                                    "responseStr": "items:$webhook ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": "Defines the structure of a webhook integration used to\nsend notifications to third-party services.",
+                                                            "enumValues": null,
+                                                            "fields": {
+                                                                "auth": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Authentication configuration for the webhook.",
+                                                                    "id_str": "integration___webhookList___items___auth",
+                                                                    "isDeprecated": false,
+                                                                    "name": "auth",
+                                                                    "path": "integration.webhookList.items.auth",
+                                                                    "requestStr": "$authInterface:AuthInterface! ",
+                                                                    "required": true,
+                                                                    "responseStr": "auth:$authInterface ",
+                                                                    "type": {
+                                                                        "definition": {
+                                                                            "description": null,
+                                                                            "enumValues": null,
+                                                                            "fields": {
+                                                                                "authType": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "id_str": "integration___webhookList___items___auth___authType",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "authType",
+                                                                                    "path": "integration.webhookList.items.auth.authType",
+                                                                                    "requestStr": "$authType:AuthType! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "authType:$authType ",
+                                                                                    "type": {
+                                                                                        "definition": {
+                                                                                            "description": null,
+                                                                                            "enumValues": [
+                                                                                                {
+                                                                                                    "deprecationReason": null,
+                                                                                                    "description": null,
+                                                                                                    "isDeprecated": false,
+                                                                                                    "name": "BEARER_TOKEN"
+                                                                                                },
+                                                                                                {
+                                                                                                    "deprecationReason": null,
+                                                                                                    "description": null,
+                                                                                                    "isDeprecated": false,
+                                                                                                    "name": "BASIC_AUTH"
+                                                                                                },
+                                                                                                {
+                                                                                                    "deprecationReason": null,
+                                                                                                    "description": null,
+                                                                                                    "isDeprecated": false,
+                                                                                                    "name": "CUSTOM_HEADER"
+                                                                                                },
+                                                                                                {
+                                                                                                    "deprecationReason": null,
+                                                                                                    "description": null,
+                                                                                                    "isDeprecated": false,
+                                                                                                    "name": "CUSTOM_HEADERS"
+                                                                                                },
+                                                                                                {
+                                                                                                    "deprecationReason": null,
+                                                                                                    "description": null,
+                                                                                                    "isDeprecated": false,
+                                                                                                    "name": "NO_AUTH"
+                                                                                                }
+                                                                                            ],
+                                                                                            "fields": null,
+                                                                                            "inputFields": null,
+                                                                                            "interfaces": null,
+                                                                                            "kind": "ENUM",
+                                                                                            "name": "AuthType",
+                                                                                            "possibleTypes": null
+                                                                                        },
+                                                                                        "indexType": "enum",
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "ENUM"
+                                                                                        ],
+                                                                                        "name": "AuthType",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "authType"
+                                                                                }
+                                                                            },
+                                                                            "inputFields": null,
+                                                                            "interfaces": [],
+                                                                            "kind": "INTERFACE",
+                                                                            "name": "AuthInterface",
+                                                                            "possibleTypes": {
+                                                                                "BasicAuth": {
+                                                                                    "description": null,
+                                                                                    "enumValues": null,
+                                                                                    "fields": {
+                                                                                        "username": {
+                                                                                            "args": {},
+                                                                                            "deprecationReason": null,
+                                                                                            "description": null,
+                                                                                            "id_str": "integration___webhookList___items___auth___BasicAuth___username",
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "username",
+                                                                                            "path": "integration.webhookList.items.auth.BasicAuth.username",
+                                                                                            "requestStr": "$username:String! ",
+                                                                                            "required": true,
+                                                                                            "responseStr": "username:$username ",
+                                                                                            "type": {
+                                                                                                "kind": [
+                                                                                                    "NON_NULL",
+                                                                                                    "SCALAR"
+                                                                                                ],
+                                                                                                "name": "String",
+                                                                                                "non_null": false
+                                                                                            },
+                                                                                            "varName": "username"
+                                                                                        }
+                                                                                    },
+                                                                                    "inputFields": null,
+                                                                                    "interfaces": {},
+                                                                                    "kind": "OBJECT",
+                                                                                    "name": "BasicAuth",
+                                                                                    "possibleTypes": null
+                                                                                },
+                                                                                "BearerTokenAuth": {
+                                                                                    "description": null,
+                                                                                    "enumValues": null,
+                                                                                    "fields": {},
+                                                                                    "inputFields": null,
+                                                                                    "interfaces": {},
+                                                                                    "kind": "OBJECT",
+                                                                                    "name": "BearerTokenAuth",
+                                                                                    "possibleTypes": null
+                                                                                },
+                                                                                "CustomHeaderAuth": {
+                                                                                    "description": null,
+                                                                                    "enumValues": null,
+                                                                                    "fields": {
+                                                                                        "name": {
+                                                                                            "args": {},
+                                                                                            "deprecationReason": null,
+                                                                                            "description": null,
+                                                                                            "id_str": "integration___webhookList___items___auth___CustomHeaderAuth___name",
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "name",
+                                                                                            "path": "integration.webhookList.items.auth.CustomHeaderAuth.name",
+                                                                                            "requestStr": "$name:String! ",
+                                                                                            "required": true,
+                                                                                            "responseStr": "name:$name ",
+                                                                                            "type": {
+                                                                                                "kind": [
+                                                                                                    "NON_NULL",
+                                                                                                    "SCALAR"
+                                                                                                ],
+                                                                                                "name": "String",
+                                                                                                "non_null": false
+                                                                                            },
+                                                                                            "varName": "name"
+                                                                                        }
+                                                                                    },
+                                                                                    "inputFields": null,
+                                                                                    "interfaces": {},
+                                                                                    "kind": "OBJECT",
+                                                                                    "name": "CustomHeaderAuth",
+                                                                                    "possibleTypes": null
+                                                                                },
+                                                                                "CustomHeadersAuth": {
+                                                                                    "description": null,
+                                                                                    "enumValues": null,
+                                                                                    "fields": {
+                                                                                        "plainHeaders": {
+                                                                                            "args": {},
+                                                                                            "deprecationReason": null,
+                                                                                            "description": null,
+                                                                                            "id_str": "integration___webhookList___items___auth___CustomHeadersAuth___plainHeaders",
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "plainHeaders",
+                                                                                            "path": "integration.webhookList.items.auth.CustomHeadersAuth.plainHeaders",
+                                                                                            "requestStr": "$plainHeaderEntry:[PlainHeaderEntry]! ",
+                                                                                            "required": true,
+                                                                                            "responseStr": "plainHeaders:$plainHeaderEntry ",
+                                                                                            "type": {
+                                                                                                "definition": {
+                                                                                                    "description": null,
+                                                                                                    "enumValues": null,
+                                                                                                    "fields": {
+                                                                                                        "name": {
+                                                                                                            "args": {},
+                                                                                                            "deprecationReason": null,
+                                                                                                            "description": null,
+                                                                                                            "id_str": "integration___webhookList___items___auth___CustomHeadersAuth___plainHeaders___name",
+                                                                                                            "isDeprecated": false,
+                                                                                                            "name": "name",
+                                                                                                            "path": "integration.webhookList.items.auth.CustomHeadersAuth.plainHeaders.name",
+                                                                                                            "requestStr": "$name:String! ",
+                                                                                                            "required": true,
+                                                                                                            "responseStr": "name:$name ",
+                                                                                                            "type": {
+                                                                                                                "kind": [
+                                                                                                                    "NON_NULL",
+                                                                                                                    "SCALAR"
+                                                                                                                ],
+                                                                                                                "name": "String",
+                                                                                                                "non_null": false
+                                                                                                            },
+                                                                                                            "varName": "name"
+                                                                                                        },
+                                                                                                        "value": {
+                                                                                                            "args": {},
+                                                                                                            "deprecationReason": null,
+                                                                                                            "description": null,
+                                                                                                            "id_str": "integration___webhookList___items___auth___CustomHeadersAuth___plainHeaders___value",
+                                                                                                            "isDeprecated": false,
+                                                                                                            "name": "value",
+                                                                                                            "path": "integration.webhookList.items.auth.CustomHeadersAuth.plainHeaders.value",
+                                                                                                            "requestStr": "$value:String! ",
+                                                                                                            "required": true,
+                                                                                                            "responseStr": "value:$value ",
+                                                                                                            "type": {
+                                                                                                                "kind": [
+                                                                                                                    "NON_NULL",
+                                                                                                                    "SCALAR"
+                                                                                                                ],
+                                                                                                                "name": "String",
+                                                                                                                "non_null": false
+                                                                                                            },
+                                                                                                            "varName": "value"
+                                                                                                        }
+                                                                                                    },
+                                                                                                    "inputFields": null,
+                                                                                                    "interfaces": {},
+                                                                                                    "kind": "OBJECT",
+                                                                                                    "name": "PlainHeaderEntry",
+                                                                                                    "possibleTypes": null
+                                                                                                },
+                                                                                                "indexType": "object",
+                                                                                                "kind": [
+                                                                                                    "NON_NULL",
+                                                                                                    "LIST",
+                                                                                                    "NON_NULL",
+                                                                                                    "OBJECT"
+                                                                                                ],
+                                                                                                "name": "PlainHeaderEntry",
+                                                                                                "non_null": false
+                                                                                            },
+                                                                                            "varName": "plainHeaderEntry"
+                                                                                        },
+                                                                                        "secretHeaders": {
+                                                                                            "args": {},
+                                                                                            "deprecationReason": null,
+                                                                                            "description": null,
+                                                                                            "id_str": "integration___webhookList___items___auth___CustomHeadersAuth___secretHeaders",
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "secretHeaders",
+                                                                                            "path": "integration.webhookList.items.auth.CustomHeadersAuth.secretHeaders",
+                                                                                            "requestStr": "$secretHeaderEntry:[SecretHeaderEntry]! ",
+                                                                                            "required": true,
+                                                                                            "responseStr": "secretHeaders:$secretHeaderEntry ",
+                                                                                            "type": {
+                                                                                                "definition": {
+                                                                                                    "description": null,
+                                                                                                    "enumValues": null,
+                                                                                                    "fields": {
+                                                                                                        "name": {
+                                                                                                            "args": {},
+                                                                                                            "deprecationReason": null,
+                                                                                                            "description": null,
+                                                                                                            "id_str": "integration___webhookList___items___auth___CustomHeadersAuth___secretHeaders___name",
+                                                                                                            "isDeprecated": false,
+                                                                                                            "name": "name",
+                                                                                                            "path": "integration.webhookList.items.auth.CustomHeadersAuth.secretHeaders.name",
+                                                                                                            "requestStr": "$name:String! ",
+                                                                                                            "required": true,
+                                                                                                            "responseStr": "name:$name ",
+                                                                                                            "type": {
+                                                                                                                "kind": [
+                                                                                                                    "NON_NULL",
+                                                                                                                    "SCALAR"
+                                                                                                                ],
+                                                                                                                "name": "String",
+                                                                                                                "non_null": false
+                                                                                                            },
+                                                                                                            "varName": "name"
+                                                                                                        }
+                                                                                                    },
+                                                                                                    "inputFields": null,
+                                                                                                    "interfaces": {},
+                                                                                                    "kind": "OBJECT",
+                                                                                                    "name": "SecretHeaderEntry",
+                                                                                                    "possibleTypes": null
+                                                                                                },
+                                                                                                "indexType": "object",
+                                                                                                "kind": [
+                                                                                                    "NON_NULL",
+                                                                                                    "LIST",
+                                                                                                    "NON_NULL",
+                                                                                                    "OBJECT"
+                                                                                                ],
+                                                                                                "name": "SecretHeaderEntry",
+                                                                                                "non_null": false
+                                                                                            },
+                                                                                            "varName": "secretHeaderEntry"
+                                                                                        }
+                                                                                    },
+                                                                                    "inputFields": null,
+                                                                                    "interfaces": {},
+                                                                                    "kind": "OBJECT",
+                                                                                    "name": "CustomHeadersAuth",
+                                                                                    "possibleTypes": null
+                                                                                },
+                                                                                "NoAuth": {
+                                                                                    "description": null,
+                                                                                    "enumValues": null,
+                                                                                    "fields": {},
+                                                                                    "inputFields": null,
+                                                                                    "interfaces": {},
+                                                                                    "kind": "OBJECT",
+                                                                                    "name": "NoAuth",
+                                                                                    "possibleTypes": null
+                                                                                }
+                                                                            }
+                                                                        },
+                                                                        "indexType": "interface",
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "INTERFACE"
+                                                                        ],
+                                                                        "name": "AuthInterface",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "authInterface"
+                                                                },
+                                                                "body": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "JSON template used to structure the webhook request body.",
+                                                                    "id_str": "integration___webhookList___items___body",
+                                                                    "isDeprecated": false,
+                                                                    "name": "body",
+                                                                    "path": "integration.webhookList.items.body",
+                                                                    "requestStr": "$body:String! ",
+                                                                    "required": true,
+                                                                    "responseStr": "body:$body ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "String",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "body"
+                                                                },
+                                                                "enabled": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Indicates whether the webhook is currently enabled.",
+                                                                    "id_str": "integration___webhookList___items___enabled",
+                                                                    "isDeprecated": false,
+                                                                    "name": "enabled",
+                                                                    "path": "integration.webhookList.items.enabled",
+                                                                    "requestStr": "$enabled:Boolean! ",
+                                                                    "required": true,
+                                                                    "responseStr": "enabled:$enabled ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "Boolean",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "enabled"
+                                                                },
+                                                                "header": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Optional custom headers sent with the webhook request.",
+                                                                    "id_str": "integration___webhookList___items___header",
+                                                                    "isDeprecated": false,
+                                                                    "name": "header",
+                                                                    "path": "integration.webhookList.items.header",
+                                                                    "requestStr": "$httpHeaderNameValue:[HttpHeaderNameValue]! ",
+                                                                    "required": true,
+                                                                    "responseStr": "header:$httpHeaderNameValue ",
+                                                                    "type": {
+                                                                        "definition": {
+                                                                            "description": null,
+                                                                            "enumValues": null,
+                                                                            "fields": {
+                                                                                "name": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "id_str": "integration___webhookList___items___header___name",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "name",
+                                                                                    "path": "integration.webhookList.items.header.name",
+                                                                                    "requestStr": "$name:HttpHeaderName! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "name:$name ",
+                                                                                    "type": {
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "SCALAR"
+                                                                                        ],
+                                                                                        "name": "HttpHeaderName",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "name"
+                                                                                },
+                                                                                "value": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "id_str": "integration___webhookList___items___header___value",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "value",
+                                                                                    "path": "integration.webhookList.items.header.value",
+                                                                                    "requestStr": "$value:HttpHeaderValue! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "value:$value ",
+                                                                                    "type": {
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "SCALAR"
+                                                                                        ],
+                                                                                        "name": "HttpHeaderValue",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "value"
+                                                                                }
+                                                                            },
+                                                                            "inputFields": null,
+                                                                            "interfaces": {},
+                                                                            "kind": "OBJECT",
+                                                                            "name": "HttpHeaderNameValue",
+                                                                            "possibleTypes": null
+                                                                        },
+                                                                        "indexType": "object",
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "LIST",
+                                                                            "NON_NULL",
+                                                                            "OBJECT"
+                                                                        ],
+                                                                        "name": "HttpHeaderNameValue",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "httpHeaderNameValue"
+                                                                },
+                                                                "id": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Unique identifier of the webhook integration.",
+                                                                    "id_str": "integration___webhookList___items___id",
+                                                                    "isDeprecated": false,
+                                                                    "name": "id",
+                                                                    "path": "integration.webhookList.items.id",
+                                                                    "requestStr": "$id:ID! ",
+                                                                    "required": true,
+                                                                    "responseStr": "id:$id ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "ID",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "id"
+                                                                },
+                                                                "name": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Display name of the webhook integration.",
+                                                                    "id_str": "integration___webhookList___items___name",
+                                                                    "isDeprecated": false,
+                                                                    "name": "name",
+                                                                    "path": "integration.webhookList.items.name",
+                                                                    "requestStr": "$name:String! ",
+                                                                    "required": true,
+                                                                    "responseStr": "name:$name ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "String",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "name"
+                                                                },
+                                                                "relatedWebhookId": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Related webhook that provides the Correlation ID used for updates",
+                                                                    "id_str": "integration___webhookList___items___relatedWebhookId",
+                                                                    "isDeprecated": false,
+                                                                    "name": "relatedWebhookId",
+                                                                    "path": "integration.webhookList.items.relatedWebhookId",
+                                                                    "requestStr": "$relatedWebhookId:ID ",
+                                                                    "required": false,
+                                                                    "responseStr": "relatedWebhookId:$relatedWebhookId ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "ID",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "relatedWebhookId"
+                                                                },
+                                                                "requestMethod": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "HTTP method used when sending the webhook request (e.g., POST, PUT).",
+                                                                    "id_str": "integration___webhookList___items___requestMethod",
+                                                                    "isDeprecated": false,
+                                                                    "name": "requestMethod",
+                                                                    "path": "integration.webhookList.items.requestMethod",
+                                                                    "requestStr": "$requestMethod:WebhookRequestMethod! ",
+                                                                    "required": true,
+                                                                    "responseStr": "requestMethod:$requestMethod ",
+                                                                    "type": {
+                                                                        "definition": {
+                                                                            "description": null,
+                                                                            "enumValues": [
+                                                                                {
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "POST"
+                                                                                },
+                                                                                {
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "PUT"
+                                                                                }
+                                                                            ],
+                                                                            "fields": null,
+                                                                            "inputFields": null,
+                                                                            "interfaces": null,
+                                                                            "kind": "ENUM",
+                                                                            "name": "WebhookRequestMethod",
+                                                                            "possibleTypes": null
+                                                                        },
+                                                                        "indexType": "enum",
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "ENUM"
+                                                                        ],
+                                                                        "name": "WebhookRequestMethod",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "requestMethod"
+                                                                },
+                                                                "responseMapping": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Defines JSON path mappings used to extract values from the webhook response payload.\nAt present, only a single mapping is supported, with the key \"correlationId\".\nThe value must be a valid JSON path pointing to the field in the response payload that represents the correlation identifier (for example, result.sys_id).",
+                                                                    "id_str": "integration___webhookList___items___responseMapping",
+                                                                    "isDeprecated": false,
+                                                                    "name": "responseMapping",
+                                                                    "path": "integration.webhookList.items.responseMapping",
+                                                                    "requestStr": "$webhookResponseMapEntry:[WebhookResponseMapEntry]! ",
+                                                                    "required": true,
+                                                                    "responseStr": "responseMapping:$webhookResponseMapEntry ",
+                                                                    "type": {
+                                                                        "definition": {
+                                                                            "description": null,
+                                                                            "enumValues": null,
+                                                                            "fields": {
+                                                                                "key": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "id_str": "integration___webhookList___items___responseMapping___key",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "key",
+                                                                                    "path": "integration.webhookList.items.responseMapping.key",
+                                                                                    "requestStr": "$key:String! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "key:$key ",
+                                                                                    "type": {
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "SCALAR"
+                                                                                        ],
+                                                                                        "name": "String",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "key"
+                                                                                },
+                                                                                "value": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "id_str": "integration___webhookList___items___responseMapping___value",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "value",
+                                                                                    "path": "integration.webhookList.items.responseMapping.value",
+                                                                                    "requestStr": "$value:String! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "value:$value ",
+                                                                                    "type": {
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "SCALAR"
+                                                                                        ],
+                                                                                        "name": "String",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "value"
+                                                                                }
+                                                                            },
+                                                                            "inputFields": null,
+                                                                            "interfaces": {},
+                                                                            "kind": "OBJECT",
+                                                                            "name": "WebhookResponseMapEntry",
+                                                                            "possibleTypes": null
+                                                                        },
+                                                                        "indexType": "object",
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "LIST",
+                                                                            "NON_NULL",
+                                                                            "OBJECT"
+                                                                        ],
+                                                                        "name": "WebhookResponseMapEntry",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "webhookResponseMapEntry"
+                                                                },
+                                                                "url": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Target URL where the webhook sends requests.",
+                                                                    "id_str": "integration___webhookList___items___url",
+                                                                    "isDeprecated": false,
+                                                                    "name": "url",
+                                                                    "path": "integration.webhookList.items.url",
+                                                                    "requestStr": "$url:Url! ",
+                                                                    "required": true,
+                                                                    "responseStr": "url:$url ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "Url",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "url"
+                                                                }
+                                                            },
+                                                            "inputFields": null,
+                                                            "interfaces": {},
+                                                            "kind": "OBJECT",
+                                                            "name": "Webhook",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "object",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "LIST",
+                                                            "NON_NULL",
+                                                            "OBJECT"
+                                                        ],
+                                                        "name": "Webhook",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "webhook"
+                                                },
+                                                "paging": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Pagination metadata for the webhook list.",
+                                                    "id_str": "integration___webhookList___paging",
+                                                    "isDeprecated": false,
+                                                    "name": "paging",
+                                                    "path": "integration.webhookList.paging",
+                                                    "requestStr": "$pageInfo:PageInfo! ",
+                                                    "required": true,
+                                                    "responseStr": "paging:$pageInfo ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": null,
+                                                            "enumValues": null,
+                                                            "fields": {
+                                                                "total": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "id_str": "integration___webhookList___paging___total",
+                                                                    "isDeprecated": false,
+                                                                    "name": "total",
+                                                                    "path": "integration.webhookList.paging.total",
+                                                                    "requestStr": "$total:Int! ",
+                                                                    "required": true,
+                                                                    "responseStr": "total:$total ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "Int",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "total"
+                                                                }
+                                                            },
+                                                            "inputFields": null,
+                                                            "interfaces": {},
+                                                            "kind": "OBJECT",
+                                                            "name": "PageInfo",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "object",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "OBJECT"
+                                                        ],
+                                                        "name": "PageInfo",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "pageInfo"
+                                                }
+                                            },
+                                            "inputFields": null,
+                                            "interfaces": {},
+                                            "kind": "OBJECT",
+                                            "name": "WebhookListPayload",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "object",
+                                        "kind": [
+                                            "NON_NULL",
+                                            "OBJECT"
+                                        ],
+                                        "name": "WebhookListPayload",
+                                        "non_null": false
+                                    },
+                                    "varName": "webhookListPayload"
+                                }
+                            },
+                            "inputFields": null,
+                            "interfaces": {},
+                            "kind": "OBJECT",
+                            "name": "IntegrationQueries",
+                            "possibleTypes": null
+                        },
+                        "indexType": "object",
+                        "kind": [
+                            "NON_NULL",
+                            "OBJECT"
+                        ],
+                        "name": "IntegrationQueries",
+                        "non_null": false
+                    },
+                    "varName": "integrationQueries"
+                }
+            },
+            "inputFields": null,
+            "interfaces": [],
+            "kind": "OBJECT",
+            "name": "NotificationSubscriptionQueries",
+            "possibleTypes": null
+        },
+        "indexType": "object",
+        "kind": [
+            "OBJECT"
+        ],
+        "name": "NotificationSubscriptionQueries",
+        "non_null": false
+    },
+    "variablesPayload": {}
+}

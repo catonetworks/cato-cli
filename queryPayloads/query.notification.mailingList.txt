@@ -1,0 +1,21 @@
+query notificationMailingList ( $accountId:ID! $mailingListRefInput:MailingListRefInput!) {
+	notification ( accountId:$accountId ) {
+		mailingList ( input:$mailingListRefInput  )  {
+			id
+			name
+			type
+			address
+			admin {
+				id
+				name
+			}
+			audit {
+				updatedTime
+				updatedBy {
+					id
+					name
+				}
+			}
+		}
+	}	
+}

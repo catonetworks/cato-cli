@@ -1,0 +1,136 @@
+query devicesList ( $accountId:ID! $deviceV2Input:DeviceV2Input) {
+	devices ( accountId:$accountId ) {
+		list ( input:$deviceV2Input  )  {
+			device {
+				id
+				site {
+					id
+					name
+				}
+				user {
+					id
+					name
+				}
+				name
+				firstSeen
+				lastSeen
+				ip
+				ipAddress
+				category
+				riskScore
+				nic {
+					macAddress
+					ip
+					site {
+						id
+						name
+					}
+					network {
+						__typename
+						... on SiteNetworkSubnetRef {
+							id
+							name
+						}
+						... on GlobalRangeRef {
+							id
+							name
+						}
+						... on GlobalIpRangeRef {
+							id
+							name
+						}
+						... on FloatingSubnetRef {
+							id
+							name
+						}
+					}
+
+					vendor
+				}
+				os {
+					product
+					vendor
+					version
+				}
+				hw {
+					type
+					model
+					manufacturer
+				}
+				originTypes
+				isManaged
+				network {
+					subnet
+					networkName
+				}
+				networkInfo {
+					__typename
+					... on SiteNetworkSubnetRef {
+						id
+						name
+					}
+					... on GlobalRangeRef {
+						id
+						name
+					}
+					... on GlobalIpRangeRef {
+						id
+						name
+					}
+					... on FloatingSubnetRef {
+						id
+						name
+					}
+				}
+				connectionProfile {
+					destApps
+					destDomains
+					destHosts
+					directions
+				}
+				confidence
+				complianceState
+				isCrownJewel
+				crownJewelSource
+				researchReasonTypes
+				customerReasonType
+				nics {
+					macAddress
+					ip
+					site {
+						id
+						name
+					}
+					network {
+						__typename
+						... on SiteNetworkSubnetRef {
+							id
+							name
+						}
+						... on GlobalRangeRef {
+							id
+							name
+						}
+						... on GlobalIpRangeRef {
+							id
+							name
+						}
+						... on FloatingSubnetRef {
+							id
+							name
+						}
+					}
+
+					vendor
+				}
+				groups {
+					id
+					name
+				}
+			}
+			paging {
+				total
+			}
+		}
+	}	
+}

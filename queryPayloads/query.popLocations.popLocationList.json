@@ -1,0 +1,86 @@
+{
+    "operationName": "popLocationsPopLocationList",
+    "query": "query popLocationsPopLocationList ( $accountId:ID! $popLocationFilterInput:PopLocationFilterInput) {\n\tpopLocations ( accountId:$accountId ) {\n\t\tpopLocationList ( input:$popLocationFilterInput  )  {\n\t\t\titems {\n\t\t\t\tid\n\t\t\t\tname\n\t\t\t\tdisplayName\n\t\t\t\tcountry {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t}\n\t\t\t\tisPrivate\n\t\t\t\tcloudInterconnect {\n\t\t\t\t\ttaggingMethod\n\t\t\t\t\tproviderName\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\t\n}",
+    "variables": {
+        "popLocationFilterInput": {
+            "country": {
+                "eq": {
+                    "by": "ID",
+                    "input": "string"
+                },
+                "in": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ],
+                "neq": {
+                    "by": "ID",
+                    "input": "string"
+                },
+                "nin": [
+                    {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                ]
+            },
+            "id": {
+                "eq": "id",
+                "in": [
+                    "id1",
+                    "id2"
+                ],
+                "neq": "id",
+                "nin": [
+                    "id1",
+                    "id2"
+                ]
+            },
+            "interconnectTagging": {
+                "taggingMethod": {
+                    "eq": "DOT1Q",
+                    "in": [
+                        "DOT1Q"
+                    ],
+                    "neq": "DOT1Q",
+                    "nin": [
+                        "DOT1Q"
+                    ]
+                }
+            },
+            "isPrivate": {
+                "eq": true,
+                "neq": true
+            },
+            "name": {
+                "eq": "string",
+                "in": [
+                    "string1",
+                    "string2"
+                ],
+                "neq": "string",
+                "nin": [
+                    "string1",
+                    "string2"
+                ]
+            },
+            "primary": {
+                "eq": true,
+                "neq": true
+            },
+            "siteLicenseRegion": {
+                "eq": "string",
+                "in": [
+                    "string1",
+                    "string2"
+                ],
+                "neq": "string",
+                "nin": [
+                    "string1",
+                    "string2"
+                ]
+            }
+        }
+    }
+}

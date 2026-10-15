@@ -25,7 +25,12 @@
         "catalogs":true,
         "ztnaAppConnector":true,
         "networkConfig": true,
-        "posture": true
+        "posture": true,
+        "aiSecurity": true,
+        "devices": true,
+        "notification": true,
+        "object": true,
+        "popLocations": true
     },
     "childOperationObjects": {
         "ipAddressRange": true,
@@ -40,14 +45,21 @@
         "NetworkConfigDhcpQueries": true,
         "NetworkConfigDnsQueries": true,
         "PostureQueries": true,
-        "PostureMutations": true
+        "PostureMutations": true,
+        "AiSecurityQueries": true,
+        "NotificationSubscriptionQueries": true,
+        "IntegrationQueries": true,
+        "PopLocationQueries": true
+    },
+    "childOperationLeafObjects": {
+        "attributesCatalog": true
     },
     "queryOperationCsvOutput": {
         "query.appStats": "format_app_stats_to_csv",
         "query.appStatsTimeSeries": "format_app_stats_timeseries_to_csv",
         "query.socketPortMetricsTimeSeries": "format_socket_port_metrics_timeseries_to_csv",
         "query.licensing": "format_licensing_to_csv",
-        "query.popLocations": "format_pop_locations_to_csv"
+        "query.popLocations.popLocationList": "format_pop_locations_to_csv"
     },
     "queryOperationDefaultFormatOverrides": {
         "query.appStats": {
@@ -62,7 +74,7 @@
             "format_function": "format_licensing",
             "supports_raw_flag": true
         },
-        "query.popLocations": {
+        "query.popLocations.popLocationList": {
             "enabled": true,
             "default_format": "json",
             "format_function": "format_pop_locations",

@@ -36145,6 +36145,11 @@
             },
             {
               "kind": "OBJECT",
+              "name": "AiSecurityAppsAssetRef",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
               "name": "AiSecurityAppsGuardRef",
               "ofType": null
             },
@@ -59289,241 +59294,6 @@
         },
         {
           "kind": "OBJECT",
-          "name": "PostureSummary",
-          "description": "Aggregated Posture summary for the account, including the Account Score\nand per-dimension breakdowns.",
-          "fields": [
-            {
-              "name": "score",
-              "description": "Overall posture score for the account.",
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "domainScores",
-              "description": "Score breakdown by domain.",
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "NON_NULL",
-                    "name": null,
-                    "ofType": {
-                      "kind": "OBJECT",
-                      "name": "PostureDomainScore",
-                      "ofType": null
-                    }
-                  }
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "areaScores",
-              "description": "Score breakdown by area.",
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "NON_NULL",
-                    "name": null,
-                    "ofType": {
-                      "kind": "OBJECT",
-                      "name": "PostureAreaScore",
-                      "ofType": null
-                    }
-                  }
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "categoryScores",
-              "description": "Score breakdown by category.",
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "NON_NULL",
-                    "name": null,
-                    "ofType": {
-                      "kind": "OBJECT",
-                      "name": "PostureCategoryScore",
-                      "ofType": null
-                    }
-                  }
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "securityDomainScores",
-              "description": "Score breakdown by security domain.",
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "NON_NULL",
-                    "name": null,
-                    "ofType": {
-                      "kind": "OBJECT",
-                      "name": "PostureSecurityDomainScore",
-                      "ofType": null
-                    }
-                  }
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "applicationScores",
-              "description": "Score breakdown by application.",
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "NON_NULL",
-                    "name": null,
-                    "ofType": {
-                      "kind": "OBJECT",
-                      "name": "PostureApplicationScore",
-                      "ofType": null
-                    }
-                  }
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "stats",
-              "description": "Aggregated pass/fail/disabled counters.",
-              "args": [],
-              "type": {
-                "kind": "OBJECT",
-                "name": "PostureStats",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "evaluatedAt",
-              "description": "Snapshot timestamp for this summary.",
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "DateTime",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "comparisons",
-              "description": "Peer comparisons for this account summary.",
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "NON_NULL",
-                    "name": null,
-                    "ofType": {
-                      "kind": "OBJECT",
-                      "name": "PostureAccountComparison",
-                      "ofType": null
-                    }
-                  }
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "overallEffectiveAreaCriticality",
-              "description": "Weighted average effective area criticality across checks scored by the revamp.",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "Float",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "overallEffectiveBlastRadius",
-              "description": "Weighted average effective blast radius across checks scored by the revamp.",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "Float",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "overallEffectiveFindingsSignal",
-              "description": "Weighted average effective findings signal across checks scored by the revamp.",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "Float",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [],
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "OBJECT",
           "name": "PostureAccountComparison",
           "description": "Peer-group comparison metrics for an account's Posture score.",
           "fields": [
@@ -59652,7 +59422,182 @@
                 "name": null,
                 "ofType": {
                   "kind": "OBJECT",
-                  "name": "PostureSummary",
+                  "name": "PostureHistoricalSummary",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "PostureHistoricalSummary",
+          "description": "Aggregated Posture summary recorded in a historical snapshot: the Account Score with the\nper-dimension breakdowns stored for that snapshot. Unlike a live summary, breakdowns are limited\nto the dimensions kept in the score history, and only snapshots taken after a dimension started\nbeing recorded carry it.",
+          "fields": [
+            {
+              "name": "score",
+              "description": "Overall posture score for the account at the snapshot timestamp.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "domainScores",
+              "description": "Score breakdown by domain, kept for callers written against the previous summary type.\nCarries the same values as `areaScores` without the nested categories.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "OBJECT",
+                      "name": "PostureDomainScore",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              "isDeprecated": true,
+              "deprecationReason": "use areaScores instead. Planned end-of-life (EoL) date: 03 31, 2027."
+            },
+            {
+              "name": "areaScores",
+              "description": "Score breakdown by area, each with its categories nested.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "OBJECT",
+                      "name": "PostureAreaScore",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "categoryScores",
+              "description": "Score breakdown by category.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "OBJECT",
+                      "name": "PostureCategoryScore",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "securityDomainScores",
+              "description": "Score breakdown by security domain.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "OBJECT",
+                      "name": "PostureSecurityDomainScore",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "applicationScores",
+              "description": "Score breakdown by application.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "OBJECT",
+                      "name": "PostureApplicationScore",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "stats",
+              "description": "Aggregated pass/fail/disabled counters.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "PostureStats",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "evaluatedAt",
+              "description": "Snapshot timestamp for this summary.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "DateTime",
                   "ofType": null
                 }
               },
@@ -131825,6 +131770,12 @@
               "deprecationReason": null
             },
             {
+              "name": "related_checks",
+              "description": "Checks related to this event. CMA Name: Related Checks",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "request_size",
               "description": "Request packet size in bytes (ie. DNS request packet). CMA Name: Request Size",
               "isDeprecated": false,
@@ -153264,6 +153215,12 @@
               "deprecationReason": null
             },
             {
+              "name": "ai_app_risk_level",
+              "description": "The estimated risk level of the AI threat. Only available for native flows data integration created in the CMA. Not available in the appstats or appstatsTimeSeries API.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "ai_proxy_rule_name",
               "description": "AI Proxy rule name. CMA Name: AI Proxy Rule Name",
               "isDeprecated": false,
@@ -153274,6 +153231,12 @@
               "description": "Application ID of the flow, in legacy format. CMA Name: Appid",
               "isDeprecated": true,
               "deprecationReason": "use application_id instead. Planned end-of-life (EoL) date: June 30, 2026."
+            },
+            {
+              "name": "app_stack",
+              "description": "Related Apps. Only available for native flows data integration created in the CMA. Not available in the appstats or appstatsTimeSeries API.",
+              "isDeprecated": false,
+              "deprecationReason": null
             },
             {
               "name": "application",
@@ -153346,6 +153309,18 @@
               "description": "Cato system category of the application. CMA Name: Category",
               "isDeprecated": true,
               "deprecationReason": "use categories instead. Planned end-of-life (EoL) date: June 30, 2026."
+            },
+            {
+              "name": "client_cert_expires",
+              "description": "Expiration date for Client certificate. Only available for native flows data integration created in the CMA. Not available in the appstats or appstatsTimeSeries API.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "client_cert_name",
+              "description": "Name of Client certificate. Only available for native flows data integration created in the CMA. Not available in the appstats or appstatsTimeSeries API.",
+              "isDeprecated": false,
+              "deprecationReason": null
             },
             {
               "name": "client_class",
@@ -153498,6 +153473,30 @@
               "deprecationReason": null
             },
             {
+              "name": "dns_answer",
+              "description": "Resolved address for the query. Only available for native flows data integration created in the CMA. Not available in the appstats or appstatsTimeSeries API.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "dns_query",
+              "description": "Domain queried in the DNS request. Only available for native flows data integration created in the CMA. Not available in the appstats or appstatsTimeSeries API.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "dns_record_type",
+              "description": "Type of record (ie. DNS record: A, AAAA, MX, or PTR). Only available for native flows data integration created in the CMA. Not available in the appstats or appstatsTimeSeries API.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "dns_reply_code",
+              "description": "The return code for the response. For details, see the Domain Name System Parameters on the Internet Assigned Numbers Authority (IANA) web site. Only available for native flows data integration created in the CMA. Not available in the appstats or appstatsTimeSeries API.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "domain",
               "description": "Domain name. CMA Name: Domain Name",
               "isDeprecated": true,
@@ -153524,6 +153523,18 @@
             {
               "name": "egress_site_name",
               "description": "Egress Site Name for backhauling traffic. CMA Name: Egress Site",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "event_sub_type",
+              "description": "Firewall event subtype. Only available for native flows data integration created in the CMA. Not available in the appstats or appstatsTimeSeries API.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "event_type",
+              "description": "Event type for AppStats firewall traffic. Only available for native flows data integration created in the CMA. Not available in the appstats or appstatsTimeSeries API.",
               "isDeprecated": false,
               "deprecationReason": null
             },
@@ -153690,6 +153701,12 @@
               "deprecationReason": null
             },
             {
+              "name": "os_type",
+              "description": "Host OS or tunnel device. Only available for native flows data integration created in the CMA. Not available in the appstats or appstatsTimeSeries API.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "os_version",
               "description": "OS version for the device (such as 14.3.0). CMA Name: OS Version",
               "isDeprecated": false,
@@ -153720,8 +153737,20 @@
               "deprecationReason": null
             },
             {
+              "name": "public_ip",
+              "description": "Public source IP. Only available for native flows data integration created in the CMA. Not available in the appstats or appstatsTimeSeries API.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "qos_priority",
               "description": "QoS Priority value. CMA Name: QoS Priority",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "referer_url",
+              "description": "Referer URL from the HTTP request header indicating the source of the request. Only available for native flows data integration created in the CMA. Not available in the appstats or appstatsTimeSeries API.",
               "isDeprecated": false,
               "deprecationReason": null
             },
@@ -153738,10 +153767,28 @@
               "deprecationReason": "use application_risk_score instead. Planned end-of-life (EoL) date: June 30, 2026."
             },
             {
+              "name": "rule_id",
+              "description": "Unique Cato ID for the firewall rule related to the flow. Only available for native flows data integration created in the CMA. Not available in the appstats or appstatsTimeSeries API.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "rule_name",
+              "description": "Rule name. Only available for native flows data integration created in the CMA. Not available in the appstats or appstatsTimeSeries API.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "sanctioned",
               "description": "Is the application defined as sanctioned?. CMA Name: Sanctioned",
               "isDeprecated": true,
               "deprecationReason": "use is_sanctioned_app instead. Planned end-of-life (EoL) date: June 30, 2026."
+            },
+            {
+              "name": "server_ip",
+              "description": "Server IP address. Only available for native flows data integration created in the CMA. Not available in the appstats or appstatsTimeSeries API.",
+              "isDeprecated": false,
+              "deprecationReason": null
             },
             {
               "name": "site_country",
@@ -153914,6 +153961,12 @@
             {
               "name": "upstream",
               "description": "Bytes sent from the host to the destination. CMA Name: Upstream",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "url",
+              "description": "URL associated with the event. Only available for native flows data integration created in the CMA. Not available in the appstats or appstatsTimeSeries API.",
               "isDeprecated": false,
               "deprecationReason": null
             },
@@ -170515,6 +170568,93 @@
         },
         {
           "kind": "OBJECT",
+          "name": "AiSecurityAppsQueries",
+          "description": "Root of the AI App Protection query namespace.",
+          "fields": [
+            {
+              "name": "invocation",
+              "description": "Fetch a single invocation by its ID.",
+              "args": [
+                {
+                  "name": "input",
+                  "description": null,
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "AiSecurityAppsInvocationInput",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "AiSecurityAppsInvocation",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "AiSecurityAppsAssetRef",
+          "description": "Reference to an AI App Protection asset.",
+          "fields": [
+            {
+              "name": "id",
+              "description": "Unique asset identifier.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "name",
+              "description": "Asset name.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [
+            {
+              "kind": "INTERFACE",
+              "name": "ObjectRef",
+              "ofType": null
+            }
+          ],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
           "name": "AiSecurityQueries",
           "description": "Root of the AI Security query namespace for an account.",
           "fields": [
@@ -170549,44 +170689,6 @@
               "type": {
                 "kind": "OBJECT",
                 "name": "AiSecurityAgentsQueries",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [],
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "OBJECT",
-          "name": "AiSecurityAppsQueries",
-          "description": "Root of the AI App Protection query namespace.",
-          "fields": [
-            {
-              "name": "invocation",
-              "description": "Fetch a single invocation by its ID.",
-              "args": [
-                {
-                  "name": "input",
-                  "description": null,
-                  "type": {
-                    "kind": "NON_NULL",
-                    "name": null,
-                    "ofType": {
-                      "kind": "INPUT_OBJECT",
-                      "name": "AiSecurityAppsInvocationInput",
-                      "ofType": null
-                    }
-                  },
-                  "defaultValue": null
-                }
-              ],
-              "type": {
-                "kind": "OBJECT",
-                "name": "AiSecurityAppsInvocation",
                 "ofType": null
               },
               "isDeprecated": false,

@@ -1,5 +1,21 @@
 # Changelog
 
+## 3.2.1 (2026-10-15)
+
+Changes since 3.2.0, incorporating the query sub-operation and schema refresh in #28.
+
+### Query commands and fixes
+
+- Added dedicated query subcommands under `aiSecurity`, `devices`, `notification`, `object`, and `popLocations`, with per-operation inputs, payloads, and command help.
+- Device queries now expose `list`, `attributesCatalog`, `csvExport`, and `csvExportStatus`; AI Security queries expose agent events/sessions, app invocations, and end-user session conversations. Notification queries expose integration, mailing list, and subscription group operations; object and PoP queries expose individual IP range, allocated IP, BGP profile, and PoP location operations.
+- Fixed runtime GraphQL rendering for union/interface selections represented by `possibleTypes`, emitting `__typename` and inline fragments instead of fields without required subfield selections.
+- Restored PoP location CSV formatting for `query popLocations popLocationList`.
+- Refreshed the GraphQL schema, generated models, payloads, parser documentation, test fixtures, and site location data.
+
+### Compatibility and migration
+
+- Scripts using the former combined `query aiSecurity`, `query devices`, `query notification`, `query object`, or `query popLocations` commands must select a subcommand. For example, use `catocli query devices list` and `catocli query popLocations popLocationList`, then supply the inputs for that operation. Calling these parent commands without a subcommand now displays help.
+
 ## 3.2.0 (2026-10-14)
 
 Changes since 3.1.4, incorporating the October 5 and October 12 schema refreshes (#25 and #26).

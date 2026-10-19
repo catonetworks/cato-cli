@@ -1,0 +1,19 @@
+mutation rbacRoleManagementUpdateRole ( $accountId:ID! $roleManagementUpdateRoleInput:RoleManagementUpdateRoleInput!) {
+	rbac ( accountId:$accountId ) {
+		roleManagement {
+			updateRole ( input:$roleManagementUpdateRoleInput   ) {
+				role {
+					id
+					name
+					description
+					predefined
+					isUsedOnExternalAccess
+					permission {
+						resource
+						action
+					}
+				}
+			}
+		}
+	}	
+}

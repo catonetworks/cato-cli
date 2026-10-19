@@ -192,6 +192,29 @@ Common time frame patterns:
 - `last.P1M`: last month
 - `utc.2026-08-{01/00:00:00--01/23:59:59}`: custom UTC range
 
+## Regenerating GraphQL commands
+
+Run `python schema/regenerate.py` from the repository root to rebuild models,
+payloads, parsers, READMEs, and generated query test inputs from the checked-in
+`schema/introspection.json`. This does not download a new schema or location data.
+
+Namespace types with argument-free fields belong in `childOperationObjects` in
+`catocli/clisettings.json` so each operation gets its own command. For example,
+RBAC commands use `catocli mutation rbac roleManagement createRole` and
+`catocli query rbac roleManagement permissionCatalog`.
+
+The weekly Jenkins job also rebuilds `siteLocation.db` and its JSON export from
+GeoNames cities, countries, and administrative regions plus ISO subdivision data.
+Time zones are refreshed with the city records. These reference-data changes are
+included in the generated pull request even when the GraphQL schema is unchanged.
+`SKIP_SITE_LOCATION_UPDATE=true` skips these downloads for schema-only imports;
+the offline regeneration command above always uses the saved schema and data.
+
+For generated operations with an `Upload` input, pass a local file path in that
+input. The CLI sends the file using GraphQL multipart upload. Combined file
+contents are limited to 32 MiB per request. The `-t` option prints the query
+without opening or uploading files.
+
 ## Getting Help
 
 - Add `-h` or `--help` to any command

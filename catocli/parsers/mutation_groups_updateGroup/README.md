@@ -96,5 +96,5 @@ catocli mutation groups updateGroup '{
 #### Operation Arguments for mutation.groups.updateGroup ####
 
 `accountId` [ID] - (required) N/A
-`groupMembersListInput` [GroupMembersListInput] - (required) N/A
+`groupMembersListInput` [GroupMembersListInput] - (optional) N/A
 `updateGroupInput` [UpdateGroupInput] - (required) N/A

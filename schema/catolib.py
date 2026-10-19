@@ -187,6 +187,18 @@ def cleanupBuildArtifacts():
 
 ############ parsing schema - THREADED VERSION ############
 
+def isChildOperationParent(field, parent_names, namespace_types):
+    """Recognize configured namespaces at the query root as well as below it.
+
+    A namespace type should not also need a separate root field-name entry.
+    Unwrap NON_NULL/LIST wrappers before consulting the type configuration.
+    """
+    field_type = field["type"]
+    while field_type.get("ofType") is not None:
+        field_type = field_type["ofType"]
+    return field["name"] in parent_names or field_type.get("name") in namespace_types
+
+
 def parseSchema(schema):
     """Multi-threaded schema parsing with recursion depth management"""
     print("  - Loading settings and initializing...")
@@ -217,7 +229,7 @@ def parseSchema(schema):
         elif type_obj["kind"] == "OBJECT":
             if type_obj["name"] == "Query":
                 for field in type_obj["fields"]:
-                    if field["name"] in childOperationParent:
+                    if isChildOperationParent(field, childOperationParent, childOperationObjects):
                         queryOperationsTMP[field["name"]] = copy.deepcopy(field)
                     else:
                         catoApiSchema["query"]["query."+field["name"]] = copy.deepcopy(field)
@@ -359,6 +371,7 @@ def processOperation(operationType, operationName):
         
         # Add child operation arguments and field arguments to operationArgs
         addAllOperationArgs(parsedOperation, parsedOperation["operationArgs"])
+        markOptionalResponseArguments(parsedOperation, operationName)
         
         parsedOperation["variablesPayload"] = generateExampleVariables(parsedOperation)
         
@@ -376,6 +389,31 @@ def processOperation(operationType, operationName):
     except Exception as e:
         print(f"Error in processOperation {operationName}: {e}")
         raise
+
+
+def markOptionalResponseArguments(operation, operation_name):
+    """Arguments on nested response fields are required only when selecting them.
+
+    Keep arguments on the command path and its immediate selection unchanged.
+    In particular, listing entities must not require inputs for their nested
+    detail fields (for example Group.members inside groupList.items).
+    """
+    command_depth = len(operation_name.split(".")) - 2
+
+    def visit(node, depth):
+        fields = (node.get("type", {}).get("definition") or {}).get("fields") or {}
+        for field in fields.values():
+            field_depth = depth + 1
+            if field_depth > command_depth + 1:
+                for argument in (field.get("args") or {}).values():
+                    name = argument["varName"]
+                    if argument.get("required") and name in operation["operationArgs"]:
+                        argument_copy = copy.deepcopy(operation["operationArgs"][name])
+                        argument_copy["requiredForOperation"] = False
+                        operation["operationArgs"][name] = argument_copy
+            visit(field, field_depth)
+
+    visit(operation, 0)
 
 
 def renameNestedAccountVariables(operation):
@@ -1148,6 +1186,7 @@ catocli raw --endpoint https://custom-api.example.com/graphql '<json>'
                         "description": "N/A" if arg["description"] == None else arg["description"],
                         "type": arg["type"]["name"] + ("[]" if "LIST" in arg["type"]["kind"] else ""),
                         "required": "required" if arg["required"] == True else "optional",
+                        "requiredForOperation": arg.get("requiredForOperation", True),
                         "values": values
                     }
             except Exception as e:
@@ -1232,7 +1271,7 @@ catocli {operationCmd} '{example_json_pretty}'
                     for argName in parser["args"]:
                         arg = parser["args"][argName]
                         arg_type = arg.get("type", "Unknown")
-                        required_status = "required" if arg.get("required", False) else "optional"
+                        required_status = "required" if arg.get("required", False) and arg.get("requiredForOperation", True) else "optional"
                         description = arg.get("description", "No description available")
                         values_str = "Default Value: " + str(arg["values"]) if len(arg.get("values", [])) > 0 else ""
                         readmeStr += f'`{argName}` [{arg_type}] - ({required_status}) {description} {values_str}'.rstrip() + "\n"
@@ -1702,7 +1741,7 @@ def getParserMapping(curParser, curPath, operationFullPath, operation):
             "name": arg["name"],
             "description": "N/A" if arg["description"] == None else arg["description"],
             "type": arg["type"]["name"] + ("[]" if "LIST" in arg["type"]["kind"] else ""),
-            "required": "required" if arg["required"] == True else "optional",
+            "required": "required" if arg["required"] and arg.get("requiredForOperation", True) else "optional",
             "values": values
         }
     
@@ -1744,7 +1783,7 @@ def getOperationArgsForReadme(operationArgs):
         arg = operationArgs[argName]
         formattedArgs[argName] = {
             "type": arg.get("type", {}).get("name", "Unknown"),
-            "required": "required" if arg.get("required", False) else "optional",
+            "required": "required" if arg.get("required", False) and arg.get("requiredForOperation", True) else "optional",
             "description": arg.get("description", "No description available"),
             "values": []
         }
@@ -1986,7 +2025,7 @@ def writePayloadsJson(schema):
                         continue
                     
                     # Only include required arguments
-                    if arg_data.get("required", False):
+                    if arg_data.get("required", False) and arg_data.get("requiredForOperation", True):
                         # Get the actual argument name (not the varName)
                         arg_real_name = arg_data.get("name", arg_name)
                         

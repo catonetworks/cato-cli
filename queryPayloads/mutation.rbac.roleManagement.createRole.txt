@@ -1,0 +1,19 @@
+mutation rbacRoleManagementCreateRole ( $accountId:ID! $roleManagementCreateRoleInput:RoleManagementCreateRoleInput!) {
+	rbac ( accountId:$accountId ) {
+		roleManagement {
+			createRole ( input:$roleManagementCreateRoleInput   ) {
+				role {
+					id
+					name
+					description
+					predefined
+					isUsedOnExternalAccess
+					permission {
+						resource
+						action
+					}
+				}
+			}
+		}
+	}	
+}

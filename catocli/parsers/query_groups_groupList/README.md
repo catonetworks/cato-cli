@@ -179,4 +179,4 @@ catocli raw '{
 
 `accountId` [ID] - (required) N/A
 `groupListInput` [GroupListInput] - (required) N/A
-`groupMembersListInput` [GroupMembersListInput] - (required) N/A
+`groupMembersListInput` [GroupMembersListInput] - (optional) N/A

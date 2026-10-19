@@ -334,7 +334,7 @@ def createRequest(args, configuration):
             return None
         else:
             try:
-                response = instance.call_api(body, params)
+                response = instance.call_api(body, dict(params, _upload_model=operation))
                 
                 # Extract and display X-Trace-ID if trace_id flag is enabled
                 trace_id_value = None

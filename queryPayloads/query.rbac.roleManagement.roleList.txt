@@ -1,0 +1,22 @@
+query rbacRoleManagementRoleList ( $accountId:ID! $roleManagementRoleListInput:RoleManagementRoleListInput!) {
+	rbac ( accountId:$accountId ) {
+		roleManagement {
+			roleList ( input:$roleManagementRoleListInput   ) {
+				items {
+					id
+					name
+					description
+					predefined
+					isUsedOnExternalAccess
+					permission {
+						resource
+						action
+					}
+				}
+				paging {
+					total
+				}
+			}
+		}
+	}	
+}

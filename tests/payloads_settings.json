@@ -227,7 +227,7 @@
                 "socketPortMetricsTimeSeries.series"
             ]
         },
-        "query.user": {
+        "query.user.userList": {
             "payload": {
                 "userListInput": {
                     "paging": {
@@ -276,43 +276,63 @@
                 {"path": "data.networkConfig.dns.siteSettings", "operator": "type", "value": "object"}
             ]
         },
-        "query.connectivitySnapshots": {
+        "query.connectivitySnapshots.ztnaAppConnectorGroupSnapshot": {
             "payload": {
                 "ztnaAppConnectorGroupSnapshotInput": {
                     "paging": {
                         "from": 0,
                         "limit": 1
                     }
-                },
+                }
+            },
+            "assertions": [
+                "connectivitySnapshots.ztnaAppConnectorGroupSnapshot"
+            ]
+        },
+        "query.connectivitySnapshots.ztnaAppConnectorSnapshot": {
+            "payload": {
                 "ztnaAppConnectorSnapshotInput": {
                     "paging": {
                         "from": 0,
                         "limit": 1
                     }
-                },
+                }
+            },
+            "assertions": [
+                "connectivitySnapshots.ztnaAppConnectorSnapshot"
+            ]
+        },
+        "query.connectivitySnapshots.ztnaAppConnectorSnapshotSummary": {
+            "payload": {
                 "ztnaAppConnectorSnapshotSummaryInput": {
                     "filter": {}
                 }
             },
             "assertions": [
-                "connectivitySnapshots"
+                "connectivitySnapshots.ztnaAppConnectorSnapshotSummary"
             ]
         },
-        "query.customAppData": {
+        "query.customAppData.customApplication": {
             "payload": {
-                "customApplicationListInput": {
-                    "paging": {
-                        "from": 0,
-                        "limit": 1
-                    }
-                },
                 "customApplicationRefInput": {
                     "by": "ID",
                     "input": "CustomApp_15412_45274"
                 }
             },
             "assertions": [
-                "customAppData.customApplication",
+                "customAppData.customApplication"
+            ]
+        },
+        "query.customAppData.customApplicationList": {
+            "payload": {
+                "customApplicationListInput": {
+                    "paging": {
+                        "from": 0,
+                        "limit": 1
+                    }
+                }
+            },
+            "assertions": [
                 "customAppData.customApplicationList"
             ]
         },
@@ -610,7 +630,7 @@
                 "object.globalIpRange"
             ]
         },
-        "query.privateApplication": {
+        "query.privateApplication.privateApplication": {
             "payload": {
                 "privateApplicationRefInput": {
                     "by": "ID",
@@ -618,7 +638,12 @@
                 }
             },
             "assertions": [
-                "privateApplication.privateApplication",
+                "privateApplication.privateApplication"
+            ]
+        },
+        "query.privateApplication.privateApplicationList": {
+            "payload": {},
+            "assertions": [
                 "privateApplication.privateApplicationList"
             ]
         },

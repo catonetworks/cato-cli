@@ -136,6 +136,10 @@ class QUERYClientObject(object):
 					print("ERROR: ",e)
 					exit()
 				
+			elif headers['Content-Type'].lower().startswith('multipart/form-data;') and isinstance(body, bytes):
+				r = self.pool_manager.request(method=method, url=url,
+					body=body, preload_content=_preload_content,
+					timeout=timeout, headers=headers)
 			else:
 				# Cannot generate the request from given parameters
 				msg = """Cannot prepare a request message for provided

@@ -101,7 +101,7 @@ class GeneratedGraphQLPayloadTest(unittest.TestCase):
     def test_user_operations_use_current_import_type(self):
         self.assertNotIn("importType", self.schema.get_type("User").fields)
         for operation_name in (
-            "query.user",
+            "query.user.userList",
             "mutation.user.createUser",
             "mutation.user.updateUser",
             "mutation.user.enableUser",

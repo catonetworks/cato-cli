@@ -9,6 +9,7 @@ import os
 import sqlite3
 import urllib.request
 import zipfile
+import shutil
 
 ############ ENV Settings ############
 logging.basicConfig(filename="download-schema.log", filemode='w', format='%(name)s - %(levelname)s - %(message)s')
@@ -57,7 +58,9 @@ def build_site_location_db():
         # Extract cities zip
         print("  - Extracting cities1000.zip...")
         with zipfile.ZipFile(cities_zip, 'r') as zip_ref:
-            zip_ref.extractall(script_dir)
+            # Read only the expected data file; archive paths cannot write elsewhere.
+            with zip_ref.open('cities1000.txt') as source, open(cities_txt, 'wb') as target:
+                shutil.copyfileobj(source, target)
 
         # Parse countryInfo.txt -> {countryCode: countryName}
         print("  - Parsing country info...")
@@ -292,8 +295,8 @@ def run():
     print(f"   - Mutation operations: {len(catolib.catoApiSchema['mutation'])}")
     print(f"   - Total types processed: {len(catolib.catoApiIntrospection['objects']) + len(catolib.catoApiIntrospection['enums']) + len(catolib.catoApiIntrospection['scalars'])}")
 
-    # Geonames is independent live data. Schema automation skips it so an API
-    # schema refresh cannot introduce unrelated, non-reproducible location churn.
+    # The weekly job refreshes reference data too. Callers that only need the
+    # GraphQL schema can explicitly opt out of these independent downloads.
     if os.environ.get("SKIP_SITE_LOCATION_UPDATE", "").lower() not in {"1", "true", "yes"}:
         build_site_location_db()
     else:

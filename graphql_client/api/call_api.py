@@ -9,6 +9,7 @@ import sys
 sys.path.insert(0, 'vendor')
 import six
 from graphql_client.api_client_types import ApiClient
+from graphql_client.uploads import encode_uploads
 
 class CallApi(object):
 	def __init__(self, api_client=None):
@@ -106,6 +107,15 @@ class CallApi(object):
 		else:
 			return_http_data_only = params.get('_return_http_data_only')
 		
+		# Keep the normal client transport, authentication and response handling.
+		# Encode only schema-declared Upload values, after verbose JSON output.
+		upload = encode_uploads(body_params, args.get('_upload_model', {}))
+		if upload is not None:
+			body_params, content_type = upload
+			for key in list(header_params):
+				if key.lower() == 'content-type':
+					del header_params[key]
+			header_params['Content-Type'] = content_type
 		return self.api_client.call_api(
 			header_params,
 			body=body_params,

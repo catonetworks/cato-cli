@@ -71,5 +71,5 @@ catocli mutation groups deleteGroup '{
 #### Operation Arguments for mutation.groups.deleteGroup ####
 
 `accountId` [ID] - (required) N/A
-`groupMembersListInput` [GroupMembersListInput] - (required) N/A
+`groupMembersListInput` [GroupMembersListInput] - (optional) N/A
 `groupRefInput` [GroupRefInput] - (required) N/A

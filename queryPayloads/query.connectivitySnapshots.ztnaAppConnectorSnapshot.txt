@@ -1,0 +1,65 @@
+query connectivitySnapshotsZtnaAppConnectorSnapshot ( $accountId:ID! $ztnaAppConnectorSnapshotInput:ZtnaAppConnectorSnapshotInput!) {
+	connectivitySnapshots ( accountId:$accountId ) {
+		ztnaAppConnectorSnapshot ( input:$ztnaAppConnectorSnapshotInput  )  {
+			items {
+				id
+				name
+				info {
+					createdAt
+					groupName
+					type
+					location {
+						cityName
+						countryCode
+						countryName
+					}
+				}
+				connectivity {
+					status
+					firstConnected
+					lastConnected
+					popLocation {
+						id
+						name
+					}
+				}
+				device {
+					id
+					info {
+						model
+						serialNumber
+						socketId
+						isRegistered
+						version
+					}
+					connectivity {
+						platform
+						serialNumber
+						version
+					}
+					interface {
+						id
+						interfaceType
+						connectivity {
+							status
+							lanIp
+							dnsServer
+						}
+					}
+				}
+				privateAppCount
+				privateApp {
+					id
+					name
+					connectivity {
+						probingStatus
+						routingStatus
+					}
+				}
+			}
+			pageInfo {
+				total
+			}
+		}
+	}	
+}

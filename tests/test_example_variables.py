@@ -51,7 +51,8 @@ class ExampleVariablesTest(unittest.TestCase):
             return catolib.renderInputFieldVal({"type": {"name": name, "kind": ["SCALAR"]}})
 
         self.assertEqual(example("TimeFrame"), "last.P1D")
-        datetime.datetime.fromisoformat(example("DateTime"))
+        # Python 3.10 needs an explicit offset for the ISO 8601 UTC suffix.
+        datetime.datetime.fromisoformat(example("DateTime").replace("Z", "+00:00"))
         datetime.date.fromisoformat(example("Date"))
         datetime.time.fromisoformat(example("Time"))
         ZoneInfo(example("TimeZone"))

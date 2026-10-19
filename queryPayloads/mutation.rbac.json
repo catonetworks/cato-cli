@@ -1,0 +1,30 @@
+{
+    "operationName": "rbac",
+    "query": "mutation rbac ( $accountId:ID! $roleManagementCreateRoleInput:RoleManagementCreateRoleInput! $roleManagementUpdateRoleInput:RoleManagementUpdateRoleInput! $roleManagementDeleteRoleInput:RoleManagementDeleteRoleInput!) {\n\trbac ( accountId:$accountId ) {\n\t\troleManagement {\n\t\t\tcreateRole ( input:$roleManagementCreateRoleInput   ) {\n\t\t\t\trole {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t\tdescription\n\t\t\t\t\tpredefined\n\t\t\t\t\tisUsedOnExternalAccess\n\t\t\t\t\tpermission {\n\t\t\t\t\t\tresource\n\t\t\t\t\t\taction\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t\tupdateRole ( input:$roleManagementUpdateRoleInput   ) {\n\t\t\t\trole {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t\tdescription\n\t\t\t\t\tpredefined\n\t\t\t\t\tisUsedOnExternalAccess\n\t\t\t\t\tpermission {\n\t\t\t\t\t\tresource\n\t\t\t\t\t\taction\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t\tdeleteRole ( input:$roleManagementDeleteRoleInput   ) {\n\t\t\t\tid\n\t\t\t}\n\t\t}\n\t}\t\n}",
+    "variables": {
+        "roleManagementCreateRoleInput": {
+            "description": "string",
+            "name": "string",
+            "permission": [
+                {
+                    "action": "VIEW",
+                    "resource": "string"
+                }
+            ]
+        },
+        "roleManagementDeleteRoleInput": {
+            "id": "id"
+        },
+        "roleManagementUpdateRoleInput": {
+            "description": "string",
+            "id": "id",
+            "name": "string",
+            "permission": [
+                {
+                    "action": "VIEW",
+                    "resource": "string"
+                }
+            ]
+        }
+    }
+}

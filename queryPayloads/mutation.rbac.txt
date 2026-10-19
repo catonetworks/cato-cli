@@ -1,0 +1,35 @@
+mutation rbac ( $accountId:ID! $roleManagementCreateRoleInput:RoleManagementCreateRoleInput! $roleManagementUpdateRoleInput:RoleManagementUpdateRoleInput! $roleManagementDeleteRoleInput:RoleManagementDeleteRoleInput!) {
+	rbac ( accountId:$accountId ) {
+		roleManagement {
+			createRole ( input:$roleManagementCreateRoleInput   ) {
+				role {
+					id
+					name
+					description
+					predefined
+					isUsedOnExternalAccess
+					permission {
+						resource
+						action
+					}
+				}
+			}
+			updateRole ( input:$roleManagementUpdateRoleInput   ) {
+				role {
+					id
+					name
+					description
+					predefined
+					isUsedOnExternalAccess
+					permission {
+						resource
+						action
+					}
+				}
+			}
+			deleteRole ( input:$roleManagementDeleteRoleInput   ) {
+				id
+			}
+		}
+	}	
+}

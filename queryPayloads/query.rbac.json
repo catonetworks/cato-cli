@@ -1,0 +1,49 @@
+{
+    "operationName": "rbac",
+    "query": "query rbac ( $accountId:ID! $id:ID! $roleManagementRoleListInput:RoleManagementRoleListInput!) {\n\trbac ( accountId:$accountId ) {\n\t\troleManagement {\n\t\t\tpermissionCatalog {\n\t\t\t\tresource {\n\t\t\t\t\tresource\n\t\t\t\t\tsupportedAction\n\t\t\t\t}\n\t\t\t}\n\t\t\trole ( id:$id   ) {\n\t\t\t\tid\n\t\t\t\tname\n\t\t\t\tdescription\n\t\t\t\tpredefined\n\t\t\t\tisUsedOnExternalAccess\n\t\t\t\tpermission {\n\t\t\t\t\tresource\n\t\t\t\t\taction\n\t\t\t\t}\n\t\t\t}\n\t\t\troleList ( input:$roleManagementRoleListInput   ) {\n\t\t\t\titems {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t\tdescription\n\t\t\t\t\tpredefined\n\t\t\t\t\tisUsedOnExternalAccess\n\t\t\t\t\tpermission {\n\t\t\t\t\t\tresource\n\t\t\t\t\t\taction\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tpaging {\n\t\t\t\t\ttotal\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\t\n}",
+    "variables": {
+        "id": "id",
+        "roleManagementRoleListInput": {
+            "filter": {
+                "id": {
+                    "eq": "id",
+                    "in": [
+                        "id1",
+                        "id2"
+                    ],
+                    "neq": "id",
+                    "nin": [
+                        "id1",
+                        "id2"
+                    ]
+                },
+                "name": {
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
+                },
+                "predefined": {
+                    "eq": true,
+                    "neq": true
+                }
+            },
+            "paging": {
+                "from": 1,
+                "limit": 1
+            },
+            "sort": {
+                "name": {
+                    "direction": "ASC",
+                    "priority": 1
+                }
+            }
+        }
+    }
+}

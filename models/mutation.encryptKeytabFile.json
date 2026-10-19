@@ -30,7 +30,7 @@
             "responseStr": "input:$encryptKeytabFileInput ",
             "type": {
                 "definition": {
-                    "description": null,
+                    "description": "Input for encrypting a Kerberos keytab file for Site Web Proxy authentication.",
                     "enumValues": null,
                     "fields": null,
                     "inputFields": {
@@ -72,7 +72,7 @@
     },
     "childOperations": {},
     "deprecationReason": null,
-    "description": "Uploads a Kerberos keytab file for Site Web Proxy and returns an encrypted payload.\nThis operation is a pre-step for configuring Kerberos authentication in siteWebProxy policy.\n\nThe request must be sent as a GraphQL multipart/form-data upload\n(graphql-multipart-request-spec): `input.file` is `null` in `operations`, and the\nfile bytes are sent as a separate form-data part mapped to it via `map`.\n\n```bash\ncurl -X POST \"https://api.catonetworks.com/api/v1/graphql2\" \\\n  -H \"x-api-key: <API_KEY>\" \\\n  -F 'operations={\"query\":\"mutation encryptKeytabFile($accountId: ID!, $input: EncryptKeytabFileInput!) { encryptKeytabFile(accountId: $accountId, input: $input) { encryptedFile } }\",\"variables\":{\"accountId\":\"123\",\"input\":{\"file\":null}}}' \\\n  -F 'map={\"0\":[\"variables.input.file\"]}' \\\n  -F '0=@/path/to/file.keytab'\n```",
+    "description": "Uploads a Kerberos keytab file for Site Web Proxy and returns an encrypted payload.\nSend the file using GraphQL multipart/form-data with variables.input.file mapped to the file part.\nUse webProxyConfig(accountId) { encryptKeytabFile(input) } for new integrations.",
     "fieldTypes": {},
     "isDeprecated": false,
     "name": "encryptKeytabFile",
@@ -107,7 +107,7 @@
             "responseStr": "input:$encryptKeytabFileInput ",
             "type": {
                 "definition": {
-                    "description": null,
+                    "description": "Input for encrypting a Kerberos keytab file for Site Web Proxy authentication.",
                     "enumValues": null,
                     "fields": null,
                     "inputFields": {
@@ -150,13 +150,13 @@
     "path": "mutation.encryptKeytabFile",
     "type": {
         "definition": {
-            "description": null,
+            "description": "The encrypted keytab file returned for use in Site Web Proxy Kerberos configuration.",
             "enumValues": null,
             "fields": {
                 "encryptedFile": {
                     "args": {},
                     "deprecationReason": null,
-                    "description": "Encrypted keytab payload. Use this value in Kerberos configuration file of siteWebProxy mutations.",
+                    "description": "Encrypted keytab payload. Use this value in the encryptedKeytab field of the Site Web Proxy Kerberos configuration.",
                     "id_str": "encryptedFile",
                     "isDeprecated": false,
                     "name": "encryptedFile",

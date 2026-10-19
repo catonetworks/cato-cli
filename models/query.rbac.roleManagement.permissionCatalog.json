@@ -1,0 +1,269 @@
+{
+    "args": {
+        "accountId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        }
+    },
+    "childOperations": {
+        "permissionCatalog": {
+            "args": {},
+            "deprecationReason": null,
+            "description": "The resources visible to the account that can be granted in a custom role,\ntogether with their supported actions.",
+            "isDeprecated": false,
+            "name": "permissionCatalog",
+            "type": {
+                "kind": "OBJECT",
+                "name": "RoleManagementPermissionCatalog",
+                "ofType": null
+            }
+        },
+        "roleManagement": {
+            "args": {},
+            "deprecationReason": null,
+            "description": "Queries for roles and permissions defined on the account.",
+            "isDeprecated": false,
+            "name": "roleManagement",
+            "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                    "kind": "OBJECT",
+                    "name": "RoleManagementQueries",
+                    "ofType": null
+                }
+            }
+        }
+    },
+    "deprecationReason": null,
+    "description": "Queries for roles, permissions, and role assignments.",
+    "fieldTypes": {},
+    "isDeprecated": false,
+    "name": "rbac",
+    "operationArgs": {
+        "accountId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        }
+    },
+    "path": "query.rbac.roleManagement.permissionCatalog",
+    "type": {
+        "definition": {
+            "description": null,
+            "enumValues": null,
+            "fields": {
+                "roleManagement": {
+                    "args": {},
+                    "deprecationReason": null,
+                    "description": "Queries for roles and permissions defined on the account.",
+                    "id_str": "roleManagement",
+                    "isDeprecated": false,
+                    "name": "roleManagement",
+                    "path": "roleManagement",
+                    "requestStr": "$roleManagementQueries:RoleManagementQueries! ",
+                    "required": true,
+                    "responseStr": "roleManagement:$roleManagementQueries ",
+                    "type": {
+                        "definition": {
+                            "description": "Queries for predefined roles, custom roles, and available permissions.",
+                            "enumValues": null,
+                            "fields": {
+                                "permissionCatalog": {
+                                    "args": {},
+                                    "deprecationReason": null,
+                                    "description": "The resources visible to the account that can be granted in a custom role,\ntogether with their supported actions.",
+                                    "id_str": "roleManagement___permissionCatalog",
+                                    "isDeprecated": false,
+                                    "name": "permissionCatalog",
+                                    "path": "roleManagement.permissionCatalog",
+                                    "requestStr": "$roleManagementPermissionCatalog:RoleManagementPermissionCatalog ",
+                                    "required": false,
+                                    "responseStr": "permissionCatalog:$roleManagementPermissionCatalog ",
+                                    "type": {
+                                        "definition": {
+                                            "description": "Resources and supported actions available for defining custom-role permissions.",
+                                            "enumValues": null,
+                                            "fields": {
+                                                "resource": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Available resources.",
+                                                    "id_str": "roleManagement___permissionCatalog___resource",
+                                                    "isDeprecated": false,
+                                                    "name": "resource",
+                                                    "path": "roleManagement.permissionCatalog.resource",
+                                                    "requestStr": "$roleManagementCatalogResource:[RoleManagementCatalogResource]! ",
+                                                    "required": true,
+                                                    "responseStr": "resource:$roleManagementCatalogResource ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": "A resource and the actions it supports.",
+                                                            "enumValues": null,
+                                                            "fields": {
+                                                                "resource": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Resource identifier. Use permissionCatalog to discover resources for custom roles.",
+                                                                    "id_str": "roleManagement___permissionCatalog___resource___resource",
+                                                                    "isDeprecated": false,
+                                                                    "name": "resource",
+                                                                    "path": "roleManagement.permissionCatalog.resource.resource",
+                                                                    "requestStr": "$resource:String! ",
+                                                                    "required": true,
+                                                                    "responseStr": "resource:$resource ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "String",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "resource"
+                                                                },
+                                                                "supportedAction": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Actions supported by the resource.",
+                                                                    "id_str": "roleManagement___permissionCatalog___resource___supportedAction",
+                                                                    "isDeprecated": false,
+                                                                    "name": "supportedAction",
+                                                                    "path": "roleManagement.permissionCatalog.resource.supportedAction",
+                                                                    "requestStr": "$supportedAction:[RoleManagementGrantAction]! ",
+                                                                    "required": true,
+                                                                    "responseStr": "supportedAction:$supportedAction ",
+                                                                    "type": {
+                                                                        "definition": {
+                                                                            "description": "Action grantable through role management.",
+                                                                            "enumValues": [
+                                                                                {
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "Read-only access.",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "VIEW"
+                                                                                },
+                                                                                {
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "Read and edit access.",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "EDIT"
+                                                                                }
+                                                                            ],
+                                                                            "fields": null,
+                                                                            "inputFields": null,
+                                                                            "interfaces": null,
+                                                                            "kind": "ENUM",
+                                                                            "name": "RoleManagementGrantAction",
+                                                                            "possibleTypes": null
+                                                                        },
+                                                                        "indexType": "enum",
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "LIST",
+                                                                            "NON_NULL",
+                                                                            "ENUM"
+                                                                        ],
+                                                                        "name": "RoleManagementGrantAction",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "supportedAction"
+                                                                }
+                                                            },
+                                                            "inputFields": null,
+                                                            "interfaces": {},
+                                                            "kind": "OBJECT",
+                                                            "name": "RoleManagementCatalogResource",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "object",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "LIST",
+                                                            "NON_NULL",
+                                                            "OBJECT"
+                                                        ],
+                                                        "name": "RoleManagementCatalogResource",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "roleManagementCatalogResource"
+                                                }
+                                            },
+                                            "inputFields": null,
+                                            "interfaces": {},
+                                            "kind": "OBJECT",
+                                            "name": "RoleManagementPermissionCatalog",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "object",
+                                        "kind": [
+                                            "OBJECT"
+                                        ],
+                                        "name": "RoleManagementPermissionCatalog",
+                                        "non_null": false
+                                    },
+                                    "varName": "roleManagementPermissionCatalog"
+                                }
+                            },
+                            "inputFields": null,
+                            "interfaces": {},
+                            "kind": "OBJECT",
+                            "name": "RoleManagementQueries",
+                            "possibleTypes": null
+                        },
+                        "indexType": "object",
+                        "kind": [
+                            "NON_NULL",
+                            "OBJECT"
+                        ],
+                        "name": "RoleManagementQueries",
+                        "non_null": false
+                    },
+                    "varName": "roleManagementQueries"
+                }
+            },
+            "inputFields": null,
+            "interfaces": [],
+            "kind": "OBJECT",
+            "name": "RBACQueries",
+            "possibleTypes": null
+        },
+        "indexType": "object",
+        "kind": [
+            "NON_NULL",
+            "OBJECT"
+        ],
+        "name": "RBACQueries",
+        "non_null": false
+    },
+    "variablesPayload": {}
+}

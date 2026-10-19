@@ -1,6 +1,6 @@
 import groovy.json.JsonOutput
 
-// Scheduled cato-cli schema refresh job.
+// Scheduled cato-cli schema and reference database refresh job.
 //
 // Required Jenkins credentials:
 //   cato-acctest-token              -> Shared Cato API token
@@ -51,7 +51,7 @@ pipeline {
             }
         }
 
-        stage('Refresh schema in Python container') {
+        stage('Refresh schema and reference databases in Python container') {
             steps {
                 withCredentials([
                     string(credentialsId: 'cato-acctest-token', variable: 'CATO_TOKEN'),
@@ -64,7 +64,7 @@ pipeline {
                             --user "$(id -u):$(id -g)" \
                             --env CATO_TOKEN \
                             --env CATO_ACCOUNT_ID \
-                            --env SKIP_SITE_LOCATION_UPDATE=true \
+                            --env SKIP_SITE_LOCATION_UPDATE=false \
                             --volume "$WORKSPACE:/workspace:rw" \
                             --workdir /workspace \
                             python:3.11-slim-bookworm \
@@ -85,6 +85,8 @@ pipeline {
                                 cd schema
                                 HOME="$ci_home" python3 importSchema.py
                                 test -s introspection.json
+                                test -s ../catocli/parsers/custom/query_siteLocation/siteLocation.db
+                                test -s ../catocli/parsers/custom/query_siteLocation/siteLocation.json
                             '
                     '''
                 }
@@ -101,8 +103,8 @@ pipeline {
                     ).trim()
 
                     if (env.CHANGES_DETECTED != 'true') {
-                        currentBuild.description = 'No schema changes'
-                        echo 'No schema changes detected; skipping branch and PR creation.'
+                        currentBuild.description = 'No schema or database changes'
+                        echo 'No schema or database changes detected; skipping branch and PR creation.'
                         return
                     }
 
@@ -119,8 +121,8 @@ pipeline {
 
                         git -c user.name='cato-cli-automation' \
                             -c user.email='cato-cli-automation@users.noreply.github.com' \
-                            commit -m 'Update generated CLI schema' \
-                                   -m 'Refresh the Cato GraphQL introspection schema and regenerate CLI models, payloads, parsers, and documentation.'
+                            commit -m 'Update CLI schema and reference data' \
+                                   -m 'Refresh the Cato GraphQL schema, regenerate CLI artifacts, and rebuild the site-location SQLite database and JSON export from city, country, subdivision, and time-zone data.'
                     '''
                     env.CLI_COMMIT_SHA = sh(
                         script: 'git rev-parse --verify HEAD^{commit}',
@@ -164,10 +166,11 @@ EOF
             }
             steps {
                 script {
-                    def prTitle = 'Update generated CLI schema'
+                    def prTitle = 'Update CLI schema and reference data'
                     def prBody = '''## Summary
 - Refreshes the tracked GraphQL introspection schema from the Cato API.
 - Regenerates CLI models, payloads, parsers, READMEs, and generated test payloads.
+- Refreshes the site-location SQLite database and JSON export, including city, country, subdivision, and time-zone data.
 
 ## Test plan
 - GitHub Actions validates the generated files.

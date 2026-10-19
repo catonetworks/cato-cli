@@ -1,0 +1,438 @@
+{
+    "args": {
+        "accountId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        }
+    },
+    "childOperations": {
+        "role": {
+            "args": {
+                "role___id": {
+                    "defaultValue": null,
+                    "description": null,
+                    "id_str": "role___id",
+                    "name": "id",
+                    "path": "role.id",
+                    "requestStr": "$id:ID! ",
+                    "required": true,
+                    "responseStr": "id:$id ",
+                    "type": {
+                        "kind": [
+                            "NON_NULL",
+                            "SCALAR"
+                        ],
+                        "name": "ID",
+                        "non_null": false
+                    },
+                    "varName": "id"
+                }
+            },
+            "deprecationReason": null,
+            "description": "Fetch a single role by its unique identifier. Returns null when no role with\nthat id exists in the account's scope.",
+            "isDeprecated": false,
+            "name": "role",
+            "type": {
+                "kind": "OBJECT",
+                "name": "RoleManagementRole",
+                "ofType": null
+            }
+        },
+        "roleManagement": {
+            "args": {},
+            "deprecationReason": null,
+            "description": "Queries for roles and permissions defined on the account.",
+            "isDeprecated": false,
+            "name": "roleManagement",
+            "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                    "kind": "OBJECT",
+                    "name": "RoleManagementQueries",
+                    "ofType": null
+                }
+            }
+        }
+    },
+    "deprecationReason": null,
+    "description": "Queries for roles, permissions, and role assignments.",
+    "fieldTypes": {},
+    "isDeprecated": false,
+    "name": "rbac",
+    "operationArgs": {
+        "accountId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        },
+        "id": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "role___id",
+            "name": "id",
+            "path": "role.id",
+            "requestStr": "$id:ID! ",
+            "required": true,
+            "responseStr": "id:$id ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "id"
+        }
+    },
+    "path": "query.rbac.roleManagement.role",
+    "type": {
+        "definition": {
+            "description": null,
+            "enumValues": null,
+            "fields": {
+                "roleManagement": {
+                    "args": {},
+                    "deprecationReason": null,
+                    "description": "Queries for roles and permissions defined on the account.",
+                    "id_str": "roleManagement",
+                    "isDeprecated": false,
+                    "name": "roleManagement",
+                    "path": "roleManagement",
+                    "requestStr": "$roleManagementQueries:RoleManagementQueries! ",
+                    "required": true,
+                    "responseStr": "roleManagement:$roleManagementQueries ",
+                    "type": {
+                        "definition": {
+                            "description": "Queries for predefined roles, custom roles, and available permissions.",
+                            "enumValues": null,
+                            "fields": {
+                                "role": {
+                                    "args": {
+                                        "role___id": {
+                                            "defaultValue": null,
+                                            "description": null,
+                                            "id_str": "role___id",
+                                            "name": "id",
+                                            "path": "role.id",
+                                            "requestStr": "$id:ID! ",
+                                            "required": true,
+                                            "responseStr": "id:$id ",
+                                            "type": {
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "SCALAR"
+                                                ],
+                                                "name": "ID",
+                                                "non_null": false
+                                            },
+                                            "varName": "id"
+                                        }
+                                    },
+                                    "deprecationReason": null,
+                                    "description": "Fetch a single role by its unique identifier. Returns null when no role with\nthat id exists in the account's scope.",
+                                    "id_str": "roleManagement___role",
+                                    "isDeprecated": false,
+                                    "name": "role",
+                                    "path": "roleManagement.role",
+                                    "requestStr": "$roleManagementRole:RoleManagementRole ",
+                                    "required": false,
+                                    "responseStr": "role:$roleManagementRole ",
+                                    "type": {
+                                        "definition": {
+                                            "description": "A named set of permissions. Predefined roles are shared and immutable; custom\nroles belong to one account.",
+                                            "enumValues": null,
+                                            "fields": {
+                                                "description": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Optional role description.",
+                                                    "id_str": "roleManagement___role___description",
+                                                    "isDeprecated": false,
+                                                    "name": "description",
+                                                    "path": "roleManagement.role.description",
+                                                    "requestStr": "$description:String ",
+                                                    "required": false,
+                                                    "responseStr": "description:$description ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "description"
+                                                },
+                                                "id": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Unique identifier.",
+                                                    "id_str": "roleManagement___role___id",
+                                                    "isDeprecated": false,
+                                                    "name": "id",
+                                                    "path": "roleManagement.role.id",
+                                                    "requestStr": "$id:ID! ",
+                                                    "required": true,
+                                                    "responseStr": "id:$id ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "ID",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "id"
+                                                },
+                                                "isUsedOnExternalAccess": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Whether the role is marked as used by external access. Custom roles marked as used\ncannot be modified.",
+                                                    "id_str": "roleManagement___role___isUsedOnExternalAccess",
+                                                    "isDeprecated": false,
+                                                    "name": "isUsedOnExternalAccess",
+                                                    "path": "roleManagement.role.isUsedOnExternalAccess",
+                                                    "requestStr": "$isUsedOnExternalAccess:Boolean! ",
+                                                    "required": true,
+                                                    "responseStr": "isUsedOnExternalAccess:$isUsedOnExternalAccess ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "Boolean",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "isUsedOnExternalAccess"
+                                                },
+                                                "name": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Human-readable role name.",
+                                                    "id_str": "roleManagement___role___name",
+                                                    "isDeprecated": false,
+                                                    "name": "name",
+                                                    "path": "roleManagement.role.name",
+                                                    "requestStr": "$name:String! ",
+                                                    "required": true,
+                                                    "responseStr": "name:$name ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "name"
+                                                },
+                                                "permission": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Permissions granted by the role.",
+                                                    "id_str": "roleManagement___role___permission",
+                                                    "isDeprecated": false,
+                                                    "name": "permission",
+                                                    "path": "roleManagement.role.permission",
+                                                    "requestStr": "$roleManagementPermission:[RoleManagementPermission]! ",
+                                                    "required": true,
+                                                    "responseStr": "permission:$roleManagementPermission ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": "A resource and action granted by a predefined or custom role.",
+                                                            "enumValues": null,
+                                                            "fields": {
+                                                                "action": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Granted action.",
+                                                                    "id_str": "roleManagement___role___permission___action",
+                                                                    "isDeprecated": false,
+                                                                    "name": "action",
+                                                                    "path": "roleManagement.role.permission.action",
+                                                                    "requestStr": "$action:RBACAction! ",
+                                                                    "required": true,
+                                                                    "responseStr": "action:$action ",
+                                                                    "type": {
+                                                                        "definition": {
+                                                                            "description": null,
+                                                                            "enumValues": [
+                                                                                {
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "NONE"
+                                                                                },
+                                                                                {
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "VIEW"
+                                                                                },
+                                                                                {
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "EDIT"
+                                                                                }
+                                                                            ],
+                                                                            "fields": null,
+                                                                            "inputFields": null,
+                                                                            "interfaces": null,
+                                                                            "kind": "ENUM",
+                                                                            "name": "RBACAction",
+                                                                            "possibleTypes": null
+                                                                        },
+                                                                        "indexType": "enum",
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "ENUM"
+                                                                        ],
+                                                                        "name": "RBACAction",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "action"
+                                                                },
+                                                                "resource": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Resource identifier. Use permissionCatalog to discover resources for custom roles.",
+                                                                    "id_str": "roleManagement___role___permission___resource",
+                                                                    "isDeprecated": false,
+                                                                    "name": "resource",
+                                                                    "path": "roleManagement.role.permission.resource",
+                                                                    "requestStr": "$resource:String! ",
+                                                                    "required": true,
+                                                                    "responseStr": "resource:$resource ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "String",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "resource"
+                                                                }
+                                                            },
+                                                            "inputFields": null,
+                                                            "interfaces": {},
+                                                            "kind": "OBJECT",
+                                                            "name": "RoleManagementPermission",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "object",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "LIST",
+                                                            "NON_NULL",
+                                                            "OBJECT"
+                                                        ],
+                                                        "name": "RoleManagementPermission",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "roleManagementPermission"
+                                                },
+                                                "predefined": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Whether the role is predefined and immutable.",
+                                                    "id_str": "roleManagement___role___predefined",
+                                                    "isDeprecated": false,
+                                                    "name": "predefined",
+                                                    "path": "roleManagement.role.predefined",
+                                                    "requestStr": "$predefined:Boolean! ",
+                                                    "required": true,
+                                                    "responseStr": "predefined:$predefined ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "Boolean",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "predefined"
+                                                }
+                                            },
+                                            "inputFields": null,
+                                            "interfaces": {},
+                                            "kind": "OBJECT",
+                                            "name": "RoleManagementRole",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "object",
+                                        "kind": [
+                                            "OBJECT"
+                                        ],
+                                        "name": "RoleManagementRole",
+                                        "non_null": false
+                                    },
+                                    "varName": "roleManagementRole"
+                                }
+                            },
+                            "inputFields": null,
+                            "interfaces": {},
+                            "kind": "OBJECT",
+                            "name": "RoleManagementQueries",
+                            "possibleTypes": null
+                        },
+                        "indexType": "object",
+                        "kind": [
+                            "NON_NULL",
+                            "OBJECT"
+                        ],
+                        "name": "RoleManagementQueries",
+                        "non_null": false
+                    },
+                    "varName": "roleManagementQueries"
+                }
+            },
+            "inputFields": null,
+            "interfaces": [],
+            "kind": "OBJECT",
+            "name": "RBACQueries",
+            "possibleTypes": null
+        },
+        "indexType": "object",
+        "kind": [
+            "NON_NULL",
+            "OBJECT"
+        ],
+        "name": "RBACQueries",
+        "non_null": false
+    },
+    "variablesPayload": {
+        "id": "id"
+    }
+}

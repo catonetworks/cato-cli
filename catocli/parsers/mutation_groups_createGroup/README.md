@@ -79,4 +79,4 @@ catocli mutation groups createGroup '{
 
 `accountId` [ID] - (required) N/A
 `createGroupInput` [CreateGroupInput] - (required) N/A
-`groupMembersListInput` [GroupMembersListInput] - (required) N/A
+`groupMembersListInput` [GroupMembersListInput] - (optional) N/A

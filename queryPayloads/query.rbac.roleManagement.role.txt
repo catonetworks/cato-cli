@@ -1,0 +1,17 @@
+query rbacRoleManagementRole ( $accountId:ID! $id:ID!) {
+	rbac ( accountId:$accountId ) {
+		roleManagement {
+			role ( id:$id   ) {
+				id
+				name
+				description
+				predefined
+				isUsedOnExternalAccess
+				permission {
+					resource
+					action
+				}
+			}
+		}
+	}	
+}

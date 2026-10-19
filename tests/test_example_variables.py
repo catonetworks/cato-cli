@@ -41,14 +41,18 @@ class ExampleVariablesTest(unittest.TestCase):
                 variables.update(accountID="12345", accountId="12345")
                 definitions = parse(payload["query"]).definitions[0].variable_definitions
                 result = get_variable_values(self.schema, definitions, variables)
-                self.assertIsInstance(result, dict, result)
+                # graphql-core 3.3 wraps successful coercion in VariableValues;
+                # 3.2 returns the dictionary directly. Errors remain a list.
+                coerced = getattr(result, "coerced", result)
+                self.assertIsInstance(coerced, dict, result)
 
     def test_custom_scalar_formats(self):
         def example(name):
             return catolib.renderInputFieldVal({"type": {"name": name, "kind": ["SCALAR"]}})
 
         self.assertEqual(example("TimeFrame"), "last.P1D")
-        datetime.datetime.fromisoformat(example("DateTime"))
+        # Python 3.10 needs an explicit offset for the ISO 8601 UTC suffix.
+        datetime.datetime.fromisoformat(example("DateTime").replace("Z", "+00:00"))
         datetime.date.fromisoformat(example("Date"))
         datetime.time.fromisoformat(example("Time"))
         ZoneInfo(example("TimeZone"))

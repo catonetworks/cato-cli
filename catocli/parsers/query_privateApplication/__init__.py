@@ -7,15 +7,54 @@ def query_privateApplication_parse(query_subparsers):
             help='privateApplication() query operation', 
             usage=get_help("query_privateApplication"), formatter_class=CustomSubparserHelpFormatter)
 
-    query_privateApplication_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
-    query_privateApplication_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
-    query_privateApplication_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
-    query_privateApplication_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
-    query_privateApplication_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
-    query_privateApplication_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
-    query_privateApplication_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
-    query_privateApplication_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
-    query_privateApplication_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
-    query_privateApplication_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
-    query_privateApplication_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
-    query_privateApplication_parser.set_defaults(func=createRequest,operation_name='query.privateApplication')
+    def _show_query_privateApplication_help(args, configuration=None):
+        """Show help when query_privateApplication is called without subcommand"""
+        print("\ncatocli query privateApplication <subcommand> [options]")
+        print("\nAvailable subcommands:")
+        print("  privateApplication             privateApplication operation\n  privateApplicationList         privateApplicationList operation")
+        print("\nFor help on a specific subcommand:")
+        print("  catocli query privateApplication <subcommand> -h")
+        return None
+
+    query_privateApplication_subparsers = query_privateApplication_parser.add_subparsers()
+    query_privateApplication_parser.set_defaults(func=_show_query_privateApplication_help)
+
+    query_privateApplication_privateApplication_parser = query_privateApplication_subparsers.add_parser('privateApplication', 
+            help='privateApplication() privateApplication operation', 
+            usage=get_help("query_privateApplication_privateApplication"))
+
+    query_privateApplication_privateApplication_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    query_privateApplication_privateApplication_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    query_privateApplication_privateApplication_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    query_privateApplication_privateApplication_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    query_privateApplication_privateApplication_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    query_privateApplication_privateApplication_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    query_privateApplication_privateApplication_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    query_privateApplication_privateApplication_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    query_privateApplication_privateApplication_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    query_privateApplication_privateApplication_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_privateApplication_privateApplication_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    query_privateApplication_privateApplication_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    query_privateApplication_privateApplication_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    query_privateApplication_privateApplication_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    query_privateApplication_privateApplication_parser.set_defaults(func=createRequest,operation_name='query.privateApplication.privateApplication')
+
+    query_privateApplication_privateApplicationList_parser = query_privateApplication_subparsers.add_parser('privateApplicationList', 
+            help='privateApplicationList() privateApplication operation', 
+            usage=get_help("query_privateApplication_privateApplicationList"))
+
+    query_privateApplication_privateApplicationList_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    query_privateApplication_privateApplicationList_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    query_privateApplication_privateApplicationList_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    query_privateApplication_privateApplicationList_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    query_privateApplication_privateApplicationList_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    query_privateApplication_privateApplicationList_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    query_privateApplication_privateApplicationList_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    query_privateApplication_privateApplicationList_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    query_privateApplication_privateApplicationList_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    query_privateApplication_privateApplicationList_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_privateApplication_privateApplicationList_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    query_privateApplication_privateApplicationList_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    query_privateApplication_privateApplicationList_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    query_privateApplication_privateApplicationList_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    query_privateApplication_privateApplicationList_parser.set_defaults(func=createRequest,operation_name='query.privateApplication.privateApplicationList')

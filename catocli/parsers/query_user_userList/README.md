@@ -1,0 +1,194 @@
+
+## CATO-CLI - query.user.userList:
+[Click here](https://api.catonetworks.com/documentation/#query-query.user.userList) for documentation on this operation.
+
+### Usage for query.user.userList:
+
+```bash
+catocli query user userList -h
+
+catocli query user userList <json>
+
+catocli query user userList --json-file query.user.userList.json
+
+catocli query user userList '{"userListInput":{"filter":{"department":[{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]}],"directoryId":[{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]}],"email":[{"eq":"user@example.com","in":["user@example.com"],"neq":"user@example.com","nin":["user@example.com"]}],"id":[{"eq":"id","in":["id1","id2"],"neq":"id","nin":["id1","id2"]}],"jobTitle":[{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]}],"remoteAccessEligibility":[{"eq":true,"neq":true}],"riskScore":[{"eq":"LOW","in":["LOW"],"neq":"LOW","nin":["LOW"]}],"searchTerm":{"search":"string"},"userImportType":[{"eq":"MANUAL","in":["MANUAL"],"neq":"MANUAL","nin":["MANUAL"]}],"userStatus":[{"eq":"DISABLED","in":["DISABLED"],"neq":"DISABLED","nin":["DISABLED"]}]},"paging":{"from":1,"limit":1},"sort":{"creationDate":{"direction":"ASC","priority":1},"department":{"direction":"ASC","priority":1},"email":{"direction":"ASC","priority":1},"jobTitle":{"direction":"ASC","priority":1},"lastModified":{"direction":"ASC","priority":1},"name":{"direction":"ASC","priority":1},"remoteAccessEligibility":{"direction":"ASC","priority":1},"riskScore":{"direction":"ASC","priority":1},"userId":{"direction":"ASC","priority":1},"userImportType":{"direction":"ASC","priority":1},"userPrincipalName":{"direction":"ASC","priority":1},"userStatus":{"direction":"ASC","priority":1}}}}'
+
+catocli query user userList '{
+    "userListInput": {
+        "filter": {
+            "department": [
+                {
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
+                }
+            ],
+            "directoryId": [
+                {
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
+                }
+            ],
+            "email": [
+                {
+                    "eq": "user@example.com",
+                    "in": [
+                        "user@example.com"
+                    ],
+                    "neq": "user@example.com",
+                    "nin": [
+                        "user@example.com"
+                    ]
+                }
+            ],
+            "id": [
+                {
+                    "eq": "id",
+                    "in": [
+                        "id1",
+                        "id2"
+                    ],
+                    "neq": "id",
+                    "nin": [
+                        "id1",
+                        "id2"
+                    ]
+                }
+            ],
+            "jobTitle": [
+                {
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
+                }
+            ],
+            "remoteAccessEligibility": [
+                {
+                    "eq": true,
+                    "neq": true
+                }
+            ],
+            "riskScore": [
+                {
+                    "eq": "LOW",
+                    "in": [
+                        "LOW"
+                    ],
+                    "neq": "LOW",
+                    "nin": [
+                        "LOW"
+                    ]
+                }
+            ],
+            "searchTerm": {
+                "search": "string"
+            },
+            "userImportType": [
+                {
+                    "eq": "MANUAL",
+                    "in": [
+                        "MANUAL"
+                    ],
+                    "neq": "MANUAL",
+                    "nin": [
+                        "MANUAL"
+                    ]
+                }
+            ],
+            "userStatus": [
+                {
+                    "eq": "DISABLED",
+                    "in": [
+                        "DISABLED"
+                    ],
+                    "neq": "DISABLED",
+                    "nin": [
+                        "DISABLED"
+                    ]
+                }
+            ]
+        },
+        "paging": {
+            "from": 1,
+            "limit": 1
+        },
+        "sort": {
+            "creationDate": {
+                "direction": "ASC",
+                "priority": 1
+            },
+            "department": {
+                "direction": "ASC",
+                "priority": 1
+            },
+            "email": {
+                "direction": "ASC",
+                "priority": 1
+            },
+            "jobTitle": {
+                "direction": "ASC",
+                "priority": 1
+            },
+            "lastModified": {
+                "direction": "ASC",
+                "priority": 1
+            },
+            "name": {
+                "direction": "ASC",
+                "priority": 1
+            },
+            "remoteAccessEligibility": {
+                "direction": "ASC",
+                "priority": 1
+            },
+            "riskScore": {
+                "direction": "ASC",
+                "priority": 1
+            },
+            "userId": {
+                "direction": "ASC",
+                "priority": 1
+            },
+            "userImportType": {
+                "direction": "ASC",
+                "priority": 1
+            },
+            "userPrincipalName": {
+                "direction": "ASC",
+                "priority": 1
+            },
+            "userStatus": {
+                "direction": "ASC",
+                "priority": 1
+            }
+        }
+    }
+}'
+```
+
+#### Operation Arguments for query.user.userList ####
+
+`accountId` [ID] - (required) Unique identifier of the Cato account.
+`userListInput` [UserListInput] - (required) N/A

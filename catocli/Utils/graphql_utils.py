@@ -222,7 +222,7 @@ def validateArgs(variables_obj, operation):
     # Check for required arguments in operation
     operation_args = operation.get('operationArgs', {})
     for arg_name, arg_def in operation_args.items():
-        if arg_def.get('required', False):
+        if arg_def.get('required', False) and arg_def.get('requiredForOperation', True):
             var_name = arg_def.get('varName', arg_name)
             if var_name not in variables_obj or variables_obj[var_name] is None:
                 invalid_vars.append(var_name)
@@ -462,6 +462,7 @@ def generateGraphqlPayload(variables_obj, operation, operation_name, renderArgsA
     
     # Now build variable declarations from dynamically collected arguments
     variable_str = ""
+    used_variables = set(re.findall(r'\$([_A-Za-z][_0-9A-Za-z]*)', query_str))
     for arg_name in dynamic_operation_args:
         arg = dynamic_operation_args[arg_name]
         # Include required arguments always, and optional arguments only when they have meaningful values
@@ -473,7 +474,7 @@ def generateGraphqlPayload(variables_obj, operation, operation_name, renderArgsA
                     variables_obj[var_name] != [] and 
                     variables_obj[var_name] != {})
         
-        if is_required or has_value:
+        if var_name in used_variables and (is_required or has_value):
             variable_str += arg["requestStr"]
     
     # Replace the placeholder with actual variables
@@ -838,7 +839,9 @@ def renderArgsAndFields(response_arg_str, variables_obj, cur_operation, definiti
                 # If all arguments are optional, include the field even without arguments
                 should_include_field = not required_args_missing
         
-        # ALWAYS process field (no exclusion logic like cato-api-explorer)
+        if not should_include_field:
+            continue
+
         response_arg_str += f"{indent}{field_display_name}"
         if args_present:
             response_arg_str += arg_str
@@ -902,6 +905,11 @@ def renderArgsAndFields(response_arg_str, variables_obj, cur_operation, definiti
             response_arg_str += " {\n"
             for subfield_index in field['type']['definition']['fields']:
                 subfield = field['type']['definition']['fields'][subfield_index]
+                if any(arg.get("required", False) and
+                       (arg["varName"] not in variables_obj or
+                        variables_obj[arg["varName"]] in (None, "", [], {}))
+                       for arg in (subfield.get("args") or {}).values()):
+                    continue
                 # Explorer line 1033: Implement field aliasing for duplicate types - EXACT MATCH
                 # JavaScript: var subfieldName = (curOperationObj.fieldTypes[subfield.type.name] && !subfield.type.kind.includes("SCALAR")) 
                 #                               ? (subfield.name + field.type.definition.name + ": " + subfield.name) : subfield.name;

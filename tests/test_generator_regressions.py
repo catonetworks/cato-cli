@@ -35,6 +35,17 @@ class NamespaceTest(unittest.TestCase):
             directive["locations"] = [v for v in directive["locations"] if v in DirectiveLocation.__members__]
         cls.schema = build_client_schema(data)
 
+    def test_argument_free_operation_has_no_variable_definitions(self):
+        name = "query.rateLimit"
+        operation = model(name)
+        payload = generateGraphqlPayload({}, operation, name,
+            renderArgsAndFields_func=lambda r, v, o, d, n, i, a: renderArgsAndFields(r, v, o, d, n, i, a, None))
+        document = parse(payload["query"])
+        self.assertEqual([], validate(self.schema, document))
+        self.assertFalse(document.definitions[0].variable_definitions)
+        self.assertEqual("rateLimit", payload["operationName"])
+        self.assertEqual({}, payload["variables"])
+
     def test_independent_rbac_actions(self):
         cases = {
             "mutation.rbac.roleManagement.createRole": {"roleManagementCreateRoleInput": {"name": "example", "permission": []}},

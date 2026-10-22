@@ -7439,7 +7439,7 @@
                                                                 "key": {
                                                                     "args": {},
                                                                     "deprecationReason": null,
-                                                                    "description": "Breakdown key for this bucket: a category id, an application / security-domain / check-type name, a\n\"framework+controlKey\" compliance-control composite key, or a severity (PostureImpact) value",
+                                                                    "description": "Breakdown key for this bucket: a category id, an application / security-domain / check-type name, a\n\"framework+controlKey\" compliance-control composite key, a severity (PostureImpact) value, or a label",
                                                                     "id_str": "checkSummary___summary___applicationBreakdown___key",
                                                                     "isDeprecated": false,
                                                                     "name": "key",
@@ -7690,7 +7690,7 @@
                                                                                 "key": {
                                                                                     "args": {},
                                                                                     "deprecationReason": null,
-                                                                                    "description": "Breakdown key for this bucket: a category id, an application / security-domain / check-type name, a\n\"framework+controlKey\" compliance-control composite key, or a severity (PostureImpact) value",
+                                                                                    "description": "Breakdown key for this bucket: a category id, an application / security-domain / check-type name, a\n\"framework+controlKey\" compliance-control composite key, a severity (PostureImpact) value, or a label",
                                                                                     "id_str": "checkSummary___summary___areaBreakdown___categoryBreakdown___key",
                                                                                     "isDeprecated": false,
                                                                                     "name": "key",
@@ -8144,7 +8144,7 @@
                                                                 "key": {
                                                                     "args": {},
                                                                     "deprecationReason": null,
-                                                                    "description": "Breakdown key for this bucket: a category id, an application / security-domain / check-type name, a\n\"framework+controlKey\" compliance-control composite key, or a severity (PostureImpact) value",
+                                                                    "description": "Breakdown key for this bucket: a category id, an application / security-domain / check-type name, a\n\"framework+controlKey\" compliance-control composite key, a severity (PostureImpact) value, or a label",
                                                                     "id_str": "checkSummary___summary___categoryBreakdown___key",
                                                                     "isDeprecated": false,
                                                                     "name": "key",
@@ -8379,7 +8379,7 @@
                                                                 "key": {
                                                                     "args": {},
                                                                     "deprecationReason": null,
-                                                                    "description": "Breakdown key for this bucket: a category id, an application / security-domain / check-type name, a\n\"framework+controlKey\" compliance-control composite key, or a severity (PostureImpact) value",
+                                                                    "description": "Breakdown key for this bucket: a category id, an application / security-domain / check-type name, a\n\"framework+controlKey\" compliance-control composite key, a severity (PostureImpact) value, or a label",
                                                                     "id_str": "checkSummary___summary___checkTypeBreakdown___key",
                                                                     "isDeprecated": false,
                                                                     "name": "key",
@@ -8762,7 +8762,7 @@
                                                                 "key": {
                                                                     "args": {},
                                                                     "deprecationReason": null,
-                                                                    "description": "Breakdown key for this bucket: a category id, an application / security-domain / check-type name, a\n\"framework+controlKey\" compliance-control composite key, or a severity (PostureImpact) value",
+                                                                    "description": "Breakdown key for this bucket: a category id, an application / security-domain / check-type name, a\n\"framework+controlKey\" compliance-control composite key, a severity (PostureImpact) value, or a label",
                                                                     "id_str": "checkSummary___summary___complianceControlBreakdown___key",
                                                                     "isDeprecated": false,
                                                                     "name": "key",
@@ -9563,6 +9563,241 @@
                                                     },
                                                     "varName": "evaluatedAt"
                                                 },
+                                                "labelBreakdown": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Breakdown by check label. A check with several labels is counted in each of their buckets, so\nthe buckets can sum up to more than `counts.total`.",
+                                                    "id_str": "checkSummary___summary___labelBreakdown",
+                                                    "isDeprecated": false,
+                                                    "name": "labelBreakdown",
+                                                    "path": "checkSummary.summary.labelBreakdown",
+                                                    "requestStr": "$postureCheckSummaryBreakdown:[PostureCheckSummaryBreakdown]! ",
+                                                    "required": true,
+                                                    "responseStr": "labelBreakdown:$postureCheckSummaryBreakdown ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": "Score and state-count summary for one Posture Check breakdown bucket.",
+                                                            "enumValues": null,
+                                                            "fields": {
+                                                                "counts": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "State counters for this bucket.",
+                                                                    "id_str": "checkSummary___summary___labelBreakdown___counts",
+                                                                    "isDeprecated": false,
+                                                                    "name": "counts",
+                                                                    "path": "checkSummary.summary.labelBreakdown.counts",
+                                                                    "requestStr": "$postureCheckCountsPerState:PostureCheckCountsPerState! ",
+                                                                    "required": true,
+                                                                    "responseStr": "counts:$postureCheckCountsPerState ",
+                                                                    "type": {
+                                                                        "definition": {
+                                                                            "description": "Counts of Posture Checks by evaluation state.",
+                                                                            "enumValues": null,
+                                                                            "fields": {
+                                                                                "disabled": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "Number of disabled checks.",
+                                                                                    "id_str": "checkSummary___summary___labelBreakdown___counts___disabled",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "disabled",
+                                                                                    "path": "checkSummary.summary.labelBreakdown.counts.disabled",
+                                                                                    "requestStr": "$disabled:Int! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "disabled:$disabled ",
+                                                                                    "type": {
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "SCALAR"
+                                                                                        ],
+                                                                                        "name": "Int",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "disabled"
+                                                                                },
+                                                                                "failed": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "Number of failed checks.",
+                                                                                    "id_str": "checkSummary___summary___labelBreakdown___counts___failed",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "failed",
+                                                                                    "path": "checkSummary.summary.labelBreakdown.counts.failed",
+                                                                                    "requestStr": "$failed:Int! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "failed:$failed ",
+                                                                                    "type": {
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "SCALAR"
+                                                                                        ],
+                                                                                        "name": "Int",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "failed"
+                                                                                },
+                                                                                "newCount": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "Number of checks classified as new.",
+                                                                                    "id_str": "checkSummary___summary___labelBreakdown___counts___newCount",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "newCount",
+                                                                                    "path": "checkSummary.summary.labelBreakdown.counts.newCount",
+                                                                                    "requestStr": "$newCount:Int! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "newCount:$newCount ",
+                                                                                    "type": {
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "SCALAR"
+                                                                                        ],
+                                                                                        "name": "Int",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "newCount"
+                                                                                },
+                                                                                "passed": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "Number of passed checks.",
+                                                                                    "id_str": "checkSummary___summary___labelBreakdown___counts___passed",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "passed",
+                                                                                    "path": "checkSummary.summary.labelBreakdown.counts.passed",
+                                                                                    "requestStr": "$passed:Int! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "passed:$passed ",
+                                                                                    "type": {
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "SCALAR"
+                                                                                        ],
+                                                                                        "name": "Int",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "passed"
+                                                                                },
+                                                                                "total": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "Total number of checks.",
+                                                                                    "id_str": "checkSummary___summary___labelBreakdown___counts___total",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "total",
+                                                                                    "path": "checkSummary.summary.labelBreakdown.counts.total",
+                                                                                    "requestStr": "$total:Int! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "total:$total ",
+                                                                                    "type": {
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "SCALAR"
+                                                                                        ],
+                                                                                        "name": "Int",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "total"
+                                                                                }
+                                                                            },
+                                                                            "inputFields": null,
+                                                                            "interfaces": {},
+                                                                            "kind": "OBJECT",
+                                                                            "name": "PostureCheckCountsPerState",
+                                                                            "possibleTypes": null
+                                                                        },
+                                                                        "indexType": "object",
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "OBJECT"
+                                                                        ],
+                                                                        "name": "PostureCheckCountsPerState",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "postureCheckCountsPerState"
+                                                                },
+                                                                "key": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Breakdown key for this bucket: a category id, an application / security-domain / check-type name, a\n\"framework+controlKey\" compliance-control composite key, a severity (PostureImpact) value, or a label",
+                                                                    "id_str": "checkSummary___summary___labelBreakdown___key",
+                                                                    "isDeprecated": false,
+                                                                    "name": "key",
+                                                                    "path": "checkSummary.summary.labelBreakdown.key",
+                                                                    "requestStr": "$key:String! ",
+                                                                    "required": true,
+                                                                    "responseStr": "key:$key ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "String",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "key"
+                                                                },
+                                                                "name": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Human-readable label for this bucket (e.g. category name, or \"framework title\" for a compliance control).",
+                                                                    "id_str": "checkSummary___summary___labelBreakdown___name",
+                                                                    "isDeprecated": false,
+                                                                    "name": "name",
+                                                                    "path": "checkSummary.summary.labelBreakdown.name",
+                                                                    "requestStr": "$name:String ",
+                                                                    "required": false,
+                                                                    "responseStr": "name:$name ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "String",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "name"
+                                                                },
+                                                                "score": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Score for this bucket.",
+                                                                    "id_str": "checkSummary___summary___labelBreakdown___score",
+                                                                    "isDeprecated": false,
+                                                                    "name": "score",
+                                                                    "path": "checkSummary.summary.labelBreakdown.score",
+                                                                    "requestStr": "$score:Int! ",
+                                                                    "required": true,
+                                                                    "responseStr": "score:$score ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "Int",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "score"
+                                                                }
+                                                            },
+                                                            "inputFields": null,
+                                                            "interfaces": {},
+                                                            "kind": "OBJECT",
+                                                            "name": "PostureCheckSummaryBreakdown",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "object",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "LIST",
+                                                            "NON_NULL",
+                                                            "OBJECT"
+                                                        ],
+                                                        "name": "PostureCheckSummaryBreakdown",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "postureCheckSummaryBreakdown"
+                                                },
                                                 "overallEffectiveAreaCriticality": {
                                                     "args": {},
                                                     "deprecationReason": null,
@@ -9801,7 +10036,7 @@
                                                                 "key": {
                                                                     "args": {},
                                                                     "deprecationReason": null,
-                                                                    "description": "Breakdown key for this bucket: a category id, an application / security-domain / check-type name, a\n\"framework+controlKey\" compliance-control composite key, or a severity (PostureImpact) value",
+                                                                    "description": "Breakdown key for this bucket: a category id, an application / security-domain / check-type name, a\n\"framework+controlKey\" compliance-control composite key, a severity (PostureImpact) value, or a label",
                                                                     "id_str": "checkSummary___summary___securityDomainBreakdown___key",
                                                                     "isDeprecated": false,
                                                                     "name": "key",
@@ -10036,7 +10271,7 @@
                                                                 "key": {
                                                                     "args": {},
                                                                     "deprecationReason": null,
-                                                                    "description": "Breakdown key for this bucket: a category id, an application / security-domain / check-type name, a\n\"framework+controlKey\" compliance-control composite key, or a severity (PostureImpact) value",
+                                                                    "description": "Breakdown key for this bucket: a category id, an application / security-domain / check-type name, a\n\"framework+controlKey\" compliance-control composite key, a severity (PostureImpact) value, or a label",
                                                                     "id_str": "checkSummary___summary___severityBreakdown___key",
                                                                     "isDeprecated": false,
                                                                     "name": "key",

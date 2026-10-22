@@ -14,6 +14,12 @@
         "query.aiSecurity.agents.event": {},
         "query.aiSecurity.agents.session": {},
         "query.aiSecurity.apps.invocation": {},
+        // Rate-limit fields are unavailable for the CI request context
+        "query.rateLimit": {},
+        "query.rateLimitEstimate": {},
+        // Server errors when selecting applicableAccountType, even with valid role ID/paging
+        "query.rbac.roleManagement.role": {},
+        "query.rbac.roleManagement.roleList": {},
         // Pop-location resolver reports missing account tag; no BGP profile fixture exists
         "query.popLocations.bgpProfile": {},
         "query.popLocations.bgpProfileList": {},
@@ -57,6 +63,16 @@
         ]
     },
     "overrideOperationPayload": {
+        "query.aiSecurity.endUsers.sessionConversation": {
+            "payload": {
+                "aiSecurityEndUsersSessionConversationInput": {
+                    "appId": "chatgpt_personal_paid",
+                    "messageId": "2bd045da-dc3c-4c9c-8486-da8d04ae6cb6",
+                    "sessionId": "6ad1d6f7-cb40-83ed-8b06-d5c9e94b595e"
+                }
+            },
+            "assertions": ["aiSecurity.endUsers.sessionConversation.userPrompt"]
+        },
         "query.catalogs.catalogApplicationList": {
             "payload": {
                 "catalogApplicationListInput": {

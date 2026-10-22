@@ -1,4 +1,4 @@
-query businessPlatform ( $accountId:ID! $businessPlatformAccountListInput:BusinessPlatformAccountListInput) {
+query businessPlatform ( $accountId:ID! $businessPlatformAccountListInput:BusinessPlatformAccountListInput $businessPlatformPartnerListInput:BusinessPlatformPartnerListInput) {
 	businessPlatform ( accountId:$accountId ) {
 		accountList ( input:$businessPlatformAccountListInput  )  {
 			items {
@@ -50,6 +50,22 @@ query businessPlatform ( $accountId:ID! $businessPlatformAccountListInput:Busine
 				arr
 				serviceRenewalDate
 				cmaAccountId
+			}
+		}
+		partnerList ( input:$businessPlatformPartnerListInput  )  {
+			items {
+				id
+				account {
+					id
+					name
+				}
+				name
+				description
+				createdBy
+				createdAt
+			}
+			paging {
+				total
 			}
 		}
 	}	

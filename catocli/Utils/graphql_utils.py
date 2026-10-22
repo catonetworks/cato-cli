@@ -478,7 +478,8 @@ def generateGraphqlPayload(variables_obj, operation, operation_name, renderArgsA
             variable_str += arg["requestStr"]
     
     # Replace the placeholder with actual variables
-    query_str = query_str.replace("VARIABLES_PLACEHOLDER", variable_str.strip())
+    variable_declarations = f" ( {variable_str.strip()})" if variable_str.strip() else ""
+    query_str = query_str.replace(" ( VARIABLES_PLACEHOLDER)", variable_declarations)
     
     body = {
         "query": query_str,

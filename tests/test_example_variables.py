@@ -40,7 +40,8 @@ class ExampleVariablesTest(unittest.TestCase):
                 # Account context is injected by the CLI profile.
                 variables.update(accountID="12345", accountId="12345")
                 definitions = parse(payload["query"]).definitions[0].variable_definitions
-                result = get_variable_values(self.schema, definitions, variables)
+                # Operations without variables may expose None in graphql-core 3.3.
+                result = get_variable_values(self.schema, definitions or (), variables)
                 # graphql-core 3.3 wraps successful coercion in VariableValues;
                 # 3.2 returns the dictionary directly. Errors remain a list.
                 coerced = getattr(result, "coerced", result)

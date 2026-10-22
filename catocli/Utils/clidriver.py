@@ -88,6 +88,8 @@ from ..parsers.query_policy import query_policy_parse
 from ..parsers.query_popLocations import query_popLocations_parse
 from ..parsers.query_posture import query_posture_parse
 from ..parsers.query_privateApplication import query_privateApplication_parse
+from ..parsers.query_rateLimit import query_rateLimit_parse
+from ..parsers.query_rateLimitEstimate import query_rateLimitEstimate_parse
 from ..parsers.query_rbac import query_rbac_parse
 from ..parsers.query_sandbox import query_sandbox_parse
 from ..parsers.query_servicePrincipalAdmin import query_servicePrincipalAdmin_parse
@@ -296,6 +298,8 @@ query_policy_parser = query_policy_parse(query_subparsers)
 query_popLocations_parser = query_popLocations_parse(query_subparsers)
 query_posture_parser = query_posture_parse(query_subparsers)
 query_privateApplication_parser = query_privateApplication_parse(query_subparsers)
+query_rateLimit_parser = query_rateLimit_parse(query_subparsers)
+query_rateLimitEstimate_parser = query_rateLimitEstimate_parse(query_subparsers)
 query_rbac_parser = query_rbac_parse(query_subparsers)
 query_sandbox_parser = query_sandbox_parse(query_subparsers)
 query_servicePrincipalAdmin_parser = query_servicePrincipalAdmin_parse(query_subparsers)

@@ -1,0 +1,72 @@
+{
+    "args": {},
+    "deprecationReason": null,
+    "description": "Rate-limit state of the calling account for this request: the points this\nrequest was charged and how long until this same request would fit every cost\nbudget it uses again, assuming no other consumption in between. Selecting it\ncosts nothing. Returns null when the state is unavailable; the reason is\nreported as an error.",
+    "fieldTypes": {},
+    "isDeprecated": false,
+    "name": "rateLimit",
+    "operationArgs": {},
+    "path": "query.rateLimit",
+    "type": {
+        "definition": {
+            "description": "Rate-limit state of the calling account for the current request.",
+            "enumValues": null,
+            "fields": {
+                "cost": {
+                    "args": {},
+                    "deprecationReason": null,
+                    "description": "Cost in points charged for the current request.",
+                    "id_str": "cost",
+                    "isDeprecated": false,
+                    "name": "cost",
+                    "path": "cost",
+                    "requestStr": "$cost:Int! ",
+                    "required": true,
+                    "responseStr": "cost:$cost ",
+                    "type": {
+                        "kind": [
+                            "NON_NULL",
+                            "SCALAR"
+                        ],
+                        "name": "Int",
+                        "non_null": false
+                    },
+                    "varName": "cost"
+                },
+                "retryAfterMs": {
+                    "args": {},
+                    "deprecationReason": null,
+                    "description": "Milliseconds until this same request would fit every cost budget it uses again, assuming no other consumption in between. Zero when it could be repeated now.",
+                    "id_str": "retryAfterMs",
+                    "isDeprecated": false,
+                    "name": "retryAfterMs",
+                    "path": "retryAfterMs",
+                    "requestStr": "$retryAfterMs:Int! ",
+                    "required": true,
+                    "responseStr": "retryAfterMs:$retryAfterMs ",
+                    "type": {
+                        "kind": [
+                            "NON_NULL",
+                            "SCALAR"
+                        ],
+                        "name": "Int",
+                        "non_null": false
+                    },
+                    "varName": "retryAfterMs"
+                }
+            },
+            "inputFields": null,
+            "interfaces": [],
+            "kind": "OBJECT",
+            "name": "RateLimit",
+            "possibleTypes": null
+        },
+        "indexType": "object",
+        "kind": [
+            "OBJECT"
+        ],
+        "name": "RateLimit",
+        "non_null": false
+    },
+    "variablesPayload": {}
+}

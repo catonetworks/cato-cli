@@ -603,8 +603,8 @@
                             "id_str": "accountList___input___paging",
                             "name": "paging",
                             "path": "accountList.input.paging",
-                            "requestStr": "$pagingInput:PagingInput ",
-                            "required": false,
+                            "requestStr": "$pagingInput:PagingInput! ",
+                            "required": true,
                             "responseStr": "paging:$pagingInput ",
                             "type": {
                                 "definition": {
@@ -658,6 +658,7 @@
                                 },
                                 "indexType": "input_object",
                                 "kind": [
+                                    "NON_NULL",
                                     "INPUT_OBJECT"
                                 ],
                                 "name": "PagingInput",
@@ -1169,6 +1170,674 @@
                 "non_null": false
             },
             "varName": "businessPlatformAccountListInput"
+        },
+        "businessPlatformPartnerListInput": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "partnerList___input",
+            "name": "input",
+            "path": "partnerList.input",
+            "requestStr": "$businessPlatformPartnerListInput:BusinessPlatformPartnerListInput ",
+            "required": false,
+            "responseStr": "input:$businessPlatformPartnerListInput ",
+            "type": {
+                "definition": {
+                    "description": "Input for listing Business Platform partners.",
+                    "enumValues": null,
+                    "fields": null,
+                    "inputFields": {
+                        "filter": {
+                            "defaultValue": null,
+                            "description": "Optional filter criteria.",
+                            "id_str": "partnerList___input___filter",
+                            "name": "filter",
+                            "path": "partnerList.input.filter",
+                            "requestStr": "$businessPlatformPartnerFilterInput:BusinessPlatformPartnerFilterInput ",
+                            "required": false,
+                            "responseStr": "filter:$businessPlatformPartnerFilterInput ",
+                            "type": {
+                                "definition": {
+                                    "description": "Filter criteria for listing Business Platform partners.",
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "account": {
+                                            "defaultValue": null,
+                                            "description": "Filter by the partner's parent account.",
+                                            "id_str": "partnerList___input___filter___account",
+                                            "name": "account",
+                                            "path": "partnerList.input.filter.account",
+                                            "requestStr": "$accountFilter:AccountFilter ",
+                                            "required": false,
+                                            "responseStr": "account:$accountFilter ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "accountInclusion": {
+                                                            "defaultValue": null,
+                                                            "description": null,
+                                                            "id_str": "partnerList___input___filter___account___accountInclusion",
+                                                            "name": "accountInclusion",
+                                                            "path": "partnerList.input.filter.account.accountInclusion",
+                                                            "requestStr": "$accountInclusion:AccountInclusion ",
+                                                            "required": false,
+                                                            "responseStr": "accountInclusion:$accountInclusion ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": null,
+                                                                    "enumValues": [
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "ALL_ACCOUNTS"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "MANAGED_ACCOUNTS_ONLY"
+                                                                        }
+                                                                    ],
+                                                                    "fields": null,
+                                                                    "inputFields": null,
+                                                                    "interfaces": null,
+                                                                    "kind": "ENUM",
+                                                                    "name": "AccountInclusion",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "enum",
+                                                                "kind": [
+                                                                    "ENUM"
+                                                                ],
+                                                                "name": "AccountInclusion",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "accountInclusion"
+                                                        },
+                                                        "in": {
+                                                            "defaultValue": null,
+                                                            "description": null,
+                                                            "id_str": "partnerList___input___filter___account___in",
+                                                            "name": "in",
+                                                            "path": "partnerList.input.filter.account.in",
+                                                            "requestStr": "$in:[ID] ",
+                                                            "required": false,
+                                                            "responseStr": "in:$in ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "LIST",
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "ID",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "in"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "AccountFilter",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "AccountFilter",
+                                                "non_null": false
+                                            },
+                                            "varName": "accountFilter"
+                                        },
+                                        "freeText": {
+                                            "defaultValue": null,
+                                            "description": "Free-text search across partner name and description.",
+                                            "id_str": "partnerList___input___filter___freeText",
+                                            "name": "freeText",
+                                            "path": "partnerList.input.filter.freeText",
+                                            "requestStr": "$freeTextFilterInput:FreeTextFilterInput ",
+                                            "required": false,
+                                            "responseStr": "freeText:$freeTextFilterInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "search": {
+                                                            "defaultValue": null,
+                                                            "description": null,
+                                                            "id_str": "partnerList___input___filter___freeText___search",
+                                                            "name": "search",
+                                                            "path": "partnerList.input.filter.freeText.search",
+                                                            "requestStr": "$search:String! ",
+                                                            "required": true,
+                                                            "responseStr": "search:$search ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "String",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "search"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "FreeTextFilterInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "FreeTextFilterInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "freeTextFilterInput"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "BusinessPlatformPartnerFilterInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "BusinessPlatformPartnerFilterInput",
+                                "non_null": false
+                            },
+                            "varName": "businessPlatformPartnerFilterInput"
+                        },
+                        "paging": {
+                            "defaultValue": "{limit: 100, from: 0}",
+                            "description": "Optional paging criteria.",
+                            "id_str": "partnerList___input___paging",
+                            "name": "paging",
+                            "path": "partnerList.input.paging",
+                            "requestStr": "$pagingInput:PagingInput! ",
+                            "required": true,
+                            "responseStr": "paging:$pagingInput ",
+                            "type": {
+                                "definition": {
+                                    "description": null,
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "from": {
+                                            "defaultValue": "0",
+                                            "description": null,
+                                            "id_str": "partnerList___input___paging___from",
+                                            "name": "from",
+                                            "path": "partnerList.input.paging.from",
+                                            "requestStr": "$from:Int! ",
+                                            "required": true,
+                                            "responseStr": "from:$from ",
+                                            "type": {
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "SCALAR"
+                                                ],
+                                                "name": "Int",
+                                                "non_null": false
+                                            },
+                                            "varName": "from"
+                                        },
+                                        "limit": {
+                                            "defaultValue": "100",
+                                            "description": null,
+                                            "id_str": "partnerList___input___paging___limit",
+                                            "name": "limit",
+                                            "path": "partnerList.input.paging.limit",
+                                            "requestStr": "$limit:Int! ",
+                                            "required": true,
+                                            "responseStr": "limit:$limit ",
+                                            "type": {
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "SCALAR"
+                                                ],
+                                                "name": "Int",
+                                                "non_null": false
+                                            },
+                                            "varName": "limit"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "PagingInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "NON_NULL",
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "PagingInput",
+                                "non_null": false
+                            },
+                            "varName": "pagingInput"
+                        },
+                        "sort": {
+                            "defaultValue": "{name: {direction: ASC, priority: 1}}",
+                            "description": "Optional sort criteria. Defaults to ascending by name.",
+                            "id_str": "partnerList___input___sort",
+                            "name": "sort",
+                            "path": "partnerList.input.sort",
+                            "requestStr": "$businessPlatformPartnerSortInput:BusinessPlatformPartnerSortInput ",
+                            "required": false,
+                            "responseStr": "sort:$businessPlatformPartnerSortInput ",
+                            "type": {
+                                "definition": {
+                                    "description": "Sort criteria for listing Business Platform partners.",
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "account": {
+                                            "defaultValue": null,
+                                            "description": "Sort by the parent account in the hierarchy.",
+                                            "id_str": "partnerList___input___sort___account",
+                                            "name": "account",
+                                            "path": "partnerList.input.sort.account",
+                                            "requestStr": "$sortOrderInput:SortOrderInput ",
+                                            "required": false,
+                                            "responseStr": "account:$sortOrderInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "direction": {
+                                                            "defaultValue": "ASC",
+                                                            "description": null,
+                                                            "id_str": "partnerList___input___sort___account___direction",
+                                                            "name": "direction",
+                                                            "path": "partnerList.input.sort.account.direction",
+                                                            "requestStr": "$direction:SortOrder! ",
+                                                            "required": true,
+                                                            "responseStr": "direction:$direction ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": null,
+                                                                    "enumValues": [
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "ASC"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "DESC"
+                                                                        }
+                                                                    ],
+                                                                    "fields": null,
+                                                                    "inputFields": null,
+                                                                    "interfaces": null,
+                                                                    "kind": "ENUM",
+                                                                    "name": "SortOrder",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "enum",
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "ENUM"
+                                                                ],
+                                                                "name": "SortOrder",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "direction"
+                                                        },
+                                                        "priority": {
+                                                            "defaultValue": "1",
+                                                            "description": null,
+                                                            "id_str": "partnerList___input___sort___account___priority",
+                                                            "name": "priority",
+                                                            "path": "partnerList.input.sort.account.priority",
+                                                            "requestStr": "$priority:Int! ",
+                                                            "required": true,
+                                                            "responseStr": "priority:$priority ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "Int",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "priority"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "SortOrderInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "SortOrderInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "sortOrderInput"
+                                        },
+                                        "createdAt": {
+                                            "defaultValue": null,
+                                            "description": "Sort by partner creation time.",
+                                            "id_str": "partnerList___input___sort___createdAt",
+                                            "name": "createdAt",
+                                            "path": "partnerList.input.sort.createdAt",
+                                            "requestStr": "$sortOrderInput:SortOrderInput ",
+                                            "required": false,
+                                            "responseStr": "createdAt:$sortOrderInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "direction": {
+                                                            "defaultValue": "ASC",
+                                                            "description": null,
+                                                            "id_str": "partnerList___input___sort___createdAt___direction",
+                                                            "name": "direction",
+                                                            "path": "partnerList.input.sort.createdAt.direction",
+                                                            "requestStr": "$direction:SortOrder! ",
+                                                            "required": true,
+                                                            "responseStr": "direction:$direction ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": null,
+                                                                    "enumValues": [
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "ASC"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "DESC"
+                                                                        }
+                                                                    ],
+                                                                    "fields": null,
+                                                                    "inputFields": null,
+                                                                    "interfaces": null,
+                                                                    "kind": "ENUM",
+                                                                    "name": "SortOrder",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "enum",
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "ENUM"
+                                                                ],
+                                                                "name": "SortOrder",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "direction"
+                                                        },
+                                                        "priority": {
+                                                            "defaultValue": "1",
+                                                            "description": null,
+                                                            "id_str": "partnerList___input___sort___createdAt___priority",
+                                                            "name": "priority",
+                                                            "path": "partnerList.input.sort.createdAt.priority",
+                                                            "requestStr": "$priority:Int! ",
+                                                            "required": true,
+                                                            "responseStr": "priority:$priority ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "Int",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "priority"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "SortOrderInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "SortOrderInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "sortOrderInput"
+                                        },
+                                        "createdBy": {
+                                            "defaultValue": null,
+                                            "description": "Sort by the actor that created the partner account.",
+                                            "id_str": "partnerList___input___sort___createdBy",
+                                            "name": "createdBy",
+                                            "path": "partnerList.input.sort.createdBy",
+                                            "requestStr": "$sortOrderInput:SortOrderInput ",
+                                            "required": false,
+                                            "responseStr": "createdBy:$sortOrderInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "direction": {
+                                                            "defaultValue": "ASC",
+                                                            "description": null,
+                                                            "id_str": "partnerList___input___sort___createdBy___direction",
+                                                            "name": "direction",
+                                                            "path": "partnerList.input.sort.createdBy.direction",
+                                                            "requestStr": "$direction:SortOrder! ",
+                                                            "required": true,
+                                                            "responseStr": "direction:$direction ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": null,
+                                                                    "enumValues": [
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "ASC"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "DESC"
+                                                                        }
+                                                                    ],
+                                                                    "fields": null,
+                                                                    "inputFields": null,
+                                                                    "interfaces": null,
+                                                                    "kind": "ENUM",
+                                                                    "name": "SortOrder",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "enum",
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "ENUM"
+                                                                ],
+                                                                "name": "SortOrder",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "direction"
+                                                        },
+                                                        "priority": {
+                                                            "defaultValue": "1",
+                                                            "description": null,
+                                                            "id_str": "partnerList___input___sort___createdBy___priority",
+                                                            "name": "priority",
+                                                            "path": "partnerList.input.sort.createdBy.priority",
+                                                            "requestStr": "$priority:Int! ",
+                                                            "required": true,
+                                                            "responseStr": "priority:$priority ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "Int",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "priority"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "SortOrderInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "SortOrderInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "sortOrderInput"
+                                        },
+                                        "name": {
+                                            "defaultValue": null,
+                                            "description": "Sort by partner name.",
+                                            "id_str": "partnerList___input___sort___name",
+                                            "name": "name",
+                                            "path": "partnerList.input.sort.name",
+                                            "requestStr": "$sortOrderInput:SortOrderInput ",
+                                            "required": false,
+                                            "responseStr": "name:$sortOrderInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "direction": {
+                                                            "defaultValue": "ASC",
+                                                            "description": null,
+                                                            "id_str": "partnerList___input___sort___name___direction",
+                                                            "name": "direction",
+                                                            "path": "partnerList.input.sort.name.direction",
+                                                            "requestStr": "$direction:SortOrder! ",
+                                                            "required": true,
+                                                            "responseStr": "direction:$direction ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": null,
+                                                                    "enumValues": [
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "ASC"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "DESC"
+                                                                        }
+                                                                    ],
+                                                                    "fields": null,
+                                                                    "inputFields": null,
+                                                                    "interfaces": null,
+                                                                    "kind": "ENUM",
+                                                                    "name": "SortOrder",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "enum",
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "ENUM"
+                                                                ],
+                                                                "name": "SortOrder",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "direction"
+                                                        },
+                                                        "priority": {
+                                                            "defaultValue": "1",
+                                                            "description": null,
+                                                            "id_str": "partnerList___input___sort___name___priority",
+                                                            "name": "priority",
+                                                            "path": "partnerList.input.sort.name.priority",
+                                                            "requestStr": "$priority:Int! ",
+                                                            "required": true,
+                                                            "responseStr": "priority:$priority ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "Int",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "priority"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "SortOrderInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "SortOrderInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "sortOrderInput"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "BusinessPlatformPartnerSortInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "BusinessPlatformPartnerSortInput",
+                                "non_null": false
+                            },
+                            "varName": "businessPlatformPartnerSortInput"
+                        }
+                    },
+                    "interfaces": null,
+                    "kind": "INPUT_OBJECT",
+                    "name": "BusinessPlatformPartnerListInput",
+                    "possibleTypes": null
+                },
+                "indexType": "input_object",
+                "kind": [
+                    "INPUT_OBJECT"
+                ],
+                "name": "BusinessPlatformPartnerListInput",
+                "non_null": false
+            },
+            "varName": "businessPlatformPartnerListInput"
         }
     },
     "path": "query.businessPlatform",
@@ -1737,8 +2406,8 @@
                                             "id_str": "accountList___input___paging",
                                             "name": "paging",
                                             "path": "accountList.input.paging",
-                                            "requestStr": "$pagingInput:PagingInput ",
-                                            "required": false,
+                                            "requestStr": "$pagingInput:PagingInput! ",
+                                            "required": true,
                                             "responseStr": "paging:$pagingInput ",
                                             "type": {
                                                 "definition": {
@@ -1792,6 +2461,7 @@
                                                 },
                                                 "indexType": "input_object",
                                                 "kind": [
+                                                    "NON_NULL",
                                                     "INPUT_OBJECT"
                                                 ],
                                                 "name": "PagingInput",
@@ -3331,6 +4001,973 @@
                     },
                     "varName": "businessPlatformPlanCountPayload"
                 },
+                "partnerList": {
+                    "args": {
+                        "partnerList___input": {
+                            "defaultValue": null,
+                            "description": null,
+                            "id_str": "partnerList___input",
+                            "name": "input",
+                            "path": "partnerList.input",
+                            "requestStr": "$businessPlatformPartnerListInput:BusinessPlatformPartnerListInput ",
+                            "required": false,
+                            "responseStr": "input:$businessPlatformPartnerListInput ",
+                            "type": {
+                                "definition": {
+                                    "description": "Input for listing Business Platform partners.",
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "filter": {
+                                            "defaultValue": null,
+                                            "description": "Optional filter criteria.",
+                                            "id_str": "partnerList___input___filter",
+                                            "name": "filter",
+                                            "path": "partnerList.input.filter",
+                                            "requestStr": "$businessPlatformPartnerFilterInput:BusinessPlatformPartnerFilterInput ",
+                                            "required": false,
+                                            "responseStr": "filter:$businessPlatformPartnerFilterInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": "Filter criteria for listing Business Platform partners.",
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "account": {
+                                                            "defaultValue": null,
+                                                            "description": "Filter by the partner's parent account.",
+                                                            "id_str": "partnerList___input___filter___account",
+                                                            "name": "account",
+                                                            "path": "partnerList.input.filter.account",
+                                                            "requestStr": "$accountFilter:AccountFilter ",
+                                                            "required": false,
+                                                            "responseStr": "account:$accountFilter ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": null,
+                                                                    "enumValues": null,
+                                                                    "fields": null,
+                                                                    "inputFields": {
+                                                                        "accountInclusion": {
+                                                                            "defaultValue": null,
+                                                                            "description": null,
+                                                                            "id_str": "partnerList___input___filter___account___accountInclusion",
+                                                                            "name": "accountInclusion",
+                                                                            "path": "partnerList.input.filter.account.accountInclusion",
+                                                                            "requestStr": "$accountInclusion:AccountInclusion ",
+                                                                            "required": false,
+                                                                            "responseStr": "accountInclusion:$accountInclusion ",
+                                                                            "type": {
+                                                                                "definition": {
+                                                                                    "description": null,
+                                                                                    "enumValues": [
+                                                                                        {
+                                                                                            "deprecationReason": null,
+                                                                                            "description": null,
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "ALL_ACCOUNTS"
+                                                                                        },
+                                                                                        {
+                                                                                            "deprecationReason": null,
+                                                                                            "description": null,
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "MANAGED_ACCOUNTS_ONLY"
+                                                                                        }
+                                                                                    ],
+                                                                                    "fields": null,
+                                                                                    "inputFields": null,
+                                                                                    "interfaces": null,
+                                                                                    "kind": "ENUM",
+                                                                                    "name": "AccountInclusion",
+                                                                                    "possibleTypes": null
+                                                                                },
+                                                                                "indexType": "enum",
+                                                                                "kind": [
+                                                                                    "ENUM"
+                                                                                ],
+                                                                                "name": "AccountInclusion",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "accountInclusion"
+                                                                        },
+                                                                        "in": {
+                                                                            "defaultValue": null,
+                                                                            "description": null,
+                                                                            "id_str": "partnerList___input___filter___account___in",
+                                                                            "name": "in",
+                                                                            "path": "partnerList.input.filter.account.in",
+                                                                            "requestStr": "$in:[ID] ",
+                                                                            "required": false,
+                                                                            "responseStr": "in:$in ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "LIST",
+                                                                                    "NON_NULL",
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "ID",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "in"
+                                                                        }
+                                                                    },
+                                                                    "interfaces": null,
+                                                                    "kind": "INPUT_OBJECT",
+                                                                    "name": "AccountFilter",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "input_object",
+                                                                "kind": [
+                                                                    "INPUT_OBJECT"
+                                                                ],
+                                                                "name": "AccountFilter",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "accountFilter"
+                                                        },
+                                                        "freeText": {
+                                                            "defaultValue": null,
+                                                            "description": "Free-text search across partner name and description.",
+                                                            "id_str": "partnerList___input___filter___freeText",
+                                                            "name": "freeText",
+                                                            "path": "partnerList.input.filter.freeText",
+                                                            "requestStr": "$freeTextFilterInput:FreeTextFilterInput ",
+                                                            "required": false,
+                                                            "responseStr": "freeText:$freeTextFilterInput ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": null,
+                                                                    "enumValues": null,
+                                                                    "fields": null,
+                                                                    "inputFields": {
+                                                                        "search": {
+                                                                            "defaultValue": null,
+                                                                            "description": null,
+                                                                            "id_str": "partnerList___input___filter___freeText___search",
+                                                                            "name": "search",
+                                                                            "path": "partnerList.input.filter.freeText.search",
+                                                                            "requestStr": "$search:String! ",
+                                                                            "required": true,
+                                                                            "responseStr": "search:$search ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "NON_NULL",
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "String",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "search"
+                                                                        }
+                                                                    },
+                                                                    "interfaces": null,
+                                                                    "kind": "INPUT_OBJECT",
+                                                                    "name": "FreeTextFilterInput",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "input_object",
+                                                                "kind": [
+                                                                    "INPUT_OBJECT"
+                                                                ],
+                                                                "name": "FreeTextFilterInput",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "freeTextFilterInput"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "BusinessPlatformPartnerFilterInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "BusinessPlatformPartnerFilterInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "businessPlatformPartnerFilterInput"
+                                        },
+                                        "paging": {
+                                            "defaultValue": "{limit: 100, from: 0}",
+                                            "description": "Optional paging criteria.",
+                                            "id_str": "partnerList___input___paging",
+                                            "name": "paging",
+                                            "path": "partnerList.input.paging",
+                                            "requestStr": "$pagingInput:PagingInput! ",
+                                            "required": true,
+                                            "responseStr": "paging:$pagingInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "from": {
+                                                            "defaultValue": "0",
+                                                            "description": null,
+                                                            "id_str": "partnerList___input___paging___from",
+                                                            "name": "from",
+                                                            "path": "partnerList.input.paging.from",
+                                                            "requestStr": "$from:Int! ",
+                                                            "required": true,
+                                                            "responseStr": "from:$from ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "Int",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "from"
+                                                        },
+                                                        "limit": {
+                                                            "defaultValue": "100",
+                                                            "description": null,
+                                                            "id_str": "partnerList___input___paging___limit",
+                                                            "name": "limit",
+                                                            "path": "partnerList.input.paging.limit",
+                                                            "requestStr": "$limit:Int! ",
+                                                            "required": true,
+                                                            "responseStr": "limit:$limit ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "Int",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "limit"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "PagingInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "PagingInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "pagingInput"
+                                        },
+                                        "sort": {
+                                            "defaultValue": "{name: {direction: ASC, priority: 1}}",
+                                            "description": "Optional sort criteria. Defaults to ascending by name.",
+                                            "id_str": "partnerList___input___sort",
+                                            "name": "sort",
+                                            "path": "partnerList.input.sort",
+                                            "requestStr": "$businessPlatformPartnerSortInput:BusinessPlatformPartnerSortInput ",
+                                            "required": false,
+                                            "responseStr": "sort:$businessPlatformPartnerSortInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": "Sort criteria for listing Business Platform partners.",
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "account": {
+                                                            "defaultValue": null,
+                                                            "description": "Sort by the parent account in the hierarchy.",
+                                                            "id_str": "partnerList___input___sort___account",
+                                                            "name": "account",
+                                                            "path": "partnerList.input.sort.account",
+                                                            "requestStr": "$sortOrderInput:SortOrderInput ",
+                                                            "required": false,
+                                                            "responseStr": "account:$sortOrderInput ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": null,
+                                                                    "enumValues": null,
+                                                                    "fields": null,
+                                                                    "inputFields": {
+                                                                        "direction": {
+                                                                            "defaultValue": "ASC",
+                                                                            "description": null,
+                                                                            "id_str": "partnerList___input___sort___account___direction",
+                                                                            "name": "direction",
+                                                                            "path": "partnerList.input.sort.account.direction",
+                                                                            "requestStr": "$direction:SortOrder! ",
+                                                                            "required": true,
+                                                                            "responseStr": "direction:$direction ",
+                                                                            "type": {
+                                                                                "definition": {
+                                                                                    "description": null,
+                                                                                    "enumValues": [
+                                                                                        {
+                                                                                            "deprecationReason": null,
+                                                                                            "description": null,
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "ASC"
+                                                                                        },
+                                                                                        {
+                                                                                            "deprecationReason": null,
+                                                                                            "description": null,
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "DESC"
+                                                                                        }
+                                                                                    ],
+                                                                                    "fields": null,
+                                                                                    "inputFields": null,
+                                                                                    "interfaces": null,
+                                                                                    "kind": "ENUM",
+                                                                                    "name": "SortOrder",
+                                                                                    "possibleTypes": null
+                                                                                },
+                                                                                "indexType": "enum",
+                                                                                "kind": [
+                                                                                    "NON_NULL",
+                                                                                    "ENUM"
+                                                                                ],
+                                                                                "name": "SortOrder",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "direction"
+                                                                        },
+                                                                        "priority": {
+                                                                            "defaultValue": "1",
+                                                                            "description": null,
+                                                                            "id_str": "partnerList___input___sort___account___priority",
+                                                                            "name": "priority",
+                                                                            "path": "partnerList.input.sort.account.priority",
+                                                                            "requestStr": "$priority:Int! ",
+                                                                            "required": true,
+                                                                            "responseStr": "priority:$priority ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "NON_NULL",
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "Int",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "priority"
+                                                                        }
+                                                                    },
+                                                                    "interfaces": null,
+                                                                    "kind": "INPUT_OBJECT",
+                                                                    "name": "SortOrderInput",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "input_object",
+                                                                "kind": [
+                                                                    "INPUT_OBJECT"
+                                                                ],
+                                                                "name": "SortOrderInput",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "sortOrderInput"
+                                                        },
+                                                        "createdAt": {
+                                                            "defaultValue": null,
+                                                            "description": "Sort by partner creation time.",
+                                                            "id_str": "partnerList___input___sort___createdAt",
+                                                            "name": "createdAt",
+                                                            "path": "partnerList.input.sort.createdAt",
+                                                            "requestStr": "$sortOrderInput:SortOrderInput ",
+                                                            "required": false,
+                                                            "responseStr": "createdAt:$sortOrderInput ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": null,
+                                                                    "enumValues": null,
+                                                                    "fields": null,
+                                                                    "inputFields": {
+                                                                        "direction": {
+                                                                            "defaultValue": "ASC",
+                                                                            "description": null,
+                                                                            "id_str": "partnerList___input___sort___createdAt___direction",
+                                                                            "name": "direction",
+                                                                            "path": "partnerList.input.sort.createdAt.direction",
+                                                                            "requestStr": "$direction:SortOrder! ",
+                                                                            "required": true,
+                                                                            "responseStr": "direction:$direction ",
+                                                                            "type": {
+                                                                                "definition": {
+                                                                                    "description": null,
+                                                                                    "enumValues": [
+                                                                                        {
+                                                                                            "deprecationReason": null,
+                                                                                            "description": null,
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "ASC"
+                                                                                        },
+                                                                                        {
+                                                                                            "deprecationReason": null,
+                                                                                            "description": null,
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "DESC"
+                                                                                        }
+                                                                                    ],
+                                                                                    "fields": null,
+                                                                                    "inputFields": null,
+                                                                                    "interfaces": null,
+                                                                                    "kind": "ENUM",
+                                                                                    "name": "SortOrder",
+                                                                                    "possibleTypes": null
+                                                                                },
+                                                                                "indexType": "enum",
+                                                                                "kind": [
+                                                                                    "NON_NULL",
+                                                                                    "ENUM"
+                                                                                ],
+                                                                                "name": "SortOrder",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "direction"
+                                                                        },
+                                                                        "priority": {
+                                                                            "defaultValue": "1",
+                                                                            "description": null,
+                                                                            "id_str": "partnerList___input___sort___createdAt___priority",
+                                                                            "name": "priority",
+                                                                            "path": "partnerList.input.sort.createdAt.priority",
+                                                                            "requestStr": "$priority:Int! ",
+                                                                            "required": true,
+                                                                            "responseStr": "priority:$priority ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "NON_NULL",
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "Int",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "priority"
+                                                                        }
+                                                                    },
+                                                                    "interfaces": null,
+                                                                    "kind": "INPUT_OBJECT",
+                                                                    "name": "SortOrderInput",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "input_object",
+                                                                "kind": [
+                                                                    "INPUT_OBJECT"
+                                                                ],
+                                                                "name": "SortOrderInput",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "sortOrderInput"
+                                                        },
+                                                        "createdBy": {
+                                                            "defaultValue": null,
+                                                            "description": "Sort by the actor that created the partner account.",
+                                                            "id_str": "partnerList___input___sort___createdBy",
+                                                            "name": "createdBy",
+                                                            "path": "partnerList.input.sort.createdBy",
+                                                            "requestStr": "$sortOrderInput:SortOrderInput ",
+                                                            "required": false,
+                                                            "responseStr": "createdBy:$sortOrderInput ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": null,
+                                                                    "enumValues": null,
+                                                                    "fields": null,
+                                                                    "inputFields": {
+                                                                        "direction": {
+                                                                            "defaultValue": "ASC",
+                                                                            "description": null,
+                                                                            "id_str": "partnerList___input___sort___createdBy___direction",
+                                                                            "name": "direction",
+                                                                            "path": "partnerList.input.sort.createdBy.direction",
+                                                                            "requestStr": "$direction:SortOrder! ",
+                                                                            "required": true,
+                                                                            "responseStr": "direction:$direction ",
+                                                                            "type": {
+                                                                                "definition": {
+                                                                                    "description": null,
+                                                                                    "enumValues": [
+                                                                                        {
+                                                                                            "deprecationReason": null,
+                                                                                            "description": null,
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "ASC"
+                                                                                        },
+                                                                                        {
+                                                                                            "deprecationReason": null,
+                                                                                            "description": null,
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "DESC"
+                                                                                        }
+                                                                                    ],
+                                                                                    "fields": null,
+                                                                                    "inputFields": null,
+                                                                                    "interfaces": null,
+                                                                                    "kind": "ENUM",
+                                                                                    "name": "SortOrder",
+                                                                                    "possibleTypes": null
+                                                                                },
+                                                                                "indexType": "enum",
+                                                                                "kind": [
+                                                                                    "NON_NULL",
+                                                                                    "ENUM"
+                                                                                ],
+                                                                                "name": "SortOrder",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "direction"
+                                                                        },
+                                                                        "priority": {
+                                                                            "defaultValue": "1",
+                                                                            "description": null,
+                                                                            "id_str": "partnerList___input___sort___createdBy___priority",
+                                                                            "name": "priority",
+                                                                            "path": "partnerList.input.sort.createdBy.priority",
+                                                                            "requestStr": "$priority:Int! ",
+                                                                            "required": true,
+                                                                            "responseStr": "priority:$priority ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "NON_NULL",
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "Int",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "priority"
+                                                                        }
+                                                                    },
+                                                                    "interfaces": null,
+                                                                    "kind": "INPUT_OBJECT",
+                                                                    "name": "SortOrderInput",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "input_object",
+                                                                "kind": [
+                                                                    "INPUT_OBJECT"
+                                                                ],
+                                                                "name": "SortOrderInput",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "sortOrderInput"
+                                                        },
+                                                        "name": {
+                                                            "defaultValue": null,
+                                                            "description": "Sort by partner name.",
+                                                            "id_str": "partnerList___input___sort___name",
+                                                            "name": "name",
+                                                            "path": "partnerList.input.sort.name",
+                                                            "requestStr": "$sortOrderInput:SortOrderInput ",
+                                                            "required": false,
+                                                            "responseStr": "name:$sortOrderInput ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": null,
+                                                                    "enumValues": null,
+                                                                    "fields": null,
+                                                                    "inputFields": {
+                                                                        "direction": {
+                                                                            "defaultValue": "ASC",
+                                                                            "description": null,
+                                                                            "id_str": "partnerList___input___sort___name___direction",
+                                                                            "name": "direction",
+                                                                            "path": "partnerList.input.sort.name.direction",
+                                                                            "requestStr": "$direction:SortOrder! ",
+                                                                            "required": true,
+                                                                            "responseStr": "direction:$direction ",
+                                                                            "type": {
+                                                                                "definition": {
+                                                                                    "description": null,
+                                                                                    "enumValues": [
+                                                                                        {
+                                                                                            "deprecationReason": null,
+                                                                                            "description": null,
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "ASC"
+                                                                                        },
+                                                                                        {
+                                                                                            "deprecationReason": null,
+                                                                                            "description": null,
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "DESC"
+                                                                                        }
+                                                                                    ],
+                                                                                    "fields": null,
+                                                                                    "inputFields": null,
+                                                                                    "interfaces": null,
+                                                                                    "kind": "ENUM",
+                                                                                    "name": "SortOrder",
+                                                                                    "possibleTypes": null
+                                                                                },
+                                                                                "indexType": "enum",
+                                                                                "kind": [
+                                                                                    "NON_NULL",
+                                                                                    "ENUM"
+                                                                                ],
+                                                                                "name": "SortOrder",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "direction"
+                                                                        },
+                                                                        "priority": {
+                                                                            "defaultValue": "1",
+                                                                            "description": null,
+                                                                            "id_str": "partnerList___input___sort___name___priority",
+                                                                            "name": "priority",
+                                                                            "path": "partnerList.input.sort.name.priority",
+                                                                            "requestStr": "$priority:Int! ",
+                                                                            "required": true,
+                                                                            "responseStr": "priority:$priority ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "NON_NULL",
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "Int",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "priority"
+                                                                        }
+                                                                    },
+                                                                    "interfaces": null,
+                                                                    "kind": "INPUT_OBJECT",
+                                                                    "name": "SortOrderInput",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "input_object",
+                                                                "kind": [
+                                                                    "INPUT_OBJECT"
+                                                                ],
+                                                                "name": "SortOrderInput",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "sortOrderInput"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "BusinessPlatformPartnerSortInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "BusinessPlatformPartnerSortInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "businessPlatformPartnerSortInput"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "BusinessPlatformPartnerListInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "BusinessPlatformPartnerListInput",
+                                "non_null": false
+                            },
+                            "varName": "businessPlatformPartnerListInput"
+                        }
+                    },
+                    "deprecationReason": null,
+                    "description": "List of partners, with free-text search, account filtering, sorting and paging.",
+                    "id_str": "partnerList",
+                    "isDeprecated": false,
+                    "name": "partnerList",
+                    "path": "partnerList",
+                    "requestStr": "$businessPlatformPartnerListPayload:BusinessPlatformPartnerListPayload ",
+                    "required": false,
+                    "responseStr": "partnerList:$businessPlatformPartnerListPayload ",
+                    "type": {
+                        "definition": {
+                            "description": "Response payload for a Business Platform partner list query, ordered by the requested sort criteria.",
+                            "enumValues": null,
+                            "fields": {
+                                "items": {
+                                    "args": {},
+                                    "deprecationReason": null,
+                                    "description": "List of partners matching the query.",
+                                    "id_str": "partnerList___items",
+                                    "isDeprecated": false,
+                                    "name": "items",
+                                    "path": "partnerList.items",
+                                    "requestStr": "$businessPlatformPartner:[BusinessPlatformPartner]! ",
+                                    "required": true,
+                                    "responseStr": "items:$businessPlatformPartner ",
+                                    "type": {
+                                        "definition": {
+                                            "description": "A Business Platform partner.",
+                                            "enumValues": null,
+                                            "fields": {
+                                                "account": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Parent account of this partner in the hierarchy.",
+                                                    "id_str": "partnerList___items___account",
+                                                    "isDeprecated": false,
+                                                    "name": "account",
+                                                    "path": "partnerList.items.account",
+                                                    "requestStr": "$accountRef:AccountRef! ",
+                                                    "required": true,
+                                                    "responseStr": "account:$accountRef ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": "A reference identifying the Account object. ID: Unique Account Identifier, Name: The Account Name",
+                                                            "enumValues": null,
+                                                            "fields": {
+                                                                "id": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "id_str": "partnerList___items___account___id",
+                                                                    "isDeprecated": false,
+                                                                    "name": "id",
+                                                                    "path": "partnerList.items.account.id",
+                                                                    "requestStr": "$id:ID! ",
+                                                                    "required": true,
+                                                                    "responseStr": "id:$id ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "ID",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "id"
+                                                                },
+                                                                "name": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "id_str": "partnerList___items___account___name",
+                                                                    "isDeprecated": false,
+                                                                    "name": "name",
+                                                                    "path": "partnerList.items.account.name",
+                                                                    "requestStr": "$name:String! ",
+                                                                    "required": true,
+                                                                    "responseStr": "name:$name ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "String",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "name"
+                                                                }
+                                                            },
+                                                            "inputFields": null,
+                                                            "interfaces": {},
+                                                            "kind": "OBJECT",
+                                                            "name": "AccountRef",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "object",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "OBJECT"
+                                                        ],
+                                                        "name": "AccountRef",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "accountRef"
+                                                },
+                                                "createdAt": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Time at which the partner account was created.",
+                                                    "id_str": "partnerList___items___createdAt",
+                                                    "isDeprecated": false,
+                                                    "name": "createdAt",
+                                                    "path": "partnerList.items.createdAt",
+                                                    "requestStr": "$createdAt:Date ",
+                                                    "required": false,
+                                                    "responseStr": "createdAt:$createdAt ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "Date",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "createdAt"
+                                                },
+                                                "createdBy": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Actor that created the partner account.",
+                                                    "id_str": "partnerList___items___createdBy",
+                                                    "isDeprecated": false,
+                                                    "name": "createdBy",
+                                                    "path": "partnerList.items.createdBy",
+                                                    "requestStr": "$createdBy:String ",
+                                                    "required": false,
+                                                    "responseStr": "createdBy:$createdBy ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "createdBy"
+                                                },
+                                                "description": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Free-text description of the partner.",
+                                                    "id_str": "partnerList___items___description",
+                                                    "isDeprecated": false,
+                                                    "name": "description",
+                                                    "path": "partnerList.items.description",
+                                                    "requestStr": "$description:String ",
+                                                    "required": false,
+                                                    "responseStr": "description:$description ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "description"
+                                                },
+                                                "id": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Unique identifier of the partner (CMA account id).",
+                                                    "id_str": "partnerList___items___id",
+                                                    "isDeprecated": false,
+                                                    "name": "id",
+                                                    "path": "partnerList.items.id",
+                                                    "requestStr": "$id:ID! ",
+                                                    "required": true,
+                                                    "responseStr": "id:$id ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "ID",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "id"
+                                                },
+                                                "name": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Name of the partner.",
+                                                    "id_str": "partnerList___items___name",
+                                                    "isDeprecated": false,
+                                                    "name": "name",
+                                                    "path": "partnerList.items.name",
+                                                    "requestStr": "$name:String! ",
+                                                    "required": true,
+                                                    "responseStr": "name:$name ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "name"
+                                                }
+                                            },
+                                            "inputFields": null,
+                                            "interfaces": {},
+                                            "kind": "OBJECT",
+                                            "name": "BusinessPlatformPartner",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "object",
+                                        "kind": [
+                                            "NON_NULL",
+                                            "LIST",
+                                            "NON_NULL",
+                                            "OBJECT"
+                                        ],
+                                        "name": "BusinessPlatformPartner",
+                                        "non_null": false
+                                    },
+                                    "varName": "businessPlatformPartner"
+                                },
+                                "paging": {
+                                    "args": {},
+                                    "deprecationReason": null,
+                                    "description": "Pagination details",
+                                    "id_str": "partnerList___paging",
+                                    "isDeprecated": false,
+                                    "name": "paging",
+                                    "path": "partnerList.paging",
+                                    "requestStr": "$pageInfo:PageInfo! ",
+                                    "required": true,
+                                    "responseStr": "paging:$pageInfo ",
+                                    "type": {
+                                        "definition": {
+                                            "description": null,
+                                            "enumValues": null,
+                                            "fields": {
+                                                "total": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": null,
+                                                    "id_str": "partnerList___paging___total",
+                                                    "isDeprecated": false,
+                                                    "name": "total",
+                                                    "path": "partnerList.paging.total",
+                                                    "requestStr": "$total:Int! ",
+                                                    "required": true,
+                                                    "responseStr": "total:$total ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "Int",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "total"
+                                                }
+                                            },
+                                            "inputFields": null,
+                                            "interfaces": {},
+                                            "kind": "OBJECT",
+                                            "name": "PageInfo",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "object",
+                                        "kind": [
+                                            "NON_NULL",
+                                            "OBJECT"
+                                        ],
+                                        "name": "PageInfo",
+                                        "non_null": false
+                                    },
+                                    "varName": "pageInfo"
+                                }
+                            },
+                            "inputFields": null,
+                            "interfaces": {},
+                            "kind": "OBJECT",
+                            "name": "BusinessPlatformPartnerListPayload",
+                            "possibleTypes": null
+                        },
+                        "indexType": "object",
+                        "kind": [
+                            "OBJECT"
+                        ],
+                        "name": "BusinessPlatformPartnerListPayload",
+                        "non_null": false
+                    },
+                    "varName": "businessPlatformPartnerListPayload"
+                },
                 "settings": {
                     "args": {},
                     "deprecationReason": null,
@@ -3461,6 +5098,42 @@
                     "priority": 1
                 },
                 "plan": {
+                    "direction": "ASC",
+                    "priority": 1
+                }
+            }
+        },
+        "businessPlatformPartnerListInput": {
+            "filter": {
+                "account": {
+                    "accountInclusion": "ALL_ACCOUNTS",
+                    "in": [
+                        "id1",
+                        "id2"
+                    ]
+                },
+                "freeText": {
+                    "search": "string"
+                }
+            },
+            "paging": {
+                "from": 1,
+                "limit": 1
+            },
+            "sort": {
+                "account": {
+                    "direction": "ASC",
+                    "priority": 1
+                },
+                "createdAt": {
+                    "direction": "ASC",
+                    "priority": 1
+                },
+                "createdBy": {
+                    "direction": "ASC",
+                    "priority": 1
+                },
+                "name": {
                     "direction": "ASC",
                     "priority": 1
                 }

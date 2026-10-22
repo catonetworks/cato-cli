@@ -258,6 +258,65 @@
               "deprecationReason": null
             },
             {
+              "name": "rateLimit",
+              "description": "Rate-limit state of the calling account for this request: the points this\nrequest was charged and how long until this same request would fit every cost\nbudget it uses again, assuming no other consumption in between. Selecting it\ncosts nothing. Returns null when the state is unavailable; the reason is\nreported as an error.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "RateLimit",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "rateLimitEstimate",
+              "description": "Estimates the rate-limit cost of a GraphQL operation without executing it\nor charging the account for it. Selecting it costs 1 point, and an account\ncan estimate up to 500 times per minute. Returns null when the operation\ncannot be estimated; the reason is reported as an error. A request can select\nit once; further selections return null with an error.",
+              "args": [
+                {
+                  "name": "query",
+                  "description": "The GraphQL document to estimate.",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "String",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "variables",
+                  "description": "Variables for the operation in `query`.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Map",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "operationName",
+                  "description": "The operation to estimate when `query` contains more than one.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "RateLimitEstimate",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "object",
               "description": null,
               "args": [
@@ -27594,6 +27653,76 @@
               "deprecationReason": null
             }
           ],
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "RateLimit",
+          "description": "Rate-limit state of the calling account for the current request.",
+          "fields": [
+            {
+              "name": "cost",
+              "description": "Cost in points charged for the current request.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "retryAfterMs",
+              "description": "Milliseconds until this same request would fit every cost budget it uses again, assuming no other consumption in between. Zero when it could be repeated now.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "RateLimitEstimate",
+          "description": "Estimated rate-limit cost of a GraphQL operation.",
+          "fields": [
+            {
+              "name": "cost",
+              "description": "Cost in points the operation would be charged.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
           "possibleTypes": null
         },
         {
@@ -59924,6 +60053,30 @@
               "deprecationReason": null
             },
             {
+              "name": "labelBreakdown",
+              "description": "Breakdown by check label. A check with several labels is counted in each of their buckets, so\nthe buckets can sum up to more than `counts.total`.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "OBJECT",
+                      "name": "PostureCheckSummaryBreakdown",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "evaluatedAt",
               "description": "Timestamp when this summary was evaluated.",
               "args": [],
@@ -60012,7 +60165,7 @@
           "fields": [
             {
               "name": "key",
-              "description": "Breakdown key for this bucket: a category id, an application / security-domain / check-type name, a\n\"framework+controlKey\" compliance-control composite key, or a severity (PostureImpact) value",
+              "description": "Breakdown key for this bucket: a category id, an application / security-domain / check-type name, a\n\"framework+controlKey\" compliance-control composite key, a severity (PostureImpact) value, or a label",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -68240,6 +68393,30 @@
               "deprecationReason": null
             },
             {
+              "name": "applicableAccountType",
+              "description": "Types of destination accounts on which the role can be applied. This does not\ndescribe the owning account: a Partner account can own roles for either type.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "RoleManagementApplicableAccountType",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "isUsedOnExternalAccess",
               "description": "Whether the role is marked as used by external access. Custom roles marked as used\ncannot be modified.",
               "args": [],
@@ -68866,6 +69043,29 @@
             {
               "name": "EDIT",
               "description": "Read and edit access.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "possibleTypes": null
+        },
+        {
+          "kind": "ENUM",
+          "name": "RoleManagementApplicableAccountType",
+          "description": "Destination account type on which a role can be applied.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": [
+            {
+              "name": "CUSTOMER",
+              "description": "Customer account.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "PARTNER",
+              "description": "Partner account.",
               "isDeprecated": false,
               "deprecationReason": null
             }
@@ -149445,6 +149645,29 @@
               },
               "isDeprecated": false,
               "deprecationReason": null
+            },
+            {
+              "name": "partnerList",
+              "description": "List of partners, with free-text search, account filtering, sorting and paging.",
+              "args": [
+                {
+                  "name": "input",
+                  "description": null,
+                  "type": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "BusinessPlatformPartnerListInput",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "BusinessPlatformPartnerListPayload",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
             }
           ],
           "inputFields": null,
@@ -149482,9 +149705,13 @@
               "name": "paging",
               "description": "Optional paging criteria.",
               "type": {
-                "kind": "INPUT_OBJECT",
-                "name": "PagingInput",
-                "ofType": null
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "PagingInput",
+                  "ofType": null
+                }
               },
               "defaultValue": "{limit: 100, from: 0}"
             }
@@ -149701,6 +149928,279 @@
                   "name": "PageInfo",
                   "ofType": null
                 }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "BusinessPlatformPartnerListInput",
+          "description": "Input for listing Business Platform partners.",
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "filter",
+              "description": "Optional filter criteria.",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "BusinessPlatformPartnerFilterInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "sort",
+              "description": "Optional sort criteria. Defaults to ascending by name.",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "BusinessPlatformPartnerSortInput",
+                "ofType": null
+              },
+              "defaultValue": "{name: {direction: ASC, priority: 1}}"
+            },
+            {
+              "name": "paging",
+              "description": "Optional paging criteria.",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "PagingInput",
+                  "ofType": null
+                }
+              },
+              "defaultValue": "{limit: 100, from: 0}"
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "BusinessPlatformPartnerFilterInput",
+          "description": "Filter criteria for listing Business Platform partners.",
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "freeText",
+              "description": "Free-text search across partner name and description.",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "FreeTextFilterInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "account",
+              "description": "Filter by the partner's parent account.",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "AccountFilter",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "BusinessPlatformPartnerSortInput",
+          "description": "Sort criteria for listing Business Platform partners.",
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "name",
+              "description": "Sort by partner name.",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "SortOrderInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "account",
+              "description": "Sort by the parent account in the hierarchy.",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "SortOrderInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "createdBy",
+              "description": "Sort by the actor that created the partner account.",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "SortOrderInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "createdAt",
+              "description": "Sort by partner creation time.",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "SortOrderInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "BusinessPlatformPartnerListPayload",
+          "description": "Response payload for a Business Platform partner list query, ordered by the requested sort criteria.",
+          "fields": [
+            {
+              "name": "items",
+              "description": "List of partners matching the query.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "OBJECT",
+                      "name": "BusinessPlatformPartner",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "paging",
+              "description": "Pagination details",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "PageInfo",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "BusinessPlatformPartner",
+          "description": "A Business Platform partner.",
+          "fields": [
+            {
+              "name": "id",
+              "description": "Unique identifier of the partner (CMA account id).",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "account",
+              "description": "Parent account of this partner in the hierarchy.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "AccountRef",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "name",
+              "description": "Name of the partner.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "description",
+              "description": "Free-text description of the partner.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "createdBy",
+              "description": "Actor that created the partner account.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "createdAt",
+              "description": "Time at which the partner account was created.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Date",
+                "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -154905,7 +155405,7 @@
             },
             {
               "name": "public_ip",
-              "description": "Public source IP. Only available for native flows data integration created in the CMA. Not available in the appstats or appstatsTimeSeries API.",
+              "description": "Public source IP. CMA Name: Public Ip",
               "isDeprecated": false,
               "deprecationReason": null
             },

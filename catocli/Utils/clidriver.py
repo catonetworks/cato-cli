@@ -29,6 +29,7 @@ from ..parsers.custom.query_appCategory import query_appCategory_parse
 from ..parsers.custom.query_eventsFeed import query_eventsFeed_parse
 from .help_formatter import CustomSubparserHelpFormatter
 from .cliutils import load_cli_settings
+from ..parsers.mutation_access import mutation_access_parse
 from ..parsers.mutation_accountManagement import mutation_accountManagement_parse
 from ..parsers.mutation_admin import mutation_admin_parse
 from ..parsers.mutation_businessPlatform import mutation_businessPlatform_parse
@@ -55,6 +56,7 @@ from ..parsers.mutation_user import mutation_user_parse
 from ..parsers.mutation_webProxyConfig import mutation_webProxyConfig_parse
 from ..parsers.mutation_xdr import mutation_xdr_parse
 from ..parsers.mutation_ztnaAppConnector import mutation_ztnaAppConnector_parse
+from ..parsers.query_access import query_access_parse
 from ..parsers.query_accountBySubdomain import query_accountBySubdomain_parse
 from ..parsers.query_accountManagement import query_accountManagement_parse
 from ..parsers.query_accountMetrics import query_accountMetrics_parse
@@ -88,8 +90,6 @@ from ..parsers.query_policy import query_policy_parse
 from ..parsers.query_popLocations import query_popLocations_parse
 from ..parsers.query_posture import query_posture_parse
 from ..parsers.query_privateApplication import query_privateApplication_parse
-from ..parsers.query_rateLimit import query_rateLimit_parse
-from ..parsers.query_rateLimitEstimate import query_rateLimitEstimate_parse
 from ..parsers.query_rbac import query_rbac_parse
 from ..parsers.query_sandbox import query_sandbox_parse
 from ..parsers.query_servicePrincipalAdmin import query_servicePrincipalAdmin_parse
@@ -239,6 +239,7 @@ query_eventsFeed_parser = query_eventsFeed_parse(query_subparsers)
 mutation_parser = subparsers.add_parser('mutation', help='Mutation', usage='catocli mutation <operationName> [options]', formatter_class=CustomSubparserHelpFormatter)
 mutation_subparsers = mutation_parser.add_subparsers(description='Available mutation operations:', help='Use catocli mutation <operation> -h for detailed help on each operation')
 
+mutation_access_parser = mutation_access_parse(mutation_subparsers)
 mutation_accountManagement_parser = mutation_accountManagement_parse(mutation_subparsers)
 mutation_admin_parser = mutation_admin_parse(mutation_subparsers)
 mutation_businessPlatform_parser = mutation_businessPlatform_parse(mutation_subparsers)
@@ -265,6 +266,7 @@ mutation_user_parser = mutation_user_parse(mutation_subparsers)
 mutation_webProxyConfig_parser = mutation_webProxyConfig_parse(mutation_subparsers)
 mutation_xdr_parser = mutation_xdr_parse(mutation_subparsers)
 mutation_ztnaAppConnector_parser = mutation_ztnaAppConnector_parse(mutation_subparsers)
+query_access_parser = query_access_parse(query_subparsers)
 query_accountBySubdomain_parser = query_accountBySubdomain_parse(query_subparsers)
 query_accountManagement_parser = query_accountManagement_parse(query_subparsers)
 query_accountMetrics_parser = query_accountMetrics_parse(query_subparsers)
@@ -298,8 +300,6 @@ query_policy_parser = query_policy_parse(query_subparsers)
 query_popLocations_parser = query_popLocations_parse(query_subparsers)
 query_posture_parser = query_posture_parse(query_subparsers)
 query_privateApplication_parser = query_privateApplication_parse(query_subparsers)
-query_rateLimit_parser = query_rateLimit_parse(query_subparsers)
-query_rateLimitEstimate_parser = query_rateLimitEstimate_parse(query_subparsers)
 query_rbac_parser = query_rbac_parse(query_subparsers)
 query_sandbox_parser = query_sandbox_parse(query_subparsers)
 query_servicePrincipalAdmin_parser = query_servicePrincipalAdmin_parse(query_subparsers)

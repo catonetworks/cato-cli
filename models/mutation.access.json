@@ -1,0 +1,780 @@
+{
+    "args": {
+        "accountId": {
+            "defaultValue": null,
+            "description": "Unique identifier of the Cato account.",
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        }
+    },
+    "childOperations": {},
+    "deprecationReason": null,
+    "description": null,
+    "fieldTypes": {},
+    "isDeprecated": false,
+    "name": "access",
+    "operationArgs": {
+        "accessRemoteAccessSetEligibilityListInput": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "setEligibilityList___input",
+            "name": "input",
+            "path": "setEligibilityList.input",
+            "requestStr": "$accessRemoteAccessSetEligibilityListInput:AccessRemoteAccessSetEligibilityListInput! ",
+            "required": true,
+            "requiredForOperation": false,
+            "responseStr": "input:$accessRemoteAccessSetEligibilityListInput ",
+            "type": {
+                "definition": {
+                    "description": "Input for setting remote access eligibility.",
+                    "enumValues": null,
+                    "fields": null,
+                    "inputFields": {
+                        "allocationType": {
+                            "defaultValue": null,
+                            "description": "How remote access eligibility should be assigned.",
+                            "id_str": "setEligibilityList___input___allocationType",
+                            "name": "allocationType",
+                            "path": "setEligibilityList.input.allocationType",
+                            "requestStr": "$allocationType:AccessRemoteAccessAllocationType! ",
+                            "required": true,
+                            "responseStr": "allocationType:$allocationType ",
+                            "type": {
+                                "definition": {
+                                    "description": "How remote access eligibility is assigned to users.",
+                                    "enumValues": [
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "All eligible users receive remote access.",
+                                            "isDeprecated": false,
+                                            "name": "ALL"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Only eligible users from the selected users and user groups receive remote access.",
+                                            "isDeprecated": false,
+                                            "name": "CUSTOM"
+                                        }
+                                    ],
+                                    "fields": null,
+                                    "inputFields": null,
+                                    "interfaces": null,
+                                    "kind": "ENUM",
+                                    "name": "AccessRemoteAccessAllocationType",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "enum",
+                                "kind": [
+                                    "NON_NULL",
+                                    "ENUM"
+                                ],
+                                "name": "AccessRemoteAccessAllocationType",
+                                "non_null": false
+                            },
+                            "varName": "allocationType"
+                        },
+                        "items": {
+                            "defaultValue": null,
+                            "description": "Users and users groups selected for remote access eligibility. For CUSTOM allocation, an empty or omitted list revokes remote access eligibility from all users and users groups.",
+                            "id_str": "setEligibilityList___input___items",
+                            "name": "items",
+                            "path": "setEligibilityList.input.items",
+                            "requestStr": "$accessRemoteAccessEntityRefInput:[AccessRemoteAccessEntityRefInput] ",
+                            "required": false,
+                            "responseStr": "items:$accessRemoteAccessEntityRefInput ",
+                            "type": {
+                                "definition": {
+                                    "description": "A user or user group reference selected for remote access eligibility. Exactly one field must be provided.",
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "user": {
+                                            "defaultValue": null,
+                                            "description": "Selected user reference. Only reference by ID is currently supported.",
+                                            "id_str": "setEligibilityList___input___items___user",
+                                            "name": "user",
+                                            "path": "setEligibilityList.input.items.user",
+                                            "requestStr": "$userRefInput:UserRefInput ",
+                                            "required": false,
+                                            "responseStr": "user:$userRefInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "by": {
+                                                            "defaultValue": "ID",
+                                                            "description": null,
+                                                            "id_str": "setEligibilityList___input___items___user___by",
+                                                            "name": "by",
+                                                            "path": "setEligibilityList.input.items.user.by",
+                                                            "requestStr": "$by:ObjectRefBy! ",
+                                                            "required": true,
+                                                            "responseStr": "by:$by ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": null,
+                                                                    "enumValues": [
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "ID"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "NAME"
+                                                                        }
+                                                                    ],
+                                                                    "fields": null,
+                                                                    "inputFields": null,
+                                                                    "interfaces": null,
+                                                                    "kind": "ENUM",
+                                                                    "name": "ObjectRefBy",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "enum",
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "ENUM"
+                                                                ],
+                                                                "name": "ObjectRefBy",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "by"
+                                                        },
+                                                        "input": {
+                                                            "defaultValue": null,
+                                                            "description": null,
+                                                            "id_str": "setEligibilityList___input___items___user___input",
+                                                            "name": "input",
+                                                            "path": "setEligibilityList.input.items.user.input",
+                                                            "requestStr": "$input:String! ",
+                                                            "required": true,
+                                                            "responseStr": "input:$input ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "String",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "input"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "UserRefInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "UserRefInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "userRefInput"
+                                        },
+                                        "userGroup": {
+                                            "defaultValue": null,
+                                            "description": "Selected user group reference. Only reference by ID is currently supported.",
+                                            "id_str": "setEligibilityList___input___items___userGroup",
+                                            "name": "userGroup",
+                                            "path": "setEligibilityList.input.items.userGroup",
+                                            "requestStr": "$usersGroupRefInput:UsersGroupRefInput ",
+                                            "required": false,
+                                            "responseStr": "userGroup:$usersGroupRefInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "by": {
+                                                            "defaultValue": "ID",
+                                                            "description": null,
+                                                            "id_str": "setEligibilityList___input___items___userGroup___by",
+                                                            "name": "by",
+                                                            "path": "setEligibilityList.input.items.userGroup.by",
+                                                            "requestStr": "$by:ObjectRefBy! ",
+                                                            "required": true,
+                                                            "responseStr": "by:$by ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": null,
+                                                                    "enumValues": [
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "ID"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "NAME"
+                                                                        }
+                                                                    ],
+                                                                    "fields": null,
+                                                                    "inputFields": null,
+                                                                    "interfaces": null,
+                                                                    "kind": "ENUM",
+                                                                    "name": "ObjectRefBy",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "enum",
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "ENUM"
+                                                                ],
+                                                                "name": "ObjectRefBy",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "by"
+                                                        },
+                                                        "input": {
+                                                            "defaultValue": null,
+                                                            "description": null,
+                                                            "id_str": "setEligibilityList___input___items___userGroup___input",
+                                                            "name": "input",
+                                                            "path": "setEligibilityList.input.items.userGroup.input",
+                                                            "requestStr": "$input:String! ",
+                                                            "required": true,
+                                                            "responseStr": "input:$input ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "String",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "input"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "UsersGroupRefInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "UsersGroupRefInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "usersGroupRefInput"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "AccessRemoteAccessEntityRefInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "LIST",
+                                    "NON_NULL",
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "AccessRemoteAccessEntityRefInput",
+                                "non_null": false
+                            },
+                            "varName": "accessRemoteAccessEntityRefInput"
+                        }
+                    },
+                    "interfaces": null,
+                    "kind": "INPUT_OBJECT",
+                    "name": "AccessRemoteAccessSetEligibilityListInput",
+                    "possibleTypes": null
+                },
+                "indexType": "input_object",
+                "kind": [
+                    "NON_NULL",
+                    "INPUT_OBJECT"
+                ],
+                "name": "AccessRemoteAccessSetEligibilityListInput",
+                "non_null": false
+            },
+            "varName": "accessRemoteAccessSetEligibilityListInput"
+        },
+        "accountId": {
+            "defaultValue": null,
+            "description": "Unique identifier of the Cato account.",
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        }
+    },
+    "path": "mutation.access",
+    "type": {
+        "definition": {
+            "description": null,
+            "enumValues": null,
+            "fields": {
+                "remoteAccessEligibility": {
+                    "args": {},
+                    "deprecationReason": null,
+                    "description": "Remote access eligibility mutations.",
+                    "id_str": "remoteAccessEligibility",
+                    "isDeprecated": false,
+                    "name": "remoteAccessEligibility",
+                    "path": "remoteAccessEligibility",
+                    "requestStr": "$accessRemoteAccessEligibilityMutations:AccessRemoteAccessEligibilityMutations! ",
+                    "required": true,
+                    "responseStr": "remoteAccessEligibility:$accessRemoteAccessEligibilityMutations ",
+                    "type": {
+                        "definition": {
+                            "description": "Remote access eligibility mutations.",
+                            "enumValues": null,
+                            "fields": {
+                                "setEligibilityList": {
+                                    "args": {
+                                        "setEligibilityList___input": {
+                                            "defaultValue": null,
+                                            "description": null,
+                                            "id_str": "setEligibilityList___input",
+                                            "name": "input",
+                                            "path": "setEligibilityList.input",
+                                            "requestStr": "$accessRemoteAccessSetEligibilityListInput:AccessRemoteAccessSetEligibilityListInput! ",
+                                            "required": true,
+                                            "responseStr": "input:$accessRemoteAccessSetEligibilityListInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": "Input for setting remote access eligibility.",
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "allocationType": {
+                                                            "defaultValue": null,
+                                                            "description": "How remote access eligibility should be assigned.",
+                                                            "id_str": "setEligibilityList___input___allocationType",
+                                                            "name": "allocationType",
+                                                            "path": "setEligibilityList.input.allocationType",
+                                                            "requestStr": "$allocationType:AccessRemoteAccessAllocationType! ",
+                                                            "required": true,
+                                                            "responseStr": "allocationType:$allocationType ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": "How remote access eligibility is assigned to users.",
+                                                                    "enumValues": [
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": "All eligible users receive remote access.",
+                                                                            "isDeprecated": false,
+                                                                            "name": "ALL"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": "Only eligible users from the selected users and user groups receive remote access.",
+                                                                            "isDeprecated": false,
+                                                                            "name": "CUSTOM"
+                                                                        }
+                                                                    ],
+                                                                    "fields": null,
+                                                                    "inputFields": null,
+                                                                    "interfaces": null,
+                                                                    "kind": "ENUM",
+                                                                    "name": "AccessRemoteAccessAllocationType",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "enum",
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "ENUM"
+                                                                ],
+                                                                "name": "AccessRemoteAccessAllocationType",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "allocationType"
+                                                        },
+                                                        "items": {
+                                                            "defaultValue": null,
+                                                            "description": "Users and users groups selected for remote access eligibility. For CUSTOM allocation, an empty or omitted list revokes remote access eligibility from all users and users groups.",
+                                                            "id_str": "setEligibilityList___input___items",
+                                                            "name": "items",
+                                                            "path": "setEligibilityList.input.items",
+                                                            "requestStr": "$accessRemoteAccessEntityRefInput:[AccessRemoteAccessEntityRefInput] ",
+                                                            "required": false,
+                                                            "responseStr": "items:$accessRemoteAccessEntityRefInput ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": "A user or user group reference selected for remote access eligibility. Exactly one field must be provided.",
+                                                                    "enumValues": null,
+                                                                    "fields": null,
+                                                                    "inputFields": {
+                                                                        "user": {
+                                                                            "defaultValue": null,
+                                                                            "description": "Selected user reference. Only reference by ID is currently supported.",
+                                                                            "id_str": "setEligibilityList___input___items___user",
+                                                                            "name": "user",
+                                                                            "path": "setEligibilityList.input.items.user",
+                                                                            "requestStr": "$userRefInput:UserRefInput ",
+                                                                            "required": false,
+                                                                            "responseStr": "user:$userRefInput ",
+                                                                            "type": {
+                                                                                "definition": {
+                                                                                    "description": null,
+                                                                                    "enumValues": null,
+                                                                                    "fields": null,
+                                                                                    "inputFields": {
+                                                                                        "by": {
+                                                                                            "defaultValue": "ID",
+                                                                                            "description": null,
+                                                                                            "id_str": "setEligibilityList___input___items___user___by",
+                                                                                            "name": "by",
+                                                                                            "path": "setEligibilityList.input.items.user.by",
+                                                                                            "requestStr": "$by:ObjectRefBy! ",
+                                                                                            "required": true,
+                                                                                            "responseStr": "by:$by ",
+                                                                                            "type": {
+                                                                                                "definition": {
+                                                                                                    "description": null,
+                                                                                                    "enumValues": [
+                                                                                                        {
+                                                                                                            "deprecationReason": null,
+                                                                                                            "description": null,
+                                                                                                            "isDeprecated": false,
+                                                                                                            "name": "ID"
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "deprecationReason": null,
+                                                                                                            "description": null,
+                                                                                                            "isDeprecated": false,
+                                                                                                            "name": "NAME"
+                                                                                                        }
+                                                                                                    ],
+                                                                                                    "fields": null,
+                                                                                                    "inputFields": null,
+                                                                                                    "interfaces": null,
+                                                                                                    "kind": "ENUM",
+                                                                                                    "name": "ObjectRefBy",
+                                                                                                    "possibleTypes": null
+                                                                                                },
+                                                                                                "indexType": "enum",
+                                                                                                "kind": [
+                                                                                                    "NON_NULL",
+                                                                                                    "ENUM"
+                                                                                                ],
+                                                                                                "name": "ObjectRefBy",
+                                                                                                "non_null": false
+                                                                                            },
+                                                                                            "varName": "by"
+                                                                                        },
+                                                                                        "input": {
+                                                                                            "defaultValue": null,
+                                                                                            "description": null,
+                                                                                            "id_str": "setEligibilityList___input___items___user___input",
+                                                                                            "name": "input",
+                                                                                            "path": "setEligibilityList.input.items.user.input",
+                                                                                            "requestStr": "$input:String! ",
+                                                                                            "required": true,
+                                                                                            "responseStr": "input:$input ",
+                                                                                            "type": {
+                                                                                                "kind": [
+                                                                                                    "NON_NULL",
+                                                                                                    "SCALAR"
+                                                                                                ],
+                                                                                                "name": "String",
+                                                                                                "non_null": false
+                                                                                            },
+                                                                                            "varName": "input"
+                                                                                        }
+                                                                                    },
+                                                                                    "interfaces": null,
+                                                                                    "kind": "INPUT_OBJECT",
+                                                                                    "name": "UserRefInput",
+                                                                                    "possibleTypes": null
+                                                                                },
+                                                                                "indexType": "input_object",
+                                                                                "kind": [
+                                                                                    "INPUT_OBJECT"
+                                                                                ],
+                                                                                "name": "UserRefInput",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "userRefInput"
+                                                                        },
+                                                                        "userGroup": {
+                                                                            "defaultValue": null,
+                                                                            "description": "Selected user group reference. Only reference by ID is currently supported.",
+                                                                            "id_str": "setEligibilityList___input___items___userGroup",
+                                                                            "name": "userGroup",
+                                                                            "path": "setEligibilityList.input.items.userGroup",
+                                                                            "requestStr": "$usersGroupRefInput:UsersGroupRefInput ",
+                                                                            "required": false,
+                                                                            "responseStr": "userGroup:$usersGroupRefInput ",
+                                                                            "type": {
+                                                                                "definition": {
+                                                                                    "description": null,
+                                                                                    "enumValues": null,
+                                                                                    "fields": null,
+                                                                                    "inputFields": {
+                                                                                        "by": {
+                                                                                            "defaultValue": "ID",
+                                                                                            "description": null,
+                                                                                            "id_str": "setEligibilityList___input___items___userGroup___by",
+                                                                                            "name": "by",
+                                                                                            "path": "setEligibilityList.input.items.userGroup.by",
+                                                                                            "requestStr": "$by:ObjectRefBy! ",
+                                                                                            "required": true,
+                                                                                            "responseStr": "by:$by ",
+                                                                                            "type": {
+                                                                                                "definition": {
+                                                                                                    "description": null,
+                                                                                                    "enumValues": [
+                                                                                                        {
+                                                                                                            "deprecationReason": null,
+                                                                                                            "description": null,
+                                                                                                            "isDeprecated": false,
+                                                                                                            "name": "ID"
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "deprecationReason": null,
+                                                                                                            "description": null,
+                                                                                                            "isDeprecated": false,
+                                                                                                            "name": "NAME"
+                                                                                                        }
+                                                                                                    ],
+                                                                                                    "fields": null,
+                                                                                                    "inputFields": null,
+                                                                                                    "interfaces": null,
+                                                                                                    "kind": "ENUM",
+                                                                                                    "name": "ObjectRefBy",
+                                                                                                    "possibleTypes": null
+                                                                                                },
+                                                                                                "indexType": "enum",
+                                                                                                "kind": [
+                                                                                                    "NON_NULL",
+                                                                                                    "ENUM"
+                                                                                                ],
+                                                                                                "name": "ObjectRefBy",
+                                                                                                "non_null": false
+                                                                                            },
+                                                                                            "varName": "by"
+                                                                                        },
+                                                                                        "input": {
+                                                                                            "defaultValue": null,
+                                                                                            "description": null,
+                                                                                            "id_str": "setEligibilityList___input___items___userGroup___input",
+                                                                                            "name": "input",
+                                                                                            "path": "setEligibilityList.input.items.userGroup.input",
+                                                                                            "requestStr": "$input:String! ",
+                                                                                            "required": true,
+                                                                                            "responseStr": "input:$input ",
+                                                                                            "type": {
+                                                                                                "kind": [
+                                                                                                    "NON_NULL",
+                                                                                                    "SCALAR"
+                                                                                                ],
+                                                                                                "name": "String",
+                                                                                                "non_null": false
+                                                                                            },
+                                                                                            "varName": "input"
+                                                                                        }
+                                                                                    },
+                                                                                    "interfaces": null,
+                                                                                    "kind": "INPUT_OBJECT",
+                                                                                    "name": "UsersGroupRefInput",
+                                                                                    "possibleTypes": null
+                                                                                },
+                                                                                "indexType": "input_object",
+                                                                                "kind": [
+                                                                                    "INPUT_OBJECT"
+                                                                                ],
+                                                                                "name": "UsersGroupRefInput",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "usersGroupRefInput"
+                                                                        }
+                                                                    },
+                                                                    "interfaces": null,
+                                                                    "kind": "INPUT_OBJECT",
+                                                                    "name": "AccessRemoteAccessEntityRefInput",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "input_object",
+                                                                "kind": [
+                                                                    "LIST",
+                                                                    "NON_NULL",
+                                                                    "INPUT_OBJECT"
+                                                                ],
+                                                                "name": "AccessRemoteAccessEntityRefInput",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "accessRemoteAccessEntityRefInput"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "AccessRemoteAccessSetEligibilityListInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "AccessRemoteAccessSetEligibilityListInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "accessRemoteAccessSetEligibilityListInput"
+                                        }
+                                    },
+                                    "deprecationReason": null,
+                                    "description": "Sets remote access eligibility for the account. If unable to apply any requested change, the eligibility is not updated.",
+                                    "id_str": "remoteAccessEligibility___setEligibilityList",
+                                    "isDeprecated": false,
+                                    "name": "setEligibilityList",
+                                    "path": "remoteAccessEligibility.setEligibilityList",
+                                    "requestStr": "$accessRemoteAccessSetEligibilityListPayload:AccessRemoteAccessSetEligibilityListPayload ",
+                                    "required": false,
+                                    "responseStr": "setEligibilityList:$accessRemoteAccessSetEligibilityListPayload ",
+                                    "type": {
+                                        "definition": {
+                                            "description": "Response payload for setEligibilityList mutation.",
+                                            "enumValues": null,
+                                            "fields": {
+                                                "status": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Status of the setEligibilityList operation.",
+                                                    "id_str": "remoteAccessEligibility___setEligibilityList___status",
+                                                    "isDeprecated": false,
+                                                    "name": "status",
+                                                    "path": "remoteAccessEligibility.setEligibilityList.status",
+                                                    "requestStr": "$status:MutationStatus! ",
+                                                    "required": true,
+                                                    "responseStr": "status:$status ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": null,
+                                                            "enumValues": [
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "SUCCESS"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "FAILURE"
+                                                                }
+                                                            ],
+                                                            "fields": null,
+                                                            "inputFields": null,
+                                                            "interfaces": null,
+                                                            "kind": "ENUM",
+                                                            "name": "MutationStatus",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "enum",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "ENUM"
+                                                        ],
+                                                        "name": "MutationStatus",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "status"
+                                                }
+                                            },
+                                            "inputFields": null,
+                                            "interfaces": {},
+                                            "kind": "OBJECT",
+                                            "name": "AccessRemoteAccessSetEligibilityListPayload",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "object",
+                                        "kind": [
+                                            "OBJECT"
+                                        ],
+                                        "name": "AccessRemoteAccessSetEligibilityListPayload",
+                                        "non_null": false
+                                    },
+                                    "varName": "accessRemoteAccessSetEligibilityListPayload"
+                                }
+                            },
+                            "inputFields": null,
+                            "interfaces": {},
+                            "kind": "OBJECT",
+                            "name": "AccessRemoteAccessEligibilityMutations",
+                            "possibleTypes": null
+                        },
+                        "indexType": "object",
+                        "kind": [
+                            "NON_NULL",
+                            "OBJECT"
+                        ],
+                        "name": "AccessRemoteAccessEligibilityMutations",
+                        "non_null": false
+                    },
+                    "varName": "accessRemoteAccessEligibilityMutations"
+                }
+            },
+            "inputFields": null,
+            "interfaces": [],
+            "kind": "OBJECT",
+            "name": "AccessMutations",
+            "possibleTypes": null
+        },
+        "indexType": "object",
+        "kind": [
+            "NON_NULL",
+            "OBJECT"
+        ],
+        "name": "AccessMutations",
+        "non_null": false
+    },
+    "variablesPayload": {
+        "accessRemoteAccessSetEligibilityListInput": {
+            "allocationType": "ALL",
+            "items": [
+                {
+                    "user": {
+                        "by": "ID",
+                        "input": "string"
+                    },
+                    "userGroup": {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                }
+            ]
+        }
+    }
+}

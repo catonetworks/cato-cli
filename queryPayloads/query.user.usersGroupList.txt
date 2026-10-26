@@ -1,0 +1,20 @@
+query userUsersGroupList ( $accountId:ID! $usersGroupListInput:UsersGroupListInput!) {
+	user ( accountId:$accountId ) {
+		usersGroupList ( input:$usersGroupListInput  )  {
+			items {
+				id
+				name
+				description
+				importType
+				directoryId
+				objectId
+				creationDate
+				lastModified
+				membersCount
+			}
+			paging {
+				total
+			}
+		}
+	}	
+}

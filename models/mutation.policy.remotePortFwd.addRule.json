@@ -207,7 +207,7 @@
                                                 },
                                                 "externalIp": {
                                                     "defaultValue": null,
-                                                    "description": null,
+                                                    "description": "The Cato-allocated public IP address that receives the inbound traffic.",
                                                     "id_str": "addRule___input___rule___externalIp",
                                                     "name": "externalIp",
                                                     "path": "addRule.input.rule.externalIp",
@@ -300,7 +300,7 @@
                                                 },
                                                 "externalPortRange": {
                                                     "defaultValue": null,
-                                                    "description": null,
+                                                    "description": "The ports on the external IP that receive the inbound traffic.\nExternal ports are mapped one-to-one, in order, to the internal port range, so both ranges must be the same size.\nFor example, 5000-5005 maps to 6103-6108.",
                                                     "id_str": "addRule___input___rule___externalPortRange",
                                                     "name": "externalPortRange",
                                                     "path": "addRule.input.rule.externalPortRange",
@@ -369,7 +369,7 @@
                                                 },
                                                 "forwardIcmp": {
                                                     "defaultValue": "false",
-                                                    "description": null,
+                                                    "description": "When true, ICMP traffic sent to the external IP is also forwarded to the internal IP.",
                                                     "id_str": "addRule___input___rule___forwardIcmp",
                                                     "name": "forwardIcmp",
                                                     "path": "addRule.input.rule.forwardIcmp",
@@ -388,7 +388,7 @@
                                                 },
                                                 "internalIp": {
                                                     "defaultValue": null,
-                                                    "description": null,
+                                                    "description": "The IP address of the internal host that the traffic is forwarded to.",
                                                     "id_str": "addRule___input___rule___internalIp",
                                                     "name": "internalIp",
                                                     "path": "addRule.input.rule.internalIp",
@@ -407,7 +407,7 @@
                                                 },
                                                 "internalPortRange": {
                                                     "defaultValue": null,
-                                                    "description": null,
+                                                    "description": "The ports on the internal host that the traffic is forwarded to.\nThis range must be the same size as the external port range.",
                                                     "id_str": "addRule___input___rule___internalPortRange",
                                                     "name": "internalPortRange",
                                                     "path": "addRule.input.rule.internalPortRange",
@@ -495,7 +495,7 @@
                                                 },
                                                 "remoteIPs": {
                                                     "defaultValue": "{ip: [], ipRange: [], subnet: [], globalIpRange: []}",
-                                                    "description": null,
+                                                    "description": "The source addresses that the restriction type applies to.",
                                                     "id_str": "addRule___input___rule___remoteIPs",
                                                     "name": "remoteIPs",
                                                     "path": "addRule.input.rule.remoteIPs",
@@ -504,13 +504,13 @@
                                                     "responseStr": "remoteIPs:$remotePortFwdRemoteIpsInput ",
                                                     "type": {
                                                         "definition": {
-                                                            "description": null,
+                                                            "description": "The source addresses for a Remote Port Forwarding rule.\nThe rule's restriction type decides whether these sources are allowed or blocked.",
                                                             "enumValues": null,
                                                             "fields": null,
                                                             "inputFields": {
                                                                 "globalIpRange": {
                                                                     "defaultValue": "[]",
-                                                                    "description": null,
+                                                                    "description": "References to Global IP Range objects defined for the account.",
                                                                     "id_str": "addRule___input___rule___remoteIPs___globalIpRange",
                                                                     "name": "globalIpRange",
                                                                     "path": "addRule.input.rule.remoteIPs.globalIpRange",
@@ -605,7 +605,7 @@
                                                                 },
                                                                 "ip": {
                                                                     "defaultValue": "[]",
-                                                                    "description": null,
+                                                                    "description": "Individual source IP addresses.",
                                                                     "id_str": "addRule___input___rule___remoteIPs___ip",
                                                                     "name": "ip",
                                                                     "path": "addRule.input.rule.remoteIPs.ip",
@@ -626,7 +626,7 @@
                                                                 },
                                                                 "ipRange": {
                                                                     "defaultValue": "[]",
-                                                                    "description": null,
+                                                                    "description": "Source IP address ranges, for example 192.0.2.10-192.0.2.20.",
                                                                     "id_str": "addRule___input___rule___remoteIPs___ipRange",
                                                                     "name": "ipRange",
                                                                     "path": "addRule.input.rule.remoteIPs.ipRange",
@@ -697,7 +697,7 @@
                                                                 },
                                                                 "subnet": {
                                                                     "defaultValue": "[]",
-                                                                    "description": null,
+                                                                    "description": "Source subnets in CIDR notation, for example 192.0.2.0/24.",
                                                                     "id_str": "addRule___input___rule___remoteIPs___subnet",
                                                                     "name": "subnet",
                                                                     "path": "addRule.input.rule.remoteIPs.subnet",
@@ -734,7 +734,7 @@
                                                 },
                                                 "restrictionType": {
                                                     "defaultValue": "ALLOW_LIST",
-                                                    "description": null,
+                                                    "description": "How the remote IPs and countries are applied. With ALLOW_LIST, only the listed sources are allowed. With BLOCK_LIST, all sources are allowed except the listed ones.",
                                                     "id_str": "addRule___input___rule___restrictionType",
                                                     "name": "restrictionType",
                                                     "path": "addRule.input.rule.restrictionType",
@@ -743,17 +743,17 @@
                                                     "responseStr": "restrictionType:$restrictionType ",
                                                     "type": {
                                                         "definition": {
-                                                            "description": null,
+                                                            "description": "How the rule's remote IPs and countries are used.",
                                                             "enumValues": [
                                                                 {
                                                                     "deprecationReason": null,
-                                                                    "description": null,
+                                                                    "description": "Blocks all sources except the configured remote IPs and countries.",
                                                                     "isDeprecated": false,
                                                                     "name": "ALLOW_LIST"
                                                                 },
                                                                 {
                                                                     "deprecationReason": null,
-                                                                    "description": null,
+                                                                    "description": "Allows all sources except the configured remote IPs and countries.",
                                                                     "isDeprecated": false,
                                                                     "name": "BLOCK_LIST"
                                                                 }
@@ -777,7 +777,7 @@
                                                 },
                                                 "tracking": {
                                                     "defaultValue": "{enabled: false, frequency: HOURLY, subscriptionGroup: [], webhook: [], mailingList: []}",
-                                                    "description": null,
+                                                    "description": "Event and notification tracking configuration.",
                                                     "id_str": "addRule___input___rule___tracking",
                                                     "name": "tracking",
                                                     "path": "addRule.input.rule.tracking",
@@ -1513,7 +1513,7 @@
                                         },
                                         "externalIp": {
                                             "defaultValue": null,
-                                            "description": null,
+                                            "description": "The Cato-allocated public IP address that receives the inbound traffic.",
                                             "id_str": "addRule___input___rule___externalIp",
                                             "name": "externalIp",
                                             "path": "addRule.input.rule.externalIp",
@@ -1606,7 +1606,7 @@
                                         },
                                         "externalPortRange": {
                                             "defaultValue": null,
-                                            "description": null,
+                                            "description": "The ports on the external IP that receive the inbound traffic.\nExternal ports are mapped one-to-one, in order, to the internal port range, so both ranges must be the same size.\nFor example, 5000-5005 maps to 6103-6108.",
                                             "id_str": "addRule___input___rule___externalPortRange",
                                             "name": "externalPortRange",
                                             "path": "addRule.input.rule.externalPortRange",
@@ -1675,7 +1675,7 @@
                                         },
                                         "forwardIcmp": {
                                             "defaultValue": "false",
-                                            "description": null,
+                                            "description": "When true, ICMP traffic sent to the external IP is also forwarded to the internal IP.",
                                             "id_str": "addRule___input___rule___forwardIcmp",
                                             "name": "forwardIcmp",
                                             "path": "addRule.input.rule.forwardIcmp",
@@ -1694,7 +1694,7 @@
                                         },
                                         "internalIp": {
                                             "defaultValue": null,
-                                            "description": null,
+                                            "description": "The IP address of the internal host that the traffic is forwarded to.",
                                             "id_str": "addRule___input___rule___internalIp",
                                             "name": "internalIp",
                                             "path": "addRule.input.rule.internalIp",
@@ -1713,7 +1713,7 @@
                                         },
                                         "internalPortRange": {
                                             "defaultValue": null,
-                                            "description": null,
+                                            "description": "The ports on the internal host that the traffic is forwarded to.\nThis range must be the same size as the external port range.",
                                             "id_str": "addRule___input___rule___internalPortRange",
                                             "name": "internalPortRange",
                                             "path": "addRule.input.rule.internalPortRange",
@@ -1801,7 +1801,7 @@
                                         },
                                         "remoteIPs": {
                                             "defaultValue": "{ip: [], ipRange: [], subnet: [], globalIpRange: []}",
-                                            "description": null,
+                                            "description": "The source addresses that the restriction type applies to.",
                                             "id_str": "addRule___input___rule___remoteIPs",
                                             "name": "remoteIPs",
                                             "path": "addRule.input.rule.remoteIPs",
@@ -1810,13 +1810,13 @@
                                             "responseStr": "remoteIPs:$remotePortFwdRemoteIpsInput ",
                                             "type": {
                                                 "definition": {
-                                                    "description": null,
+                                                    "description": "The source addresses for a Remote Port Forwarding rule.\nThe rule's restriction type decides whether these sources are allowed or blocked.",
                                                     "enumValues": null,
                                                     "fields": null,
                                                     "inputFields": {
                                                         "globalIpRange": {
                                                             "defaultValue": "[]",
-                                                            "description": null,
+                                                            "description": "References to Global IP Range objects defined for the account.",
                                                             "id_str": "addRule___input___rule___remoteIPs___globalIpRange",
                                                             "name": "globalIpRange",
                                                             "path": "addRule.input.rule.remoteIPs.globalIpRange",
@@ -1911,7 +1911,7 @@
                                                         },
                                                         "ip": {
                                                             "defaultValue": "[]",
-                                                            "description": null,
+                                                            "description": "Individual source IP addresses.",
                                                             "id_str": "addRule___input___rule___remoteIPs___ip",
                                                             "name": "ip",
                                                             "path": "addRule.input.rule.remoteIPs.ip",
@@ -1932,7 +1932,7 @@
                                                         },
                                                         "ipRange": {
                                                             "defaultValue": "[]",
-                                                            "description": null,
+                                                            "description": "Source IP address ranges, for example 192.0.2.10-192.0.2.20.",
                                                             "id_str": "addRule___input___rule___remoteIPs___ipRange",
                                                             "name": "ipRange",
                                                             "path": "addRule.input.rule.remoteIPs.ipRange",
@@ -2003,7 +2003,7 @@
                                                         },
                                                         "subnet": {
                                                             "defaultValue": "[]",
-                                                            "description": null,
+                                                            "description": "Source subnets in CIDR notation, for example 192.0.2.0/24.",
                                                             "id_str": "addRule___input___rule___remoteIPs___subnet",
                                                             "name": "subnet",
                                                             "path": "addRule.input.rule.remoteIPs.subnet",
@@ -2040,7 +2040,7 @@
                                         },
                                         "restrictionType": {
                                             "defaultValue": "ALLOW_LIST",
-                                            "description": null,
+                                            "description": "How the remote IPs and countries are applied. With ALLOW_LIST, only the listed sources are allowed. With BLOCK_LIST, all sources are allowed except the listed ones.",
                                             "id_str": "addRule___input___rule___restrictionType",
                                             "name": "restrictionType",
                                             "path": "addRule.input.rule.restrictionType",
@@ -2049,17 +2049,17 @@
                                             "responseStr": "restrictionType:$restrictionType ",
                                             "type": {
                                                 "definition": {
-                                                    "description": null,
+                                                    "description": "How the rule's remote IPs and countries are used.",
                                                     "enumValues": [
                                                         {
                                                             "deprecationReason": null,
-                                                            "description": null,
+                                                            "description": "Blocks all sources except the configured remote IPs and countries.",
                                                             "isDeprecated": false,
                                                             "name": "ALLOW_LIST"
                                                         },
                                                         {
                                                             "deprecationReason": null,
-                                                            "description": null,
+                                                            "description": "Allows all sources except the configured remote IPs and countries.",
                                                             "isDeprecated": false,
                                                             "name": "BLOCK_LIST"
                                                         }
@@ -2083,7 +2083,7 @@
                                         },
                                         "tracking": {
                                             "defaultValue": "{enabled: false, frequency: HOURLY, subscriptionGroup: [], webhook: [], mailingList: []}",
-                                            "description": null,
+                                            "description": "Event and notification tracking configuration.",
                                             "id_str": "addRule___input___rule___tracking",
                                             "name": "tracking",
                                             "path": "addRule.input.rule.tracking",
@@ -2869,7 +2869,7 @@
                                                                         },
                                                                         "externalIp": {
                                                                             "defaultValue": null,
-                                                                            "description": null,
+                                                                            "description": "The Cato-allocated public IP address that receives the inbound traffic.",
                                                                             "id_str": "addRule___input___rule___externalIp",
                                                                             "name": "externalIp",
                                                                             "path": "addRule.input.rule.externalIp",
@@ -2962,7 +2962,7 @@
                                                                         },
                                                                         "externalPortRange": {
                                                                             "defaultValue": null,
-                                                                            "description": null,
+                                                                            "description": "The ports on the external IP that receive the inbound traffic.\nExternal ports are mapped one-to-one, in order, to the internal port range, so both ranges must be the same size.\nFor example, 5000-5005 maps to 6103-6108.",
                                                                             "id_str": "addRule___input___rule___externalPortRange",
                                                                             "name": "externalPortRange",
                                                                             "path": "addRule.input.rule.externalPortRange",
@@ -3031,7 +3031,7 @@
                                                                         },
                                                                         "forwardIcmp": {
                                                                             "defaultValue": "false",
-                                                                            "description": null,
+                                                                            "description": "When true, ICMP traffic sent to the external IP is also forwarded to the internal IP.",
                                                                             "id_str": "addRule___input___rule___forwardIcmp",
                                                                             "name": "forwardIcmp",
                                                                             "path": "addRule.input.rule.forwardIcmp",
@@ -3050,7 +3050,7 @@
                                                                         },
                                                                         "internalIp": {
                                                                             "defaultValue": null,
-                                                                            "description": null,
+                                                                            "description": "The IP address of the internal host that the traffic is forwarded to.",
                                                                             "id_str": "addRule___input___rule___internalIp",
                                                                             "name": "internalIp",
                                                                             "path": "addRule.input.rule.internalIp",
@@ -3069,7 +3069,7 @@
                                                                         },
                                                                         "internalPortRange": {
                                                                             "defaultValue": null,
-                                                                            "description": null,
+                                                                            "description": "The ports on the internal host that the traffic is forwarded to.\nThis range must be the same size as the external port range.",
                                                                             "id_str": "addRule___input___rule___internalPortRange",
                                                                             "name": "internalPortRange",
                                                                             "path": "addRule.input.rule.internalPortRange",
@@ -3157,7 +3157,7 @@
                                                                         },
                                                                         "remoteIPs": {
                                                                             "defaultValue": "{ip: [], ipRange: [], subnet: [], globalIpRange: []}",
-                                                                            "description": null,
+                                                                            "description": "The source addresses that the restriction type applies to.",
                                                                             "id_str": "addRule___input___rule___remoteIPs",
                                                                             "name": "remoteIPs",
                                                                             "path": "addRule.input.rule.remoteIPs",
@@ -3166,13 +3166,13 @@
                                                                             "responseStr": "remoteIPs:$remotePortFwdRemoteIpsInput ",
                                                                             "type": {
                                                                                 "definition": {
-                                                                                    "description": null,
+                                                                                    "description": "The source addresses for a Remote Port Forwarding rule.\nThe rule's restriction type decides whether these sources are allowed or blocked.",
                                                                                     "enumValues": null,
                                                                                     "fields": null,
                                                                                     "inputFields": {
                                                                                         "globalIpRange": {
                                                                                             "defaultValue": "[]",
-                                                                                            "description": null,
+                                                                                            "description": "References to Global IP Range objects defined for the account.",
                                                                                             "id_str": "addRule___input___rule___remoteIPs___globalIpRange",
                                                                                             "name": "globalIpRange",
                                                                                             "path": "addRule.input.rule.remoteIPs.globalIpRange",
@@ -3267,7 +3267,7 @@
                                                                                         },
                                                                                         "ip": {
                                                                                             "defaultValue": "[]",
-                                                                                            "description": null,
+                                                                                            "description": "Individual source IP addresses.",
                                                                                             "id_str": "addRule___input___rule___remoteIPs___ip",
                                                                                             "name": "ip",
                                                                                             "path": "addRule.input.rule.remoteIPs.ip",
@@ -3288,7 +3288,7 @@
                                                                                         },
                                                                                         "ipRange": {
                                                                                             "defaultValue": "[]",
-                                                                                            "description": null,
+                                                                                            "description": "Source IP address ranges, for example 192.0.2.10-192.0.2.20.",
                                                                                             "id_str": "addRule___input___rule___remoteIPs___ipRange",
                                                                                             "name": "ipRange",
                                                                                             "path": "addRule.input.rule.remoteIPs.ipRange",
@@ -3359,7 +3359,7 @@
                                                                                         },
                                                                                         "subnet": {
                                                                                             "defaultValue": "[]",
-                                                                                            "description": null,
+                                                                                            "description": "Source subnets in CIDR notation, for example 192.0.2.0/24.",
                                                                                             "id_str": "addRule___input___rule___remoteIPs___subnet",
                                                                                             "name": "subnet",
                                                                                             "path": "addRule.input.rule.remoteIPs.subnet",
@@ -3396,7 +3396,7 @@
                                                                         },
                                                                         "restrictionType": {
                                                                             "defaultValue": "ALLOW_LIST",
-                                                                            "description": null,
+                                                                            "description": "How the remote IPs and countries are applied. With ALLOW_LIST, only the listed sources are allowed. With BLOCK_LIST, all sources are allowed except the listed ones.",
                                                                             "id_str": "addRule___input___rule___restrictionType",
                                                                             "name": "restrictionType",
                                                                             "path": "addRule.input.rule.restrictionType",
@@ -3405,17 +3405,17 @@
                                                                             "responseStr": "restrictionType:$restrictionType ",
                                                                             "type": {
                                                                                 "definition": {
-                                                                                    "description": null,
+                                                                                    "description": "How the rule's remote IPs and countries are used.",
                                                                                     "enumValues": [
                                                                                         {
                                                                                             "deprecationReason": null,
-                                                                                            "description": null,
+                                                                                            "description": "Blocks all sources except the configured remote IPs and countries.",
                                                                                             "isDeprecated": false,
                                                                                             "name": "ALLOW_LIST"
                                                                                         },
                                                                                         {
                                                                                             "deprecationReason": null,
-                                                                                            "description": null,
+                                                                                            "description": "Allows all sources except the configured remote IPs and countries.",
                                                                                             "isDeprecated": false,
                                                                                             "name": "BLOCK_LIST"
                                                                                         }
@@ -3439,7 +3439,7 @@
                                                                         },
                                                                         "tracking": {
                                                                             "defaultValue": "{enabled: false, frequency: HOURLY, subscriptionGroup: [], webhook: [], mailingList: []}",
-                                                                            "description": null,
+                                                                            "description": "Event and notification tracking configuration.",
                                                                             "id_str": "addRule___input___rule___tracking",
                                                                             "name": "tracking",
                                                                             "path": "addRule.input.rule.tracking",
@@ -4463,7 +4463,7 @@
                                                                                 "externalIp": {
                                                                                     "args": {},
                                                                                     "deprecationReason": null,
-                                                                                    "description": null,
+                                                                                    "description": "The Cato-allocated public IP address that receives the inbound traffic.",
                                                                                     "id_str": "remotePortFwd___addRule___rule___rule___externalIp",
                                                                                     "isDeprecated": false,
                                                                                     "name": "externalIp",
@@ -4538,7 +4538,7 @@
                                                                                 "externalPortRange": {
                                                                                     "args": {},
                                                                                     "deprecationReason": null,
-                                                                                    "description": null,
+                                                                                    "description": "The ports on the external IP that receive the inbound traffic.\nExternal ports are mapped one-to-one, in order, to the internal port range, so both ranges must be the same size.\nFor example, 5000-5005 maps to 6103-6108.",
                                                                                     "id_str": "remotePortFwd___addRule___rule___rule___externalPortRange",
                                                                                     "isDeprecated": false,
                                                                                     "name": "externalPortRange",
@@ -4613,7 +4613,7 @@
                                                                                 "forwardIcmp": {
                                                                                     "args": {},
                                                                                     "deprecationReason": null,
-                                                                                    "description": null,
+                                                                                    "description": "When true, ICMP traffic sent to the external IP is also forwarded to the internal IP.",
                                                                                     "id_str": "remotePortFwd___addRule___rule___rule___forwardIcmp",
                                                                                     "isDeprecated": false,
                                                                                     "name": "forwardIcmp",
@@ -4676,7 +4676,7 @@
                                                                                 "internalIp": {
                                                                                     "args": {},
                                                                                     "deprecationReason": null,
-                                                                                    "description": null,
+                                                                                    "description": "The IP address of the internal host that the traffic is forwarded to.",
                                                                                     "id_str": "remotePortFwd___addRule___rule___rule___internalIp",
                                                                                     "isDeprecated": false,
                                                                                     "name": "internalIp",
@@ -4697,7 +4697,7 @@
                                                                                 "internalPortRange": {
                                                                                     "args": {},
                                                                                     "deprecationReason": null,
-                                                                                    "description": null,
+                                                                                    "description": "The ports on the internal host that the traffic is forwarded to.\nThis range must be the same size as the external port range.",
                                                                                     "id_str": "remotePortFwd___addRule___rule___rule___internalPortRange",
                                                                                     "isDeprecated": false,
                                                                                     "name": "internalPortRange",
@@ -4793,7 +4793,7 @@
                                                                                 "remoteIPs": {
                                                                                     "args": {},
                                                                                     "deprecationReason": null,
-                                                                                    "description": null,
+                                                                                    "description": "The source addresses that the restriction type applies to.",
                                                                                     "id_str": "remotePortFwd___addRule___rule___rule___remoteIPs",
                                                                                     "isDeprecated": false,
                                                                                     "name": "remoteIPs",
@@ -4803,13 +4803,13 @@
                                                                                     "responseStr": "remoteIPs:$remotePortFwdRemoteIps ",
                                                                                     "type": {
                                                                                         "definition": {
-                                                                                            "description": null,
+                                                                                            "description": "The source addresses for a Remote Port Forwarding rule.\nThe rule's restriction type decides whether these sources are allowed or blocked.",
                                                                                             "enumValues": null,
                                                                                             "fields": {
                                                                                                 "globalIpRange": {
                                                                                                     "args": {},
                                                                                                     "deprecationReason": null,
-                                                                                                    "description": null,
+                                                                                                    "description": "References to Global IP Range objects defined for the account.",
                                                                                                     "id_str": "remotePortFwd___addRule___rule___rule___remoteIPs___globalIpRange",
                                                                                                     "isDeprecated": false,
                                                                                                     "name": "globalIpRange",
@@ -4886,7 +4886,7 @@
                                                                                                 "ip": {
                                                                                                     "args": {},
                                                                                                     "deprecationReason": null,
-                                                                                                    "description": null,
+                                                                                                    "description": "Individual source IP addresses.",
                                                                                                     "id_str": "remotePortFwd___addRule___rule___rule___remoteIPs___ip",
                                                                                                     "isDeprecated": false,
                                                                                                     "name": "ip",
@@ -4909,7 +4909,7 @@
                                                                                                 "ipRange": {
                                                                                                     "args": {},
                                                                                                     "deprecationReason": null,
-                                                                                                    "description": null,
+                                                                                                    "description": "Source IP address ranges, for example 192.0.2.10-192.0.2.20.",
                                                                                                     "id_str": "remotePortFwd___addRule___rule___rule___remoteIPs___ipRange",
                                                                                                     "isDeprecated": false,
                                                                                                     "name": "ipRange",
@@ -4986,7 +4986,7 @@
                                                                                                 "subnet": {
                                                                                                     "args": {},
                                                                                                     "deprecationReason": null,
-                                                                                                    "description": null,
+                                                                                                    "description": "Source subnets in CIDR notation, for example 192.0.2.0/24.",
                                                                                                     "id_str": "remotePortFwd___addRule___rule___rule___remoteIPs___subnet",
                                                                                                     "isDeprecated": false,
                                                                                                     "name": "subnet",
@@ -5026,7 +5026,7 @@
                                                                                 "restrictionType": {
                                                                                     "args": {},
                                                                                     "deprecationReason": null,
-                                                                                    "description": null,
+                                                                                    "description": "How the remote IPs and countries are applied. With ALLOW_LIST, only the listed sources are allowed. With BLOCK_LIST, all sources are allowed except the listed ones.",
                                                                                     "id_str": "remotePortFwd___addRule___rule___rule___restrictionType",
                                                                                     "isDeprecated": false,
                                                                                     "name": "restrictionType",
@@ -5036,17 +5036,17 @@
                                                                                     "responseStr": "restrictionType:$restrictionType ",
                                                                                     "type": {
                                                                                         "definition": {
-                                                                                            "description": null,
+                                                                                            "description": "How the rule's remote IPs and countries are used.",
                                                                                             "enumValues": [
                                                                                                 {
                                                                                                     "deprecationReason": null,
-                                                                                                    "description": null,
+                                                                                                    "description": "Blocks all sources except the configured remote IPs and countries.",
                                                                                                     "isDeprecated": false,
                                                                                                     "name": "ALLOW_LIST"
                                                                                                 },
                                                                                                 {
                                                                                                     "deprecationReason": null,
-                                                                                                    "description": null,
+                                                                                                    "description": "Allows all sources except the configured remote IPs and countries.",
                                                                                                     "isDeprecated": false,
                                                                                                     "name": "BLOCK_LIST"
                                                                                                 }
@@ -5146,7 +5146,7 @@
                                                                                 "tracking": {
                                                                                     "args": {},
                                                                                     "deprecationReason": null,
-                                                                                    "description": null,
+                                                                                    "description": "Event and notification tracking configuration.",
                                                                                     "id_str": "remotePortFwd___addRule___rule___rule___tracking",
                                                                                     "isDeprecated": false,
                                                                                     "name": "tracking",

@@ -647,7 +647,7 @@
                                                     "responseStr": "policy:$internetFirewallPolicy ",
                                                     "type": {
                                                         "definition": {
-                                                            "description": null,
+                                                            "description": "Internet Firewall policy information for a specific revision",
                                                             "enumValues": null,
                                                             "fields": {
                                                                 "access": {
@@ -1861,6 +1861,65 @@
                                                                                                     },
                                                                                                     "varName": "connectionOrigin"
                                                                                                 },
+                                                                                                "connectionsOriginList": {
+                                                                                                    "args": {},
+                                                                                                    "deprecationReason": null,
+                                                                                                    "description": "Connection origin list of the traffic",
+                                                                                                    "id_str": "internetFirewall___createPolicyRevision___policy___rules___rule___connectionsOriginList",
+                                                                                                    "isDeprecated": false,
+                                                                                                    "name": "connectionsOriginList",
+                                                                                                    "path": "internetFirewall.createPolicyRevision.policy.rules.rule.connectionsOriginList",
+                                                                                                    "requestStr": "$connectionsOriginList:[ConnectionOriginsEnum]! ",
+                                                                                                    "required": true,
+                                                                                                    "responseStr": "connectionsOriginList:$connectionsOriginList ",
+                                                                                                    "type": {
+                                                                                                        "definition": {
+                                                                                                            "description": "Defines Origin of the connections",
+                                                                                                            "enumValues": [
+                                                                                                                {
+                                                                                                                    "deprecationReason": null,
+                                                                                                                    "description": "User is connecting from the site",
+                                                                                                                    "isDeprecated": false,
+                                                                                                                    "name": "SITE"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "deprecationReason": null,
+                                                                                                                    "description": "User is connecting from the client",
+                                                                                                                    "isDeprecated": false,
+                                                                                                                    "name": "REMOTE_CLIENT"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "deprecationReason": null,
+                                                                                                                    "description": "User is connecting from the browser extension",
+                                                                                                                    "isDeprecated": false,
+                                                                                                                    "name": "REMOTE_EXTENSION"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "deprecationReason": null,
+                                                                                                                    "description": "User is connecting from the Cato browser",
+                                                                                                                    "isDeprecated": false,
+                                                                                                                    "name": "REMOTE_BROWSER"
+                                                                                                                }
+                                                                                                            ],
+                                                                                                            "fields": null,
+                                                                                                            "inputFields": null,
+                                                                                                            "interfaces": null,
+                                                                                                            "kind": "ENUM",
+                                                                                                            "name": "ConnectionOriginsEnum",
+                                                                                                            "possibleTypes": null
+                                                                                                        },
+                                                                                                        "indexType": "enum",
+                                                                                                        "kind": [
+                                                                                                            "NON_NULL",
+                                                                                                            "LIST",
+                                                                                                            "NON_NULL",
+                                                                                                            "ENUM"
+                                                                                                        ],
+                                                                                                        "name": "ConnectionOriginsEnum",
+                                                                                                        "non_null": false
+                                                                                                    },
+                                                                                                    "varName": "connectionsOriginList"
+                                                                                                },
                                                                                                 "country": {
                                                                                                     "args": {},
                                                                                                     "deprecationReason": null,
@@ -2132,7 +2191,7 @@
                                                                                                                 "containers": {
                                                                                                                     "args": {},
                                                                                                                     "deprecationReason": null,
-                                                                                                                    "description": null,
+                                                                                                                    "description": "Containers to match against the destination.",
                                                                                                                     "id_str": "internetFirewall___createPolicyRevision___policy___rules___rule___destination___containers",
                                                                                                                     "isDeprecated": false,
                                                                                                                     "name": "containers",
@@ -2142,13 +2201,13 @@
                                                                                                                     "responseStr": "containers:$internetFirewallContainer ",
                                                                                                                     "type": {
                                                                                                                         "definition": {
-                                                                                                                            "description": null,
+                                                                                                                            "description": "Containers to match on an Internet Firewall rule.",
                                                                                                                             "enumValues": null,
                                                                                                                             "fields": {
                                                                                                                                 "fqdnContainer": {
                                                                                                                                     "args": {},
                                                                                                                                     "deprecationReason": null,
-                                                                                                                                    "description": null,
+                                                                                                                                    "description": "FQDN containers to match.",
                                                                                                                                     "id_str": "internetFirewall___createPolicyRevision___policy___rules___rule___destination___containers___fqdnContainer",
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "fqdnContainer",
@@ -2225,7 +2284,7 @@
                                                                                                                                 "ipAddressRangeContainer": {
                                                                                                                                     "args": {},
                                                                                                                                     "deprecationReason": null,
-                                                                                                                                    "description": null,
+                                                                                                                                    "description": "IP address range containers to match.",
                                                                                                                                     "id_str": "internetFirewall___createPolicyRevision___policy___rules___rule___destination___containers___ipAddressRangeContainer",
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "ipAddressRangeContainer",
@@ -2669,6 +2728,83 @@
                                                                                                                         "non_null": false
                                                                                                                     },
                                                                                                                     "varName": "globalIpRangeRef"
+                                                                                                                },
+                                                                                                                "group": {
+                                                                                                                    "args": {},
+                                                                                                                    "deprecationReason": null,
+                                                                                                                    "description": "Groups defined for your account",
+                                                                                                                    "id_str": "internetFirewall___createPolicyRevision___policy___rules___rule___destination___group",
+                                                                                                                    "isDeprecated": false,
+                                                                                                                    "name": "group",
+                                                                                                                    "path": "internetFirewall.createPolicyRevision.policy.rules.rule.destination.group",
+                                                                                                                    "requestStr": "$groupRef:[GroupRef]! ",
+                                                                                                                    "required": true,
+                                                                                                                    "responseStr": "group:$groupRef ",
+                                                                                                                    "type": {
+                                                                                                                        "definition": {
+                                                                                                                            "description": "A reference identifying the Group object. ID: Unique Group Identifier, Name: The Group Name",
+                                                                                                                            "enumValues": null,
+                                                                                                                            "fields": {
+                                                                                                                                "id": {
+                                                                                                                                    "args": {},
+                                                                                                                                    "deprecationReason": null,
+                                                                                                                                    "description": null,
+                                                                                                                                    "id_str": "internetFirewall___createPolicyRevision___policy___rules___rule___destination___group___id",
+                                                                                                                                    "isDeprecated": false,
+                                                                                                                                    "name": "id",
+                                                                                                                                    "path": "internetFirewall.createPolicyRevision.policy.rules.rule.destination.group.id",
+                                                                                                                                    "requestStr": "$id:ID! ",
+                                                                                                                                    "required": true,
+                                                                                                                                    "responseStr": "id:$id ",
+                                                                                                                                    "type": {
+                                                                                                                                        "kind": [
+                                                                                                                                            "NON_NULL",
+                                                                                                                                            "SCALAR"
+                                                                                                                                        ],
+                                                                                                                                        "name": "ID",
+                                                                                                                                        "non_null": false
+                                                                                                                                    },
+                                                                                                                                    "varName": "id"
+                                                                                                                                },
+                                                                                                                                "name": {
+                                                                                                                                    "args": {},
+                                                                                                                                    "deprecationReason": null,
+                                                                                                                                    "description": null,
+                                                                                                                                    "id_str": "internetFirewall___createPolicyRevision___policy___rules___rule___destination___group___name",
+                                                                                                                                    "isDeprecated": false,
+                                                                                                                                    "name": "name",
+                                                                                                                                    "path": "internetFirewall.createPolicyRevision.policy.rules.rule.destination.group.name",
+                                                                                                                                    "requestStr": "$name:String! ",
+                                                                                                                                    "required": true,
+                                                                                                                                    "responseStr": "name:$name ",
+                                                                                                                                    "type": {
+                                                                                                                                        "kind": [
+                                                                                                                                            "NON_NULL",
+                                                                                                                                            "SCALAR"
+                                                                                                                                        ],
+                                                                                                                                        "name": "String",
+                                                                                                                                        "non_null": false
+                                                                                                                                    },
+                                                                                                                                    "varName": "name"
+                                                                                                                                }
+                                                                                                                            },
+                                                                                                                            "inputFields": null,
+                                                                                                                            "interfaces": {},
+                                                                                                                            "kind": "OBJECT",
+                                                                                                                            "name": "GroupRef",
+                                                                                                                            "possibleTypes": null
+                                                                                                                        },
+                                                                                                                        "indexType": "object",
+                                                                                                                        "kind": [
+                                                                                                                            "NON_NULL",
+                                                                                                                            "LIST",
+                                                                                                                            "NON_NULL",
+                                                                                                                            "OBJECT"
+                                                                                                                        ],
+                                                                                                                        "name": "GroupRef",
+                                                                                                                        "non_null": false
+                                                                                                                    },
+                                                                                                                    "varName": "groupRef"
                                                                                                                 },
                                                                                                                 "ip": {
                                                                                                                     "args": {},
@@ -3323,6 +3459,65 @@
                                                                                                                     },
                                                                                                                     "varName": "connectionOrigin"
                                                                                                                 },
+                                                                                                                "connectionsOriginList": {
+                                                                                                                    "args": {},
+                                                                                                                    "deprecationReason": null,
+                                                                                                                    "description": "Connection origin list of the traffic",
+                                                                                                                    "id_str": "internetFirewall___createPolicyRevision___policy___rules___rule___exceptions___connectionsOriginList",
+                                                                                                                    "isDeprecated": false,
+                                                                                                                    "name": "connectionsOriginList",
+                                                                                                                    "path": "internetFirewall.createPolicyRevision.policy.rules.rule.exceptions.connectionsOriginList",
+                                                                                                                    "requestStr": "$connectionsOriginList:[ConnectionOriginsEnum]! ",
+                                                                                                                    "required": true,
+                                                                                                                    "responseStr": "connectionsOriginList:$connectionsOriginList ",
+                                                                                                                    "type": {
+                                                                                                                        "definition": {
+                                                                                                                            "description": "Defines Origin of the connections",
+                                                                                                                            "enumValues": [
+                                                                                                                                {
+                                                                                                                                    "deprecationReason": null,
+                                                                                                                                    "description": "User is connecting from the site",
+                                                                                                                                    "isDeprecated": false,
+                                                                                                                                    "name": "SITE"
+                                                                                                                                },
+                                                                                                                                {
+                                                                                                                                    "deprecationReason": null,
+                                                                                                                                    "description": "User is connecting from the client",
+                                                                                                                                    "isDeprecated": false,
+                                                                                                                                    "name": "REMOTE_CLIENT"
+                                                                                                                                },
+                                                                                                                                {
+                                                                                                                                    "deprecationReason": null,
+                                                                                                                                    "description": "User is connecting from the browser extension",
+                                                                                                                                    "isDeprecated": false,
+                                                                                                                                    "name": "REMOTE_EXTENSION"
+                                                                                                                                },
+                                                                                                                                {
+                                                                                                                                    "deprecationReason": null,
+                                                                                                                                    "description": "User is connecting from the Cato browser",
+                                                                                                                                    "isDeprecated": false,
+                                                                                                                                    "name": "REMOTE_BROWSER"
+                                                                                                                                }
+                                                                                                                            ],
+                                                                                                                            "fields": null,
+                                                                                                                            "inputFields": null,
+                                                                                                                            "interfaces": null,
+                                                                                                                            "kind": "ENUM",
+                                                                                                                            "name": "ConnectionOriginsEnum",
+                                                                                                                            "possibleTypes": null
+                                                                                                                        },
+                                                                                                                        "indexType": "enum",
+                                                                                                                        "kind": [
+                                                                                                                            "NON_NULL",
+                                                                                                                            "LIST",
+                                                                                                                            "NON_NULL",
+                                                                                                                            "ENUM"
+                                                                                                                        ],
+                                                                                                                        "name": "ConnectionOriginsEnum",
+                                                                                                                        "non_null": false
+                                                                                                                    },
+                                                                                                                    "varName": "connectionsOriginList"
+                                                                                                                },
                                                                                                                 "country": {
                                                                                                                     "args": {},
                                                                                                                     "deprecationReason": null,
@@ -3573,7 +3768,7 @@
                                                                                                                                 "containers": {
                                                                                                                                     "args": {},
                                                                                                                                     "deprecationReason": null,
-                                                                                                                                    "description": null,
+                                                                                                                                    "description": "Containers to match against the destination.",
                                                                                                                                     "id_str": "internetFirewall___createPolicyRevision___policy___rules___rule___exceptions___destination___containers",
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "containers",
@@ -3583,13 +3778,13 @@
                                                                                                                                     "responseStr": "containers:$internetFirewallContainer ",
                                                                                                                                     "type": {
                                                                                                                                         "definition": {
-                                                                                                                                            "description": null,
+                                                                                                                                            "description": "Containers to match on an Internet Firewall rule.",
                                                                                                                                             "enumValues": null,
                                                                                                                                             "fields": {
                                                                                                                                                 "fqdnContainer": {
                                                                                                                                                     "args": {},
                                                                                                                                                     "deprecationReason": null,
-                                                                                                                                                    "description": null,
+                                                                                                                                                    "description": "FQDN containers to match.",
                                                                                                                                                     "id_str": "internetFirewall___createPolicyRevision___policy___rules___rule___exceptions___destination___containers___fqdnContainer",
                                                                                                                                                     "isDeprecated": false,
                                                                                                                                                     "name": "fqdnContainer",
@@ -3666,7 +3861,7 @@
                                                                                                                                                 "ipAddressRangeContainer": {
                                                                                                                                                     "args": {},
                                                                                                                                                     "deprecationReason": null,
-                                                                                                                                                    "description": null,
+                                                                                                                                                    "description": "IP address range containers to match.",
                                                                                                                                                     "id_str": "internetFirewall___createPolicyRevision___policy___rules___rule___exceptions___destination___containers___ipAddressRangeContainer",
                                                                                                                                                     "isDeprecated": false,
                                                                                                                                                     "name": "ipAddressRangeContainer",
@@ -4110,6 +4305,83 @@
                                                                                                                                         "non_null": false
                                                                                                                                     },
                                                                                                                                     "varName": "globalIpRangeRef"
+                                                                                                                                },
+                                                                                                                                "group": {
+                                                                                                                                    "args": {},
+                                                                                                                                    "deprecationReason": null,
+                                                                                                                                    "description": "Groups defined for your account",
+                                                                                                                                    "id_str": "internetFirewall___createPolicyRevision___policy___rules___rule___exceptions___destination___group",
+                                                                                                                                    "isDeprecated": false,
+                                                                                                                                    "name": "group",
+                                                                                                                                    "path": "internetFirewall.createPolicyRevision.policy.rules.rule.exceptions.destination.group",
+                                                                                                                                    "requestStr": "$groupRef:[GroupRef]! ",
+                                                                                                                                    "required": true,
+                                                                                                                                    "responseStr": "group:$groupRef ",
+                                                                                                                                    "type": {
+                                                                                                                                        "definition": {
+                                                                                                                                            "description": "A reference identifying the Group object. ID: Unique Group Identifier, Name: The Group Name",
+                                                                                                                                            "enumValues": null,
+                                                                                                                                            "fields": {
+                                                                                                                                                "id": {
+                                                                                                                                                    "args": {},
+                                                                                                                                                    "deprecationReason": null,
+                                                                                                                                                    "description": null,
+                                                                                                                                                    "id_str": "internetFirewall___createPolicyRevision___policy___rules___rule___exceptions___destination___group___id",
+                                                                                                                                                    "isDeprecated": false,
+                                                                                                                                                    "name": "id",
+                                                                                                                                                    "path": "internetFirewall.createPolicyRevision.policy.rules.rule.exceptions.destination.group.id",
+                                                                                                                                                    "requestStr": "$id:ID! ",
+                                                                                                                                                    "required": true,
+                                                                                                                                                    "responseStr": "id:$id ",
+                                                                                                                                                    "type": {
+                                                                                                                                                        "kind": [
+                                                                                                                                                            "NON_NULL",
+                                                                                                                                                            "SCALAR"
+                                                                                                                                                        ],
+                                                                                                                                                        "name": "ID",
+                                                                                                                                                        "non_null": false
+                                                                                                                                                    },
+                                                                                                                                                    "varName": "id"
+                                                                                                                                                },
+                                                                                                                                                "name": {
+                                                                                                                                                    "args": {},
+                                                                                                                                                    "deprecationReason": null,
+                                                                                                                                                    "description": null,
+                                                                                                                                                    "id_str": "internetFirewall___createPolicyRevision___policy___rules___rule___exceptions___destination___group___name",
+                                                                                                                                                    "isDeprecated": false,
+                                                                                                                                                    "name": "name",
+                                                                                                                                                    "path": "internetFirewall.createPolicyRevision.policy.rules.rule.exceptions.destination.group.name",
+                                                                                                                                                    "requestStr": "$name:String! ",
+                                                                                                                                                    "required": true,
+                                                                                                                                                    "responseStr": "name:$name ",
+                                                                                                                                                    "type": {
+                                                                                                                                                        "kind": [
+                                                                                                                                                            "NON_NULL",
+                                                                                                                                                            "SCALAR"
+                                                                                                                                                        ],
+                                                                                                                                                        "name": "String",
+                                                                                                                                                        "non_null": false
+                                                                                                                                                    },
+                                                                                                                                                    "varName": "name"
+                                                                                                                                                }
+                                                                                                                                            },
+                                                                                                                                            "inputFields": null,
+                                                                                                                                            "interfaces": {},
+                                                                                                                                            "kind": "OBJECT",
+                                                                                                                                            "name": "GroupRef",
+                                                                                                                                            "possibleTypes": null
+                                                                                                                                        },
+                                                                                                                                        "indexType": "object",
+                                                                                                                                        "kind": [
+                                                                                                                                            "NON_NULL",
+                                                                                                                                            "LIST",
+                                                                                                                                            "NON_NULL",
+                                                                                                                                            "OBJECT"
+                                                                                                                                        ],
+                                                                                                                                        "name": "GroupRef",
+                                                                                                                                        "non_null": false
+                                                                                                                                    },
+                                                                                                                                    "varName": "groupRef"
                                                                                                                                 },
                                                                                                                                 "ip": {
                                                                                                                                     "args": {},
@@ -4716,7 +4988,7 @@
                                                                                                                                 "custom": {
                                                                                                                                     "args": {},
                                                                                                                                     "deprecationReason": null,
-                                                                                                                                    "description": null,
+                                                                                                                                    "description": "User-defined services, specified by protocol and port.",
                                                                                                                                     "id_str": "internetFirewall___createPolicyRevision___policy___rules___rule___exceptions___service___custom",
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "custom",
@@ -4910,7 +5182,7 @@
                                                                                                                                 "standard": {
                                                                                                                                     "args": {},
                                                                                                                                     "deprecationReason": null,
-                                                                                                                                    "description": null,
+                                                                                                                                    "description": "Predefined Cato services.",
                                                                                                                                     "id_str": "internetFirewall___createPolicyRevision___policy___rules___rule___exceptions___service___standard",
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "standard",
@@ -6418,7 +6690,7 @@
                                                                                                                 "custom": {
                                                                                                                     "args": {},
                                                                                                                     "deprecationReason": null,
-                                                                                                                    "description": null,
+                                                                                                                    "description": "User-defined services, specified by protocol and port.",
                                                                                                                     "id_str": "internetFirewall___createPolicyRevision___policy___rules___rule___service___custom",
                                                                                                                     "isDeprecated": false,
                                                                                                                     "name": "custom",
@@ -6612,7 +6884,7 @@
                                                                                                                 "standard": {
                                                                                                                     "args": {},
                                                                                                                     "deprecationReason": null,
-                                                                                                                    "description": null,
+                                                                                                                    "description": "Predefined Cato services.",
                                                                                                                     "id_str": "internetFirewall___createPolicyRevision___policy___rules___rule___service___standard",
                                                                                                                     "isDeprecated": false,
                                                                                                                     "name": "standard",

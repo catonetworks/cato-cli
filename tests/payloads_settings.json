@@ -8,6 +8,8 @@
         // Device response selection and group-list members are rejected by the CI server
         "query.devices.list": {},
         "query.groups.groupList": {},
+        // CI has no user-group fixture for a member lookup
+        "query.user.usersGroup.members": {},
         // Existing LAN policy violates non-null SocketLanFirewallRulePayload.access
         "query.policy.socketLan.policy": {},
         // Catalog API rollout is unavailable even with valid paging input
@@ -235,19 +237,6 @@
             "assertions": [
                 "socketPortMetricsTimeSeries.summary",
                 "socketPortMetricsTimeSeries.series"
-            ]
-        },
-        "query.user.usersGroup.members": {
-            "payload": {
-                "usersGroupInput": {
-                    "group": {"by": "ID", "input": "500000000"}
-                },
-                "usersGroupMembersInput": {
-                    "paging": {"from": 0, "limit": 1}
-                }
-            },
-            "assertions": [
-                {"path": "data.user.usersGroup.members.items", "operator": "type", "value": "array"}
             ]
         },
         "query.user.usersGroupList": {

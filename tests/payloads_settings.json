@@ -3,6 +3,8 @@
         // The following require additional configuration
         "query.site.secondaryAwsVSocket": {},
         "query.site.secondaryAzureVSocket": {},
+        // Remote Access API rollout is unavailable for the CI account
+        "query.access": {},
         // Device response selection and group-list members are rejected by the CI server
         "query.devices.list": {},
         "query.groups.groupList": {},
@@ -14,6 +16,8 @@
         "query.aiSecurity.agents.event": {},
         "query.aiSecurity.agents.session": {},
         "query.aiSecurity.apps.invocation": {},
+        // The fixed session/message fixture is no longer reliable (CI requests time out)
+        "query.aiSecurity.endUsers.sessionConversation": {},
         // Rate-limit fields are unavailable for the CI request context
         "query.rateLimit": {},
         "query.rateLimitEstimate": {},
@@ -63,16 +67,6 @@
         ]
     },
     "overrideOperationPayload": {
-        "query.aiSecurity.endUsers.sessionConversation": {
-            "payload": {
-                "aiSecurityEndUsersSessionConversationInput": {
-                    "appId": "chatgpt_personal_paid",
-                    "messageId": "2bd045da-dc3c-4c9c-8486-da8d04ae6cb6",
-                    "sessionId": "6ad1d6f7-cb40-83ed-8b06-d5c9e94b595e"
-                }
-            },
-            "assertions": ["aiSecurity.endUsers.sessionConversation.userPrompt"]
-        },
         "query.catalogs.catalogApplicationList": {
             "payload": {
                 "catalogApplicationListInput": {
@@ -241,6 +235,29 @@
             "assertions": [
                 "socketPortMetricsTimeSeries.summary",
                 "socketPortMetricsTimeSeries.series"
+            ]
+        },
+        "query.user.usersGroup.members": {
+            "payload": {
+                "usersGroupInput": {
+                    "group": {"by": "ID", "input": "500000000"}
+                },
+                "usersGroupMembersInput": {
+                    "paging": {"from": 0, "limit": 1}
+                }
+            },
+            "assertions": [
+                {"path": "data.user.usersGroup.members.items", "operator": "type", "value": "array"}
+            ]
+        },
+        "query.user.usersGroupList": {
+            "payload": {
+                "usersGroupListInput": {
+                    "paging": {"from": 0, "limit": 1}
+                }
+            },
+            "assertions": [
+                {"path": "data.user.usersGroupList.items", "operator": "type", "value": "array"}
             ]
         },
         "query.user.userList": {

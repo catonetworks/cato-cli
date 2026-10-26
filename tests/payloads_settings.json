@@ -69,6 +69,15 @@
         ]
     },
     "overrideOperationPayload": {
+        // Device export requests intermittently exceed 30s under the CI matrix load
+        "query.devices.csvExport": {
+            "payload": {},
+            "timeout": 120
+        },
+        "query.devices.csvExportStatus": {
+            "payload": {"jobId": "id"},
+            "timeout": 120
+        },
         "query.catalogs.catalogApplicationList": {
             "payload": {
                 "catalogApplicationListInput": {

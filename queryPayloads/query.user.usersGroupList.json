@@ -1,0 +1,79 @@
+{
+    "operationName": "userUsersGroupList",
+    "query": "query userUsersGroupList ( $accountId:ID! $usersGroupListInput:UsersGroupListInput!) {\n\tuser ( accountId:$accountId ) {\n\t\tusersGroupList ( input:$usersGroupListInput  )  {\n\t\t\titems {\n\t\t\t\tid\n\t\t\t\tname\n\t\t\t\tdescription\n\t\t\t\timportType\n\t\t\t\tdirectoryId\n\t\t\t\tobjectId\n\t\t\t\tcreationDate\n\t\t\t\tlastModified\n\t\t\t\tmembersCount\n\t\t\t}\n\t\t\tpaging {\n\t\t\t\ttotal\n\t\t\t}\n\t\t}\n\t}\t\n}",
+    "variables": {
+        "usersGroupListInput": {
+            "filter": {
+                "directoryId": [
+                    {
+                        "eq": "string",
+                        "in": [
+                            "string1",
+                            "string2"
+                        ],
+                        "neq": "string",
+                        "nin": [
+                            "string1",
+                            "string2"
+                        ]
+                    }
+                ],
+                "id": [
+                    {
+                        "eq": "id",
+                        "in": [
+                            "id1",
+                            "id2"
+                        ],
+                        "neq": "id",
+                        "nin": [
+                            "id1",
+                            "id2"
+                        ]
+                    }
+                ],
+                "importType": [
+                    {
+                        "eq": "MANUAL",
+                        "in": [
+                            "MANUAL"
+                        ],
+                        "neq": "MANUAL",
+                        "nin": [
+                            "MANUAL"
+                        ]
+                    }
+                ],
+                "memberIds": [
+                    "id1",
+                    "id2"
+                ],
+                "searchTerm": {
+                    "search": "string"
+                }
+            },
+            "paging": {
+                "from": 1,
+                "limit": 1
+            },
+            "sort": {
+                "creationDate": {
+                    "direction": "ASC",
+                    "priority": 1
+                },
+                "importType": {
+                    "direction": "ASC",
+                    "priority": 1
+                },
+                "lastModified": {
+                    "direction": "ASC",
+                    "priority": 1
+                },
+                "name": {
+                    "direction": "ASC",
+                    "priority": 1
+                }
+            }
+        }
+    }
+}

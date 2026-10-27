@@ -1,0 +1,21 @@
+{
+    "operationName": "access",
+    "query": "mutation access ( $accountId:ID! $accessRemoteAccessSetEligibilityListInput:AccessRemoteAccessSetEligibilityListInput!) {\n\taccess ( accountId:$accountId ) {\n\t\tremoteAccessEligibility {\n\t\t\tsetEligibilityList ( input:$accessRemoteAccessSetEligibilityListInput   ) {\n\t\t\t\tstatus\n\t\t\t}\n\t\t}\n\t}\t\n}",
+    "variables": {
+        "accessRemoteAccessSetEligibilityListInput": {
+            "allocationType": "ALL",
+            "items": [
+                {
+                    "user": {
+                        "by": "ID",
+                        "input": "string"
+                    },
+                    "userGroup": {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                }
+            ]
+        }
+    }
+}

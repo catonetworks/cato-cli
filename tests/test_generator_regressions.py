@@ -13,7 +13,7 @@ from pathlib import Path
 from unittest.mock import patch
 from urllib3.response import HTTPResponse
 
-from graphql import DirectiveLocation, build_client_schema, parse, validate
+from graphql import DirectiveLocation, build_client_schema, build_schema, parse, validate
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "schema"))
@@ -36,14 +36,27 @@ class NamespaceTest(unittest.TestCase):
         cls.schema = build_client_schema(data)
 
     def test_argument_free_operation_has_no_variable_definitions(self):
-        name = "query.rateLimit"
-        operation = model(name)
+        # Keep this regression independent of operations in the refreshed API schema.
+        name = "query.serviceStatus"
+        schema = build_schema("type Query { serviceStatus: ServiceStatus } type ServiceStatus { ready: Boolean }")
+        operation = {
+            "name": "serviceStatus",
+            "args": {},
+            "operationArgs": {},
+            "type": {
+                "definition": {
+                    "fields": {
+                        "ready": {"name": "ready", "type": {"name": "Boolean", "kind": ["SCALAR"]}},
+                    },
+                },
+            },
+        }
         payload = generateGraphqlPayload({}, operation, name,
             renderArgsAndFields_func=lambda r, v, o, d, n, i, a: renderArgsAndFields(r, v, o, d, n, i, a, None))
         document = parse(payload["query"])
-        self.assertEqual([], validate(self.schema, document))
+        self.assertEqual([], validate(schema, document))
         self.assertFalse(document.definitions[0].variable_definitions)
-        self.assertEqual("rateLimit", payload["operationName"])
+        self.assertEqual("serviceStatus", payload["operationName"])
         self.assertEqual({}, payload["variables"])
 
     def test_independent_rbac_actions(self):

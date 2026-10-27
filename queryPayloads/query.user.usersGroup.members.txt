@@ -1,0 +1,36 @@
+query userUsersGroupMembers ( $accountId:ID! $usersGroupInput:UsersGroupInput! $usersGroupMembersInput:UsersGroupMembersInput!) {
+	user ( accountId:$accountId ) {
+		usersGroup ( input:$usersGroupInput  )  {
+			members ( input:$usersGroupMembersInput   ) {
+				items {
+					id
+					userId
+					objectId
+					onPremSid
+					firstName
+					lastName
+					userPrincipalName
+					displayName
+					phone
+					email
+					department
+					jobTitle
+					userStatus
+					creationDate
+					lastModified
+					userImportType
+					directoryId
+					hasRemoteAccessEligibility
+					authInfo {
+						authMethod
+						authStatus
+					}
+					riskScore
+				}
+				paging {
+					total
+				}
+			}
+		}
+	}	
+}

@@ -178,7 +178,7 @@
                                                     "responseStr": "action:$action ",
                                                     "type": {
                                                         "definition": {
-                                                            "description": null,
+                                                            "description": "The action applied by the WAN Firewall if the rule is matched.",
                                                             "enumValues": [
                                                                 {
                                                                     "deprecationReason": null,
@@ -1202,6 +1202,63 @@
                                                         "non_null": false
                                                     },
                                                     "varName": "wanFirewallApplicationInput"
+                                                },
+                                                "connectionsOriginList": {
+                                                    "defaultValue": "[]",
+                                                    "description": "Connection origin list matching criteria for the exception.",
+                                                    "id_str": "addRule___input___rule___connectionsOriginList",
+                                                    "name": "connectionsOriginList",
+                                                    "path": "addRule.input.rule.connectionsOriginList",
+                                                    "requestStr": "$connectionsOriginList:[ConnectionOriginsEnum]! ",
+                                                    "required": true,
+                                                    "responseStr": "connectionsOriginList:$connectionsOriginList ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": "Defines Origin of the connections",
+                                                            "enumValues": [
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "User is connecting from the site",
+                                                                    "isDeprecated": false,
+                                                                    "name": "SITE"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "User is connecting from the client",
+                                                                    "isDeprecated": false,
+                                                                    "name": "REMOTE_CLIENT"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "User is connecting from the browser extension",
+                                                                    "isDeprecated": false,
+                                                                    "name": "REMOTE_EXTENSION"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "User is connecting from the Cato browser",
+                                                                    "isDeprecated": false,
+                                                                    "name": "REMOTE_BROWSER"
+                                                                }
+                                                            ],
+                                                            "fields": null,
+                                                            "inputFields": null,
+                                                            "interfaces": null,
+                                                            "kind": "ENUM",
+                                                            "name": "ConnectionOriginsEnum",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "enum",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "LIST",
+                                                            "NON_NULL",
+                                                            "ENUM"
+                                                        ],
+                                                        "name": "ConnectionOriginsEnum",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "connectionsOriginList"
                                                 },
                                                 "country": {
                                                     "defaultValue": "[]",
@@ -2740,7 +2797,7 @@
                                                 },
                                                 "direction": {
                                                     "defaultValue": "TO",
-                                                    "description": null,
+                                                    "description": "Whether the rule applies only from the source to the destination (TO) or in both directions (BOTH).",
                                                     "id_str": "addRule___input___rule___direction",
                                                     "name": "direction",
                                                     "path": "addRule.input.rule.direction",
@@ -2749,17 +2806,17 @@
                                                     "responseStr": "direction:$direction ",
                                                     "type": {
                                                         "definition": {
-                                                            "description": null,
+                                                            "description": "The direction in which a WAN Firewall rule applies.",
                                                             "enumValues": [
                                                                 {
                                                                     "deprecationReason": null,
-                                                                    "description": null,
+                                                                    "description": "The rule applies only to connections from the source to the destination (default).",
                                                                     "isDeprecated": false,
                                                                     "name": "TO"
                                                                 },
                                                                 {
                                                                     "deprecationReason": null,
-                                                                    "description": null,
+                                                                    "description": "The rule applies in both directions, from the source to the destination and from the destination to the source.",
                                                                     "isDeprecated": false,
                                                                     "name": "BOTH"
                                                                 }
@@ -3570,6 +3627,63 @@
                                                                         "non_null": false
                                                                     },
                                                                     "varName": "wanFirewallApplicationInput"
+                                                                },
+                                                                "connectionsOriginList": {
+                                                                    "defaultValue": "[]",
+                                                                    "description": "Connection origin list matching criteria for the exception.",
+                                                                    "id_str": "addRule___input___rule___exceptions___connectionsOriginList",
+                                                                    "name": "connectionsOriginList",
+                                                                    "path": "addRule.input.rule.exceptions.connectionsOriginList",
+                                                                    "requestStr": "$connectionsOriginList:[ConnectionOriginsEnum]! ",
+                                                                    "required": true,
+                                                                    "responseStr": "connectionsOriginList:$connectionsOriginList ",
+                                                                    "type": {
+                                                                        "definition": {
+                                                                            "description": "Defines Origin of the connections",
+                                                                            "enumValues": [
+                                                                                {
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "User is connecting from the site",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "SITE"
+                                                                                },
+                                                                                {
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "User is connecting from the client",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "REMOTE_CLIENT"
+                                                                                },
+                                                                                {
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "User is connecting from the browser extension",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "REMOTE_EXTENSION"
+                                                                                },
+                                                                                {
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "User is connecting from the Cato browser",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "REMOTE_BROWSER"
+                                                                                }
+                                                                            ],
+                                                                            "fields": null,
+                                                                            "inputFields": null,
+                                                                            "interfaces": null,
+                                                                            "kind": "ENUM",
+                                                                            "name": "ConnectionOriginsEnum",
+                                                                            "possibleTypes": null
+                                                                        },
+                                                                        "indexType": "enum",
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "LIST",
+                                                                            "NON_NULL",
+                                                                            "ENUM"
+                                                                        ],
+                                                                        "name": "ConnectionOriginsEnum",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "connectionsOriginList"
                                                                 },
                                                                 "country": {
                                                                     "defaultValue": "[]",
@@ -5089,7 +5203,7 @@
                                                                 },
                                                                 "direction": {
                                                                     "defaultValue": "TO",
-                                                                    "description": "Direction origin matching criteria for the exception",
+                                                                    "description": "Direction matching criteria for the exception.",
                                                                     "id_str": "addRule___input___rule___exceptions___direction",
                                                                     "name": "direction",
                                                                     "path": "addRule.input.rule.exceptions.direction",
@@ -5098,17 +5212,17 @@
                                                                     "responseStr": "direction:$direction ",
                                                                     "type": {
                                                                         "definition": {
-                                                                            "description": null,
+                                                                            "description": "The direction in which a WAN Firewall rule applies.",
                                                                             "enumValues": [
                                                                                 {
                                                                                     "deprecationReason": null,
-                                                                                    "description": null,
+                                                                                    "description": "The rule applies only to connections from the source to the destination (default).",
                                                                                     "isDeprecated": false,
                                                                                     "name": "TO"
                                                                                 },
                                                                                 {
                                                                                     "deprecationReason": null,
-                                                                                    "description": null,
+                                                                                    "description": "The rule applies in both directions, from the source to the destination and from the destination to the source.",
                                                                                     "isDeprecated": false,
                                                                                     "name": "BOTH"
                                                                                 }
@@ -5166,7 +5280,7 @@
                                                                             "inputFields": {
                                                                                 "custom": {
                                                                                     "defaultValue": "[]",
-                                                                                    "description": null,
+                                                                                    "description": "User-defined services, specified by protocol and port.",
                                                                                     "id_str": "addRule___input___rule___exceptions___service___custom",
                                                                                     "name": "custom",
                                                                                     "path": "addRule.input.rule.exceptions.service.custom",
@@ -5348,7 +5462,7 @@
                                                                                 },
                                                                                 "standard": {
                                                                                     "defaultValue": "[]",
-                                                                                    "description": null,
+                                                                                    "description": "Predefined Cato services.",
                                                                                     "id_str": "addRule___input___rule___exceptions___service___standard",
                                                                                     "name": "standard",
                                                                                     "path": "addRule.input.rule.exceptions.service.standard",
@@ -6902,7 +7016,7 @@
                                                             "inputFields": {
                                                                 "custom": {
                                                                     "defaultValue": "[]",
-                                                                    "description": null,
+                                                                    "description": "User-defined services, specified by protocol and port.",
                                                                     "id_str": "addRule___input___rule___service___custom",
                                                                     "name": "custom",
                                                                     "path": "addRule.input.rule.service.custom",
@@ -7084,7 +7198,7 @@
                                                                 },
                                                                 "standard": {
                                                                     "defaultValue": "[]",
-                                                                    "description": null,
+                                                                    "description": "Predefined Cato services.",
                                                                     "id_str": "addRule___input___rule___service___standard",
                                                                     "name": "standard",
                                                                     "path": "addRule.input.rule.service.standard",
@@ -9077,7 +9191,7 @@
                                             "responseStr": "action:$action ",
                                             "type": {
                                                 "definition": {
-                                                    "description": null,
+                                                    "description": "The action applied by the WAN Firewall if the rule is matched.",
                                                     "enumValues": [
                                                         {
                                                             "deprecationReason": null,
@@ -10101,6 +10215,63 @@
                                                 "non_null": false
                                             },
                                             "varName": "wanFirewallApplicationInput"
+                                        },
+                                        "connectionsOriginList": {
+                                            "defaultValue": "[]",
+                                            "description": "Connection origin list matching criteria for the exception.",
+                                            "id_str": "addRule___input___rule___connectionsOriginList",
+                                            "name": "connectionsOriginList",
+                                            "path": "addRule.input.rule.connectionsOriginList",
+                                            "requestStr": "$connectionsOriginList:[ConnectionOriginsEnum]! ",
+                                            "required": true,
+                                            "responseStr": "connectionsOriginList:$connectionsOriginList ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": "Defines Origin of the connections",
+                                                    "enumValues": [
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "User is connecting from the site",
+                                                            "isDeprecated": false,
+                                                            "name": "SITE"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "User is connecting from the client",
+                                                            "isDeprecated": false,
+                                                            "name": "REMOTE_CLIENT"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "User is connecting from the browser extension",
+                                                            "isDeprecated": false,
+                                                            "name": "REMOTE_EXTENSION"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "User is connecting from the Cato browser",
+                                                            "isDeprecated": false,
+                                                            "name": "REMOTE_BROWSER"
+                                                        }
+                                                    ],
+                                                    "fields": null,
+                                                    "inputFields": null,
+                                                    "interfaces": null,
+                                                    "kind": "ENUM",
+                                                    "name": "ConnectionOriginsEnum",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "enum",
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "LIST",
+                                                    "NON_NULL",
+                                                    "ENUM"
+                                                ],
+                                                "name": "ConnectionOriginsEnum",
+                                                "non_null": false
+                                            },
+                                            "varName": "connectionsOriginList"
                                         },
                                         "country": {
                                             "defaultValue": "[]",
@@ -11639,7 +11810,7 @@
                                         },
                                         "direction": {
                                             "defaultValue": "TO",
-                                            "description": null,
+                                            "description": "Whether the rule applies only from the source to the destination (TO) or in both directions (BOTH).",
                                             "id_str": "addRule___input___rule___direction",
                                             "name": "direction",
                                             "path": "addRule.input.rule.direction",
@@ -11648,17 +11819,17 @@
                                             "responseStr": "direction:$direction ",
                                             "type": {
                                                 "definition": {
-                                                    "description": null,
+                                                    "description": "The direction in which a WAN Firewall rule applies.",
                                                     "enumValues": [
                                                         {
                                                             "deprecationReason": null,
-                                                            "description": null,
+                                                            "description": "The rule applies only to connections from the source to the destination (default).",
                                                             "isDeprecated": false,
                                                             "name": "TO"
                                                         },
                                                         {
                                                             "deprecationReason": null,
-                                                            "description": null,
+                                                            "description": "The rule applies in both directions, from the source to the destination and from the destination to the source.",
                                                             "isDeprecated": false,
                                                             "name": "BOTH"
                                                         }
@@ -12469,6 +12640,63 @@
                                                                 "non_null": false
                                                             },
                                                             "varName": "wanFirewallApplicationInput"
+                                                        },
+                                                        "connectionsOriginList": {
+                                                            "defaultValue": "[]",
+                                                            "description": "Connection origin list matching criteria for the exception.",
+                                                            "id_str": "addRule___input___rule___exceptions___connectionsOriginList",
+                                                            "name": "connectionsOriginList",
+                                                            "path": "addRule.input.rule.exceptions.connectionsOriginList",
+                                                            "requestStr": "$connectionsOriginList:[ConnectionOriginsEnum]! ",
+                                                            "required": true,
+                                                            "responseStr": "connectionsOriginList:$connectionsOriginList ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": "Defines Origin of the connections",
+                                                                    "enumValues": [
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": "User is connecting from the site",
+                                                                            "isDeprecated": false,
+                                                                            "name": "SITE"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": "User is connecting from the client",
+                                                                            "isDeprecated": false,
+                                                                            "name": "REMOTE_CLIENT"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": "User is connecting from the browser extension",
+                                                                            "isDeprecated": false,
+                                                                            "name": "REMOTE_EXTENSION"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": "User is connecting from the Cato browser",
+                                                                            "isDeprecated": false,
+                                                                            "name": "REMOTE_BROWSER"
+                                                                        }
+                                                                    ],
+                                                                    "fields": null,
+                                                                    "inputFields": null,
+                                                                    "interfaces": null,
+                                                                    "kind": "ENUM",
+                                                                    "name": "ConnectionOriginsEnum",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "enum",
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "LIST",
+                                                                    "NON_NULL",
+                                                                    "ENUM"
+                                                                ],
+                                                                "name": "ConnectionOriginsEnum",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "connectionsOriginList"
                                                         },
                                                         "country": {
                                                             "defaultValue": "[]",
@@ -13988,7 +14216,7 @@
                                                         },
                                                         "direction": {
                                                             "defaultValue": "TO",
-                                                            "description": "Direction origin matching criteria for the exception",
+                                                            "description": "Direction matching criteria for the exception.",
                                                             "id_str": "addRule___input___rule___exceptions___direction",
                                                             "name": "direction",
                                                             "path": "addRule.input.rule.exceptions.direction",
@@ -13997,17 +14225,17 @@
                                                             "responseStr": "direction:$direction ",
                                                             "type": {
                                                                 "definition": {
-                                                                    "description": null,
+                                                                    "description": "The direction in which a WAN Firewall rule applies.",
                                                                     "enumValues": [
                                                                         {
                                                                             "deprecationReason": null,
-                                                                            "description": null,
+                                                                            "description": "The rule applies only to connections from the source to the destination (default).",
                                                                             "isDeprecated": false,
                                                                             "name": "TO"
                                                                         },
                                                                         {
                                                                             "deprecationReason": null,
-                                                                            "description": null,
+                                                                            "description": "The rule applies in both directions, from the source to the destination and from the destination to the source.",
                                                                             "isDeprecated": false,
                                                                             "name": "BOTH"
                                                                         }
@@ -14065,7 +14293,7 @@
                                                                     "inputFields": {
                                                                         "custom": {
                                                                             "defaultValue": "[]",
-                                                                            "description": null,
+                                                                            "description": "User-defined services, specified by protocol and port.",
                                                                             "id_str": "addRule___input___rule___exceptions___service___custom",
                                                                             "name": "custom",
                                                                             "path": "addRule.input.rule.exceptions.service.custom",
@@ -14247,7 +14475,7 @@
                                                                         },
                                                                         "standard": {
                                                                             "defaultValue": "[]",
-                                                                            "description": null,
+                                                                            "description": "Predefined Cato services.",
                                                                             "id_str": "addRule___input___rule___exceptions___service___standard",
                                                                             "name": "standard",
                                                                             "path": "addRule.input.rule.exceptions.service.standard",
@@ -15801,7 +16029,7 @@
                                                     "inputFields": {
                                                         "custom": {
                                                             "defaultValue": "[]",
-                                                            "description": null,
+                                                            "description": "User-defined services, specified by protocol and port.",
                                                             "id_str": "addRule___input___rule___service___custom",
                                                             "name": "custom",
                                                             "path": "addRule.input.rule.service.custom",
@@ -15983,7 +16211,7 @@
                                                         },
                                                         "standard": {
                                                             "defaultValue": "[]",
-                                                            "description": null,
+                                                            "description": "Predefined Cato services.",
                                                             "id_str": "addRule___input___rule___service___standard",
                                                             "name": "standard",
                                                             "path": "addRule.input.rule.service.standard",
@@ -18026,7 +18254,7 @@
                                                                             "responseStr": "action:$action ",
                                                                             "type": {
                                                                                 "definition": {
-                                                                                    "description": null,
+                                                                                    "description": "The action applied by the WAN Firewall if the rule is matched.",
                                                                                     "enumValues": [
                                                                                         {
                                                                                             "deprecationReason": null,
@@ -19050,6 +19278,63 @@
                                                                                 "non_null": false
                                                                             },
                                                                             "varName": "wanFirewallApplicationInput"
+                                                                        },
+                                                                        "connectionsOriginList": {
+                                                                            "defaultValue": "[]",
+                                                                            "description": "Connection origin list matching criteria for the exception.",
+                                                                            "id_str": "addRule___input___rule___connectionsOriginList",
+                                                                            "name": "connectionsOriginList",
+                                                                            "path": "addRule.input.rule.connectionsOriginList",
+                                                                            "requestStr": "$connectionsOriginList:[ConnectionOriginsEnum]! ",
+                                                                            "required": true,
+                                                                            "responseStr": "connectionsOriginList:$connectionsOriginList ",
+                                                                            "type": {
+                                                                                "definition": {
+                                                                                    "description": "Defines Origin of the connections",
+                                                                                    "enumValues": [
+                                                                                        {
+                                                                                            "deprecationReason": null,
+                                                                                            "description": "User is connecting from the site",
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "SITE"
+                                                                                        },
+                                                                                        {
+                                                                                            "deprecationReason": null,
+                                                                                            "description": "User is connecting from the client",
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "REMOTE_CLIENT"
+                                                                                        },
+                                                                                        {
+                                                                                            "deprecationReason": null,
+                                                                                            "description": "User is connecting from the browser extension",
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "REMOTE_EXTENSION"
+                                                                                        },
+                                                                                        {
+                                                                                            "deprecationReason": null,
+                                                                                            "description": "User is connecting from the Cato browser",
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "REMOTE_BROWSER"
+                                                                                        }
+                                                                                    ],
+                                                                                    "fields": null,
+                                                                                    "inputFields": null,
+                                                                                    "interfaces": null,
+                                                                                    "kind": "ENUM",
+                                                                                    "name": "ConnectionOriginsEnum",
+                                                                                    "possibleTypes": null
+                                                                                },
+                                                                                "indexType": "enum",
+                                                                                "kind": [
+                                                                                    "NON_NULL",
+                                                                                    "LIST",
+                                                                                    "NON_NULL",
+                                                                                    "ENUM"
+                                                                                ],
+                                                                                "name": "ConnectionOriginsEnum",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "connectionsOriginList"
                                                                         },
                                                                         "country": {
                                                                             "defaultValue": "[]",
@@ -20588,7 +20873,7 @@
                                                                         },
                                                                         "direction": {
                                                                             "defaultValue": "TO",
-                                                                            "description": null,
+                                                                            "description": "Whether the rule applies only from the source to the destination (TO) or in both directions (BOTH).",
                                                                             "id_str": "addRule___input___rule___direction",
                                                                             "name": "direction",
                                                                             "path": "addRule.input.rule.direction",
@@ -20597,17 +20882,17 @@
                                                                             "responseStr": "direction:$direction ",
                                                                             "type": {
                                                                                 "definition": {
-                                                                                    "description": null,
+                                                                                    "description": "The direction in which a WAN Firewall rule applies.",
                                                                                     "enumValues": [
                                                                                         {
                                                                                             "deprecationReason": null,
-                                                                                            "description": null,
+                                                                                            "description": "The rule applies only to connections from the source to the destination (default).",
                                                                                             "isDeprecated": false,
                                                                                             "name": "TO"
                                                                                         },
                                                                                         {
                                                                                             "deprecationReason": null,
-                                                                                            "description": null,
+                                                                                            "description": "The rule applies in both directions, from the source to the destination and from the destination to the source.",
                                                                                             "isDeprecated": false,
                                                                                             "name": "BOTH"
                                                                                         }
@@ -21418,6 +21703,63 @@
                                                                                                 "non_null": false
                                                                                             },
                                                                                             "varName": "wanFirewallApplicationInput"
+                                                                                        },
+                                                                                        "connectionsOriginList": {
+                                                                                            "defaultValue": "[]",
+                                                                                            "description": "Connection origin list matching criteria for the exception.",
+                                                                                            "id_str": "addRule___input___rule___exceptions___connectionsOriginList",
+                                                                                            "name": "connectionsOriginList",
+                                                                                            "path": "addRule.input.rule.exceptions.connectionsOriginList",
+                                                                                            "requestStr": "$connectionsOriginList:[ConnectionOriginsEnum]! ",
+                                                                                            "required": true,
+                                                                                            "responseStr": "connectionsOriginList:$connectionsOriginList ",
+                                                                                            "type": {
+                                                                                                "definition": {
+                                                                                                    "description": "Defines Origin of the connections",
+                                                                                                    "enumValues": [
+                                                                                                        {
+                                                                                                            "deprecationReason": null,
+                                                                                                            "description": "User is connecting from the site",
+                                                                                                            "isDeprecated": false,
+                                                                                                            "name": "SITE"
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "deprecationReason": null,
+                                                                                                            "description": "User is connecting from the client",
+                                                                                                            "isDeprecated": false,
+                                                                                                            "name": "REMOTE_CLIENT"
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "deprecationReason": null,
+                                                                                                            "description": "User is connecting from the browser extension",
+                                                                                                            "isDeprecated": false,
+                                                                                                            "name": "REMOTE_EXTENSION"
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "deprecationReason": null,
+                                                                                                            "description": "User is connecting from the Cato browser",
+                                                                                                            "isDeprecated": false,
+                                                                                                            "name": "REMOTE_BROWSER"
+                                                                                                        }
+                                                                                                    ],
+                                                                                                    "fields": null,
+                                                                                                    "inputFields": null,
+                                                                                                    "interfaces": null,
+                                                                                                    "kind": "ENUM",
+                                                                                                    "name": "ConnectionOriginsEnum",
+                                                                                                    "possibleTypes": null
+                                                                                                },
+                                                                                                "indexType": "enum",
+                                                                                                "kind": [
+                                                                                                    "NON_NULL",
+                                                                                                    "LIST",
+                                                                                                    "NON_NULL",
+                                                                                                    "ENUM"
+                                                                                                ],
+                                                                                                "name": "ConnectionOriginsEnum",
+                                                                                                "non_null": false
+                                                                                            },
+                                                                                            "varName": "connectionsOriginList"
                                                                                         },
                                                                                         "country": {
                                                                                             "defaultValue": "[]",
@@ -22937,7 +23279,7 @@
                                                                                         },
                                                                                         "direction": {
                                                                                             "defaultValue": "TO",
-                                                                                            "description": "Direction origin matching criteria for the exception",
+                                                                                            "description": "Direction matching criteria for the exception.",
                                                                                             "id_str": "addRule___input___rule___exceptions___direction",
                                                                                             "name": "direction",
                                                                                             "path": "addRule.input.rule.exceptions.direction",
@@ -22946,17 +23288,17 @@
                                                                                             "responseStr": "direction:$direction ",
                                                                                             "type": {
                                                                                                 "definition": {
-                                                                                                    "description": null,
+                                                                                                    "description": "The direction in which a WAN Firewall rule applies.",
                                                                                                     "enumValues": [
                                                                                                         {
                                                                                                             "deprecationReason": null,
-                                                                                                            "description": null,
+                                                                                                            "description": "The rule applies only to connections from the source to the destination (default).",
                                                                                                             "isDeprecated": false,
                                                                                                             "name": "TO"
                                                                                                         },
                                                                                                         {
                                                                                                             "deprecationReason": null,
-                                                                                                            "description": null,
+                                                                                                            "description": "The rule applies in both directions, from the source to the destination and from the destination to the source.",
                                                                                                             "isDeprecated": false,
                                                                                                             "name": "BOTH"
                                                                                                         }
@@ -23014,7 +23356,7 @@
                                                                                                     "inputFields": {
                                                                                                         "custom": {
                                                                                                             "defaultValue": "[]",
-                                                                                                            "description": null,
+                                                                                                            "description": "User-defined services, specified by protocol and port.",
                                                                                                             "id_str": "addRule___input___rule___exceptions___service___custom",
                                                                                                             "name": "custom",
                                                                                                             "path": "addRule.input.rule.exceptions.service.custom",
@@ -23196,7 +23538,7 @@
                                                                                                         },
                                                                                                         "standard": {
                                                                                                             "defaultValue": "[]",
-                                                                                                            "description": null,
+                                                                                                            "description": "Predefined Cato services.",
                                                                                                             "id_str": "addRule___input___rule___exceptions___service___standard",
                                                                                                             "name": "standard",
                                                                                                             "path": "addRule.input.rule.exceptions.service.standard",
@@ -24750,7 +25092,7 @@
                                                                                     "inputFields": {
                                                                                         "custom": {
                                                                                             "defaultValue": "[]",
-                                                                                            "description": null,
+                                                                                            "description": "User-defined services, specified by protocol and port.",
                                                                                             "id_str": "addRule___input___rule___service___custom",
                                                                                             "name": "custom",
                                                                                             "path": "addRule.input.rule.service.custom",
@@ -24932,7 +25274,7 @@
                                                                                         },
                                                                                         "standard": {
                                                                                             "defaultValue": "[]",
-                                                                                            "description": null,
+                                                                                            "description": "Predefined Cato services.",
                                                                                             "id_str": "addRule___input___rule___service___standard",
                                                                                             "name": "standard",
                                                                                             "path": "addRule.input.rule.service.standard",
@@ -27294,7 +27636,7 @@
                                                                                     "responseStr": "action:$action ",
                                                                                     "type": {
                                                                                         "definition": {
-                                                                                            "description": null,
+                                                                                            "description": "The action applied by the WAN Firewall if the rule is matched.",
                                                                                             "enumValues": [
                                                                                                 {
                                                                                                     "deprecationReason": null,
@@ -28271,6 +28613,65 @@
                                                                                         "non_null": false
                                                                                     },
                                                                                     "varName": "connectionOrigin"
+                                                                                },
+                                                                                "connectionsOriginList": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "Connection origin list matching criteria for the exception.",
+                                                                                    "id_str": "wanFirewall___addRule___rule___rule___connectionsOriginList",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "connectionsOriginList",
+                                                                                    "path": "wanFirewall.addRule.rule.rule.connectionsOriginList",
+                                                                                    "requestStr": "$connectionsOriginList:[ConnectionOriginsEnum]! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "connectionsOriginList:$connectionsOriginList ",
+                                                                                    "type": {
+                                                                                        "definition": {
+                                                                                            "description": "Defines Origin of the connections",
+                                                                                            "enumValues": [
+                                                                                                {
+                                                                                                    "deprecationReason": null,
+                                                                                                    "description": "User is connecting from the site",
+                                                                                                    "isDeprecated": false,
+                                                                                                    "name": "SITE"
+                                                                                                },
+                                                                                                {
+                                                                                                    "deprecationReason": null,
+                                                                                                    "description": "User is connecting from the client",
+                                                                                                    "isDeprecated": false,
+                                                                                                    "name": "REMOTE_CLIENT"
+                                                                                                },
+                                                                                                {
+                                                                                                    "deprecationReason": null,
+                                                                                                    "description": "User is connecting from the browser extension",
+                                                                                                    "isDeprecated": false,
+                                                                                                    "name": "REMOTE_EXTENSION"
+                                                                                                },
+                                                                                                {
+                                                                                                    "deprecationReason": null,
+                                                                                                    "description": "User is connecting from the Cato browser",
+                                                                                                    "isDeprecated": false,
+                                                                                                    "name": "REMOTE_BROWSER"
+                                                                                                }
+                                                                                            ],
+                                                                                            "fields": null,
+                                                                                            "inputFields": null,
+                                                                                            "interfaces": null,
+                                                                                            "kind": "ENUM",
+                                                                                            "name": "ConnectionOriginsEnum",
+                                                                                            "possibleTypes": null
+                                                                                        },
+                                                                                        "indexType": "enum",
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "LIST",
+                                                                                            "NON_NULL",
+                                                                                            "ENUM"
+                                                                                        ],
+                                                                                        "name": "ConnectionOriginsEnum",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "connectionsOriginList"
                                                                                 },
                                                                                 "country": {
                                                                                     "args": {},
@@ -29624,7 +30025,7 @@
                                                                                 "direction": {
                                                                                     "args": {},
                                                                                     "deprecationReason": null,
-                                                                                    "description": null,
+                                                                                    "description": "Whether the rule applies only from the source to the destination (TO) or in both directions (BOTH).",
                                                                                     "id_str": "wanFirewall___addRule___rule___rule___direction",
                                                                                     "isDeprecated": false,
                                                                                     "name": "direction",
@@ -29634,17 +30035,17 @@
                                                                                     "responseStr": "direction:$direction ",
                                                                                     "type": {
                                                                                         "definition": {
-                                                                                            "description": null,
+                                                                                            "description": "The direction in which a WAN Firewall rule applies.",
                                                                                             "enumValues": [
                                                                                                 {
                                                                                                     "deprecationReason": null,
-                                                                                                    "description": null,
+                                                                                                    "description": "The rule applies only to connections from the source to the destination (default).",
                                                                                                     "isDeprecated": false,
                                                                                                     "name": "TO"
                                                                                                 },
                                                                                                 {
                                                                                                     "deprecationReason": null,
-                                                                                                    "description": null,
+                                                                                                    "description": "The rule applies in both directions, from the source to the destination and from the destination to the source.",
                                                                                                     "isDeprecated": false,
                                                                                                     "name": "BOTH"
                                                                                                 }
@@ -30417,6 +30818,65 @@
                                                                                                         "non_null": false
                                                                                                     },
                                                                                                     "varName": "connectionOrigin"
+                                                                                                },
+                                                                                                "connectionsOriginList": {
+                                                                                                    "args": {},
+                                                                                                    "deprecationReason": null,
+                                                                                                    "description": "Connection origin list matching criteria for the exception.",
+                                                                                                    "id_str": "wanFirewall___addRule___rule___rule___exceptions___connectionsOriginList",
+                                                                                                    "isDeprecated": false,
+                                                                                                    "name": "connectionsOriginList",
+                                                                                                    "path": "wanFirewall.addRule.rule.rule.exceptions.connectionsOriginList",
+                                                                                                    "requestStr": "$connectionsOriginList:[ConnectionOriginsEnum]! ",
+                                                                                                    "required": true,
+                                                                                                    "responseStr": "connectionsOriginList:$connectionsOriginList ",
+                                                                                                    "type": {
+                                                                                                        "definition": {
+                                                                                                            "description": "Defines Origin of the connections",
+                                                                                                            "enumValues": [
+                                                                                                                {
+                                                                                                                    "deprecationReason": null,
+                                                                                                                    "description": "User is connecting from the site",
+                                                                                                                    "isDeprecated": false,
+                                                                                                                    "name": "SITE"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "deprecationReason": null,
+                                                                                                                    "description": "User is connecting from the client",
+                                                                                                                    "isDeprecated": false,
+                                                                                                                    "name": "REMOTE_CLIENT"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "deprecationReason": null,
+                                                                                                                    "description": "User is connecting from the browser extension",
+                                                                                                                    "isDeprecated": false,
+                                                                                                                    "name": "REMOTE_EXTENSION"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "deprecationReason": null,
+                                                                                                                    "description": "User is connecting from the Cato browser",
+                                                                                                                    "isDeprecated": false,
+                                                                                                                    "name": "REMOTE_BROWSER"
+                                                                                                                }
+                                                                                                            ],
+                                                                                                            "fields": null,
+                                                                                                            "inputFields": null,
+                                                                                                            "interfaces": null,
+                                                                                                            "kind": "ENUM",
+                                                                                                            "name": "ConnectionOriginsEnum",
+                                                                                                            "possibleTypes": null
+                                                                                                        },
+                                                                                                        "indexType": "enum",
+                                                                                                        "kind": [
+                                                                                                            "NON_NULL",
+                                                                                                            "LIST",
+                                                                                                            "NON_NULL",
+                                                                                                            "ENUM"
+                                                                                                        ],
+                                                                                                        "name": "ConnectionOriginsEnum",
+                                                                                                        "non_null": false
+                                                                                                    },
+                                                                                                    "varName": "connectionsOriginList"
                                                                                                 },
                                                                                                 "country": {
                                                                                                     "args": {},
@@ -31749,7 +32209,7 @@
                                                                                                 "direction": {
                                                                                                     "args": {},
                                                                                                     "deprecationReason": null,
-                                                                                                    "description": "Direction origin matching criteria for the exception",
+                                                                                                    "description": "Direction matching criteria for the exception.",
                                                                                                     "id_str": "wanFirewall___addRule___rule___rule___exceptions___direction",
                                                                                                     "isDeprecated": false,
                                                                                                     "name": "direction",
@@ -31759,17 +32219,17 @@
                                                                                                     "responseStr": "direction:$direction ",
                                                                                                     "type": {
                                                                                                         "definition": {
-                                                                                                            "description": null,
+                                                                                                            "description": "The direction in which a WAN Firewall rule applies.",
                                                                                                             "enumValues": [
                                                                                                                 {
                                                                                                                     "deprecationReason": null,
-                                                                                                                    "description": null,
+                                                                                                                    "description": "The rule applies only to connections from the source to the destination (default).",
                                                                                                                     "isDeprecated": false,
                                                                                                                     "name": "TO"
                                                                                                                 },
                                                                                                                 {
                                                                                                                     "deprecationReason": null,
-                                                                                                                    "description": null,
+                                                                                                                    "description": "The rule applies in both directions, from the source to the destination and from the destination to the source.",
                                                                                                                     "isDeprecated": false,
                                                                                                                     "name": "BOTH"
                                                                                                                 }
@@ -31831,7 +32291,7 @@
                                                                                                                 "custom": {
                                                                                                                     "args": {},
                                                                                                                     "deprecationReason": null,
-                                                                                                                    "description": null,
+                                                                                                                    "description": "User-defined services, specified by protocol and port.",
                                                                                                                     "id_str": "wanFirewall___addRule___rule___rule___exceptions___service___custom",
                                                                                                                     "isDeprecated": false,
                                                                                                                     "name": "custom",
@@ -32025,7 +32485,7 @@
                                                                                                                 "standard": {
                                                                                                                     "args": {},
                                                                                                                     "deprecationReason": null,
-                                                                                                                    "description": null,
+                                                                                                                    "description": "Predefined Cato services.",
                                                                                                                     "id_str": "wanFirewall___addRule___rule___rule___exceptions___service___standard",
                                                                                                                     "isDeprecated": false,
                                                                                                                     "name": "standard",
@@ -33533,7 +33993,7 @@
                                                                                                 "custom": {
                                                                                                     "args": {},
                                                                                                     "deprecationReason": null,
-                                                                                                    "description": null,
+                                                                                                    "description": "User-defined services, specified by protocol and port.",
                                                                                                     "id_str": "wanFirewall___addRule___rule___rule___service___custom",
                                                                                                     "isDeprecated": false,
                                                                                                     "name": "custom",
@@ -33727,7 +34187,7 @@
                                                                                                 "standard": {
                                                                                                     "args": {},
                                                                                                     "deprecationReason": null,
-                                                                                                    "description": null,
+                                                                                                    "description": "Predefined Cato services.",
                                                                                                     "id_str": "wanFirewall___addRule___rule___rule___service___standard",
                                                                                                     "isDeprecated": false,
                                                                                                     "name": "standard",
@@ -35502,6 +35962,9 @@
                         "192.0.2.0/24"
                     ]
                 },
+                "connectionsOriginList": [
+                    "SITE"
+                ],
                 "country": [
                     {
                         "by": "ID",
@@ -35678,6 +36141,9 @@
                                 "192.0.2.0/24"
                             ]
                         },
+                        "connectionsOriginList": [
+                            "SITE"
+                        ],
                         "country": [
                             {
                                 "by": "ID",

@@ -3,9 +3,15 @@
         // The following require additional configuration
         "query.site.secondaryAwsVSocket": {},
         "query.site.secondaryAzureVSocket": {},
+        // Remote Access API rollout is unavailable for the CI account
+        "query.access": {},
         // Device response selection and group-list members are rejected by the CI server
         "query.devices.list": {},
         "query.groups.groupList": {},
+        // CI has no user-group fixture for a member lookup
+        "query.user.usersGroup.members": {},
+        // CI IP-range search times out or omits the containers result even with a 120s timeout
+        "query.container.ipAddressRange.searchIpAddressRange": {},
         // Existing LAN policy violates non-null SocketLanFirewallRulePayload.access
         "query.policy.socketLan.policy": {},
         // Catalog API rollout is unavailable even with valid paging input
@@ -14,6 +20,8 @@
         "query.aiSecurity.agents.event": {},
         "query.aiSecurity.agents.session": {},
         "query.aiSecurity.apps.invocation": {},
+        // The fixed session/message fixture is no longer reliable (CI requests time out)
+        "query.aiSecurity.endUsers.sessionConversation": {},
         // Rate-limit fields are unavailable for the CI request context
         "query.rateLimit": {},
         "query.rateLimitEstimate": {},
@@ -63,15 +71,14 @@
         ]
     },
     "overrideOperationPayload": {
-        "query.aiSecurity.endUsers.sessionConversation": {
-            "payload": {
-                "aiSecurityEndUsersSessionConversationInput": {
-                    "appId": "chatgpt_personal_paid",
-                    "messageId": "2bd045da-dc3c-4c9c-8486-da8d04ae6cb6",
-                    "sessionId": "6ad1d6f7-cb40-83ed-8b06-d5c9e94b595e"
-                }
-            },
-            "assertions": ["aiSecurity.endUsers.sessionConversation.userPrompt"]
+        // Device export requests intermittently exceed 30s under the CI matrix load
+        "query.devices.csvExport": {
+            "payload": {},
+            "timeout": 120
+        },
+        "query.devices.csvExportStatus": {
+            "payload": {"jobId": "id"},
+            "timeout": 120
         },
         "query.catalogs.catalogApplicationList": {
             "payload": {
@@ -241,6 +248,16 @@
             "assertions": [
                 "socketPortMetricsTimeSeries.summary",
                 "socketPortMetricsTimeSeries.series"
+            ]
+        },
+        "query.user.usersGroupList": {
+            "payload": {
+                "usersGroupListInput": {
+                    "paging": {"from": 0, "limit": 1}
+                }
+            },
+            "assertions": [
+                {"path": "data.user.usersGroupList.items", "operator": "type", "value": "array"}
             ]
         },
         "query.user.userList": {

@@ -1,0 +1,18 @@
+query access ( $accountId:ID! $accessRemoteAccessEntityListInput:AccessRemoteAccessEntityListInput!) {
+	access ( accountId:$accountId ) {
+		remoteAccessEligibility {
+			eligibleUsersCount
+			allocationType
+			entityList ( input:$accessRemoteAccessEntityListInput   ) {
+				items {
+					type
+					id
+					name
+				}
+				paging {
+					total
+				}
+			}
+		}
+	}	
+}

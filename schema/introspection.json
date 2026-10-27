@@ -258,65 +258,6 @@
               "deprecationReason": null
             },
             {
-              "name": "rateLimit",
-              "description": "Rate-limit state of the calling account for this request: the points this\nrequest was charged and how long until this same request would fit every cost\nbudget it uses again, assuming no other consumption in between. Selecting it\ncosts nothing. Returns null when the state is unavailable; the reason is\nreported as an error.",
-              "args": [],
-              "type": {
-                "kind": "OBJECT",
-                "name": "RateLimit",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "rateLimitEstimate",
-              "description": "Estimates the rate-limit cost of a GraphQL operation without executing it\nor charging the account for it. Selecting it costs 1 point, and an account\ncan estimate up to 500 times per minute. Returns null when the operation\ncannot be estimated; the reason is reported as an error. A request can select\nit once; further selections return null with an error.",
-              "args": [
-                {
-                  "name": "query",
-                  "description": "The GraphQL document to estimate.",
-                  "type": {
-                    "kind": "NON_NULL",
-                    "name": null,
-                    "ofType": {
-                      "kind": "SCALAR",
-                      "name": "String",
-                      "ofType": null
-                    }
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "name": "variables",
-                  "description": "Variables for the operation in `query`.",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Map",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "name": "operationName",
-                  "description": "The operation to estimate when `query` contains more than one.",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                }
-              ],
-              "type": {
-                "kind": "OBJECT",
-                "name": "RateLimitEstimate",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
               "name": "object",
               "description": null,
               "args": [
@@ -2192,6 +2133,37 @@
               },
               "isDeprecated": false,
               "deprecationReason": null
+            },
+            {
+              "name": "access",
+              "description": null,
+              "args": [
+                {
+                  "name": "accountId",
+                  "description": "Unique identifier of the Cato account.",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "ID",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "AccessQueries",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
             }
           ],
           "inputFields": null,
@@ -3004,6 +2976,37 @@
                 "kind": "OBJECT",
                 "name": "BusinessPlatformMutations",
                 "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "access",
+              "description": null,
+              "args": [
+                {
+                  "name": "accountId",
+                  "description": "Unique identifier of the Cato account.",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "ID",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "AccessMutations",
+                  "ofType": null
+                }
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -27656,86 +27659,6 @@
           "possibleTypes": null
         },
         {
-          "kind": "OBJECT",
-          "name": "RateLimit",
-          "description": "Rate-limit state of the calling account for the current request.",
-          "fields": [
-            {
-              "name": "cost",
-              "description": "Cost in points charged for the current request.",
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "retryAfterMs",
-              "description": "Milliseconds until this same request would fit every cost budget it uses again, assuming no other consumption in between. Zero when it could be repeated now.",
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [],
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "OBJECT",
-          "name": "RateLimitEstimate",
-          "description": "Estimated rate-limit cost of a GraphQL operation.",
-          "fields": [
-            {
-              "name": "cost",
-              "description": "Cost in points the operation would be charged.",
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [],
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "SCALAR",
-          "name": "TimeFrame",
-          "description": "Enter the time frame for the data that the query returns.\nThe argument is in the format <span style=\"padding: 0.25em;background-color: #DCDDDE;border-radius: 10px;\">\\<type\\>.\\<time value\\></span> This argument is mandatory.\n\nThese are the supported options to define the time frame:\n\nlast.\\<time duration\\> - The <time duration> value for the <span style=\"padding: 0.25em;background-color: #DCDDDE;border-radius: 10px;\">last</span> type is according to ISO-8601 and returns data\n\t\t\t\t\t\tfor the previous specific times. For example:\n<ul>\n\t<li>timeFrame = <span style=\"padding: 0.25em;background-color: #DCDDDE;border-radius: 10px;\">last.PT5M</span> shows the previous 5 minutes</li>\n\t<li> timeFrame = <span style=\"padding: 0.25em;background-color: #DCDDDE;border-radius: 10px;\">last.PT2H</span> shows the previous 2 hours</li>\n\t<li> timeFrame = <span style=\"padding: 0.25em;background-color: #DCDDDE;border-radius: 10px;\">last.P1D</span> shows the previous 1 day</li>\n\t<li> timeFrame = <span style=\"padding: 0.25em;background-color: #DCDDDE;border-radius: 10px;\">last.P3M</span> shows the previous 3 months</li>\n\t<li> timeFrame = <span style=\"padding: 0.25em;background-color: #DCDDDE;border-radius: 10px;\">last.P1Y</span> shows the previous 1 year</li>\n</ul>\n\nutc.\\<short-time-frame-spec\\>  - The time frame combines a start and end date in the format  YY-MM-DD/hh:mm:ss </br>\naccording to the specified time zone. </br> You must enter all the date and time values for the argument. For example:\n\n<ul>\n\t<li> timeFrame = <span style=\"padding: 0.25em;background-color: #DCDDDE;border-radius: 10px;\">utc.2020-02-{11/04:50:00--21/04:50:00}</span> shows 10 days of analytics data from February 11, 2020 4:50:00 am to February 21, 2020 4:50:00 am</li>\n    <li> timeFrame = <span style=\"padding: 0.25em;background-color: #DCDDDE;border-radius: 10px;\">utc.2020-02-11/{04:50:15--16:50:15}</span> shows 12 hours of analytics data on February 11, 2020, from 4:50:15 am to 16:50:15 pm</li>\n\t<li> timeFrame = <span style=\"padding: 0.25em;background-color: #DCDDDE;border-radius: 10px;\">utc.2020-{02-11/04:50:00--04-11/04:50:00}</span> shows 2 months of analytics data from February 11, 2020 4:50:00 am to April 11 4:50:00 am</li>\n\t<li> timeFrame = <span style=\"padding: 0.25em;background-color: #DCDDDE;border-radius: 10px;\">utc.{2019-10-01/04:50:00--2020/02-01/04:50:00}</span> shows 4 months of analytics data from October 1, 2019 4:50:00 am to February 11 4:50:00 am</li>\n</ul>\n\nThis format lets you configure a time frame the includes more than one calendar year",
-          "fields": null,
-          "inputFields": null,
-          "interfaces": null,
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
           "kind": "SCALAR",
           "name": "Upload",
           "description": "File upload - https://gqlgen.com/reference/file-upload/",
@@ -27743,260 +27666,6 @@
           "inputFields": null,
           "interfaces": null,
           "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "ENUM",
-          "name": "UnitType",
-          "description": null,
-          "fields": null,
-          "inputFields": null,
-          "interfaces": null,
-          "enumValues": [
-            {
-              "name": "bytes",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "packets",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "bits",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "ms",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "percent",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "score",
-              "description": "health analytics for the site",
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "count",
-              "description": "The number of occurrences for this unit",
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "seconds",
-              "description": "For metrics that are measured in seconds, such as tunnelAge, the number of seconds",
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "bps",
-              "description": "Bits per second",
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "bytesPerSec",
-              "description": "Bytes per second",
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "none",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
-          "possibleTypes": null
-        },
-        {
-          "kind": "ENUM",
-          "name": "AggregationType",
-          "description": null,
-          "fields": null,
-          "inputFields": null,
-          "interfaces": null,
-          "enumValues": [
-            {
-              "name": "sum",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "count",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "count_distinct",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "distinct",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "avg",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "max",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "min",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "any",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "changes",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "uniq_set",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
-          "possibleTypes": null
-        },
-        {
-          "kind": "ENUM",
-          "name": "DirectionEnum",
-          "description": null,
-          "fields": null,
-          "inputFields": null,
-          "interfaces": null,
-          "enumValues": [
-            {
-              "name": "asc",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "desc",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
-          "possibleTypes": null
-        },
-        {
-          "kind": "ENUM",
-          "name": "FilterOperator",
-          "description": null,
-          "fields": null,
-          "inputFields": null,
-          "interfaces": null,
-          "enumValues": [
-            {
-              "name": "is",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "is_not",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "in",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "not_in",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "exists",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "not_exists",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "between",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "not_between",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "gt",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "gte",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "lt",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "lte",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
           "possibleTypes": null
         },
         {
@@ -28878,164 +28547,6 @@
         },
         {
           "kind": "OBJECT",
-          "name": "Timeseries",
-          "description": null,
-          "fields": [
-            {
-              "name": "data",
-              "description": "Data is an array of tuples, each containing two values:  [timestamp, metric], where the timestamp is in\nmilliseconds from the epoch (1.1.1970), and the metric is a number (according to the unit type)",
-              "args": [
-                {
-                  "name": "perSecond",
-                  "description": "whether to normalize the data into per second (i.e. divide by granularity)",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Boolean",
-                    "ofType": null
-                  },
-                  "defaultValue": "true"
-                },
-                {
-                  "name": "withMissingData",
-                  "description": "If false, the data field will be set to '0' for buckets with no reported data. Otherwise it will be set to -1",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Boolean",
-                    "ofType": null
-                  },
-                  "defaultValue": "false"
-                },
-                {
-                  "name": "useDefaultSizeBucket",
-                  "description": "In case we want to have the default size bucket (from properties)",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Boolean",
-                    "ofType": null
-                  },
-                  "defaultValue": "false"
-                }
-              ],
-              "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "NON_NULL",
-                    "name": null,
-                    "ofType": {
-                      "kind": "SCALAR",
-                      "name": "Float",
-                      "ofType": null
-                    }
-                  }
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "label",
-              "description": "Indicates the type of the timeseries",
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "dimensions",
-              "description": "List of dimension values for this timeseries",
-              "args": [],
-              "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "DimensionData",
-                    "ofType": null
-                  }
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "key",
-              "description": "Timeseries key: measure and dimension values",
-              "args": [],
-              "type": {
-                "kind": "OBJECT",
-                "name": "TimeseriesKey",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "sum",
-              "description": "Summary of the metrics over the given time frame",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "Float",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "units",
-              "description": "Identifies what unit of data this timeseries represents. Note that toRate is only available for particular types\nof data to make sense.",
-              "args": [],
-              "type": {
-                "kind": "ENUM",
-                "name": "UnitType",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "info",
-              "description": "Specific information about the timeseries, used to build its name, title etc",
-              "args": [],
-              "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [],
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "OBJECT",
           "name": "TimeAnnotation",
           "description": "An object for marking specific events in time.",
           "fields": [
@@ -29423,131 +28934,6 @@
               "deprecationReason": null
             }
           ],
-          "possibleTypes": null
-        },
-        {
-          "kind": "OBJECT",
-          "name": "DimensionData",
-          "description": null,
-          "fields": [
-            {
-              "name": "label",
-              "description": "Type of the dimension",
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "value",
-              "description": "String value of the dimension",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [],
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "OBJECT",
-          "name": "TimeseriesKey",
-          "description": null,
-          "fields": [
-            {
-              "name": "measureFieldName",
-              "description": "Measure field",
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "dimensions",
-              "description": "List of dimension key-value pair for this timeseries key",
-              "args": [],
-              "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "DimensionKey",
-                    "ofType": null
-                  }
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [],
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "OBJECT",
-          "name": "DimensionKey",
-          "description": null,
-          "fields": [
-            {
-              "name": "fieldName",
-              "description": "Dimension field",
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "value",
-              "description": "String value of the dimension",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [],
-          "enumValues": null,
           "possibleTypes": null
         },
         {
@@ -41584,6 +40970,29 @@
             },
             {
               "name": "DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "possibleTypes": null
+        },
+        {
+          "kind": "ENUM",
+          "name": "MutationStatus",
+          "description": null,
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": [
+            {
+              "name": "SUCCESS",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "FAILURE",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -54093,6 +53502,60 @@
               },
               "isDeprecated": false,
               "deprecationReason": null
+            },
+            {
+              "name": "usersGroup",
+              "description": "Retrieves a specific user group by ID or name.",
+              "args": [
+                {
+                  "name": "input",
+                  "description": null,
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "UsersGroupInput",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "UsersGroupDetailsWithMembers",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "usersGroupList",
+              "description": "Retrieves a paginated list of user groups.",
+              "args": [
+                {
+                  "name": "input",
+                  "description": null,
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "UsersGroupListInput",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "UsersGroupListPayload",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
             }
           ],
           "inputFields": null,
@@ -54331,6 +53794,108 @@
             },
             {
               "name": "pageInfo",
+              "description": "Metadata describing pagination details",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "PageInfo",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "UsersGroupListPayload",
+          "description": "Response payload for user-group list queries.",
+          "fields": [
+            {
+              "name": "items",
+              "description": "List of user groups returned by the query",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "OBJECT",
+                      "name": "UsersGroupDetails",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "paging",
+              "description": "Metadata describing pagination details",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "PageInfo",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "UsersGroupMembersPayload",
+          "description": "Response payload for members of a user group.",
+          "fields": [
+            {
+              "name": "items",
+              "description": "List of users returned by the query",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "OBJECT",
+                      "name": "User",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "paging",
               "description": "Metadata describing pagination details",
               "args": [],
               "type": {
@@ -54794,6 +54359,199 @@
         },
         {
           "kind": "OBJECT",
+          "name": "UsersGroupDetailsWithMembers",
+          "description": "User group details with members.",
+          "fields": [
+            {
+              "name": "userGroup",
+              "description": "User group details.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "UsersGroupDetails",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "members",
+              "description": "Members of the user group.",
+              "args": [
+                {
+                  "name": "input",
+                  "description": null,
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "UsersGroupMembersInput",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": "{sort: {name: {direction: ASC, priority: 1}}, paging: {limit: 50, from: 0}}"
+                }
+              ],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "UsersGroupMembersPayload",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "UsersGroupDetails",
+          "description": "User-group details returned by list queries.",
+          "fields": [
+            {
+              "name": "id",
+              "description": "Unique Cato user-group ID",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "name",
+              "description": "User-group name",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "description",
+              "description": "User-group description",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "importType",
+              "description": "Source for user group imported to Cato",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "UsersGroupImportType",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "directoryId",
+              "description": "User group's directory ID",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "objectId",
+              "description": "Identity provider's unique group identifier",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "creationDate",
+              "description": "User group's creation date",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "DateTime",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "lastModified",
+              "description": "User group's last modification date",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "DateTime",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "membersCount",
+              "description": "Number of users in the group",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
           "name": "AuthenticationInfo",
           "description": "Authentication method and status details for a user.",
           "fields": [
@@ -54833,6 +54591,47 @@
           "inputFields": null,
           "interfaces": [],
           "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "ENUM",
+          "name": "UsersGroupImportType",
+          "description": "Shows if user group was created, imported from an IdP, or computed dynamically.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": [
+            {
+              "name": "MANUAL",
+              "description": "User group was created manually.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "LDAP",
+              "description": "User group was imported from LDAP.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "SCIM",
+              "description": "User group was imported from SCIM.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "INTEGRATION",
+              "description": "User group was imported from an integration.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "DYNAMIC",
+              "description": "User group is computed dynamically from user attributes.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
           "possibleTypes": null
         },
         {
@@ -55536,6 +55335,386 @@
             {
               "name": "jobTitle",
               "description": "Sort users by job title",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "SortOrderInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "UsersGroupInput",
+          "description": "Input for retrieving a user group.",
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "group",
+              "description": "User group reference.",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "UsersGroupRefInput",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "UsersGroupListInput",
+          "description": "Input for filtering, sorting, and paging user groups.",
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "filter",
+              "description": "User-group filtering configurations",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "UsersGroupFilterInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "sort",
+              "description": "User-group sorting configurations",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "UsersGroupSortInput",
+                "ofType": null
+              },
+              "defaultValue": "{name: {direction: ASC, priority: 1}}"
+            },
+            {
+              "name": "paging",
+              "description": "Paging input to control results (default limit = 50)",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "PagingInput",
+                "ofType": null
+              },
+              "defaultValue": "{limit: 50, from: 0}"
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "UsersGroupFilterInput",
+          "description": "Input for filtering user groups.",
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "id",
+              "description": "Filter user groups by group ID. Supports a single filter, and a single operator (eq, neq, in, nin)",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "IdFilterInput",
+                    "ofType": null
+                  }
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "searchTerm",
+              "description": "Apply a free text search to find potential user groups based on name and description",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "FreeTextFilterInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "importType",
+              "description": "Filter user groups by import type. Supports a single filter, and a single operator (eq, neq, in, nin)",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "UsersGroupImportTypeFilterInput",
+                    "ofType": null
+                  }
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "directoryId",
+              "description": "Filter user groups by directory ID. Supports a single filter, and a single operator (eq, neq, in, nin)",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "StringFilterInput",
+                    "ofType": null
+                  }
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "memberIds",
+              "description": "Filter user groups that contain at least one of the specified member user IDs.",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "ID",
+                    "ofType": null
+                  }
+                }
+              },
+              "defaultValue": null
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "UsersGroupImportTypeFilterInput",
+          "description": "Input for filtering user groups by import type.",
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "eq",
+              "description": "Matches user groups with the specified import type.",
+              "type": {
+                "kind": "ENUM",
+                "name": "UsersGroupImportType",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "neq",
+              "description": "Matches user groups that do not have the specified import type.",
+              "type": {
+                "kind": "ENUM",
+                "name": "UsersGroupImportType",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "in",
+              "description": "Matches user groups with any of the specified import types.",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "ENUM",
+                    "name": "UsersGroupImportType",
+                    "ofType": null
+                  }
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "nin",
+              "description": "Matches user groups with none of the specified import types.",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "ENUM",
+                    "name": "UsersGroupImportType",
+                    "ofType": null
+                  }
+                }
+              },
+              "defaultValue": null
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "UsersGroupSortInput",
+          "description": "Input for sorting user groups.",
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "name",
+              "description": "Sort user groups by name",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "SortOrderInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "importType",
+              "description": "Sort user groups by import type",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "SortOrderInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "creationDate",
+              "description": "Sort user groups by creation date",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "SortOrderInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "lastModified",
+              "description": "Sort user groups by last modification date",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "SortOrderInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "UsersGroupMembersInput",
+          "description": "Input for filtering, sorting, and paging members of a user group.",
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "filter",
+              "description": "User filtering configurations",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "UsersGroupMembersFilterInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "sort",
+              "description": "User sorting configurations",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "UsersGroupMembersSortInput",
+                "ofType": null
+              },
+              "defaultValue": "{name: {direction: ASC, priority: 1}}"
+            },
+            {
+              "name": "paging",
+              "description": "Paging input to control results (default limit = 50)",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "PagingInput",
+                "ofType": null
+              },
+              "defaultValue": "{limit: 50, from: 0}"
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "UsersGroupMembersFilterInput",
+          "description": "Input for filtering members of a user group.",
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "searchTerm",
+              "description": "Apply a free text search to find potential users based on name, e-mail, and user ID",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "FreeTextFilterInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "UsersGroupMembersSortInput",
+          "description": "Input for sorting members of a user group.",
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "name",
+              "description": "Sort users by name",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "SortOrderInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "email",
+              "description": "Sort users by e-mail",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "SortOrderInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "importType",
+              "description": "Sort users by import type",
               "type": {
                 "kind": "INPUT_OBJECT",
                 "name": "SortOrderInput",
@@ -103806,7 +103985,7 @@
             },
             {
               "name": "CATO_ADSP_Q",
-              "description": "Cato Advanced Security Package quantity-based SKU",
+              "description": "Cato App & Data Security quantity-based SKU",
               "isDeprecated": false,
               "deprecationReason": null
             },
@@ -117045,7 +117224,7 @@
                   "ofType": null
                 }
               },
-              "defaultValue": "{application: [], customApp: [], appCategory: [], customCategory: [], sanctionedAppsCategory: [], country: [], domain: [], fqdn: [], ip: [], subnet: [], ipRange: [], globalIpRange: [], remoteAsn: [], containers: {fqdnContainer: [], ipAddressRangeContainer: []}}"
+              "defaultValue": "{application: [], customApp: [], appCategory: [], customCategory: [], sanctionedAppsCategory: [], country: [], domain: [], fqdn: [], ip: [], subnet: [], ipRange: [], globalIpRange: [], remoteAsn: [], containers: {fqdnContainer: [], ipAddressRangeContainer: []}, group: []}"
             },
             {
               "name": "service",
@@ -117152,6 +117331,28 @@
                 }
               },
               "defaultValue": "{userNotification: [], rbiProfile: []}"
+            },
+            {
+              "name": "connectionsOriginList",
+              "description": "Connection origin list of the traffic",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "ConnectionOriginsEnum",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              "defaultValue": "[]"
             }
           ],
           "interfaces": null,
@@ -117353,11 +117554,11 @@
         {
           "kind": "OBJECT",
           "name": "InternetFirewallContainer",
-          "description": null,
+          "description": "Containers to match on an Internet Firewall rule.",
           "fields": [
             {
               "name": "fqdnContainer",
-              "description": null,
+              "description": "FQDN containers to match.",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -117381,7 +117582,7 @@
             },
             {
               "name": "ipAddressRangeContainer",
-              "description": null,
+              "description": "IP address range containers to match.",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -117412,12 +117613,12 @@
         {
           "kind": "INPUT_OBJECT",
           "name": "InternetFirewallContainerInput",
-          "description": null,
+          "description": "Containers to match on an Internet Firewall rule.",
           "fields": null,
           "inputFields": [
             {
               "name": "fqdnContainer",
-              "description": null,
+              "description": "FQDN containers to match.",
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
@@ -117439,7 +117640,7 @@
             },
             {
               "name": "ipAddressRangeContainer",
-              "description": null,
+              "description": "IP address range containers to match.",
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
@@ -117467,12 +117668,12 @@
         {
           "kind": "INPUT_OBJECT",
           "name": "InternetFirewallContainerUpdateInput",
-          "description": null,
+          "description": "Containers to match on an Internet Firewall rule.",
           "fields": null,
           "inputFields": [
             {
               "name": "fqdnContainer",
-              "description": null,
+              "description": "FQDN containers to match.",
               "type": {
                 "kind": "LIST",
                 "name": null,
@@ -117490,7 +117691,7 @@
             },
             {
               "name": "ipAddressRangeContainer",
-              "description": null,
+              "description": "IP address range containers to match.",
               "type": {
                 "kind": "LIST",
                 "name": null,
@@ -117830,7 +118031,7 @@
             },
             {
               "name": "containers",
-              "description": null,
+              "description": "Containers to match against the destination.",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -117839,6 +118040,30 @@
                   "kind": "OBJECT",
                   "name": "InternetFirewallContainer",
                   "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "group",
+              "description": "Groups defined for your account",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "OBJECT",
+                      "name": "GroupRef",
+                      "ofType": null
+                    }
+                  }
                 }
               },
               "isDeprecated": false,
@@ -118144,7 +118369,7 @@
             },
             {
               "name": "containers",
-              "description": null,
+              "description": "Containers to match against the destination.",
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
@@ -118155,6 +118380,28 @@
                 }
               },
               "defaultValue": "{fqdnContainer: [], ipAddressRangeContainer: []}"
+            },
+            {
+              "name": "group",
+              "description": "Groups defined for your account",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "GroupRefInput",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              "defaultValue": "[]"
             }
           ],
           "interfaces": null,
@@ -118403,11 +118650,29 @@
             },
             {
               "name": "containers",
-              "description": null,
+              "description": "Containers to match against the destination.",
               "type": {
                 "kind": "INPUT_OBJECT",
                 "name": "InternetFirewallContainerUpdateInput",
                 "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "group",
+              "description": "Groups defined for your account",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "GroupRefInput",
+                    "ofType": null
+                  }
+                }
               },
               "defaultValue": null
             }
@@ -118419,7 +118684,7 @@
         {
           "kind": "OBJECT",
           "name": "InternetFirewallPolicy",
-          "description": null,
+          "description": "Internet Firewall policy information for a specific revision",
           "fields": [
             {
               "name": "id",
@@ -120142,6 +120407,30 @@
               },
               "isDeprecated": false,
               "deprecationReason": null
+            },
+            {
+              "name": "connectionsOriginList",
+              "description": "Connection origin list of the traffic",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "ConnectionOriginsEnum",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
             }
           ],
           "inputFields": null,
@@ -120327,6 +120616,30 @@
               },
               "isDeprecated": true,
               "deprecationReason": "use connectionsOriginList instead. Planned end-of-life (EoL) date: November 13, 2026."
+            },
+            {
+              "name": "connectionsOriginList",
+              "description": "Connection origin list of the traffic",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "ConnectionOriginsEnum",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
             }
           ],
           "inputFields": null,
@@ -120460,7 +120773,7 @@
                   "ofType": null
                 }
               },
-              "defaultValue": "{application: [], customApp: [], appCategory: [], customCategory: [], sanctionedAppsCategory: [], country: [], domain: [], fqdn: [], ip: [], subnet: [], ipRange: [], globalIpRange: [], remoteAsn: [], containers: {fqdnContainer: [], ipAddressRangeContainer: []}}"
+              "defaultValue": "{application: [], customApp: [], appCategory: [], customCategory: [], sanctionedAppsCategory: [], country: [], domain: [], fqdn: [], ip: [], subnet: [], ipRange: [], globalIpRange: [], remoteAsn: [], containers: {fqdnContainer: [], ipAddressRangeContainer: []}, group: []}"
             },
             {
               "name": "service",
@@ -120475,6 +120788,28 @@
                 }
               },
               "defaultValue": "{standard: [], custom: []}"
+            },
+            {
+              "name": "connectionsOriginList",
+              "description": "Connection origin list of the traffic",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "ConnectionOriginsEnum",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              "defaultValue": "[]"
             }
           ],
           "interfaces": null,
@@ -120698,7 +121033,7 @@
           "fields": [
             {
               "name": "standard",
-              "description": null,
+              "description": "Predefined Cato services.",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -120722,7 +121057,7 @@
             },
             {
               "name": "custom",
-              "description": null,
+              "description": "User-defined services, specified by protocol and port.",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -120758,7 +121093,7 @@
           "inputFields": [
             {
               "name": "standard",
-              "description": null,
+              "description": "Predefined Cato services.",
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
@@ -120780,7 +121115,7 @@
             },
             {
               "name": "custom",
-              "description": null,
+              "description": "User-defined services, specified by protocol and port.",
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
@@ -120813,7 +121148,7 @@
           "inputFields": [
             {
               "name": "standard",
-              "description": null,
+              "description": "Predefined Cato services.",
               "type": {
                 "kind": "LIST",
                 "name": null,
@@ -120831,7 +121166,7 @@
             },
             {
               "name": "custom",
-              "description": null,
+              "description": "User-defined services, specified by protocol and port.",
               "type": {
                 "kind": "LIST",
                 "name": null,
@@ -121987,6 +122322,24 @@
                 "ofType": null
               },
               "defaultValue": null
+            },
+            {
+              "name": "connectionsOriginList",
+              "description": "Connection origin list of the traffic",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "ENUM",
+                    "name": "ConnectionOriginsEnum",
+                    "ofType": null
+                  }
+                }
+              },
+              "defaultValue": null
             }
           ],
           "interfaces": null,
@@ -122082,7 +122435,7 @@
             },
             {
               "name": "forwardIcmp",
-              "description": null,
+              "description": "When true, ICMP traffic sent to the external IP is also forwarded to the internal IP.",
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
@@ -122096,7 +122449,7 @@
             },
             {
               "name": "externalIp",
-              "description": null,
+              "description": "The Cato-allocated public IP address that receives the inbound traffic.",
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
@@ -122110,7 +122463,7 @@
             },
             {
               "name": "externalPortRange",
-              "description": null,
+              "description": "The ports on the external IP that receive the inbound traffic.\nExternal ports are mapped one-to-one, in order, to the internal port range, so both ranges must be the same size.\nFor example, 5000-5005 maps to 6103-6108.",
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
@@ -122124,7 +122477,7 @@
             },
             {
               "name": "internalIp",
-              "description": null,
+              "description": "The IP address of the internal host that the traffic is forwarded to.",
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
@@ -122138,7 +122491,7 @@
             },
             {
               "name": "internalPortRange",
-              "description": null,
+              "description": "The ports on the internal host that the traffic is forwarded to.\nThis range must be the same size as the external port range.",
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
@@ -122152,7 +122505,7 @@
             },
             {
               "name": "remoteIPs",
-              "description": null,
+              "description": "The source addresses that the restriction type applies to.",
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
@@ -122166,7 +122519,7 @@
             },
             {
               "name": "restrictionType",
-              "description": null,
+              "description": "How the remote IPs and countries are applied. With ALLOW_LIST, only the listed sources are allowed. With BLOCK_LIST, all sources are allowed except the listed ones.",
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
@@ -122180,7 +122533,7 @@
             },
             {
               "name": "tracking",
-              "description": null,
+              "description": "Event and notification tracking configuration.",
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
@@ -122235,7 +122588,7 @@
         {
           "kind": "OBJECT",
           "name": "RemotePortFwdPolicy",
-          "description": null,
+          "description": "Remote Port Forwarding policy information for a specific revision",
           "fields": [
             {
               "name": "enabled",
@@ -122897,11 +123250,11 @@
         {
           "kind": "OBJECT",
           "name": "RemotePortFwdRemoteIps",
-          "description": null,
+          "description": "The source addresses for a Remote Port Forwarding rule.\nThe rule's restriction type decides whether these sources are allowed or blocked.",
           "fields": [
             {
               "name": "ip",
-              "description": null,
+              "description": "Individual source IP addresses.",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -122925,7 +123278,7 @@
             },
             {
               "name": "ipRange",
-              "description": null,
+              "description": "Source IP address ranges, for example 192.0.2.10-192.0.2.20.",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -122949,7 +123302,7 @@
             },
             {
               "name": "subnet",
-              "description": null,
+              "description": "Source subnets in CIDR notation, for example 192.0.2.0/24.",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -122973,7 +123326,7 @@
             },
             {
               "name": "globalIpRange",
-              "description": null,
+              "description": "References to Global IP Range objects defined for the account.",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -123004,12 +123357,12 @@
         {
           "kind": "INPUT_OBJECT",
           "name": "RemotePortFwdRemoteIpsInput",
-          "description": null,
+          "description": "The source addresses for a Remote Port Forwarding rule.\nThe rule's restriction type decides whether these sources are allowed or blocked.",
           "fields": null,
           "inputFields": [
             {
               "name": "ip",
-              "description": null,
+              "description": "Individual source IP addresses.",
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
@@ -123031,7 +123384,7 @@
             },
             {
               "name": "ipRange",
-              "description": null,
+              "description": "Source IP address ranges, for example 192.0.2.10-192.0.2.20.",
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
@@ -123053,7 +123406,7 @@
             },
             {
               "name": "subnet",
-              "description": null,
+              "description": "Source subnets in CIDR notation, for example 192.0.2.0/24.",
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
@@ -123075,7 +123428,7 @@
             },
             {
               "name": "globalIpRange",
-              "description": null,
+              "description": "References to Global IP Range objects defined for the account.",
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
@@ -123103,12 +123456,12 @@
         {
           "kind": "INPUT_OBJECT",
           "name": "RemotePortFwdRemoteIpsUpdateInput",
-          "description": null,
+          "description": "The source addresses for a Remote Port Forwarding rule.\nThe rule's restriction type decides whether these sources are allowed or blocked.",
           "fields": null,
           "inputFields": [
             {
               "name": "ip",
-              "description": null,
+              "description": "Individual source IP addresses.",
               "type": {
                 "kind": "LIST",
                 "name": null,
@@ -123126,7 +123479,7 @@
             },
             {
               "name": "ipRange",
-              "description": null,
+              "description": "Source IP address ranges, for example 192.0.2.10-192.0.2.20.",
               "type": {
                 "kind": "LIST",
                 "name": null,
@@ -123144,7 +123497,7 @@
             },
             {
               "name": "subnet",
-              "description": null,
+              "description": "Source subnets in CIDR notation, for example 192.0.2.0/24.",
               "type": {
                 "kind": "LIST",
                 "name": null,
@@ -123162,7 +123515,7 @@
             },
             {
               "name": "globalIpRange",
-              "description": null,
+              "description": "References to Global IP Range objects defined for the account.",
               "type": {
                 "kind": "LIST",
                 "name": null,
@@ -123211,20 +123564,20 @@
         {
           "kind": "ENUM",
           "name": "RemotePortFwdRestrictionType",
-          "description": null,
+          "description": "How the rule's remote IPs and countries are used.",
           "fields": null,
           "inputFields": null,
           "interfaces": null,
           "enumValues": [
             {
               "name": "ALLOW_LIST",
-              "description": null,
+              "description": "Blocks all sources except the configured remote IPs and countries.",
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
               "name": "BLOCK_LIST",
-              "description": null,
+              "description": "Allows all sources except the configured remote IPs and countries.",
               "isDeprecated": false,
               "deprecationReason": null
             }
@@ -123334,7 +123687,7 @@
             },
             {
               "name": "forwardIcmp",
-              "description": null,
+              "description": "When true, ICMP traffic sent to the external IP is also forwarded to the internal IP.",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -123350,7 +123703,7 @@
             },
             {
               "name": "externalIp",
-              "description": null,
+              "description": "The Cato-allocated public IP address that receives the inbound traffic.",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -123366,7 +123719,7 @@
             },
             {
               "name": "externalPortRange",
-              "description": null,
+              "description": "The ports on the external IP that receive the inbound traffic.\nExternal ports are mapped one-to-one, in order, to the internal port range, so both ranges must be the same size.\nFor example, 5000-5005 maps to 6103-6108.",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -123382,7 +123735,7 @@
             },
             {
               "name": "internalIp",
-              "description": null,
+              "description": "The IP address of the internal host that the traffic is forwarded to.",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -123398,7 +123751,7 @@
             },
             {
               "name": "internalPortRange",
-              "description": null,
+              "description": "The ports on the internal host that the traffic is forwarded to.\nThis range must be the same size as the external port range.",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -123414,7 +123767,7 @@
             },
             {
               "name": "remoteIPs",
-              "description": null,
+              "description": "The source addresses that the restriction type applies to.",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -123430,7 +123783,7 @@
             },
             {
               "name": "restrictionType",
-              "description": null,
+              "description": "How the remote IPs and countries are applied. With ALLOW_LIST, only the listed sources are allowed. With BLOCK_LIST, all sources are allowed except the listed ones.",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -123446,7 +123799,7 @@
             },
             {
               "name": "tracking",
-              "description": null,
+              "description": "Event and notification tracking configuration.",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -123676,7 +124029,7 @@
             },
             {
               "name": "forwardIcmp",
-              "description": null,
+              "description": "When true, ICMP traffic sent to the external IP is also forwarded to the internal IP.",
               "type": {
                 "kind": "SCALAR",
                 "name": "Boolean",
@@ -123686,7 +124039,7 @@
             },
             {
               "name": "externalIp",
-              "description": null,
+              "description": "The Cato-allocated public IP address that receives the inbound traffic.",
               "type": {
                 "kind": "INPUT_OBJECT",
                 "name": "AllocatedIpRefInput",
@@ -123696,7 +124049,7 @@
             },
             {
               "name": "externalPortRange",
-              "description": null,
+              "description": "The ports on the external IP that receive the inbound traffic.\nExternal ports are mapped one-to-one, in order, to the internal port range, so both ranges must be the same size.\nFor example, 5000-5005 maps to 6103-6108.",
               "type": {
                 "kind": "INPUT_OBJECT",
                 "name": "PortRangeUpdateInput",
@@ -123706,7 +124059,7 @@
             },
             {
               "name": "internalIp",
-              "description": null,
+              "description": "The IP address of the internal host that the traffic is forwarded to.",
               "type": {
                 "kind": "SCALAR",
                 "name": "IPAddress",
@@ -123716,7 +124069,7 @@
             },
             {
               "name": "internalPortRange",
-              "description": null,
+              "description": "The ports on the internal host that the traffic is forwarded to.\nThis range must be the same size as the external port range.",
               "type": {
                 "kind": "INPUT_OBJECT",
                 "name": "PortRangeUpdateInput",
@@ -123726,7 +124079,7 @@
             },
             {
               "name": "remoteIPs",
-              "description": null,
+              "description": "The source addresses that the restriction type applies to.",
               "type": {
                 "kind": "INPUT_OBJECT",
                 "name": "RemotePortFwdRemoteIpsUpdateInput",
@@ -123736,7 +124089,7 @@
             },
             {
               "name": "restrictionType",
-              "description": null,
+              "description": "How the remote IPs and countries are applied. With ALLOW_LIST, only the listed sources are allowed. With BLOCK_LIST, all sources are allowed except the listed ones.",
               "type": {
                 "kind": "ENUM",
                 "name": "RemotePortFwdRestrictionType",
@@ -123746,7 +124099,7 @@
             },
             {
               "name": "tracking",
-              "description": null,
+              "description": "Event and notification tracking configuration.",
               "type": {
                 "kind": "INPUT_OBJECT",
                 "name": "PolicyRuleTrackingAlertUpdateInput",
@@ -123898,7 +124251,7 @@
         {
           "kind": "ENUM",
           "name": "WanFirewallActionEnum",
-          "description": null,
+          "description": "The action applied by the WAN Firewall if the rule is matched.",
           "fields": null,
           "inputFields": null,
           "interfaces": null,
@@ -124166,7 +124519,7 @@
             },
             {
               "name": "direction",
-              "description": null,
+              "description": "Whether the rule applies only from the source to the destination (TO) or in both directions (BOTH).",
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
@@ -124213,6 +124566,28 @@
                 }
               },
               "defaultValue": "{userNotification: []}"
+            },
+            {
+              "name": "connectionsOriginList",
+              "description": "Connection origin list matching criteria for the exception.",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "ConnectionOriginsEnum",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              "defaultValue": "[]"
             }
           ],
           "interfaces": null,
@@ -126016,20 +126391,20 @@
         {
           "kind": "ENUM",
           "name": "WanFirewallDirectionEnum",
-          "description": null,
+          "description": "The direction in which a WAN Firewall rule applies.",
           "fields": null,
           "inputFields": null,
           "interfaces": null,
           "enumValues": [
             {
               "name": "TO",
-              "description": null,
+              "description": "The rule applies only to connections from the source to the destination (default).",
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
               "name": "BOTH",
-              "description": null,
+              "description": "The rule applies in both directions, from the source to the destination and from the destination to the source.",
               "isDeprecated": false,
               "deprecationReason": null
             }
@@ -126039,7 +126414,7 @@
         {
           "kind": "OBJECT",
           "name": "WanFirewallPolicy",
-          "description": null,
+          "description": "Wan Firewall policy information for a specific revision",
           "fields": [
             {
               "name": "id",
@@ -127741,7 +128116,7 @@
             },
             {
               "name": "direction",
-              "description": null,
+              "description": "Whether the rule applies only from the source to the destination (TO) or in both directions (BOTH).",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -127790,6 +128165,30 @@
                   "kind": "OBJECT",
                   "name": "WanFirewallActionConfig",
                   "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "connectionsOriginList",
+              "description": "Connection origin list matching criteria for the exception.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "ConnectionOriginsEnum",
+                      "ofType": null
+                    }
+                  }
                 }
               },
               "isDeprecated": false,
@@ -127998,7 +128397,7 @@
             },
             {
               "name": "direction",
-              "description": "Direction origin matching criteria for the exception",
+              "description": "Direction matching criteria for the exception.",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -128007,6 +128406,30 @@
                   "kind": "ENUM",
                   "name": "WanFirewallDirectionEnum",
                   "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "connectionsOriginList",
+              "description": "Connection origin list matching criteria for the exception.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "ConnectionOriginsEnum",
+                      "ofType": null
+                    }
+                  }
                 }
               },
               "isDeprecated": false,
@@ -128176,7 +128599,7 @@
             },
             {
               "name": "direction",
-              "description": "Direction origin matching criteria for the exception",
+              "description": "Direction matching criteria for the exception.",
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
@@ -128187,6 +128610,28 @@
                 }
               },
               "defaultValue": "TO"
+            },
+            {
+              "name": "connectionsOriginList",
+              "description": "Connection origin list matching criteria for the exception.",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "ConnectionOriginsEnum",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              "defaultValue": "[]"
             }
           ],
           "interfaces": null,
@@ -128410,7 +128855,7 @@
           "fields": [
             {
               "name": "standard",
-              "description": null,
+              "description": "Predefined Cato services.",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -128434,7 +128879,7 @@
             },
             {
               "name": "custom",
-              "description": null,
+              "description": "User-defined services, specified by protocol and port.",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -128470,7 +128915,7 @@
           "inputFields": [
             {
               "name": "standard",
-              "description": null,
+              "description": "Predefined Cato services.",
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
@@ -128492,7 +128937,7 @@
             },
             {
               "name": "custom",
-              "description": null,
+              "description": "User-defined services, specified by protocol and port.",
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
@@ -128525,7 +128970,7 @@
           "inputFields": [
             {
               "name": "standard",
-              "description": null,
+              "description": "Predefined Cato services.",
               "type": {
                 "kind": "LIST",
                 "name": null,
@@ -128543,7 +128988,7 @@
             },
             {
               "name": "custom",
-              "description": null,
+              "description": "User-defined services, specified by protocol and port.",
               "type": {
                 "kind": "LIST",
                 "name": null,
@@ -129684,7 +130129,7 @@
             },
             {
               "name": "direction",
-              "description": null,
+              "description": "Whether the rule applies only from the source to the destination (TO) or in both directions (BOTH).",
               "type": {
                 "kind": "ENUM",
                 "name": "WanFirewallDirectionEnum",
@@ -129717,6 +130162,24 @@
                 "kind": "INPUT_OBJECT",
                 "name": "WanFirewallActionConfigUpdateInput",
                 "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "connectionsOriginList",
+              "description": "Connection origin list matching criteria for the exception.",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "ENUM",
+                    "name": "ConnectionOriginsEnum",
+                    "ofType": null
+                  }
+                }
               },
               "defaultValue": null
             }
@@ -172234,6 +172697,553 @@
           "possibleTypes": null
         },
         {
+          "kind": "SCALAR",
+          "name": "TimeFrame",
+          "description": "Enter the time frame for the data that the query returns.\nThe argument is in the format <span style=\"padding: 0.25em;background-color: #DCDDDE;border-radius: 10px;\">\\<type\\>.\\<time value\\></span> This argument is mandatory.\n\nThese are the supported options to define the time frame:\n\nlast.\\<time duration\\> - The <time duration> value for the <span style=\"padding: 0.25em;background-color: #DCDDDE;border-radius: 10px;\">last</span> type is according to ISO-8601 and returns data\n\t\t\t\t\t\tfor the previous specific times. For example:\n<ul>\n\t<li>timeFrame = <span style=\"padding: 0.25em;background-color: #DCDDDE;border-radius: 10px;\">last.PT5M</span> shows the previous 5 minutes</li>\n\t<li> timeFrame = <span style=\"padding: 0.25em;background-color: #DCDDDE;border-radius: 10px;\">last.PT2H</span> shows the previous 2 hours</li>\n\t<li> timeFrame = <span style=\"padding: 0.25em;background-color: #DCDDDE;border-radius: 10px;\">last.P1D</span> shows the previous 1 day</li>\n\t<li> timeFrame = <span style=\"padding: 0.25em;background-color: #DCDDDE;border-radius: 10px;\">last.P3M</span> shows the previous 3 months</li>\n\t<li> timeFrame = <span style=\"padding: 0.25em;background-color: #DCDDDE;border-radius: 10px;\">last.P1Y</span> shows the previous 1 year</li>\n</ul>\n\nutc.\\<short-time-frame-spec\\>  - The time frame combines a start and end date in the format  YY-MM-DD/hh:mm:ss </br>\naccording to the specified time zone. </br> You must enter all the date and time values for the argument. For example:\n\n<ul>\n\t<li> timeFrame = <span style=\"padding: 0.25em;background-color: #DCDDDE;border-radius: 10px;\">utc.2020-02-{11/04:50:00--21/04:50:00}</span> shows 10 days of analytics data from February 11, 2020 4:50:00 am to February 21, 2020 4:50:00 am</li>\n    <li> timeFrame = <span style=\"padding: 0.25em;background-color: #DCDDDE;border-radius: 10px;\">utc.2020-02-11/{04:50:15--16:50:15}</span> shows 12 hours of analytics data on February 11, 2020, from 4:50:15 am to 16:50:15 pm</li>\n\t<li> timeFrame = <span style=\"padding: 0.25em;background-color: #DCDDDE;border-radius: 10px;\">utc.2020-{02-11/04:50:00--04-11/04:50:00}</span> shows 2 months of analytics data from February 11, 2020 4:50:00 am to April 11 4:50:00 am</li>\n\t<li> timeFrame = <span style=\"padding: 0.25em;background-color: #DCDDDE;border-radius: 10px;\">utc.{2019-10-01/04:50:00--2020/02-01/04:50:00}</span> shows 4 months of analytics data from October 1, 2019 4:50:00 am to February 11 4:50:00 am</li>\n</ul>\n\nThis format lets you configure a time frame the includes more than one calendar year",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "ENUM",
+          "name": "UnitType",
+          "description": null,
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": [
+            {
+              "name": "bytes",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "packets",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "bits",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "ms",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "percent",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "score",
+              "description": "health analytics for the site",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "count",
+              "description": "The number of occurrences for this unit",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "seconds",
+              "description": "For metrics that are measured in seconds, such as tunnelAge, the number of seconds",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "bps",
+              "description": "Bits per second",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "bytesPerSec",
+              "description": "Bytes per second",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "none",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "possibleTypes": null
+        },
+        {
+          "kind": "ENUM",
+          "name": "AggregationType",
+          "description": null,
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": [
+            {
+              "name": "sum",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "count",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "count_distinct",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "distinct",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "avg",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "max",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "min",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "any",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "changes",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "uniq_set",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "possibleTypes": null
+        },
+        {
+          "kind": "ENUM",
+          "name": "DirectionEnum",
+          "description": null,
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": [
+            {
+              "name": "asc",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "desc",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "possibleTypes": null
+        },
+        {
+          "kind": "ENUM",
+          "name": "FilterOperator",
+          "description": null,
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": [
+            {
+              "name": "is",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "is_not",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "in",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "not_in",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "exists",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "not_exists",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "between",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "not_between",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "gt",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "gte",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "lt",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "lte",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "Timeseries",
+          "description": null,
+          "fields": [
+            {
+              "name": "data",
+              "description": "Data is an array of tuples, each containing two values:  [timestamp, metric], where the timestamp is in\nmilliseconds from the epoch (1.1.1970), and the metric is a number (according to the unit type)",
+              "args": [
+                {
+                  "name": "perSecond",
+                  "description": "whether to normalize the data into per second (i.e. divide by granularity)",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Boolean",
+                    "ofType": null
+                  },
+                  "defaultValue": "true"
+                },
+                {
+                  "name": "withMissingData",
+                  "description": "If false, the data field will be set to '0' for buckets with no reported data. Otherwise it will be set to -1",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Boolean",
+                    "ofType": null
+                  },
+                  "defaultValue": "false"
+                },
+                {
+                  "name": "useDefaultSizeBucket",
+                  "description": "In case we want to have the default size bucket (from properties)",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Boolean",
+                    "ofType": null
+                  },
+                  "defaultValue": "false"
+                }
+              ],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "Float",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "label",
+              "description": "Indicates the type of the timeseries",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "dimensions",
+              "description": "List of dimension values for this timeseries",
+              "args": [],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "DimensionData",
+                    "ofType": null
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "key",
+              "description": "Timeseries key: measure and dimension values",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "TimeseriesKey",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "sum",
+              "description": "Summary of the metrics over the given time frame",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "units",
+              "description": "Identifies what unit of data this timeseries represents. Note that toRate is only available for particular types\nof data to make sense.",
+              "args": [],
+              "type": {
+                "kind": "ENUM",
+                "name": "UnitType",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "info",
+              "description": "Specific information about the timeseries, used to build its name, title etc",
+              "args": [],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "DimensionData",
+          "description": null,
+          "fields": [
+            {
+              "name": "label",
+              "description": "Type of the dimension",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "value",
+              "description": "String value of the dimension",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "TimeseriesKey",
+          "description": null,
+          "fields": [
+            {
+              "name": "measureFieldName",
+              "description": "Measure field",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "dimensions",
+              "description": "List of dimension key-value pair for this timeseries key",
+              "args": [],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "DimensionKey",
+                    "ofType": null
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "DimensionKey",
+          "description": null,
+          "fields": [
+            {
+              "name": "fieldName",
+              "description": "Dimension field",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "value",
+              "description": "String value of the dimension",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
           "kind": "OBJECT",
           "name": "AiSecurityAppsQueries",
           "description": "Root of the AI App Protection query namespace.",
@@ -173553,6 +174563,491 @@
             }
           ],
           "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "AccessQueries",
+          "description": null,
+          "fields": [
+            {
+              "name": "remoteAccessEligibility",
+              "description": "Remote access eligibility for the account.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "AccessRemoteAccessEligibility",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "AccessMutations",
+          "description": null,
+          "fields": [
+            {
+              "name": "remoteAccessEligibility",
+              "description": "Remote access eligibility mutations.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "AccessRemoteAccessEligibilityMutations",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "AccessRemoteAccessEligibilityMutations",
+          "description": "Remote access eligibility mutations.",
+          "fields": [
+            {
+              "name": "setEligibilityList",
+              "description": "Sets remote access eligibility for the account. If unable to apply any requested change, the eligibility is not updated.",
+              "args": [
+                {
+                  "name": "input",
+                  "description": null,
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "AccessRemoteAccessSetEligibilityListInput",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "AccessRemoteAccessSetEligibilityListPayload",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "AccessRemoteAccessEligibility",
+          "description": "Remote access eligibility for an account.",
+          "fields": [
+            {
+              "name": "eligibleUsersCount",
+              "description": "Number of users currently eligible for remote access.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Long",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "allocationType",
+              "description": "How remote access eligibility is assigned.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "AccessRemoteAccessAllocationType",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "entityList",
+              "description": "Users and user groups selected for remote access eligibility.",
+              "args": [
+                {
+                  "name": "input",
+                  "description": null,
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "AccessRemoteAccessEntityListInput",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": "{sort: {type: {direction: ASC, priority: 1}, name: {direction: ASC, priority: 2}}, paging: {limit: 100, from: 0}}"
+                }
+              ],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "AccessRemoteAccessEntityListPayload",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "ENUM",
+          "name": "AccessRemoteAccessAllocationType",
+          "description": "How remote access eligibility is assigned to users.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": [
+            {
+              "name": "ALL",
+              "description": "All eligible users receive remote access.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "CUSTOM",
+              "description": "Only eligible users from the selected users and user groups receive remote access.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "AccessRemoteAccessEntityListInput",
+          "description": "Input for querying users and user groups selected for remote access eligibility.",
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "sort",
+              "description": "Sorting settings.",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "AccessRemoteAccessEntitySortInput",
+                  "ofType": null
+                }
+              },
+              "defaultValue": "{type: {direction: ASC, priority: 1}, name: {direction: ASC, priority: 2}}"
+            },
+            {
+              "name": "paging",
+              "description": "Pagination settings.",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "PagingInput",
+                "ofType": null
+              },
+              "defaultValue": "{limit: 100, from: 0}"
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "AccessRemoteAccessEntitySortInput",
+          "description": "Input for sorting users and user groups selected for remote access eligibility.",
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "type",
+              "description": "Sort selected entities by type.",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "SortOrderInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "name",
+              "description": "Sort selected entities by name.",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "SortOrderInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "AccessRemoteAccessEntityListPayload",
+          "description": "Response payload for users and user groups selected for remote access eligibility.",
+          "fields": [
+            {
+              "name": "items",
+              "description": "Selected users and user groups.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "OBJECT",
+                      "name": "AccessRemoteAccessEntity",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "paging",
+              "description": "Pagination details for the returned items.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "PageInfo",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "AccessRemoteAccessEntity",
+          "description": "A user or user group selected for remote access eligibility.",
+          "fields": [
+            {
+              "name": "type",
+              "description": "Selected entity type.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "AccessRemoteAccessEntityType",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "id",
+              "description": "Unique identifier of the selected entity.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "name",
+              "description": "Name of the selected entity.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "ENUM",
+          "name": "AccessRemoteAccessEntityType",
+          "description": "Types of entities that can be selected for remote access eligibility.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": [
+            {
+              "name": "USER",
+              "description": "A selected user.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "USER_GROUP",
+              "description": "A selected user group.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "AccessRemoteAccessSetEligibilityListInput",
+          "description": "Input for setting remote access eligibility.",
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "allocationType",
+              "description": "How remote access eligibility should be assigned.",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "AccessRemoteAccessAllocationType",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "items",
+              "description": "Users and users groups selected for remote access eligibility. For CUSTOM allocation, an empty or omitted list revokes remote access eligibility from all users and users groups.",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "AccessRemoteAccessEntityRefInput",
+                    "ofType": null
+                  }
+                }
+              },
+              "defaultValue": null
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "AccessRemoteAccessEntityRefInput",
+          "description": "A user or user group reference selected for remote access eligibility. Exactly one field must be provided.",
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "user",
+              "description": "Selected user reference. Only reference by ID is currently supported.",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "UserRefInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "userGroup",
+              "description": "Selected user group reference. Only reference by ID is currently supported.",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "UsersGroupRefInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "AccessRemoteAccessSetEligibilityListPayload",
+          "description": "Response payload for setEligibilityList mutation.",
+          "fields": [
+            {
+              "name": "status",
+              "description": "Status of the setEligibilityList operation.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "MutationStatus",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
           "enumValues": null,
           "possibleTypes": null
         },
@@ -175544,6 +177039,28 @@
               "defaultValue": "[]"
             },
             {
+              "name": "devicePostureProfile",
+              "description": "Device Posture Profile traffic matching criteria.\nLogical \u2018OR\u2019 is applied within the criteria set.\nLogical \u2018AND\u2019 is applied between criteria sets.",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "DeviceProfileRefInput",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              "defaultValue": "[]"
+            },
+            {
               "name": "country",
               "description": null,
               "type": {
@@ -176521,6 +178038,30 @@
               "deprecationReason": null
             },
             {
+              "name": "devicePostureProfile",
+              "description": "Device Posture Profile traffic matching criteria.\nLogical \u2018OR\u2019 is applied within the criteria set.\nLogical \u2018AND\u2019 is applied between criteria sets.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "OBJECT",
+                      "name": "DeviceProfileRef",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "country",
               "description": null,
               "args": [],
@@ -176957,6 +178498,24 @@
                   "ofType": {
                     "kind": "ENUM",
                     "name": "OperatingSystem",
+                    "ofType": null
+                  }
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "devicePostureProfile",
+              "description": "Device Posture Profile traffic matching criteria.\nLogical \u2018OR\u2019 is applied within the criteria set.\nLogical \u2018AND\u2019 is applied between criteria sets.",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "DeviceProfileRefInput",
                     "ofType": null
                   }
                 }

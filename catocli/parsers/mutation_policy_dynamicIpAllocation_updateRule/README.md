@@ -11,7 +11,7 @@ catocli mutation policy dynamicIpAllocation updateRule <json>
 
 catocli mutation policy dynamicIpAllocation updateRule --json-file mutation.policy.dynamicIpAllocation.updateRule.json
 
-catocli mutation policy dynamicIpAllocation updateRule '{"dynamicIpAllocationPolicyMutationInput":{"revision":{"id":"id"}},"dynamicIpAllocationUpdateRuleInput":{"id":"id","rule":{"country":[{"by":"ID","input":"string"}],"description":"string","enabled":true,"name":"string","platform":["WINDOWS"],"range":{"globalIpRange":{"by":"ID","input":"string"}},"source":{"user":[{"by":"ID","input":"string"}],"usersGroup":[{"by":"ID","input":"string"}]}}}}'
+catocli mutation policy dynamicIpAllocation updateRule '{"dynamicIpAllocationPolicyMutationInput":{"revision":{"id":"id"}},"dynamicIpAllocationUpdateRuleInput":{"id":"id","rule":{"country":[{"by":"ID","input":"string"}],"description":"string","devicePostureProfile":[{"by":"ID","input":"string"}],"enabled":true,"name":"string","platform":["WINDOWS"],"range":{"globalIpRange":{"by":"ID","input":"string"}},"source":{"user":[{"by":"ID","input":"string"}],"usersGroup":[{"by":"ID","input":"string"}]}}}}'
 
 catocli mutation policy dynamicIpAllocation updateRule '{
     "dynamicIpAllocationPolicyMutationInput": {
@@ -29,6 +29,12 @@ catocli mutation policy dynamicIpAllocation updateRule '{
                 }
             ],
             "description": "string",
+            "devicePostureProfile": [
+                {
+                    "by": "ID",
+                    "input": "string"
+                }
+            ],
             "enabled": true,
             "name": "string",
             "platform": [

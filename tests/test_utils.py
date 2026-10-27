@@ -823,12 +823,14 @@ def load_test_payloads_tests(ignore_operations: set, override_payloads: Dict, ve
         # Check if there's an override config for this operation
         payload = args
         custom_assertions = []
+        timeout = 30
         if operation in override_payloads:
             override_config = override_payloads[operation]
             # Handle new structure: {"payload": {...}, "assertions": [...]}
             if isinstance(override_config, dict) and DictKeys.PAYLOAD in override_config:
                 payload = override_config.get(DictKeys.PAYLOAD, {})
                 custom_assertions = override_config.get(DictKeys.ASSERTIONS, [])
+                timeout = override_config.get("timeout", timeout)
                 if verbose:
                     print(f"{Colors.CYAN}Using override payload for {operation}{Colors.NC}")
             else:
@@ -858,7 +860,7 @@ def load_test_payloads_tests(ignore_operations: set, override_payloads: Dict, ve
             "description": f"Auto-generated test for {operation}",
             "operation": operation,
             "payload": payload if payload else {},
-            "timeout": 30,
+            "timeout": timeout,
             "assertions": assertion_list,
             "ignored": is_ignored  # Mark if this test should be skipped
         }

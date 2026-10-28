@@ -189,11 +189,12 @@ def create_private_command_parser(subparsers, command_name, command_config):
                     arg_names.append(arg_flag)
                 arg_names.append(f'--{arg_name}')
 
-                # Handle boolean arguments specially - use store_true action
+                # Omitted boolean flags must not override JSON or template values.
                 if arg_type == 'boolean':
                     cmd_parser.add_argument(
                         *arg_names,
                         action='store_true',
+                        default=None,
                         help=arg_help
                     )
                 else:

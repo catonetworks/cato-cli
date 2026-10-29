@@ -14,7 +14,7 @@ Use it to:
 
 ## Requirements
 
-- Python 3.10 or newer (tested with Python 3.10 through 3.14)
+- Python 3.10 or newer (tested with Python 3.11 through 3.15)
 - A Cato API token and account ID
 
 See

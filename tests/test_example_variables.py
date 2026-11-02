@@ -8,7 +8,9 @@ import unittest
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
-from graphql import DirectiveLocation, build_client_schema, get_variable_values, parse
+from graphql import parse
+from graphql.execution.values import get_variable_values
+from schema_utils import load_test_schema
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "schema"))
@@ -18,15 +20,7 @@ import catolib
 class ExampleVariablesTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        data = json.loads((ROOT / "schema/introspection.json").read_text())["data"]
-        # The API includes a vendor directive location unsupported by graphql-core.
-        # Directive locations do not affect variable coercion.
-        for directive in data["__schema"]["directives"]:
-            directive["locations"] = [
-                location for location in directive["locations"]
-                if location in DirectiveLocation.__members__
-            ]
-        cls.schema = build_client_schema(data)
+        cls.schema = load_test_schema()
 
     def test_generated_examples_match_schema_and_checked_in_payloads(self):
         paths = sorted((ROOT / "queryPayloads").glob("*.json"))

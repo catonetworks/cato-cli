@@ -1,0 +1,51 @@
+query siteSocketInterfaceList ( $accountId:ID! $socketInterfaceListInput:SocketInterfaceListInput!) {
+	site ( accountId:$accountId ) {
+		socketInterfaceList ( input:$socketInterfaceListInput  )  {
+			items {
+				socketInterfaceId
+				name
+				destType
+				supportedDestinations
+				lan {
+					subnet
+					translatedSubnet
+					localIp
+				}
+				bandwidth {
+					upstreamBandwidth
+					downstreamBandwidth
+					upstreamBandwidthMbpsPrecision
+					downstreamBandwidthMbpsPrecision
+				}
+				wan {
+					role
+					precedence
+				}
+				offCloud {
+					enabled
+					publicIp
+					publicStaticPort
+				}
+				altWan {
+					privateInterfaceIp
+					privateNetwork
+					privateGatewayIp
+					privateVlanTag
+					publicInterfaceIp
+					publicNetwork
+					publicGatewayIp
+					publicVlanTag
+				}
+				lag {
+					minLinks
+				}
+				vrrp {
+					vrrpType
+				}
+			}
+			paging {
+				total
+			}
+		}
+	}	
+}

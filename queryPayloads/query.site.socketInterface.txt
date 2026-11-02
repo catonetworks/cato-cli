@@ -1,0 +1,46 @@
+query siteSocketInterface ( $accountId:ID! $siteSocketInterfaceInput:SiteSocketInterfaceInput!) {
+	site ( accountId:$accountId ) {
+		socketInterface ( input:$siteSocketInterfaceInput  )  {
+			socketInterfaceId
+			name
+			destType
+			supportedDestinations
+			lan {
+				subnet
+				translatedSubnet
+				localIp
+			}
+			bandwidth {
+				upstreamBandwidth
+				downstreamBandwidth
+				upstreamBandwidthMbpsPrecision
+				downstreamBandwidthMbpsPrecision
+			}
+			wan {
+				role
+				precedence
+			}
+			offCloud {
+				enabled
+				publicIp
+				publicStaticPort
+			}
+			altWan {
+				privateInterfaceIp
+				privateNetwork
+				privateGatewayIp
+				privateVlanTag
+				publicInterfaceIp
+				publicNetwork
+				publicGatewayIp
+				publicVlanTag
+			}
+			lag {
+				minLinks
+			}
+			vrrp {
+				vrrpType
+			}
+		}
+	}	
+}

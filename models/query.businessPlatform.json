@@ -77,7 +77,7 @@
                                     "inputFields": {
                                         "account": {
                                             "defaultValue": null,
-                                            "description": "Filter by account.",
+                                            "description": "Filter by the managing partner account.",
                                             "id_str": "accountList___input___filter___account",
                                             "name": "account",
                                             "path": "accountList.input.filter.account",
@@ -138,6 +138,98 @@
                                                             "id_str": "accountList___input___filter___account___in",
                                                             "name": "in",
                                                             "path": "accountList.input.filter.account.in",
+                                                            "requestStr": "$in:[ID] ",
+                                                            "required": false,
+                                                            "responseStr": "in:$in ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "LIST",
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "ID",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "in"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "AccountFilter",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "AccountFilter",
+                                                "non_null": false
+                                            },
+                                            "varName": "accountFilter"
+                                        },
+                                        "customerAccount": {
+                                            "defaultValue": null,
+                                            "description": "Filter by the account's own (customer) CMA account id.",
+                                            "id_str": "accountList___input___filter___customerAccount",
+                                            "name": "customerAccount",
+                                            "path": "accountList.input.filter.customerAccount",
+                                            "requestStr": "$accountFilter:AccountFilter ",
+                                            "required": false,
+                                            "responseStr": "customerAccount:$accountFilter ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "accountInclusion": {
+                                                            "defaultValue": null,
+                                                            "description": null,
+                                                            "id_str": "accountList___input___filter___customerAccount___accountInclusion",
+                                                            "name": "accountInclusion",
+                                                            "path": "accountList.input.filter.customerAccount.accountInclusion",
+                                                            "requestStr": "$accountInclusion:AccountInclusion ",
+                                                            "required": false,
+                                                            "responseStr": "accountInclusion:$accountInclusion ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": null,
+                                                                    "enumValues": [
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "ALL_ACCOUNTS"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "MANAGED_ACCOUNTS_ONLY"
+                                                                        }
+                                                                    ],
+                                                                    "fields": null,
+                                                                    "inputFields": null,
+                                                                    "interfaces": null,
+                                                                    "kind": "ENUM",
+                                                                    "name": "AccountInclusion",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "enum",
+                                                                "kind": [
+                                                                    "ENUM"
+                                                                ],
+                                                                "name": "AccountInclusion",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "accountInclusion"
+                                                        },
+                                                        "in": {
+                                                            "defaultValue": null,
+                                                            "description": null,
+                                                            "id_str": "accountList___input___filter___customerAccount___in",
+                                                            "name": "in",
+                                                            "path": "accountList.input.filter.customerAccount.in",
                                                             "requestStr": "$in:[ID] ",
                                                             "required": false,
                                                             "responseStr": "in:$in ",
@@ -416,6 +508,24 @@
                                             },
                                             "varName": "freeTextFilterInput"
                                         },
+                                        "includeMSP": {
+                                            "defaultValue": "false",
+                                            "description": "Whether to include accounts managed by an MSP partner. Defaults to false.",
+                                            "id_str": "accountList___input___filter___includeMSP",
+                                            "name": "includeMSP",
+                                            "path": "accountList.input.filter.includeMSP",
+                                            "requestStr": "$includeMSP:Boolean ",
+                                            "required": false,
+                                            "responseStr": "includeMSP:$includeMSP ",
+                                            "type": {
+                                                "kind": [
+                                                    "SCALAR"
+                                                ],
+                                                "name": "Boolean",
+                                                "non_null": false
+                                            },
+                                            "varName": "includeMSP"
+                                        },
                                         "plan": {
                                             "defaultValue": null,
                                             "description": "Filter by account plan.",
@@ -476,7 +586,19 @@
                                                                         },
                                                                         {
                                                                             "deprecationReason": null,
-                                                                            "description": "Deal was lost and the account is no longer active.",
+                                                                            "description": "Account's licenses are locked, for example after the commercial license expired.",
+                                                                            "isDeprecated": false,
+                                                                            "name": "LOCK"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": "Account is disabled.",
+                                                                            "isDeprecated": false,
+                                                                            "name": "DISABLE"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": "The account was deleted and is no longer active.",
                                                                             "isDeprecated": false,
                                                                             "name": "LOST"
                                                                         }
@@ -542,7 +664,19 @@
                                                                         },
                                                                         {
                                                                             "deprecationReason": null,
-                                                                            "description": "Deal was lost and the account is no longer active.",
+                                                                            "description": "Account's licenses are locked, for example after the commercial license expired.",
+                                                                            "isDeprecated": false,
+                                                                            "name": "LOCK"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": "Account is disabled.",
+                                                                            "isDeprecated": false,
+                                                                            "name": "DISABLE"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": "The account was deleted and is no longer active.",
                                                                             "isDeprecated": false,
                                                                             "name": "LOST"
                                                                         }
@@ -1170,6 +1304,84 @@
                 "non_null": false
             },
             "varName": "businessPlatformAccountListInput"
+        },
+        "businessPlatformCountAccountByPlanInput": {
+            "defaultValue": "{filter: {includeMSP: false}}",
+            "description": "Optional input with filter criteria.",
+            "id_str": "countAccountByPlan___input",
+            "name": "input",
+            "path": "countAccountByPlan.input",
+            "requestStr": "$businessPlatformCountAccountByPlanInput:BusinessPlatformCountAccountByPlanInput ",
+            "required": false,
+            "responseStr": "input:$businessPlatformCountAccountByPlanInput ",
+            "type": {
+                "definition": {
+                    "description": "Input for counting Business Platform accounts grouped by plan.",
+                    "enumValues": null,
+                    "fields": null,
+                    "inputFields": {
+                        "filter": {
+                            "defaultValue": "{includeMSP: false}",
+                            "description": "Optional filter criteria.",
+                            "id_str": "countAccountByPlan___input___filter",
+                            "name": "filter",
+                            "path": "countAccountByPlan.input.filter",
+                            "requestStr": "$businessPlatformCountAccountByPlanFilterInput:BusinessPlatformCountAccountByPlanFilterInput ",
+                            "required": false,
+                            "responseStr": "filter:$businessPlatformCountAccountByPlanFilterInput ",
+                            "type": {
+                                "definition": {
+                                    "description": "Filter criteria for counting Business Platform accounts grouped by plan.",
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "includeMSP": {
+                                            "defaultValue": "false",
+                                            "description": "Whether to include accounts managed by an MSP partner. Defaults to false.",
+                                            "id_str": "countAccountByPlan___input___filter___includeMSP",
+                                            "name": "includeMSP",
+                                            "path": "countAccountByPlan.input.filter.includeMSP",
+                                            "requestStr": "$includeMSP:Boolean ",
+                                            "required": false,
+                                            "responseStr": "includeMSP:$includeMSP ",
+                                            "type": {
+                                                "kind": [
+                                                    "SCALAR"
+                                                ],
+                                                "name": "Boolean",
+                                                "non_null": false
+                                            },
+                                            "varName": "includeMSP"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "BusinessPlatformCountAccountByPlanFilterInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "BusinessPlatformCountAccountByPlanFilterInput",
+                                "non_null": false
+                            },
+                            "varName": "businessPlatformCountAccountByPlanFilterInput"
+                        }
+                    },
+                    "interfaces": null,
+                    "kind": "INPUT_OBJECT",
+                    "name": "BusinessPlatformCountAccountByPlanInput",
+                    "possibleTypes": null
+                },
+                "indexType": "input_object",
+                "kind": [
+                    "INPUT_OBJECT"
+                ],
+                "name": "BusinessPlatformCountAccountByPlanInput",
+                "non_null": false
+            },
+            "varName": "businessPlatformCountAccountByPlanInput"
         },
         "businessPlatformPartnerListInput": {
             "defaultValue": null,
@@ -1880,7 +2092,7 @@
                                                     "inputFields": {
                                                         "account": {
                                                             "defaultValue": null,
-                                                            "description": "Filter by account.",
+                                                            "description": "Filter by the managing partner account.",
                                                             "id_str": "accountList___input___filter___account",
                                                             "name": "account",
                                                             "path": "accountList.input.filter.account",
@@ -1941,6 +2153,98 @@
                                                                             "id_str": "accountList___input___filter___account___in",
                                                                             "name": "in",
                                                                             "path": "accountList.input.filter.account.in",
+                                                                            "requestStr": "$in:[ID] ",
+                                                                            "required": false,
+                                                                            "responseStr": "in:$in ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "LIST",
+                                                                                    "NON_NULL",
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "ID",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "in"
+                                                                        }
+                                                                    },
+                                                                    "interfaces": null,
+                                                                    "kind": "INPUT_OBJECT",
+                                                                    "name": "AccountFilter",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "input_object",
+                                                                "kind": [
+                                                                    "INPUT_OBJECT"
+                                                                ],
+                                                                "name": "AccountFilter",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "accountFilter"
+                                                        },
+                                                        "customerAccount": {
+                                                            "defaultValue": null,
+                                                            "description": "Filter by the account's own (customer) CMA account id.",
+                                                            "id_str": "accountList___input___filter___customerAccount",
+                                                            "name": "customerAccount",
+                                                            "path": "accountList.input.filter.customerAccount",
+                                                            "requestStr": "$accountFilter:AccountFilter ",
+                                                            "required": false,
+                                                            "responseStr": "customerAccount:$accountFilter ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": null,
+                                                                    "enumValues": null,
+                                                                    "fields": null,
+                                                                    "inputFields": {
+                                                                        "accountInclusion": {
+                                                                            "defaultValue": null,
+                                                                            "description": null,
+                                                                            "id_str": "accountList___input___filter___customerAccount___accountInclusion",
+                                                                            "name": "accountInclusion",
+                                                                            "path": "accountList.input.filter.customerAccount.accountInclusion",
+                                                                            "requestStr": "$accountInclusion:AccountInclusion ",
+                                                                            "required": false,
+                                                                            "responseStr": "accountInclusion:$accountInclusion ",
+                                                                            "type": {
+                                                                                "definition": {
+                                                                                    "description": null,
+                                                                                    "enumValues": [
+                                                                                        {
+                                                                                            "deprecationReason": null,
+                                                                                            "description": null,
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "ALL_ACCOUNTS"
+                                                                                        },
+                                                                                        {
+                                                                                            "deprecationReason": null,
+                                                                                            "description": null,
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "MANAGED_ACCOUNTS_ONLY"
+                                                                                        }
+                                                                                    ],
+                                                                                    "fields": null,
+                                                                                    "inputFields": null,
+                                                                                    "interfaces": null,
+                                                                                    "kind": "ENUM",
+                                                                                    "name": "AccountInclusion",
+                                                                                    "possibleTypes": null
+                                                                                },
+                                                                                "indexType": "enum",
+                                                                                "kind": [
+                                                                                    "ENUM"
+                                                                                ],
+                                                                                "name": "AccountInclusion",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "accountInclusion"
+                                                                        },
+                                                                        "in": {
+                                                                            "defaultValue": null,
+                                                                            "description": null,
+                                                                            "id_str": "accountList___input___filter___customerAccount___in",
+                                                                            "name": "in",
+                                                                            "path": "accountList.input.filter.customerAccount.in",
                                                                             "requestStr": "$in:[ID] ",
                                                                             "required": false,
                                                                             "responseStr": "in:$in ",
@@ -2219,6 +2523,24 @@
                                                             },
                                                             "varName": "freeTextFilterInput"
                                                         },
+                                                        "includeMSP": {
+                                                            "defaultValue": "false",
+                                                            "description": "Whether to include accounts managed by an MSP partner. Defaults to false.",
+                                                            "id_str": "accountList___input___filter___includeMSP",
+                                                            "name": "includeMSP",
+                                                            "path": "accountList.input.filter.includeMSP",
+                                                            "requestStr": "$includeMSP:Boolean ",
+                                                            "required": false,
+                                                            "responseStr": "includeMSP:$includeMSP ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "Boolean",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "includeMSP"
+                                                        },
                                                         "plan": {
                                                             "defaultValue": null,
                                                             "description": "Filter by account plan.",
@@ -2279,7 +2601,19 @@
                                                                                         },
                                                                                         {
                                                                                             "deprecationReason": null,
-                                                                                            "description": "Deal was lost and the account is no longer active.",
+                                                                                            "description": "Account's licenses are locked, for example after the commercial license expired.",
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "LOCK"
+                                                                                        },
+                                                                                        {
+                                                                                            "deprecationReason": null,
+                                                                                            "description": "Account is disabled.",
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "DISABLE"
+                                                                                        },
+                                                                                        {
+                                                                                            "deprecationReason": null,
+                                                                                            "description": "The account was deleted and is no longer active.",
                                                                                             "isDeprecated": false,
                                                                                             "name": "LOST"
                                                                                         }
@@ -2345,7 +2679,19 @@
                                                                                         },
                                                                                         {
                                                                                             "deprecationReason": null,
-                                                                                            "description": "Deal was lost and the account is no longer active.",
+                                                                                            "description": "Account's licenses are locked, for example after the commercial license expired.",
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "LOCK"
+                                                                                        },
+                                                                                        {
+                                                                                            "deprecationReason": null,
+                                                                                            "description": "Account is disabled.",
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "DISABLE"
+                                                                                        },
+                                                                                        {
+                                                                                            "deprecationReason": null,
+                                                                                            "description": "The account was deleted and is no longer active.",
                                                                                             "isDeprecated": false,
                                                                                             "name": "LOST"
                                                                                         }
@@ -3382,6 +3728,27 @@
                                                     },
                                                     "varName": "id"
                                                 },
+                                                "isMSP": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Whether the account is managed under an MSP partner.",
+                                                    "id_str": "accountList___items___isMSP",
+                                                    "isDeprecated": false,
+                                                    "name": "isMSP",
+                                                    "path": "accountList.items.isMSP",
+                                                    "requestStr": "$isMSP:Boolean! ",
+                                                    "required": true,
+                                                    "responseStr": "isMSP:$isMSP ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "Boolean",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "isMSP"
+                                                },
                                                 "partner": {
                                                     "args": {},
                                                     "deprecationReason": null,
@@ -3504,7 +3871,19 @@
                                                                 },
                                                                 {
                                                                     "deprecationReason": null,
-                                                                    "description": "Deal was lost and the account is no longer active.",
+                                                                    "description": "Account's licenses are locked, for example after the commercial license expired.",
+                                                                    "isDeprecated": false,
+                                                                    "name": "LOCK"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Account is disabled.",
+                                                                    "isDeprecated": false,
+                                                                    "name": "DISABLE"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "The account was deleted and is no longer active.",
                                                                     "isDeprecated": false,
                                                                     "name": "LOST"
                                                                 }
@@ -3845,7 +4224,86 @@
                     "varName": "businessPlatformAccountOverviewPayload"
                 },
                 "countAccountByPlan": {
-                    "args": {},
+                    "args": {
+                        "countAccountByPlan___input": {
+                            "defaultValue": "{filter: {includeMSP: false}}",
+                            "description": "Optional input with filter criteria.",
+                            "id_str": "countAccountByPlan___input",
+                            "name": "input",
+                            "path": "countAccountByPlan.input",
+                            "requestStr": "$businessPlatformCountAccountByPlanInput:BusinessPlatformCountAccountByPlanInput ",
+                            "required": false,
+                            "responseStr": "input:$businessPlatformCountAccountByPlanInput ",
+                            "type": {
+                                "definition": {
+                                    "description": "Input for counting Business Platform accounts grouped by plan.",
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "filter": {
+                                            "defaultValue": "{includeMSP: false}",
+                                            "description": "Optional filter criteria.",
+                                            "id_str": "countAccountByPlan___input___filter",
+                                            "name": "filter",
+                                            "path": "countAccountByPlan.input.filter",
+                                            "requestStr": "$businessPlatformCountAccountByPlanFilterInput:BusinessPlatformCountAccountByPlanFilterInput ",
+                                            "required": false,
+                                            "responseStr": "filter:$businessPlatformCountAccountByPlanFilterInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": "Filter criteria for counting Business Platform accounts grouped by plan.",
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "includeMSP": {
+                                                            "defaultValue": "false",
+                                                            "description": "Whether to include accounts managed by an MSP partner. Defaults to false.",
+                                                            "id_str": "countAccountByPlan___input___filter___includeMSP",
+                                                            "name": "includeMSP",
+                                                            "path": "countAccountByPlan.input.filter.includeMSP",
+                                                            "requestStr": "$includeMSP:Boolean ",
+                                                            "required": false,
+                                                            "responseStr": "includeMSP:$includeMSP ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "Boolean",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "includeMSP"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "BusinessPlatformCountAccountByPlanFilterInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "BusinessPlatformCountAccountByPlanFilterInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "businessPlatformCountAccountByPlanFilterInput"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "BusinessPlatformCountAccountByPlanInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "BusinessPlatformCountAccountByPlanInput",
+                                "non_null": false
+                            },
+                            "varName": "businessPlatformCountAccountByPlanInput"
+                        }
+                    },
                     "deprecationReason": null,
                     "description": "Count of the partner's accounts grouped by plan.",
                     "id_str": "countAccountByPlan",
@@ -3944,7 +4402,19 @@
                                                                 },
                                                                 {
                                                                     "deprecationReason": null,
-                                                                    "description": "Deal was lost and the account is no longer active.",
+                                                                    "description": "Account's licenses are locked, for example after the commercial license expired.",
+                                                                    "isDeprecated": false,
+                                                                    "name": "LOCK"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Account is disabled.",
+                                                                    "isDeprecated": false,
+                                                                    "name": "DISABLE"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "The account was deleted and is no longer active.",
                                                                     "isDeprecated": false,
                                                                     "name": "LOST"
                                                                 }
@@ -5045,6 +5515,13 @@
                         "id2"
                     ]
                 },
+                "customerAccount": {
+                    "accountInclusion": "ALL_ACCOUNTS",
+                    "in": [
+                        "id1",
+                        "id2"
+                    ]
+                },
                 "expiresOn": [
                     {
                         "between": [
@@ -5067,6 +5544,7 @@
                 "freeText": {
                     "search": "string"
                 },
+                "includeMSP": true,
                 "plan": [
                     {
                         "eq": "PENDING_APPROVAL",
@@ -5101,6 +5579,11 @@
                     "direction": "ASC",
                     "priority": 1
                 }
+            }
+        },
+        "businessPlatformCountAccountByPlanInput": {
+            "filter": {
+                "includeMSP": true
             }
         },
         "businessPlatformPartnerListInput": {

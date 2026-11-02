@@ -71,6 +71,80 @@ def extract_rules_and_sections(policy_data):
     return rules, sections
 
 
+def extract_if_rules_resources(policy_data):
+    """Extract if_rules resources from the policy data, sub-policy aware.
+
+    Splits sections/rules into main vs. sub (keyed off `sub_policy_name`) and
+    also pulls out `sub_policies[]`. Legacy JSON (no `sub_policy_name` on any
+    row, no `sub_policies` key) produces exactly `main_rules`/`main_sections`
+    equal to what extract_rules_and_sections() would - empty sub_rules/
+    sub_sections/sub_policies - so the legacy behavior is unchanged.
+
+    Returns a dict: {main_rules, sub_rules, main_sections, sub_sections, sub_policies}
+    """
+    main_rules = []
+    sub_rules = []
+    for rule_entry in policy_data.get('rules', []):
+        rule = rule_entry.get('rule', {})
+        if not (rule.get('id') and rule.get('name')):
+            continue
+        entry = {
+            'id': rule['id'],
+            'name': rule['name'],
+            'index': rule.get('index', 0),
+            'section_name': rule.get('section', {}).get('name', 'Default')
+        }
+        sub_policy_name = rule_entry.get('sub_policy_name')
+        if sub_policy_name:
+            entry['sub_policy_name'] = sub_policy_name
+            sub_rules.append(entry)
+        else:
+            main_rules.append(entry)
+
+    main_sections = []
+    sub_sections = []
+    for section in policy_data.get('sections', []):
+        if not section.get('section_name'):
+            continue
+        entry = {
+            'section_name': section['section_name'],
+            'section_index': section.get('section_index', 0),
+            'section_id': section.get('section_id', '')
+        }
+        sub_policy_name = section.get('sub_policy_name')
+        if sub_policy_name:
+            entry['sub_policy_name'] = sub_policy_name
+            sub_sections.append(entry)
+        else:
+            main_sections.append(entry)
+
+    sub_policies = []
+    for sp in policy_data.get('sub_policies', []) or []:
+        if sp.get('sub_policy_name') and sp.get('sub_policy_id'):
+            entry = {
+                'sub_policy_name': sp['sub_policy_name'],
+                'sub_policy_id': sp['sub_policy_id']
+            }
+            # The cleanup rule is embedded in the sub-policy (the API auto-creates
+            # it; cato_if_sub_policy manages it as part of the resource). It is
+            # NOT imported separately: importing the sub-policy id brings it into
+            # state via the provider's last-rule lookup on the first refresh.
+            cleanup = sp.get('cleanup_rule') or {}
+            cleanup_rule = cleanup.get('rule') or {}
+            if cleanup_rule.get('name'):
+                entry['cleanup_rule_name'] = cleanup_rule['name']
+                entry['cleanup_rule_id'] = cleanup_rule.get('id', '')
+            sub_policies.append(entry)
+
+    return {
+        'main_rules': main_rules,
+        'sub_rules': sub_rules,
+        'main_sections': main_sections,
+        'sub_sections': sub_sections,
+        'sub_policies': sub_policies,
+    }
+
+
 def run_terraform_import(resource_address, resource_id, timeout=60, verbose=False):
     """
     Run a single terraform import command
@@ -126,14 +200,63 @@ def find_rule_index(rules, rule_name):
     return None
 
 
+# ---------------------------------------------------------------------------
+# if_rules-specific: non-blocking import classification.
+#
+# Terraform import is run per-resource; a single failure must never abort the
+# whole job (this makes `catocli import if_rules_to_tf` safely re-runnable:
+# a second run reports everything as "already imported" and still exits 0).
+# We classify the (already-separate) run_terraform_import() failure by its
+# stderr text into one of three buckets:
+#   - already_managed: the resource is already in local Terraform state.
+#   - not_found:        the id doesn't exist in the live tenant anymore.
+#   - other:            anything else (treated as a non-fatal warning).
+# This only affects the if_rules import path; run_terraform_import() itself
+# (shared with wf/wnw/tls) is untouched.
+# ---------------------------------------------------------------------------
+ALREADY_MANAGED_MARKERS = (
+    "already managed by terraform",
+    "already exists in state",
+    "resource already managed",
+)
+NOT_FOUND_MARKERS = (
+    "cannot import non-existent remote object",
+    "non-existent remote object",
+    "could not be found",
+    "no matching resource found",
+)
+
+
+def classify_import_failure(stderr):
+    """Classify a failed `terraform import` by its stderr text.
+
+    Returns one of: 'already_managed', 'not_found', 'other'.
+    """
+    text = (stderr or "").lower()
+    if any(marker in text for marker in ALREADY_MANAGED_MARKERS):
+        return "already_managed"
+    if any(marker in text for marker in NOT_FOUND_MARKERS):
+        return "not_found"
+    return "other"
+
+
+def ensure_module_prefix(module_name):
+    """Add the `module.` auto-prefix if missing (wf/wnw/tls already do this;
+    if_rules was missing it - this fixes that inconsistency)."""
+    if module_name and not module_name.startswith('module.'):
+        return f'module.{module_name}'
+    return module_name
+
+
 def import_sections(sections, module_name, resource_type,
                     resource_name="sections", verbose=False):
-    """Import all sections"""
+    """Import all sections (if_rules path). Non-blocking: a failed import is
+    classified and reported, but never stops the run."""
+    module_name = ensure_module_prefix(module_name)
     print("\nStarting section imports...")
     total_sections = len(sections)
-    successful_imports = 0
-    failed_imports = 0
-    
+    tally = {"imported": 0, "already_managed": 0, "not_found": 0, "other": 0}
+
     for i, section in enumerate(sections):
         section_id = section['section_id']
         section_name = section['section_name']
@@ -141,94 +264,240 @@ def import_sections(sections, module_name, resource_type,
         resource_address = f'{module_name}.{resource_type}.{resource_name}["{section_name}"]'
         print(f"\n[{i+1}/{total_sections}] Section: {section_name} (index: {section_index})")
 
+        if not section_id:
+            # Synthetic greenfield section (e.g. "Corporate Rules" emitted by the
+            # exporter for single-section tenants) - nothing to import; terraform
+            # creates it on first apply.
+            print(f"SKIP (no live id - greenfield section, created on apply): {resource_address}")
+            tally["not_found"] += 1
+            continue
+
         # For sections, we use the section name as the ID since that's how Cato identifies them
         success, stdout, stderr = run_terraform_import(resource_address, section_id, verbose=verbose)
-        
+
         if success:
-            successful_imports += 1
+            tally["imported"] += 1
         else:
-            failed_imports += 1
-    
-    print(f"\nSection Import Summary: {successful_imports} successful, {failed_imports} failed")
-    return successful_imports, failed_imports
+            kind = classify_import_failure(stderr)
+            if kind == "already_managed":
+                print(f"SKIP (already imported): {resource_address}")
+            elif kind == "not_found":
+                print(f"SKIP (not found in tenant): {resource_address} (id {section_id})")
+            else:
+                print(f"WARNING: import failed for {resource_address}: {stderr.strip() if stderr else 'unknown error'}")
+            tally[kind] += 1
+
+    print(f"\nSection Import Summary: {tally['imported']} imported, "
+          f"{tally['already_managed']} already-imported, {tally['not_found']} not-found, "
+          f"{tally['other']} other failures")
+    return tally
 
 
 def import_rules(rules, module_name, verbose=False,
                 resource_type="cato_if_rule", resource_name="rules",
                 batch_size=10, delay_between_batches=2, auto_approve=False):
-    """Import all rules in batches"""
+    """Import all rules in batches (if_rules path). Non-blocking: failures
+    are classified and reported, never stop the run or prompt the user."""
+    module_name = ensure_module_prefix(module_name)
     print("\nStarting rule imports...")
-    successful_imports = 0
-    failed_imports = 0
+    tally = {"imported": 0, "already_managed": 0, "not_found": 0, "other": 0}
     total_rules = len(rules)
-    
+
     for i, rule in enumerate(rules):
         rule_id = rule['id']
         rule_name = rule['name']
         rule_index = find_rule_index(rules, rule_name)
         terraform_key = sanitize_name_for_terraform(rule_name)
-        
+
         # Use array index syntax instead of rule ID
         resource_address = f'{module_name}.{resource_type}.{resource_name}["{str(rule_name)}"]'
         print(f"\n[{i+1}/{total_rules}] Rule: {rule_name} (index: {rule_index})")
-        
+
         success, stdout, stderr = run_terraform_import(resource_address, rule_id, verbose=verbose)
-        
+
         if success:
-            successful_imports += 1
+            tally["imported"] += 1
         else:
-            failed_imports += 1
-            
-            # Ask user if they want to continue on failure (unless auto-approved)
-            if failed_imports <= 3 and not auto_approve:  # Only prompt for first few failures
-                response = input(f"\nContinue with remaining imports? (y/n): ").lower()
-                if response == 'n':
-                    print("Import process stopped by user.")
-                    break
-        
+            kind = classify_import_failure(stderr)
+            if kind == "already_managed":
+                print(f"SKIP (already imported): {resource_address}")
+            elif kind == "not_found":
+                print(f"SKIP (not found in tenant): {resource_address} (id {rule_id})")
+            else:
+                print(f"WARNING: import failed for {resource_address}: {stderr.strip() if stderr else 'unknown error'}")
+            tally[kind] += 1
+            # Non-blocking: no more "continue? y/n" prompt after N failures.
+
         # Delay between batches
         if (i + 1) % batch_size == 0 and i < total_rules - 1:
             print(f"\n  Batch complete. Waiting {delay_between_batches}s before next batch...")
             time.sleep(delay_between_batches)
-    
-    print(f"\n Rule Import Summary: {successful_imports} successful, {failed_imports} failed")
-    return successful_imports, failed_imports
+
+    print(f"\n Rule Import Summary: {tally['imported']} imported, "
+          f"{tally['already_managed']} already-imported, {tally['not_found']} not-found, "
+          f"{tally['other']} other failures")
+    return tally
+
+
+def import_sub_policies(sub_policies, module_name, verbose=False,
+                        resource_type="cato_if_sub_policy", resource_name="sub_policies"):
+    """Import all sub-policies (if_rules path only). Non-blocking."""
+    module_name = ensure_module_prefix(module_name)
+    print("\nStarting sub-policy imports...")
+    total = len(sub_policies)
+    tally = {"imported": 0, "already_managed": 0, "not_found": 0, "other": 0}
+
+    for i, sp in enumerate(sub_policies):
+        sub_policy_id = sp['sub_policy_id']
+        sub_policy_name = sp['sub_policy_name']
+        resource_address = f'{module_name}.{resource_type}.{resource_name}["{sub_policy_name}"]'
+        print(f"\n[{i+1}/{total}] Sub-policy: {sub_policy_name}")
+        if sp.get('cleanup_rule_name'):
+            print(f"    includes embedded cleanup rule: {sp['cleanup_rule_name']}"
+                  f" (id {sp.get('cleanup_rule_id', '') or 'n/a'}) - imported with the sub-policy,"
+                  f" hydrated into state on first refresh")
+
+        success, stdout, stderr = run_terraform_import(resource_address, sub_policy_id, verbose=verbose)
+
+        if success:
+            tally["imported"] += 1
+        else:
+            kind = classify_import_failure(stderr)
+            if kind == "already_managed":
+                print(f"SKIP (already imported): {resource_address}")
+            elif kind == "not_found":
+                print(f"SKIP (not found in tenant): {resource_address} (id {sub_policy_id})")
+            else:
+                print(f"WARNING: import failed for {resource_address}: {stderr.strip() if stderr else 'unknown error'}")
+            tally[kind] += 1
+
+    print(f"\nSub-policy Import Summary: {tally['imported']} imported, "
+          f"{tally['already_managed']} already-imported, {tally['not_found']} not-found, "
+          f"{tally['other']} other failures")
+    return tally
+
+
+def import_sub_rules(sub_rules, module_name, verbose=False,
+                     resource_type="cato_if_rule", resource_name="sub_rules",
+                     batch_size=10, delay_between_batches=2):
+    """Import all sub-policy rules (if_rules path only), keyed by
+    "<sub_policy_name>::<rule_name>". Non-blocking."""
+    module_name = ensure_module_prefix(module_name)
+    print("\nStarting sub-rule imports...")
+    tally = {"imported": 0, "already_managed": 0, "not_found": 0, "other": 0}
+    total = len(sub_rules)
+
+    for i, rule in enumerate(sub_rules):
+        rule_id = rule['id']
+        composite_key = f"{rule['sub_policy_name']}::{rule['name']}"
+        resource_address = f'{module_name}.{resource_type}.{resource_name}["{composite_key}"]'
+        print(f"\n[{i+1}/{total}] Sub-rule: {composite_key}")
+
+        success, stdout, stderr = run_terraform_import(resource_address, rule_id, verbose=verbose)
+
+        if success:
+            tally["imported"] += 1
+        else:
+            kind = classify_import_failure(stderr)
+            if kind == "already_managed":
+                print(f"SKIP (already imported): {resource_address}")
+            elif kind == "not_found":
+                print(f"SKIP (not found in tenant): {resource_address} (id {rule_id})")
+            else:
+                print(f"WARNING: import failed for {resource_address}: {stderr.strip() if stderr else 'unknown error'}")
+            tally[kind] += 1
+
+        if (i + 1) % batch_size == 0 and i < total - 1:
+            print(f"\n  Batch complete. Waiting {delay_between_batches}s before next batch...")
+            time.sleep(delay_between_batches)
+
+    print(f"\n Sub-rule Import Summary: {tally['imported']} imported, "
+          f"{tally['already_managed']} already-imported, {tally['not_found']} not-found, "
+          f"{tally['other']} other failures")
+    return tally
+
+
+def print_skipped_sub_sections(sub_sections, module_name):
+    """Sub-sections aren't managed by the module yet (provider gap - see
+    docs/ifw-sub-policy-json-design.md). Print a clear SKIP warning instead
+    of attempting to import them."""
+    module_name = ensure_module_prefix(module_name)
+    if not sub_sections:
+        return
+    print(f"\nSKIP: {len(sub_sections)} sub-section(s) are not yet importable "
+          f"(the module has no cato_if_section.sub_sections resource - provider/module gap):")
+    for s in sub_sections:
+        composite_key = f"{s['sub_policy_name']}::{s['section_name']}"
+        resource_address = f'{module_name}.cato_if_section.sub_sections["{composite_key}"]'
+        print(f"  - {resource_address}  (id {s['section_id']})")
+
+
+def merge_tally(total, part):
+    for k, v in part.items():
+        total[k] = total.get(k, 0) + v
+    return total
 
 
 def import_if_rules_to_tf(args, configuration):
-    """Main function to orchestrate the import process"""
+    """Main function to orchestrate the import process (sub-policy aware).
+
+    Non-blocking by design: a per-resource import failure is classified and
+    reported but never aborts the job and never prompts the user - running
+    this command twice in a row is expected to be idempotent (the second run
+    reports everything as already-imported). The command always returns
+    success (and the CLI framework always exits 0 for a non-exception
+    result - see catocli/Utils/clidriver.py) - the real outcome is the
+    printed summary / the counts in the returned dict, not the exit code.
+    """
     try:
         print(" Terraform Import Tool - Cato IFW Rules & Sections")
         print("=" * 60)
-        
+
         # Load data
         print(f" Loading data from {args.json_file}...")
         policy_data = load_json_data(args.json_file)
-        
-        # Extract rules and sections
-        rules, sections = extract_rules_and_sections(policy_data)
-        
+
+        # Extract rules/sections, sub-policy aware
+        resources = extract_if_rules_resources(policy_data)
+        main_rules = resources['main_rules']
+        sub_rules = resources['sub_rules']
+        main_sections = resources['main_sections']
+        sub_sections = resources['sub_sections']
+        sub_policies = resources['sub_policies']
+
         if hasattr(args, 'verbose') and args.verbose:
             print(f"section_ids: {json.dumps(policy_data.get('section_ids', {}), indent=2)}")
-        
-        print(f" Found {len(rules)} rules")
-        print(f"  Found {len(sections)} sections")
-        
-        if not rules and not sections:
+
+        print(f" Found {len(main_rules)} rule(s), {len(sub_rules)} sub-rule(s)")
+        print(f"  Found {len(main_sections)} section(s), {len(sub_sections)} sub-section(s)")
+        print(f"  Found {len(sub_policies)} sub-policy(ies)")
+
+        if not main_rules and not sub_rules and not main_sections and not sub_sections and not sub_policies:
             print(" No rules or sections found. Exiting.")
             return [{"success": False, "error": "No rules or sections found"}]
-        
+
+        # Add module. prefix if not present (if_rules was missing this,
+        # unlike the wf/wnw/tls variants - fixed here).
+        module_name = ensure_module_prefix(args.module_name)
+
         # Validate Terraform environment before proceeding
-        validate_terraform_environment(args.module_name, verbose=args.verbose)
-        
+        validate_terraform_environment(module_name, verbose=args.verbose)
+
         # Ask for confirmation (unless auto-approved)
         if not args.rules_only and not args.sections_only:
-            print(f"\n Ready to import {len(sections)} sections and {len(rules)} rules.")
+            print(f"\n Ready to import {len(main_sections)} section(s), {len(sub_policies)} sub-policy(ies), "
+                  f"{len(main_rules)} rule(s), and {len(sub_rules)} sub-rule(s).")
+            if sub_sections:
+                print(f" NOTE: {len(sub_sections)} sub-section(s) will be SKIPPED "
+                      f"(not yet supported by the module - see docs/ifw-sub-policy-json-design.md).")
         elif args.rules_only:
-            print(f"\n Ready to import {len(rules)} rules only.")
+            print(f"\n Ready to import {len(main_rules)} rule(s) and {len(sub_rules)} sub-rule(s) only.")
         elif args.sections_only:
-            print(f"\n Ready to import {len(sections)} sections only.")
-        
+            print(f"\n Ready to import {len(main_sections)} section(s) only.")
+            if sub_sections:
+                print(f" NOTE: {len(sub_sections)} sub-section(s) will be SKIPPED "
+                      f"(not yet supported by the module).")
+
         if hasattr(args, 'auto_approve') and args.auto_approve:
             print("\nAuto-approve enabled, proceeding with import...")
         else:
@@ -236,41 +505,57 @@ def import_if_rules_to_tf(args, configuration):
             if confirm != 'y':
                 print("Import cancelled.")
                 return [{"success": False, "error": "Import cancelled by user"}]
-        
-        total_successful = 0
-        total_failed = 0
-        
-        # Import sections first (if not skipped)
-        if not args.rules_only and sections:
-            successful, failed = import_sections(sections, module_name=args.module_name, resource_type="cato_if_section", verbose=args.verbose)
-            total_successful += successful
-            total_failed += failed
-        
-        # Import rules (if not skipped)
-        if not args.sections_only and rules:
-            successful, failed = import_rules(rules, module_name=args.module_name, 
-                                            verbose=args.verbose, batch_size=args.batch_size, 
-                                            delay_between_batches=args.delay,
-                                            auto_approve=getattr(args, 'auto_approve', False))
-            total_successful += successful
-            total_failed += failed
-        
+
+        grand_tally = {"imported": 0, "already_managed": 0, "not_found": 0, "other": 0}
+
+        # Import order: sections -> sub_policies -> rules -> sub_rules
+        # (sub-sections are skipped with a warning - provider/module gap)
+        if not args.rules_only:
+            if main_sections:
+                merge_tally(grand_tally, import_sections(
+                    main_sections, module_name=module_name,
+                    resource_type="cato_if_section", verbose=args.verbose))
+
+            print_skipped_sub_sections(sub_sections, module_name)
+
+            if sub_policies:
+                merge_tally(grand_tally, import_sub_policies(
+                    sub_policies, module_name=module_name, verbose=args.verbose))
+
+        if not args.sections_only:
+            if main_rules:
+                merge_tally(grand_tally, import_rules(
+                    main_rules, module_name=module_name,
+                    verbose=args.verbose, batch_size=args.batch_size,
+                    delay_between_batches=args.delay))
+
+            if sub_rules:
+                merge_tally(grand_tally, import_sub_rules(
+                    sub_rules, module_name=module_name, verbose=args.verbose,
+                    batch_size=args.batch_size, delay_between_batches=args.delay))
+
         # Final summary
         print("\n" + "=" * 60)
         print(" FINAL IMPORT SUMMARY")
         print("=" * 60)
-        print(f" Total successful imports: {total_successful}")
-        print(f" Total failed imports: {total_failed}")
-        print(f" Overall success rate: {(total_successful / (total_successful + total_failed) * 100):.1f}%" if (total_successful + total_failed) > 0 else "N/A")
+        print(f" Imported:             {grand_tally['imported']}")
+        print(f" Already imported:     {grand_tally['already_managed']}")
+        print(f" Not found in tenant:  {grand_tally['not_found']}")
+        print(f" Other failures:       {grand_tally['other']}")
+        if sub_sections:
+            print(f" Skipped (sub-sections, not yet supported): {len(sub_sections)}")
         print("\n Import process completed!")
-        
+
         return [{
-            "success": True, 
-            "total_successful": total_successful,
-            "total_failed": total_failed,
-            "module_name": args.module_name
+            "success": True,
+            "imported": grand_tally['imported'],
+            "already_managed": grand_tally['already_managed'],
+            "not_found": grand_tally['not_found'],
+            "other_failures": grand_tally['other'],
+            "skipped_sub_sections": len(sub_sections),
+            "module_name": module_name
         }]
-    
+
     except KeyboardInterrupt:
         print("\nImport process cancelled by user (Ctrl+C).")
         print("Partial imports may have been completed.")

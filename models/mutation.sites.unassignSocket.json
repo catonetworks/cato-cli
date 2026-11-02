@@ -1,0 +1,631 @@
+{
+    "args": {
+        "accountId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        }
+    },
+    "childOperations": {
+        "unassignSocket": {
+            "args": {
+                "unassignSocket___input": {
+                    "defaultValue": null,
+                    "description": null,
+                    "id_str": "unassignSocket___input",
+                    "name": "input",
+                    "path": "unassignSocket.input",
+                    "requestStr": "$siteUnassignSocketInput:SiteUnassignSocketInput! ",
+                    "required": true,
+                    "responseStr": "input:$siteUnassignSocketInput ",
+                    "type": {
+                        "definition": {
+                            "description": "Input for unassigning a Socket from its site.",
+                            "enumValues": null,
+                            "fields": null,
+                            "inputFields": {
+                                "site": {
+                                    "defaultValue": null,
+                                    "description": "Site the Socket is assigned to.",
+                                    "id_str": "unassignSocket___input___site",
+                                    "name": "site",
+                                    "path": "unassignSocket.input.site",
+                                    "requestStr": "$siteRefInput:SiteRefInput! ",
+                                    "required": true,
+                                    "responseStr": "site:$siteRefInput ",
+                                    "type": {
+                                        "definition": {
+                                            "description": null,
+                                            "enumValues": null,
+                                            "fields": null,
+                                            "inputFields": {
+                                                "by": {
+                                                    "defaultValue": "ID",
+                                                    "description": null,
+                                                    "id_str": "unassignSocket___input___site___by",
+                                                    "name": "by",
+                                                    "path": "unassignSocket.input.site.by",
+                                                    "requestStr": "$by:ObjectRefBy! ",
+                                                    "required": true,
+                                                    "responseStr": "by:$by ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": null,
+                                                            "enumValues": [
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "ID"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "NAME"
+                                                                }
+                                                            ],
+                                                            "fields": null,
+                                                            "inputFields": null,
+                                                            "interfaces": null,
+                                                            "kind": "ENUM",
+                                                            "name": "ObjectRefBy",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "enum",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "ENUM"
+                                                        ],
+                                                        "name": "ObjectRefBy",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "by"
+                                                },
+                                                "input": {
+                                                    "defaultValue": null,
+                                                    "description": null,
+                                                    "id_str": "unassignSocket___input___site___input",
+                                                    "name": "input",
+                                                    "path": "unassignSocket.input.site.input",
+                                                    "requestStr": "$input:String! ",
+                                                    "required": true,
+                                                    "responseStr": "input:$input ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "input"
+                                                }
+                                            },
+                                            "interfaces": null,
+                                            "kind": "INPUT_OBJECT",
+                                            "name": "SiteRefInput",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "input_object",
+                                        "kind": [
+                                            "NON_NULL",
+                                            "INPUT_OBJECT"
+                                        ],
+                                        "name": "SiteRefInput",
+                                        "non_null": false
+                                    },
+                                    "varName": "siteRefInput"
+                                },
+                                "socketIdentifier": {
+                                    "defaultValue": null,
+                                    "description": "Socket to unassign: its serial number or its Socket ID. The value is matched as a serial number first, then as\na Socket ID.",
+                                    "id_str": "unassignSocket___input___socketIdentifier",
+                                    "name": "socketIdentifier",
+                                    "path": "unassignSocket.input.socketIdentifier",
+                                    "requestStr": "$socketIdentifier:String! ",
+                                    "required": true,
+                                    "responseStr": "socketIdentifier:$socketIdentifier ",
+                                    "type": {
+                                        "kind": [
+                                            "NON_NULL",
+                                            "SCALAR"
+                                        ],
+                                        "name": "String",
+                                        "non_null": false
+                                    },
+                                    "varName": "socketIdentifier"
+                                }
+                            },
+                            "interfaces": null,
+                            "kind": "INPUT_OBJECT",
+                            "name": "SiteUnassignSocketInput",
+                            "possibleTypes": null
+                        },
+                        "indexType": "input_object",
+                        "kind": [
+                            "NON_NULL",
+                            "INPUT_OBJECT"
+                        ],
+                        "name": "SiteUnassignSocketInput",
+                        "non_null": false
+                    },
+                    "varName": "siteUnassignSocketInput"
+                }
+            },
+            "deprecationReason": null,
+            "description": "Unassign a Socket from its site. The Socket's tunnels are torn down and the device is reset to factory settings\nwhen it next contacts a PoP; it can be assigned again only after it registers again. On an HA site the\nremaining Socket becomes the primary Socket. vSockets are removed with the vSocket operations instead.",
+            "isDeprecated": false,
+            "name": "unassignSocket",
+            "type": {
+                "kind": "OBJECT",
+                "name": "SiteUnassignSocketPayload",
+                "ofType": null
+            }
+        }
+    },
+    "deprecationReason": "in favor of site",
+    "description": null,
+    "fieldTypes": {},
+    "isDeprecated": true,
+    "name": "sites",
+    "operationArgs": {
+        "accountId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        },
+        "siteUnassignSocketInput": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "unassignSocket___input",
+            "name": "input",
+            "path": "unassignSocket.input",
+            "requestStr": "$siteUnassignSocketInput:SiteUnassignSocketInput! ",
+            "required": true,
+            "responseStr": "input:$siteUnassignSocketInput ",
+            "type": {
+                "definition": {
+                    "description": "Input for unassigning a Socket from its site.",
+                    "enumValues": null,
+                    "fields": null,
+                    "inputFields": {
+                        "site": {
+                            "defaultValue": null,
+                            "description": "Site the Socket is assigned to.",
+                            "id_str": "unassignSocket___input___site",
+                            "name": "site",
+                            "path": "unassignSocket.input.site",
+                            "requestStr": "$siteRefInput:SiteRefInput! ",
+                            "required": true,
+                            "responseStr": "site:$siteRefInput ",
+                            "type": {
+                                "definition": {
+                                    "description": null,
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "by": {
+                                            "defaultValue": "ID",
+                                            "description": null,
+                                            "id_str": "unassignSocket___input___site___by",
+                                            "name": "by",
+                                            "path": "unassignSocket.input.site.by",
+                                            "requestStr": "$by:ObjectRefBy! ",
+                                            "required": true,
+                                            "responseStr": "by:$by ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": [
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "ID"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "NAME"
+                                                        }
+                                                    ],
+                                                    "fields": null,
+                                                    "inputFields": null,
+                                                    "interfaces": null,
+                                                    "kind": "ENUM",
+                                                    "name": "ObjectRefBy",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "enum",
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "ENUM"
+                                                ],
+                                                "name": "ObjectRefBy",
+                                                "non_null": false
+                                            },
+                                            "varName": "by"
+                                        },
+                                        "input": {
+                                            "defaultValue": null,
+                                            "description": null,
+                                            "id_str": "unassignSocket___input___site___input",
+                                            "name": "input",
+                                            "path": "unassignSocket.input.site.input",
+                                            "requestStr": "$input:String! ",
+                                            "required": true,
+                                            "responseStr": "input:$input ",
+                                            "type": {
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "SCALAR"
+                                                ],
+                                                "name": "String",
+                                                "non_null": false
+                                            },
+                                            "varName": "input"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "SiteRefInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "NON_NULL",
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "SiteRefInput",
+                                "non_null": false
+                            },
+                            "varName": "siteRefInput"
+                        },
+                        "socketIdentifier": {
+                            "defaultValue": null,
+                            "description": "Socket to unassign: its serial number or its Socket ID. The value is matched as a serial number first, then as\na Socket ID.",
+                            "id_str": "unassignSocket___input___socketIdentifier",
+                            "name": "socketIdentifier",
+                            "path": "unassignSocket.input.socketIdentifier",
+                            "requestStr": "$socketIdentifier:String! ",
+                            "required": true,
+                            "responseStr": "socketIdentifier:$socketIdentifier ",
+                            "type": {
+                                "kind": [
+                                    "NON_NULL",
+                                    "SCALAR"
+                                ],
+                                "name": "String",
+                                "non_null": false
+                            },
+                            "varName": "socketIdentifier"
+                        }
+                    },
+                    "interfaces": null,
+                    "kind": "INPUT_OBJECT",
+                    "name": "SiteUnassignSocketInput",
+                    "possibleTypes": null
+                },
+                "indexType": "input_object",
+                "kind": [
+                    "NON_NULL",
+                    "INPUT_OBJECT"
+                ],
+                "name": "SiteUnassignSocketInput",
+                "non_null": false
+            },
+            "varName": "siteUnassignSocketInput"
+        }
+    },
+    "path": "mutation.sites.unassignSocket",
+    "type": {
+        "definition": {
+            "description": null,
+            "enumValues": null,
+            "fields": {
+                "unassignSocket": {
+                    "args": {
+                        "unassignSocket___input": {
+                            "defaultValue": null,
+                            "description": null,
+                            "id_str": "unassignSocket___input",
+                            "name": "input",
+                            "path": "unassignSocket.input",
+                            "requestStr": "$siteUnassignSocketInput:SiteUnassignSocketInput! ",
+                            "required": true,
+                            "responseStr": "input:$siteUnassignSocketInput ",
+                            "type": {
+                                "definition": {
+                                    "description": "Input for unassigning a Socket from its site.",
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "site": {
+                                            "defaultValue": null,
+                                            "description": "Site the Socket is assigned to.",
+                                            "id_str": "unassignSocket___input___site",
+                                            "name": "site",
+                                            "path": "unassignSocket.input.site",
+                                            "requestStr": "$siteRefInput:SiteRefInput! ",
+                                            "required": true,
+                                            "responseStr": "site:$siteRefInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "by": {
+                                                            "defaultValue": "ID",
+                                                            "description": null,
+                                                            "id_str": "unassignSocket___input___site___by",
+                                                            "name": "by",
+                                                            "path": "unassignSocket.input.site.by",
+                                                            "requestStr": "$by:ObjectRefBy! ",
+                                                            "required": true,
+                                                            "responseStr": "by:$by ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": null,
+                                                                    "enumValues": [
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "ID"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "NAME"
+                                                                        }
+                                                                    ],
+                                                                    "fields": null,
+                                                                    "inputFields": null,
+                                                                    "interfaces": null,
+                                                                    "kind": "ENUM",
+                                                                    "name": "ObjectRefBy",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "enum",
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "ENUM"
+                                                                ],
+                                                                "name": "ObjectRefBy",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "by"
+                                                        },
+                                                        "input": {
+                                                            "defaultValue": null,
+                                                            "description": null,
+                                                            "id_str": "unassignSocket___input___site___input",
+                                                            "name": "input",
+                                                            "path": "unassignSocket.input.site.input",
+                                                            "requestStr": "$input:String! ",
+                                                            "required": true,
+                                                            "responseStr": "input:$input ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "String",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "input"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "SiteRefInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "SiteRefInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "siteRefInput"
+                                        },
+                                        "socketIdentifier": {
+                                            "defaultValue": null,
+                                            "description": "Socket to unassign: its serial number or its Socket ID. The value is matched as a serial number first, then as\na Socket ID.",
+                                            "id_str": "unassignSocket___input___socketIdentifier",
+                                            "name": "socketIdentifier",
+                                            "path": "unassignSocket.input.socketIdentifier",
+                                            "requestStr": "$socketIdentifier:String! ",
+                                            "required": true,
+                                            "responseStr": "socketIdentifier:$socketIdentifier ",
+                                            "type": {
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "SCALAR"
+                                                ],
+                                                "name": "String",
+                                                "non_null": false
+                                            },
+                                            "varName": "socketIdentifier"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "SiteUnassignSocketInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "NON_NULL",
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "SiteUnassignSocketInput",
+                                "non_null": false
+                            },
+                            "varName": "siteUnassignSocketInput"
+                        }
+                    },
+                    "deprecationReason": null,
+                    "description": "Unassign a Socket from its site. The Socket's tunnels are torn down and the device is reset to factory settings\nwhen it next contacts a PoP; it can be assigned again only after it registers again. On an HA site the\nremaining Socket becomes the primary Socket. vSockets are removed with the vSocket operations instead.",
+                    "id_str": "unassignSocket",
+                    "isDeprecated": false,
+                    "name": "unassignSocket",
+                    "path": "unassignSocket",
+                    "requestStr": "$siteUnassignSocketPayload:SiteUnassignSocketPayload ",
+                    "required": false,
+                    "responseStr": "unassignSocket:$siteUnassignSocketPayload ",
+                    "type": {
+                        "definition": {
+                            "description": "Result of unassigning a Socket from its site.",
+                            "enumValues": null,
+                            "fields": {
+                                "socket": {
+                                    "args": {},
+                                    "deprecationReason": null,
+                                    "description": "The unassigned Socket.",
+                                    "id_str": "unassignSocket___socket",
+                                    "isDeprecated": false,
+                                    "name": "socket",
+                                    "path": "unassignSocket.socket",
+                                    "requestStr": "$siteUnassignedSocket:SiteUnassignedSocket! ",
+                                    "required": true,
+                                    "responseStr": "socket:$siteUnassignedSocket ",
+                                    "type": {
+                                        "definition": {
+                                            "description": "A Socket unassigned from its site.",
+                                            "enumValues": null,
+                                            "fields": {
+                                                "id": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Unique Socket identifier.",
+                                                    "id_str": "unassignSocket___socket___id",
+                                                    "isDeprecated": false,
+                                                    "name": "id",
+                                                    "path": "unassignSocket.socket.id",
+                                                    "requestStr": "$id:ID! ",
+                                                    "required": true,
+                                                    "responseStr": "id:$id ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "ID",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "id"
+                                                },
+                                                "serial": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Socket serial number.",
+                                                    "id_str": "unassignSocket___socket___serial",
+                                                    "isDeprecated": false,
+                                                    "name": "serial",
+                                                    "path": "unassignSocket.socket.serial",
+                                                    "requestStr": "$serial:String! ",
+                                                    "required": true,
+                                                    "responseStr": "serial:$serial ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "serial"
+                                                }
+                                            },
+                                            "inputFields": null,
+                                            "interfaces": {},
+                                            "kind": "OBJECT",
+                                            "name": "SiteUnassignedSocket",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "object",
+                                        "kind": [
+                                            "NON_NULL",
+                                            "OBJECT"
+                                        ],
+                                        "name": "SiteUnassignedSocket",
+                                        "non_null": false
+                                    },
+                                    "varName": "siteUnassignedSocket"
+                                }
+                            },
+                            "inputFields": null,
+                            "interfaces": {},
+                            "kind": "OBJECT",
+                            "name": "SiteUnassignSocketPayload",
+                            "possibleTypes": null
+                        },
+                        "indexType": "object",
+                        "kind": [
+                            "OBJECT"
+                        ],
+                        "name": "SiteUnassignSocketPayload",
+                        "non_null": false
+                    },
+                    "varName": "siteUnassignSocketPayload"
+                }
+            },
+            "inputFields": null,
+            "interfaces": [],
+            "kind": "OBJECT",
+            "name": "SiteMutations",
+            "possibleTypes": null
+        },
+        "indexType": "object",
+        "kind": [
+            "NON_NULL",
+            "OBJECT"
+        ],
+        "name": "SiteMutations",
+        "non_null": false
+    },
+    "variablesPayload": {
+        "siteUnassignSocketInput": {
+            "site": {
+                "by": "ID",
+                "input": "string"
+            },
+            "socketIdentifier": "string"
+        }
+    }
+}

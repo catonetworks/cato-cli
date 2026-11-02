@@ -11,7 +11,7 @@ catocli mutation site updateSiteGeneralDetails <json>
 
 catocli mutation site updateSiteGeneralDetails --json-file mutation.site.updateSiteGeneralDetails.json
 
-catocli mutation site updateSiteGeneralDetails '{"siteId":"id","updateSiteGeneralDetailsInput":{"description":"string","disableAclForSip":true,"name":"string","preferredPopLocation":{"preferredOnly":true,"primary":{"by":"ID","input":"string"},"secondary":{"by":"ID","input":"string"}},"siteLocation":{"address":"string","cityName":"string","countryCode":"string","stateCode":"string","timezone":"string"},"siteType":"BRANCH","workingHours":{"fromTimeMinuteOffset":1,"override":true,"toTimeMinuteOffset":1,"workingDays":["SUNDAY"]}}}'
+catocli mutation site updateSiteGeneralDetails '{"siteId":"id","updateSiteGeneralDetailsInput":{"description":"string","disableAclForSip":true,"name":"string","preferredPopLocation":{"preferredOnly":true,"primary":{"by":"ID","input":"string"},"secondary":{"by":"ID","input":"string"}},"siteBandwidthLimit":{"downstreamMaxBandwidthMbps":1,"override":true,"upstreamMaxBandwidthMbps":1},"siteLocation":{"address":"string","cityName":"string","countryCode":"string","stateCode":"string","timezone":"string"},"siteType":"BRANCH","workingHours":{"fromTimeMinuteOffset":1,"override":true,"toTimeMinuteOffset":1,"workingDays":["SUNDAY"]}}}'
 
 catocli mutation site updateSiteGeneralDetails '{
     "siteId": "id",
@@ -29,6 +29,11 @@ catocli mutation site updateSiteGeneralDetails '{
                 "by": "ID",
                 "input": "string"
             }
+        },
+        "siteBandwidthLimit": {
+            "downstreamMaxBandwidthMbps": 1,
+            "override": true,
+            "upstreamMaxBandwidthMbps": 1
         },
         "siteLocation": {
             "address": "string",

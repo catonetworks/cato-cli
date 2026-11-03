@@ -1750,3 +1750,21 @@ def export_st_rules_to_json(args, configuration):
     """Export Split Tunnel rules to the bulk-module JSON shape."""
     return _export_flat_policy_to_json(
         args, configuration, 'splitTunnel', ST_POLICY_QUERY, 'st', 'Split Tunnel')
+
+
+RPF_POLICY_QUERY = "query policy ( $accountId:ID! ) { policy ( accountId:$accountId ) { remotePortFwd { policy { enabled rules { audit { updatedTime updatedBy } rule { id name description index section { id name subPolicyId } enabled externalIp { id name } externalPortRange { from to } internalIp internalPortRange { from to } forwardIcmp remoteIPs { globalIpRange { id name } ip ipRange { from to } subnet } restrictionType tracking { enabled frequency subscriptionGroup { id name } webhook { id name } mailingList { id name } } } properties } sections { audit { updatedTime updatedBy } section { id name subPolicyId } properties } audit { publishedTime publishedBy } revision { id name description changes createdTime updatedTime } } } } }"
+
+
+def export_rpf_rules_to_json(args, configuration):
+    """Export Remote Port Forwarding rules to the bulk-module JSON shape."""
+    return _export_flat_policy_to_json(
+        args, configuration, 'remotePortFwd', RPF_POLICY_QUERY, 'rpf', 'Remote Port Forwarding')
+
+
+SWP_POLICY_QUERY = "query policy ( $accountId:ID! ) { policy ( accountId:$accountId ) { siteWebProxy { policy { enabled rules { audit { updatedTime updatedBy } rule { id name description index section { id name subPolicyId } enabled fqdn port allowedDestinationProtocol shouldAssociateWithAllSites associatedSite { id name } authenticationConfig { method kerberosConfig { isEnabled } } } properties } sections { audit { updatedTime updatedBy } section { id name subPolicyId } properties } audit { publishedTime publishedBy } revision { id name description changes createdTime updatedTime } } } } }"
+
+
+def export_swp_rules_to_json(args, configuration):
+    """Export Site Web Proxy rules to the bulk-module JSON shape."""
+    return _export_flat_policy_to_json(
+        args, configuration, 'siteWebProxy', SWP_POLICY_QUERY, 'swp', 'Site Web Proxy')

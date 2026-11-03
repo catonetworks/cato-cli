@@ -268,6 +268,47 @@ Common Examples:
 
     st_rules_parser.set_defaults(func=import_rules_to_tf.import_st_rules_to_tf)
 
+
+    # Add rpf_rules_to_tf command
+    rpf_rules_parser = import_subparsers.add_parser(
+        'rpf_rules_to_tf',
+        help='Import Remote Port Forwarding rules to Terraform state',
+        usage='catocli import rpf_rules_to_tf <json_file> --module-name <module_name> [options]\n\nexample: catocli import rpf_rules_to_tf config_data/all_rpf_rules_and_sections.json --module-name module.rpf_rules'
+    )
+
+    rpf_rules_parser.add_argument('json_file', help='Path to the JSON file produced by `catocli export rpf_rules`')
+    rpf_rules_parser.add_argument('--module-name', required=True,
+                                help='Terraform module name to import resources into')
+    rpf_rules_parser.add_argument('-accountID', help='Account ID (required by CLI framework but not used for import)', required=False)
+    rpf_rules_parser.add_argument('--batch-size', type=int, default=10,
+                                help='Number of imports per batch (default: 10)')
+    rpf_rules_parser.add_argument('--delay', type=int, default=2,
+                                help='Delay between batches in seconds (default: 2)')
+    rpf_rules_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
+    rpf_rules_parser.add_argument('--auto-approve', action='store_true', help='Skip confirmation prompt and proceed automatically')
+
+    rpf_rules_parser.set_defaults(func=import_rules_to_tf.import_rpf_rules_to_tf)
+
+    # Add swp_rules_to_tf command
+    swp_rules_parser = import_subparsers.add_parser(
+        'swp_rules_to_tf',
+        help='Import Site Web Proxy rules to Terraform state',
+        usage='catocli import swp_rules_to_tf <json_file> --module-name <module_name> [options]\n\nexample: catocli import swp_rules_to_tf config_data/all_swp_rules_and_sections.json --module-name module.swp_rules'
+    )
+
+    swp_rules_parser.add_argument('json_file', help='Path to the JSON file produced by `catocli export swp_rules`')
+    swp_rules_parser.add_argument('--module-name', required=True,
+                                help='Terraform module name to import resources into')
+    swp_rules_parser.add_argument('-accountID', help='Account ID (required by CLI framework but not used for import)', required=False)
+    swp_rules_parser.add_argument('--batch-size', type=int, default=10,
+                                help='Number of imports per batch (default: 10)')
+    swp_rules_parser.add_argument('--delay', type=int, default=2,
+                                help='Delay between batches in seconds (default: 2)')
+    swp_rules_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
+    swp_rules_parser.add_argument('--auto-approve', action='store_true', help='Skip confirmation prompt and proceed automatically')
+
+    swp_rules_parser.set_defaults(func=import_rules_to_tf.import_swp_rules_to_tf)
+
     # Add wf_rules_to_tf command
     wf_rules_parser = import_subparsers.add_parser(
         'wf_rules_to_tf', 

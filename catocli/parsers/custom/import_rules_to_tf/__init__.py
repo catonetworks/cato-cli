@@ -309,6 +309,27 @@ Common Examples:
 
     swp_rules_parser.set_defaults(func=import_rules_to_tf.import_swp_rules_to_tf)
 
+
+    # Add sb_rules_to_tf command
+    sb_rules_parser = import_subparsers.add_parser(
+        'sb_rules_to_tf',
+        help='Import Socket Bypass rules to Terraform state',
+        usage='catocli import sb_rules_to_tf <json_file> --module-name <module_name> [options]\n\nexample: catocli import sb_rules_to_tf config_data/all_sb_rules_and_sections.json --module-name module.sb_rules'
+    )
+
+    sb_rules_parser.add_argument('json_file', help='Path to the JSON file produced by `catocli export sb_rules`')
+    sb_rules_parser.add_argument('--module-name', required=True,
+                                help='Terraform module name to import resources into')
+    sb_rules_parser.add_argument('-accountID', help='Account ID (required by CLI framework but not used for import)', required=False)
+    sb_rules_parser.add_argument('--batch-size', type=int, default=10,
+                                help='Number of imports per batch (default: 10)')
+    sb_rules_parser.add_argument('--delay', type=int, default=2,
+                                help='Delay between batches in seconds (default: 2)')
+    sb_rules_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
+    sb_rules_parser.add_argument('--auto-approve', action='store_true', help='Skip confirmation prompt and proceed automatically')
+
+    sb_rules_parser.set_defaults(func=import_rules_to_tf.import_sb_rules_to_tf)
+
     # Add wf_rules_to_tf command
     wf_rules_parser = import_subparsers.add_parser(
         'wf_rules_to_tf', 

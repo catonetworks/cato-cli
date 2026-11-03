@@ -1768,3 +1768,12 @@ def export_swp_rules_to_json(args, configuration):
     """Export Site Web Proxy rules to the bulk-module JSON shape."""
     return _export_flat_policy_to_json(
         args, configuration, 'siteWebProxy', SWP_POLICY_QUERY, 'swp', 'Site Web Proxy')
+
+
+SB_POLICY_QUERY = "query policy ( $accountId:ID! ) { policy ( accountId:$accountId ) { socketBypass { policy { enabled rules { audit { updatedTime updatedBy } rule { id name description index section { id name subPolicyId } enabled action { port event { enabled } } site { site { id name } group { id name } } source { floatingSubnet { id name } globalIpRange { id name } group { id name } host { id name } ip ipRange { from to } networkInterface { id name } siteNetworkSubnet { id name } subnet vlan } destination { application { id name } customApp { id name } domain fqdn globalIpRange { id name } ip ipRange { from to } subnet } service { simple { name } custom { port portRange { from to } protocol } } exception { name site { site { id name } group { id name } } source { floatingSubnet { id name } globalIpRange { id name } group { id name } host { id name } ip ipRange { from to } networkInterface { id name } siteNetworkSubnet { id name } subnet vlan } destination { application { id name } customApp { id name } domain fqdn globalIpRange { id name } ip ipRange { from to } subnet } service { simple { name } custom { port portRange { from to } protocol } } } } properties } sections { audit { updatedTime updatedBy } section { id name subPolicyId } properties } audit { publishedTime publishedBy } revision { id name description changes createdTime updatedTime } } } } }"
+
+
+def export_sb_rules_to_json(args, configuration):
+    """Export Socket Bypass rules to the bulk-module JSON shape."""
+    return _export_flat_policy_to_json(
+        args, configuration, 'socketBypass', SB_POLICY_QUERY, 'sb', 'Socket Bypass')

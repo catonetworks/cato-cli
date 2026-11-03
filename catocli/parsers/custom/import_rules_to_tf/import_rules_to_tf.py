@@ -1750,3 +1750,10 @@ def import_swp_rules_to_tf(args, configuration):
     return _import_flat_policy_to_tf(
         args, 'siteWebProxy', 'Site Web Proxy',
         'cato_site_web_proxy_section', 'cato_site_web_proxy_rule')
+
+
+def import_sb_rules_to_tf(args, configuration):
+    """Import Socket Bypass resources into terraform state."""
+    return _import_flat_policy_to_tf(
+        args, 'socketBypass', 'Socket Bypass',
+        'cato_socket_bypass_section', 'cato_socket_bypass_rule')

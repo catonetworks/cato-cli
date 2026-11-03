@@ -311,6 +311,29 @@ Examples:
     swp_rules_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
     swp_rules_parser.set_defaults(func=export_rules.export_swp_rules_to_json)
 
+
+    # Add sb_rules command
+    sb_rules_parser = export_subparsers.add_parser(
+        'sb_rules',
+        help='Export Socket Bypass rules to JSON format',
+        usage='catocli export sb_rules [-accountID <account_id>] [options]',
+        description="""Export Socket Bypass rules to JSON format for backup, analysis, or migration purposes.
+
+Flat structure: sections and rules (no sub-policies for this policy type).
+
+Examples:
+  catocli export sb_rules
+  catocli export sb_rules -accountID 12345""",
+        formatter_class=__import__('argparse').RawDescriptionHelpFormatter
+    )
+
+    sb_rules_parser.add_argument('-accountID', help='Account ID to export rules from (uses CATO_ACCOUNT_ID environment variable if not specified)', required=False)
+    sb_rules_parser.add_argument('--json-filename', dest='json_filename', help='Override JSON file name (default: all_sb_rules_and_sections_{account_id}.json)')
+    sb_rules_parser.add_argument('--append-timestamp', dest='append_timestamp', action='store_true', help='Append timestamp to file names')
+    sb_rules_parser.add_argument('--output-directory', dest='output_directory', help='Output directory for exported files (default: config_data)')
+    sb_rules_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
+    sb_rules_parser.set_defaults(func=export_rules.export_sb_rules_to_json)
+
     # Add ao_rules command
     ao_rules_parser = export_subparsers.add_parser(
         'ao_rules',

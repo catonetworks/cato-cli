@@ -1,0 +1,63 @@
+query financialDocuments ( $accountId:ID! $invoiceSummaryListInput:InvoiceSummaryListInput! $invoiceAccountListInput:InvoiceAccountListInput! $invoiceChargeItemListInput:InvoiceChargeItemListInput!) {
+	financialDocuments ( accountId:$accountId ) {
+		invoiceSummaryList ( input:$invoiceSummaryListInput  )  {
+			items {
+				invoice {
+					id
+					name
+				}
+				issuedDate
+				dueDate
+				currency
+				subtotal
+				taxTotal
+				total
+				account {
+					account {
+						id
+						name
+					}
+					startDate
+					endDate
+					amount
+				}
+				downloadPath
+			}
+			pageInfo {
+				total
+			}
+		}
+		invoiceAccountList ( input:$invoiceAccountListInput  )  {
+			items {
+				account {
+					id
+					name
+				}
+				startDate
+				endDate
+				amount
+			}
+			pageInfo {
+				total
+			}
+		}
+		invoiceChargeItemList ( input:$invoiceChargeItemListInput  )  {
+			items {
+				account {
+					id
+					name
+				}
+				name
+				description
+				quantity
+				startDate
+				endDate
+				amount
+				position
+			}
+			pageInfo {
+				total
+			}
+		}
+	}	
+}

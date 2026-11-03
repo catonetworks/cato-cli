@@ -79,6 +79,7 @@ from ..parsers.query_entityLookup import query_entityLookup_parse
 from ..parsers.query_events import query_events_parse
 from ..parsers.query_eventsTimeSeries import query_eventsTimeSeries_parse
 from ..parsers.query_externalAccess import query_externalAccess_parse
+from ..parsers.query_financialDocuments import query_financialDocuments_parse
 from ..parsers.query_groups import query_groups_parse
 from ..parsers.query_hardware import query_hardware_parse
 from ..parsers.query_hardwareManagement import query_hardwareManagement_parse
@@ -289,6 +290,7 @@ query_entityLookup_parser = query_entityLookup_parse(query_subparsers)
 query_events_parser = query_events_parse(query_subparsers)
 query_eventsTimeSeries_parser = query_eventsTimeSeries_parse(query_subparsers)
 query_externalAccess_parser = query_externalAccess_parse(query_subparsers)
+query_financialDocuments_parser = query_financialDocuments_parse(query_subparsers)
 query_groups_parser = query_groups_parse(query_subparsers)
 query_hardware_parser = query_hardware_parse(query_subparsers)
 query_hardwareManagement_parser = query_hardwareManagement_parse(query_subparsers)

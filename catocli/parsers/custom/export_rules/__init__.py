@@ -63,7 +63,138 @@ Examples:
     if_rules_parser.add_argument('--output-directory', dest='output_directory', help='Output directory for exported files (default: config_data)')
     if_rules_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
     if_rules_parser.set_defaults(func=export_rules.export_if_rules_to_json)
-    
+
+    # Add pa_rules command
+    pa_rules_parser = export_subparsers.add_parser(
+        'pa_rules',
+        help='Export Private Access rules to JSON format',
+        usage='catocli export pa_rules [-accountID <account_id>] [options]',
+        description="""Export Private Access (privateAccess) rules to JSON format for backup, analysis, or migration purposes.
+
+Flat ordered rule list (no sections in the terraform surface yet, no
+sub-policies), consumed by the terraform-cato-bulk-private-access module.
+
+Examples:
+  catocli export pa_rules
+  catocli export pa_rules -accountID 12345
+  catocli export pa_rules --json-filename my_pa_rules.json""",
+        formatter_class=__import__('argparse').RawDescriptionHelpFormatter
+    )
+
+    pa_rules_parser.add_argument('-accountID', help='Account ID to export rules from (uses CATO_ACCOUNT_ID environment variable if not specified)', required=False)
+    pa_rules_parser.add_argument('--json-filename', dest='json_filename', help='Override JSON file name (default: all_pa_rules_{account_id}.json)')
+    pa_rules_parser.add_argument('--append-timestamp', dest='append_timestamp', action='store_true', help='Append timestamp to file names')
+    pa_rules_parser.add_argument('--output-directory', dest='output_directory', help='Output directory for exported files (default: config_data)')
+    pa_rules_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
+    pa_rules_parser.set_defaults(func=export_rules.export_pa_rules_to_json)
+
+    # Add apc_rules command
+    apc_rules_parser = export_subparsers.add_parser(
+        'apc_rules',
+        help='Export Application Control rules to JSON format',
+        usage='catocli export apc_rules [-accountID <account_id>] [options]',
+        description="""Export Application Control rules to JSON format for backup, analysis, or migration purposes.
+
+Flat structure: sections and rules (no sub-policies for this policy type).
+
+Examples:
+  catocli export apc_rules
+  catocli export apc_rules -accountID 12345""",
+        formatter_class=__import__('argparse').RawDescriptionHelpFormatter
+    )
+
+    apc_rules_parser.add_argument('-accountID', help='Account ID to export rules from (uses CATO_ACCOUNT_ID environment variable if not specified)', required=False)
+    apc_rules_parser.add_argument('--json-filename', dest='json_filename', help='Override JSON file name (default: all_apc_rules_and_sections_{account_id}.json)')
+    apc_rules_parser.add_argument('--append-timestamp', dest='append_timestamp', action='store_true', help='Append timestamp to file names')
+    apc_rules_parser.add_argument('--output-directory', dest='output_directory', help='Output directory for exported files (default: config_data)')
+    apc_rules_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
+    apc_rules_parser.set_defaults(func=export_rules.export_apc_rules_to_json)
+
+    # Add atr_rules command
+    atr_rules_parser = export_subparsers.add_parser(
+        'atr_rules',
+        help='Export App Tenant Restriction rules to JSON format',
+        usage='catocli export atr_rules [-accountID <account_id>] [options]',
+        description="""Export App Tenant Restriction rules to JSON format for backup, analysis, or migration purposes.
+
+Flat structure: sections and rules (no sub-policies for this policy type).
+
+Examples:
+  catocli export atr_rules
+  catocli export atr_rules -accountID 12345""",
+        formatter_class=__import__('argparse').RawDescriptionHelpFormatter
+    )
+
+    atr_rules_parser.add_argument('-accountID', help='Account ID to export rules from (uses CATO_ACCOUNT_ID environment variable if not specified)', required=False)
+    atr_rules_parser.add_argument('--json-filename', dest='json_filename', help='Override JSON file name (default: all_atr_rules_and_sections_{account_id}.json)')
+    atr_rules_parser.add_argument('--append-timestamp', dest='append_timestamp', action='store_true', help='Append timestamp to file names')
+    atr_rules_parser.add_argument('--output-directory', dest='output_directory', help='Output directory for exported files (default: config_data)')
+    atr_rules_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
+    atr_rules_parser.set_defaults(func=export_rules.export_atr_rules_to_json)
+
+    # Add ao_rules command
+    ao_rules_parser = export_subparsers.add_parser(
+        'ao_rules',
+        help='Export ZTNA Always-On rules to JSON format',
+        usage='catocli export ao_rules [-accountID <account_id>] [options]',
+        description='''Export ZTNA Always-On (ztnaAlwaysOn) rules to JSON format for backup, analysis, or migration purposes.
+
+Flat structure: sections and rules only (no sub-policies exist for this policy
+type), consumed by the terraform-cato-bulk-ao-rules module.
+
+Examples:
+  # Basic export (uses CATO_ACCOUNT_ID environment variable)
+  catocli export ao_rules
+
+  # Export with specific account ID
+  catocli export ao_rules -accountID 12345
+
+  # Export with custom filename
+  catocli export ao_rules --json-filename my_ao_rules.json''',
+        formatter_class=__import__('argparse').RawDescriptionHelpFormatter
+    )
+
+    ao_rules_parser.add_argument('-accountID', help='Account ID to export rules from (uses CATO_ACCOUNT_ID environment variable if not specified)', required=False)
+    ao_rules_parser.add_argument('--json-filename', dest='json_filename', help='Override JSON file name (default: all_ao_rules_and_sections_{account_id}.json)')
+    ao_rules_parser.add_argument('--append-timestamp', dest='append_timestamp', action='store_true', help='Append timestamp to file names')
+    ao_rules_parser.add_argument('--output-directory', dest='output_directory', help='Output directory for exported files (default: config_data)')
+    ao_rules_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
+    ao_rules_parser.set_defaults(func=export_rules.export_ao_rules_to_json)
+
+    # Add lan_fw_rules command
+    lan_fw_rules_parser = export_subparsers.add_parser(
+        'lan_fw_rules',
+        help='Export LAN Firewall (socketLan) rules to JSON format',
+        usage='catocli export lan_fw_rules [-accountID <account_id>] [options]',
+        description='''Export LAN Firewall (socketLan) rules to JSON format for backup, analysis, or migration purposes.
+
+Exports the full structure: sections (main and sub-policy owned), sub-policies
+with their scope, network rules, and each network rule's nested child firewall
+rules, plus the rules_in_sections ordering table consumed by the
+terraform-cato-bulk-lan-fw-rules module.
+
+Examples:
+  # Basic export (uses CATO_ACCOUNT_ID environment variable)
+  catocli export lan_fw_rules
+
+  # Export with specific account ID
+  catocli export lan_fw_rules -accountID 12345
+
+  # Export with custom filename and timestamp
+  catocli export lan_fw_rules --json-filename my_lan_rules.json --append-timestamp
+
+  # Export to custom directory
+  catocli export lan_fw_rules --output-directory ./exports''',
+        formatter_class=__import__('argparse').RawDescriptionHelpFormatter
+    )
+
+    lan_fw_rules_parser.add_argument('-accountID', help='Account ID to export rules from (uses CATO_ACCOUNT_ID environment variable if not specified)', required=False)
+    lan_fw_rules_parser.add_argument('--json-filename', dest='json_filename', help='Override JSON file name (default: all_lan_fw_rules_and_sections_{account_id}.json)')
+    lan_fw_rules_parser.add_argument('--append-timestamp', dest='append_timestamp', action='store_true', help='Append timestamp to file names')
+    lan_fw_rules_parser.add_argument('--output-directory', dest='output_directory', help='Output directory for exported files (default: config_data)')
+    lan_fw_rules_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
+    lan_fw_rules_parser.set_defaults(func=export_rules.export_lan_fw_rules_to_json)
+
     # Add wf_rules command
     wf_rules_parser = export_subparsers.add_parser(
         'wf_rules', 

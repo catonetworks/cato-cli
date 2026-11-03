@@ -1,0 +1,12 @@
+{
+    "operationName": "siteSocketInterfaceList",
+    "query": "query siteSocketInterfaceList ( $accountId:ID! $socketInterfaceListInput:SocketInterfaceListInput!) {\n\tsite ( accountId:$accountId ) {\n\t\tsocketInterfaceList ( input:$socketInterfaceListInput  )  {\n\t\t\titems {\n\t\t\t\tsocketInterfaceId\n\t\t\t\tname\n\t\t\t\tdestType\n\t\t\t\tsupportedDestinations\n\t\t\t\tlan {\n\t\t\t\t\tsubnet\n\t\t\t\t\ttranslatedSubnet\n\t\t\t\t\tlocalIp\n\t\t\t\t}\n\t\t\t\tbandwidth {\n\t\t\t\t\tupstreamBandwidth\n\t\t\t\t\tdownstreamBandwidth\n\t\t\t\t\tupstreamBandwidthMbpsPrecision\n\t\t\t\t\tdownstreamBandwidthMbpsPrecision\n\t\t\t\t}\n\t\t\t\twan {\n\t\t\t\t\trole\n\t\t\t\t\tprecedence\n\t\t\t\t}\n\t\t\t\toffCloud {\n\t\t\t\t\tenabled\n\t\t\t\t\tpublicIp\n\t\t\t\t\tpublicStaticPort\n\t\t\t\t}\n\t\t\t\taltWan {\n\t\t\t\t\tprivateInterfaceIp\n\t\t\t\t\tprivateNetwork\n\t\t\t\t\tprivateGatewayIp\n\t\t\t\t\tprivateVlanTag\n\t\t\t\t\tpublicInterfaceIp\n\t\t\t\t\tpublicNetwork\n\t\t\t\t\tpublicGatewayIp\n\t\t\t\t\tpublicVlanTag\n\t\t\t\t}\n\t\t\t\tlag {\n\t\t\t\t\tminLinks\n\t\t\t\t}\n\t\t\t\tvrrp {\n\t\t\t\t\tvrrpType\n\t\t\t\t}\n\t\t\t}\n\t\t\tpaging {\n\t\t\t\ttotal\n\t\t\t}\n\t\t}\n\t}\t\n}",
+    "variables": {
+        "socketInterfaceListInput": {
+            "site": {
+                "by": "ID",
+                "input": "string"
+            }
+        }
+    }
+}

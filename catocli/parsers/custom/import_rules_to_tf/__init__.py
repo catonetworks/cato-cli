@@ -50,7 +50,286 @@ Common Examples:
     if_rules_parser.add_argument('--auto-approve', action='store_true', help='Skip confirmation prompt and proceed automatically')
     
     if_rules_parser.set_defaults(func=import_rules_to_tf.import_if_rules_to_tf)
+
+    lan_fw_rules_parser = import_subparsers.add_parser(
+        'lan_fw_rules_to_tf',
+        help='Import LAN Firewall (socketLan) rules to Terraform state',
+        usage='catocli import lan_fw_rules_to_tf <json_file> --module-name <module_name> [options]\n\nexample: catocli import lan_fw_rules_to_tf config_data/all_lan_fw_rules_and_sections.json --module-name module.lan_fw_rules'
+    )
+
+    lan_fw_rules_parser.add_argument('json_file', help='Path to the JSON file produced by `catocli export lan_fw_rules`')
+    lan_fw_rules_parser.add_argument('--module-name', required=True,
+                                help='Terraform module name to import resources into')
+    lan_fw_rules_parser.add_argument('-accountID', help='Account ID (required by CLI framework but not used for import)', required=False)
+    lan_fw_rules_parser.add_argument('--batch-size', type=int, default=10,
+                                help='Number of imports per batch (default: 10)')
+    lan_fw_rules_parser.add_argument('--delay', type=int, default=2,
+                                help='Delay between batches in seconds (default: 2)')
+    lan_fw_rules_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
+    lan_fw_rules_parser.add_argument('--auto-approve', action='store_true', help='Skip confirmation prompt and proceed automatically')
+
+    lan_fw_rules_parser.set_defaults(func=import_rules_to_tf.import_lan_fw_rules_to_tf)
+
+    ao_rules_parser = import_subparsers.add_parser(
+        'ao_rules_to_tf',
+        help='Import ZTNA Always-On rules to Terraform state',
+        usage='catocli import ao_rules_to_tf <json_file> --module-name <module_name> [options]\n\nexample: catocli import ao_rules_to_tf config_data/all_ao_rules_and_sections.json --module-name module.ao_rules'
+    )
+
+    ao_rules_parser.add_argument('json_file', help='Path to the JSON file produced by `catocli export ao_rules`')
+    ao_rules_parser.add_argument('--module-name', required=True,
+                                help='Terraform module name to import resources into')
+    ao_rules_parser.add_argument('-accountID', help='Account ID (required by CLI framework but not used for import)', required=False)
+    ao_rules_parser.add_argument('--batch-size', type=int, default=10,
+                                help='Number of imports per batch (default: 10)')
+    ao_rules_parser.add_argument('--delay', type=int, default=2,
+                                help='Delay between batches in seconds (default: 2)')
+    ao_rules_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
+    ao_rules_parser.add_argument('--auto-approve', action='store_true', help='Skip confirmation prompt and proceed automatically')
+
+    ao_rules_parser.set_defaults(func=import_rules_to_tf.import_ao_rules_to_tf)
+
+    pa_rules_parser = import_subparsers.add_parser(
+        'pa_rules_to_tf',
+        help='Import Private Access rules to Terraform state',
+        usage='catocli import pa_rules_to_tf <json_file> --module-name <module_name> [options]\n\nexample: catocli import pa_rules_to_tf config_data/all_pa_rules.json --module-name module.pa_rules'
+    )
+
+    pa_rules_parser.add_argument('json_file', help='Path to the JSON file produced by `catocli export pa_rules`')
+    pa_rules_parser.add_argument('--module-name', required=True,
+                                help='Terraform module name to import resources into')
+    pa_rules_parser.add_argument('-accountID', help='Account ID (required by CLI framework but not used for import)', required=False)
+    pa_rules_parser.add_argument('--batch-size', type=int, default=10,
+                                help='Number of imports per batch (default: 10)')
+    pa_rules_parser.add_argument('--delay', type=int, default=2,
+                                help='Delay between batches in seconds (default: 2)')
+    pa_rules_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
+    pa_rules_parser.add_argument('--auto-approve', action='store_true', help='Skip confirmation prompt and proceed automatically')
+
+    pa_rules_parser.set_defaults(func=import_rules_to_tf.import_pa_rules_to_tf)
+    apc_rules_parser = import_subparsers.add_parser(
+        'apc_rules_to_tf',
+        help='Import Application Control rules to Terraform state',
+        usage='catocli import apc_rules_to_tf <json_file> --module-name <module_name> [options]\n\nexample: catocli import apc_rules_to_tf config_data/all_apc_rules_and_sections.json --module-name module.apc_rules'
+    )
+
+    apc_rules_parser.add_argument('json_file', help='Path to the JSON file produced by `catocli export apc_rules`')
+    apc_rules_parser.add_argument('--module-name', required=True,
+                                help='Terraform module name to import resources into')
+    apc_rules_parser.add_argument('-accountID', help='Account ID (required by CLI framework but not used for import)', required=False)
+    apc_rules_parser.add_argument('--batch-size', type=int, default=10,
+                                help='Number of imports per batch (default: 10)')
+    apc_rules_parser.add_argument('--delay', type=int, default=2,
+                                help='Delay between batches in seconds (default: 2)')
+    apc_rules_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
+    apc_rules_parser.add_argument('--auto-approve', action='store_true', help='Skip confirmation prompt and proceed automatically')
+
+    apc_rules_parser.set_defaults(func=import_rules_to_tf.import_apc_rules_to_tf)
+
+    atr_rules_parser = import_subparsers.add_parser(
+        'atr_rules_to_tf',
+        help='Import App Tenant Restriction rules to Terraform state',
+        usage='catocli import atr_rules_to_tf <json_file> --module-name <module_name> [options]\n\nexample: catocli import atr_rules_to_tf config_data/all_atr_rules_and_sections.json --module-name module.atr_rules'
+    )
+
+    atr_rules_parser.add_argument('json_file', help='Path to the JSON file produced by `catocli export atr_rules`')
+    atr_rules_parser.add_argument('--module-name', required=True,
+                                help='Terraform module name to import resources into')
+    atr_rules_parser.add_argument('-accountID', help='Account ID (required by CLI framework but not used for import)', required=False)
+    atr_rules_parser.add_argument('--batch-size', type=int, default=10,
+                                help='Number of imports per batch (default: 10)')
+    atr_rules_parser.add_argument('--delay', type=int, default=2,
+                                help='Delay between batches in seconds (default: 2)')
+    atr_rules_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
+    atr_rules_parser.add_argument('--auto-approve', action='store_true', help='Skip confirmation prompt and proceed automatically')
+
+    atr_rules_parser.set_defaults(func=import_rules_to_tf.import_atr_rules_to_tf)
+
     
+
+    # Add ts_rules_to_tf command
+    ts_rules_parser = import_subparsers.add_parser(
+        'ts_rules_to_tf',
+        help='Import Terminal Server rules to Terraform state',
+        usage='catocli import ts_rules_to_tf <json_file> --module-name <module_name> [options]\n\nexample: catocli import ts_rules_to_tf config_data/all_ts_rules_and_sections.json --module-name module.ts_rules'
+    )
+
+    ts_rules_parser.add_argument('json_file', help='Path to the JSON file produced by `catocli export ts_rules`')
+    ts_rules_parser.add_argument('--module-name', required=True,
+                                help='Terraform module name to import resources into')
+    ts_rules_parser.add_argument('-accountID', help='Account ID (required by CLI framework but not used for import)', required=False)
+    ts_rules_parser.add_argument('--batch-size', type=int, default=10,
+                                help='Number of imports per batch (default: 10)')
+    ts_rules_parser.add_argument('--delay', type=int, default=2,
+                                help='Delay between batches in seconds (default: 2)')
+    ts_rules_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
+    ts_rules_parser.add_argument('--auto-approve', action='store_true', help='Skip confirmation prompt and proceed automatically')
+
+    ts_rules_parser.set_defaults(func=import_rules_to_tf.import_ts_rules_to_tf)
+
+    # Add amfh_rules_to_tf command
+    amfh_rules_parser = import_subparsers.add_parser(
+        'amfh_rules_to_tf',
+        help='Import Anti-Malware File Hash rules to Terraform state',
+        usage='catocli import amfh_rules_to_tf <json_file> --module-name <module_name> [options]\n\nexample: catocli import amfh_rules_to_tf config_data/all_amfh_rules_and_sections.json --module-name module.amfh_rules'
+    )
+
+    amfh_rules_parser.add_argument('json_file', help='Path to the JSON file produced by `catocli export amfh_rules`')
+    amfh_rules_parser.add_argument('--module-name', required=True,
+                                help='Terraform module name to import resources into')
+    amfh_rules_parser.add_argument('-accountID', help='Account ID (required by CLI framework but not used for import)', required=False)
+    amfh_rules_parser.add_argument('--batch-size', type=int, default=10,
+                                help='Number of imports per batch (default: 10)')
+    amfh_rules_parser.add_argument('--delay', type=int, default=2,
+                                help='Delay between batches in seconds (default: 2)')
+    amfh_rules_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
+    amfh_rules_parser.add_argument('--auto-approve', action='store_true', help='Skip confirmation prompt and proceed automatically')
+
+    amfh_rules_parser.set_defaults(func=import_rules_to_tf.import_amfh_rules_to_tf)
+
+    # Add ssia_rules_to_tf command
+    ssia_rules_parser = import_subparsers.add_parser(
+        'ssia_rules_to_tf',
+        help='Import SDP Static IP Allocation rules to Terraform state',
+        usage='catocli import ssia_rules_to_tf <json_file> --module-name <module_name> [options]\n\nexample: catocli import ssia_rules_to_tf config_data/all_ssia_rules_and_sections.json --module-name module.ssia_rules'
+    )
+
+    ssia_rules_parser.add_argument('json_file', help='Path to the JSON file produced by `catocli export ssia_rules`')
+    ssia_rules_parser.add_argument('--module-name', required=True,
+                                help='Terraform module name to import resources into')
+    ssia_rules_parser.add_argument('-accountID', help='Account ID (required by CLI framework but not used for import)', required=False)
+    ssia_rules_parser.add_argument('--batch-size', type=int, default=10,
+                                help='Number of imports per batch (default: 10)')
+    ssia_rules_parser.add_argument('--delay', type=int, default=2,
+                                help='Delay between batches in seconds (default: 2)')
+    ssia_rules_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
+    ssia_rules_parser.add_argument('--auto-approve', action='store_true', help='Skip confirmation prompt and proceed automatically')
+
+    ssia_rules_parser.set_defaults(func=import_rules_to_tf.import_ssia_rules_to_tf)
+
+
+    # Add dia_rules_to_tf command
+    dia_rules_parser = import_subparsers.add_parser(
+        'dia_rules_to_tf',
+        help='Import Dynamic IP Allocation rules to Terraform state',
+        usage='catocli import dia_rules_to_tf <json_file> --module-name <module_name> [options]\n\nexample: catocli import dia_rules_to_tf config_data/all_dia_rules_and_sections.json --module-name module.dia_rules'
+    )
+
+    dia_rules_parser.add_argument('json_file', help='Path to the JSON file produced by `catocli export dia_rules`')
+    dia_rules_parser.add_argument('--module-name', required=True,
+                                help='Terraform module name to import resources into')
+    dia_rules_parser.add_argument('-accountID', help='Account ID (required by CLI framework but not used for import)', required=False)
+    dia_rules_parser.add_argument('--batch-size', type=int, default=10,
+                                help='Number of imports per batch (default: 10)')
+    dia_rules_parser.add_argument('--delay', type=int, default=2,
+                                help='Delay between batches in seconds (default: 2)')
+    dia_rules_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
+    dia_rules_parser.add_argument('--auto-approve', action='store_true', help='Skip confirmation prompt and proceed automatically')
+
+    dia_rules_parser.set_defaults(func=import_rules_to_tf.import_dia_rules_to_tf)
+
+    # Add cc_rules_to_tf command
+    cc_rules_parser = import_subparsers.add_parser(
+        'cc_rules_to_tf',
+        help='Import Client Connectivity rules to Terraform state',
+        usage='catocli import cc_rules_to_tf <json_file> --module-name <module_name> [options]\n\nexample: catocli import cc_rules_to_tf config_data/all_cc_rules_and_sections.json --module-name module.cc_rules'
+    )
+
+    cc_rules_parser.add_argument('json_file', help='Path to the JSON file produced by `catocli export cc_rules`')
+    cc_rules_parser.add_argument('--module-name', required=True,
+                                help='Terraform module name to import resources into')
+    cc_rules_parser.add_argument('-accountID', help='Account ID (required by CLI framework but not used for import)', required=False)
+    cc_rules_parser.add_argument('--batch-size', type=int, default=10,
+                                help='Number of imports per batch (default: 10)')
+    cc_rules_parser.add_argument('--delay', type=int, default=2,
+                                help='Delay between batches in seconds (default: 2)')
+    cc_rules_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
+    cc_rules_parser.add_argument('--auto-approve', action='store_true', help='Skip confirmation prompt and proceed automatically')
+
+    cc_rules_parser.set_defaults(func=import_rules_to_tf.import_cc_rules_to_tf)
+
+    # Add st_rules_to_tf command
+    st_rules_parser = import_subparsers.add_parser(
+        'st_rules_to_tf',
+        help='Import Split Tunnel rules to Terraform state',
+        usage='catocli import st_rules_to_tf <json_file> --module-name <module_name> [options]\n\nexample: catocli import st_rules_to_tf config_data/all_st_rules_and_sections.json --module-name module.st_rules'
+    )
+
+    st_rules_parser.add_argument('json_file', help='Path to the JSON file produced by `catocli export st_rules`')
+    st_rules_parser.add_argument('--module-name', required=True,
+                                help='Terraform module name to import resources into')
+    st_rules_parser.add_argument('-accountID', help='Account ID (required by CLI framework but not used for import)', required=False)
+    st_rules_parser.add_argument('--batch-size', type=int, default=10,
+                                help='Number of imports per batch (default: 10)')
+    st_rules_parser.add_argument('--delay', type=int, default=2,
+                                help='Delay between batches in seconds (default: 2)')
+    st_rules_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
+    st_rules_parser.add_argument('--auto-approve', action='store_true', help='Skip confirmation prompt and proceed automatically')
+
+    st_rules_parser.set_defaults(func=import_rules_to_tf.import_st_rules_to_tf)
+
+
+    # Add rpf_rules_to_tf command
+    rpf_rules_parser = import_subparsers.add_parser(
+        'rpf_rules_to_tf',
+        help='Import Remote Port Forwarding rules to Terraform state',
+        usage='catocli import rpf_rules_to_tf <json_file> --module-name <module_name> [options]\n\nexample: catocli import rpf_rules_to_tf config_data/all_rpf_rules_and_sections.json --module-name module.rpf_rules'
+    )
+
+    rpf_rules_parser.add_argument('json_file', help='Path to the JSON file produced by `catocli export rpf_rules`')
+    rpf_rules_parser.add_argument('--module-name', required=True,
+                                help='Terraform module name to import resources into')
+    rpf_rules_parser.add_argument('-accountID', help='Account ID (required by CLI framework but not used for import)', required=False)
+    rpf_rules_parser.add_argument('--batch-size', type=int, default=10,
+                                help='Number of imports per batch (default: 10)')
+    rpf_rules_parser.add_argument('--delay', type=int, default=2,
+                                help='Delay between batches in seconds (default: 2)')
+    rpf_rules_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
+    rpf_rules_parser.add_argument('--auto-approve', action='store_true', help='Skip confirmation prompt and proceed automatically')
+
+    rpf_rules_parser.set_defaults(func=import_rules_to_tf.import_rpf_rules_to_tf)
+
+    # Add swp_rules_to_tf command
+    swp_rules_parser = import_subparsers.add_parser(
+        'swp_rules_to_tf',
+        help='Import Site Web Proxy rules to Terraform state',
+        usage='catocli import swp_rules_to_tf <json_file> --module-name <module_name> [options]\n\nexample: catocli import swp_rules_to_tf config_data/all_swp_rules_and_sections.json --module-name module.swp_rules'
+    )
+
+    swp_rules_parser.add_argument('json_file', help='Path to the JSON file produced by `catocli export swp_rules`')
+    swp_rules_parser.add_argument('--module-name', required=True,
+                                help='Terraform module name to import resources into')
+    swp_rules_parser.add_argument('-accountID', help='Account ID (required by CLI framework but not used for import)', required=False)
+    swp_rules_parser.add_argument('--batch-size', type=int, default=10,
+                                help='Number of imports per batch (default: 10)')
+    swp_rules_parser.add_argument('--delay', type=int, default=2,
+                                help='Delay between batches in seconds (default: 2)')
+    swp_rules_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
+    swp_rules_parser.add_argument('--auto-approve', action='store_true', help='Skip confirmation prompt and proceed automatically')
+
+    swp_rules_parser.set_defaults(func=import_rules_to_tf.import_swp_rules_to_tf)
+
+
+    # Add sb_rules_to_tf command
+    sb_rules_parser = import_subparsers.add_parser(
+        'sb_rules_to_tf',
+        help='Import Socket Bypass rules to Terraform state',
+        usage='catocli import sb_rules_to_tf <json_file> --module-name <module_name> [options]\n\nexample: catocli import sb_rules_to_tf config_data/all_sb_rules_and_sections.json --module-name module.sb_rules'
+    )
+
+    sb_rules_parser.add_argument('json_file', help='Path to the JSON file produced by `catocli export sb_rules`')
+    sb_rules_parser.add_argument('--module-name', required=True,
+                                help='Terraform module name to import resources into')
+    sb_rules_parser.add_argument('-accountID', help='Account ID (required by CLI framework but not used for import)', required=False)
+    sb_rules_parser.add_argument('--batch-size', type=int, default=10,
+                                help='Number of imports per batch (default: 10)')
+    sb_rules_parser.add_argument('--delay', type=int, default=2,
+                                help='Delay between batches in seconds (default: 2)')
+    sb_rules_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
+    sb_rules_parser.add_argument('--auto-approve', action='store_true', help='Skip confirmation prompt and proceed automatically')
+
+    sb_rules_parser.set_defaults(func=import_rules_to_tf.import_sb_rules_to_tf)
+
     # Add wf_rules_to_tf command
     wf_rules_parser = import_subparsers.add_parser(
         'wf_rules_to_tf', 

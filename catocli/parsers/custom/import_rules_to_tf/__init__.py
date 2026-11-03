@@ -207,6 +207,67 @@ Common Examples:
 
     ssia_rules_parser.set_defaults(func=import_rules_to_tf.import_ssia_rules_to_tf)
 
+
+    # Add dia_rules_to_tf command
+    dia_rules_parser = import_subparsers.add_parser(
+        'dia_rules_to_tf',
+        help='Import Dynamic IP Allocation rules to Terraform state',
+        usage='catocli import dia_rules_to_tf <json_file> --module-name <module_name> [options]\n\nexample: catocli import dia_rules_to_tf config_data/all_dia_rules_and_sections.json --module-name module.dia_rules'
+    )
+
+    dia_rules_parser.add_argument('json_file', help='Path to the JSON file produced by `catocli export dia_rules`')
+    dia_rules_parser.add_argument('--module-name', required=True,
+                                help='Terraform module name to import resources into')
+    dia_rules_parser.add_argument('-accountID', help='Account ID (required by CLI framework but not used for import)', required=False)
+    dia_rules_parser.add_argument('--batch-size', type=int, default=10,
+                                help='Number of imports per batch (default: 10)')
+    dia_rules_parser.add_argument('--delay', type=int, default=2,
+                                help='Delay between batches in seconds (default: 2)')
+    dia_rules_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
+    dia_rules_parser.add_argument('--auto-approve', action='store_true', help='Skip confirmation prompt and proceed automatically')
+
+    dia_rules_parser.set_defaults(func=import_rules_to_tf.import_dia_rules_to_tf)
+
+    # Add cc_rules_to_tf command
+    cc_rules_parser = import_subparsers.add_parser(
+        'cc_rules_to_tf',
+        help='Import Client Connectivity rules to Terraform state',
+        usage='catocli import cc_rules_to_tf <json_file> --module-name <module_name> [options]\n\nexample: catocli import cc_rules_to_tf config_data/all_cc_rules_and_sections.json --module-name module.cc_rules'
+    )
+
+    cc_rules_parser.add_argument('json_file', help='Path to the JSON file produced by `catocli export cc_rules`')
+    cc_rules_parser.add_argument('--module-name', required=True,
+                                help='Terraform module name to import resources into')
+    cc_rules_parser.add_argument('-accountID', help='Account ID (required by CLI framework but not used for import)', required=False)
+    cc_rules_parser.add_argument('--batch-size', type=int, default=10,
+                                help='Number of imports per batch (default: 10)')
+    cc_rules_parser.add_argument('--delay', type=int, default=2,
+                                help='Delay between batches in seconds (default: 2)')
+    cc_rules_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
+    cc_rules_parser.add_argument('--auto-approve', action='store_true', help='Skip confirmation prompt and proceed automatically')
+
+    cc_rules_parser.set_defaults(func=import_rules_to_tf.import_cc_rules_to_tf)
+
+    # Add st_rules_to_tf command
+    st_rules_parser = import_subparsers.add_parser(
+        'st_rules_to_tf',
+        help='Import Split Tunnel rules to Terraform state',
+        usage='catocli import st_rules_to_tf <json_file> --module-name <module_name> [options]\n\nexample: catocli import st_rules_to_tf config_data/all_st_rules_and_sections.json --module-name module.st_rules'
+    )
+
+    st_rules_parser.add_argument('json_file', help='Path to the JSON file produced by `catocli export st_rules`')
+    st_rules_parser.add_argument('--module-name', required=True,
+                                help='Terraform module name to import resources into')
+    st_rules_parser.add_argument('-accountID', help='Account ID (required by CLI framework but not used for import)', required=False)
+    st_rules_parser.add_argument('--batch-size', type=int, default=10,
+                                help='Number of imports per batch (default: 10)')
+    st_rules_parser.add_argument('--delay', type=int, default=2,
+                                help='Delay between batches in seconds (default: 2)')
+    st_rules_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
+    st_rules_parser.add_argument('--auto-approve', action='store_true', help='Skip confirmation prompt and proceed automatically')
+
+    st_rules_parser.set_defaults(func=import_rules_to_tf.import_st_rules_to_tf)
+
     # Add wf_rules_to_tf command
     wf_rules_parser = import_subparsers.add_parser(
         'wf_rules_to_tf', 

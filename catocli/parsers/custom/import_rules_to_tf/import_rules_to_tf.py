@@ -261,7 +261,7 @@ def import_sections(sections, module_name, resource_type,
         section_id = section['section_id']
         section_name = section['section_name']
         section_index = section['section_index']
-        resource_address = f'{module_name}.{resource_type}.{resource_name}["{section_name}"]'
+        resource_address = f'{module_name}.{resource_type}.{resource_name}[{json.dumps(section_name)}]'
         print(f"\n[{i+1}/{total_sections}] Section: {section_name} (index: {section_index})")
 
         if not section_id:
@@ -310,7 +310,7 @@ def import_rules(rules, module_name, verbose=False,
         terraform_key = sanitize_name_for_terraform(rule_name)
 
         # Use array index syntax instead of rule ID
-        resource_address = f'{module_name}.{resource_type}.{resource_name}["{str(rule_name)}"]'
+        resource_address = f'{module_name}.{resource_type}.{resource_name}[{json.dumps(str(rule_name))}]'
         print(f"\n[{i+1}/{total_rules}] Rule: {rule_name} (index: {rule_index})")
 
         success, stdout, stderr = run_terraform_import(resource_address, rule_id, verbose=verbose)
@@ -350,7 +350,7 @@ def import_sub_policies(sub_policies, module_name, verbose=False,
     for i, sp in enumerate(sub_policies):
         sub_policy_id = sp['sub_policy_id']
         sub_policy_name = sp['sub_policy_name']
-        resource_address = f'{module_name}.{resource_type}.{resource_name}["{sub_policy_name}"]'
+        resource_address = f'{module_name}.{resource_type}.{resource_name}[{json.dumps(sub_policy_name)}]'
         print(f"\n[{i+1}/{total}] Sub-policy: {sub_policy_name}")
         if sp.get('cleanup_rule_name'):
             print(f"    includes embedded cleanup rule: {sp['cleanup_rule_name']}"
@@ -390,7 +390,7 @@ def import_sub_rules(sub_rules, module_name, verbose=False,
     for i, rule in enumerate(sub_rules):
         rule_id = rule['id']
         composite_key = f"{rule['sub_policy_name']}::{rule['name']}"
-        resource_address = f'{module_name}.{resource_type}.{resource_name}["{composite_key}"]'
+        resource_address = f'{module_name}.{resource_type}.{resource_name}[{json.dumps(composite_key)}]'
         print(f"\n[{i+1}/{total}] Sub-rule: {composite_key}")
 
         success, stdout, stderr = run_terraform_import(resource_address, rule_id, verbose=verbose)
@@ -428,7 +428,7 @@ def print_skipped_sub_sections(sub_sections, module_name, resource_type="cato_if
           f"(the module has no {resource_type}.sub_sections resource - provider/module gap):")
     for s in sub_sections:
         composite_key = f"{s['sub_policy_name']}::{s['section_name']}"
-        resource_address = f'{module_name}.{resource_type}.sub_sections["{composite_key}"]'
+        resource_address = f'{module_name}.{resource_type}.sub_sections[{json.dumps(composite_key)}]'
         print(f"  - {resource_address}  (id {s['section_id']})")
 
 
@@ -597,7 +597,7 @@ def import_wf_sections(sections, module_name, verbose=False,
         # Add module. prefix if not present
         if not module_name.startswith('module.'):
             module_name = f'module.{module_name}'
-        resource_address = f'{module_name}.{resource_type}.{resource_name}["{section_name}"]'
+        resource_address = f'{module_name}.{resource_type}.{resource_name}[{json.dumps(section_name)}]'
         print(f"\n[{i+1}/{total_sections}] Section: {section_name} (index: {section_index})")
 
         # For sections, we use the section name as the ID since that's how Cato identifies them
@@ -632,7 +632,7 @@ def import_wf_rules(rules, module_name, verbose=False,
             module_name = f'module.{module_name}'
 
         # Use array index syntax instead of rule ID
-        resource_address = f'{module_name}.{resource_type}.{resource_name}["{str(rule_name)}"]'
+        resource_address = f'{module_name}.{resource_type}.{resource_name}[{json.dumps(str(rule_name))}]'
         print(f"\n[{i+1}/{total_rules}] Rule: {rule_name} (index: {rule_index})")
         
         success, stdout, stderr = run_terraform_import(resource_address, rule_id, verbose=verbose)
@@ -820,7 +820,7 @@ def import_wnw_sections(sections, module_name, verbose=False,
         # Add module. prefix if not present
         if not module_name.startswith('module.'):
             module_name = f'module.{module_name}'
-        resource_address = f'{module_name}.{resource_type}.{resource_name}["{section_name}"]'
+        resource_address = f'{module_name}.{resource_type}.{resource_name}[{json.dumps(section_name)}]'
         print(f"\n[{i+1}/{total_sections}] Section: {section_name} (index: {section_index})")
 
         # For sections, we use the section ID
@@ -855,7 +855,7 @@ def import_wnw_rules(rules, module_name, verbose=False,
             module_name = f'module.{module_name}'
 
         # Use array index syntax instead of rule ID
-        resource_address = f'{module_name}.{resource_type}.{resource_name}["{str(rule_name)}"]'
+        resource_address = f'{module_name}.{resource_type}.{resource_name}[{json.dumps(str(rule_name))}]'
         print(f"\n[{i+1}/{total_rules}] Rule: {rule_name} (index: {rule_index})")
         
         success, stdout, stderr = run_terraform_import(resource_address, rule_id, verbose=verbose)
@@ -1002,7 +1002,7 @@ def import_tls_sections(sections, module_name, verbose=False,
         # Add module. prefix if not present
         if not module_name.startswith('module.'):
             module_name = f'module.{module_name}'
-        resource_address = f'{module_name}.{resource_type}.{resource_name}["{section_name}"]'
+        resource_address = f'{module_name}.{resource_type}.{resource_name}[{json.dumps(section_name)}]'
         print(f"\n[{i+1}/{total_sections}] Section: {section_name} (index: {section_index})")
 
         # For sections, we use the section name as the ID since that's how Cato identifies them
@@ -1037,7 +1037,7 @@ def import_tls_rules(rules, module_name, verbose=False,
             module_name = f'module.{module_name}'
 
         # Use array index syntax instead of rule ID
-        resource_address = f'{module_name}.{resource_type}.{resource_name}["{str(rule_name)}"]'
+        resource_address = f'{module_name}.{resource_type}.{resource_name}[{json.dumps(str(rule_name))}]'
         print(f"\n[{i+1}/{total_rules}] Rule: {rule_name} (index: {rule_index})")
         
         success, stdout, stderr = run_terraform_import(resource_address, rule_id, verbose=verbose)

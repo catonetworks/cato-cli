@@ -44,6 +44,8 @@
         "query.site.wifiRadioProfileBySite": {},
         // Business Platform is not rolled out
         "query.businessPlatform": {},
+        // Financial Documents API is not rolled out to the CI account
+        "query.financialDocuments": {},
         // No template/webhook/mailing-list fixtures; remaining queries have schema/audit errors
         "query.notification.integration.referenceBodyTemplate": {},
         "query.notification.integration.referenceBodyTemplateList": {},
@@ -799,6 +801,23 @@
             "assertions": [
                 "site.siteBgpStatus"
             ]
+        },
+        "query.site.socketInterface": {
+            "payload": {
+                "siteSocketInterfaceInput": {
+                    "site": {"by": "ID", "input": "190627"},
+                    "socketInterfaceId": "INT_1"
+                }
+            },
+            "assertions": ["site.socketInterface.socketInterfaceId"]
+        },
+        "query.site.socketInterfaceList": {
+            "payload": {
+                "socketInterfaceListInput": {
+                    "site": {"by": "ID", "input": "190627"}
+                }
+            },
+            "assertions": ["site.socketInterfaceList.items"]
         },
         "query.site.siteGeneralDetails": {
             "payload": {

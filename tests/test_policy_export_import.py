@@ -1,9 +1,11 @@
 """Policy export/import regressions without live API or Terraform calls."""
 
+import ast
 import contextlib
 import io
 import json
 import unittest
+from pathlib import Path
 from types import SimpleNamespace
 from unittest.mock import patch
 
@@ -30,13 +32,17 @@ class PolicyExportImportTest(unittest.TestCase):
             'rules': [row('scope', name, 1, 'SUB_POLICY_SCOPE'),
                       row('child', 'Allow', 2), row('cleanup', 'Cleanup', 3)],
         }
-        response = {'data': {'policy': {'internetFirewall': {'policy': policy}}}}
+        self.check_sub_policy_export('internetFirewall', exporter.export_if_rules_to_json, policy, name)
+        self.check_sub_policy_export('wanFirewall', exporter.export_wf_rules_to_json, policy, name)
+
+    def check_sub_policy_export(self, key, export, policy, name):
+        response = {'data': {'policy': {key: {'policy': policy}}}}
         with patch.object(exporter, 'getAccountID', return_value='account'), \
                 patch.object(exporter, 'makeCall', return_value=response), \
                 patch.object(exporter, 'writeDataToFile', return_value='export.json') as write:
-            result = exporter.export_if_rules_to_json(SimpleNamespace(), None)
+            result = export(SimpleNamespace(), None)
         self.assertTrue(result[0]['success'], result)
-        exported = write.call_args.kwargs['data']['data']['policy']['internetFirewall']['policy']
+        exported = write.call_args.kwargs['data']['data']['policy'][key]['policy']
         self.assertEqual(exported['rules'][0]['sub_policy_name'], name)
         self.assertEqual(exported['sub_policies'][0]['cleanup_rule']['rule']['id'], 'cleanup')
         self.assertEqual(exported['rules_in_sections'][1]['sub_policy_name'], name)
@@ -50,3 +56,25 @@ class PolicyExportImportTest(unittest.TestCase):
                              'module.policy.cato_if_sub_policy.sub_policies[' + json.dumps(name) + ']')
             importer.import_sub_rules([{'sub_policy_name': name, 'name': name, 'id': 'rule'}], 'policy')
             self.assertTrue(run.call_args.args[0].endswith('[' + json.dumps(name + '::' + name) + ']'))
+
+    def test_flat_import_escapes_instance_keys(self):
+        name = 'Office\\Network "Allow"'
+        with patch.object(importer, 'run_terraform_import', return_value=(True, '', '')) as run, \
+                contextlib.redirect_stdout(io.StringIO()):
+            importer.import_lan_items([{'name': name, 'id': 'rule'}], 'policy',
+                                      'cato_socket_bypass_rule', 'rules', 'name', 'id', 'Rule')
+        self.assertEqual(run.call_args.args[0],
+                         'module.policy.cato_socket_bypass_rule.rules[' + json.dumps(name) + ']')
+
+    def test_all_export_queries_validate_against_schema(self):
+        from graphql import parse, validate
+        from schema_utils import load_test_schema
+        schema = load_test_schema()
+        tree = ast.parse(Path(exporter.__file__).read_text())
+        queries = [node for node in ast.walk(tree)
+                   if isinstance(node, ast.Constant) and isinstance(node.value, str)
+                   and node.value.startswith('query policy ')]
+        self.assertGreaterEqual(len(queries), 9)
+        for query in queries:
+            with self.subTest(line=query.lineno):
+                self.assertEqual(validate(schema, parse(query.value)), [])

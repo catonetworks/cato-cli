@@ -1246,7 +1246,7 @@ def import_lan_items(items, module_name, resource_type, resource_name,
     for i, item in enumerate(items):
         resource_id = item.get(id_field, '')
         key = item.get(key_field, '')
-        resource_address = f'{module_name}.{resource_type}.{resource_name}["{key}"]'
+        resource_address = f'{module_name}.{resource_type}.{resource_name}[{json.dumps(key)}]'
         print(f"\n[{i+1}/{total}] {label}: {key}")
 
         if not resource_id:

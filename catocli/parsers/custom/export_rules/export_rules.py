@@ -442,6 +442,10 @@ def export_wf_rules_to_json(args, configuration):
         # Processing data to strip id attributes
         processed_data = strip_ids_recursive(all_wf_rules)
         policy_node = processed_data['data']['policy']['wanFirewall']['policy']
+        raw_rules = all_wf_rules['data']['policy']['wanFirewall']['policy']['rules']
+        for row, raw_row in zip(policy_node['rules'], raw_rules):
+            if raw_row.get('subPolicy'):
+                row['subPolicy'] = dict(raw_row['subPolicy'])
 
         # Filter out rules with properties[0]=="SYSTEM"
         filtered_rules = []

@@ -1,0 +1,17 @@
+mutation siteAssignSocket ( $accountId:ID! $siteAssignSocketInput:SiteAssignSocketInput!) {
+	site ( accountId:$accountId ) {
+		assignSocket ( input:$siteAssignSocketInput  )  {
+			socket {
+				id
+				serial
+				registrationStatus
+				primary
+				description
+				site {
+					id
+					name
+				}
+			}
+		}
+	}	
+}

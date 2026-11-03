@@ -1,0 +1,13 @@
+{
+    "operationName": "siteSocketInterface",
+    "query": "query siteSocketInterface ( $accountId:ID! $siteSocketInterfaceInput:SiteSocketInterfaceInput!) {\n\tsite ( accountId:$accountId ) {\n\t\tsocketInterface ( input:$siteSocketInterfaceInput  )  {\n\t\t\tsocketInterfaceId\n\t\t\tname\n\t\t\tdestType\n\t\t\tsupportedDestinations\n\t\t\tlan {\n\t\t\t\tsubnet\n\t\t\t\ttranslatedSubnet\n\t\t\t\tlocalIp\n\t\t\t}\n\t\t\tbandwidth {\n\t\t\t\tupstreamBandwidth\n\t\t\t\tdownstreamBandwidth\n\t\t\t\tupstreamBandwidthMbpsPrecision\n\t\t\t\tdownstreamBandwidthMbpsPrecision\n\t\t\t}\n\t\t\twan {\n\t\t\t\trole\n\t\t\t\tprecedence\n\t\t\t}\n\t\t\toffCloud {\n\t\t\t\tenabled\n\t\t\t\tpublicIp\n\t\t\t\tpublicStaticPort\n\t\t\t}\n\t\t\taltWan {\n\t\t\t\tprivateInterfaceIp\n\t\t\t\tprivateNetwork\n\t\t\t\tprivateGatewayIp\n\t\t\t\tprivateVlanTag\n\t\t\t\tpublicInterfaceIp\n\t\t\t\tpublicNetwork\n\t\t\t\tpublicGatewayIp\n\t\t\t\tpublicVlanTag\n\t\t\t}\n\t\t\tlag {\n\t\t\t\tminLinks\n\t\t\t}\n\t\t\tvrrp {\n\t\t\t\tvrrpType\n\t\t\t}\n\t\t}\n\t}\t\n}",
+    "variables": {
+        "siteSocketInterfaceInput": {
+            "site": {
+                "by": "ID",
+                "input": "string"
+            },
+            "socketInterfaceId": "LAN1"
+        }
+    }
+}

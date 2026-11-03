@@ -11,12 +11,19 @@ catocli query businessPlatform <json>
 
 catocli query businessPlatform --json-file query.businessPlatform.json
 
-catocli query businessPlatform '{"businessPlatformAccountListInput":{"filter":{"account":{"accountInclusion":"ALL_ACCOUNTS","in":["id1","id2"]},"expiresOn":[{"between":["2026-01-02"],"eq":"2026-01-02","gt":"2026-01-02","gte":"2026-01-02","in":["2026-01-02"],"lt":"2026-01-02","lte":"2026-01-02","neq":"2026-01-02","nin":["2026-01-02"]}],"freeText":{"search":"string"},"plan":[{"eq":"PENDING_APPROVAL","in":["PENDING_APPROVAL"]}]},"paging":{"from":1,"limit":1},"sort":{"account":{"direction":"ASC","priority":1},"cmaCreatedAt":{"direction":"ASC","priority":1},"cmaCreatedBy":{"direction":"ASC","priority":1},"partner":{"direction":"ASC","priority":1},"plan":{"direction":"ASC","priority":1}}},"businessPlatformPartnerListInput":{"filter":{"account":{"accountInclusion":"ALL_ACCOUNTS","in":["id1","id2"]},"freeText":{"search":"string"}},"paging":{"from":1,"limit":1},"sort":{"account":{"direction":"ASC","priority":1},"createdAt":{"direction":"ASC","priority":1},"createdBy":{"direction":"ASC","priority":1},"name":{"direction":"ASC","priority":1}}}}'
+catocli query businessPlatform '{"businessPlatformAccountListInput":{"filter":{"account":{"accountInclusion":"ALL_ACCOUNTS","in":["id1","id2"]},"customerAccount":{"accountInclusion":"ALL_ACCOUNTS","in":["id1","id2"]},"expiresOn":[{"between":["2026-01-02"],"eq":"2026-01-02","gt":"2026-01-02","gte":"2026-01-02","in":["2026-01-02"],"lt":"2026-01-02","lte":"2026-01-02","neq":"2026-01-02","nin":["2026-01-02"]}],"freeText":{"search":"string"},"includeMSP":true,"plan":[{"eq":"PENDING_APPROVAL","in":["PENDING_APPROVAL"]}]},"paging":{"from":1,"limit":1},"sort":{"account":{"direction":"ASC","priority":1},"cmaCreatedAt":{"direction":"ASC","priority":1},"cmaCreatedBy":{"direction":"ASC","priority":1},"partner":{"direction":"ASC","priority":1},"plan":{"direction":"ASC","priority":1}}},"businessPlatformCountAccountByPlanInput":{"filter":{"includeMSP":true}},"businessPlatformPartnerListInput":{"filter":{"account":{"accountInclusion":"ALL_ACCOUNTS","in":["id1","id2"]},"freeText":{"search":"string"}},"paging":{"from":1,"limit":1},"sort":{"account":{"direction":"ASC","priority":1},"createdAt":{"direction":"ASC","priority":1},"createdBy":{"direction":"ASC","priority":1},"name":{"direction":"ASC","priority":1}}}}'
 
 catocli query businessPlatform '{
     "businessPlatformAccountListInput": {
         "filter": {
             "account": {
+                "accountInclusion": "ALL_ACCOUNTS",
+                "in": [
+                    "id1",
+                    "id2"
+                ]
+            },
+            "customerAccount": {
                 "accountInclusion": "ALL_ACCOUNTS",
                 "in": [
                     "id1",
@@ -45,6 +52,7 @@ catocli query businessPlatform '{
             "freeText": {
                 "search": "string"
             },
+            "includeMSP": true,
             "plan": [
                 {
                     "eq": "PENDING_APPROVAL",
@@ -79,6 +87,11 @@ catocli query businessPlatform '{
                 "direction": "ASC",
                 "priority": 1
             }
+        }
+    },
+    "businessPlatformCountAccountByPlanInput": {
+        "filter": {
+            "includeMSP": true
         }
     },
     "businessPlatformPartnerListInput": {
@@ -124,4 +137,5 @@ catocli query businessPlatform '{
 
 `accountId` [ID] - (required) N/A
 `businessPlatformAccountListInput` [BusinessPlatformAccountListInput] - (required) N/A
+`businessPlatformCountAccountByPlanInput` [BusinessPlatformCountAccountByPlanInput] - (required) Optional input with filter criteria.
 `businessPlatformPartnerListInput` [BusinessPlatformPartnerListInput] - (required) N/A

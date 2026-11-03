@@ -13,7 +13,8 @@ from pathlib import Path
 from unittest.mock import patch
 from urllib3.response import HTTPResponse
 
-from graphql import DirectiveLocation, build_client_schema, build_schema, parse, validate
+from graphql import assert_valid_schema, build_schema, introspection_from_schema, parse, parse_value, validate
+from schema_utils import build_test_schema, load_test_schema, normalize_test_introspection
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "schema"))
@@ -27,13 +28,49 @@ def model(name):
     return json.loads((ROOT / "models" / f"{name}.json").read_text())
 
 
+class SchemaMetadataTest(unittest.TestCase):
+    def default_value(self, data):
+        rule = next(item for item in data["__schema"]["types"] if item["name"] == "Rule")
+        return parse_value(rule["inputFields"][0]["defaultValue"], no_location=True)
+
+    def schema_data(self, default, extra_fields=""):
+        schema = build_schema(
+            "type Query { rule(input: Rule): Boolean } "
+            "input Rule { application: Application } "
+            f"input Application {{ application: [ID!] {extra_fields} }}"
+        )
+        data = introspection_from_schema(schema)
+        rule = next(item for item in data["__schema"]["types"] if item["name"] == "Rule")
+        rule["inputFields"][0]["defaultValue"] = default
+        return data
+
+    def test_only_obsolete_empty_category_default_is_removed(self):
+        data = self.schema_data('{application: ["123"], customCategory: []}')
+        original = copy.deepcopy(data)
+        schema = build_test_schema(data)
+        assert_valid_schema(schema)
+        self.assertEqual(parse_value('{application: ["123"]}', no_location=True),
+                         self.default_value(normalize_test_introspection(data)))
+        self.assertEqual(original, data)
+        self.assertTrue(validate(schema, parse("{ rule(input: {application: {customCategory: []}}) }")))
+
+    def test_valid_category_default_is_preserved(self):
+        data = self.schema_data('{customCategory: []}', "customCategory: [ID!]")
+        schema = build_test_schema(data)
+        assert_valid_schema(schema)
+        self.assertEqual(data, normalize_test_introspection(data))
+
+    def test_other_invalid_defaults_are_not_normalized(self):
+        for default in ('{customCategory: ["123"]}', '{unknownField: []}'):
+            with self.subTest(default=default):
+                data = self.schema_data(default)
+                self.assertEqual(data, normalize_test_introspection(data))
+
+
 class NamespaceTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        data = json.loads((ROOT / "schema/introspection.json").read_text())["data"]
-        for directive in data["__schema"]["directives"]:
-            directive["locations"] = [v for v in directive["locations"] if v in DirectiveLocation.__members__]
-        cls.schema = build_client_schema(data)
+        cls.schema = load_test_schema()
 
     def test_argument_free_operation_has_no_variable_definitions(self):
         # Keep this regression independent of operations in the refreshed API schema.

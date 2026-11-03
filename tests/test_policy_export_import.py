@@ -2,6 +2,7 @@
 
 import ast
 import contextlib
+import copy
 import io
 import json
 import unittest
@@ -14,6 +15,38 @@ from catocli.parsers.custom.import_rules_to_tf import import_rules_to_tf as impo
 
 
 class PolicyExportImportTest(unittest.TestCase):
+    def test_flat_family_exports_preserve_import_ids_and_filter_unmanaged_rules(self):
+        families = {
+            "apc": "applicationControl", "atr": "appTenantRestriction",
+            "ts": "terminalServer", "amfh": "antiMalwareFileHash",
+            "ssia": "sdpStaticIpAllocation", "dia": "dynamicIpAllocation",
+            "cc": "clientConnectivity", "st": "splitTunnel", "rpf": "remotePortFwd",
+            "swp": "siteWebProxy", "sb": "socketBypass",
+        }
+        for prefix, key in families.items():
+            with self.subTest(family=prefix):
+                section = {"id": "s1", "name": 'Office\\Network "A"', "subPolicyId": None}
+                rules = [{"rule": {"id": "r1", "name": 'Rule "A"', "index": 3,
+                                    "section": section, "enabled": False, "ruleType": "APPLICATION",
+                                    "applicationRule": {}}, "properties": []}]
+                for property_name in ("SYSTEM", "LOCKED"):
+                    rules.append({"rule": {"id": property_name, "name": property_name,
+                                           "section": section}, "properties": [property_name]})
+                original = {"data": {"policy": {key: {"policy": {
+                    "sections": [{"section": section}], "rules": rules,
+                }}}}}
+                before = copy.deepcopy(original)
+                with patch.object(exporter, "getAccountID", return_value="account"), \
+                        patch.object(exporter, "makeCall", return_value=original), \
+                        patch.object(exporter, "writeDataToFile", return_value="export.json") as write:
+                    result = getattr(exporter, "export_" + prefix + "_rules_to_json")(SimpleNamespace(), None)
+                self.assertTrue(result[0]["success"], result)
+                policy = write.call_args.kwargs["data"]["data"]["policy"][key]["policy"]
+                self.assertEqual([row["rule"]["id"] for row in policy["rules"]], ["r1"])
+                self.assertEqual(policy["sections"][0]["section_id"], "s1")
+                self.assertEqual(policy["rules_in_sections"][0]["section_name"], section["name"])
+                self.assertEqual(original, before)
+
     def test_backslash_sub_policy_keeps_child_and_cleanup_ownership(self):
         name = 'Corp\\Office'
         def row(rule_id, rule_name, index, rule_type='POLICY_RULE'):

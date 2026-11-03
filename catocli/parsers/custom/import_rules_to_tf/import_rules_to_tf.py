@@ -769,7 +769,7 @@ def import_wf_rules_to_tf(args, configuration):
         print("\n Import process completed!")
 
         return [{
-            "success": True,
+            "success": grand_tally["other"] == 0,
             "imported": grand_tally['imported'],
             "already_managed": grand_tally['already_managed'],
             "not_found": grand_tally['not_found'],
@@ -1361,7 +1361,7 @@ def import_lan_fw_rules_to_tf(args, configuration):
         print("\n Import process completed!")
 
         return [{
-            "success": True,
+            "success": grand_tally["other"] == 0,
             "imported": grand_tally['imported'],
             "already_managed": grand_tally['already_managed'],
             "not_found": grand_tally['not_found'],
@@ -1481,7 +1481,7 @@ def import_ao_rules_to_tf(args, configuration):
         print("\n Import process completed!")
 
         return [{
-            "success": True,
+            "success": grand_tally["other"] == 0,
             "imported": grand_tally['imported'],
             "already_managed": grand_tally['already_managed'],
             "not_found": grand_tally['not_found'],
@@ -1576,7 +1576,7 @@ def import_pa_rules_to_tf(args, configuration):
         print("\n Import process completed!")
 
         return [{
-            "success": True,
+            "success": grand_tally["other"] == 0,
             "imported": grand_tally['imported'],
             "already_managed": grand_tally['already_managed'],
             "not_found": grand_tally['not_found'],
@@ -1665,7 +1665,7 @@ def _import_flat_policy_to_tf(args, policy_root_key, label,
         print("\n Import process completed!")
 
         return [{
-            "success": True,
+            "success": grand_tally["other"] == 0,
             "imported": grand_tally['imported'],
             "already_managed": grand_tally['already_managed'],
             "not_found": grand_tally['not_found'],

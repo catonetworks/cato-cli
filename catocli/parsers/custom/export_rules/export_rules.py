@@ -1717,3 +1717,30 @@ def export_ssia_rules_to_json(args, configuration):
     """Export SDP Static IP Allocation rules to the bulk-module JSON shape."""
     return _export_flat_policy_to_json(
         args, configuration, 'sdpStaticIpAllocation', SSIA_POLICY_QUERY, 'ssia', 'SDP Static IP Allocation')
+
+
+DIA_POLICY_QUERY = "query policy ( $accountId:ID! ) { policy ( accountId:$accountId ) { dynamicIpAllocation { policy { enabled rules { audit { updatedTime updatedBy } rule { id name description index section { id name subPolicyId } enabled country { id name } devicePostureProfile { id name } platform range { globalIpRange { id name } } source { user { id name } usersGroup { id name } } } properties } sections { audit { updatedTime updatedBy } section { id name subPolicyId } properties } audit { publishedTime publishedBy } revision { id name description changes createdTime updatedTime } } } } }"
+
+
+def export_dia_rules_to_json(args, configuration):
+    """Export Dynamic IP Allocation rules to the bulk-module JSON shape."""
+    return _export_flat_policy_to_json(
+        args, configuration, 'dynamicIpAllocation', DIA_POLICY_QUERY, 'dia', 'Dynamic IP Allocation')
+
+
+CC_POLICY_QUERY = "query policy ( $accountId:ID! ) { policy ( accountId:$accountId ) { clientConnectivity { policy { enabled rules { audit { updatedTime updatedBy } rule { id name description index section { id name subPolicyId } enabled action confidenceLevel connectionOrigin country { id name } device { id name } platform source { user { id name } usersGroup { id name } } sourceRange { globalIpRange { id name } } } properties } sections { audit { updatedTime updatedBy } section { id name subPolicyId } properties } audit { publishedTime publishedBy } revision { id name description changes createdTime updatedTime } } } } }"
+
+
+def export_cc_rules_to_json(args, configuration):
+    """Export Client Connectivity rules to the bulk-module JSON shape."""
+    return _export_flat_policy_to_json(
+        args, configuration, 'clientConnectivity', CC_POLICY_QUERY, 'cc', 'Client Connectivity')
+
+
+ST_POLICY_QUERY = "query policy ( $accountId:ID! ) { policy ( accountId:$accountId ) { splitTunnel { policy { enabled rules { audit { updatedTime updatedBy } rule { id name description index section { id name subPolicyId } enabled action coverage routingPriority country { id name } platform destination { application { id name } domain fqdn globalIpRange { id name } } dnsExclusion { domain } source { user { id name } usersGroup { id name } } sourceNetwork { sourceNetworkType } } properties } sections { audit { updatedTime updatedBy } section { id name subPolicyId } properties } audit { publishedTime publishedBy } revision { id name description changes createdTime updatedTime } } } } }"
+
+
+def export_st_rules_to_json(args, configuration):
+    """Export Split Tunnel rules to the bulk-module JSON shape."""
+    return _export_flat_policy_to_json(
+        args, configuration, 'splitTunnel', ST_POLICY_QUERY, 'st', 'Split Tunnel')

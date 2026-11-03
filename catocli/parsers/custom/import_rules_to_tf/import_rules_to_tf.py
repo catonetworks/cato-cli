@@ -1715,3 +1715,24 @@ def import_ssia_rules_to_tf(args, configuration):
     return _import_flat_policy_to_tf(
         args, 'sdpStaticIpAllocation', 'SDP Static IP Allocation',
         'cato_sdp_static_ip_allocation_section', 'cato_sdp_static_ip_allocation_rule')
+
+
+def import_dia_rules_to_tf(args, configuration):
+    """Import Dynamic IP Allocation resources into terraform state."""
+    return _import_flat_policy_to_tf(
+        args, 'dynamicIpAllocation', 'Dynamic IP Allocation',
+        'cato_dynamic_ip_allocation_section', 'cato_dynamic_ip_allocation_rule')
+
+
+def import_cc_rules_to_tf(args, configuration):
+    """Import Client Connectivity resources into terraform state."""
+    return _import_flat_policy_to_tf(
+        args, 'clientConnectivity', 'Client Connectivity',
+        'cato_client_connectivity_section', 'cato_client_connectivity_rule')
+
+
+def import_st_rules_to_tf(args, configuration):
+    """Import Split Tunnel resources into terraform state."""
+    return _import_flat_policy_to_tf(
+        args, 'splitTunnel', 'Split Tunnel',
+        'cato_split_tunnel_section', 'cato_split_tunnel_rule')

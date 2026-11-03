@@ -199,6 +199,73 @@ Examples:
     ssia_rules_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
     ssia_rules_parser.set_defaults(func=export_rules.export_ssia_rules_to_json)
 
+
+    # Add dia_rules command
+    dia_rules_parser = export_subparsers.add_parser(
+        'dia_rules',
+        help='Export Dynamic IP Allocation rules to JSON format',
+        usage='catocli export dia_rules [-accountID <account_id>] [options]',
+        description="""Export Dynamic IP Allocation rules to JSON format for backup, analysis, or migration purposes.
+
+Flat structure: sections and rules (no sub-policies for this policy type).
+
+Examples:
+  catocli export dia_rules
+  catocli export dia_rules -accountID 12345""",
+        formatter_class=__import__('argparse').RawDescriptionHelpFormatter
+    )
+
+    dia_rules_parser.add_argument('-accountID', help='Account ID to export rules from (uses CATO_ACCOUNT_ID environment variable if not specified)', required=False)
+    dia_rules_parser.add_argument('--json-filename', dest='json_filename', help='Override JSON file name (default: all_dia_rules_and_sections_{account_id}.json)')
+    dia_rules_parser.add_argument('--append-timestamp', dest='append_timestamp', action='store_true', help='Append timestamp to file names')
+    dia_rules_parser.add_argument('--output-directory', dest='output_directory', help='Output directory for exported files (default: config_data)')
+    dia_rules_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
+    dia_rules_parser.set_defaults(func=export_rules.export_dia_rules_to_json)
+
+    # Add cc_rules command
+    cc_rules_parser = export_subparsers.add_parser(
+        'cc_rules',
+        help='Export Client Connectivity rules to JSON format',
+        usage='catocli export cc_rules [-accountID <account_id>] [options]',
+        description="""Export Client Connectivity rules to JSON format for backup, analysis, or migration purposes.
+
+Flat structure: sections and rules (no sub-policies for this policy type).
+
+Examples:
+  catocli export cc_rules
+  catocli export cc_rules -accountID 12345""",
+        formatter_class=__import__('argparse').RawDescriptionHelpFormatter
+    )
+
+    cc_rules_parser.add_argument('-accountID', help='Account ID to export rules from (uses CATO_ACCOUNT_ID environment variable if not specified)', required=False)
+    cc_rules_parser.add_argument('--json-filename', dest='json_filename', help='Override JSON file name (default: all_cc_rules_and_sections_{account_id}.json)')
+    cc_rules_parser.add_argument('--append-timestamp', dest='append_timestamp', action='store_true', help='Append timestamp to file names')
+    cc_rules_parser.add_argument('--output-directory', dest='output_directory', help='Output directory for exported files (default: config_data)')
+    cc_rules_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
+    cc_rules_parser.set_defaults(func=export_rules.export_cc_rules_to_json)
+
+    # Add st_rules command
+    st_rules_parser = export_subparsers.add_parser(
+        'st_rules',
+        help='Export Split Tunnel rules to JSON format',
+        usage='catocli export st_rules [-accountID <account_id>] [options]',
+        description="""Export Split Tunnel rules to JSON format for backup, analysis, or migration purposes.
+
+Flat structure: sections and rules (no sub-policies for this policy type).
+
+Examples:
+  catocli export st_rules
+  catocli export st_rules -accountID 12345""",
+        formatter_class=__import__('argparse').RawDescriptionHelpFormatter
+    )
+
+    st_rules_parser.add_argument('-accountID', help='Account ID to export rules from (uses CATO_ACCOUNT_ID environment variable if not specified)', required=False)
+    st_rules_parser.add_argument('--json-filename', dest='json_filename', help='Override JSON file name (default: all_st_rules_and_sections_{account_id}.json)')
+    st_rules_parser.add_argument('--append-timestamp', dest='append_timestamp', action='store_true', help='Append timestamp to file names')
+    st_rules_parser.add_argument('--output-directory', dest='output_directory', help='Output directory for exported files (default: config_data)')
+    st_rules_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
+    st_rules_parser.set_defaults(func=export_rules.export_st_rules_to_json)
+
     # Add ao_rules command
     ao_rules_parser = export_subparsers.add_parser(
         'ao_rules',

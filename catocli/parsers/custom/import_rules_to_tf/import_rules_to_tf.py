@@ -1694,3 +1694,24 @@ def import_atr_rules_to_tf(args, configuration):
     return _import_flat_policy_to_tf(
         args, 'appTenantRestriction', 'App Tenant Restriction',
         'cato_app_tenant_restriction_section', 'cato_app_tenant_restriction_rule')
+
+
+def import_ts_rules_to_tf(args, configuration):
+    """Import Terminal Server resources into terraform state."""
+    return _import_flat_policy_to_tf(
+        args, 'terminalServer', 'Terminal Server',
+        'cato_terminal_server_section', 'cato_terminal_server_rule')
+
+
+def import_amfh_rules_to_tf(args, configuration):
+    """Import Anti-Malware File Hash resources into terraform state."""
+    return _import_flat_policy_to_tf(
+        args, 'antiMalwareFileHash', 'Anti-Malware File Hash',
+        'cato_anti_malware_file_hash_section', 'cato_anti_malware_file_hash_rule')
+
+
+def import_ssia_rules_to_tf(args, configuration):
+    """Import SDP Static IP Allocation resources into terraform state."""
+    return _import_flat_policy_to_tf(
+        args, 'sdpStaticIpAllocation', 'SDP Static IP Allocation',
+        'cato_sdp_static_ip_allocation_section', 'cato_sdp_static_ip_allocation_rule')

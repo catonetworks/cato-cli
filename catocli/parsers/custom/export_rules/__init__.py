@@ -132,6 +132,73 @@ Examples:
     atr_rules_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
     atr_rules_parser.set_defaults(func=export_rules.export_atr_rules_to_json)
 
+
+    # Add ts_rules command
+    ts_rules_parser = export_subparsers.add_parser(
+        'ts_rules',
+        help='Export Terminal Server rules to JSON format',
+        usage='catocli export ts_rules [-accountID <account_id>] [options]',
+        description="""Export Terminal Server rules to JSON format for backup, analysis, or migration purposes.
+
+Flat structure: sections and rules (no sub-policies for this policy type).
+
+Examples:
+  catocli export ts_rules
+  catocli export ts_rules -accountID 12345""",
+        formatter_class=__import__('argparse').RawDescriptionHelpFormatter
+    )
+
+    ts_rules_parser.add_argument('-accountID', help='Account ID to export rules from (uses CATO_ACCOUNT_ID environment variable if not specified)', required=False)
+    ts_rules_parser.add_argument('--json-filename', dest='json_filename', help='Override JSON file name (default: all_ts_rules_and_sections_{account_id}.json)')
+    ts_rules_parser.add_argument('--append-timestamp', dest='append_timestamp', action='store_true', help='Append timestamp to file names')
+    ts_rules_parser.add_argument('--output-directory', dest='output_directory', help='Output directory for exported files (default: config_data)')
+    ts_rules_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
+    ts_rules_parser.set_defaults(func=export_rules.export_ts_rules_to_json)
+
+    # Add amfh_rules command
+    amfh_rules_parser = export_subparsers.add_parser(
+        'amfh_rules',
+        help='Export Anti-Malware File Hash rules to JSON format',
+        usage='catocli export amfh_rules [-accountID <account_id>] [options]',
+        description="""Export Anti-Malware File Hash rules to JSON format for backup, analysis, or migration purposes.
+
+Flat structure: sections and rules (no sub-policies for this policy type).
+
+Examples:
+  catocli export amfh_rules
+  catocli export amfh_rules -accountID 12345""",
+        formatter_class=__import__('argparse').RawDescriptionHelpFormatter
+    )
+
+    amfh_rules_parser.add_argument('-accountID', help='Account ID to export rules from (uses CATO_ACCOUNT_ID environment variable if not specified)', required=False)
+    amfh_rules_parser.add_argument('--json-filename', dest='json_filename', help='Override JSON file name (default: all_amfh_rules_and_sections_{account_id}.json)')
+    amfh_rules_parser.add_argument('--append-timestamp', dest='append_timestamp', action='store_true', help='Append timestamp to file names')
+    amfh_rules_parser.add_argument('--output-directory', dest='output_directory', help='Output directory for exported files (default: config_data)')
+    amfh_rules_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
+    amfh_rules_parser.set_defaults(func=export_rules.export_amfh_rules_to_json)
+
+    # Add ssia_rules command
+    ssia_rules_parser = export_subparsers.add_parser(
+        'ssia_rules',
+        help='Export SDP Static IP Allocation rules to JSON format',
+        usage='catocli export ssia_rules [-accountID <account_id>] [options]',
+        description="""Export SDP Static IP Allocation rules to JSON format for backup, analysis, or migration purposes.
+
+Flat structure: sections and rules (no sub-policies for this policy type).
+
+Examples:
+  catocli export ssia_rules
+  catocli export ssia_rules -accountID 12345""",
+        formatter_class=__import__('argparse').RawDescriptionHelpFormatter
+    )
+
+    ssia_rules_parser.add_argument('-accountID', help='Account ID to export rules from (uses CATO_ACCOUNT_ID environment variable if not specified)', required=False)
+    ssia_rules_parser.add_argument('--json-filename', dest='json_filename', help='Override JSON file name (default: all_ssia_rules_and_sections_{account_id}.json)')
+    ssia_rules_parser.add_argument('--append-timestamp', dest='append_timestamp', action='store_true', help='Append timestamp to file names')
+    ssia_rules_parser.add_argument('--output-directory', dest='output_directory', help='Output directory for exported files (default: config_data)')
+    ssia_rules_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
+    ssia_rules_parser.set_defaults(func=export_rules.export_ssia_rules_to_json)
+
     # Add ao_rules command
     ao_rules_parser = export_subparsers.add_parser(
         'ao_rules',

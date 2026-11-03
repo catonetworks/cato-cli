@@ -146,6 +146,67 @@ Common Examples:
     atr_rules_parser.set_defaults(func=import_rules_to_tf.import_atr_rules_to_tf)
 
     
+
+    # Add ts_rules_to_tf command
+    ts_rules_parser = import_subparsers.add_parser(
+        'ts_rules_to_tf',
+        help='Import Terminal Server rules to Terraform state',
+        usage='catocli import ts_rules_to_tf <json_file> --module-name <module_name> [options]\n\nexample: catocli import ts_rules_to_tf config_data/all_ts_rules_and_sections.json --module-name module.ts_rules'
+    )
+
+    ts_rules_parser.add_argument('json_file', help='Path to the JSON file produced by `catocli export ts_rules`')
+    ts_rules_parser.add_argument('--module-name', required=True,
+                                help='Terraform module name to import resources into')
+    ts_rules_parser.add_argument('-accountID', help='Account ID (required by CLI framework but not used for import)', required=False)
+    ts_rules_parser.add_argument('--batch-size', type=int, default=10,
+                                help='Number of imports per batch (default: 10)')
+    ts_rules_parser.add_argument('--delay', type=int, default=2,
+                                help='Delay between batches in seconds (default: 2)')
+    ts_rules_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
+    ts_rules_parser.add_argument('--auto-approve', action='store_true', help='Skip confirmation prompt and proceed automatically')
+
+    ts_rules_parser.set_defaults(func=import_rules_to_tf.import_ts_rules_to_tf)
+
+    # Add amfh_rules_to_tf command
+    amfh_rules_parser = import_subparsers.add_parser(
+        'amfh_rules_to_tf',
+        help='Import Anti-Malware File Hash rules to Terraform state',
+        usage='catocli import amfh_rules_to_tf <json_file> --module-name <module_name> [options]\n\nexample: catocli import amfh_rules_to_tf config_data/all_amfh_rules_and_sections.json --module-name module.amfh_rules'
+    )
+
+    amfh_rules_parser.add_argument('json_file', help='Path to the JSON file produced by `catocli export amfh_rules`')
+    amfh_rules_parser.add_argument('--module-name', required=True,
+                                help='Terraform module name to import resources into')
+    amfh_rules_parser.add_argument('-accountID', help='Account ID (required by CLI framework but not used for import)', required=False)
+    amfh_rules_parser.add_argument('--batch-size', type=int, default=10,
+                                help='Number of imports per batch (default: 10)')
+    amfh_rules_parser.add_argument('--delay', type=int, default=2,
+                                help='Delay between batches in seconds (default: 2)')
+    amfh_rules_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
+    amfh_rules_parser.add_argument('--auto-approve', action='store_true', help='Skip confirmation prompt and proceed automatically')
+
+    amfh_rules_parser.set_defaults(func=import_rules_to_tf.import_amfh_rules_to_tf)
+
+    # Add ssia_rules_to_tf command
+    ssia_rules_parser = import_subparsers.add_parser(
+        'ssia_rules_to_tf',
+        help='Import SDP Static IP Allocation rules to Terraform state',
+        usage='catocli import ssia_rules_to_tf <json_file> --module-name <module_name> [options]\n\nexample: catocli import ssia_rules_to_tf config_data/all_ssia_rules_and_sections.json --module-name module.ssia_rules'
+    )
+
+    ssia_rules_parser.add_argument('json_file', help='Path to the JSON file produced by `catocli export ssia_rules`')
+    ssia_rules_parser.add_argument('--module-name', required=True,
+                                help='Terraform module name to import resources into')
+    ssia_rules_parser.add_argument('-accountID', help='Account ID (required by CLI framework but not used for import)', required=False)
+    ssia_rules_parser.add_argument('--batch-size', type=int, default=10,
+                                help='Number of imports per batch (default: 10)')
+    ssia_rules_parser.add_argument('--delay', type=int, default=2,
+                                help='Delay between batches in seconds (default: 2)')
+    ssia_rules_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
+    ssia_rules_parser.add_argument('--auto-approve', action='store_true', help='Skip confirmation prompt and proceed automatically')
+
+    ssia_rules_parser.set_defaults(func=import_rules_to_tf.import_ssia_rules_to_tf)
+
     # Add wf_rules_to_tf command
     wf_rules_parser = import_subparsers.add_parser(
         'wf_rules_to_tf', 

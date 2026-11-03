@@ -1602,3 +1602,118 @@ def export_tls_rules_to_json(args, configuration):
     except Exception as e:
         print(f"ERROR: {str(e)}")
         return [{"success": False, "error": str(e)}]
+
+
+def _export_flat_policy_to_json(args, configuration, policy_key, policy_query_str, file_prefix, label):
+    """Shared exporter for flat sections+rules policy families.
+
+    Flat structure: sections[], rules[] (wrapper {audit, rule, properties},
+    ids retained for brownfield import), rules_in_sections[] ordering rows.
+    SYSTEM and LOCKED rules (built-in, not manageable via the API) are
+    excluded."""
+    try:
+        account_id = getAccountID(args, configuration)
+        policy_query = {
+            "query": policy_query_str,
+            "variables": {"accountId": account_id},
+            "operationName": "policy",
+        }
+        response = makeCall(args, configuration, policy_query)
+        processed_data = strip_ids_recursive(response)
+        policy_node = processed_data['data']['policy'][policy_key]['policy']
+        policy_node.pop('additionalAttributes', None)
+
+        filtered_rules = []
+        for rule_data in policy_node.get('rules') or []:
+            properties = rule_data.get('properties') or []
+            if any(p in ("SYSTEM", "LOCKED") for p in properties):
+                if hasattr(args, 'verbose') and args.verbose:
+                    print(f"Excluding {properties} rule: {rule_data['rule'].get('name')}")
+                continue
+            rule_data.pop('metadata', None)
+            filtered_rules.append(rule_data)
+
+        processed_sections = []
+        for index, section_data in enumerate(policy_node.get('sections') or []):
+            info = section_data.get('section') or {}
+            processed_sections.append({
+                "section_index": index + 1,
+                "section_name": info.get('name'),
+                "section_id": info.get('id', ''),
+            })
+
+        rules_in_sections = []
+        section_counters = {}
+        for rule_data in filtered_rules:
+            rule_info = rule_data['rule']
+            section_name = (rule_info.get('section') or {}).get('name') or ''
+            section_counters.setdefault(section_name, 0)
+            section_counters[section_name] += 1
+            rules_in_sections.append({
+                "index_in_section": section_counters[section_name],
+                "section_name": section_name,
+                "rule_name": rule_info.get('name'),
+            })
+            rule_info.pop('index', None)
+            rule_info['section'] = {"name": section_name}
+
+        policy_node['rules'] = filtered_rules
+        policy_node['sections'] = processed_sections
+        policy_node['rules_in_sections'] = rules_in_sections
+
+        if hasattr(args, 'json_filename') and args.json_filename:
+            base_filename = args.json_filename
+            if base_filename.endswith('.json'):
+                base_filename = base_filename[:-5]
+            if hasattr(args, 'append_timestamp') and args.append_timestamp:
+                timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+                filename_template = f"{base_filename}_{timestamp}.json"
+            else:
+                filename_template = f"{base_filename}.json"
+        else:
+            if hasattr(args, 'append_timestamp') and args.append_timestamp:
+                timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+                filename_template = f"all_{file_prefix}_rules_and_sections_{{account_id}}_{timestamp}.json"
+            else:
+                filename_template = f"all_{file_prefix}_rules_and_sections_{{account_id}}.json"
+
+        output_file = writeDataToFile(
+            data=processed_data,
+            args=args,
+            account_id=account_id,
+            default_filename_template=filename_template,
+            default_directory="config_data"
+        )
+
+        return [{"success": True, "output_file": output_file, "account_id": account_id}]
+
+    except Exception as e:
+        print(f"ERROR: {str(e)}")
+        return [{"success": False, "error": str(e)}]
+
+
+TS_POLICY_QUERY = "query policy ( $accountId:ID! ) { policy ( accountId:$accountId ) { terminalServer { policy { enabled rules { audit { updatedTime updatedBy } rule { id name description index section { id name subPolicyId } enabled allowedHostIP { id name } excludeTraffic { id name } } properties } sections { audit { updatedTime updatedBy } section { id name subPolicyId } properties } audit { publishedTime publishedBy } revision { id name description changes createdTime updatedTime } } } } }"
+
+
+def export_ts_rules_to_json(args, configuration):
+    """Export Terminal Server rules to the bulk-module JSON shape."""
+    return _export_flat_policy_to_json(
+        args, configuration, 'terminalServer', TS_POLICY_QUERY, 'ts', 'Terminal Server')
+
+
+AMFH_POLICY_QUERY = "query policy ( $accountId:ID! ) { policy ( accountId:$accountId ) { antiMalwareFileHash { policy { enabled rules { audit { updatedTime updatedBy } rule { id name description index section { id name subPolicyId } enabled action expirationDate fileName sha256 } properties } sections { audit { updatedTime updatedBy } section { id name subPolicyId } properties } audit { publishedTime publishedBy } revision { id name description changes createdTime updatedTime } } } } }"
+
+
+def export_amfh_rules_to_json(args, configuration):
+    """Export Anti-Malware File Hash rules to the bulk-module JSON shape."""
+    return _export_flat_policy_to_json(
+        args, configuration, 'antiMalwareFileHash', AMFH_POLICY_QUERY, 'amfh', 'Anti-Malware File Hash')
+
+
+SSIA_POLICY_QUERY = "query policy ( $accountId:ID! ) { policy ( accountId:$accountId ) { sdpStaticIpAllocation { policy { enabled rules { audit { updatedTime updatedBy } rule { id name description index section { id name subPolicyId } enabled source { user { id name } } ip } properties } sections { audit { updatedTime updatedBy } section { id name subPolicyId } properties } audit { publishedTime publishedBy } revision { id name description changes createdTime updatedTime } } } } }"
+
+
+def export_ssia_rules_to_json(args, configuration):
+    """Export SDP Static IP Allocation rules to the bulk-module JSON shape."""
+    return _export_flat_policy_to_json(
+        args, configuration, 'sdpStaticIpAllocation', SSIA_POLICY_QUERY, 'ssia', 'SDP Static IP Allocation')

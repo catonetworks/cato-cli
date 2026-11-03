@@ -547,7 +547,7 @@ def import_if_rules_to_tf(args, configuration):
         print("\n Import process completed!")
 
         return [{
-            "success": True,
+            "success": grand_tally["other"] == 0,
             "imported": grand_tally['imported'],
             "already_managed": grand_tally['already_managed'],
             "not_found": grand_tally['not_found'],

@@ -1736,3 +1736,17 @@ def import_st_rules_to_tf(args, configuration):
     return _import_flat_policy_to_tf(
         args, 'splitTunnel', 'Split Tunnel',
         'cato_split_tunnel_section', 'cato_split_tunnel_rule')
+
+
+def import_rpf_rules_to_tf(args, configuration):
+    """Import Remote Port Forwarding resources into terraform state."""
+    return _import_flat_policy_to_tf(
+        args, 'remotePortFwd', 'Remote Port Forwarding',
+        'cato_remote_port_fwd_section', 'cato_remote_port_fwd_rule')
+
+
+def import_swp_rules_to_tf(args, configuration):
+    """Import Site Web Proxy resources into terraform state."""
+    return _import_flat_policy_to_tf(
+        args, 'siteWebProxy', 'Site Web Proxy',
+        'cato_site_web_proxy_section', 'cato_site_web_proxy_rule')

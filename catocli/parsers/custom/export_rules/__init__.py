@@ -266,6 +266,51 @@ Examples:
     st_rules_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
     st_rules_parser.set_defaults(func=export_rules.export_st_rules_to_json)
 
+
+    # Add rpf_rules command
+    rpf_rules_parser = export_subparsers.add_parser(
+        'rpf_rules',
+        help='Export Remote Port Forwarding rules to JSON format',
+        usage='catocli export rpf_rules [-accountID <account_id>] [options]',
+        description="""Export Remote Port Forwarding rules to JSON format for backup, analysis, or migration purposes.
+
+Flat structure: sections and rules (no sub-policies for this policy type).
+
+Examples:
+  catocli export rpf_rules
+  catocli export rpf_rules -accountID 12345""",
+        formatter_class=__import__('argparse').RawDescriptionHelpFormatter
+    )
+
+    rpf_rules_parser.add_argument('-accountID', help='Account ID to export rules from (uses CATO_ACCOUNT_ID environment variable if not specified)', required=False)
+    rpf_rules_parser.add_argument('--json-filename', dest='json_filename', help='Override JSON file name (default: all_rpf_rules_and_sections_{account_id}.json)')
+    rpf_rules_parser.add_argument('--append-timestamp', dest='append_timestamp', action='store_true', help='Append timestamp to file names')
+    rpf_rules_parser.add_argument('--output-directory', dest='output_directory', help='Output directory for exported files (default: config_data)')
+    rpf_rules_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
+    rpf_rules_parser.set_defaults(func=export_rules.export_rpf_rules_to_json)
+
+    # Add swp_rules command
+    swp_rules_parser = export_subparsers.add_parser(
+        'swp_rules',
+        help='Export Site Web Proxy rules to JSON format',
+        usage='catocli export swp_rules [-accountID <account_id>] [options]',
+        description="""Export Site Web Proxy rules to JSON format for backup, analysis, or migration purposes.
+
+Flat structure: sections and rules (no sub-policies for this policy type).
+
+Examples:
+  catocli export swp_rules
+  catocli export swp_rules -accountID 12345""",
+        formatter_class=__import__('argparse').RawDescriptionHelpFormatter
+    )
+
+    swp_rules_parser.add_argument('-accountID', help='Account ID to export rules from (uses CATO_ACCOUNT_ID environment variable if not specified)', required=False)
+    swp_rules_parser.add_argument('--json-filename', dest='json_filename', help='Override JSON file name (default: all_swp_rules_and_sections_{account_id}.json)')
+    swp_rules_parser.add_argument('--append-timestamp', dest='append_timestamp', action='store_true', help='Append timestamp to file names')
+    swp_rules_parser.add_argument('--output-directory', dest='output_directory', help='Output directory for exported files (default: config_data)')
+    swp_rules_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
+    swp_rules_parser.set_defaults(func=export_rules.export_swp_rules_to_json)
+
     # Add ao_rules command
     ao_rules_parser = export_subparsers.add_parser(
         'ao_rules',

@@ -1,5 +1,6 @@
 import os
 import json
+import re
 import traceback
 import sys
 import ipaddress
@@ -10,6 +11,7 @@ from graphql_client.api.call_api import ApiClient, CallApi
 from graphql_client.api_client import ApiException
 from ..customLib import writeDataToFile, makeCall, getAccountID, clean_csv_file
 from ....Utils.cliutils import load_cli_settings
+from ...utils.export_utils import parse_names_arg, filter_items_by_name, merge_items_into_file
 
 def generate_template(args):
     """
@@ -128,6 +130,43 @@ def generate_template(args):
         print(f"Error generating template: {str(e)}")
         return [{"success": False, "error": str(e)}]
 
+def _filter_entity_sites_by_name(entity_sites, args, verbose=False):
+    """Apply --names (comma-separated site names, exact/case-insensitive)
+    filtering to an entityLookup(type="site") items list, shared by both the
+    JSON and CSV socket_sites export paths. Prints a warning for any
+    requested name that matched nothing; returns (filtered_or_original_list,
+    error_result_or_None) - error_result is set (and the caller should
+    return it immediately) only when --names matched NOTHING at all."""
+    names = parse_names_arg(getattr(args, 'names', None))
+    if not names:
+        return entity_sites, None
+
+    wanted_lower = {n.lower() for n in names}
+    matched_lower = set()
+    filtered = []
+    for site_entity in entity_sites:
+        site_name = (site_entity.get('entity', {}).get('name') or '').strip()
+        if site_name.lower() in wanted_lower:
+            matched_lower.add(site_name.lower())
+            filtered.append(site_entity)
+
+    not_found = [n for n in names if n.lower() not in matched_lower]
+    if not_found:
+        print(f"WARNING: --names: no site found for: {', '.join(not_found)}")
+
+    if not filtered:
+        return filtered, [{
+            "success": False,
+            "error": f"--names matched no sites among the requested name(s): {', '.join(names)}",
+            "not_found": not_found,
+        }]
+
+    if verbose:
+        print(f"--names: {len(filtered)} site(s) matched out of {len(names)} requested name(s)")
+
+    return filtered, None
+
+
 def export_socket_sites_dispatcher(args, configuration):
     """
     Dispatcher function that routes to JSON or CSV export based on format argument
@@ -137,8 +176,10 @@ def export_socket_sites_dispatcher(args, configuration):
         return generate_template(args)
     
     export_format = getattr(args, 'export_format', 'json')
-    
+
     if export_format == 'csv':
+        if getattr(args, 'merge_into', None):
+            return [{"success": False, "error": "--merge-into is only supported with the default JSON format (-f json) for socket_sites - it upserts into a {\"sites\": [...]} JSON file, which has no CSV equivalent"}]
         return export_socket_site_to_csv(args, configuration)
     else:
         return export_socket_site_to_json(args, configuration)
@@ -191,7 +232,11 @@ def export_socket_site_to_json(args, configuration):
                 # No site filter was provided but no sites exist at all
                 print("No sites found in this account.")
                 return [{"success": False, "message": "No sites found in account", "account_id": account_id}]
-        
+
+        entity_sites, names_filter_error = _filter_entity_sites_by_name(entity_sites, args, verbose=hasattr(args, 'verbose') and args.verbose)
+        if names_filter_error:
+            return names_filter_error
+
         total_sites = len(entity_sites)
         print(f"\nExporting Cato physical socket sites:\n")
         print(f"{total_sites} site(s) found...\n")
@@ -231,8 +276,9 @@ def export_socket_site_to_json(args, configuration):
                 cur_site['type'] = snapshot_site.get('infoSiteSnapshot', {}).get('type')
                 cur_site['license_id'] = None
                 cur_site['license_bw'] = None
+                cur_site['wifi_ssids'] = getWifiSsidList(args, configuration, account_id, site_id)
                 cur_site = populateSiteLocationData(args, configuration, account_id, site_id, snapshot_site, cur_site)
-                
+
                 # Create a map of interfaces from account snapshot for native range lookup
                 site_interfaces = snapshot_site.get('infoSiteSnapshot', {}).get('interfaces', [])
                 interface_lookup = {}  # Map interface ID to interface data
@@ -339,6 +385,21 @@ def export_socket_site_to_json(args, configuration):
                     ni_index = f"INT_{ni_index}" if isinstance(ni_index, (int, str)) and str(ni_index).isdigit() else ni_index
                     # Use isDefault flag from API instead of hardcoded map
                     is_default_interface = lan_ni_helper_fields.get('isDefault', False)
+
+                    # Skip WiFi radio network interfaces (e.g. WBR1) - they're
+                    # owned by cato_wifi_ssid (see cur_site_entry['wifi_ssids']),
+                    # not a separate cato_lan_interface. Double-managing them
+                    # would create a conflicting lan_interface + network_ranges
+                    # for the same subnet the SSID already represents.
+                    wifi_interface_ids = {
+                        str(w.get('network_interface_id'))
+                        for w in cur_site_entry.get('wifi_ssids', [])
+                        if w.get('network_interface_id')
+                    }
+                    if not is_default_interface and _is_wifi_radio_interface(ni_index, ni_interface_id, wifi_interface_ids):
+                        if hasattr(args, 'verbose') and args.verbose:
+                            print(f"DEBUG: Skipping WiFi radio interface '{ni_interface_name}' (index: {ni_index}) on site {cur_site_entry.get('name', lan_ni_site_id)} - owned by cato_wifi_ssid")
+                        continue
 
                     if is_default_interface:
                         cur_site_entry["native_range"]["interface_id"] = ni_interface_id
@@ -552,6 +613,22 @@ def export_socket_site_to_json(args, configuration):
             else:
                 print(f"Using default filename template: {filename_template}")
             
+        merge_into = getattr(args, 'merge_into', None)
+        if merge_into:
+            merged_list, created, updated = merge_items_into_file(
+                processed_data['sites'], merge_into, name_key='name', wrapper_key='sites',
+            )
+            print(f"\nMerged {len(processed_data['sites'])} site(s) into {merge_into} ({created} new, {updated} updated, {len(merged_list)} total)")
+            return [{
+                "success": True,
+                "output_file": merge_into,
+                "account_id": account_id,
+                "count": len(processed_data['sites']),
+                "merged_total": len(merged_list),
+                "created": created,
+                "updated": updated,
+            }]
+
         # Write the processed data to file using the general-purpose function
         print(f"\nWriting data to file...")
         output_file = writeDataToFile(
@@ -561,11 +638,11 @@ def export_socket_site_to_json(args, configuration):
             default_filename_template=filename_template,
             default_directory="config_data"
         )
-        
+
         print(f"\n Export completed successfully!")
         print(f"  Output file: {output_file}")
         print(f"  Total sites exported: {len(processed_data['sites'])}")
-        
+
         return [{"success": True, "output_file": output_file, "account_id": account_id}]
             
     except Exception as e:
@@ -700,7 +777,11 @@ def get_processed_site_data(args, configuration):
             # No site filter was provided but no sites exist at all
             print("No sites found in this account.")
         return None
-    
+
+    entity_sites, names_filter_error = _filter_entity_sites_by_name(entity_sites, args, verbose=hasattr(args, 'verbose') and args.verbose)
+    if names_filter_error:
+        return None
+
     total_sites = len(entity_sites)
     print(f"\nExporting Cato physical socket sites:\n")
     print(f"{total_sites} site(s) found...\n")
@@ -1685,6 +1766,90 @@ def getDhcpRelayGroups(args, configuration, account_id):
         print(f"Retrieved {len(relay_map)} DHCP relay groups for account {account_id}")
 
     return relay_map
+
+WBR_INDEX_PATTERN = re.compile(r'^WBR\d+$')
+
+
+def _is_wifi_radio_interface(interface_index, interface_id, wifi_interface_ids):
+    """True if a LAN interface (identified by its index/id) is actually a
+    WiFi radio's network interface (e.g. WBR1) - meaning it's owned by a
+    cato_wifi_ssid resource, not a separate cato_lan_interface. wifi_ssids'
+    network_interface_id is matched first; ^WBR\\d+$ is a fallback in case a
+    site has WiFi hardware whose SSID list call didn't come back (or came
+    back empty) for some reason."""
+    candidates = {str(interface_index or ""), str(interface_id or "")}
+    if candidates & wifi_interface_ids:
+        return True
+    return any(WBR_INDEX_PATTERN.match(c) for c in candidates if c)
+
+
+def getWifiSsidList(args, configuration, account_id, site_id):
+    """
+    Get the WiFi SSIDs configured on a site, mapped to the export's
+    snake_case shape. Note the response list key is "wifiSsid", not "items"
+    (data.site.wifiSsidList.wifiSsid[]). Never includes a PSK/passkey field
+    - the API cannot return one; passkeys must be supplied via terraform
+    tfvars when importing/managing cato_wifi_ssid resources.
+    """
+    query = {
+        "query": (
+            "query siteWifiSsidList ( $accountID:ID! $input:WifiSsidListInput! ) "
+            "{ site ( accountId:$accountID ) { wifiSsidList ( input:$input ) { wifiSsid "
+            "{ id networkInterfaceId name band category enabled visible internetOnly "
+            "subnet localIp mdnsEnabled microsegmentationEnabled dhcp { dhcpSubnet } "
+            "security { mode authProtocol trackAuthentication } } } } }"
+        ),
+        "variables": {
+            "accountID": account_id,
+            "input": {"site": {"by": "ID", "input": site_id}},
+        },
+        "operationName": "siteWifiSsidList",
+    }
+    response = makeCall(args, configuration, query)
+
+    if 'errors' in response:
+        error_messages = [error.get('message', 'Unknown error') for error in response['errors']]
+        raise Exception(f"wifiSsidList API returned errors: {', '.join(error_messages)}")
+
+    wifi_ssid_list = (response.get('data') or {}).get('site', {}).get('wifiSsidList') or {}
+    items = wifi_ssid_list.get('wifiSsid') or []
+
+    output_ssids = []
+    for ssid in items:
+        dhcp = ssid.get('dhcp') or {}
+        dhcp_subnet = dhcp.get('dhcpSubnet')
+        security = ssid.get('security') or {}
+
+        output_ssids.append({
+            "id": ssid.get('id'),
+            "name": ssid.get('name'),
+            "network_interface_id": ssid.get('networkInterfaceId'),
+            "band": ssid.get('band'),
+            "category": ssid.get('category'),
+            "enabled": ssid.get('enabled'),
+            "visible": ssid.get('visible'),
+            "internet_only": ssid.get('internetOnly'),
+            "subnet": ssid.get('subnet'),
+            "local_ip": ssid.get('localIp'),
+            "mdns_enabled": ssid.get('mdnsEnabled'),
+            "microsegmentation_enabled": ssid.get('microsegmentationEnabled'),
+            "dhcp": {"dhcp_subnet": dhcp_subnet} if dhcp_subnet else None,
+            "security": {
+                "mode": security.get('mode'),
+                "auth_protocol": security.get('authProtocol'),
+                "track_authentication": security.get('trackAuthentication'),
+            },
+        })
+
+    # Deterministic order - the API does not guarantee stable order, which
+    # otherwise produces diff noise across repeated exports of an unchanged
+    # site (same principle applied to every other exported nested list).
+    output_ssids.sort(key=lambda s: (s.get('name') or '').lower())
+
+    if hasattr(args, 'verbose') and args.verbose:
+        print(f"Retrieved {len(output_ssids)} WiFi SSID(s) for site {site_id}")
+
+    return output_ssids
 
 def getSiteGeneralDetails(args, configuration, account_id, site_id):
     """

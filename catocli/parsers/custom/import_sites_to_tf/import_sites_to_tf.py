@@ -129,7 +129,8 @@ def extract_socket_sites_data(sites_data):
     lan_lag_members = []
     wan_interfaces = []
     network_ranges = []
-    
+    wifi_ssids = []
+
     for site in sites_data:
         if site.get('id') and site.get('name'):
             # Transform site_location to match provider expectations
@@ -316,8 +317,22 @@ def extract_socket_sites_data(sites_data):
                             'microsegmentation': network_range.get('microsegmentation', False),
                             'dhcp_settings': dhcp_settings  # Pass full dhcp_settings object for import resource determination
                         })
-    
-    return sites, wan_interfaces, lan_interfaces, network_ranges, lan_lag_members
+
+        # Extract WiFi SSIDs for this site (JSON-only - no CSV representation).
+        # Produced by `catocli export socket_sites` (wifi_ssids[]); passkeys are
+        # never present (the API cannot return them), so nothing to redact here.
+        for wifi_ssid in site.get('wifi_ssids', []):
+            ssid_id = wifi_ssid.get('id')
+            ssid_name = wifi_ssid.get('name')
+            if ssid_id and ssid_name:
+                wifi_ssids.append({
+                    'site_id': site['id'],
+                    'site_name': site['name'],
+                    'id': ssid_id,
+                    'name': ssid_name,
+                })
+
+    return sites, wan_interfaces, lan_interfaces, network_ranges, lan_lag_members, wifi_ssids
 
 
 def run_terraform_import(resource_address, resource_id, timeout=60, verbose=False):
@@ -549,6 +564,60 @@ def import_lan_lag_members(lan_lag_members, module_name, verbose=False,
             time.sleep(delay_between_batches)
     
     print(f"\nLAN LAG Member Import Summary: {successful_imports} successful, {failed_imports} failed")
+    return successful_imports, failed_imports
+
+def import_wifi_ssids(wifi_ssids, module_name, verbose=False,
+                     resource_type="cato_wifi_ssid", resource_name="this",
+                     batch_size=10, delay_between_batches=2, auto_approve=False):
+    """Import all WiFi SSIDs in batches. JSON-only (produced by `catocli
+    export socket_sites`'s wifi_ssids[]) - no CSV representation exists.
+    The resource id is a plain passthrough of the SSID's id (no composite
+    "site_id:ssid_id" format like WAN interfaces use)."""
+    print("\nStarting WiFi SSID imports...")
+    successful_imports = 0
+    failed_imports = 0
+    total_ssids = len(wifi_ssids)
+
+    for i, ssid in enumerate(wifi_ssids):
+        ssid_id = ssid['id']
+        ssid_name = ssid['name']
+        site_name = ssid['site_name']
+
+        # Check if ssid_id is empty or blank
+        if not ssid_id or not str(ssid_id).strip():
+            print(f"\n[{i+1}/{total_ssids}] Skipping WiFi SSID '{ssid_name}' on {site_name} - ID is empty or blank")
+            continue
+
+        # Add module. prefix if not present
+        if not module_name.startswith('module.'):
+            module_name = f'module.{module_name}'
+
+        # Use site_name as the site key for readability in state, and
+        # ssid_name as the key within cato_wifi_ssid.this (for_each by name,
+        # mirroring how other socket-site resources are keyed).
+        site_key = site_name
+        resource_address = f'{module_name}.module.socket-site["{site_key}"].cato_wifi_ssid.this["{ssid_name}"]'
+
+        print(f"\n[{i+1}/{total_ssids}] WiFi SSID: {ssid_name} on {site_name} (ID: {ssid_id})")
+
+        success, stdout, stderr = run_terraform_import(resource_address, ssid_id, verbose=verbose)
+
+        if success:
+            successful_imports += 1
+        else:
+            failed_imports += 1
+
+            if failed_imports <= 3 and not auto_approve:
+                response = input(f"\nContinue with remaining imports? (y/n): ").lower()
+                if response == 'n':
+                    print("Import process stopped by user.")
+                    break
+
+        if (i + 1) % batch_size == 0 and i < total_ssids - 1:
+            print(f"\n  Batch complete. Waiting {delay_between_batches}s before next batch...")
+            time.sleep(delay_between_batches)
+
+    print(f"\nWiFi SSID Import Summary: {successful_imports} successful, {failed_imports} failed")
     return successful_imports, failed_imports
 
 def import_lan_interfaces(lan_interfaces, module_name, verbose=False,
@@ -964,27 +1033,30 @@ def import_socket_sites_to_tf(args, configuration):
         else:
             raise ValueError(f"Unsupported data type: {data_type}")
         
-        # Extract sites, WAN interfaces, LAN interfaces, and network ranges
-        sites, wan_interfaces, lan_interfaces, network_ranges, lan_lag_members = extract_socket_sites_data(sites_data)
+        # Extract sites, WAN interfaces, LAN interfaces, network ranges, and WiFi SSIDs
+        sites, wan_interfaces, lan_interfaces, network_ranges, lan_lag_members, wifi_ssids = extract_socket_sites_data(sites_data)
         if hasattr(args, 'verbose') and args.verbose:
             print("\n==================== DEBUG =====================\n")
             print("sites",json.dumps( sites, indent=2))
             print("wan_interfaces",json.dumps( wan_interfaces, indent=2))
             print("lan_interfaces",json.dumps( lan_interfaces, indent=2))
             print("network_ranges",json.dumps( network_ranges, indent=2))
+            print("wifi_ssids",json.dumps( wifi_ssids, indent=2))
             print("\n==================== DEBUG =====================\n")
             print(f"\nExtracted data summary:")
             print(f"  Sites: {len(sites)}")
             print(f"  WAN Interfaces: {len(wan_interfaces)}")
             print(f"  LAN Interfaces: {len(lan_interfaces)}")
             print(f"  Network Ranges: {len(network_ranges)}")
-        
+            print(f"  WiFi SSIDs: {len(wifi_ssids)}")
+
         print(f" Found {len(sites)} sites")
         print(f" Found {len(wan_interfaces)} WAN interfaces")
         print(f" Found {len(lan_interfaces)} LAN interfaces")
         print(f" Found {len(lan_lag_members)} LAN LAG members")
         print(f" Found {len(network_ranges)} network ranges")
-        
+        print(f" Found {len(wifi_ssids)} WiFi SSIDs")
+
         if not sites and not wan_interfaces and not network_ranges:
             print(" No sites, interfaces, or network ranges found. Exiting.")
             return [{"success": False, "error": "No data found to import"}]
@@ -1027,6 +1099,7 @@ def import_socket_sites_to_tf(args, configuration):
             import_summary.append(f"{len(wan_interfaces)} WAN interfaces")
             import_summary.append(f"{len(lan_interfaces)} LAN interfaces")
             import_summary.append(f"{len(network_ranges)} network ranges")
+            import_summary.append(f"{len(wifi_ssids)} WiFi SSIDs")
         elif sites_only:
             import_summary.append(f"{len(sites)} sites only")
         elif wan_only:
@@ -1084,7 +1157,7 @@ def import_socket_sites_to_tf(args, configuration):
                                                        auto_approve=getattr(args, 'auto_approve', False))
             total_successful += successful
             total_failed += failed
-     
+
         # Import network ranges (if selected)
         if (ranges_only or (not sites_only and not wan_only and not lan_only)) and network_ranges:
             successful, failed = import_network_ranges(network_ranges, lan_interfaces, module_name=args.module_name,
@@ -1093,7 +1166,16 @@ def import_socket_sites_to_tf(args, configuration):
                                                       auto_approve=getattr(args, 'auto_approve', False))
             total_successful += successful
             total_failed += failed
-        
+
+        # Import WiFi SSIDs (if any found and not in selective mode) - JSON-only
+        if (not (sites_only or wan_only or lan_only or ranges_only)) and wifi_ssids:
+            successful, failed = import_wifi_ssids(wifi_ssids, module_name=args.module_name,
+                                                   verbose=args.verbose, batch_size=args.batch_size,
+                                                   delay_between_batches=args.delay,
+                                                   auto_approve=getattr(args, 'auto_approve', False))
+            total_successful += successful
+            total_failed += failed
+
         # Final summary
         print("\n" + "=" * 80)
         print(" FINAL IMPORT SUMMARY")
@@ -2063,7 +2145,8 @@ def import_socket_sites_from_csv(args, configuration):
         sites_data = load_csv_data(args.csv_file, sites_config_dir)
         
         # Extract sites, WAN interfaces, LAN interfaces, and network ranges using existing function
-        sites, wan_interfaces, lan_interfaces, network_ranges, lan_lag_members = extract_socket_sites_data(sites_data)
+        # (CSV data has no wifi_ssids representation, so wifi_ssids is always empty here)
+        sites, wan_interfaces, lan_interfaces, network_ranges, lan_lag_members, wifi_ssids = extract_socket_sites_data(sites_data)
         
         if hasattr(args, 'verbose') and args.verbose:
             print(f"\nExtracted data summary:")
@@ -2120,6 +2203,7 @@ def import_socket_sites_from_csv(args, configuration):
             import_summary.append(f"{len(wan_interfaces)} WAN interfaces")
             import_summary.append(f"{len(lan_interfaces)} LAN interfaces")
             import_summary.append(f"{len(network_ranges)} network ranges")
+            import_summary.append(f"{len(wifi_ssids)} WiFi SSIDs")
         elif sites_only:
             import_summary.append(f"{len(sites)} sites only")
         elif wan_only:

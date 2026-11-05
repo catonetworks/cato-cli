@@ -23,7 +23,12 @@ Common Examples:
   catocli export socket_sites --site-ids "100,200,300" --output-directory ./backups
   
   # Generate templates for import operations
-  catocli export socket_sites -gt -f csv''',
+  catocli export socket_sites -gt -f csv
+
+  # Export dependency objects (groups, global IP ranges, custom applications)
+  catocli export groups
+  catocli export global_ip_ranges
+  catocli export custom_apps --strip-ids''',
         formatter_class=__import__('argparse').RawDescriptionHelpFormatter
     )
     export_subparsers = export_parser.add_subparsers(description='valid export operations', help='additional help')
@@ -31,7 +36,11 @@ Common Examples:
     # Add sites export functionality
     from catocli.parsers.custom.export_sites import export_sites_parse
     export_sites_parse(export_subparsers)
-    
+
+    # Add dependency object export functionality (groups, global_ip_ranges, custom_apps)
+    from catocli.parsers.custom.export_deps import export_deps_parse
+    export_deps_parse(export_subparsers)
+
     # Add if_rules command
     if_rules_parser = export_subparsers.add_parser(
         'if_rules', 

@@ -390,6 +390,240 @@ def export_data_unified(
             raise ValueError(f"Unsupported format: {format_type}")
         
         return [result]
-        
+
     except Exception as e:
         return [{'success': False, 'error': str(e)}]
+
+
+# Shared help text fragment for --names/--site-names: names are comma-split
+# by convention, but resource names can legitimately contain a literal comma
+# (e.g. "Finance, HR Group"), so a bare split is lossy. Each occurrence of
+# the flag is split on commas EXCEPT ones escaped as "\," (unescaped back to
+# a literal comma afterward); the flag is also repeatable, so a comma-
+# containing name can instead be isolated in its own --names occurrence.
+NAMES_FILTER_HELP_SUFFIX = (
+    ' Repeatable (pass the flag multiple times to add more names) - but '
+    'EVERY occurrence is still split on unescaped commas, so a name '
+    'containing a literal comma must have it escaped as "\\," no matter '
+    'which form you use: repeat --names once per name, or escape commas '
+    'with \\, for names that contain commas. E.g. --names '
+    '"Finance\\, HR Group,Other Group" (one occurrence, escaped) and '
+    '--names "Finance\\, HR Group" --names "Other Group" (two occurrences, '
+    'still escaped) both parse to ["Finance, HR Group", "Other Group"]; '
+    'leaving the comma unescaped (--names "Finance, HR Group") splits it '
+    'into two separate names, ["Finance", "HR Group"].'
+)
+
+
+def add_name_filter_arguments(parser, names_help=None, site_names_help=None, include_site_names=False):
+    """
+    Add --names (and optionally --site-names) + --merge-into to an export
+    subcommand's parser. Shared by every `catocli export <type>` subcommand
+    that supports selective, name-based export and upsert-merge into an
+    existing JSON file (e.g. pulling a couple of named objects out of a
+    second tenant and merging them into this repo's config_data/ file).
+    """
+    parser.add_argument(
+        '--names',
+        dest='names',
+        action='append',
+        help=(names_help or (
+            'Comma-separated list of exact names to export (case-insensitive, '
+            'trimmed), instead of exporting everything. Unknown names print a '
+            'warning; the command only fails (non-zero exit) if NONE of the '
+            'requested names matched.'
+        )) + NAMES_FILTER_HELP_SUFFIX
+    )
+    if include_site_names:
+        parser.add_argument(
+            '--site-names',
+            dest='site_names',
+            action='append',
+            help=(site_names_help or (
+                'Comma-separated list of exact site names to filter by '
+                '(case-insensitive, trimmed).'
+            )) + NAMES_FILTER_HELP_SUFFIX
+        )
+    parser.add_argument(
+        '--merge-into',
+        dest='merge_into',
+        help=(
+            'Instead of writing a fresh file, upsert the exported object(s) '
+            'into an existing JSON file at this path, keyed by name: entries '
+            'whose name matches an exported object are replaced, new names '
+            'are appended, and everything else in the file is left alone. '
+            'Re-sorts the file by name (case-insensitive) afterward. Useful '
+            'with --names and a different CATO_PROFILE/-accountID to pull '
+            'select objects from another tenant into this one\'s config_data/.'
+        )
+    )
+
+
+def _split_unescaped_commas(value):
+    """Split `value` on commas, except commas escaped as "\\," (which are
+    unescaped to a literal "," and kept inline rather than used as a
+    delimiter). E.g. 'Finance\\, HR Group,Other' -> ['Finance, HR Group',
+    'Other']."""
+    parts = []
+    current = []
+    i = 0
+    length = len(value)
+    while i < length:
+        ch = value[i]
+        if ch == '\\' and i + 1 < length and value[i + 1] == ',':
+            current.append(',')
+            i += 2
+            continue
+        if ch == ',':
+            parts.append(''.join(current))
+            current = []
+            i += 1
+            continue
+        current.append(ch)
+        i += 1
+    parts.append(''.join(current))
+    return parts
+
+
+def parse_names_arg(names_arg):
+    """
+    Parse a --names/--site-names value into a trimmed list of non-empty
+    names.
+
+    `names_arg` may be a single string, or a list of strings (argparse
+    `action='append'` makes the flag repeatable, so each occurrence - e.g.
+    --names "A,B" --names "C" - arrives as its own list element). Each
+    string is split on commas EXCEPT ones escaped as "\\," (see
+    _split_unescaped_commas), so a name containing a literal comma can be
+    passed either escaped within a comma-separated list, or isolated in its
+    own --names occurrence.
+
+    Returns None if nothing was requested.
+    """
+    if not names_arg:
+        return None
+    raw_values = names_arg if isinstance(names_arg, list) else [names_arg]
+    names = []
+    for raw in raw_values:
+        if not raw:
+            continue
+        for part in _split_unescaped_commas(raw):
+            part = part.strip()
+            if part:
+                names.append(part)
+    return names or None
+
+
+def filter_items_by_name(items, names, name_key='name'):
+    """
+    Filter `items` to only those whose [name_key] exactly matches (case-
+    insensitive, after trim) one of `names`.
+
+    Returns (filtered_items, not_found_names) - not_found_names echoes back
+    the original (as-typed) casing of any requested name that matched
+    nothing, for a clear warning message. If `names` is falsy, returns
+    `items` unchanged and an empty not_found list.
+    """
+    if not names:
+        return items, []
+
+    wanted = {}
+    for n in names:
+        wanted.setdefault(n.lower(), n)
+
+    found_lower = set()
+    filtered = []
+    for item in items:
+        val = (item.get(name_key) or '')
+        val_lower = val.strip().lower()
+        if val_lower in wanted:
+            filtered.append(item)
+            found_lower.add(val_lower)
+
+    not_found = [orig for lower, orig in wanted.items() if lower not in found_lower]
+    return filtered, not_found
+
+
+def merge_items_into_file(items, merge_path, name_key='name', wrapper_key=None, sort_key=None):
+    """
+    Upsert `items` into the JSON file at `merge_path`, keyed by `name_key`
+    (case-insensitive, trimmed exact match). Entries in the existing file
+    whose name matches an incoming item are replaced in place; everything
+    else in the file is preserved; new names are appended. The resulting
+    list is re-sorted by `sort_key` (default: name_key, case-insensitive),
+    matching this repo's top-level sort convention. Running the same merge
+    twice is idempotent.
+
+    `name_key` may be a plain field name (string) or a callable
+    `item -> str` for a composite identity (e.g. static_hosts, where host
+    names alone can collide across sites: `lambda h: (h.get('site_name'),
+    h.get('name'))`).
+
+    When `wrapper_key` is given (e.g. "sites" for socket_sites), the file's
+    top level is an object {wrapper_key: [...]} instead of a bare array -
+    everything else in that object is preserved untouched.
+
+    Returns (merged_list, created_count, updated_count).
+    """
+    def _key_of(item):
+        if callable(name_key):
+            raw = name_key(item)
+        else:
+            raw = item.get(name_key)
+        if isinstance(raw, (list, tuple)):
+            return tuple((str(p or '')).strip().lower() for p in raw)
+        return (str(raw or '')).strip().lower()
+
+    if os.path.exists(merge_path):
+        with open(merge_path, 'r', encoding='utf-8') as f:
+            existing_data = json.load(f)
+    else:
+        existing_data = {wrapper_key: []} if wrapper_key else []
+
+    if wrapper_key:
+        if not isinstance(existing_data, dict):
+            raise ValueError(f"--merge-into target must be a JSON object with a \"{wrapper_key}\" key")
+        existing_list = existing_data.get(wrapper_key) or []
+    else:
+        if not isinstance(existing_data, list):
+            raise ValueError("--merge-into target must be a JSON array")
+        existing_list = existing_data
+
+    by_key = {}
+    order = []
+    for item in existing_list:
+        key = _key_of(item)
+        if key not in by_key:
+            order.append(key)
+        by_key[key] = item
+
+    created = 0
+    updated = 0
+    for item in items:
+        key = _key_of(item)
+        if key in by_key:
+            updated += 1
+        else:
+            created += 1
+            order.append(key)
+        by_key[key] = item
+
+    merged_list = [by_key[k] for k in order]
+    if sort_key is None:
+        sort_key = (lambda x: (x.get(name_key) or '').lower()) if not callable(name_key) else _key_of
+    merged_list.sort(key=sort_key)
+
+    if wrapper_key:
+        existing_data[wrapper_key] = merged_list
+        output_data = existing_data
+    else:
+        output_data = merged_list
+
+    out_dir = os.path.dirname(os.path.abspath(merge_path))
+    if out_dir and not os.path.exists(out_dir):
+        os.makedirs(out_dir, exist_ok=True)
+
+    with open(merge_path, 'w', encoding='utf-8') as f:
+        json.dump(output_data, f, indent=4, ensure_ascii=False)
+
+    return merged_list, created, updated

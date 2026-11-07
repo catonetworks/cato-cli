@@ -54,6 +54,12 @@ catoApiSchema = {
 schema_lock = threading.RLock()
 file_write_lock = threading.RLock()
 
+# Config-driven field exclusions per operation path (read-only after import).
+# Maps a dotted operation name to field names stripped from its generated
+# selection (and therefore from its hoisted arguments), e.g.
+# {"query.groups.groupList": ["members"]} — see clisettings.json.
+operationFieldExclusions = loadJSON("../catocli/clisettings.json", __file__).get("operationFieldExclusions", {})
+
 def initParser():
     # Process options
     parser = OptionParser()
@@ -1386,9 +1392,15 @@ def should_exclude_field(field_name, field_type, operation_path, parent_path):
     Determine if a field should be excluded from model generation for query.policy and mutation.policy operations.
     
     Excludes:
+    - any field listed for the operation in the operationFieldExclusions config
+      (clisettings.json), e.g. members from query.groups.groupList
     - subPolicyId field (type: ID) from rules.rule.section and sections.section
     - access field from sections with EntityAccess type containing action field (enum: RBACAction)
     """
+    # Config-driven exclusions (exact operation-path match, any nesting depth)
+    if operation_path and field_name in operationFieldExclusions.get(operation_path, ()):
+        return True
+
     # Only apply filtering to query.policy and mutation.policy operations
     if not operation_path or not (operation_path.startswith("query.policy") or operation_path.startswith("mutation.policy")):
         return False

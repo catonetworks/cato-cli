@@ -5,9 +5,8 @@
         "query.site.secondaryAzureVSocket": {},
         // Remote Access API rollout is unavailable for the CI account
         "query.access": {},
-        // Device response selection and group-list members are rejected by the CI server
+        // Device response selection is rejected by the CI server
         "query.devices.list": {},
-        "query.groups.groupList": {},
         // CI has no user-group fixture for a member lookup
         "query.user.usersGroup.members": {},
         // CI IP-range search times out or omits the containers result even with a 120s timeout
@@ -618,36 +617,31 @@
                 },
                 "groupRefInput": {
                     "by": "ID",
-                    "input": "d32bc227-0b2f-4e84-ac0f-81f15146ce7b"
+                    "input": "ebe28735-8d7b-487d-aaca-41f198dcb725"
                 }
             },
             "assertions": [
                 "groups.group.members.items"
             ]
         },
-        // "query.groups.groupList": {
-        //     "payload": {
-        //         "groupMembersListInput": {
-        //             "filter": [],
-        //             "paging": {
-        //                 "from": 0,
-        //                 "limit": 100
-        //             },
-        //             "sort": {
-        //                 "name": {
-        //                     "direction": "ASC",
-        //                     "priority": 1
-        //                 }
-        //             }
-        //         }
-        //     },
-        //     "assertions": []
-        // },
+        "query.groups.groupList": {
+            "payload": {
+                "groupListInput": {
+                    "paging": {
+                        "from": 0,
+                        "limit": 100
+                    }
+                }
+            },
+            "assertions": [
+                "groups.groupList.items"
+            ]
+        },
         "query.groups.whereUsed": {
             "payload": {
                 "groupRefInput": {
                     "by": "ID",
-                    "input": "d32bc227-0b2f-4e84-ac0f-81f15146ce7b"
+                    "input": "ebe28735-8d7b-487d-aaca-41f198dcb725"
                 }
             },
             "assertions": [

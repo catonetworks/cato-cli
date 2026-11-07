@@ -1232,7 +1232,10 @@ catocli {operationCmd} '{example_json}'
 catocli {operationCmd} '{example_json_pretty}'
 ```
 """
-                
+                else:
+                    # No generated example (e.g. no-arg operation) — still close the code fence
+                    readmeStr += "```\n"
+
                 # Note: GitHub links for advanced examples are now handled dynamically in the help system
                 
                 # Check for example file and insert its content before Operation Arguments
@@ -1288,6 +1291,8 @@ catocli {operationCmd} '{example_json_pretty}'
                 with file_write_lock:
                     writeFile(parserPath+"/README.md",readmeStr)
             else:
+                # Intermediate (non-leaf) node — close the usage code fence before writing
+                readmeStr += "```\n"
                 parserPath = "../catocli/parsers/"+parserName
                 if not os.path.exists(parserPath):
                     os.makedirs(parserPath)
@@ -1958,7 +1963,10 @@ catocli {subOperationCmd} '{example_json_pretty}'
             except:
                 # If example file doesn't exist, continue without adding example content
                 pass
-        
+        else:
+            # No generated example (e.g. no-arg operation) — still close the code fence
+            readmeStr += "```\n"
+
         if not os.path.exists(parserPath):
             os.makedirs(parserPath)
         with file_write_lock:

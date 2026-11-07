@@ -10,6 +10,7 @@ catocli query popLocations bgpProfileList -h
 catocli query popLocations bgpProfileList <json>
 
 catocli query popLocations bgpProfileList --json-file query.popLocations.bgpProfileList.json
+```
 
 #### Operation Arguments for query.popLocations.bgpProfileList ####
 

@@ -10,6 +10,7 @@ catocli query notification subscriptionGroupList -h
 catocli query notification subscriptionGroupList <json>
 
 catocli query notification subscriptionGroupList --json-file query.notification.subscriptionGroupList.json
+```
 
 #### Operation Arguments for query.notification.subscriptionGroupList ####
 

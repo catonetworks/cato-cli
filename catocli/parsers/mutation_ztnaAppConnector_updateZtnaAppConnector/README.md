@@ -11,13 +11,23 @@ catocli mutation ztnaAppConnector updateZtnaAppConnector <json>
 
 catocli mutation ztnaAppConnector updateZtnaAppConnector --json-file mutation.ztnaAppConnector.updateZtnaAppConnector.json
 
-catocli mutation ztnaAppConnector updateZtnaAppConnector '{"updateZtnaAppConnectorInput":{"description":"string","groupName":"string","id":"id","location":{"address":"string","city":"string","countryCode":"string","stateCode":"string","timezone":"America/New_York"},"name":"string","preferredPopLocation":{"automatic":true,"preferredOnly":true,"primary":{"by":"ID","input":"string"},"secondary":{"by":"ID","input":"string"}}}}'
+catocli mutation ztnaAppConnector updateZtnaAppConnector '{"updateZtnaAppConnectorInput":{"description":"string","groupName":"string","id":"id","lanInterface":{"ipAssignment":"DHCP","staticAddress":{"gateway":"192.0.2.1","localIp":"192.0.2.1","primaryDnsServer":"192.0.2.1","secondaryDnsServer":"192.0.2.1","subnet":"192.0.2.0/24"}},"location":{"address":"string","city":"string","countryCode":"string","stateCode":"string","timezone":"America/New_York"},"name":"string","preferredPopLocation":{"automatic":true,"preferredOnly":true,"primary":{"by":"ID","input":"string"},"secondary":{"by":"ID","input":"string"}}}}'
 
 catocli mutation ztnaAppConnector updateZtnaAppConnector '{
     "updateZtnaAppConnectorInput": {
         "description": "string",
         "groupName": "string",
         "id": "id",
+        "lanInterface": {
+            "ipAssignment": "DHCP",
+            "staticAddress": {
+                "gateway": "192.0.2.1",
+                "localIp": "192.0.2.1",
+                "primaryDnsServer": "192.0.2.1",
+                "secondaryDnsServer": "192.0.2.1",
+                "subnet": "192.0.2.0/24"
+            }
+        },
         "location": {
             "address": "string",
             "city": "string",

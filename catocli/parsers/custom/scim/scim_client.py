@@ -9,6 +9,7 @@ import datetime
 import json
 import logging
 import os
+import random
 import secrets
 import ssl
 import string
@@ -19,6 +20,12 @@ import urllib.request
 import warnings
 from urllib.error import HTTPError, URLError
 from ....Utils.profile_manager import get_profile_manager
+from ....Utils.waf_detect import (
+    WAF_RETRY_DELAYS,
+    is_waf_challenge,
+    clean_waf_error_message,
+    waf_retry_warning,
+)
 
 
 # Set up module-level logger
@@ -182,74 +189,122 @@ class CatoSCIMClient:
             else:
                 print(f"   Request Payload: (none)", file=sys.stderr)
 
-        # Create and send the request
-        try:
-            request = urllib.request.Request(
-                url=self.baseurl + path,
-                headers=headers,
-                method=method,
-                data=body
-            )
-            self.call_count += 1
-            
-            # Handle SSL verification based on configuration
-            if self.verify_ssl:
-                # Use default SSL verification (secure)
-                response = urllib.request.urlopen(request)
-            else:
-                # Disable SSL verification (development only)
-                logger.warning("SSL verification disabled - this is insecure!")
-                context = ssl._create_unverified_context()
-                response = urllib.request.urlopen(request, context=context)
-            
-            result_data = response.read()
-            response_json = json.loads(result_data.decode('utf-8', 'replace')) if result_data != b'' else {}
-            
-            # Print verbose response information
-            if self.verbose:
-                print(f"\n SCIM API Response:", file=sys.stderr)
-                print(f"   Status: {response.status} {response.reason}", file=sys.stderr)
-                print(f"   Response Payload:", file=sys.stderr)
-                print(f"   {json.dumps(response_json, indent=2, ensure_ascii=False)}", file=sys.stderr)
-            
-            return True, response_json
-            
-        except HTTPError as e:
-            error_body = e.read().decode('utf-8', 'replace')
-            error_response = {"status": e.code, "error": error_body}
-            
-            # Print verbose error response information
-            if self.verbose:
-                print(f"\n SCIM API Error Response:", file=sys.stderr)
-                print(f"   Status: {e.code} {e.reason}", file=sys.stderr)
-                print(f"   Error Response:", file=sys.stderr)
-                try:
-                    error_json = json.loads(error_body)
-                    print(f"   {json.dumps(error_json, indent=2, ensure_ascii=False)}", file=sys.stderr)
-                except json.JSONDecodeError:
-                    print(f"   {error_body}", file=sys.stderr)
-            
-            return False, error_response
-            
-        except URLError as e:
-            error_response = {"reason": e.reason, "error": str(e)}
-            
-            if self.verbose:
-                print(f"\n SCIM API Connection Error:", file=sys.stderr)
-                print(f"   Error: {str(e)}", file=sys.stderr)
-            
-            logger.error(f'Error sending request: {e}')
-            return False, error_response
-            
-        except Exception as e:
-            error_response = {"error": str(e)}
-            
-            if self.verbose:
-                print(f"\n SCIM API Unexpected Error:", file=sys.stderr)
-                print(f"   Error: {str(e)}", file=sys.stderr)
-            
-            logger.error(f'Error sending request: {e}')
-            return False, error_response
+        # Create and send the request. Detect/retry an Imperva/Incapsula
+        # WAF challenge here too (shared wording/schedule with every other
+        # call path via catocli.Utils.waf_detect) - it can arrive either as
+        # a non-2xx HTTPError (whose body IS the raw HTML page) or as a 2xx
+        # response whose body is the HTML page instead of JSON (caught as a
+        # JSONDecodeError below).
+        waf_retry_count = 0
+
+        while True:
+            try:
+                request = urllib.request.Request(
+                    url=self.baseurl + path,
+                    headers=headers,
+                    method=method,
+                    data=body
+                )
+                self.call_count += 1
+
+                # Handle SSL verification based on configuration
+                if self.verify_ssl:
+                    # Use default SSL verification (secure)
+                    response = urllib.request.urlopen(request)
+                else:
+                    # Disable SSL verification (development only)
+                    logger.warning("SSL verification disabled - this is insecure!")
+                    context = ssl._create_unverified_context()
+                    response = urllib.request.urlopen(request, context=context)
+
+                result_data = response.read()
+                if result_data == b'':
+                    response_json = {}
+                else:
+                    decoded = result_data.decode('utf-8', 'replace')
+                    try:
+                        response_json = json.loads(decoded)
+                    except json.JSONDecodeError:
+                        if is_waf_challenge(decoded):
+                            next_count = self._sleep_for_waf_retry(decoded, waf_retry_count)
+                            if next_count is not None:
+                                waf_retry_count = next_count
+                                continue
+                            return False, {"error": clean_waf_error_message(decoded)}
+                        raise
+
+                # Print verbose response information
+                if self.verbose:
+                    print(f"\n SCIM API Response:", file=sys.stderr)
+                    print(f"   Status: {response.status} {response.reason}", file=sys.stderr)
+                    print(f"   Response Payload:", file=sys.stderr)
+                    print(f"   {json.dumps(response_json, indent=2, ensure_ascii=False)}", file=sys.stderr)
+
+                return True, response_json
+
+            except HTTPError as e:
+                error_body = e.read().decode('utf-8', 'replace')
+
+                if is_waf_challenge(error_body):
+                    next_count = self._sleep_for_waf_retry(error_body, waf_retry_count)
+                    if next_count is not None:
+                        waf_retry_count = next_count
+                        continue
+                    return False, {"status": e.code, "error": clean_waf_error_message(error_body)}
+
+                error_response = {"status": e.code, "error": error_body}
+
+                # Print verbose error response information
+                if self.verbose:
+                    print(f"\n SCIM API Error Response:", file=sys.stderr)
+                    print(f"   Status: {e.code} {e.reason}", file=sys.stderr)
+                    print(f"   Error Response:", file=sys.stderr)
+                    try:
+                        error_json = json.loads(error_body)
+                        print(f"   {json.dumps(error_json, indent=2, ensure_ascii=False)}", file=sys.stderr)
+                    except json.JSONDecodeError:
+                        print(f"   {error_body}", file=sys.stderr)
+
+                return False, error_response
+
+            except URLError as e:
+                error_response = {"reason": e.reason, "error": str(e)}
+
+                if self.verbose:
+                    print(f"\n SCIM API Connection Error:", file=sys.stderr)
+                    print(f"   Error: {str(e)}", file=sys.stderr)
+
+                logger.error(f'Error sending request: {e}')
+                return False, error_response
+
+            except Exception as e:
+                error_response = {"error": str(e)}
+
+                if self.verbose:
+                    print(f"\n SCIM API Unexpected Error:", file=sys.stderr)
+                    print(f"   Error: {str(e)}", file=sys.stderr)
+
+                logger.error(f'Error sending request: {e}')
+                return False, error_response
+
+    def _sleep_for_waf_retry(self, raw_text, waf_retry_count):
+        """Shared WAF-challenge backoff for send(): prints the one-line
+        warning and sleeps per WAF_RETRY_DELAYS, returning the incremented
+        retry count so the caller can `continue` its request loop - or
+        returns None once every retry is exhausted, so the caller returns a
+        clean (status, error) failure tuple instead of retrying again.
+        Full HTML is only ever printed under CATO_DEBUG."""
+        if bool(os.getenv("CATO_DEBUG", False)):
+            print(f"DEBUG: raw WAF/Incapsula challenge response body:\n{raw_text}", file=sys.stderr)
+
+        if waf_retry_count >= len(WAF_RETRY_DELAYS):
+            return None
+
+        base_delay = WAF_RETRY_DELAYS[waf_retry_count]
+        delay = base_delay + random.uniform(0, base_delay * 0.5)
+        print(waf_retry_warning(raw_text, delay, waf_retry_count + 1, len(WAF_RETRY_DELAYS)), file=sys.stderr)
+        time.sleep(delay)
+        return waf_retry_count + 1
 
     def add_members(self, groupid, members):
         """

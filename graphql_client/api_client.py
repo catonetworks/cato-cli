@@ -193,4 +193,12 @@ class ApiException(Exception):
 			if self.headers:
 				error_message += "HTTP response headers: {0}\n".format(
 					self.headers)
+			# NOTE: previously fell through here with no return, so str(e)
+			# returned None and callers doing `error_msg = str(e)` (e.g.
+			# customLib.makeCall's retry logic) crashed with
+			# "__str__ returned non-string" for any ApiException raised
+			# without an http_resp (e.g. an SSLError or a "cannot prepare
+			# request" case) - which is exactly the path the generic
+			# 502/503/timeout/rate-limit retry check depends on.
+			return error_message
 

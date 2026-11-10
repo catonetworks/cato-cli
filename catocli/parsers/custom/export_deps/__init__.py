@@ -41,6 +41,14 @@ STATIC_HOST_STRIP_IDS_HELP = (
     "site_name are always kept since they identify where the host lives)."
 )
 
+WEBHOOK_STRIP_IDS_HELP = (
+    "Omit the tenant-specific top-level \"id\" from the output so the file "
+    "can be migrated into a different tenant. NOTE: \"relatedWebhookId\" is "
+    "NOT stripped - it is an id-only cross-reference to another webhook "
+    "(chained webhooks) with no name-based fallback in the API, so it will "
+    "need to be manually re-resolved against the target tenant if used."
+)
+
 
 def export_deps_parse(subparsers):
     """Create export parsers for the 1-dependencies object types: Groups,
@@ -432,8 +440,60 @@ Examples:
         site_names_help='Comma-separated list of exact site names to filter hosts by.',
         include_site_names=True,
     )
+    static_hosts_parser.add_argument(
+        '--site-type', dest='site_type', choices=['physical', 'cloud', 'all'], default='physical',
+        help="Which sites' hosts to export: physical = socket sites (connType in "
+             "clisettings export_by_socket_type, matches the socket_sites export); "
+             "cloud = non-physical (vSocket/SASE/cloud) sites; all = every site. "
+             "Default physical, so static_hosts.json stays consistent with socket_sites.json.")
     static_hosts_parser.set_defaults(func=export_deps.export_static_hosts)
+
+    # Add webhooks command
+    webhooks_parser = subparsers.add_parser(
+        'webhooks',
+        help='Export Webhooks to JSON format',
+        usage='catocli export webhooks [-accountID <account_id>] [options]',
+        description='''Export Webhooks to JSON format for backup, analysis, or migration purposes.
+
+Flat array of {id, name, enabled, url, requestMethod, relatedWebhookId},
+sorted by name (case-insensitive). Single-call export (notification.
+integration.webhookList is not paginated). This is the same underlying
+object subscription_groups.json's "integration" field already references by
+{id, name} - exported here as first-class objects with their own metadata.
+Deliberately omits the webhook's "auth"/"header"/"body"/"responseMapping"
+fields (not requested from the API at all) so no exported file can ever
+capture live webhook credentials.
+
+Examples:
+  # Basic export (uses CATO_ACCOUNT_ID environment variable)
+  catocli export webhooks
+
+  # Export with specific account ID
+  catocli export webhooks -accountID 12345
+
+  # Export with custom filename and timestamp
+  catocli export webhooks --json-filename my_webhooks.json --append-timestamp
+
+  # Export for migration into a different tenant (omit tenant-specific ids)
+  catocli export webhooks --strip-ids
+
+  # Export only specific named webhooks (escape a literal comma in a name with \\,)
+  catocli export webhooks --names "SOC Alerts,Finance\\, HR Webhook"
+
+  # Pull 2 named webhooks from a second tenant and merge them into this repo's webhooks.json
+  CATO_PROFILE=tenantB catocli export webhooks --names "Webhook A,Webhook B" --merge-into ../config_data/webhooks.json''',
+        formatter_class=__import__('argparse').RawDescriptionHelpFormatter
+    )
+
+    webhooks_parser.add_argument('-accountID', help='Account ID to export data from (uses CATO_ACCOUNT_ID environment variable if not specified)', required=False)
+    webhooks_parser.add_argument('--json-filename', dest='json_filename', help='Override JSON file name (default: webhooks.json)')
+    webhooks_parser.add_argument('--append-timestamp', dest='append_timestamp', action='store_true', help='Append timestamp to file names')
+    webhooks_parser.add_argument('--output-directory', dest='output_directory', help='Output directory for exported files (default: config_data)')
+    webhooks_parser.add_argument('--strip-ids', dest='strip_ids', action='store_true', help=WEBHOOK_STRIP_IDS_HELP)
+    add_name_filter_arguments(webhooks_parser, names_help='Comma-separated list of exact webhook names to export, instead of exporting every webhook.')
+    webhooks_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
+    webhooks_parser.set_defaults(func=export_deps.export_webhooks_to_json)
 
     return (groups_parser, global_ip_ranges_parser, dhcp_relay_groups_parser, custom_apps_parser,
             mailing_lists_parser, subscription_groups_parser, fqdn_containers_parser,
-            ip_range_containers_parser, static_hosts_parser)
+            ip_range_containers_parser, static_hosts_parser, webhooks_parser)

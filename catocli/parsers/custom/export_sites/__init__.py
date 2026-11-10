@@ -38,7 +38,10 @@ Examples:
   catocli export socket_sites --names "NA-US-RIC-BR,Finance\\, HR Branch"
 
   # Pull 2 named sites from a second tenant and merge them into this repo's socket_sites.json (JSON only)
-  CATO_PROFILE=tenantB catocli export socket_sites --names "Site A,Site B" --merge-into ../config_data/socket_sites.json''',
+  CATO_PROFILE=tenantB catocli export socket_sites --names "Site A,Site B" --merge-into ../config_data/socket_sites.json
+
+  # Produce a tenant-portable export (ids stripped) for migrating sites into a different tenant
+  catocli export socket_sites --strip-ids''',
         formatter_class=__import__('argparse').RawDescriptionHelpFormatter
     )
 
@@ -69,6 +72,19 @@ Examples:
     )
 
     socket_sites_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
+
+    socket_sites_parser.add_argument(
+        '--strip-ids', dest='strip_ids', action='store_true',
+        help=(
+            'Make the JSON output tenant-portable by stripping source-tenant-specific ids '
+            '(-f json only; ignored with -f csv): each site\'s own id, license_id/license_bw '
+            '(a license must be re-assigned per site in the target tenant), '
+            'wan_interfaces[].id, lan_interfaces[].id, network_ranges[].id, the native '
+            'range\'s id (the "range_id" field), and wifi_ssids[].id. Does NOT strip Wi-Fi '
+            'PSKs (the API never returns them on export, stripped or not - supply them '
+            'separately in the target tenant) or anything else. Off by default.'
+        ),
+    )
 
     socket_sites_parser.set_defaults(func=export_sites.export_socket_sites_dispatcher)
     

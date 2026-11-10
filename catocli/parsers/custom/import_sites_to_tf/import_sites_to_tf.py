@@ -19,6 +19,7 @@ from pathlib import Path
 from ..customLib import validate_terraform_environment, clean_csv_file
 from graphql_client.api.call_api import ApiClient, CallApi
 from graphql_client.api_client import ApiException
+from ....Utils.waf_detect import call_with_waf_retry, response_text_if_not_dict
 
 def load_json_data(json_file):
     """Load socket sites data from JSON file"""
@@ -85,14 +86,23 @@ def validate_cato_api_auth(configuration, verbose=False):
             't': False
         }
         
-        response = instance.call_api(query, params)
-        
+        # Detect/retry an Imperva/Incapsula WAF challenge here too (shared
+        # with every other call path via catocli.Utils.waf_detect) - a WAF
+        # challenge during this pre-flight check should not read as an
+        # authentication failure.
+        response = call_with_waf_retry(
+            lambda: instance.call_api(query, params),
+            waf_payload_from_result=lambda r: response_text_if_not_dict(r[0] if r else r),
+        )
+
         # Check response structure
         if not response or len(response) == 0:
             return False, "Empty response from API"
-        
+
         response_data = response[0]
-        
+        if not isinstance(response_data, dict):
+            return False, "Invalid (non-JSON) response structure from API"
+
         # Check for authentication errors
         if 'errors' in response_data:
             error_messages = [error.get('message', 'Unknown error') for error in response_data['errors']]

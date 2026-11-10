@@ -1,10 +1,25 @@
+import copy
 import os
 import json
+import shutil
 import sys
-from datetime import datetime
+from datetime import datetime, timezone
 from graphql_client.api.call_api import ApiClient, CallApi
 from graphql_client.api_client import ApiException
 from ..customLib import writeDataToFile, makeCall, getAccountID
+from ..export_deps.export_deps import (
+    strip_groups_ids,
+    strip_global_ip_ranges_ids,
+    strip_custom_apps_ids,
+    strip_fqdn_containers_ids,
+    strip_ip_range_containers_ids,
+    strip_mailing_lists_ids,
+    strip_subscription_groups_ids,
+    strip_dhcp_relay_groups_ids,
+    strip_static_hosts_ids,
+    strip_webhooks_ids,
+)
+from ..export_sites.export_sites import strip_socket_site_ids
 
 def strip_ids_recursive(data):
     """Recursively strip id attributes from data structure, but only from objects that contain only 'id' and 'name' keys.
@@ -41,6 +56,255 @@ def strip_ids_recursive(data):
     except Exception as e:
         print(f"Error in strip_ids_recursive: {e}, data type: {type(data)}, data: {str(data)[:100]}")
         raise
+
+
+def _find_policy_node(data):
+    """Locate the single policy-family node inside a raw `catocli export
+    <rules_type>` JSON payload - e.g.
+    data['data']['policy']['internetFirewall']['policy']. Every one of the
+    18 rules-type exports shares the same GraphQL-derived signature at that
+    node: an 'enabled' flag, a 'rules' list, and a 'revision' dict (see each
+    export_*_rules_to_json function's policy_query) - matching on that
+    signature means one traversal works across every type without
+    hardcoding each type's policy_key (internetFirewall, wanFirewall, ...),
+    and without depending on which ordering key a type uses
+    (rules_in_sections for most types, rules_in_policy for pa_rules).
+    Returns None if no such node is found (defensive - a malformed or
+    unrecognized export)."""
+    if isinstance(data, dict):
+        if isinstance(data.get('rules'), list) and isinstance(data.get('revision'), dict):
+            return data
+        for v in data.values():
+            found = _find_policy_node(v)
+            if found is not None:
+                return found
+    return None
+
+
+def _strip_rule_wrapper_id(rule_wrapper):
+    """rule_wrapper is the {"audit": ..., "rule": {...}, "properties": [...]}
+    shape every rules[] entry (and sub_policies[].cleanup_rule) uses - pop
+    the embedded rule's own 'id' (the brownfield-import key) in place, if
+    present."""
+    if isinstance(rule_wrapper, dict):
+        inner = rule_wrapper.get('rule')
+        if isinstance(inner, dict):
+            inner.pop('id', None)
+
+
+def strip_policy_rules_ids(data):
+    """Pure transform: strip brownfield-import-key ids from a full `catocli
+    export <rules_type>` JSON payload (as written by any of the 18 export
+    handlers, or read back from its output file) - each rule's own
+    `rule.id`, each `sections[]` entry's `section_id`, and each
+    `sub_policies[]` entry's `sub_policy_id`/`scope_rule_id` (plus its
+    nested `cleanup_rule`'s `rule.id`, for sub-policy-capable types: if_rules,
+    wf_rules, lan_fw_rules). Never touches names, `rules_in_sections` /
+    `rules_in_policy` (ordering is name-based - see CLAUDE.md), or anything
+    else.
+
+    Embedded entity references inside rule criteria (source.group[].id,
+    destination.application[].id, etc.) need no handling here: every such
+    {id, name} reference is ALREADY stripped of its id unconditionally, at
+    export time, by strip_ids_recursive above (called by every
+    export_*_rules_to_json function before this transform would ever run) -
+    whenever a name sibling exists. The only ids strip_ids_recursive
+    deliberately leaves in place are id-only reference types with no name
+    sibling (e.g. a bare id + several other fields) - the documented
+    manual-resolution cases - so there is nothing left to strip for those.
+
+    Returns a new dict; does not mutate the input (so an archived raw copy
+    made from the same in-memory object, if any, stays untouched)."""
+    data = copy.deepcopy(data)
+    policy_node = _find_policy_node(data)
+    if policy_node is None:
+        return data
+
+    for rule_wrapper in policy_node.get('rules') or []:
+        _strip_rule_wrapper_id(rule_wrapper)
+
+    for section in policy_node.get('sections') or []:
+        if isinstance(section, dict):
+            section.pop('section_id', None)
+
+    for sub_policy in policy_node.get('sub_policies') or []:
+        if isinstance(sub_policy, dict):
+            sub_policy.pop('sub_policy_id', None)
+            sub_policy.pop('scope_rule_id', None)
+            _strip_rule_wrapper_id(sub_policy.get('cleanup_rule'))
+
+    return data
+
+
+# Export type -> pure strip function, for every dependency type that ships
+# a native --strip-ids flag in export_deps.py. Shared by export_all_to_json's
+# --strip-ids post-processing pass below, so `catocli export <type>
+# --strip-ids` and `catocli export all --strip-ids` always produce
+# byte-identical output for these types - no second, drifting
+# implementation. socket_sites and the 18 *_rules types are handled
+# separately in _strip_exported_payload (different shapes; see there).
+_DEPENDENCY_STRIP_FUNCS = {
+    'groups': strip_groups_ids,
+    'global_ip_ranges': strip_global_ip_ranges_ids,
+    'custom_apps': strip_custom_apps_ids,
+    'fqdn_containers': strip_fqdn_containers_ids,
+    'ip_range_containers': strip_ip_range_containers_ids,
+    'mailing_lists': strip_mailing_lists_ids,
+    'subscription_groups': strip_subscription_groups_ids,
+    'dhcp_relay_groups': strip_dhcp_relay_groups_ids,
+    'static_hosts': strip_static_hosts_ids,
+    'webhooks': strip_webhooks_ids,
+}
+
+
+def _strip_exported_payload(export_type, data):
+    """Dispatch to the correct pure strip transform for `export all
+    --strip-ids`'s post-processing pass, based on export_type:
+      - one of the dependency types in _DEPENDENCY_STRIP_FUNCS: the same
+        function `catocli export <type> --strip-ids` calls natively
+        (export_deps.py) - data is the bare JSON list those exports write.
+      - 'socket_sites': strip_socket_site_ids (export_sites.py) - data is
+        the {"sites": [...]} dict that export writes.
+      - any of the 18 `*_rules` types: strip_policy_rules_ids (above) -
+        data is the full nested GraphQL-shaped payload those exports write.
+      - anything else (a future export type with no strip support yet):
+        returned unchanged - defensive passthrough, never an error.
+    """
+    strip_func = _DEPENDENCY_STRIP_FUNCS.get(export_type)
+    if strip_func is not None:
+        return strip_func(data)
+    if export_type == 'socket_sites':
+        return strip_socket_site_ids(data)
+    if export_type.endswith('_rules'):
+        return strip_policy_rules_ids(data)
+    return data
+
+
+def _strip_output_file_in_place(export_type, output_file):
+    """Load output_file's JSON, apply _strip_exported_payload for
+    export_type, and overwrite output_file with the stripped result.
+
+    Used only by export_all_to_json's --strip-ids post-processing, and only
+    AFTER the raw file has already been archived (see that function's
+    docstring): one API call per type, archive the raw copy first, then
+    strip the primary file in place - so the API is never called a second
+    time to produce the stripped version, and --archive-directory always
+    keeps the id-bearing raw original regardless of --strip-ids.
+
+    Returns (ok: bool, error: str or None)."""
+    try:
+        with open(output_file, 'r', encoding='utf-8') as f:
+            raw_content = json.load(f)
+    except Exception as e:
+        return False, f"could not read '{output_file}' for --strip-ids post-processing: {e}"
+
+    try:
+        stripped_content = _strip_exported_payload(export_type, raw_content)
+    except Exception as e:
+        return False, f"--strip-ids transform failed: {e}"
+
+    try:
+        with open(output_file, 'w', encoding='utf-8') as f:
+            json.dump(stripped_content, f, indent=2)
+            f.write('\n')
+    except Exception as e:
+        return False, f"could not write stripped content back to '{output_file}': {e}"
+
+    return True, None
+
+
+# Ported from the reference-architecture repo's scripts/migrate_tenant.py
+# (CHECKLIST_TEMPLATE) - see that script's module docstring for the
+# original tenant-migration-export design this generalizes. Adapted here to
+# cover every type `catocli export all --strip-ids` can produce, including
+# the 18 *_rules policy types migrate_tenant.py never touched.
+EXPORT_ALL_CHECKLIST_TEMPLATE = """\
+# Tenant migration checklist
+
+Generated {generated_at} by `{generated_by}`. This directory is a READ-ONLY
+export capture -- nothing was applied or imported anywhere. Everything below
+must be resolved by a human, in the TARGET tenant, before any of this is
+applied there.
+
+## Before doing anything else
+
+- [ ] Run your config-data validator (e.g. the reference-architecture repo's
+      `scripts/validate_config_data.py --config-data {output_dir}`) against
+      this directory and fix any ERRORs it reports before copying anything
+      into a target repo's `config_data/`. NOTE: because this export was
+      deliberately stripped of source-tenant ids, the validator WILL report
+      "missing id field" errors for every dependency/static-host object,
+      every site, and every policy rule/section -- that's expected at this
+      stage (the ids don't exist yet; the target tenant assigns its own on
+      creation/apply). Focus on everything else it reports (duplicate
+      names, dangling `rules_in_sections`/`rules_in_policy` references,
+      cross-file ref warnings); re-run the validator for a genuinely clean
+      result only after re-exporting from the TARGET tenant post-apply.
+
+## Manual re-resolution required
+
+- [ ] **Group members with id-only types.** `--strip-ids` keeps `{{type, name}}`
+      for every group member it CAN resolve by name, but the following member
+      types are only addressable by id in the source tenant today, so their
+      `id` was stripped with no name-based fallback: `FLOATING_SUBNET`,
+      `HOST`, `NETWORK_INTERFACE`, `SITE_NETWORK_SUBNET`. Inspect
+      `groups.json` for members of these types and re-resolve each one's id
+      in the TARGET tenant via `catocli entity entityLookup` (or the
+      equivalent MCP/UI lookup) before applying.
+
+- [ ] **Mailing-list admin ids.** The mailing-list admin reference REQUIRES an
+      id -- `--strip-ids` on `mailing_lists.json` necessarily drops each
+      admin's id and keeps only `{{name}}`. Re-resolve each admin's id in the
+      TARGET tenant (e.g. `catocli entity entityLookup`) before this file can
+      be applied there.
+
+- [ ] **Wi-Fi PSKs.** The Cato API never returns Wi-Fi passkeys on export --
+      `socket_sites.json`'s `wifi_ssids[]` entries with `security.mode ==
+      "PSK"` have no passkey value, stripped or otherwise. Supply each one
+      in the TARGET tenant's site/Wi-Fi configuration, keyed by site and SSID
+      name.
+
+- [ ] **Licenses.** `socket_sites.json` has had `license_id` and
+      `license_bw` stripped from every site (they're source-tenant-specific
+      and meaningless in the target). Re-assign a license to each site in
+      the TARGET tenant as part of onboarding.
+
+- [ ] **Physical socket re-registration.** Exporting/importing JSON does not
+      move hardware. Every physical socket behind a migrated site must be
+      physically re-registered against the TARGET account (new registration
+      code) -- applying this config alone will not make a socket appear in
+      the new tenant.
+
+## Policy rule files
+
+Every `*_rules`-type file in this export has had its brownfield-import-key
+ids stripped (each rule's `id`, each section's `section_id`, and each
+sub-policy's `sub_policy_id`/`scope_rule_id`) -- rule/section names and the
+`rules_in_sections`/`rules_in_policy` ordering arrays are untouched (ordering
+is name-based), so these files apply cleanly to a greenfield target policy
+with no further action required here.
+
+## Files in this export
+
+{file_list}
+"""
+
+
+def _write_export_all_checklist(output_directory, filenames, generated_by):
+    """Write CHECKLIST.md into output_directory (see EXPORT_ALL_CHECKLIST_TEMPLATE)
+    and return its path. Only called when --strip-ids is set."""
+    file_list = "\n".join(f"- `{name}`" for name in sorted(filenames)) or "(none - every requested type failed)"
+    content = EXPORT_ALL_CHECKLIST_TEMPLATE.format(
+        generated_at=datetime.now(timezone.utc).isoformat(),
+        generated_by=generated_by,
+        output_dir=output_directory,
+        file_list=file_list,
+    )
+    path = os.path.join(output_directory, "CHECKLIST.md")
+    with open(path, 'w', encoding='utf-8') as f:
+        f.write(content)
+    return path
+
 
 def export_if_rules_to_json(args, configuration):
     """
@@ -138,9 +402,12 @@ def export_if_rules_to_json(args, configuration):
                 rule_info['section'].pop('subPolicyId', None)
 
                 section_name = rule_info['section']['name']
-                # If section name is empty, use "Default Section" as the section name
+                # Empty section name is the canonical implicit-default-section
+                # sentinel ("" = rule at the policy root, no explicit section).
+                # Preserve it verbatim -- consumers (bulk modules, validator,
+                # importers) key on "".
                 if not section_name or section_name.strip() == "":
-                    section_name = "Default Section"
+                    section_name = ""
                     rule_info['section']['name'] = section_name
                 elif section_name == default_section_name and top_section_name:
                     # Non-SYSTEM rule living in the excluded default section:
@@ -340,9 +607,10 @@ def export_if_rules_to_json(args, configuration):
                     continue
 
                 if not sub_policy_name:
-                    # Main-policy rule: preserve the legacy empty-section fallback.
+                    # Main-policy rule: "" is the canonical implicit-default-
+                    # section sentinel (rule at the policy root) -- preserve it.
                     if not section_name or section_name.strip() == "":
-                        section_name = "Default Section"
+                        section_name = ""
                     elif section_name == default_section_name and top_section_name:
                         # Re-home rules from the excluded default section.
                         section_name = top_section_name
@@ -510,9 +778,12 @@ def export_wf_rules_to_json(args, configuration):
                 rule_info['section'].pop('subPolicyId', None)
 
                 section_name = rule_info['section']['name']
-                # If section name is empty, use "Default Section" as the section name
+                # Empty section name is the canonical implicit-default-section
+                # sentinel ("" = rule at the policy root, no explicit section).
+                # Preserve it verbatim -- consumers (bulk modules, validator,
+                # importers) key on "".
                 if not section_name or section_name.strip() == "":
-                    section_name = "Default Section"
+                    section_name = ""
                     rule_info['section']['name'] = section_name
                 elif section_name == default_section_name and top_section_name:
                     # Non-SYSTEM rule living in the excluded default section:
@@ -710,9 +981,10 @@ def export_wf_rules_to_json(args, configuration):
                     continue
 
                 if not sub_policy_name:
-                    # Main-policy rule: preserve the legacy empty-section fallback.
+                    # Main-policy rule: "" is the canonical implicit-default-
+                    # section sentinel (rule at the policy root) -- preserve it.
                     if not section_name or section_name.strip() == "":
-                        section_name = "Default Section"
+                        section_name = ""
                     elif section_name == default_section_name and top_section_name:
                         # Re-home rules from the excluded default section.
                         section_name = top_section_name
@@ -831,9 +1103,10 @@ def export_wnw_rules_to_json(args, configuration):
         section_counters = {}
         for rule_data in processed_data['data']['policy']['wanNetwork']['policy']['rules']:
             section_name = rule_data['rule']['section']['name']
-            # If section name is empty, use "Default Section" as the section name
+            # Empty section name is the canonical implicit-default-section
+            # sentinel ("" = rule at the policy root) -- preserve it verbatim.
             if not section_name or section_name.strip() == "":
-                section_name = "Default Section"
+                section_name = ""
                 rule_data['rule']['section']['name'] = section_name
             
             if section_name not in section_counters:
@@ -1185,9 +1458,9 @@ def export_pa_rules_to_json(args, configuration):
         else:
             if hasattr(args, 'append_timestamp') and args.append_timestamp:
                 timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-                filename_template = f"all_pa_rules_{{account_id}}_{timestamp}.json"
+                filename_template = f"all_pa_rules_and_sections_{{account_id}}_{timestamp}.json"
             else:
-                filename_template = "all_pa_rules_{account_id}.json"
+                filename_template = "all_pa_rules_and_sections_{account_id}.json"
 
         output_file = writeDataToFile(
             data=processed_data,
@@ -1529,9 +1802,10 @@ def export_tls_rules_to_json(args, configuration):
         section_counters = {}
         for rule_data in processed_data['data']['policy']['tlsInspect']['policy']['rules']:
             section_name = rule_data['rule']['section']['name']
-            # If section name is empty, use "Default Section" as the section name
+            # Empty section name is the canonical implicit-default-section
+            # sentinel ("" = rule at the policy root) -- preserve it verbatim.
             if not section_name or section_name.strip() == "":
-                section_name = "Default Section"
+                section_name = ""
                 rule_data['rule']['section']['name'] = section_name
             
             if section_name not in section_counters:
@@ -1777,3 +2051,434 @@ def export_sb_rules_to_json(args, configuration):
     """Export Socket Bypass rules to the bulk-module JSON shape."""
     return _export_flat_policy_to_json(
         args, configuration, 'socketBypass', SB_POLICY_QUERY, 'sb', 'Socket Bypass')
+
+
+def _is_access_denied_error(error_text):
+    """Case-insensitive match for the Cato API's access-denied signature.
+
+    Used by export_all_to_json to fatally abort the whole run the moment one
+    type hits this, instead of grinding through every remaining type hitting
+    the identical wall - observed live: an under-privileged API key printed
+    the same "Access denied: ... does not have sufficient permissions"
+    error for type after type until the run finally finished on its own."""
+    if not error_text:
+        return False
+    text = str(error_text).lower()
+    return "access denied" in text or "does not have sufficient permissions" in text
+
+
+def _preflight_validate_export_all_credentials(args, configuration):
+    """Pre-flight credential/permission check for `catocli export all`, run
+    once before any type is exported.
+
+    Reuses catocli configure's own live-API credential validator
+    (test_credentials() in catocli/parsers/configure/configure.py - the same
+    lightweight entityLookup call `catocli configure set` runs before saving
+    a profile) against the endpoint/token/account_id this invocation would
+    actually use, instead of duplicating that query here. Returns
+    (ok: bool, message: str)."""
+    from catocli.parsers.configure.configure import test_credentials
+
+    try:
+        account_id = getAccountID(args, configuration)
+    except Exception as e:
+        return False, str(e)
+
+    endpoint = getattr(configuration, 'host', None)
+    token = None
+    if hasattr(configuration, 'api_key') and configuration.api_key:
+        token = configuration.api_key.get('x-api-key')
+
+    if not endpoint or not token:
+        return False, "no endpoint/token configured for the active profile"
+
+    return test_credentials(endpoint, token, account_id)
+
+
+def _strip_account_suffix_from_filename(path, account_id):
+    """Remove a literal '_<account_id>' suffix immediately before the file
+    extension, e.g. 'all_ifw_rules_and_sections_15412.json' ->
+    'all_ifw_rules_and_sections.json'. Matches the literal resolved account
+    id (not a regex guess over digits), so it only strips the exact suffix
+    this run's own account produced. A no-op when the basename doesn't end
+    with that exact suffix - e.g. the dependency-object exports (groups,
+    custom_apps, ...), whose default filenames are already account-agnostic
+    by convention and carry no suffix to strip."""
+    directory, basename = os.path.split(path)
+    stem, ext = os.path.splitext(basename)
+    suffix = f"_{account_id}"
+    if account_id and stem.endswith(suffix):
+        stem = stem[: -len(suffix)]
+    new_basename = f"{stem}{ext}"
+    return os.path.join(directory, new_basename) if directory else new_basename
+
+
+def export_all_to_json(args, configuration):
+    """Run every registered `catocli export <type>` subcommand in-process
+    (calling the exact same handler functions the individual subcommands
+    invoke - no subprocesses), writing each type's own default filename into
+    one shared --output-directory.
+
+    The type list is NOT a second hardcoded registry: export_rules_parse()
+    (catocli/parsers/custom/export_rules/__init__.py) stashes the live
+    'export' subparsers registry on this command via
+    set_defaults(_export_subparsers=export_subparsers) after every export
+    subcommand (sites, dependency objects, and all rules types) has been
+    registered onto it, so args._export_subparsers.choices always reflects
+    every export subcommand that exists at runtime - a future export type
+    added anywhere under `catocli export` is picked up automatically.
+
+    Before any type is exported, a pre-flight credential/permission check
+    (_preflight_validate_export_all_credentials, reusing `catocli configure`'s
+    own live-API validator) runs once; on failure, nothing is exported and
+    the process exits 1 immediately.
+
+    For each type, this builds that subcommand's own default Namespace via
+    sub_parser.parse_args([]) - every export subcommand's options are
+    optional (see export_rules_parse/export_sites_parse/export_deps_parse),
+    so this reproduces exactly what running `catocli export <type>` with no
+    extra flags would do, including its own --json-filename default - then
+    overrides only the options common to every export subcommand
+    (-accountID, --output-directory, -v/--verbose) with this run's values.
+
+    --types restricts the run to a comma-separated subset of type names.
+    One failing type does NOT abort the run by default (continue-on-error);
+    pass --fail-fast to stop at the first failure instead. The one exception
+    to continue-on-error is an access-denied failure (see
+    _is_access_denied_error): permissions are granted per-API, so a key that
+    lacks permission for one operation will almost always lack it for every
+    remaining one too - continuing would just reprint the identical error for
+    every remaining type (this is exactly what happened in the field: an
+    under-privileged key ground through type after type printing the same
+    "Access denied" error). An access-denied failure therefore aborts the
+    run immediately regardless of --fail-fast.
+
+    --no-account-suffix is off by default (preserving today's filenames).
+    When set, each type's own produced file is renamed in place
+    (os.rename, via _strip_account_suffix_from_filename) to drop its
+    trailing '_<account_id>' before the extension, using the literal
+    account id this run resolved (not a regex guess over digits) -
+    e.g. 'all_ifw_rules_and_sections_15412.json' becomes
+    'all_ifw_rules_and_sections.json'. This happens right after the single
+    export call returns and before archiving, so --archive-directory
+    naturally copies the already-renamed file. Dependency-object exports
+    (groups, custom_apps, ...) are already account-agnostic by convention
+    and are unaffected (no suffix to strip).
+
+    --archive-directory is off unless explicitly set. When set, every
+    successfully-exported file is additionally copied byte-for-byte (same
+    basename as the primary --output-directory file, post rename if
+    --no-account-suffix is also set) into that directory - mirroring what
+    this reference-architecture repo's scripts/export_all_configs.py does
+    for config_data_archive/, a redundant, directly-diffable raw capture.
+    The copy is made from the path the single export call already
+    produced; the export is never re-run and the API is never called a
+    second time to get it. A type whose own export fails writes nothing to
+    the archive. If the archive copy itself fails (disk/permissions), that
+    type is marked failed in the summary, but this is NOT an access-denied
+    condition, so it never aborts the run.
+
+    --strip-ids is off by default. When set, this run produces the same
+    tenant-migration outcome as the reference-architecture repo's
+    (now-superseded) scripts/migrate_tenant.py: every type's PRIMARY output
+    file (in --output-directory) becomes tenant-portable (ids stripped),
+    while --archive-directory, if also given, still receives the RAW
+    id-bearing file. The ordering is strict and never varies: each type's
+    API is called exactly once (no second call to produce a stripped
+    version); if --archive-directory is set, the raw file is archived
+    FIRST; only then is the primary file stripped in place, via
+    _strip_output_file_in_place/_strip_exported_payload - reusing the exact
+    same pure strip_*_ids functions each type's own native --strip-ids flag
+    calls (export_deps.py's dependency types, export_sites.py's
+    strip_socket_site_ids, and strip_policy_rules_ids above for every
+    `*_rules` type), so there is never a second, drifting implementation. A
+    type whose own export succeeded but whose strip post-processing failed
+    is marked failed in the summary (like an archive-copy failure) without
+    aborting the run. When at least the pre-flight check passed, a
+    CHECKLIST.md is additionally written into --output-directory (see
+    EXPORT_ALL_CHECKLIST_TEMPLATE) listing every file this run produced plus
+    the manual re-resolution steps a target tenant still needs (id-only
+    group members, mailing-list admin ids, Wi-Fi PSKs, licenses, physical
+    socket re-registration).
+
+    A per-type progress line is printed as each type runs, followed by a
+    summary; if any requested type failed (including the pre-flight check,
+    an access-denied abort, an archive-copy failure, or a --strip-ids
+    post-processing failure), sys.exit(1) is called after the summary is
+    printed (matching this codebase's convention of custom commands calling
+    sys.exit() directly - see import_rules_to_tf.py / import_sites_to_tf.py
+    - since clidriver.main() does not otherwise inspect a handler's
+    returned "success" flag)."""
+    registry = getattr(args, '_export_subparsers', None)
+    if registry is None or not hasattr(registry, 'choices'):
+        print("ERROR: internal error: export type registry not available")
+        return [{"success": False, "error": "internal error: export type registry not available"}]
+
+    all_types = sorted(name for name in registry.choices.keys() if name != 'all')
+
+    types_to_run = all_types
+    if getattr(args, 'types', None):
+        requested = [t.strip() for t in args.types.split(',') if t.strip()]
+        unknown = [t for t in requested if t not in registry.choices or t == 'all']
+        if unknown:
+            error = (
+                f"--types: unknown export type(s): {', '.join(unknown)}. "
+                f"Valid types: {', '.join(all_types)}"
+            )
+            print(f"ERROR: {error}")
+            return [{"success": False, "error": error}]
+        types_to_run = requested
+
+    print("Pre-flight: validating credentials and permissions before exporting any type...")
+    preflight_ok, preflight_message = _preflight_validate_export_all_credentials(args, configuration)
+    if not preflight_ok:
+        print(f"ERROR: Pre-flight credential check failed: {preflight_message}")
+        print(
+            "Run `catocli configure show` to verify the active profile's credentials, and "
+            "confirm the associated Admin or Service Principal has sufficient permissions, "
+            "then re-run `catocli export all`."
+        )
+        preflight_result = [{
+            "success": False,
+            "error": f"pre-flight credential check failed: {preflight_message}",
+        }]
+        sys.exit(1)
+        return preflight_result  # unreachable after sys.exit; kept for type consistency
+
+    verbose = hasattr(args, 'verbose') and args.verbose
+    fail_fast = hasattr(args, 'fail_fast') and args.fail_fast
+    strip_ids_requested = hasattr(args, 'strip_ids') and args.strip_ids
+    total = len(types_to_run)
+
+    # --no-account-suffix: off by default. Resolve the literal account id
+    # once (pure local resolution - no API call) so every type's produced
+    # filename can have its exact '_<account_id>' suffix stripped below.
+    no_account_suffix = hasattr(args, 'no_account_suffix') and args.no_account_suffix
+    resolved_account_id = None
+    if no_account_suffix:
+        try:
+            resolved_account_id = str(getAccountID(args, configuration))
+        except Exception as e:
+            print(f"WARNING: --no-account-suffix: could not resolve account id ({e}); filenames will keep their account suffix")
+            no_account_suffix = False
+
+    # --archive-directory: off unless explicitly set. When set, every
+    # successfully-exported file is additionally copied byte-for-byte (same
+    # basename) into this directory, mirroring what this reference-
+    # architecture repo's scripts/export_all_configs.py does for
+    # config_data_archive/ - a redundant, diffable raw capture. The file is
+    # never re-read from the API to get there; we just copy the path the
+    # single export call already produced (item["output_file"]).
+    archive_directory = getattr(args, 'archive_directory', None)
+    archive_enabled = bool(archive_directory)
+    if archive_enabled:
+        try:
+            os.makedirs(archive_directory, exist_ok=True)
+        except Exception as e:
+            print(f"WARNING: could not create --archive-directory '{archive_directory}' ({e}); archiving disabled for this run")
+            archive_enabled = False
+
+    results = []
+    succeeded = []
+    succeeded_output_files = []
+    failed = []
+    aborted_access_denied = False
+    attempted = 0
+
+    print(f"Exporting {total} type(s) into {getattr(args, 'output_directory', None) or 'config_data'}/\n")
+
+    for idx, export_type in enumerate(types_to_run, 1):
+        attempted = idx
+        sub_parser = registry.choices[export_type]
+        sub_func = sub_parser.get_default('func')
+        prefix = f"[{idx}/{total}] {export_type}"
+
+        if sub_func is None:
+            failed.append((export_type, "no handler registered for this export type"))
+            print(f"{prefix}: FAILED (no handler registered)")
+            if fail_fast:
+                break
+            continue
+
+        # Reproduce `catocli export <type>` with no extra flags, then layer
+        # this run's common overrides on top. Deliberately NOT overridden:
+        # sub_args.strip_ids (for the types that have it) stays at its
+        # parse_args([]) default of False - --strip-ids on `all` is handled
+        # entirely as post-processing below (_strip_output_file_in_place),
+        # never by asking the type's own handler to export pre-stripped, so
+        # every type's API is called exactly once per run regardless of
+        # --strip-ids.
+        sub_args = sub_parser.parse_args([])
+        if hasattr(sub_args, 'accountID'):
+            sub_args.accountID = getattr(args, 'accountID', None)
+        if hasattr(sub_args, 'output_directory'):
+            sub_args.output_directory = getattr(args, 'output_directory', None)
+        if hasattr(sub_args, 'verbose'):
+            sub_args.verbose = verbose
+
+        print(f"{prefix}: exporting...")
+        try:
+            sub_result = sub_func(sub_args, configuration)
+        except Exception as e:
+            error_text = str(e)
+            failed.append((export_type, error_text))
+            print(f"{prefix}: FAILED ({error_text})")
+            if _is_access_denied_error(error_text):
+                aborted_access_denied = True
+                break
+            if fail_fast:
+                break
+            continue
+
+        # Every export handler returns a list with exactly one result dict.
+        item = sub_result[0] if isinstance(sub_result, list) and sub_result else {
+            "success": False, "error": "no result returned"
+        }
+        results.append({"type": export_type, "result": item})
+
+        if item.get("success"):
+            output_file = item.get("output_file")
+            if not output_file:
+                output_files = item.get("output_files")
+                output_file = output_files[0] if output_files else None
+
+            # --no-account-suffix: rename the already-produced file in
+            # place, stripping its literal '_<account_id>' suffix, before
+            # archiving - so the archive copy (below) naturally picks up
+            # the renamed file.
+            if no_account_suffix and output_file:
+                suffix_stripped_path = _strip_account_suffix_from_filename(output_file, resolved_account_id)
+                if suffix_stripped_path != output_file:
+                    try:
+                        os.replace(output_file, suffix_stripped_path)
+                        output_file = suffix_stripped_path
+                    except Exception as e:
+                        print(
+                            f"WARNING: --no-account-suffix: could not rename '{output_file}' -> "
+                            f"'{suffix_stripped_path}' ({e}); keeping the account-suffixed filename"
+                        )
+
+            # Archive a byte-for-byte copy of the file the single export
+            # call above already produced - never re-run the export / call
+            # the API again to get it.
+            archived = False
+            archive_error = None
+            archive_path = None
+            if archive_enabled and output_file:
+                archive_path = os.path.join(archive_directory, os.path.basename(output_file))
+                try:
+                    shutil.copyfile(output_file, archive_path)
+                    archived = True
+                except Exception as e:
+                    archive_error = str(e)
+
+            if archive_enabled and output_file and not archived:
+                # The export itself succeeded, but the redundant archive
+                # copy failed (disk/permissions - not an API error, so this
+                # never reaches _is_access_denied_error and can never
+                # trigger the abort-the-run path below). Mark this type
+                # failed in the summary without aborting the run.
+                failed.append((
+                    export_type,
+                    f"export succeeded but archive copy to '{archive_path}' failed: {archive_error}",
+                ))
+                print(f"{prefix}: exported OK -> {output_file}, but FAILED to archive ({archive_error})")
+                if fail_fast:
+                    break
+            else:
+                # --strip-ids post-processing: ONLY reached once the raw
+                # file is already safely archived (or archiving wasn't
+                # requested) - see this function's docstring for why the
+                # ordering is strict. Strips the PRIMARY --output-directory
+                # file in place; the already-archived copy (if any) stays
+                # raw/id-bearing.
+                strip_ok = True
+                strip_error = None
+                if strip_ids_requested and output_file:
+                    strip_ok, strip_error = _strip_output_file_in_place(export_type, output_file)
+
+                if not strip_ok:
+                    failed.append((
+                        export_type,
+                        f"export succeeded but --strip-ids post-processing of '{output_file}' failed: {strip_error}",
+                    ))
+                    print(f"{prefix}: exported OK -> {output_file}, but FAILED to strip ids ({strip_error})")
+                    if fail_fast:
+                        break
+                else:
+                    succeeded.append(export_type)
+                    if output_file:
+                        succeeded_output_files.append(output_file)
+                    suffix_bits = []
+                    if archived:
+                        suffix_bits.append("archived")
+                    if strip_ids_requested:
+                        suffix_bits.append("stripped")
+                    suffix = f" (+ {', '.join(suffix_bits)})" if suffix_bits else ""
+                    print(f"{prefix}: OK -> {output_file}{suffix}")
+        else:
+            error_msg = item.get("error", "unknown error")
+            failed.append((export_type, error_msg))
+            print(f"{prefix}: FAILED ({error_msg})")
+            if _is_access_denied_error(error_msg):
+                aborted_access_denied = True
+                break
+            if fail_fast:
+                break
+
+    if aborted_access_denied:
+        skipped_types = types_to_run[attempted:]
+        print(
+            f"\nABORTING: the API key does not have sufficient permissions for this operation "
+            f"(access denied on '{types_to_run[attempted - 1]}') - skipping the remaining "
+            f"{len(skipped_types)} export type(s). Verify the associated Admin or Service "
+            f"Principal permissions (see `catocli configure show`) and re-run."
+        )
+    else:
+        skipped_types = []
+
+    # --strip-ids: write the migration checklist once the run is otherwise
+    # done, regardless of whether every type succeeded - it documents
+    # exactly what this run DID produce (see succeeded_output_files) plus
+    # the manual re-resolution steps that never change.
+    checklist_path = None
+    if strip_ids_requested:
+        checklist_output_dir = getattr(args, 'output_directory', None) or 'config_data'
+        try:
+            os.makedirs(checklist_output_dir, exist_ok=True)
+            checklist_path = _write_export_all_checklist(
+                checklist_output_dir,
+                [os.path.basename(p) for p in succeeded_output_files],
+                generated_by="catocli export all --strip-ids",
+            )
+            print(f"Wrote migration checklist: {checklist_path}")
+        except Exception as e:
+            print(f"WARNING: could not write CHECKLIST.md to '{checklist_output_dir}': {e}")
+
+    print(f"\nExport all: {len(succeeded)} succeeded, {len(failed)} failed (of {total} requested type(s))")
+    if archive_directory:
+        if archive_enabled:
+            print(f"Archived successful exports to: {archive_directory}")
+        else:
+            print(f"Archive directory '{archive_directory}' was requested but disabled for this run (see WARNING above)")
+    if failed:
+        print("Failed types:")
+        for export_type, error_msg in failed:
+            print(f"  - {export_type}: {error_msg}")
+
+    overall_success = len(failed) == 0 and not aborted_access_denied
+    result = [{
+        "success": overall_success,
+        "exported": succeeded,
+        "failed": [{"type": t, "error": e} for t, e in failed],
+        "results": results,
+        "aborted_access_denied": aborted_access_denied,
+        "skipped": skipped_types,
+        "archive_directory": archive_directory if archive_enabled else None,
+        "checklist_path": checklist_path,
+    }]
+
+    if not overall_success:
+        sys.exit(1)
+
+    return result

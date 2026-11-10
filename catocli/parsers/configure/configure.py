@@ -12,13 +12,14 @@ from graphql_client.api_client import ApiException
 from graphql_client.api.call_api import ApiClient, CallApi
 from ...Utils.profile_manager import get_profile_manager
 from ...Utils.cliutils import load_private_settings
+from ...Utils.waf_detect import call_with_waf_retry, response_text_if_not_dict
 
 
 def test_credentials(endpoint, cato_token, account_id):
     """Test credentials by making an entityLookup API call"""
     try:
         print("Testing credentials...")
-        
+
         # Create a temporary configuration
         test_config = Configuration()
         test_config.verify_ssl = False
@@ -27,15 +28,21 @@ def test_credentials(endpoint, cato_token, account_id):
         test_config.api_key["x-api-key"] = cato_token
         test_config.host = endpoint
         test_config.accountID = account_id
-        
-        # Make a simple entityLookup call to test credentials
+
+        # Make a simple entityLookup call to test credentials. Detect/retry
+        # an Imperva/Incapsula WAF challenge here too (shared with every
+        # other call path via catocli.Utils.waf_detect) - a WAF challenge
+        # during profile setup should not read as "invalid credentials".
         instance = CallApi(ApiClient(test_config))
-        response = instance.call_api({
-            "query": "query entityLookup($accountID: ID!, $type: EntityType!) { entityLookup(accountID: $accountID, type: $type) { items { entity { id name } } } }",
-            "variables": {"accountID": account_id, "type": "country"}
-        }, {})
+        response = call_with_waf_retry(
+            lambda: instance.call_api({
+                "query": "query entityLookup($accountID: ID!, $type: EntityType!) { entityLookup(accountID: $accountID, type: $type) { items { entity { id name } } } }",
+                "variables": {"accountID": account_id, "type": "country"}
+            }, {}),
+            waf_payload_from_result=lambda r: response_text_if_not_dict(r[0] if r else r),
+        )
         result = response[0] if response else None
-        
+
         # Check if the call was successful
         if result and result.get('data') is not None:
             print("✓ Credentials validated successfully")
@@ -47,14 +54,21 @@ def test_credentials(endpoint, cato_token, account_id):
             return False, "No response from API"
         else:
             return False, f"Invalid API response: {result}"
-            
+
     except ApiException as e:
+        error_text = str(e)
+        if "Imperva/Incapsula" in error_text:
+            # call_with_waf_retry already retried and exhausted the WAF
+            # backoff schedule - this is a clean, HTML-free message
+            # already, not an auth problem, so surface it as-is rather
+            # than mapping status 403 to "Access denied" below.
+            return False, error_text
         if e.status == 401:
             return False, "Invalid API token"
         elif e.status == 403:
             return False, "Access denied - check account ID and permissions"
         else:
-            return False, f"API error (status {e.status}): {str(e)}"
+            return False, f"API error (status {e.status}): {error_text}"
     except Exception as e:
         return False, f"Connection error: {str(e)}"
 

@@ -13,6 +13,56 @@ from ..customLib import writeDataToFile, makeCall, getAccountID, clean_csv_file
 from ....Utils.cliutils import load_cli_settings
 from ...utils.export_utils import parse_names_arg, filter_items_by_name, merge_items_into_file
 
+
+def strip_socket_site_ids(data):
+    """Pure transform: remove source-tenant-specific ids from an already-built
+    `catocli export socket_sites` JSON payload ({"sites": [...]}), in place,
+    and return it - so the result is portable to a different tenant. Ported
+    from the reference-architecture repo's scripts/migrate_tenant.py
+    (strip_socket_site_ids), which hand-rolled this because socket_sites has
+    no native per-type --strip-ids flag until now. Shared by this module's
+    own --strip-ids handling (export_socket_site_to_json) AND by `catocli
+    export all --strip-ids`'s post-processing pass, so both produce
+    byte-identical socket_sites.json output. Strips, per site:
+      - the top-level site id
+      - license_id / license_bw (meaningless in a different tenant)
+      - wan_interfaces[].id, lan_interfaces[].id, network_ranges[].id
+      - native_range's id (exported under the key `range_id`, not `id`)
+      - wifi_ssids[].id
+    Does NOT touch Wi-Fi PSKs (the export emits a "CHANGE_ME" placeholder for
+    PSK-mode SSIDs; strip-ids leaves it as-is since it is not an id) or
+    anything else - see this function's caller for the full migration-checklist
+    context."""
+    sites = data.get("sites", [])
+    for site in sites:
+        site.pop("id", None)
+        site.pop("license_id", None)
+        site.pop("license_bw", None)
+
+        for wan in site.get("wan_interfaces") or []:
+            if isinstance(wan, dict):
+                wan.pop("id", None)
+
+        for lan in site.get("lan_interfaces") or []:
+            if not isinstance(lan, dict):
+                continue
+            lan.pop("id", None)
+            for nr in lan.get("network_ranges") or []:
+                if isinstance(nr, dict):
+                    nr.pop("id", None)
+
+        native_range = site.get("native_range")
+        if isinstance(native_range, dict):
+            native_range.pop("id", None)
+            native_range.pop("range_id", None)
+
+        for wifi in site.get("wifi_ssids") or []:
+            if isinstance(wifi, dict):
+                wifi.pop("id", None)
+
+    return data
+
+
 def generate_template(args):
     """
     Generate template files from embedded templates directory
@@ -180,6 +230,8 @@ def export_socket_sites_dispatcher(args, configuration):
     if export_format == 'csv':
         if getattr(args, 'merge_into', None):
             return [{"success": False, "error": "--merge-into is only supported with the default JSON format (-f json) for socket_sites - it upserts into a {\"sites\": [...]} JSON file, which has no CSV equivalent"}]
+        if getattr(args, 'strip_ids', False):
+            print("WARNING: --strip-ids has no effect on -f csv output for socket_sites (it only applies to the JSON {\"sites\": [...]} shape) - ignoring")
         return export_socket_site_to_csv(args, configuration)
     else:
         return export_socket_site_to_json(args, configuration)
@@ -244,12 +296,18 @@ def export_socket_site_to_json(args, configuration):
         # Get DHCP relay groups mapping once for the entire export
         dhcp_relay_groups = getDhcpRelayGroups(args, configuration, account_id)
 
+        # Fetch accountSnapshot data for ALL sites up front, batched into as
+        # few POSTs as possible (see getAccountSnapshotSitesMap), instead of
+        # one getAccountSnapshot call per site inside the loop below - that
+        # per-site pattern produces a rapid same-IP burst of sequential POSTs
+        # that can trip the Cato API edge's WAF rate/bot heuristics.
+        all_site_ids = [entity_site["entity"]["id"] for entity_site in entity_sites]
+        snapshot_sites_map = getAccountSnapshotSitesMap(args, configuration, account_id, all_site_ids)
+
         for idx, entity_site in enumerate(entity_sites, 1):
             site_id = entity_site["entity"]["id"]
             entity_input = {"id":site_id,"type":"site"}
-            snapshot_response = getAccountSnapshot(args, configuration, account_id, [site_id])
-            snapshot_sites = snapshot_response['data']['accountSnapshot']['sites']
-            snapshot_site = snapshot_sites[0] if snapshot_sites else {}
+            snapshot_site = snapshot_sites_map.get(str(site_id), {})
             entity_network_interfaces = getEntityLookup(args, configuration, account_id, "networkInterface",None, entity_input)
             # Use networkRangeList API for accurate local_ip values
             network_range_items = getNetworkRangeList(args, configuration, account_id, site_id)
@@ -581,10 +639,18 @@ def export_socket_site_to_json(args, configuration):
                             if hasattr(args, 'verbose') and args.verbose:
                                 print(f"Skipping range {range_id}: interface '{nr_interface_name}' not found for subnet {nr_subnet}")
         
-        # Prune attributes from json        
+        # Prune attributes from json
         for site in processed_data['sites']:
             if '_interface_lookup' in site:
                 del site['_interface_lookup']
+
+        # With --strip-ids, make the export tenant-portable (see
+        # strip_socket_site_ids's docstring for the exact field list) -
+        # applied after every site is fully built, so this is a pure
+        # post-build transform shared with `catocli export all
+        # --strip-ids`'s post-processing pass.
+        if hasattr(args, 'strip_ids') and args.strip_ids:
+            processed_data = strip_socket_site_ids(processed_data)
 
         # Handle custom filename and timestamp
         if hasattr(args, 'json_filename') and args.json_filename:
@@ -789,12 +855,16 @@ def get_processed_site_data(args, configuration):
     # Get DHCP relay groups mapping once for the entire export
     dhcp_relay_groups = getDhcpRelayGroups(args, configuration, account_id)
 
+    # Fetch accountSnapshot data for ALL sites up front, batched into as few
+    # POSTs as possible (see getAccountSnapshotSitesMap), instead of one
+    # getAccountSnapshot call per site inside the loop below.
+    all_site_ids = [entity_site["entity"]["id"] for entity_site in entity_sites]
+    snapshot_sites_map = getAccountSnapshotSitesMap(args, configuration, account_id, all_site_ids)
+
     for idx, entity_site in enumerate(entity_sites, 1):
         site_id = entity_site["entity"]["id"]
         entity_input = {"id":site_id,"type":"site"}
-        snapshot_response = getAccountSnapshot(args, configuration, account_id, [site_id])
-        snapshot_sites = snapshot_response['data']['accountSnapshot']['sites']
-        snapshot_site = snapshot_sites[0] if snapshot_sites else {}
+        snapshot_site = snapshot_sites_map.get(str(site_id), {})
         entity_network_interfaces = getEntityLookup(args, configuration, account_id, "networkInterface",None, entity_input)
         # Use networkRangeList API for accurate local_ip values
         network_range_items = getNetworkRangeList(args, configuration, account_id, site_id)
@@ -1666,6 +1736,47 @@ def getEntityLookup(args, configuration, account_id, entity_type, entity_ids=[],
 
     return all_items
 
+# Chunk size used to batch accountSnapshot(siteIDs:[...]) calls across many
+# sites into as few POSTs as possible, instead of one POST per site. The
+# accountSnapshot query already accepts a list of site IDs in a single call
+# (see getAccountSnapshot below); calling it once per site in a tight loop
+# (as the per-site export loop previously did) produces a rapid same-IP
+# burst of sequential POSTs that can trip the Cato API edge's Imperva/
+# Incapsula WAF rate/bot heuristics - returning an HTML challenge page
+# instead of GraphQL JSON. Batching keeps the call count low (ceil(N/25)
+# instead of N) while still bounding any single request's site count.
+ACCOUNT_SNAPSHOT_CHUNK_SIZE = 25
+
+
+def _chunked(seq, size):
+    """Yield successive `size`-length chunks from `seq`."""
+    for i in range(0, len(seq), size):
+        yield seq[i:i + size]
+
+
+def getAccountSnapshotSitesMap(args, configuration, account_id, site_ids):
+    """
+    Fetch accountSnapshot data for every site in `site_ids`, batching the
+    siteIDs into chunks of ACCOUNT_SNAPSHOT_CHUNK_SIZE instead of issuing one
+    getAccountSnapshot call per site. Returns a dict mapping
+    str(site_id) -> that site's snapshot dict (the same per-site shape
+    previously returned by snapshot_sites[0] for a single-site call).
+    """
+    sites_map = {}
+    if not site_ids:
+        return sites_map
+
+    for chunk in _chunked(list(site_ids), ACCOUNT_SNAPSHOT_CHUNK_SIZE):
+        snapshot_response = getAccountSnapshot(args, configuration, account_id, chunk)
+        chunk_sites = snapshot_response.get('data', {}).get('accountSnapshot', {}).get('sites') or []
+        for snapshot_site in chunk_sites:
+            snapshot_site_id = snapshot_site.get('id')
+            if snapshot_site_id is not None:
+                sites_map[str(snapshot_site_id)] = snapshot_site
+
+    return sites_map
+
+
 def getAccountSnapshot(args, configuration, account_id, site_ids=None):
     snapshot_query = {
         "query": "query accountSnapshot ( $siteIDs:[ID!] $accountID:ID ) { accountSnapshot ( accountID:$accountID ) { id sites ( siteIDs:$siteIDs ) { id protoId connectivityStatusSiteSnapshot: connectivityStatus haStatusSiteSnapshot: haStatus { readiness wanConnectivity keepalive socketVersion } operationalStatusSiteSnapshot: operationalStatus lastConnected connectedSince popName devices { id name identifier connected haRole interfaces { connected id name physicalPort naturalOrder popName previousPopID previousPopName tunnelConnectionReason tunnelUptime tunnelRemoteIP tunnelRemoteIPInfoInterfaceSnapshot: tunnelRemoteIPInfo { ip countryCode countryName city state provider latitude longitude } type infoInterfaceSnapshot: info { id name upstreamBandwidth downstreamBandwidth upstreamBandwidthMbpsPrecision downstreamBandwidthMbpsPrecision destType wanRole } cellularInterfaceInfoInterfaceSnapshot: cellularInterfaceInfo { networkType simSlotId modemStatus isModemConnected iccid imei operatorName isModemSuspended apn apnSelectionMethod signalStrength isRoamingAllowed simNumber disconnectionReason isSimSlot1Detected isSimSlot2Detected } } lastConnected lastDuration connectedSince lastPopID lastPopName recentConnections { duration interfaceName deviceName lastConnected popName remoteIP remoteIPInfoRecentConnection: remoteIPInfo { ip countryCode countryName city state provider latitude longitude } } type deviceUptime socketInfo { id serial isPrimary platformSocketInfo: platform version versionUpdateTime } interfacesLinkState { id up mediaIn linkSpeed duplex hasAddress hasInternet hasTunnel } osType osVersion version versionNumber releaseGroup mfaExpirationTime mfaCreationTime internalIP } infoSiteSnapshot: info { name type description countryCode region countryName countryStateName cityName address isHA connType creationTime interfaces { id name upstreamBandwidth downstreamBandwidth upstreamBandwidthMbpsPrecision downstreamBandwidthMbpsPrecision destType wanRoleInterfaceInfo: wanRole } sockets { id serial isPrimary platformSocketInfo: platform version versionUpdateTime } ipsec { isPrimary catoIP remoteIP ikeVersion } } hostCount altWanStatus } users { id connectivityStatusUserSnapshot: connectivityStatus operationalStatusUserSnapshot: operationalStatus name deviceName uptime lastConnected version versionNumber popID popName remoteIP remoteIPInfoUserSnapshot: remoteIPInfo { ip countryCode countryName city state provider latitude longitude } internalIP osType osVersion devices { id name identifier connected haRole interfaces { connected id name physicalPort naturalOrder popName previousPopID previousPopName tunnelConnectionReason tunnelUptime tunnelRemoteIP tunnelRemoteIPInfoInterfaceSnapshot: tunnelRemoteIPInfo { ip countryCode countryName city state provider latitude longitude } type infoInterfaceSnapshot: info { id name upstreamBandwidth downstreamBandwidth upstreamBandwidthMbpsPrecision downstreamBandwidthMbpsPrecision destType wanRole } cellularInterfaceInfoInterfaceSnapshot: cellularInterfaceInfo { networkType simSlotId modemStatus isModemConnected iccid imei operatorName isModemSuspended apn apnSelectionMethod signalStrength isRoamingAllowed simNumber disconnectionReason isSimSlot1Detected isSimSlot2Detected } } lastConnected lastDuration connectedSince lastPopID lastPopName recentConnections { duration interfaceName deviceName lastConnected popName remoteIP remoteIPInfoRecentConnection: remoteIPInfo { ip countryCode countryName city state provider latitude longitude } } type deviceUptime socketInfo { id serial isPrimary platformSocketInfo: platform version versionUpdateTime } interfacesLinkState { id up mediaIn linkSpeed duplex hasAddress hasInternet hasTunnel } osType osVersion version versionNumber releaseGroup mfaExpirationTime mfaCreationTime internalIP } connectedInOffice infoUserSnapshot: info { name status email creationTime phoneNumber origin authMethod } recentConnections { duration interfaceName deviceName lastConnected popName remoteIP remoteIPInfo { ip countryCode countryName city state provider latitude longitude } } } timestamp }  }",
@@ -1787,9 +1898,11 @@ def getWifiSsidList(args, configuration, account_id, site_id):
     """
     Get the WiFi SSIDs configured on a site, mapped to the export's
     snake_case shape. Note the response list key is "wifiSsid", not "items"
-    (data.site.wifiSsidList.wifiSsid[]). Never includes a PSK/passkey field
-    - the API cannot return one; passkeys must be supplied via terraform
-    tfvars when importing/managing cato_wifi_ssid resources.
+    (data.site.wifiSsidList.wifiSsid[]). The API cannot return the real
+    passkey, so for PSK-mode SSIDs the export emits a placeholder
+    security.psk.passkey = "CHANGE_ME" (a PSK SSID cannot be created without
+    one); the operator rotates it to the real passkey in the CMA, or overrides
+    it via the module's wifi_ssid_passkeys variable, after apply.
     """
     query = {
         "query": (
@@ -1838,6 +1951,10 @@ def getWifiSsidList(args, configuration, account_id, site_id):
                 "mode": security.get('mode'),
                 "auth_protocol": security.get('authProtocol'),
                 "track_authentication": security.get('trackAuthentication'),
+                # The API never returns the real passkey, but a PSK-mode SSID cannot
+                # be created without one. Emit a placeholder so the exported config
+                # applies; the operator rotates it to the real PSK in the CMA after.
+                **({"psk": {"passkey": "CHANGE_ME"}} if security.get('mode') == 'PSK' else {}),
             },
         })
 

@@ -2,12 +2,34 @@ import os
 import json
 import subprocess
 import glob
+import random
+import re
 import time
 from pathlib import Path
 from graphql_client.api.call_api import ApiClient, CallApi
 from graphql_client.api_client import ApiException
 import logging
 from ..customParserApiClient import validateArgs
+
+# WAF/Incapsula-challenge detection+cleaning now lives in a single shared,
+# dependency-free module (catocli.Utils.waf_detect) so every call path that
+# can receive a WAF challenge page - this file's makeCall(), the generic
+# query/mutation driver, configure's credential test, the Terraform-import
+# auth check, and the SCIM client - uses identical detection, message
+# wording, and retry schedule. Names are re-imported under their original
+# (leading-underscore) local names here for backward compatibility with
+# existing call sites/tests in this module.
+from ...Utils.waf_detect import (
+    WAF_CHALLENGE_MARKERS,
+    WAF_RETRY_DELAYS,
+    WafChallengeError,
+    is_waf_challenge as _is_waf_challenge,
+    extract_incapsula_incident_id as _extract_incapsula_incident_id,
+    clean_waf_error_message as _clean_waf_error_message,
+    waf_retry_warning,
+    response_text_if_not_dict,
+)
+
 
 def entityTypeList(args, configuration):
     params = vars(args)
@@ -97,18 +119,29 @@ def makeCall(args, configuration, query):
     }
 
     # Retry configuration: attempt 1 (immediate), attempt 2 (after 15s), attempt 3 (after 30s)
+    # This budget is for generic transient network errors (502/503/timeout/rate-limit).
     max_attempts = 3
     retry_delays = [0, 15, 30]  # seconds to wait before each attempt
 
-    last_exception = None
+    # Separate, dedicated retry budget for Imperva/Incapsula WAF challenge
+    # responses - see WAF_RETRY_DELAYS. This does NOT consume the generic
+    # retry budget above, so a WAF challenge followed by a real transient
+    # network error still gets the full generic retry allowance too.
+    waf_max_retries = len(WAF_RETRY_DELAYS)
 
-    for attempt in range(max_attempts):
+    debug = bool(os.getenv("CATO_DEBUG", False))
+
+    last_exception = None
+    network_attempt = 0
+    waf_retry_count = 0
+
+    while True:
         try:
             # Wait before retry (skip on first attempt)
-            if attempt > 0:
-                delay = retry_delays[attempt]
+            if network_attempt > 0:
+                delay = retry_delays[min(network_attempt, len(retry_delays) - 1)]
                 if hasattr(args, 'verbose') and args.verbose:
-                    print(f"Retrying API call in {delay} seconds (attempt {attempt + 1}/{max_attempts})...")
+                    print(f"Retrying API call in {delay} seconds (attempt {network_attempt + 1}/{max_attempts})...")
                 time.sleep(delay)
 
             # Call the API directly
@@ -117,6 +150,17 @@ def makeCall(args, configuration, query):
             # This means our custom error handling below may not be reached if there are GraphQL errors.
             response = instance.call_api(query, params)
             response = response[0] if response else {}
+
+            # A WAF challenge page returned with a 2xx status doesn't raise
+            # ApiException in the transport layer - the GraphQL client's JSON
+            # decode silently falls back to the raw (non-JSON) response body
+            # in that case, so `response` won't be a dict. Detect that here,
+            # before treating `response` as a GraphQL result.
+            raw_text = response_text_if_not_dict(response)
+            if raw_text is not None:
+                if _is_waf_challenge(raw_text):
+                    raise WafChallengeError(raw_text)
+                raise ValueError("Received a non-JSON response from the API")
 
             # Show raw API response in verbose mode
             if hasattr(args, 'verbose') and args.verbose:
@@ -131,17 +175,50 @@ def makeCall(args, configuration, query):
                 error_messages = [error.get('message', 'Unknown error') for error in response['errors']]
                 raise Exception(f"API returned errors: {', '.join(error_messages)}")
 
-            if not response or 'data' not in response:
+            if 'data' not in response:
                 raise ValueError("Failed to retrieve data from API")
 
             # Success - return the response
-            if attempt > 0 and hasattr(args, 'verbose') and args.verbose:
-                print(f"API call succeeded on attempt {attempt + 1}")
+            if network_attempt > 0 and hasattr(args, 'verbose') and args.verbose:
+                print(f"API call succeeded on attempt {network_attempt + 1}")
             return response
+
+        except WafChallengeError as e:
+            last_exception = e
+            if debug:
+                print(f"DEBUG: raw WAF/Incapsula challenge response body:\n{e.raw_text}")
+
+            if waf_retry_count < waf_max_retries:
+                base_delay = WAF_RETRY_DELAYS[waf_retry_count]
+                delay = base_delay + random.uniform(0, base_delay * 0.5)
+                print(waf_retry_warning(e.raw_text, delay, waf_retry_count + 1, waf_max_retries))
+                time.sleep(delay)
+                waf_retry_count += 1
+                continue  # Retry - does not consume the generic retry budget
+            else:
+                raise Exception(str(e))
 
         except ApiException as e:
             last_exception = e
             error_msg = str(e)
+
+            # An Incapsula challenge/block page is also commonly returned via
+            # a non-2xx status (e.g. 403), which DOES raise ApiException with
+            # the raw HTML page as its body/message - detect it here too.
+            if _is_waf_challenge(error_msg):
+                waf_err = WafChallengeError(error_msg)
+                if debug:
+                    print(f"DEBUG: raw WAF/Incapsula challenge response body:\n{error_msg}")
+
+                if waf_retry_count < waf_max_retries:
+                    base_delay = WAF_RETRY_DELAYS[waf_retry_count]
+                    delay = base_delay + random.uniform(0, base_delay * 0.5)
+                    print(waf_retry_warning(error_msg, delay, waf_retry_count + 1, waf_max_retries))
+                    time.sleep(delay)
+                    waf_retry_count += 1
+                    continue  # Retry - does not consume the generic retry budget
+                else:
+                    raise Exception(str(waf_err))
 
             # Check if it's a timeout, 502/503, or rate limit error that should be retried
             is_retryable = (
@@ -152,9 +229,10 @@ def makeCall(args, configuration, query):
                 'rate limit' in error_msg.lower()
             )
 
-            if is_retryable and attempt < max_attempts - 1:
+            if is_retryable and network_attempt < max_attempts - 1:
                 if hasattr(args, 'verbose') and args.verbose:
-                    print(f"API call failed with retryable error (attempt {attempt + 1}/{max_attempts}): {error_msg}")
+                    print(f"API call failed with retryable error (attempt {network_attempt + 1}/{max_attempts}): {error_msg}")
+                network_attempt += 1
                 continue  # Retry
             else:
                 # Non-retryable error or final attempt
@@ -163,20 +241,18 @@ def makeCall(args, configuration, query):
         except Exception as e:
             last_exception = e
             error_msg = str(e)
-            
+
             # Check if it's a rate limit error that should be retried
             is_retryable = 'rate limit' in error_msg.lower()
-            
-            if is_retryable and attempt < max_attempts - 1:
+
+            if is_retryable and network_attempt < max_attempts - 1:
                 if hasattr(args, 'verbose') and args.verbose:
-                    print(f"API call failed with retryable error (attempt {attempt + 1}/{max_attempts}): {error_msg}")
+                    print(f"API call failed with retryable error (attempt {network_attempt + 1}/{max_attempts}): {error_msg}")
+                network_attempt += 1
                 continue  # Retry
             else:
                 # Non-retryable error or final attempt
                 raise Exception(f"Unexpected error during API call - {e}")
-
-    # If we exhausted all retries
-    raise Exception(f"API call failed after {max_attempts} attempts - {last_exception}")
 
 def writeDataToFile(data, args, account_id=None, default_filename_template="data_{account_id}.json", default_directory="config_data"):
     """

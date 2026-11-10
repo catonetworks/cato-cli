@@ -21,6 +21,117 @@ from ...utils.export_utils import (
 # is applied into a different tenant.
 ID_ONLY_MEMBER_TYPES = ("FLOATING_SUBNET", "HOST", "NETWORK_INTERFACE", "SITE_NETWORK_SUBNET")
 
+
+def _drop_id(item):
+    """Return a shallow copy of a dict with its top-level 'id' key removed
+    (no-op key order preserved for every other key) - the one-line building
+    block every strip_*_ids function below is made of."""
+    return {k: v for k, v in item.items() if k != 'id'}
+
+
+def strip_groups_ids(groups):
+    """Pure transform: strip the top-level group id and each member's id
+    (keeping {type, name}) from an already-built groups list - the exact
+    shape export_groups_to_json always constructs internally, with or
+    without --strip-ids. Shared by that function's native --strip-ids
+    handling AND by `catocli export all --strip-ids`'s post-processing pass,
+    so both produce byte-identical groups.json output. Does not mutate the
+    input; returns a new list."""
+    stripped = []
+    for g in groups:
+        g2 = _drop_id(g)
+        g2['members'] = [_drop_id(m) for m in g.get('members', [])]
+        stripped.append(g2)
+    return stripped
+
+
+def strip_global_ip_ranges_ids(ranges):
+    """Pure transform: strip the top-level id from each already-built global
+    IP range item. Shared by export_global_ip_ranges_to_json's native
+    --strip-ids handling and `export all --strip-ids`'s post-processing."""
+    return [_drop_id(r) for r in ranges]
+
+
+def strip_custom_apps_ids(apps):
+    """Pure transform: strip the top-level id from each already-built custom
+    application item (category/criteria are passed through unchanged, same
+    as today's native --strip-ids behavior - no id stripping is attempted
+    inside those nested structures). Shared by export_custom_apps_to_json's
+    native --strip-ids handling and `export all --strip-ids`'s
+    post-processing."""
+    return [_drop_id(a) for a in apps]
+
+
+def strip_mailing_lists_ids(lists):
+    """Pure transform: strip the top-level id and each admin's id (keeping
+    {name}) from an already-built mailing lists list. Shared by
+    export_mailing_lists_to_json's native --strip-ids handling and `export
+    all --strip-ids`'s post-processing."""
+    stripped = []
+    for item in lists:
+        item2 = _drop_id(item)
+        item2['admin'] = [_drop_id(a) for a in item.get('admin', [])]
+        stripped.append(item2)
+    return stripped
+
+
+def strip_subscription_groups_ids(groups):
+    """Pure transform: strip the top-level id and every nested
+    mailing_list[]/integration[] entry's id (keeping {name}) from an
+    already-built subscription groups list. Shared by
+    export_subscription_groups_to_json's native --strip-ids handling and
+    `export all --strip-ids`'s post-processing."""
+    stripped = []
+    for item in groups:
+        item2 = _drop_id(item)
+        item2['mailing_list'] = [_drop_id(m) for m in item.get('mailing_list', [])]
+        item2['integration'] = [_drop_id(w) for w in item.get('integration', [])]
+        stripped.append(item2)
+    return stripped
+
+
+def strip_dhcp_relay_groups_ids(groups):
+    """Pure transform: strip the top-level id from each already-built DHCP
+    relay group item. Shared by export_dhcp_relay_groups_to_json's native
+    --strip-ids handling and `export all --strip-ids`'s post-processing."""
+    return [_drop_id(g) for g in groups]
+
+
+def strip_webhooks_ids(webhooks):
+    """Pure transform: strip the top-level id from each already-built
+    webhook item. `relatedWebhookId` is deliberately left untouched - it is
+    an id-only cross-reference to another webhook (chained webhooks) with no
+    name-sibling fallback in the schema, the same "manual re-resolution"
+    category as a group's FLOATING_SUBNET/HOST/NETWORK_INTERFACE/
+    SITE_NETWORK_SUBNET members (see strip_groups_ids) - stripping it with
+    no way to re-resolve it in the target tenant would just destroy
+    information. Shared by export_webhooks_to_json's native --strip-ids
+    handling and `export all --strip-ids`'s post-processing."""
+    return [_drop_id(w) for w in webhooks]
+
+
+def strip_fqdn_containers_ids(containers):
+    """Pure transform: strip the top-level id from each already-built FQDN
+    container item. Shared by export_fqdn_containers_to_json's native
+    --strip-ids handling and `export all --strip-ids`'s post-processing."""
+    return [_drop_id(c) for c in containers]
+
+
+def strip_ip_range_containers_ids(containers):
+    """Pure transform: strip the top-level id from each already-built IP
+    range container item. Shared by export_ip_range_containers_to_json's
+    native --strip-ids handling and `export all --strip-ids`'s
+    post-processing."""
+    return [_drop_id(c) for c in containers]
+
+
+def strip_static_hosts_ids(hosts):
+    """Pure transform: strip the top-level id from each already-built static
+    host item (site_id/site_name are always kept - they identify where the
+    host lives). Shared by export_static_hosts's native --strip-ids handling
+    and `export all --strip-ids`'s post-processing."""
+    return [_drop_id(h) for h in hosts]
+
 GROUP_LIST_QUERY = (
     "query groupsGroupList ( $accountId:ID! $groupListInput:GroupListInput ) "
     "{ groups ( accountId:$accountId ) { groupList ( input:$groupListInput ) "
@@ -61,6 +172,24 @@ DHCP_RELAY_GROUP_LIST_QUERY = (
     "query networkConfigDhcpRelayGroupList ( $accountId:ID! $networkConfigDhcpRelayGroupListInput:NetworkConfigDhcpRelayGroupListInput! ) "
     "{ networkConfig ( accountId:$accountId ) { dhcp { relayGroupList ( input:$networkConfigDhcpRelayGroupListInput ) "
     "{ items { id name server } paging { total } } } } }"
+)
+
+# notification.integration.webhookList (IntegrationQueries.webhookList, per
+# schema/introspection.json: WebhookListPayload { items: [Webhook] paging }) -
+# account-wide, single-call, no paging input (same shape as
+# MAILING_LIST_LIST_QUERY/SUBSCRIPTION_GROUP_LIST_QUERY above). subscription_groups
+# already references this same list indirectly (its own query's nested
+# "integration { webhookList { id name } }"), but there was no standalone
+# `catocli export webhooks` reading the full Webhook object until now.
+# Deliberately requests only non-secret metadata - "auth" (type
+# AuthInterface - the webhook's configured authentication/credentials),
+# "header" (may itself carry an Authorization header), "body" (a templated
+# request body that can embed secrets), and "responseMapping" are NOT
+# requested, so no exported file can ever capture live webhook credentials.
+WEBHOOK_LIST_QUERY = (
+    "query notificationIntegrationWebhookList ( $accountId:ID! ) "
+    "{ notification ( accountId:$accountId ) { integration { webhookList "
+    "{ items { id name enabled url requestMethod relatedWebhookId } paging { total } } } } }"
 )
 
 CONTAINER_LIST_QUERY = (
@@ -237,10 +366,7 @@ def export_groups_to_json(args, configuration):
 
             members_out = []
             for m in all_members:
-                if strip_ids:
-                    members_out.append({"type": m.get('type'), "name": m.get('name')})
-                else:
-                    members_out.append({"type": m.get('type'), "id": m.get('id'), "name": m.get('name')})
+                members_out.append({"type": m.get('type'), "id": m.get('id'), "name": m.get('name')})
 
             # Member order is not guaranteed stable by the API - sort
             # deterministically by (type, name) so re-exports don't produce
@@ -248,13 +374,15 @@ def export_groups_to_json(args, configuration):
             members_out.sort(key=lambda m: ((m.get('type') or '').lower(), (m.get('name') or '').lower()))
 
             group_out = {
+                "id": group_id,
                 "name": group.get('name'),
                 "description": group.get('description') or "",
                 "members": members_out,
             }
-            if not strip_ids:
-                group_out = {"id": group_id, **group_out}
             output_groups.append(group_out)
+
+        if strip_ids:
+            output_groups = strip_groups_ids(output_groups)
 
         return _finalize_export(output_groups, args, account_id, "groups.json")
 
@@ -288,13 +416,15 @@ def export_global_ip_ranges_to_json(args, configuration):
         output_ranges = []
         for item in items:
             range_out = {
+                "id": item.get('id'),
                 "name": item.get('name'),
                 "description": item.get('description') or "",
                 "ipRange": item.get('ipRange'),
             }
-            if not strip_ids:
-                range_out = {"id": item.get('id'), **range_out}
             output_ranges.append(range_out)
+
+        if strip_ids:
+            output_ranges = strip_global_ip_ranges_ids(output_ranges)
 
         return _finalize_export(output_ranges, args, account_id, "global_ip_ranges.json")
 
@@ -334,23 +464,22 @@ def export_mailing_lists_to_json(args, configuration):
         for item in items:
             admins_out = []
             for admin in item.get('admin') or []:
-                if strip_ids:
-                    admins_out.append({"name": admin.get('name')})
-                else:
-                    admins_out.append({"id": admin.get('id'), "name": admin.get('name')})
+                admins_out.append({"id": admin.get('id'), "name": admin.get('name')})
             # Deterministic order - API doesn't guarantee admin list order.
             admins_out.sort(key=lambda a: (a.get('name') or '').lower())
 
             addresses_out = sorted(item.get('address') or [], key=lambda a: (a or '').lower())
 
             list_out = {
+                "id": item.get('id'),
                 "name": item.get('name'),
                 "address": addresses_out,
                 "admin": admins_out,
             }
-            if not strip_ids:
-                list_out = {"id": item.get('id'), **list_out}
             output_lists.append(list_out)
+
+        if strip_ids:
+            output_lists = strip_mailing_lists_ids(output_lists)
 
         return _finalize_export(output_lists, args, account_id, "mailing_lists.json")
 
@@ -390,10 +519,7 @@ def export_subscription_groups_to_json(args, configuration):
         for item in items:
             mailing_lists_out = []
             for ml in item.get('mailingList') or []:
-                if strip_ids:
-                    mailing_lists_out.append({"name": ml.get('name')})
-                else:
-                    mailing_lists_out.append({"id": ml.get('id'), "name": ml.get('name')})
+                mailing_lists_out.append({"id": ml.get('id'), "name": ml.get('name')})
             # Deterministic order - the API does not guarantee stable order
             # for either nested list, which otherwise produces diff noise
             # across repeated exports of an unchanged group.
@@ -401,20 +527,19 @@ def export_subscription_groups_to_json(args, configuration):
 
             webhooks_out = []
             for wh in (item.get('integration') or {}).get('webhookList') or []:
-                if strip_ids:
-                    webhooks_out.append({"name": wh.get('name')})
-                else:
-                    webhooks_out.append({"id": wh.get('id'), "name": wh.get('name')})
+                webhooks_out.append({"id": wh.get('id'), "name": wh.get('name')})
             webhooks_out.sort(key=lambda w: (w.get('name') or '').lower())
 
             group_out = {
+                "id": item.get('id'),
                 "name": item.get('name'),
                 "mailing_list": mailing_lists_out,
                 "integration": webhooks_out,
             }
-            if not strip_ids:
-                group_out = {"id": item.get('id'), **group_out}
             output_groups.append(group_out)
+
+        if strip_ids:
+            output_groups = strip_subscription_groups_ids(output_groups)
 
         return _finalize_export(output_groups, args, account_id, "subscription_groups.json")
 
@@ -463,14 +588,76 @@ def export_dhcp_relay_groups_to_json(args, configuration):
         output_groups = []
         for group in all_groups:
             group_out = {
+                "id": group.get('id'),
                 "name": group.get('name'),
                 "server": group.get('server') or [],
             }
-            if not strip_ids:
-                group_out = {"id": group.get('id'), **group_out}
             output_groups.append(group_out)
 
+        if strip_ids:
+            output_groups = strip_dhcp_relay_groups_ids(output_groups)
+
         return _finalize_export(output_groups, args, account_id, "dhcp_relay_groups.json")
+
+    except Exception as e:
+        print(f"ERROR: {str(e)}")
+        return [{"success": False, "error": str(e)}]
+
+
+def export_webhooks_to_json(args, configuration):
+    """Export Webhooks to the bulk-module JSON shape.
+
+    Flat array of {id, name, enabled, url, requestMethod, relatedWebhookId},
+    sorted by name (case-insensitive). Account-wide, single-call
+    (notification.integration.webhookList is not paginated - same shape as
+    mailing_lists/subscription_groups above). This is the standalone webhook
+    list (IntegrationQueries.webhookList, per schema/introspection.json) -
+    the SAME underlying objects subscription_groups.json's "integration"
+    field already references by {id, name}, just exported here as
+    first-class objects with their own metadata instead of only as a nested
+    reference.
+
+    Deliberately omits "auth" (the webhook's configured
+    authentication/credentials), "header", "body", and "responseMapping" -
+    none of those are requested from the API at all (see
+    WEBHOOK_LIST_QUERY), so no exported file can ever capture live webhook
+    credentials. With --strip-ids, the top-level id is omitted;
+    relatedWebhookId is NOT stripped (it is an id-only cross-reference to
+    another webhook with no name-sibling fallback in the schema - see
+    strip_webhooks_ids)."""
+    try:
+        account_id = getAccountID(args, configuration)
+        verbose = hasattr(args, 'verbose') and args.verbose
+        strip_ids = hasattr(args, 'strip_ids') and args.strip_ids
+
+        query = {
+            "query": WEBHOOK_LIST_QUERY,
+            "variables": {"accountId": account_id},
+            "operationName": "notificationIntegrationWebhookList",
+        }
+        response = makeCall(args, configuration, query)
+        result = response['data']['notification']['integration']['webhookList']
+        items = result.get('items') or []
+
+        if verbose:
+            print(f"Retrieved {len(items)} webhooks")
+
+        output_webhooks = []
+        for item in items:
+            webhook_out = {
+                "id": item.get('id'),
+                "name": item.get('name'),
+                "enabled": item.get('enabled'),
+                "url": item.get('url'),
+                "requestMethod": item.get('requestMethod'),
+                "relatedWebhookId": item.get('relatedWebhookId'),
+            }
+            output_webhooks.append(webhook_out)
+
+        if strip_ids:
+            output_webhooks = strip_webhooks_ids(output_webhooks)
+
+        return _finalize_export(output_webhooks, args, account_id, "webhooks.json")
 
     except Exception as e:
         print(f"ERROR: {str(e)}")
@@ -591,6 +778,7 @@ def export_fqdn_containers_to_json(args, configuration):
             mode = "URL" if sync_data else "INLINE"
 
             container_out = {
+                "id": container_id,
                 "name": container.get('name'),
                 "description": container.get('description') or "",
                 "mode": mode,
@@ -603,9 +791,10 @@ def export_fqdn_containers_to_json(args, configuration):
                     "time_interval": sync_data.get('timeInterval'),
                     "time_unit": sync_data.get('timeUnit'),
                 }
-            if not strip_ids:
-                container_out = {"id": container_id, **container_out}
             output_containers.append(container_out)
+
+        if strip_ids:
+            output_containers = strip_fqdn_containers_ids(output_containers)
 
         return _finalize_export(output_containers, args, account_id, "fqdn_containers.json")
 
@@ -672,6 +861,7 @@ def export_ip_range_containers_to_json(args, configuration):
             mode = "URL" if sync_data else "INLINE"
 
             container_out = {
+                "id": container_id,
                 "name": container.get('name'),
                 "description": container.get('description') or "",
                 "mode": mode,
@@ -684,9 +874,10 @@ def export_ip_range_containers_to_json(args, configuration):
                     "time_interval": sync_data.get('timeInterval'),
                     "time_unit": sync_data.get('timeUnit'),
                 }
-            if not strip_ids:
-                container_out = {"id": container_id, **container_out}
             output_containers.append(container_out)
+
+        if strip_ids:
+            output_containers = strip_ip_range_containers_ids(output_containers)
 
         return _finalize_export(output_containers, args, account_id, "ip_range_containers.json")
 
@@ -738,6 +929,30 @@ def export_static_hosts(args, configuration):
                     "not_found": not_found_sites,
                 }]
 
+        # --site-type filter: restrict to physical socket sites (default) or cloud
+        # sites, using the SAME connType discriminator the socket-site export uses,
+        # so static_hosts.json stays consistent with socket_sites.json (a host for a
+        # cloud/SASE site can't be replicated by name into a target that lacks it).
+        # Composes with --site-names above; "all" disables it (legacy behavior).
+        site_type = getattr(args, 'site_type', 'physical')
+        if site_type != 'all' and sites:
+            from ..export_sites.export_sites import getAccountSnapshotSitesMap
+            from ....Utils.cliutils import load_cli_settings
+            physical_types = load_cli_settings().get('export_by_socket_type', {})
+            snap = getAccountSnapshotSitesMap(
+                args, configuration, account_id,
+                [s.get('entity', {}).get('id') for s in sites])
+
+            def _is_physical(s):
+                ct = (snap.get(str(s.get('entity', {}).get('id')), {})
+                      .get('infoSiteSnapshot', {}).get('connType', ""))
+                return ct in physical_types
+            before = len(sites)
+            sites = [s for s in sites
+                     if (_is_physical(s) if site_type == 'physical' else not _is_physical(s))]
+            print(f"static_hosts export: --site-type={site_type} -> {len(sites)}/{before} "
+                  f"site(s) ({before - len(sites)} skipped; no silent filtering).")
+
         output_hosts = []
         for site_entity in sites:
             site_id = site_entity.get('entity', {}).get('id')
@@ -763,14 +978,13 @@ def export_static_hosts(args, configuration):
 
             for item in items:
                 host_out = {
+                    "id": item.get('hostId'),
                     "site_id": site_id,
                     "site_name": site_name,
                     "name": item.get('name'),
                     "ip": item.get('ip'),
                     "mac_address": item.get('macAddress'),
                 }
-                if not strip_ids:
-                    host_out = {"id": item.get('hostId'), **host_out}
                 output_hosts.append(host_out)
 
         names = parse_names_arg(getattr(args, 'names', None))
@@ -786,6 +1000,9 @@ def export_static_hosts(args, configuration):
                 }]
 
         output_hosts.sort(key=lambda h: ((h.get('site_name') or "").lower(), (h.get('name') or "").lower()))
+
+        if strip_ids:
+            output_hosts = strip_static_hosts_ids(output_hosts)
 
         merge_into = getattr(args, 'merge_into', None)
         if merge_into:
@@ -866,14 +1083,18 @@ def export_custom_apps_to_json(args, configuration):
             )
 
             app_out = {
+                "id": app.get('id'),
                 "name": app.get('name'),
                 "description": app.get('description') or "",
                 "category": categories_out,
                 "criteria": app.get('criteria') or [],
             }
-            if not strip_ids:
-                app_out = {"id": app.get('id'), **app_out}
             output_apps.append(app_out)
+
+        output_apps.sort(key=lambda x: (x.get('name') or "").lower())
+
+        if strip_ids:
+            output_apps = strip_custom_apps_ids(output_apps)
 
         return _finalize_export(output_apps, args, account_id, "custom_applications.json")
 

@@ -66,6 +66,9 @@ def initParser():
     parser.add_option("-P", dest="prettify", action="store_true", help="Prettify output")
     parser.add_option("-p", dest="print_entities", action="store_true", help="Print entity records")
     parser.add_option("-v", dest="verbose", action="store_true", help="Print debug info")
+    parser.add_option("--schema-only", dest="schema_only", action="store_true",
+                      help="importSchema.py: regenerate GraphQL artifacts only, skipping the "
+                           "geonames site-location DB rebuild (fast schema/exclusion refresh)")
     (options, args) = parser.parse_args()
     
     # Get credentials from profile

@@ -28,7 +28,14 @@ Common Examples:
   # Export dependency objects (groups, global IP ranges, custom applications)
   catocli export groups
   catocli export global_ip_ranges
-  catocli export custom_apps --strip-ids''',
+  catocli export custom_apps --strip-ids
+
+  # Export every registered type in one run
+  catocli export all
+  catocli export all --output-directory ./config_data --types if_rules,wf_rules
+
+  # Produce a tenant-portable migration export (ids stripped) while keeping a raw archive copy for diffing
+  catocli export all --strip-ids --no-account-suffix --output-directory migration_data/run1 --archive-directory migration_raw/run1''',
         formatter_class=__import__('argparse').RawDescriptionHelpFormatter
     )
     export_subparsers = export_parser.add_subparsers(description='valid export operations', help='additional help')
@@ -502,5 +509,83 @@ Examples:
     wnw_rules_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
     wnw_rules_parser.set_defaults(func=export_rules.export_wnw_rules_to_json)
 
+    # Add the 'all' command LAST, so export_subparsers already holds every
+    # export subcommand registered above (sites, dependency objects, and
+    # every rules type) - export_all_to_json derives its type list at
+    # runtime from this same registry (passed through via
+    # _export_subparsers below), so no second hardcoded type list exists;
+    # a future export subcommand added anywhere above is picked up
+    # automatically without touching this block.
+    all_parser = export_subparsers.add_parser(
+        'all',
+        help="Run every registered 'catocli export <type>' subcommand in-process",
+        usage='catocli export all [-accountID <account_id>] [options]',
+        description='''Run every registered export type (sites, dependency objects, and all
+policy-rule types) in-process - calling the same functions the individual
+`catocli export <type>` subcommands call, not subprocesses - writing each
+type's own default filename into one shared --output-directory.
+
+Before exporting anything, a pre-flight check validates the active
+credentials/permissions with a lightweight API call (the same check
+`catocli configure set` runs before saving a profile) - on failure, nothing
+is exported.
+
+One failing type does not abort the run (continue-on-error by default); the
+process exits non-zero if any requested type failed, after printing a
+per-type progress line and a final summary (succeeded/failed counts and
+error one-liners for each failed type). The one exception: if a type fails
+with an access-denied error, the whole run aborts immediately regardless of
+--fail-fast, since a key denied one API will almost always be denied every
+remaining one too.
+
+Examples:
+  # Export every registered type into ./config_data (uses CATO_ACCOUNT_ID environment variable)
+  catocli export all
+
+  # Export everything into a custom directory, with a specific account
+  catocli export all -accountID 12345 --output-directory ./config_data
+
+  # Export only a subset of types
+  catocli export all --types if_rules,wf_rules,groups,socket_sites
+
+  # Stop at the first failing type instead of continuing
+  catocli export all --fail-fast -v
+
+  # Also keep a second raw copy of every successful export for redundancy/diffing
+  catocli export all --archive-directory ./config_data_archive
+
+  # Write canonical filenames (no _<accountID> suffix), e.g. for a Terraform config_data/ directory
+  catocli export all --no-account-suffix
+
+  # Produce a tenant-migration export: ids stripped from the primary files, a raw id-bearing copy kept for diffing
+  catocli export all --strip-ids --no-account-suffix --output-directory migration_data/run1 --archive-directory migration_raw/run1''',
+        formatter_class=__import__('argparse').RawDescriptionHelpFormatter
+    )
+
+    all_parser.add_argument('-accountID', help='Account ID to export from (uses CATO_ACCOUNT_ID environment variable if not specified)', required=False)
+    all_parser.add_argument('--output-directory', dest='output_directory', help='Shared output directory for every exported type (default: config_data)')
+    all_parser.add_argument('--types', dest='types', help='Comma-separated list of export type names to run (default: every registered type - run `catocli export -h` to see the full list)')
+    all_parser.add_argument('--fail-fast', dest='fail_fast', action='store_true', help='Stop at the first failing export type instead of continuing (default: continue and report every failure at the end)')
+    all_parser.add_argument('--archive-directory', dest='archive_directory', help="Also write a second raw copy of every successful export into this directory, using the same basename as the primary --output-directory output - for redundancy/diffing (e.g. config_data_archive). Off by default. Composes with --strip-ids: the archive copy is ALWAYS the raw, id-bearing file - only the primary --output-directory copy is stripped.")
+    all_parser.add_argument('--no-account-suffix', dest='no_account_suffix', action='store_true', help="Strip the trailing '_<accountID>' from each type's produced filename before the extension (e.g. all_ifw_rules_and_sections_15412.json -> all_ifw_rules_and_sections.json). Off by default - current account-suffixed filenames are kept unless this is set.")
+    all_parser.add_argument('--strip-ids', dest='strip_ids', action='store_true', help=(
+        "Produce a tenant-portable migration export: every type's PRIMARY output file in "
+        "--output-directory has its tenant-specific/brownfield-import-key ids stripped - "
+        "dependency objects (groups, global_ip_ranges, custom_apps, fqdn_containers, "
+        "ip_range_containers, mailing_lists, subscription_groups, dhcp_relay_groups, "
+        "static_hosts), socket_sites (site/license/interface/wifi ids), and every "
+        "`*_rules` policy type (each rule's id, each section's section_id, each "
+        "sub-policy's sub_policy_id/scope_rule_id) - while rule/section names and "
+        "rules_in_sections/rules_in_policy ordering are always preserved. Each type's API "
+        "is still called exactly once: with --archive-directory also set, the raw "
+        "id-bearing file is archived FIRST, then the primary file is stripped in place. "
+        "Also writes a CHECKLIST.md into --output-directory listing every file this run "
+        "produced plus the manual re-resolution steps a target tenant still needs "
+        "(id-only group members, mailing-list admin ids, Wi-Fi PSKs, licenses, physical "
+        "socket re-registration). Off by default - this is the native-catocli replacement "
+        "for the reference-architecture repo's scripts/migrate_tenant.py."
+    ))
+    all_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
+    all_parser.set_defaults(func=export_rules.export_all_to_json, _export_subparsers=export_subparsers)
 
     return export_parser

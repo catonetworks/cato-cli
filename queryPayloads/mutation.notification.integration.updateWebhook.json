@@ -1,0 +1,70 @@
+{
+    "operationName": "notificationIntegrationUpdateWebhook",
+    "query": "mutation notificationIntegrationUpdateWebhook ( $accountId:ID! $updateWebhookInput:UpdateWebhookInput!) {\n\tnotification ( accountId:$accountId ) {\n\t\tintegration {\n\t\t\tupdateWebhook ( input:$updateWebhookInput   ) {\n\t\t\t\twebhook {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t\tenabled\n\t\t\t\t\turl\n\t\t\t\t\trequestMethod\n\t\t\t\t\tauth {\n\t\t\t\t\t\tauthType\n\t\t\t\t\t\t... on BasicAuth {\n\t\t\t\t\t\t\tusername\n\t\t\t\t\t\t}\n\t\t\t\t\t\t... on CustomHeaderAuth {\n\t\t\t\t\t\t\tname\n\t\t\t\t\t\t}\n\t\t\t\t\t\t... on CustomHeadersAuth {\n\t\t\t\t\t\t\tplainHeaders {\n\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t\tvalue\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\tsecretHeaders {\n\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t\theader {\n\t\t\t\t\t\tname\n\t\t\t\t\t\tvalue\n\t\t\t\t\t}\n\t\t\t\t\tbody\n\t\t\t\t\tresponseMapping {\n\t\t\t\t\t\tkey\n\t\t\t\t\t\tvalue\n\t\t\t\t\t}\n\t\t\t\t\trelatedWebhookId\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\t\n}",
+    "variables": {
+        "updateWebhookInput": {
+            "auth": {
+                "basic": {
+                    "password": "replace-with-your-secret",
+                    "username": "string"
+                },
+                "bearer": {
+                    "bearerToken": "replace-with-your-secret"
+                },
+                "custom": {
+                    "name": "string",
+                    "value": "replace-with-your-secret"
+                }
+            },
+            "body": "string",
+            "enabled": true,
+            "header": [
+                {
+                    "name": "X-Example",
+                    "value": "example"
+                }
+            ],
+            "headerToAdd": [
+                {
+                    "name": "X-Example",
+                    "value": "example"
+                }
+            ],
+            "headerToRemove": [
+                {
+                    "name": "X-Example",
+                    "value": "example"
+                }
+            ],
+            "name": "string",
+            "relatedWebhookRef": {
+                "by": "ID",
+                "input": "string"
+            },
+            "requestMethod": "POST",
+            "responseMapping": [
+                {
+                    "key": "string",
+                    "value": "string"
+                }
+            ],
+            "responseMappingToAdd": [
+                {
+                    "key": "string",
+                    "value": "string"
+                }
+            ],
+            "responseMappingToRemove": [
+                {
+                    "key": "string",
+                    "value": "string"
+                }
+            ],
+            "url": "https://example.com/",
+            "webhook": {
+                "by": "ID",
+                "input": "string"
+            }
+        }
+    }
+}

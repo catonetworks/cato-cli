@@ -49,6 +49,25 @@ WEBHOOK_STRIP_IDS_HELP = (
     "need to be manually re-resolved against the target tenant if used."
 )
 
+ALLOCATED_IP_STRIP_IDS_HELP = (
+    "Omit the tenant-specific top-level \"id\" and the nested popLocation's "
+    "\"id\" from the output (the synthesized \"name\" field - \"{popLocation "
+    "name} - {ip}\" - is left untouched, since it is this object's "
+    "cross-tenant remap join key)."
+)
+
+PRIVATE_APP_STRIP_IDS_HELP = (
+    "Omit the tenant-specific top-level \"id\" and the nested "
+    "publishedAppDomain's \"id\" from the output so the file can be "
+    "migrated into a different tenant."
+)
+
+APP_CONNECTOR_STRIP_IDS_HELP = (
+    "Omit each connector's tenant-specific top-level \"id\" and its nested "
+    "preferredPopLocation primary/secondary \"id\"s from the output. "
+    "\"groups\" (plain name strings) is unaffected - there is no id to strip."
+)
+
 
 def export_deps_parse(subparsers):
     """Create export parsers for the 1-dependencies object types: Groups,
@@ -494,6 +513,140 @@ Examples:
     webhooks_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
     webhooks_parser.set_defaults(func=export_deps.export_webhooks_to_json)
 
+    # Add allocated_ips command
+    allocated_ips_parser = subparsers.add_parser(
+        'allocated_ips',
+        help='Export PoP-allocated IP addresses to JSON format',
+        usage='catocli export allocated_ips [-accountID <account_id>] [options]',
+        description='''Export PoP-allocated IP addresses to JSON format for backup, analysis, or migration purposes.
+
+Flat array of {id, ip, description, allocationType, popLocation: {id, name},
+name}, sorted by name (case-insensitive). This object has no native "name"
+field of its own, so "name" is SYNTHESIZED as "{popLocation name} - {ip}" -
+matching the CMA's own entity display name, and used as the cross-tenant
+remap join key. Account-wide, single-call export (popLocations.
+allocatedIpList is not paginated).
+
+Examples:
+  # Basic export (uses CATO_ACCOUNT_ID environment variable)
+  catocli export allocated_ips
+
+  # Export with specific account ID
+  catocli export allocated_ips -accountID 12345
+
+  # Export with custom filename and timestamp
+  catocli export allocated_ips --json-filename my_allocated_ips.json --append-timestamp
+
+  # Export for migration into a different tenant (omit tenant-specific ids)
+  catocli export allocated_ips --strip-ids
+
+  # Export only specific named allocations (escape a literal comma in a name with \\,)
+  catocli export allocated_ips --names "London - 1.2.3.4,Finance\\, HR - 5.6.7.8"
+
+  # Pull 2 named allocations from a second tenant and merge them into this repo's allocated_ips.json
+  CATO_PROFILE=tenantB catocli export allocated_ips --names "London - 1.2.3.4,Paris - 2.3.4.5" --merge-into ../config_data/allocated_ips.json''',
+        formatter_class=__import__('argparse').RawDescriptionHelpFormatter
+    )
+
+    allocated_ips_parser.add_argument('-accountID', help='Account ID to export data from (uses CATO_ACCOUNT_ID environment variable if not specified)', required=False)
+    allocated_ips_parser.add_argument('--json-filename', dest='json_filename', help='Override JSON file name (default: allocated_ips.json)')
+    allocated_ips_parser.add_argument('--append-timestamp', dest='append_timestamp', action='store_true', help='Append timestamp to file names')
+    allocated_ips_parser.add_argument('--output-directory', dest='output_directory', help='Output directory for exported files (default: config_data)')
+    allocated_ips_parser.add_argument('--strip-ids', dest='strip_ids', action='store_true', help=ALLOCATED_IP_STRIP_IDS_HELP)
+    add_name_filter_arguments(allocated_ips_parser, names_help='Comma-separated list of exact (synthesized) allocation names to export, instead of exporting every allocation.')
+    allocated_ips_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
+    allocated_ips_parser.set_defaults(func=export_deps.export_allocated_ips_to_json)
+
+    # Add private_apps command
+    private_apps_parser = subparsers.add_parser(
+        'private_apps',
+        help='Export Private Applications (ZTNA) to JSON format',
+        usage='catocli export private_apps [-accountID <account_id>] [options]',
+        description='''Export Private Applications (ZTNA) to JSON format for backup, analysis, or migration purposes.
+
+Flat array of {id, name, description, internalAppAddress, allowIcmpProtocol,
+probingEnabled, published, creationTime, privateAppProbing: {type, interval,
+faultThresholdDown}, protocolPorts: [{protocol, port, portRange: {from,
+to}}], publishedAppDomain: {id, publishedAppDomain, catoIp,
+connectorGroupName}}, sorted by name (case-insensitive). Pages
+privateApplication.privateApplicationList in batches of 1000.
+
+Examples:
+  # Basic export (uses CATO_ACCOUNT_ID environment variable)
+  catocli export private_apps
+
+  # Export with specific account ID
+  catocli export private_apps -accountID 12345
+
+  # Export with custom filename and timestamp
+  catocli export private_apps --json-filename my_private_apps.json --append-timestamp
+
+  # Export for migration into a different tenant (omit tenant-specific ids)
+  catocli export private_apps --strip-ids
+
+  # Export only specific named apps (escape a literal comma in a name with \\,)
+  catocli export private_apps --names "App A,Finance\\, HR App"
+
+  # Pull 2 named apps from a second tenant and merge them into this repo's private_applications.json
+  CATO_PROFILE=tenantB catocli export private_apps --names "App A,App B" --merge-into ../config_data/private_applications.json''',
+        formatter_class=__import__('argparse').RawDescriptionHelpFormatter
+    )
+
+    private_apps_parser.add_argument('-accountID', help='Account ID to export data from (uses CATO_ACCOUNT_ID environment variable if not specified)', required=False)
+    private_apps_parser.add_argument('--json-filename', dest='json_filename', help='Override JSON file name (default: private_applications.json)')
+    private_apps_parser.add_argument('--append-timestamp', dest='append_timestamp', action='store_true', help='Append timestamp to file names')
+    private_apps_parser.add_argument('--output-directory', dest='output_directory', help='Output directory for exported files (default: config_data)')
+    private_apps_parser.add_argument('--strip-ids', dest='strip_ids', action='store_true', help=PRIVATE_APP_STRIP_IDS_HELP)
+    add_name_filter_arguments(private_apps_parser, names_help='Comma-separated list of exact private application names to export, instead of exporting every app.')
+    private_apps_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
+    private_apps_parser.set_defaults(func=export_deps.export_private_apps_to_json)
+
+    # Add app_connectors command
+    app_connectors_parser = subparsers.add_parser(
+        'app_connectors',
+        help='Export ZTNA App Connectors (+ their groups) to JSON format',
+        usage='catocli export app_connectors [-accountID <account_id>] [options]',
+        description='''Export ZTNA App Connectors (+ their groups) to JSON format for backup, analysis, or migration purposes.
+
+Output file is a dict (not a flat array, unlike every other `catocli export`
+type): {"connectors": [...], "groups": [...]}. "connectors" is a flat array
+of {id, name, description, groupName, type, serialNumber, socketId,
+socketModel, location: {address, cityName, countryCode, stateCode,
+timezone}, preferredPopLocation: {preferredOnly, automatic, primary: {id,
+name}, secondary: {id, name}}, pooledBandwidthAllocation: {allocationId,
+licenseId, bw}}, sorted by name (case-insensitive). "groups" is a flat,
+sorted array of connector group NAME strings (no ids). Pages
+ztnaAppConnector.ztnaAppConnectorList in batches of 1000. --names filters
+connectors[] only.
+
+Examples:
+  # Basic export (uses CATO_ACCOUNT_ID environment variable)
+  catocli export app_connectors
+
+  # Export with specific account ID
+  catocli export app_connectors -accountID 12345
+
+  # Export with custom filename and timestamp
+  catocli export app_connectors --json-filename my_app_connectors.json --append-timestamp
+
+  # Export for migration into a different tenant (omit tenant-specific ids)
+  catocli export app_connectors --strip-ids
+
+  # Export only specific named connectors (escape a literal comma in a name with \\,)
+  catocli export app_connectors --names "Connector A,Finance\\, HR Connector"''',
+        formatter_class=__import__('argparse').RawDescriptionHelpFormatter
+    )
+
+    app_connectors_parser.add_argument('-accountID', help='Account ID to export data from (uses CATO_ACCOUNT_ID environment variable if not specified)', required=False)
+    app_connectors_parser.add_argument('--json-filename', dest='json_filename', help='Override JSON file name (default: app_connectors.json)')
+    app_connectors_parser.add_argument('--append-timestamp', dest='append_timestamp', action='store_true', help='Append timestamp to file names')
+    app_connectors_parser.add_argument('--output-directory', dest='output_directory', help='Output directory for exported files (default: config_data)')
+    app_connectors_parser.add_argument('--strip-ids', dest='strip_ids', action='store_true', help=APP_CONNECTOR_STRIP_IDS_HELP)
+    add_name_filter_arguments(app_connectors_parser, names_help='Comma-separated list of exact connector names to export (filters connectors[] only; groups[] is always exported in full), instead of exporting every connector.')
+    app_connectors_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
+    app_connectors_parser.set_defaults(func=export_deps.export_app_connectors_to_json)
+
     return (groups_parser, global_ip_ranges_parser, dhcp_relay_groups_parser, custom_apps_parser,
             mailing_lists_parser, subscription_groups_parser, fqdn_containers_parser,
-            ip_range_containers_parser, static_hosts_parser, webhooks_parser)
+            ip_range_containers_parser, static_hosts_parser, webhooks_parser,
+            allocated_ips_parser, private_apps_parser, app_connectors_parser)

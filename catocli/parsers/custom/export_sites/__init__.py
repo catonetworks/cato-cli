@@ -87,7 +87,46 @@ Examples:
     )
 
     socket_sites_parser.set_defaults(func=export_sites.export_socket_sites_dispatcher)
-    
+
+    # --- per-site-type exports (JSON-only; CSV may come later) --------------
+    # Same query pipeline as socket_sites, filtered by connType bucket (see
+    # SITE_EXPORT_BUCKETS in export_sites.py). Each writes {"sites":[...]} to
+    # config_data/<type>_{account_id}.json. `export all` auto-discovers these
+    # from the subparser registry.
+    bucket_specs = [
+        ('vsocket_sites', 'Export vSocket sites (AWS/Azure/GCP/ESX) to JSON format',
+         export_sites.export_vsocket_sites_dispatcher),
+        ('ipsec_sites', 'Export IPSec sites to JSON format',
+         export_sites.export_ipsec_sites_dispatcher),
+        ('interconnect_sites', 'Export Cloud Interconnect sites to JSON format',
+         export_sites.export_interconnect_sites_dispatcher),
+    ]
+    for bucket_name, bucket_help, bucket_func in bucket_specs:
+        bucket_parser = subparsers.add_parser(
+            bucket_name,
+            help=bucket_help,
+            usage=f'catocli export {bucket_name} [-accountID <account_id>] [options]',
+            description=bucket_help + ' (JSON only).',
+        )
+        bucket_parser.add_argument('-accountID', help='Account ID to export data from (uses CATO_ACCOUNT_ID environment variable if not specified)', required=False)
+        bucket_parser.add_argument('--site-ids', '-siteIDs', dest='siteIDs', help='Comma-separated list of site IDs to filter and export. If not specified, exports all sites of this type.', required=False)
+        bucket_parser.add_argument('--json-filename', dest='json_filename', help=f'Override JSON file name (default: {bucket_name}_{{account_id}}.json)')
+        bucket_parser.add_argument('--append-timestamp', dest='append_timestamp', action='store_true', help='Append timestamp to file names')
+        bucket_parser.add_argument('--output-directory', dest='output_directory', help='Output directory for exported files (default: config_data)')
+        add_name_filter_arguments(
+            bucket_parser,
+            names_help=(
+                'Comma-separated list of exact site names to export, instead of exporting every '
+                'site of this type. --merge-into upserts into a {"sites": [...]} JSON file.'
+            ),
+        )
+        bucket_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
+        bucket_parser.add_argument(
+            '--strip-ids', dest='strip_ids', action='store_true',
+            help='Make the JSON output tenant-portable by stripping source-tenant-specific ids (same field list as socket_sites --strip-ids).',
+        )
+        bucket_parser.set_defaults(func=bucket_func)
+
     return socket_sites_parser
 
 

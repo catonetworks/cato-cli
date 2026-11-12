@@ -18,21 +18,56 @@ from ..export_deps.export_deps import (
     strip_dhcp_relay_groups_ids,
     strip_static_hosts_ids,
     strip_webhooks_ids,
+    strip_allocated_ips_ids,
+    strip_private_apps_ids,
+    strip_app_connectors_ids,
 )
 from ..export_sites.export_sites import strip_socket_site_ids
 
-def strip_ids_recursive(data):
+# Reference keys whose {id, name} objects keep BOTH fields on export. These are
+# CATALOG-GLOBAL identifiers (identical across tenants, e.g. the OpenAI activity
+# id 'openai_login_third_party'), and the policy mutations resolve them reliably
+# only BY ID -- activity-by-NAME resolution is broken server-side (addRule
+# composes '<app>-<name>' as if the name were an id and fails with
+# "activity: ... does not exist"). Keeping the id makes replication use it.
+CATALOG_REF_PARENT_KEYS = {'activity', 'field'}
+
+# Site-scoped predicates whose canonical names are composite backslash paths
+# (e.g. "<site> \ <interface>", "<site> \ <lan> \ <range>"). These KEEP BOTH id
+# and name (like CATALOG_REF_PARENT_KEYS): the backslash name is preserved for
+# the module to reference by name, and the id is retained so callers can fall
+# back to it / diff / resolve manually. The bulk modules use name-first
+# (`can(x.name) ? {name} : {id}`), so keeping the id is harmless to them.
+KEEP_ID_AND_NAME_KEYS = {
+    'networkInterface', 'siteNetworkSubnet', 'host', 'site',
+    'siteRange', 'floatingSubnet',
+}
+
+
+def strip_ids_recursive(data, parent_key=None):
     """Recursively strip id attributes from data structure, but only from objects that contain only 'id' and 'name' keys.
-    If a name contains a backslash character, keep the id and remove the name instead."""
+    If a name contains a backslash character, keep the id and remove the name instead.
+    Objects reached via CATALOG_REF_PARENT_KEYS keep their id (catalog-global, required for by-ID mutation refs)."""
     try:
         if isinstance(data, dict):
             # Check if this dict should have its 'id' stripped
             # Only strip 'id' if the object contains only 'id' and 'name' keys
             dict_keys = set(data.keys())
             should_strip_id = dict_keys == {'id', 'name'} or dict_keys == {'name', 'id'}
-            
-            # Check if name contains backslash
-            name_has_backslash = should_strip_id and 'name' in data and isinstance(data['name'], str) and '\\' in data['name']
+            # Keep BOTH id and name for catalog refs (id is catalog-global) and
+            # for site-scoped composite-name predicates (name needed for by-name
+            # replication, id kept as a fallback / for diffing).
+            if parent_key in CATALOG_REF_PARENT_KEYS or parent_key in KEEP_ID_AND_NAME_KEYS:
+                should_strip_id = False
+
+            # Check if name contains backslash (only reachable when should_strip_id
+            # is still True, i.e. not a keep-both ref). Those backslash names fall
+            # back to keep-id/drop-name.
+            name_has_backslash = (
+                should_strip_id
+                and 'name' in data and isinstance(data['name'], str)
+                and '\\' in data['name']
+            )
             
             result = {}
             for k, v in data.items():
@@ -41,16 +76,16 @@ def strip_ids_recursive(data):
                     if k == 'name':
                         continue
                     else:
-                        result[k] = strip_ids_recursive(v)
+                        result[k] = strip_ids_recursive(v, k)
                 elif k == 'id' and should_strip_id:
                     # Normal case: Skip id key if this object contains only id and name
                     continue
                 else:
                     # Keep the key and recursively process the value
-                    result[k] = strip_ids_recursive(v)
+                    result[k] = strip_ids_recursive(v, k)
             return result
         elif isinstance(data, list):
-            return [strip_ids_recursive(item) for item in data]
+            return [strip_ids_recursive(item, parent_key) for item in data]
         else:
             return data
     except Exception as e:
@@ -154,6 +189,9 @@ _DEPENDENCY_STRIP_FUNCS = {
     'dhcp_relay_groups': strip_dhcp_relay_groups_ids,
     'static_hosts': strip_static_hosts_ids,
     'webhooks': strip_webhooks_ids,
+    'allocated_ips': strip_allocated_ips_ids,
+    'private_apps': strip_private_apps_ids,
+    'app_connectors': strip_app_connectors_ids,
 }
 
 
@@ -173,7 +211,8 @@ def _strip_exported_payload(export_type, data):
     strip_func = _DEPENDENCY_STRIP_FUNCS.get(export_type)
     if strip_func is not None:
         return strip_func(data)
-    if export_type == 'socket_sites':
+    if export_type in ('socket_sites', 'vsocket_sites', 'ipsec_sites', 'interconnect_sites'):
+        # all four site-type exports share the {"sites": [...]} shape
         return strip_socket_site_ids(data)
     if export_type.endswith('_rules'):
         return strip_policy_rules_ids(data)
@@ -1231,9 +1270,13 @@ def export_apc_rules_to_json(args, configuration):
                 if variant != keep:
                     rule_info.pop(variant, None)
             active = rule_info.get(keep) or {}
-            # No terraform surface for these (provider injects empty inputs):
-            for unsupported in ('applicationCriteria', 'applicationCriteriaSatisfy', 'applicationContext'):
-                active.pop(unsupported, None)
+            # applicationCriteria/_Satisfy are KEPT (2026-11-10): criteria-based
+            # rules (e.g. applicationType-only selection with pciDss: SUPPORTED)
+            # have no provider surface yet, and the bulk module needs the criteria
+            # present to detect and SKIP such rules instead of recreating them
+            # with silently broader scope. applicationContext still has no
+            # consumer and is dropped.
+            active.pop('applicationContext', None)
 
         processed_sections = []
         for index, section_data in enumerate(policy_node.get('sections') or []):

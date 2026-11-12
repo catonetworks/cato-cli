@@ -217,6 +217,35 @@ def _filter_entity_sites_by_name(entity_sites, args, verbose=False):
     return filtered, None
 
 
+# ---------------------------------------------------------------------------
+# Site-type export buckets. The account snapshot's infoSiteSnapshot.connType
+# (GraphQL ProtoType enum) is the discriminator:
+#   socket_sites        physical sockets (the historical export; the set stays
+#                       user-tunable via settings["export_by_socket_type"])
+#   vsocket_sites       cloud/vSocket primaries (AWS/Azure/GCP/ESX + legacy
+#                       VSOCKET_VGX* values)
+#   ipsec_sites         IPSec sites (IKEv2 + legacy host/client)
+#   interconnect_sites  Cato Cloud Interconnect (CROSS_CONNECT)
+# JSON-only for the non-socket buckets (CSV support may come later).
+SITE_EXPORT_BUCKETS = {
+    'vsocket_sites': {
+        'conn_types': {
+            'SOCKET_AWS1500', 'SOCKET_AZ1500', 'SOCKET_GCP1500', 'SOCKET_ESX1500',
+            'VSOCKET_VGX', 'VSOCKET_VGX_AWS', 'VSOCKET_VGX_AZURE', 'VSOCKET_VGX_ESX',
+        },
+        'label': 'vSocket',
+    },
+    'ipsec_sites': {
+        'conn_types': {'IPSEC_V2', 'IPSEC_HOST', 'IPSEC_CLIENT'},
+        'label': 'IPSec',
+    },
+    'interconnect_sites': {
+        'conn_types': {'CROSS_CONNECT'},
+        'label': 'Cloud Interconnect',
+    },
+}
+
+
 def export_socket_sites_dispatcher(args, configuration):
     """
     Dispatcher function that routes to JSON or CSV export based on format argument
@@ -237,7 +266,7 @@ def export_socket_sites_dispatcher(args, configuration):
         return export_socket_site_to_json(args, configuration)
 
 
-def export_socket_site_to_json(args, configuration):
+def export_socket_site_to_json(args, configuration, bucket=None):
     """
     Export consolidated site and socket data to JSON format
     """
@@ -290,7 +319,8 @@ def export_socket_site_to_json(args, configuration):
             return names_filter_error
 
         total_sites = len(entity_sites)
-        print(f"\nExporting Cato physical socket sites:\n")
+        heading = SITE_EXPORT_BUCKETS[bucket]['label'] if bucket else 'physical socket'
+        print(f"\nExporting Cato {heading} sites:\n")
         print(f"{total_sites} site(s) found...\n")
 
         # Get DHCP relay groups mapping once for the entire export
@@ -323,10 +353,16 @@ def export_socket_site_to_json(args, configuration):
                 'native_range': {}
             }
 
-            if connectionType not in settings["export_by_socket_type"]:
-                print(f"[{idx}/{total_sites}] Ignoring cloud site: {site_name} (ID: {site_id})")
+            if bucket is None:
+                in_bucket = connectionType in settings["export_by_socket_type"]
+                bucket_label = 'physical socket'
             else:
-                print(f"[{idx}/{total_sites}] Processing physical socket site: {site_name} (ID: {site_id})")
+                in_bucket = connectionType in SITE_EXPORT_BUCKETS[bucket]['conn_types']
+                bucket_label = SITE_EXPORT_BUCKETS[bucket]['label']
+            if not in_bucket:
+                print(f"[{idx}/{total_sites}] Skipping site outside this export's type bucket: {site_name} (ID: {site_id}, connType: {connectionType})")
+            else:
+                print(f"[{idx}/{total_sites}] Processing {bucket_label} site: {site_name} (ID: {site_id})")
                 cur_site['id'] = site_id
                 cur_site['name'] = snapshot_site.get('infoSiteSnapshot', {}).get('name')
                 cur_site['description'] = snapshot_site.get('infoSiteSnapshot', {}).get('description')
@@ -419,6 +455,23 @@ def export_socket_site_to_json(args, configuration):
                 
                 # Store the interface lookup for later use
                 cur_site['_interface_lookup'] = interface_lookup
+
+                # Non-interface site types (IPSec, interconnect) carry no
+                # socket interfaces, so the interface-driven native_range
+                # extraction above leaves it empty -- but the siteRange
+                # entityLookup still returns the native range. Fill subnet
+                # (the only field cato_ipsec_site needs) from there.
+                if not cur_site.get('native_range') and entity_network_ranges:
+                    for nr in entity_network_ranges:
+                        nr_name = nr.get('entity', {}).get('name', '') or ''
+                        if nr_name.endswith('Native Range'):
+                            nr_helper = nr.get('helperFields', {}) or {}
+                            if nr_helper.get('subnet'):
+                                cur_site['native_range'] = {
+                                    'subnet': nr_helper.get('subnet'),
+                                    'range_name': 'Native Range',
+                                }
+                            break
 
                 if site_id:
                     processed_data['sites'].append(cur_site)
@@ -666,12 +719,13 @@ def export_socket_site_to_json(args, configuration):
             else:
                 filename_template = f"{base_filename}.json"
         else:
-            # Use default filename template
+            # Use default filename template (bucket name = file prefix)
+            file_prefix = bucket if bucket else "socket_sites"
             if hasattr(args, 'append_timestamp') and args.append_timestamp:
                 timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-                filename_template = f"socket_sites_{{account_id}}_{timestamp}.json"
+                filename_template = f"{file_prefix}_{{account_id}}_{timestamp}.json"
             else:
-                filename_template = "socket_sites_{account_id}.json"
+                filename_template = file_prefix + "_{account_id}.json"
         
         if hasattr(args, 'verbose') and args.verbose:
             if hasattr(args, 'json_filename') and args.json_filename:
@@ -2010,3 +2064,22 @@ def getSiteGeneralDetails(args, configuration, account_id, site_id):
         print(f"Retrieved siteGeneralDetails for site {site_id}: timezone={site_location.get('timezone')}, stateCode={site_location.get('stateCode')}")
 
     return site_details if site_details else {}
+
+
+def _export_sites_bucket_dispatcher(args, configuration, bucket):
+    """Shared JSON-only dispatcher for the non-socket site-type exports."""
+    if getattr(args, 'export_format', 'json') == 'csv':
+        return [{"success": False, "error": f"{bucket} export is JSON-only (CSV support may come later)"}]
+    return export_socket_site_to_json(args, configuration, bucket=bucket)
+
+
+def export_vsocket_sites_dispatcher(args, configuration):
+    return _export_sites_bucket_dispatcher(args, configuration, 'vsocket_sites')
+
+
+def export_ipsec_sites_dispatcher(args, configuration):
+    return _export_sites_bucket_dispatcher(args, configuration, 'ipsec_sites')
+
+
+def export_interconnect_sites_dispatcher(args, configuration):
+    return _export_sites_bucket_dispatcher(args, configuration, 'interconnect_sites')

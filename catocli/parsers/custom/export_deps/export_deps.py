@@ -132,6 +132,60 @@ def strip_static_hosts_ids(hosts):
     and `export all --strip-ids`'s post-processing."""
     return [_drop_id(h) for h in hosts]
 
+
+def strip_allocated_ips_ids(items):
+    """Pure transform: strip the top-level id and the nested popLocation's
+    id (keeping {name}) from an already-built allocated IPs list. The
+    synthesized "name" field (f"{popLocation.name} - {ip}") is left
+    untouched - it is this object's cross-tenant remap join key. Shared by
+    export_allocated_ips_to_json's native --strip-ids handling and `export
+    all --strip-ids`'s post-processing."""
+    stripped = []
+    for item in items:
+        item2 = _drop_id(item)
+        pop = item.get('popLocation') or {}
+        item2['popLocation'] = _drop_id(pop)
+        stripped.append(item2)
+    return stripped
+
+
+def strip_private_apps_ids(apps):
+    """Pure transform: strip the top-level id and the nested
+    publishedAppDomain's id (keeping its other fields) from an already-built
+    private applications list. Shared by export_private_apps_to_json's
+    native --strip-ids handling and `export all --strip-ids`'s
+    post-processing."""
+    stripped = []
+    for app in apps:
+        app2 = _drop_id(app)
+        domain = app.get('publishedAppDomain')
+        if domain:
+            app2['publishedAppDomain'] = _drop_id(domain)
+        stripped.append(app2)
+    return stripped
+
+
+def strip_app_connectors_ids(data):
+    """Pure transform: strip the top-level connector id and the nested
+    preferredPopLocation primary/secondary ids (keeping {name}) from an
+    already-built {"connectors": [...], "groups": [...]} app connectors
+    payload. "groups" is a flat list of name strings with no id to strip.
+    Shared by export_app_connectors_to_json's native --strip-ids handling
+    and `export all --strip-ids`'s post-processing."""
+    stripped_connectors = []
+    for conn in data.get('connectors', []):
+        conn2 = _drop_id(conn)
+        preferred = conn.get('preferredPopLocation')
+        if preferred:
+            preferred2 = dict(preferred)
+            if preferred2.get('primary'):
+                preferred2['primary'] = _drop_id(preferred2['primary'])
+            if preferred2.get('secondary'):
+                preferred2['secondary'] = _drop_id(preferred2['secondary'])
+            conn2['preferredPopLocation'] = preferred2
+        stripped_connectors.append(conn2)
+    return {"connectors": stripped_connectors, "groups": data.get('groups', [])}
+
 GROUP_LIST_QUERY = (
     "query groupsGroupList ( $accountId:ID! $groupListInput:GroupListInput ) "
     "{ groups ( accountId:$accountId ) { groupList ( input:$groupListInput ) "
@@ -211,6 +265,70 @@ IP_RANGE_CONTAINER_DOWNLOAD_FILE_QUERY = (
 STATIC_HOST_LIST_QUERY = (
     "query siteStaticHostList ( $accountId:ID! $site:SiteRefInput! ) "
     "{ site ( accountId:$accountId ) { staticHostList ( site:$site ) { items { hostId name ip macAddress } } } }"
+)
+
+# popLocations.allocatedIpList - account-wide, single-call (no "paging" input
+# field exists on PopLocationAllocatedIpInput, only "filter", which we don't
+# use). Deliberately trimmed from the full model (models/query.popLocations.
+# allocatedIpList.json / queryPayloads/query.popLocations.allocatedIpList.txt)
+# to just the fields export_allocated_ips_to_json needs - "account", "subnet",
+# and "state" are dropped. NOTE: the response's list key is "allocatedIp",
+# NOT "items" (verified live) - this object's list field genuinely has a
+# different name from every other export in this file.
+ALLOCATED_IP_LIST_QUERY = (
+    "query popLocationsAllocatedIpList ( $accountId:ID! $popLocationAllocatedIpInput:PopLocationAllocatedIpInput ) "
+    "{ popLocations ( accountId:$accountId ) { allocatedIpList ( input:$popLocationAllocatedIpInput ) "
+    "{ allocatedIp { id ip description allocationType popLocation { id name } } paging { total } } } }"
+)
+
+# privateApplication.privateApplicationList - paginated (PagingInput, same
+# 1000-per-page convention as the other paginated exports in this file).
+# Deliberately trimmed from the full model (models/query.privateApplication.
+# privateApplicationList.json / queryPayloads/query.privateApplication.
+# privateApplicationList.txt) - "connectivityStatus" and
+# privateAppProbing/publishedAppDomain's own "id"/"creationTime" audit fields
+# are dropped. NOTE: the response's list key is "applications", NOT "items",
+# and its paging payload key is "pageInfo", NOT "paging" (both verified
+# live) - this object's shape genuinely differs from every other paginated
+# export in this file.
+PRIVATE_APPLICATION_LIST_QUERY = (
+    "query privateApplicationPrivateApplicationList ( $accountId:ID! $privateApplicationListInput:PrivateApplicationListInput ) "
+    "{ privateApplication ( accountId:$accountId ) { privateApplicationList ( input:$privateApplicationListInput ) "
+    "{ applications { id creationTime name description internalAppAddress allowIcmpProtocol probingEnabled published "
+    "privateAppProbing { type interval faultThresholdDown } "
+    "protocolPorts { protocol port portRange { from to } } "
+    "publishedAppDomain { id publishedAppDomain catoIp connectorGroupName } } pageInfo { total } } } }"
+)
+
+# ztnaAppConnector.ztnaAppConnectorList - paginated, but unlike every other
+# paginated list in this file BOTH "paging" and "sort" are REQUIRED fields
+# on ZtnaAppConnectorListInput (verified against the model's "required"
+# flags); every field *within* "sort" is itself optional, so an empty sort
+# object ({}) satisfies the requirement without actually sorting. Deliberately
+# trimmed from the full model (models/query.ztnaAppConnector.
+# ztnaAppConnectorList.json / queryPayloads/query.ztnaAppConnector.
+# ztnaAppConnectorList.txt) - "createdAt", "isRegistered", "privateAppCount",
+# "privateAppRef", "socketInfo", and "lanInterface" are dropped. NOTE: the
+# response's list key is "ztnaAppConnector" (singular, matching the child
+# query name), NOT "items" (verified live).
+ZTNA_APP_CONNECTOR_LIST_QUERY = (
+    "query ztnaAppConnectorZtnaAppConnectorList ( $accountId:ID! $ztnaAppConnectorListInput:ZtnaAppConnectorListInput! ) "
+    "{ ztnaAppConnector ( accountId:$accountId ) { ztnaAppConnectorList ( input:$ztnaAppConnectorListInput ) "
+    "{ ztnaAppConnector { id name description groupName type serialNumber socketId socketModel "
+    "location { address cityName countryCode stateCode timezone } "
+    "preferredPopLocation { preferredOnly automatic primary { id name } secondary { id name } } "
+    "pooledBandwidthAllocation { allocationId licenseId bw } } pageInfo { total } } } }"
+)
+
+# ztnaAppConnector.ztnaAppConnectorGroupList - account-wide, single-call,
+# verified working with an empty input object ({}) despite "paging" showing
+# as required on ZtnaAppConnectorGroupListInput in the model (the input
+# object itself is optional overall). Response items are plain name
+# STRINGS, not objects - there is no id to request or strip for this type.
+ZTNA_APP_CONNECTOR_GROUP_LIST_QUERY = (
+    "query ztnaAppConnectorZtnaAppConnectorGroupList ( $accountId:ID! $ztnaAppConnectorGroupListInput:ZtnaAppConnectorGroupListInput ) "
+    "{ ztnaAppConnector ( accountId:$accountId ) { ztnaAppConnectorGroupList ( input:$ztnaAppConnectorGroupListInput ) "
+    "{ items pageInfo { total } } } }"
 )
 
 PAGE_LIMIT = 1000
@@ -1097,6 +1215,314 @@ def export_custom_apps_to_json(args, configuration):
             output_apps = strip_custom_apps_ids(output_apps)
 
         return _finalize_export(output_apps, args, account_id, "custom_applications.json")
+
+    except Exception as e:
+        print(f"ERROR: {str(e)}")
+        return [{"success": False, "error": str(e)}]
+
+
+def export_allocated_ips_to_json(args, configuration):
+    """Export PoP-allocated IP addresses to the bulk-module JSON shape.
+
+    Flat array of {id, ip, description, allocationType, popLocation: {id,
+    name}, name}, sorted by name (case-insensitive). This object has no
+    native "name" field of its own, so "name" is SYNTHESIZED as
+    f"{popLocation.name} - {ip}" - matching the CMA's own entity display
+    name for this object, and used as the cross-tenant remap join key.
+    Account-wide, single-call export (popLocations.allocatedIpList is not
+    paginated - PopLocationAllocatedIpInput has no paging field). With
+    --strip-ids, the top-level id and popLocation's id are omitted (the
+    synthesized name is left untouched)."""
+    try:
+        account_id = getAccountID(args, configuration)
+        verbose = hasattr(args, 'verbose') and args.verbose
+        strip_ids = hasattr(args, 'strip_ids') and args.strip_ids
+
+        query = {
+            "query": ALLOCATED_IP_LIST_QUERY,
+            "variables": {"accountId": account_id, "popLocationAllocatedIpInput": {}},
+            "operationName": "popLocationsAllocatedIpList",
+        }
+        response = makeCall(args, configuration, query)
+        result = response['data']['popLocations']['allocatedIpList']
+        items = result.get('allocatedIp') or []
+
+        if verbose:
+            print(f"Retrieved {len(items)} allocated IPs")
+
+        output_items = []
+        for item in items:
+            pop = item.get('popLocation') or {}
+            pop_name = pop.get('name') or ""
+            ip = item.get('ip') or ""
+            item_out = {
+                "id": item.get('id'),
+                "ip": ip,
+                "description": item.get('description') or "",
+                "allocationType": item.get('allocationType'),
+                "popLocation": {"id": pop.get('id'), "name": pop_name},
+                "name": f"{pop_name} - {ip}",
+            }
+            output_items.append(item_out)
+
+        if strip_ids:
+            output_items = strip_allocated_ips_ids(output_items)
+
+        return _finalize_export(output_items, args, account_id, "allocated_ips.json")
+
+    except Exception as e:
+        print(f"ERROR: {str(e)}")
+        return [{"success": False, "error": str(e)}]
+
+
+def export_private_apps_to_json(args, configuration):
+    """Export Private Applications (ZTNA) to the bulk-module JSON shape.
+
+    Flat array of {id, name, description, internalAppAddress,
+    allowIcmpProtocol, probingEnabled, published, creationTime,
+    privateAppProbing: {type, interval, faultThresholdDown}, protocolPorts:
+    [{protocol, port, portRange: {from, to}}], publishedAppDomain: {id,
+    publishedAppDomain, catoIp, connectorGroupName}}, sorted by name
+    (case-insensitive). Pages privateApplication.privateApplicationList in
+    batches of 1000 (same convention as the other paginated exports in this
+    file, though this list's own paging/total payload keys are
+    "pageInfo"/"applications" rather than this file's usual
+    "paging"/"items"). With --strip-ids, the top-level id and
+    publishedAppDomain's id are omitted."""
+    try:
+        account_id = getAccountID(args, configuration)
+        verbose = hasattr(args, 'verbose') and args.verbose
+        strip_ids = hasattr(args, 'strip_ids') and args.strip_ids
+
+        all_apps = []
+        from_offset = 0
+        while True:
+            query = {
+                "query": PRIVATE_APPLICATION_LIST_QUERY,
+                "variables": {
+                    "accountId": account_id,
+                    "privateApplicationListInput": {"paging": {"limit": PAGE_LIMIT, "from": from_offset}},
+                },
+                "operationName": "privateApplicationPrivateApplicationList",
+            }
+            response = makeCall(args, configuration, query)
+            result = response['data']['privateApplication']['privateApplicationList']
+            items = result.get('applications') or []
+            all_apps.extend(items)
+            total = (result.get('pageInfo') or {}).get('total', len(all_apps))
+            if verbose:
+                print(f"Retrieved {len(items)} private applications (offset: {from_offset}, total: {total})")
+            from_offset += PAGE_LIMIT
+            if len(all_apps) >= total or not items:
+                break
+
+        output_apps = []
+        for app in all_apps:
+            app_out = {
+                "id": app.get('id'),
+                "name": app.get('name'),
+                "description": app.get('description') or "",
+                "internalAppAddress": app.get('internalAppAddress'),
+                "allowIcmpProtocol": app.get('allowIcmpProtocol'),
+                "probingEnabled": app.get('probingEnabled'),
+                "published": app.get('published'),
+                "creationTime": app.get('creationTime'),
+            }
+
+            probing = app.get('privateAppProbing')
+            if probing:
+                app_out["privateAppProbing"] = {
+                    "type": probing.get('type'),
+                    "interval": probing.get('interval'),
+                    "faultThresholdDown": probing.get('faultThresholdDown'),
+                }
+
+            ports_out = []
+            for pp in app.get('protocolPorts') or []:
+                port_range = pp.get('portRange')
+                ports_out.append({
+                    "protocol": pp.get('protocol'),
+                    "port": pp.get('port'),
+                    "portRange": {"from": port_range.get('from'), "to": port_range.get('to')} if port_range else None,
+                })
+            app_out["protocolPorts"] = ports_out
+
+            domain = app.get('publishedAppDomain')
+            if domain:
+                app_out["publishedAppDomain"] = {
+                    "id": domain.get('id'),
+                    "publishedAppDomain": domain.get('publishedAppDomain'),
+                    "catoIp": domain.get('catoIp'),
+                    "connectorGroupName": domain.get('connectorGroupName'),
+                }
+
+            output_apps.append(app_out)
+
+        if strip_ids:
+            output_apps = strip_private_apps_ids(output_apps)
+
+        return _finalize_export(output_apps, args, account_id, "private_applications.json")
+
+    except Exception as e:
+        print(f"ERROR: {str(e)}")
+        return [{"success": False, "error": str(e)}]
+
+
+def _finalize_app_connectors_export(connectors, groups, args, account_id):
+    """Shared tail logic for export_app_connectors_to_json, mirroring
+    _finalize_export's behavior (--names filtering, sort, --strip-ids,
+    --json-filename/--output-directory/--append-timestamp handling) but for
+    this type's {"connectors": [...], "groups": [...]} dict output shape,
+    which _finalize_export can't handle directly (it only sorts/filters a
+    bare list). --names filtering applies to connectors[] only - "groups" is
+    always exported in full. Returns the catocli result list."""
+    names = parse_names_arg(getattr(args, 'names', None))
+    if names:
+        connectors, not_found = filter_items_by_name(connectors, names, name_key='name')
+        if not_found:
+            print(f"WARNING: --names: no match found for: {', '.join(not_found)}")
+        if not connectors:
+            return [{
+                "success": False,
+                "error": f"--names matched none of the requested name(s): {', '.join(names)}",
+                "not_found": not_found,
+            }]
+
+    connectors = sorted(connectors, key=lambda x: (x.get('name') or "").lower())
+    groups = sorted(groups, key=lambda g: (g or "").lower())
+
+    merge_into = getattr(args, 'merge_into', None)
+    if merge_into:
+        return [{
+            "success": False,
+            "error": "--merge-into is not supported for 'app_connectors' (its output is a "
+                     "{connectors, groups} dict, not a flat array - merge_items_into_file only "
+                     "upserts flat arrays keyed by name)",
+        }]
+
+    output = {"connectors": connectors, "groups": groups}
+
+    strip_ids = hasattr(args, 'strip_ids') and args.strip_ids
+    if strip_ids:
+        output = strip_app_connectors_ids(output)
+
+    filename_template = _build_filename_template(args, "app_connectors.json")
+    output_file = writeDataToFile(
+        data=output,
+        args=args,
+        account_id=account_id,
+        default_filename_template=filename_template,
+        default_directory="config_data",
+    )
+    return [{
+        "success": True,
+        "output_file": output_file,
+        "account_id": account_id,
+        "count": len(connectors),
+        "group_count": len(groups),
+    }]
+
+
+def export_app_connectors_to_json(args, configuration):
+    """Export ZTNA App Connectors (+ their groups) to the bulk-module JSON
+    shape.
+
+    Output file is a dict (not a flat array, unlike every other export in
+    this file): {"connectors": [...], "groups": [...]}. "connectors" is a
+    flat array of {id, name, description, groupName, type, serialNumber,
+    socketId, socketModel, location: {address, cityName, countryCode,
+    stateCode, timezone}, preferredPopLocation: {preferredOnly, automatic,
+    primary: {id, name}, secondary: {id, name}}, pooledBandwidthAllocation:
+    {allocationId, licenseId, bw}}, sorted by name (case-insensitive).
+    "groups" is a flat, sorted array of connector group NAME strings (no ids
+    - ztnaAppConnector.ztnaAppConnectorGroupList returns plain strings).
+    Pages ztnaAppConnector.ztnaAppConnectorList in batches of 1000 (its
+    ZtnaAppConnectorListInput requires both "paging" and "sort", unlike this
+    file's other paginated lists - an empty sort object satisfies the
+    latter). --names filters connectors[] only. With --strip-ids, each
+    connector's top-level id and its preferredPopLocation primary/secondary
+    ids are omitted; group name strings are untouched (nothing to strip)."""
+    try:
+        account_id = getAccountID(args, configuration)
+        verbose = hasattr(args, 'verbose') and args.verbose
+
+        all_connectors = []
+        from_offset = 0
+        while True:
+            query = {
+                "query": ZTNA_APP_CONNECTOR_LIST_QUERY,
+                "variables": {
+                    "accountId": account_id,
+                    "ztnaAppConnectorListInput": {
+                        "paging": {"limit": PAGE_LIMIT, "from": from_offset},
+                        "sort": {},
+                    },
+                },
+                "operationName": "ztnaAppConnectorZtnaAppConnectorList",
+            }
+            response = makeCall(args, configuration, query)
+            result = response['data']['ztnaAppConnector']['ztnaAppConnectorList']
+            items = result.get('ztnaAppConnector') or []
+            all_connectors.extend(items)
+            total = (result.get('pageInfo') or {}).get('total', len(all_connectors))
+            if verbose:
+                print(f"Retrieved {len(items)} app connectors (offset: {from_offset}, total: {total})")
+            from_offset += PAGE_LIMIT
+            if len(all_connectors) >= total or not items:
+                break
+
+        groups_query = {
+            "query": ZTNA_APP_CONNECTOR_GROUP_LIST_QUERY,
+            "variables": {"accountId": account_id, "ztnaAppConnectorGroupListInput": {}},
+            "operationName": "ztnaAppConnectorZtnaAppConnectorGroupList",
+        }
+        groups_response = makeCall(args, configuration, groups_query)
+        groups_result = groups_response['data']['ztnaAppConnector']['ztnaAppConnectorGroupList']
+        groups = groups_result.get('items') or []
+
+        if verbose:
+            print(f"Retrieved {len(groups)} app connector groups")
+
+        output_connectors = []
+        for conn in all_connectors:
+            location = conn.get('location') or {}
+            preferred = conn.get('preferredPopLocation') or {}
+            bandwidth = conn.get('pooledBandwidthAllocation')
+            primary = preferred.get('primary')
+            secondary = preferred.get('secondary')
+
+            conn_out = {
+                "id": conn.get('id'),
+                "name": conn.get('name'),
+                "description": conn.get('description') or "",
+                "groupName": conn.get('groupName'),
+                "type": conn.get('type'),
+                "serialNumber": conn.get('serialNumber'),
+                "socketId": conn.get('socketId'),
+                "socketModel": conn.get('socketModel'),
+                "location": {
+                    "address": location.get('address'),
+                    "cityName": location.get('cityName'),
+                    "countryCode": location.get('countryCode'),
+                    "stateCode": location.get('stateCode'),
+                    "timezone": location.get('timezone'),
+                },
+                "preferredPopLocation": {
+                    "preferredOnly": preferred.get('preferredOnly'),
+                    "automatic": preferred.get('automatic'),
+                    "primary": {"id": primary.get('id'), "name": primary.get('name')} if primary else None,
+                    "secondary": {"id": secondary.get('id'), "name": secondary.get('name')} if secondary else None,
+                },
+            }
+            if bandwidth:
+                conn_out["pooledBandwidthAllocation"] = {
+                    "allocationId": bandwidth.get('allocationId'),
+                    "licenseId": bandwidth.get('licenseId'),
+                    "bw": bandwidth.get('bw'),
+                }
+            output_connectors.append(conn_out)
+
+        return _finalize_app_connectors_export(output_connectors, groups, args, account_id)
 
     except Exception as e:
         print(f"ERROR: {str(e)}")

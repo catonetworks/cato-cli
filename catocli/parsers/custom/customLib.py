@@ -334,8 +334,22 @@ def getAccountID(args, configuration):
     elif hasattr(configuration, 'accountID') and configuration.accountID:
         account_id = configuration.accountID
     else:
-        account_id = os.getenv('CATO_ACCOUNT_ID')
-    
+        # Prefer the selected profile from the credential file. The
+        # CATO_ACCOUNT_ID environment variable is honored only as a last resort
+        # when no credential file exists -- an interactive shell exporting
+        # another tenant's id must never override a profile-targeted call.
+        try:
+            from ...Utils.profile_manager import get_profile_manager
+            pm = get_profile_manager()
+            if pm.credentials_file.exists():
+                creds = pm.get_credentials()
+                if creds and creds.get('account_id'):
+                    account_id = creds['account_id']
+        except Exception:
+            pass
+        if not account_id:
+            account_id = os.getenv('CATO_ACCOUNT_ID')
+
     if not account_id:
         raise ValueError("Account ID is required. Provide it using the -accountID flag or set CATO_ACCOUNT_ID environment variable.")
     

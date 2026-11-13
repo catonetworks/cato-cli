@@ -417,7 +417,7 @@ def import_sub_rules(sub_rules, module_name, verbose=False,
     return tally
 
 
-def print_skipped_sub_sections(sub_sections, module_name):
+def print_skipped_sub_sections(sub_sections, module_name, resource_type="cato_if_section"):
     """Sub-sections aren't managed by the module yet (provider gap - see
     docs/ifw-sub-policy-json-design.md). Print a clear SKIP warning instead
     of attempting to import them."""
@@ -425,10 +425,10 @@ def print_skipped_sub_sections(sub_sections, module_name):
     if not sub_sections:
         return
     print(f"\nSKIP: {len(sub_sections)} sub-section(s) are not yet importable "
-          f"(the module has no cato_if_section.sub_sections resource - provider/module gap):")
+          f"(the module has no {resource_type}.sub_sections resource - provider/module gap):")
     for s in sub_sections:
         composite_key = f"{s['sub_policy_name']}::{s['section_name']}"
-        resource_address = f'{module_name}.cato_if_section.sub_sections[{json.dumps(composite_key)}]'
+        resource_address = f'{module_name}.{resource_type}.sub_sections[{json.dumps(composite_key)}]'
         print(f"  - {resource_address}  (id {s['section_id']})")
 
 
@@ -659,43 +659,64 @@ def import_wf_rules(rules, module_name, verbose=False,
 
 
 def import_wf_rules_to_tf(args, configuration):
-    """Main function to orchestrate the WAN Firewall import process"""
+    """Main function to orchestrate the import process (sub-policy aware).
+
+    Non-blocking by design: a per-resource import failure is classified and
+    reported but never aborts the job and never prompts the user - running
+    this command twice in a row is expected to be idempotent (the second run
+    reports everything as already-imported). The command always returns
+    success (and the CLI framework always exits 0 for a non-exception
+    result - see catocli/Utils/clidriver.py) - the real outcome is the
+    printed summary / the counts in the returned dict, not the exit code.
+    """
     try:
         print(" Terraform Import Tool - Cato WF Rules & Sections")
         print("=" * 60)
-        
+
         # Load data
         print(f" Loading data from {args.json_file}...")
         policy_data = load_wf_json_data(args.json_file)
-        
-        # Extract rules and sections
-        rules, sections = extract_rules_and_sections(policy_data)
-        
+
+        # Extract rules/sections, sub-policy aware
+        resources = extract_if_rules_resources(policy_data)
+        main_rules = resources['main_rules']
+        sub_rules = resources['sub_rules']
+        main_sections = resources['main_sections']
+        sub_sections = resources['sub_sections']
+        sub_policies = resources['sub_policies']
+
         if hasattr(args, 'verbose') and args.verbose:
             print(f"section_ids: {json.dumps(policy_data.get('section_ids', {}), indent=2)}")
-        
-        print(f" Found {len(rules)} rules")
-        print(f"  Found {len(sections)} sections")
-        
-        if not rules and not sections:
+
+        print(f" Found {len(main_rules)} rule(s), {len(sub_rules)} sub-rule(s)")
+        print(f"  Found {len(main_sections)} section(s), {len(sub_sections)} sub-section(s)")
+        print(f"  Found {len(sub_policies)} sub-policy(ies)")
+
+        if not main_rules and not sub_rules and not main_sections and not sub_sections and not sub_policies:
             print(" No rules or sections found. Exiting.")
             return [{"success": False, "error": "No rules or sections found"}]
-        
+
         # Add module. prefix if not present
-        module_name = args.module_name
-        if not module_name.startswith('module.'):
-            module_name = f'module.{module_name}'
+        module_name = ensure_module_prefix(args.module_name)
+
         # Validate Terraform environment before proceeding
         validate_terraform_environment(module_name, verbose=args.verbose)
-        
+
         # Ask for confirmation (unless auto-approved)
         if not args.rules_only and not args.sections_only:
-            print(f"\n Ready to import {len(sections)} sections and {len(rules)} rules.")
+            print(f"\n Ready to import {len(main_sections)} section(s), {len(sub_policies)} sub-policy(ies), "
+                  f"{len(main_rules)} rule(s), and {len(sub_rules)} sub-rule(s).")
+            if sub_sections:
+                print(f" NOTE: {len(sub_sections)} sub-section(s) will be SKIPPED "
+                      f"(not yet supported by the module - see docs/ifw-sub-policy-json-design.md).")
         elif args.rules_only:
-            print(f"\n Ready to import {len(rules)} rules only.")
+            print(f"\n Ready to import {len(main_rules)} rule(s) and {len(sub_rules)} sub-rule(s) only.")
         elif args.sections_only:
-            print(f"\n Ready to import {len(sections)} sections only.")
-        
+            print(f"\n Ready to import {len(main_sections)} section(s) only.")
+            if sub_sections:
+                print(f" NOTE: {len(sub_sections)} sub-section(s) will be SKIPPED "
+                      f"(not yet supported by the module).")
+
         if hasattr(args, 'auto_approve') and args.auto_approve:
             print("\nAuto-approve enabled, proceeding with import...")
         else:
@@ -703,41 +724,60 @@ def import_wf_rules_to_tf(args, configuration):
             if confirm != 'y':
                 print("Import cancelled.")
                 return [{"success": False, "error": "Import cancelled by user"}]
-        
-        total_successful = 0
-        total_failed = 0
-        
-        # Import sections first (if not skipped)
-        if not args.rules_only and sections:
-            successful, failed = import_wf_sections(sections, module_name=args.module_name, verbose=args.verbose)
-            total_successful += successful
-            total_failed += failed
-        
-        # Import rules (if not skipped)
-        if not args.sections_only and rules:
-            successful, failed = import_wf_rules(rules, module_name=args.module_name, 
-                                                verbose=args.verbose, batch_size=args.batch_size, 
-                                                delay_between_batches=args.delay,
-                                                auto_approve=getattr(args, 'auto_approve', False))
-            total_successful += successful
-            total_failed += failed
-        
+
+        grand_tally = {"imported": 0, "already_managed": 0, "not_found": 0, "other": 0}
+
+        # Import order: sections -> sub_policies -> rules -> sub_rules
+        # (sub-sections are skipped with a warning - provider/module gap)
+        if not args.rules_only:
+            if main_sections:
+                merge_tally(grand_tally, import_sections(
+                    main_sections, module_name=module_name,
+                    resource_type="cato_wf_section", verbose=args.verbose))
+
+            print_skipped_sub_sections(sub_sections, module_name, resource_type="cato_wf_section")
+
+            if sub_policies:
+                merge_tally(grand_tally, import_sub_policies(
+                    sub_policies, module_name=module_name, verbose=args.verbose,
+                    resource_type="cato_wf_sub_policy"))
+
+        if not args.sections_only:
+            if main_rules:
+                merge_tally(grand_tally, import_rules(
+                    main_rules, module_name=module_name,
+                    resource_type="cato_wf_rule",
+                    verbose=args.verbose, batch_size=args.batch_size,
+                    delay_between_batches=args.delay))
+
+            if sub_rules:
+                merge_tally(grand_tally, import_sub_rules(
+                    sub_rules, module_name=module_name, verbose=args.verbose,
+                    resource_type="cato_wf_rule",
+                    batch_size=args.batch_size, delay_between_batches=args.delay))
+
         # Final summary
         print("\n" + "=" * 60)
         print(" FINAL IMPORT SUMMARY")
         print("=" * 60)
-        print(f" Total successful imports: {total_successful}")
-        print(f" Total failed imports: {total_failed}")
-        print(f" Overall success rate: {(total_successful / (total_successful + total_failed) * 100):.1f}%" if (total_successful + total_failed) > 0 else "N/A")
+        print(f" Imported:             {grand_tally['imported']}")
+        print(f" Already imported:     {grand_tally['already_managed']}")
+        print(f" Not found in tenant:  {grand_tally['not_found']}")
+        print(f" Other failures:       {grand_tally['other']}")
+        if sub_sections:
+            print(f" Skipped (sub-sections, not yet supported): {len(sub_sections)}")
         print("\n Import process completed!")
-        
+
         return [{
-            "success": True, 
-            "total_successful": total_successful,
-            "total_failed": total_failed,
-            "module_name": args.module_name
+            "success": True,
+            "imported": grand_tally['imported'],
+            "already_managed": grand_tally['already_managed'],
+            "not_found": grand_tally['not_found'],
+            "other_failures": grand_tally['other'],
+            "skipped_sub_sections": len(sub_sections),
+            "module_name": module_name
         }]
-    
+
     except KeyboardInterrupt:
         print("\nImport process cancelled by user (Ctrl+C).")
         print("Partial imports may have been completed.")
@@ -745,6 +785,7 @@ def import_wf_rules_to_tf(args, configuration):
     except Exception as e:
         print(f"ERROR: {str(e)}")
         return [{"success": False, "error": str(e)}]
+
 
 
 def load_wnw_json_data(json_file):
@@ -1105,3 +1146,614 @@ def import_tls_rules_to_tf(args, configuration):
     except Exception as e:
         print(f"ERROR: {str(e)}")
         return [{"success": False, "error": str(e)}]
+
+
+# ---------------------------------------------------------------------------
+# LAN Firewall (socketLan) import - consumes the JSON produced by
+# `catocli export lan_fw_rules` and imports into the
+# terraform-cato-bulk-lan-fw-rules module addresses. Unlike the IFW path,
+# sub-sections ARE importable (cato_socket_lan_section supports sub-policy
+# ownership via at.ref). The cato_bulk_lf_move_rule ordering resource is not
+# importable by design - it is created on first apply.
+# ---------------------------------------------------------------------------
+
+def load_lan_json_data(json_file):
+    """Load LAN FW (socketLan) policy data from a lan_fw_rules export."""
+    try:
+        with open(json_file, 'r') as f:
+            data = json.load(f)
+            return data['data']['policy']['socketLan']['policy']
+    except FileNotFoundError:
+        print(f"Error: JSON file '{json_file}' not found")
+        sys.exit(1)
+    except json.JSONDecodeError as e:
+        print(f"Error: Invalid JSON in '{json_file}': {e}")
+        sys.exit(1)
+    except KeyError as e:
+        print(f"Error: Expected JSON structure not found in '{json_file}': {e}")
+        sys.exit(1)
+
+
+def extract_lan_fw_resources(policy_data):
+    """Extract importable LAN FW resources from the export's policy node.
+
+    Returns {sections, sub_sections, sub_policies, network_rules,
+    firewall_rules}; firewall rules are flattened to composite keys
+    "<network_rule_name>::<firewall_rule_name>" (nesting is the parent
+    reference; array order is the per-parent order)."""
+    sections = []
+    sub_sections = []
+    for s in policy_data.get('sections', []) or []:
+        entry = {
+            'section_name': s.get('section_name'),
+            'section_id': s.get('section_id', ''),
+            'section_index': s.get('section_index', 0),
+        }
+        if s.get('sub_policy_name'):
+            entry['sub_policy_name'] = s['sub_policy_name']
+            sub_sections.append(entry)
+        else:
+            sections.append(entry)
+
+    sub_policies = []
+    for sp in policy_data.get('sub_policies', []) or []:
+        if sp.get('sub_policy_name') and sp.get('sub_policy_id'):
+            sub_policies.append({
+                'sub_policy_name': sp['sub_policy_name'],
+                'sub_policy_id': sp['sub_policy_id'],
+            })
+
+    network_rules = []
+    firewall_rules = []
+    for nr in policy_data.get('network_rules', []) or []:
+        rule = nr.get('rule') or {}
+        if not rule.get('name'):
+            continue
+        network_rules.append({
+            'name': rule['name'],
+            'id': rule.get('id', ''),
+            'sub_policy_name': nr.get('sub_policy_name'),
+        })
+        for fw in nr.get('firewall_rules', []) or []:
+            fw_rule = fw.get('rule') or {}
+            if not fw_rule.get('name'):
+                continue
+            firewall_rules.append({
+                'composite_key': f"{rule['name']}::{fw_rule['name']}",
+                'name': fw_rule['name'],
+                'id': fw_rule.get('id', ''),
+                'network_rule_name': rule['name'],
+            })
+
+    return {
+        'sections': sections,
+        'sub_sections': sub_sections,
+        'sub_policies': sub_policies,
+        'network_rules': network_rules,
+        'firewall_rules': firewall_rules,
+    }
+
+
+def import_lan_items(items, module_name, resource_type, resource_name,
+                     key_field, id_field, label, verbose=False,
+                     batch_size=10, delay_between_batches=2):
+    """Generic non-blocking import loop for LAN FW resources."""
+    module_name = ensure_module_prefix(module_name)
+    print(f"\nStarting {label} imports...")
+    total = len(items)
+    tally = {"imported": 0, "already_managed": 0, "not_found": 0, "other": 0}
+
+    for i, item in enumerate(items):
+        resource_id = item.get(id_field, '')
+        key = item.get(key_field, '')
+        resource_address = f'{module_name}.{resource_type}.{resource_name}["{key}"]'
+        print(f"\n[{i+1}/{total}] {label}: {key}")
+
+        if not resource_id:
+            # Greenfield entry (no live id) - nothing to import; terraform
+            # creates it on first apply.
+            print(f"SKIP (no live id - created on apply): {resource_address}")
+            tally["not_found"] += 1
+            continue
+
+        success, stdout, stderr = run_terraform_import(resource_address, resource_id, verbose=verbose)
+        if success:
+            tally["imported"] += 1
+        else:
+            kind = classify_import_failure(stderr)
+            if kind == "already_managed":
+                print(f"SKIP (already imported): {resource_address}")
+            elif kind == "not_found":
+                print(f"SKIP (not found in tenant): {resource_address} (id {resource_id})")
+            else:
+                print(f"WARNING: import failed for {resource_address}: {stderr.strip() if stderr else 'unknown error'}")
+            tally[kind] += 1
+
+        if batch_size and (i + 1) % batch_size == 0 and (i + 1) < total:
+            time.sleep(delay_between_batches)
+
+    print(f"\n{label} Import Summary: {tally['imported']} imported, "
+          f"{tally['already_managed']} already-imported, {tally['not_found']} not-found, "
+          f"{tally['other']} other failures")
+    return tally
+
+
+def import_lan_fw_rules_to_tf(args, configuration):
+    """Import LAN Firewall (socketLan) resources into terraform state.
+
+    Non-blocking and idempotent, same contract as import_if_rules_to_tf.
+    Import order: sections -> sub_policies -> sub_sections -> network rules
+    -> firewall rules. The cato_bulk_lf_move_rule ordering resource is not
+    importable and is created on the first apply."""
+    try:
+        print(" Terraform Import Tool - Cato LAN FW Rules & Sections")
+        print("=" * 60)
+
+        print(f" Loading data from {args.json_file}...")
+        policy_data = load_lan_json_data(args.json_file)
+
+        resources = extract_lan_fw_resources(policy_data)
+        sections = resources['sections']
+        sub_sections = resources['sub_sections']
+        sub_policies = resources['sub_policies']
+        network_rules = resources['network_rules']
+        firewall_rules = resources['firewall_rules']
+
+        print(f" Found {len(sections)} section(s), {len(sub_sections)} sub-section(s), "
+              f"{len(sub_policies)} sub-policy(ies)")
+        print(f" Found {len(network_rules)} network rule(s), {len(firewall_rules)} firewall rule(s)")
+
+        if not any([sections, sub_sections, sub_policies, network_rules, firewall_rules]):
+            print(" No resources found. Exiting.")
+            return [{"success": False, "error": "No resources found"}]
+
+        module_name = ensure_module_prefix(args.module_name)
+        validate_terraform_environment(module_name, verbose=args.verbose)
+
+        print(f"\n Ready to import {len(sections)} section(s), {len(sub_sections)} sub-section(s), "
+              f"{len(sub_policies)} sub-policy(ies), {len(network_rules)} network rule(s), "
+              f"{len(firewall_rules)} firewall rule(s).")
+        print(" NOTE: the cato_bulk_lf_move_rule ordering resource is not importable; "
+              "it is created on the first apply.")
+
+        if hasattr(args, 'auto_approve') and args.auto_approve:
+            print("\nAuto-approve enabled, proceeding with import...")
+        else:
+            confirm = input(f"\nProceed with import? (y/n): ").lower()
+            if confirm != 'y':
+                print("Import cancelled.")
+                return [{"success": False, "error": "Import cancelled by user"}]
+
+        grand_tally = {"imported": 0, "already_managed": 0, "not_found": 0, "other": 0}
+        common = dict(module_name=module_name, verbose=args.verbose,
+                      batch_size=args.batch_size, delay_between_batches=args.delay)
+
+        if sections:
+            merge_tally(grand_tally, import_lan_items(
+                sections, resource_type="cato_socket_lan_section", resource_name="sections",
+                key_field='section_name', id_field='section_id', label="Section", **common))
+        if sub_policies:
+            merge_tally(grand_tally, import_lan_items(
+                sub_policies, resource_type="cato_lf_sub_policy", resource_name="sub_policies",
+                key_field='sub_policy_name', id_field='sub_policy_id', label="Sub-policy", **common))
+        if sub_sections:
+            for s in sub_sections:
+                s['composite_key'] = f"{s['sub_policy_name']}::{s['section_name']}"
+            merge_tally(grand_tally, import_lan_items(
+                sub_sections, resource_type="cato_socket_lan_section", resource_name="sub_sections",
+                key_field='composite_key', id_field='section_id', label="Sub-section", **common))
+        if network_rules:
+            merge_tally(grand_tally, import_lan_items(
+                network_rules, resource_type="cato_socket_lan_network_rule", resource_name="network_rules",
+                key_field='name', id_field='id', label="Network rule", **common))
+        if firewall_rules:
+            merge_tally(grand_tally, import_lan_items(
+                firewall_rules, resource_type="cato_socket_lan_firewall_rule", resource_name="firewall_rules",
+                key_field='composite_key', id_field='id', label="Firewall rule", **common))
+
+        print("\n" + "=" * 60)
+        print(" FINAL IMPORT SUMMARY")
+        print("=" * 60)
+        print(f" Imported:             {grand_tally['imported']}")
+        print(f" Already imported:     {grand_tally['already_managed']}")
+        print(f" Not found in tenant:  {grand_tally['not_found']}")
+        print(f" Other failures:       {grand_tally['other']}")
+        print("\n Import process completed!")
+
+        return [{
+            "success": True,
+            "imported": grand_tally['imported'],
+            "already_managed": grand_tally['already_managed'],
+            "not_found": grand_tally['not_found'],
+            "other_failures": grand_tally['other'],
+            "module_name": module_name,
+        }]
+
+    except KeyboardInterrupt:
+        print("\nImport process cancelled by user (Ctrl+C).")
+        print("Partial imports may have been completed.")
+        return [{"success": False, "error": "Import cancelled by user"}]
+    except Exception as e:
+        print(f"ERROR: {str(e)}")
+        return [{"success": False, "error": str(e)}]
+
+
+# ---------------------------------------------------------------------------
+# ZTNA Always-On import - consumes `catocli export ao_rules` JSON and imports
+# into the terraform-cato-bulk-ao-rules module addresses. Flat policy:
+# sections + rules only. The cato_bulk_ao_move_rule ordering/publishing
+# resource is not importable - it is created on first apply.
+# ---------------------------------------------------------------------------
+
+def load_ao_json_data(json_file):
+    """Load ZTNA Always-On policy data from an ao_rules export."""
+    try:
+        with open(json_file, 'r') as f:
+            data = json.load(f)
+            return data['data']['policy']['ztnaAlwaysOn']['policy']
+    except FileNotFoundError:
+        print(f"Error: JSON file '{json_file}' not found")
+        sys.exit(1)
+    except json.JSONDecodeError as e:
+        print(f"Error: Invalid JSON in '{json_file}': {e}")
+        sys.exit(1)
+    except KeyError as e:
+        print(f"Error: Expected JSON structure not found in '{json_file}': {e}")
+        sys.exit(1)
+
+
+def extract_ao_resources(policy_data):
+    """Extract importable Always-On resources: {sections, rules}."""
+    sections = []
+    for s in policy_data.get('sections', []) or []:
+        if s.get('section_name'):
+            sections.append({
+                'section_name': s['section_name'],
+                'section_id': s.get('section_id', ''),
+                'section_index': s.get('section_index', 0),
+            })
+
+    rules = []
+    for rw in policy_data.get('rules', []) or []:
+        rule = rw.get('rule') or {}
+        if rule.get('name'):
+            rules.append({'name': rule['name'], 'id': rule.get('id', '')})
+    return {'sections': sections, 'rules': rules}
+
+
+def import_ao_rules_to_tf(args, configuration):
+    """Import ZTNA Always-On resources into terraform state.
+
+    Non-blocking and idempotent, same contract as the IFW/LAN importers.
+    Import order: sections -> rules. cato_bulk_ao_move_rule is created on the
+    first apply (not importable)."""
+    try:
+        print(" Terraform Import Tool - Cato Always-On Rules & Sections")
+        print("=" * 60)
+
+        print(f" Loading data from {args.json_file}...")
+        policy_data = load_ao_json_data(args.json_file)
+
+        resources = extract_ao_resources(policy_data)
+        sections = resources['sections']
+        rules = resources['rules']
+
+        print(f" Found {len(sections)} section(s), {len(rules)} rule(s)")
+        if not sections and not rules:
+            print(" No resources found. Exiting.")
+            return [{"success": False, "error": "No resources found"}]
+
+        module_name = ensure_module_prefix(args.module_name)
+        validate_terraform_environment(module_name, verbose=args.verbose)
+
+        print(f"\n Ready to import {len(sections)} section(s) and {len(rules)} rule(s).")
+        print(" NOTE: cato_bulk_ao_move_rule (ordering + publish) is not importable; "
+              "it is created on the first apply.")
+
+        if hasattr(args, 'auto_approve') and args.auto_approve:
+            print("\nAuto-approve enabled, proceeding with import...")
+        else:
+            confirm = input(f"\nProceed with import? (y/n): ").lower()
+            if confirm != 'y':
+                print("Import cancelled.")
+                return [{"success": False, "error": "Import cancelled by user"}]
+
+        grand_tally = {"imported": 0, "already_managed": 0, "not_found": 0, "other": 0}
+        common = dict(module_name=module_name, verbose=args.verbose,
+                      batch_size=args.batch_size, delay_between_batches=args.delay)
+
+        if sections:
+            merge_tally(grand_tally, import_lan_items(
+                sections, resource_type="cato_always_on_section", resource_name="sections",
+                key_field='section_name', id_field='section_id', label="Section", **common))
+        if rules:
+            merge_tally(grand_tally, import_lan_items(
+                rules, resource_type="cato_always_on_rule", resource_name="rules",
+                key_field='name', id_field='id', label="Rule", **common))
+
+        print("\n" + "=" * 60)
+        print(" FINAL IMPORT SUMMARY")
+        print("=" * 60)
+        print(f" Imported:             {grand_tally['imported']}")
+        print(f" Already imported:     {grand_tally['already_managed']}")
+        print(f" Not found in tenant:  {grand_tally['not_found']}")
+        print(f" Other failures:       {grand_tally['other']}")
+        print("\n Import process completed!")
+
+        return [{
+            "success": True,
+            "imported": grand_tally['imported'],
+            "already_managed": grand_tally['already_managed'],
+            "not_found": grand_tally['not_found'],
+            "other_failures": grand_tally['other'],
+            "module_name": module_name,
+        }]
+
+    except KeyboardInterrupt:
+        print("\nImport process cancelled by user (Ctrl+C).")
+        print("Partial imports may have been completed.")
+        return [{"success": False, "error": "Import cancelled by user"}]
+    except Exception as e:
+        print(f"ERROR: {str(e)}")
+        return [{"success": False, "error": str(e)}]
+
+
+# ---------------------------------------------------------------------------
+# Private Access import - consumes `catocli export pa_rules` JSON and imports
+# into the terraform-cato-bulk-private-access module addresses. Flat ordered
+# rule list (no sections in the terraform surface yet). The
+# cato_private_access_rule_bulk ordering/publishing resource is not
+# importable - it is created on first apply.
+# ---------------------------------------------------------------------------
+
+def load_pa_json_data(json_file):
+    """Load Private Access policy data from a pa_rules export."""
+    try:
+        with open(json_file, 'r') as f:
+            data = json.load(f)
+            return data['data']['policy']['privateAccess']['policy']
+    except FileNotFoundError:
+        print(f"Error: JSON file '{json_file}' not found")
+        sys.exit(1)
+    except json.JSONDecodeError as e:
+        print(f"Error: Invalid JSON in '{json_file}': {e}")
+        sys.exit(1)
+    except KeyError as e:
+        print(f"Error: Expected JSON structure not found in '{json_file}': {e}")
+        sys.exit(1)
+
+
+def import_pa_rules_to_tf(args, configuration):
+    """Import Private Access rules into terraform state.
+
+    Non-blocking and idempotent, same contract as the other importers."""
+    try:
+        print(" Terraform Import Tool - Cato Private Access Rules")
+        print("=" * 60)
+
+        print(f" Loading data from {args.json_file}...")
+        policy_data = load_pa_json_data(args.json_file)
+
+        rules = []
+        for rw in policy_data.get('rules', []) or []:
+            rule = rw.get('rule') or {}
+            if rule.get('name'):
+                rules.append({'name': rule['name'], 'id': rule.get('id', '')})
+
+        print(f" Found {len(rules)} rule(s)")
+        if not rules:
+            print(" No rules found. Exiting.")
+            return [{"success": False, "error": "No rules found"}]
+
+        module_name = ensure_module_prefix(args.module_name)
+        validate_terraform_environment(module_name, verbose=args.verbose)
+
+        print(f"\n Ready to import {len(rules)} rule(s).")
+        print(" NOTE: cato_private_access_rule_bulk (ordering + publish) is not importable; "
+              "it is created on the first apply.")
+
+        if hasattr(args, 'auto_approve') and args.auto_approve:
+            print("\nAuto-approve enabled, proceeding with import...")
+        else:
+            confirm = input(f"\nProceed with import? (y/n): ").lower()
+            if confirm != 'y':
+                print("Import cancelled.")
+                return [{"success": False, "error": "Import cancelled by user"}]
+
+        grand_tally = import_lan_items(
+            rules, module_name=module_name, verbose=args.verbose,
+            batch_size=args.batch_size, delay_between_batches=args.delay,
+            resource_type="cato_private_access_rule", resource_name="rules",
+            key_field='name', id_field='id', label="Rule")
+
+        print("\n" + "=" * 60)
+        print(" FINAL IMPORT SUMMARY")
+        print("=" * 60)
+        print(f" Imported:             {grand_tally['imported']}")
+        print(f" Already imported:     {grand_tally['already_managed']}")
+        print(f" Not found in tenant:  {grand_tally['not_found']}")
+        print(f" Other failures:       {grand_tally['other']}")
+        print("\n Import process completed!")
+
+        return [{
+            "success": True,
+            "imported": grand_tally['imported'],
+            "already_managed": grand_tally['already_managed'],
+            "not_found": grand_tally['not_found'],
+            "other_failures": grand_tally['other'],
+            "module_name": module_name,
+        }]
+
+    except KeyboardInterrupt:
+        print("\nImport process cancelled by user (Ctrl+C).")
+        print("Partial imports may have been completed.")
+        return [{"success": False, "error": "Import cancelled by user"}]
+    except Exception as e:
+        print(f"ERROR: {str(e)}")
+        return [{"success": False, "error": str(e)}]
+
+
+# ---------------------------------------------------------------------------
+# Application Control / App Tenant Restriction imports - flat sections+rules
+# policies; bulk move resources are created on first apply.
+# ---------------------------------------------------------------------------
+
+def _import_flat_policy_to_tf(args, policy_root_key, label,
+                              section_resource_type, rule_resource_type):
+    """Shared implementation for flat sections+rules policy importers."""
+    try:
+        print(f" Terraform Import Tool - Cato {label} Rules & Sections")
+        print("=" * 60)
+
+        print(f" Loading data from {args.json_file}...")
+        try:
+            with open(args.json_file, 'r') as f:
+                policy_data = json.load(f)['data']['policy'][policy_root_key]['policy']
+        except (FileNotFoundError, json.JSONDecodeError, KeyError) as e:
+            print(f"Error loading '{args.json_file}': {e}")
+            sys.exit(1)
+
+        sections = [
+            {'section_name': s['section_name'], 'section_id': s.get('section_id', ''),
+             'section_index': s.get('section_index', 0)}
+            for s in (policy_data.get('sections') or []) if s.get('section_name')
+        ]
+        rules = [
+            {'name': rw['rule']['name'], 'id': rw['rule'].get('id', '')}
+            for rw in (policy_data.get('rules') or []) if (rw.get('rule') or {}).get('name')
+        ]
+
+        print(f" Found {len(sections)} section(s), {len(rules)} rule(s)")
+        if not sections and not rules:
+            print(" No resources found. Exiting.")
+            return [{"success": False, "error": "No resources found"}]
+
+        module_name = ensure_module_prefix(args.module_name)
+        validate_terraform_environment(module_name, verbose=args.verbose)
+
+        print(f"\n Ready to import {len(sections)} section(s) and {len(rules)} rule(s).")
+        print(" NOTE: the bulk move/publish resource is not importable; it is created on the first apply.")
+
+        if hasattr(args, 'auto_approve') and args.auto_approve:
+            print("\nAuto-approve enabled, proceeding with import...")
+        else:
+            confirm = input(f"\nProceed with import? (y/n): ").lower()
+            if confirm != 'y':
+                print("Import cancelled.")
+                return [{"success": False, "error": "Import cancelled by user"}]
+
+        grand_tally = {"imported": 0, "already_managed": 0, "not_found": 0, "other": 0}
+        common = dict(module_name=module_name, verbose=args.verbose,
+                      batch_size=args.batch_size, delay_between_batches=args.delay)
+
+        if sections:
+            merge_tally(grand_tally, import_lan_items(
+                sections, resource_type=section_resource_type, resource_name="sections",
+                key_field='section_name', id_field='section_id', label="Section", **common))
+        if rules:
+            merge_tally(grand_tally, import_lan_items(
+                rules, resource_type=rule_resource_type, resource_name="rules",
+                key_field='name', id_field='id', label="Rule", **common))
+
+        print("\n" + "=" * 60)
+        print(" FINAL IMPORT SUMMARY")
+        print("=" * 60)
+        print(f" Imported:             {grand_tally['imported']}")
+        print(f" Already imported:     {grand_tally['already_managed']}")
+        print(f" Not found in tenant:  {grand_tally['not_found']}")
+        print(f" Other failures:       {grand_tally['other']}")
+        print("\n Import process completed!")
+
+        return [{
+            "success": True,
+            "imported": grand_tally['imported'],
+            "already_managed": grand_tally['already_managed'],
+            "not_found": grand_tally['not_found'],
+            "other_failures": grand_tally['other'],
+            "module_name": module_name,
+        }]
+
+    except KeyboardInterrupt:
+        print("\nImport process cancelled by user (Ctrl+C).")
+        print("Partial imports may have been completed.")
+        return [{"success": False, "error": "Import cancelled by user"}]
+    except Exception as e:
+        print(f"ERROR: {str(e)}")
+        return [{"success": False, "error": str(e)}]
+
+
+def import_apc_rules_to_tf(args, configuration):
+    """Import Application Control resources into terraform state."""
+    return _import_flat_policy_to_tf(
+        args, 'applicationControl', 'Application Control',
+        'cato_application_control_section', 'cato_application_control_rule')
+
+
+def import_atr_rules_to_tf(args, configuration):
+    """Import App Tenant Restriction resources into terraform state."""
+    return _import_flat_policy_to_tf(
+        args, 'appTenantRestriction', 'App Tenant Restriction',
+        'cato_app_tenant_restriction_section', 'cato_app_tenant_restriction_rule')
+
+
+def import_ts_rules_to_tf(args, configuration):
+    """Import Terminal Server resources into terraform state."""
+    return _import_flat_policy_to_tf(
+        args, 'terminalServer', 'Terminal Server',
+        'cato_terminal_server_section', 'cato_terminal_server_rule')
+
+
+def import_amfh_rules_to_tf(args, configuration):
+    """Import Anti-Malware File Hash resources into terraform state."""
+    return _import_flat_policy_to_tf(
+        args, 'antiMalwareFileHash', 'Anti-Malware File Hash',
+        'cato_anti_malware_file_hash_section', 'cato_anti_malware_file_hash_rule')
+
+
+def import_ssia_rules_to_tf(args, configuration):
+    """Import SDP Static IP Allocation resources into terraform state."""
+    return _import_flat_policy_to_tf(
+        args, 'sdpStaticIpAllocation', 'SDP Static IP Allocation',
+        'cato_sdp_static_ip_allocation_section', 'cato_sdp_static_ip_allocation_rule')
+
+
+def import_dia_rules_to_tf(args, configuration):
+    """Import Dynamic IP Allocation resources into terraform state."""
+    return _import_flat_policy_to_tf(
+        args, 'dynamicIpAllocation', 'Dynamic IP Allocation',
+        'cato_dynamic_ip_allocation_section', 'cato_dynamic_ip_allocation_rule')
+
+
+def import_cc_rules_to_tf(args, configuration):
+    """Import Client Connectivity resources into terraform state."""
+    return _import_flat_policy_to_tf(
+        args, 'clientConnectivity', 'Client Connectivity',
+        'cato_client_connectivity_section', 'cato_client_connectivity_rule')
+
+
+def import_st_rules_to_tf(args, configuration):
+    """Import Split Tunnel resources into terraform state."""
+    return _import_flat_policy_to_tf(
+        args, 'splitTunnel', 'Split Tunnel',
+        'cato_split_tunnel_section', 'cato_split_tunnel_rule')
+
+
+def import_rpf_rules_to_tf(args, configuration):
+    """Import Remote Port Forwarding resources into terraform state."""
+    return _import_flat_policy_to_tf(
+        args, 'remotePortFwd', 'Remote Port Forwarding',
+        'cato_remote_port_fwd_section', 'cato_remote_port_fwd_rule')
+
+
+def import_swp_rules_to_tf(args, configuration):
+    """Import Site Web Proxy resources into terraform state."""
+    return _import_flat_policy_to_tf(
+        args, 'siteWebProxy', 'Site Web Proxy',
+        'cato_site_web_proxy_section', 'cato_site_web_proxy_rule')
+
+
+def import_sb_rules_to_tf(args, configuration):
+    """Import Socket Bypass resources into terraform state."""
+    return _import_flat_policy_to_tf(
+        args, 'socketBypass', 'Socket Bypass',
+        'cato_socket_bypass_section', 'cato_socket_bypass_rule')

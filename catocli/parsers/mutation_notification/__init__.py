@@ -11,7 +11,7 @@ def mutation_notification_parse(mutation_subparsers):
         """Show help when mutation_notification is called without subcommand"""
         print("\ncatocli mutation notification <subcommand> [options]")
         print("\nAvailable subcommands:")
-        print("  createMailingList              createMailingList operation\n  updateMailingList              updateMailingList operation\n  deleteMailingList              deleteMailingList operation\n  createSubscriptionGroup        createSubscriptionGroup operation\n  updateSubscriptionGroup        updateSubscriptionGroup operation\n  deleteSubscriptionGroup        deleteSubscriptionGroup operation")
+        print("  createMailingList              createMailingList operation\n  updateMailingList              updateMailingList operation\n  deleteMailingList              deleteMailingList operation\n  integration                    integration operation\n  createSubscriptionGroup        createSubscriptionGroup operation\n  updateSubscriptionGroup        updateSubscriptionGroup operation\n  deleteSubscriptionGroup        deleteSubscriptionGroup operation")
         print("\nFor help on a specific subcommand:")
         print("  catocli mutation notification <subcommand> -h")
         return None
@@ -78,6 +78,102 @@ def mutation_notification_parse(mutation_subparsers):
     mutation_notification_deleteMailingList_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_notification_deleteMailingList_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_notification_deleteMailingList_parser.set_defaults(func=createRequest,operation_name='mutation.notification.deleteMailingList')
+
+    mutation_notification_integration_parser = mutation_notification_subparsers.add_parser('integration',
+            help='integration() notification operation',
+            usage=get_help("mutation_notification_integration"))
+
+    def _show_mutation_notification_integration_help(args, configuration=None):
+        """Show help when mutation_notification_integration is called without subcommand"""
+        print("\ncatocli mutation notification integration <subcommand> [options]")
+        print("\nAvailable subcommands:")
+        print("  createWebhook                  createWebhook operation\n  updateWebhook                  updateWebhook operation\n  deleteWebhook                  deleteWebhook operation\n  testWebhook                    testWebhook operation")
+        print("\nFor help on a specific subcommand:")
+        print("  catocli mutation notification integration <subcommand> -h")
+        return None
+
+    mutation_notification_integration_subparsers = mutation_notification_integration_parser.add_subparsers()
+    mutation_notification_integration_parser.set_defaults(func=_show_mutation_notification_integration_help)
+
+    mutation_notification_integration_createWebhook_parser = mutation_notification_integration_subparsers.add_parser('createWebhook',
+            help='createWebhook() integration operation',
+            usage=get_help("mutation_notification_integration_createWebhook"))
+
+    mutation_notification_integration_createWebhook_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_notification_integration_createWebhook_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_notification_integration_createWebhook_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_notification_integration_createWebhook_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_notification_integration_createWebhook_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_notification_integration_createWebhook_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_notification_integration_createWebhook_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_notification_integration_createWebhook_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_notification_integration_createWebhook_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_notification_integration_createWebhook_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_notification_integration_createWebhook_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_notification_integration_createWebhook_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_notification_integration_createWebhook_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_notification_integration_createWebhook_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_notification_integration_createWebhook_parser.set_defaults(func=createRequest,operation_name='mutation.notification.integration.createWebhook')
+
+    mutation_notification_integration_updateWebhook_parser = mutation_notification_integration_subparsers.add_parser('updateWebhook',
+            help='updateWebhook() integration operation',
+            usage=get_help("mutation_notification_integration_updateWebhook"))
+
+    mutation_notification_integration_updateWebhook_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_notification_integration_updateWebhook_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_notification_integration_updateWebhook_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_notification_integration_updateWebhook_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_notification_integration_updateWebhook_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_notification_integration_updateWebhook_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_notification_integration_updateWebhook_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_notification_integration_updateWebhook_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_notification_integration_updateWebhook_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_notification_integration_updateWebhook_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_notification_integration_updateWebhook_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_notification_integration_updateWebhook_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_notification_integration_updateWebhook_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_notification_integration_updateWebhook_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_notification_integration_updateWebhook_parser.set_defaults(func=createRequest,operation_name='mutation.notification.integration.updateWebhook')
+
+    mutation_notification_integration_deleteWebhook_parser = mutation_notification_integration_subparsers.add_parser('deleteWebhook',
+            help='deleteWebhook() integration operation',
+            usage=get_help("mutation_notification_integration_deleteWebhook"))
+
+    mutation_notification_integration_deleteWebhook_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_notification_integration_deleteWebhook_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_notification_integration_deleteWebhook_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_notification_integration_deleteWebhook_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_notification_integration_deleteWebhook_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_notification_integration_deleteWebhook_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_notification_integration_deleteWebhook_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_notification_integration_deleteWebhook_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_notification_integration_deleteWebhook_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_notification_integration_deleteWebhook_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_notification_integration_deleteWebhook_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_notification_integration_deleteWebhook_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_notification_integration_deleteWebhook_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_notification_integration_deleteWebhook_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_notification_integration_deleteWebhook_parser.set_defaults(func=createRequest,operation_name='mutation.notification.integration.deleteWebhook')
+
+    mutation_notification_integration_testWebhook_parser = mutation_notification_integration_subparsers.add_parser('testWebhook',
+            help='testWebhook() integration operation',
+            usage=get_help("mutation_notification_integration_testWebhook"))
+
+    mutation_notification_integration_testWebhook_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_notification_integration_testWebhook_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_notification_integration_testWebhook_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_notification_integration_testWebhook_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_notification_integration_testWebhook_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_notification_integration_testWebhook_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_notification_integration_testWebhook_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_notification_integration_testWebhook_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_notification_integration_testWebhook_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_notification_integration_testWebhook_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_notification_integration_testWebhook_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_notification_integration_testWebhook_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_notification_integration_testWebhook_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_notification_integration_testWebhook_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_notification_integration_testWebhook_parser.set_defaults(func=createRequest,operation_name='mutation.notification.integration.testWebhook')
 
     mutation_notification_createSubscriptionGroup_parser = mutation_notification_subparsers.add_parser('createSubscriptionGroup', 
             help='createSubscriptionGroup() notification operation', 

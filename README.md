@@ -124,6 +124,8 @@ python3 -m catocli --help
   traffic over time
 - [Events Time Series](./catocli_user_guide/events-timeseries.md):
   security, connectivity, and threat events
+- [AI Security Session Data](./catocli_user_guide/ai-security-sessions.md):
+  GenAI prompts, LLM responses, and AI agent activity per user (events + aiSecurity queries)
 - [Socket Port Metrics](./catocli_user_guide/socket-port-metrics.md):
   socket interface performance
 - [Socket Port Time Series](./catocli_user_guide/socket-port-timeseries.md):

@@ -10,6 +10,7 @@ catocli query user dynamicUserGroupsConfiguration -h
 catocli query user dynamicUserGroupsConfiguration <json>
 
 catocli query user dynamicUserGroupsConfiguration --json-file query.user.dynamicUserGroupsConfiguration.json
+```
 
 #### Operation Arguments for query.user.dynamicUserGroupsConfiguration ####
 

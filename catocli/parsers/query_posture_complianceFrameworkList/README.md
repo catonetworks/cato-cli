@@ -10,6 +10,7 @@ catocli query posture complianceFrameworkList -h
 catocli query posture complianceFrameworkList <json>
 
 catocli query posture complianceFrameworkList --json-file query.posture.complianceFrameworkList.json
+```
 
 #### Operation Arguments for query.posture.complianceFrameworkList ####
 

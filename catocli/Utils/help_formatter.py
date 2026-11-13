@@ -388,13 +388,17 @@ class UniversalHelpFormatter:
             has_advanced_usage = "## Advanced Usage" in content
             has_additional_examples = "### Additional Examples" in content
             
-            # Define content to parse
+            # Define content to parse. Only restrict parsing to the Advanced
+            # Usage / Additional Examples section when that section actually
+            # contains examples for this command — some sections only document a
+            # `catocli raw` workaround, and restricting to them would leave the
+            # help with no runnable examples at all.
             content_to_parse = content
             if has_advanced_usage:
                 # Extract the Advanced Usage section (up to #### which is next level heading)
                 advanced_pattern = r'## Advanced Usage\n(.*?)(?=\n####|\Z)'
                 advanced_match = re.search(advanced_pattern, content, re.DOTALL)
-                if advanced_match:
+                if advanced_match and command_name in advanced_match.group(1):
                     content_to_parse = advanced_match.group(1)
                     # Add a header for the examples
                     examples.append("### Examples")
@@ -404,7 +408,7 @@ class UniversalHelpFormatter:
                 # Fallback: Extract only the Additional Examples section
                 additional_pattern = r'### Additional Examples\n(.*?)(?=\n####|\n## |\Z)'
                 additional_match = re.search(additional_pattern, content, re.DOTALL)
-                if additional_match:
+                if additional_match and command_name in additional_match.group(1):
                     content_to_parse = additional_match.group(1)
                     examples.append("### Examples")
                     # Don't extract intro text - it's redundant with the actual command examples

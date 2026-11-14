@@ -5,6 +5,7 @@ Implements profile creation, listing, switching, and management
 """
 
 import getpass
+import os
 import sys
 import json
 from graphql_client import Configuration
@@ -12,16 +13,17 @@ from graphql_client.api_client import ApiException
 from graphql_client.api.call_api import ApiClient, CallApi
 from ...Utils.profile_manager import get_profile_manager
 from ...Utils.cliutils import load_private_settings
+from ...Utils import tls
 
 
-def test_credentials(endpoint, cato_token, account_id):
+def test_credentials(endpoint, cato_token, account_id, tls_settings=None):
     """Test credentials by making an entityLookup API call"""
     try:
         print("Testing credentials...")
-        
-        # Create a temporary configuration
+
+        # Create a temporary configuration (TLS verified unless explicitly disabled)
         test_config = Configuration()
-        test_config.verify_ssl = False
+        tls.apply_to_configuration(test_config, tls_settings if tls_settings is not None else tls.active())
         test_config.debug = False
         test_config.version = "1.0.0"  # Required for API client
         test_config.api_key["x-api-key"] = cato_token
@@ -69,9 +71,10 @@ def configure_profile(args, configuration=None):
 
     try:
         # Check if any credential arguments were provided
+        profile_ca_bundle = getattr(args, 'profile_ca_bundle', None)
         has_credential_args = (
             args.cato_token or args.account_id or args.endpoint or
-            args.scim_url or args.scim_token or
+            args.scim_url or args.scim_token or profile_ca_bundle or
             (private_settings_exist and (getattr(args, 'cookie', None) or getattr(args, 'private_endpoint', None)))
         )
 
@@ -161,6 +164,23 @@ def configure_profile(args, configuration=None):
         # Get current config to fill in missing values
         current_config = pm.get_profile_config(profile_name) or {}
 
+        # TLS settings for the credential check
+        try:
+            if profile_ca_bundle:
+                # Saved as an absolute path, so a relative path here is resolved now
+                profile_ca_bundle = tls.check_ca_bundle(
+                    os.path.abspath(os.path.expanduser(profile_ca_bundle.strip())))
+                # Check with exactly the bundle being saved, verification on, so success proves it works
+                tls_settings = tls.TlsSettings(verify=True, ca_bundle=profile_ca_bundle, insecure_source=None)
+                if tls.truthy(current_config.get(tls.PROFILE_INSECURE)):
+                    print(f"NOTE: profile '{profile_name}' still has {tls.PROFILE_INSECURE} set, which turns "
+                          f"verification off. Delete that line from ~/.cato/credentials to use the CA bundle.")
+            else:
+                tls_settings = tls.resolve(args, profile_config=current_config)
+        except tls.TlsConfigError as e:
+            print(f"ERROR: {e}")
+            return [{"success": False, "error": str(e)}]
+
         # Fill in missing values from current config
         if not cato_token:
             cato_token = current_config.get('cato_token')
@@ -195,7 +215,7 @@ def configure_profile(args, configuration=None):
             if hasattr(args, 'skip_validation') and args.skip_validation:
                 print("⚠️  Skipping credential validation")
             else:
-                is_valid, error_message = test_credentials(endpoint, cato_token, account_id)
+                is_valid, error_message = test_credentials(endpoint, cato_token, account_id, tls_settings)
                 if not is_valid:
                     print(f"ERROR: {error_message}")
                     print("Profile not saved. Please check your credentials and try again.")
@@ -211,7 +231,8 @@ def configure_profile(args, configuration=None):
             scim_url=scim_url if 'scim_url' in locals() and scim_url else None,
             scim_token=scim_token if 'scim_token' in locals() and scim_token else None,
             cookie=cookie if 'cookie' in locals() and cookie else None,
-            private_endpoint=private_endpoint if 'private_endpoint' in locals() and private_endpoint else None
+            private_endpoint=private_endpoint if 'private_endpoint' in locals() and private_endpoint else None,
+            ca_bundle=profile_ca_bundle if profile_ca_bundle else None
         )
         
         if success:
@@ -354,6 +375,13 @@ def show_profile(args, configuration=None):
             print(f"Private Endpoint: {private_endpoint}")
         else:
             print("Private Endpoint: (not configured)")
+
+        # Show TLS settings
+        print()
+        print("TLS:")
+        print(f"CA Bundle:  {config.get(tls.PROFILE_CA_BUNDLE) or '(default)'}")
+        if config.get(tls.PROFILE_INSECURE):
+            print(f"WARNING:    {tls.PROFILE_INSECURE} = {config.get(tls.PROFILE_INSECURE)}")
 
         # Show if this is the current profile
         current_profile = pm.get_current_profile()

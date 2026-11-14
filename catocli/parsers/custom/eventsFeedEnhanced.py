@@ -10,7 +10,6 @@ import json
 import os
 import signal
 import socket
-import ssl
 import sys
 import time
 import urllib.request
@@ -18,6 +17,7 @@ import base64
 import hmac
 import hashlib
 from ..customParserApiClient import createRequest
+from ...Utils import tls
 
 
 def enhanced_events_feed_handler(args, configuration):
@@ -388,13 +388,12 @@ def send_event_to_sentinel(event, customer_id, shared_key, args):
         }
         
         # Send request
-        no_verify = ssl._create_unverified_context()
         request = urllib.request.Request(
             url='https://' + customer_id + '.ods.opinsights.azure.com/api/logs?api-version=2016-04-01',
             data=json_data,
             headers=headers
         )
-        response = urllib.request.urlopen(request, context=no_verify, timeout=30)
+        response = urllib.request.urlopen(request, context=tls.verified_ssl_context(), timeout=30)
         
         if response.code < 200 or response.code >= 300:
             log(f"Sentinel API returned {response.code}", args)

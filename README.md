@@ -77,6 +77,25 @@ catocli query entityLookup -accountID 12345 '{"type":"country"}'
 
 For shell completion setup, see [Tab Completion](TAB_COMPLETION.md).
 
+### TLS certificate verification
+
+The CLI verifies the API server's TLS certificate on every request. On a network with TLS inspection, the inspection proxy presents a certificate signed by your organization's root CA, which the default CA bundle does not trust. Point the CLI at a PEM file that contains that root CA:
+
+```bash
+# One command
+catocli --ca-bundle /path/to/ca.pem query entityLookup '{"type":"country"}'
+
+# Every command in this shell
+export CATO_CA_BUNDLE=/path/to/ca.pem
+
+# Saved in the profile
+catocli configure set --ca-bundle /path/to/ca.pem
+```
+
+The path for `--ca-bundle` and `CATO_CA_BUNDLE` must be absolute. `configure set --ca-bundle` accepts a relative path and saves it as an absolute one. The bundle replaces the default bundle, so it must contain every root CA the CLI needs to trust. Precedence is the command-line flag, then `CATO_CA_BUNDLE`, then the profile setting, and the profile settings also apply when you override the endpoint on the command line. The same bundle is used for the Azure Sentinel uploads and the update check. SCIM commands verify against the system trust store and do not use it yet.
+
+To turn verification off for Cato API calls, use `--insecure` or set `CATO_INSECURE_SKIP_TLS_VERIFY=1` (`CATO_INSECURE_SKIP_TLS_VERIFY=0` turns it back on even if the profile turns it off). Anyone on the network path can then impersonate the API and capture your API key, so the CLI prints a warning on every run. Use `--ca-bundle` instead wherever you can. Global options such as `--ca-bundle` and `--insecure` go before the command.
+
 ## JSON input
 
 Pass variables inline or load them from a file:

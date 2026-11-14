@@ -20,6 +20,7 @@ import os
 import sys
 from graphql_client import ApiClient, CallApi
 from graphql_client.api_client import ApiException
+from ..Utils import tls
 import logging
 import pprint
 import uuid
@@ -29,7 +30,6 @@ import base64
 import hmac
 import hashlib
 import datetime
-import ssl
 import urllib.request
 import urllib.error
 import socket
@@ -959,15 +959,13 @@ def post_sentinel_data(customer_id, shared_key, body):
         'x-ms-date': rfc1123date
     }
     
-    no_verify = ssl._create_unverified_context()
-    
     try:
         request = urllib.request.Request(
             url='https://' + customer_id + '.ods.opinsights.azure.com/api/logs?api-version=2016-04-01',
             data=body,
             headers=headers
         )
-        response = urllib.request.urlopen(request, context=no_verify)
+        response = urllib.request.urlopen(request, context=tls.verified_ssl_context())
         return response.code
     except urllib.error.URLError as e:
         print(f"Azure API ERROR:{e}")
@@ -2356,9 +2354,7 @@ def sendMultipartRequest(configuration, form_fields, files, params):
     import urllib3
     
     # Create pool manager
-    pool_manager = urllib3.PoolManager(
-        cert_reqs='CERT_NONE' if not getattr(configuration, 'verify_ssl', False) else 'CERT_REQUIRED'
-    )
+    pool_manager = urllib3.PoolManager(**tls.pool_manager_kwargs(configuration))
     
     # Prepare form data
     fields = []
@@ -2453,9 +2449,7 @@ def sendPrivateRequest(configuration, body, params, method='POST', custom_url=No
     import re
 
     # Create pool manager
-    pool_manager = urllib3.PoolManager(
-        cert_reqs='CERT_NONE' if not getattr(configuration, 'verify_ssl', False) else 'CERT_REQUIRED'
-    )
+    pool_manager = urllib3.PoolManager(**tls.pool_manager_kwargs(configuration))
 
     # Helper function to substitute ${variable} patterns
     def substitute_variables(text, vars_dict, config):

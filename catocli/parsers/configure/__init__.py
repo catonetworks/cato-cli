@@ -82,6 +82,12 @@ def configure_parse(subparsers):
         help='SCIM Bearer token'
     )
     config_parser.add_argument(
+        '--ca-bundle',
+        dest='profile_ca_bundle',
+        metavar='PATH',
+        help='Save a PEM CA bundle path in the profile, used to verify the API certificate (e.g. a TLS-inspection root CA)'
+    )
+    config_parser.add_argument(
         '--interactive',
         action='store_true',
         help='Interactive configuration mode'

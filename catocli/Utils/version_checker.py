@@ -7,10 +7,10 @@ Checks for newer versions available on GitHub releases and PyPI
 import json
 import urllib.request
 import urllib.error
-import ssl
 import os
 import time
 from .. import __version__
+from . import tls
 
 # Cache settings
 CACHE_FILE = os.path.expanduser("~/.catocli_version_cache")
@@ -46,10 +46,8 @@ def cache_version_info(latest_version, source):
 def get_latest_github_version():
     """Get the latest version from GitHub releases"""
     try:
-        # Create SSL context that doesn't verify certificates (for corporate networks)
-        context = ssl.create_default_context()
-        context.check_hostname = False
-        context.verify_mode = ssl.CERT_NONE
+        # Verified TLS context. Uses --ca-bundle / CATO_CA_BUNDLE for TLS-inspection networks
+        context = tls.verified_ssl_context()
         
         url = "https://api.github.com/repos/catonetworks/cato-cli/releases/latest"
         req = urllib.request.Request(url)
@@ -68,10 +66,8 @@ def get_latest_github_version():
 def get_latest_pypi_version():
     """Get the latest version from PyPI"""
     try:
-        # Create SSL context that doesn't verify certificates (for corporate networks)
-        context = ssl.create_default_context()
-        context.check_hostname = False
-        context.verify_mode = ssl.CERT_NONE
+        # Verified TLS context. Uses --ca-bundle / CATO_CA_BUNDLE for TLS-inspection networks
+        context = tls.verified_ssl_context()
         
         url = "https://pypi.org/pypi/catocli/json"
         req = urllib.request.Request(url)

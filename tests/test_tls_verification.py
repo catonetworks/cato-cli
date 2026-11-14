@@ -218,6 +218,12 @@ class _TlsServer(ThreadingHTTPServer):
         sock.settimeout(10)
         return self.tls_context.wrap_socket(sock, server_side=True, do_handshake_on_connect=False), addr
 
+    def handle_error(self, request, client_address):
+        # Rejected handshakes are the expected outcome in several tests; keep the log quiet.
+        if isinstance(sys.exc_info()[1], (ssl.SSLError, OSError)):
+            return
+        super().handle_error(request, client_address)
+
 
 @unittest.skipUnless(shutil.which("openssl"), "openssl CLI needed to create a test certificate")
 class SelfSignedEndpointTest(unittest.TestCase):
@@ -281,6 +287,17 @@ class SelfSignedEndpointTest(unittest.TestCase):
         # The saved profile is then used with no flags or env vars.
         r = self.run_cli(home=home, command=self.QUERY)
         self.assertIn("TLS_CONTROL_OK", r.stdout, r.stdout + r.stderr)
+
+    def test_configure_set_ca_bundle_check_ignores_insecure(self):
+        # A bundle that does not trust the listener must fail the check, even with --insecure.
+        home = self.make_home()
+        r = self.run_cli(["--insecure"], home=home, command=[
+            "configure", "set", "--endpoint", self.endpoint, "--cato-token", "dummy-token",
+            "--account-id", "1", "--ca-bundle", certifi.where()])
+        out = r.stdout + r.stderr
+        self.assertIn("CERTIFICATE_VERIFY_FAILED", out)
+        self.assertNotIn("Credentials validated successfully", out)
+        self.assertFalse((home / ".cato" / "credentials").exists())
 
     def test_profile_insecure_setting_connects_and_warns(self):
         home = self.make_home(["endpoint = " + self.endpoint, "cato_token = dummy", "account_id = 1",

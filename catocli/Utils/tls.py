@@ -46,7 +46,7 @@ def _clean(value):
     return str(value or "").strip()
 
 
-def _truthy(value):
+def truthy(value):
     return _clean(value).lower() in _TRUTHY
 
 
@@ -88,8 +88,8 @@ def resolve(args=None, profile_config=None, environ=None):
         insecure_source = "--insecure"
     elif env_insecure:
         # A set env var decides either way, so CATO_INSECURE_SKIP_TLS_VERIFY=0 overrides the profile.
-        insecure_source = ENV_INSECURE if _truthy(env_insecure) else None
-    elif _truthy(profile_config.get(PROFILE_INSECURE)):
+        insecure_source = ENV_INSECURE if truthy(env_insecure) else None
+    elif truthy(profile_config.get(PROFILE_INSECURE)):
         insecure_source = "profile setting " + PROFILE_INSECURE
     else:
         insecure_source = None

@@ -164,21 +164,22 @@ def configure_profile(args, configuration=None):
         # Get current config to fill in missing values
         current_config = pm.get_profile_config(profile_name) or {}
 
-        # Resolve TLS settings for the profile being configured, including a new CA bundle
+        # TLS settings for the credential check
         try:
             if profile_ca_bundle:
+                # Saved as an absolute path, so a relative path here is resolved now
                 profile_ca_bundle = tls.check_ca_bundle(
                     os.path.abspath(os.path.expanduser(profile_ca_bundle.strip())))
-            tls_profile_config = dict(current_config)
-            if profile_ca_bundle:
-                tls_profile_config[tls.PROFILE_CA_BUNDLE] = profile_ca_bundle
-            tls_settings = tls.resolve(args, profile_config=tls_profile_config)
+                # Check with exactly the bundle being saved, verification on, so success proves it works
+                tls_settings = tls.TlsSettings(verify=True, ca_bundle=profile_ca_bundle, insecure_source=None)
+                if tls.truthy(current_config.get(tls.PROFILE_INSECURE)):
+                    print(f"NOTE: profile '{profile_name}' still has {tls.PROFILE_INSECURE} set, which turns "
+                          f"verification off. Delete that line from ~/.cato/credentials to use the CA bundle.")
+            else:
+                tls_settings = tls.resolve(args, profile_config=current_config)
         except tls.TlsConfigError as e:
             print(f"ERROR: {e}")
             return [{"success": False, "error": str(e)}]
-        if profile_ca_bundle:
-            # Validate credentials with the bundle being saved, not one from the env or a global flag
-            tls_settings = tls_settings._replace(ca_bundle=profile_ca_bundle)
 
         # Fill in missing values from current config
         if not cato_token:

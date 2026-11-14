@@ -13,11 +13,11 @@ from graphql_client.api_client import ApiException
 from ..parsers.customParserApiClient import get_help
 from .profile_manager import get_profile_manager
 from .version_checker import check_for_updates, force_check_updates
+from . import tls
 import traceback
 import sys
 sys.path.insert(0, 'vendor')
 import urllib3
-urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 # Initialize profile manager
 profile_manager = get_profile_manager()
 CATO_DEBUG = bool(os.getenv("CATO_DEBUG", False))
@@ -125,9 +125,10 @@ def show_version_info(args, configuration=None):
             print("Unable to check for updates (check your internet connection)")
     return [{"success": True, "current_version": catocli.__version__, "latest_version": latest_version if not args.current_only else None}]
         
-def get_configuration(skip_api_key=False, endpoint_override=None, api_token_override=None, account_id_override=None):
+def get_configuration(skip_api_key=False, endpoint_override=None, api_token_override=None, account_id_override=None, tls_settings=None):
     configuration = Configuration()
-    configuration.verify_ssl = False
+    # TLS verification stays on unless the user explicitly opts out (see catocli/Utils/tls.py)
+    tls.apply_to_configuration(configuration, tls_settings if tls_settings is not None else tls.active())
     configuration.debug = CATO_DEBUG
     configuration.version = "{}".format(catocli.__version__)
     
@@ -220,6 +221,8 @@ parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Se
 parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Required if --api-token is provided.')
 parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
 parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Required if --api-token is provided.')
+parser.add_argument('--ca-bundle', dest='ca_bundle', metavar='PATH', help='PEM CA bundle used to verify the API certificate, e.g. a TLS-inspection root CA. Replaces the default bundle. Also CATO_CA_BUNDLE or the profile setting ca_bundle. Place before the command.')
+parser.add_argument('--insecure', dest='insecure', action='store_true', help='DANGEROUS: disable TLS certificate verification for Cato API calls. Exposes your API key to anyone on the network path. Prefer --ca-bundle. Place before the command.')
 subparsers = parser.add_subparsers()
 
 # Version command - enhanced with update checking
@@ -375,7 +378,15 @@ def main(args=None):
         if not hasattr(args, 'func'):
             print('Missing subcommand. Use -h or --help for available commands.')
             exit(1)
-        
+
+        # Resolve TLS settings once for this invocation (flags, then env, then profile)
+        try:
+            tls_settings = tls.resolve(args)
+        except tls.TlsConfigError as e:
+            print("ERROR: " + str(e))
+            exit(1)
+        tls.set_active(tls_settings)
+
         # Skip authentication for configure commands
         if hasattr(args.func, '__module__') and 'configure' in str(args.func.__module__):
             response = args.func(args, None)
@@ -394,9 +405,10 @@ def main(args=None):
                 skip_api_key=using_headers_file,
                 endpoint_override=endpoint_override,
                 api_token_override=api_token_override,
-                account_id_override=account_id_override
+                account_id_override=account_id_override,
+                tls_settings=tls_settings
             )
-            
+
             # Parse custom headers if provided
             custom_headers = {}
             if hasattr(args, 'headers') and args.headers:

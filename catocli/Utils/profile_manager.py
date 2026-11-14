@@ -53,7 +53,8 @@ class ProfileManager:
         return list(config.sections())
     
     def create_profile(self, profile_name, endpoint=None, cato_token=None, account_id=None,
-                       scim_url=None, scim_token=None, cookie=None, private_endpoint=None):
+                       scim_url=None, scim_token=None, cookie=None, private_endpoint=None,
+                       ca_bundle=None):
         """Create or update a profile"""
         self.ensure_cato_directory()
 
@@ -86,6 +87,9 @@ class ProfileManager:
 
         if private_endpoint:
             config[profile_name]['private_endpoint'] = private_endpoint
+
+        if ca_bundle:
+            config[profile_name]['ca_bundle'] = ca_bundle
 
         with open(self.credentials_file, 'w') as f:
             config.write(f)

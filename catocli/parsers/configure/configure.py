@@ -165,19 +165,20 @@ def configure_profile(args, configuration=None):
         current_config = pm.get_profile_config(profile_name) or {}
 
         # Resolve TLS settings for the profile being configured, including a new CA bundle
-        if profile_ca_bundle:
-            profile_ca_bundle = os.path.abspath(os.path.expanduser(profile_ca_bundle.strip()))
-            if not os.path.isfile(profile_ca_bundle):
-                print(f"ERROR: CA bundle file not found: {profile_ca_bundle}")
-                return [{"success": False, "error": "CA bundle file not found"}]
-        tls_profile_config = dict(current_config)
-        if profile_ca_bundle:
-            tls_profile_config[tls.PROFILE_CA_BUNDLE] = profile_ca_bundle
         try:
+            if profile_ca_bundle:
+                profile_ca_bundle = tls.check_ca_bundle(
+                    os.path.abspath(os.path.expanduser(profile_ca_bundle.strip())))
+            tls_profile_config = dict(current_config)
+            if profile_ca_bundle:
+                tls_profile_config[tls.PROFILE_CA_BUNDLE] = profile_ca_bundle
             tls_settings = tls.resolve(args, profile_config=tls_profile_config)
         except tls.TlsConfigError as e:
             print(f"ERROR: {e}")
             return [{"success": False, "error": str(e)}]
+        if profile_ca_bundle:
+            # Validate credentials with the bundle being saved, not one from the env or a global flag
+            tls_settings = tls_settings._replace(ca_bundle=profile_ca_bundle)
 
         # Fill in missing values from current config
         if not cato_token:

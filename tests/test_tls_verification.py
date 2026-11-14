@@ -8,6 +8,7 @@ import contextlib
 import io
 import json
 import os
+import re
 import shutil
 import ssl
 import subprocess
@@ -61,6 +62,20 @@ class ResolveTest(unittest.TestCase):
         for value in ("", "0", "false", "no", "off", "anything"):
             s = tls.resolve(None, profile_config={}, environ={tls.ENV_INSECURE: value})
             self.assertTrue(s.verify, value)
+
+    def test_insecure_env_false_overrides_profile(self):
+        profile = {tls.PROFILE_INSECURE: "true"}
+        self.assertFalse(tls.resolve(None, profile, {}).verify)
+        self.assertTrue(tls.resolve(None, profile, {tls.ENV_INSECURE: "0"}).verify)
+        self.assertFalse(tls.resolve(None, profile, {tls.ENV_INSECURE: "  "}).verify)  # blank = unset
+
+    def test_relative_ca_bundle_is_rejected(self):
+        with self.assertRaises(tls.TlsConfigError):
+            tls.resolve(None, {}, {tls.ENV_CA_BUNDLE: "ca.pem"})
+
+    def test_blank_ca_bundle_falls_through_to_next_source(self):
+        s = tls.resolve(_ns(ca_bundle="  "), {tls.PROFILE_CA_BUNDLE: self.bundle}, {tls.ENV_CA_BUNDLE: " "})
+        self.assertEqual(s.ca_bundle, self.bundle)
 
     def test_insecure_profile(self):
         s = tls.resolve(None, profile_config={tls.PROFILE_INSECURE: "true"}, environ={})
@@ -148,15 +163,21 @@ class ArgumentParsingTest(unittest.TestCase):
 class NoUnconditionalVerifyOffTest(unittest.TestCase):
     """Regression guard: the generator template and runtime code must not turn verification off."""
 
-    FORBIDDEN = (
-        "verify_ssl = False",
-        "disable_warnings(",
-        "_create_unverified_context(",
-        "check_hostname = False",
-        "'verify_ssl', False",
+    FORBIDDEN = re.compile(
+        r"verify_ssl\s*=\s*False"
+        r"|['\"]verify_ssl['\"]\s*,\s*False"
+        r"|disable_warnings\s*\("
+        r"|_create_unverified_context\s*\("
+        r"|check_hostname\s*=\s*False"
+        r"|CERT_NONE"
     )
-    # scim_client only disables verification when its caller passes verify_ssl=False, and warns.
-    ALLOWED = {ROOT / "catocli" / "parsers" / "custom" / "scim" / "scim_client.py"}
+    # Files allowed to mention these, and why.
+    ALLOWED = {
+        # Only disables verification when its caller passes verify_ssl=False, and warns.
+        ROOT / "catocli" / "parsers" / "custom" / "scim" / "scim_client.py",
+        # Maps the explicit, warned opt-out to cert_reqs='CERT_NONE'.
+        ROOT / "catocli" / "Utils" / "tls.py",
+    }
 
     def test_template_and_runtime_code(self):
         files = [ROOT / "schema" / "catolib.py"] + sorted((ROOT / "catocli").rglob("*.py"))
@@ -164,12 +185,13 @@ class NoUnconditionalVerifyOffTest(unittest.TestCase):
         for path in files:
             if path in self.ALLOWED:
                 continue
-            text = path.read_text(encoding="utf-8")
-            for needle in self.FORBIDDEN:
-                if path.name == "catolib.py" and needle == "_create_unverified_context(":
+            for lineno, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+                match = self.FORBIDDEN.search(line)
+                if not match:
+                    continue
+                if path.name == "catolib.py" and "_create_unverified_context" in match.group(0):
                     continue  # schema download in build tooling, not the CLI runtime
-                if needle in text:
-                    offenders.append(f"{path.relative_to(ROOT)}: {needle}")
+                offenders.append(f"{path.relative_to(ROOT)}:{lineno}: {line.strip()}")
         self.assertEqual(offenders, [])
 
 
@@ -187,6 +209,16 @@ class _Handler(BaseHTTPRequestHandler):
         pass
 
 
+class _TlsServer(ThreadingHTTPServer):
+    """Handshakes in the handler thread with a timeout, so a stalled client can't block accept()."""
+    tls_context = None
+
+    def get_request(self):
+        sock, addr = self.socket.accept()
+        sock.settimeout(10)
+        return self.tls_context.wrap_socket(sock, server_side=True, do_handshake_on_connect=False), addr
+
+
 @unittest.skipUnless(shutil.which("openssl"), "openssl CLI needed to create a test certificate")
 class SelfSignedEndpointTest(unittest.TestCase):
     """Positive control: a real TLS handshake against an untrusted certificate."""
@@ -196,16 +228,19 @@ class SelfSignedEndpointTest(unittest.TestCase):
         cls.tmp = tempfile.TemporaryDirectory()
         d = Path(cls.tmp.name)
         cls.cert, key = str(d / "cert.pem"), str(d / "key.pem")
-        subprocess.run(
+        result = subprocess.run(
             ["openssl", "req", "-x509", "-newkey", "rsa:2048", "-nodes", "-days", "1",
              "-subj", "/CN=localhost", "-addext", "subjectAltName=IP:127.0.0.1,DNS:localhost",
              "-keyout", key, "-out", cls.cert],
-            check=True, capture_output=True,
+            capture_output=True,
         )
-        cls.server = ThreadingHTTPServer(("127.0.0.1", 0), _Handler)
+        if result.returncode != 0:
+            cls.tmp.cleanup()
+            raise unittest.SkipTest("openssl could not create a test certificate: " + result.stderr.decode()[-200:])
         ctx = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
         ctx.load_cert_chain(cls.cert, key)
-        cls.server.socket = ctx.wrap_socket(cls.server.socket, server_side=True)
+        cls.server = _TlsServer(("127.0.0.1", 0), _Handler)
+        cls.server.tls_context = ctx
         cls.thread = threading.Thread(target=cls.server.serve_forever, daemon=True)
         cls.thread.start()
         cls.endpoint = f"https://127.0.0.1:{cls.server.server_address[1]}/api/v1/graphql2"
@@ -218,14 +253,57 @@ class SelfSignedEndpointTest(unittest.TestCase):
         cls.server.server_close()
         cls.tmp.cleanup()
 
-    def run_cli(self, global_args=(), extra_env=None):
+    QUERY = ["query", "entityLookup", '{"type": "country"}']
+
+    def run_cli(self, global_args=(), extra_env=None, home=None, command=None):
         env = {k: v for k, v in os.environ.items() if not k.startswith("CATO_")}
-        env["HOME"] = str(self.home)  # isolate from the developer's ~/.cato profiles
+        env["HOME"] = str(home or self.home)  # isolate from the developer's ~/.cato profiles
         env.update(extra_env or {})
-        cmd = [sys.executable, "-m", "catocli", *global_args,
-               "--endpoint", self.endpoint, "--api-token", "dummy-token", "--accountID", "1",
-               "query", "entityLookup", '{"type": "country"}']
+        if command is None:
+            command = ["--endpoint", self.endpoint, "--api-token", "dummy-token", "--accountID", "1", *self.QUERY]
+        cmd = [sys.executable, "-m", "catocli", *global_args, *command]
         return subprocess.run(cmd, cwd=ROOT, env=env, capture_output=True, text=True, timeout=60)
+
+    def make_home(self, profile_lines=()):
+        home = Path(tempfile.mkdtemp(dir=self.tmp.name))
+        if profile_lines:
+            (home / ".cato").mkdir()
+            (home / ".cato" / "credentials").write_text("\n".join(["[default]", *profile_lines]) + "\n")
+        return home
+
+    def test_configure_set_ca_bundle_validates_and_saves(self):
+        home = self.make_home()
+        r = self.run_cli(home=home, command=[
+            "configure", "set", "--endpoint", self.endpoint, "--cato-token", "dummy-token",
+            "--account-id", "1", "--ca-bundle", self.cert])
+        self.assertIn("Credentials validated successfully", r.stdout, r.stdout + r.stderr)
+        self.assertIn("ca_bundle = " + self.cert, (home / ".cato" / "credentials").read_text())
+        # The saved profile is then used with no flags or env vars.
+        r = self.run_cli(home=home, command=self.QUERY)
+        self.assertIn("TLS_CONTROL_OK", r.stdout, r.stdout + r.stderr)
+
+    def test_profile_insecure_setting_connects_and_warns(self):
+        home = self.make_home(["endpoint = " + self.endpoint, "cato_token = dummy", "account_id = 1",
+                               "insecure_skip_tls_verify = true"])
+        r = self.run_cli(home=home, command=self.QUERY)
+        self.assertIn("TLS_CONTROL_OK", r.stdout)
+        self.assertIn("TLS certificate verification is DISABLED", r.stderr)
+        # CATO_INSECURE_SKIP_TLS_VERIFY=0 turns verification back on for one run.
+        r = self.run_cli(home=home, command=self.QUERY, extra_env={"CATO_INSECURE_SKIP_TLS_VERIFY": "0"})
+        self.assertIn("CERTIFICATE_VERIFY_FAILED", r.stdout + r.stderr)
+
+    def test_stale_profile_ca_bundle_can_still_be_fixed(self):
+        home = self.make_home(["endpoint = " + self.endpoint, "cato_token = dummy", "account_id = 1",
+                               "ca_bundle = " + str(self.home / "moved.pem")])
+        r = self.run_cli(home=home, command=self.QUERY)
+        self.assertIn("CA bundle file not found", r.stdout + r.stderr)
+        self.assertNotIn("TLS_CONTROL_OK", r.stdout)
+        r = self.run_cli(home=home, command=["configure", "show"])
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        r = self.run_cli(home=home, command=["configure", "set", "--ca-bundle", self.cert])
+        self.assertIn("Credentials validated successfully", r.stdout, r.stdout + r.stderr)
+        r = self.run_cli(home=home, command=self.QUERY)
+        self.assertIn("TLS_CONTROL_OK", r.stdout, r.stdout + r.stderr)
 
     def test_default_rejects_untrusted_certificate(self):
         r = self.run_cli()

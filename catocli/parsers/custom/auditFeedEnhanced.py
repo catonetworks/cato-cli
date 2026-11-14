@@ -9,13 +9,13 @@ import json
 import os
 import signal
 import socket
-import ssl
 import sys
 import time
 import urllib.error
 import urllib.request
 
 from ..customParserApiClient import createRequest, preprocess_json_input
+from ...Utils import tls
 
 
 DEFAULT_AUDIT_TIME_FRAME = "last.P1D"
@@ -443,7 +443,7 @@ def send_record_to_sentinel(audit_record, customer_id, shared_key, args):
             data=json_data,
             headers=headers
         )
-        response = urllib.request.urlopen(request, context=ssl.create_default_context(), timeout=30)
+        response = urllib.request.urlopen(request, context=tls.verified_ssl_context(), timeout=30)
 
         if response.code < 200 or response.code >= 300:
             log(f"Sentinel API returned {response.code}", args)

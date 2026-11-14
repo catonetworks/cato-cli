@@ -42,8 +42,26 @@ class TlsConfigError(ValueError):
     """Raised when the TLS settings are unusable, for example a missing CA bundle."""
 
 
+def _clean(value):
+    return str(value or "").strip()
+
+
 def _truthy(value):
-    return str(value or "").strip().lower() in _TRUTHY
+    return _clean(value).lower() in _TRUTHY
+
+
+def check_ca_bundle(path, source="--ca-bundle"):
+    """Return the expanded CA bundle path, or raise TlsConfigError.
+
+    Relative paths are rejected so the trust anchor never depends on the
+    current working directory.
+    """
+    path = os.path.expanduser(_clean(path))
+    if not os.path.isabs(path):
+        raise TlsConfigError("CA bundle path must be absolute (" + source + "): " + path)
+    if not os.path.isfile(path):
+        raise TlsConfigError("CA bundle file not found (" + source + "): " + path)
+    return path
 
 
 def _current_profile_config():
@@ -65,24 +83,26 @@ def resolve(args=None, profile_config=None, environ=None):
     if profile_config is None:
         profile_config = _current_profile_config()
 
+    env_insecure = _clean(environ.get(ENV_INSECURE))
     if getattr(args, "insecure", False):
         insecure_source = "--insecure"
-    elif _truthy(environ.get(ENV_INSECURE)):
-        insecure_source = ENV_INSECURE
+    elif env_insecure:
+        # A set env var decides either way, so CATO_INSECURE_SKIP_TLS_VERIFY=0 overrides the profile.
+        insecure_source = ENV_INSECURE if _truthy(env_insecure) else None
     elif _truthy(profile_config.get(PROFILE_INSECURE)):
         insecure_source = "profile setting " + PROFILE_INSECURE
     else:
         insecure_source = None
 
-    ca_bundle = (
-        getattr(args, "ca_bundle", None)
-        or environ.get(ENV_CA_BUNDLE)
-        or profile_config.get(PROFILE_CA_BUNDLE)
-    )
-    if ca_bundle:
-        ca_bundle = os.path.expanduser(ca_bundle.strip())
-        if not os.path.isfile(ca_bundle):
-            raise TlsConfigError("CA bundle file not found: " + ca_bundle)
+    for source, value in (
+        ("--ca-bundle", getattr(args, "ca_bundle", None)),
+        (ENV_CA_BUNDLE, environ.get(ENV_CA_BUNDLE)),
+        ("profile setting " + PROFILE_CA_BUNDLE, profile_config.get(PROFILE_CA_BUNDLE)),
+    ):
+        value = _clean(value)
+        if value:
+            ca_bundle = check_ca_bundle(value, source)
+            break
     else:
         ca_bundle = None
 

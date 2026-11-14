@@ -17,7 +17,6 @@ from . import tls
 import traceback
 import sys
 sys.path.insert(0, 'vendor')
-import urllib3
 # Initialize profile manager
 profile_manager = get_profile_manager()
 CATO_DEBUG = bool(os.getenv("CATO_DEBUG", False))
@@ -379,18 +378,19 @@ def main(args=None):
             print('Missing subcommand. Use -h or --help for available commands.')
             exit(1)
 
-        # Resolve TLS settings once for this invocation (flags, then env, then profile)
-        try:
-            tls_settings = tls.resolve(args)
-        except tls.TlsConfigError as e:
-            print("ERROR: " + str(e))
-            exit(1)
-        tls.set_active(tls_settings)
-
         # Skip authentication for configure commands
+        # (configure resolves its own TLS settings, so a stale profile ca_bundle can still be fixed)
         if hasattr(args.func, '__module__') and 'configure' in str(args.func.__module__):
             response = args.func(args, None)
         else:
+            # Resolve TLS settings once for this invocation (flags, then env, then profile)
+            try:
+                tls_settings = tls.resolve(args)
+            except tls.TlsConfigError as e:
+                print("ERROR: " + str(e))
+                exit(1)
+            tls.set_active(tls_settings)
+
             # Check if using headers file to determine if we should skip API key
             # Note: Private settings should NOT affect regular API calls - only private commands
             using_headers_file = hasattr(args, 'headers_file') and args.headers_file

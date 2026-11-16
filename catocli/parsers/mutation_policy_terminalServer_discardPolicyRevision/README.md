@@ -28,5 +28,5 @@ catocli mutation policy terminalServer discardPolicyRevision '{
 #### Operation Arguments for mutation.policy.terminalServer.discardPolicyRevision ####
 
 `accountId` [ID] - (required) N/A
-`policyDiscardRevisionInput` [PolicyDiscardRevisionInput] - (required) N/A
-`terminalServerPolicyMutationInput` [TerminalServerPolicyMutationInput] - (required) N/A
+`policyDiscardRevisionInput` [PolicyDiscardRevisionInput] - (required) Parameters for this policy operation.
+`terminalServerPolicyMutationInput` [TerminalServerPolicyMutationInput] - (required) Parameters for this policy operation.

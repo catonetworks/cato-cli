@@ -26,4 +26,4 @@ catocli query policy sdpStaticIpAllocation policy '{
 #### Operation Arguments for query.policy.sdpStaticIpAllocation.policy ####
 
 `accountId` [ID] - (required) N/A
-`sdpStaticIpAllocationPolicyInput` [SdpStaticIpAllocationPolicyInput] - (required) N/A
+`sdpStaticIpAllocationPolicyInput` [SdpStaticIpAllocationPolicyInput] - (required) Parameters for this policy operation.

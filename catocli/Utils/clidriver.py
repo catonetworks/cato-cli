@@ -34,6 +34,7 @@ from ..parsers.mutation_accountManagement import mutation_accountManagement_pars
 from ..parsers.mutation_admin import mutation_admin_parse
 from ..parsers.mutation_businessPlatform import mutation_businessPlatform_parse
 from ..parsers.mutation_container import mutation_container_parse
+from ..parsers.mutation_copilot import mutation_copilot_parse
 from ..parsers.mutation_customAppData import mutation_customAppData_parse
 from ..parsers.mutation_encryptKeytabFile import mutation_encryptKeytabFile_parse
 from ..parsers.mutation_enterpriseDirectory import mutation_enterpriseDirectory_parse
@@ -49,6 +50,7 @@ from ..parsers.mutation_popLocationMutations import mutation_popLocationMutation
 from ..parsers.mutation_posture import mutation_posture_parse
 from ..parsers.mutation_privateApplication import mutation_privateApplication_parse
 from ..parsers.mutation_rbac import mutation_rbac_parse
+from ..parsers.mutation_report import mutation_report_parse
 from ..parsers.mutation_sandbox import mutation_sandbox_parse
 from ..parsers.mutation_site import mutation_site_parse
 from ..parsers.mutation_sites import mutation_sites_parse
@@ -72,6 +74,7 @@ from ..parsers.query_businessPlatform import query_businessPlatform_parse
 from ..parsers.query_catalogs import query_catalogs_parse
 from ..parsers.query_connectivitySnapshots import query_connectivitySnapshots_parse
 from ..parsers.query_container import query_container_parse
+from ..parsers.query_copilot import query_copilot_parse
 from ..parsers.query_customAppData import query_customAppData_parse
 from ..parsers.query_devices import query_devices_parse
 from ..parsers.query_enterpriseDirectory import query_enterpriseDirectory_parse
@@ -92,6 +95,7 @@ from ..parsers.query_popLocations import query_popLocations_parse
 from ..parsers.query_posture import query_posture_parse
 from ..parsers.query_privateApplication import query_privateApplication_parse
 from ..parsers.query_rbac import query_rbac_parse
+from ..parsers.query_report import query_report_parse
 from ..parsers.query_sandbox import query_sandbox_parse
 from ..parsers.query_servicePrincipalAdmin import query_servicePrincipalAdmin_parse
 from ..parsers.query_site import query_site_parse
@@ -245,6 +249,7 @@ mutation_accountManagement_parser = mutation_accountManagement_parse(mutation_su
 mutation_admin_parser = mutation_admin_parse(mutation_subparsers)
 mutation_businessPlatform_parser = mutation_businessPlatform_parse(mutation_subparsers)
 mutation_container_parser = mutation_container_parse(mutation_subparsers)
+mutation_copilot_parser = mutation_copilot_parse(mutation_subparsers)
 mutation_customAppData_parser = mutation_customAppData_parse(mutation_subparsers)
 mutation_encryptKeytabFile_parser = mutation_encryptKeytabFile_parse(mutation_subparsers)
 mutation_enterpriseDirectory_parser = mutation_enterpriseDirectory_parse(mutation_subparsers)
@@ -260,6 +265,7 @@ mutation_popLocationMutations_parser = mutation_popLocationMutations_parse(mutat
 mutation_posture_parser = mutation_posture_parse(mutation_subparsers)
 mutation_privateApplication_parser = mutation_privateApplication_parse(mutation_subparsers)
 mutation_rbac_parser = mutation_rbac_parse(mutation_subparsers)
+mutation_report_parser = mutation_report_parse(mutation_subparsers)
 mutation_sandbox_parser = mutation_sandbox_parse(mutation_subparsers)
 mutation_site_parser = mutation_site_parse(mutation_subparsers)
 mutation_sites_parser = mutation_sites_parse(mutation_subparsers)
@@ -283,6 +289,7 @@ query_businessPlatform_parser = query_businessPlatform_parse(query_subparsers)
 query_catalogs_parser = query_catalogs_parse(query_subparsers)
 query_connectivitySnapshots_parser = query_connectivitySnapshots_parse(query_subparsers)
 query_container_parser = query_container_parse(query_subparsers)
+query_copilot_parser = query_copilot_parse(query_subparsers)
 query_customAppData_parser = query_customAppData_parse(query_subparsers)
 query_devices_parser = query_devices_parse(query_subparsers)
 query_enterpriseDirectory_parser = query_enterpriseDirectory_parse(query_subparsers)
@@ -303,6 +310,7 @@ query_popLocations_parser = query_popLocations_parse(query_subparsers)
 query_posture_parser = query_posture_parse(query_subparsers)
 query_privateApplication_parser = query_privateApplication_parse(query_subparsers)
 query_rbac_parser = query_rbac_parse(query_subparsers)
+query_report_parser = query_report_parse(query_subparsers)
 query_sandbox_parser = query_sandbox_parse(query_subparsers)
 query_servicePrincipalAdmin_parser = query_servicePrincipalAdmin_parse(query_subparsers)
 query_site_parser = query_site_parse(query_subparsers)

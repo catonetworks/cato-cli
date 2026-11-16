@@ -34,5 +34,5 @@ catocli mutation policy dynamicIpAllocation addSection '{
 #### Operation Arguments for mutation.policy.dynamicIpAllocation.addSection ####
 
 `accountId` [ID] - (required) N/A
-`dynamicIpAllocationPolicyMutationInput` [DynamicIpAllocationPolicyMutationInput] - (required) N/A
-`policyAddSectionInput` [PolicyAddSectionInput] - (required) N/A
+`dynamicIpAllocationPolicyMutationInput` [DynamicIpAllocationPolicyMutationInput] - (required) Parameters for this policy operation.
+`policyAddSectionInput` [PolicyAddSectionInput] - (required) Parameters for this policy operation.

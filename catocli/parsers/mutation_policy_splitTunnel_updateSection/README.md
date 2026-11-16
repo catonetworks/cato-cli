@@ -31,5 +31,5 @@ catocli mutation policy splitTunnel updateSection '{
 #### Operation Arguments for mutation.policy.splitTunnel.updateSection ####
 
 `accountId` [ID] - (required) N/A
-`policyUpdateSectionInput` [PolicyUpdateSectionInput] - (required) N/A
-`splitTunnelPolicyMutationInput` [SplitTunnelPolicyMutationInput] - (required) N/A
+`policyUpdateSectionInput` [PolicyUpdateSectionInput] - (required) Parameters for this policy operation.
+`splitTunnelPolicyMutationInput` [SplitTunnelPolicyMutationInput] - (required) Parameters for this policy operation.

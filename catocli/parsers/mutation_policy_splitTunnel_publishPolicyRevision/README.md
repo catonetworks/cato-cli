@@ -29,5 +29,5 @@ catocli mutation policy splitTunnel publishPolicyRevision '{
 #### Operation Arguments for mutation.policy.splitTunnel.publishPolicyRevision ####
 
 `accountId` [ID] - (required) N/A
-`policyPublishRevisionInput` [PolicyPublishRevisionInput] - (required) N/A
-`splitTunnelPolicyMutationInput` [SplitTunnelPolicyMutationInput] - (required) N/A
+`policyPublishRevisionInput` [PolicyPublishRevisionInput] - (required) Parameters for this policy operation.
+`splitTunnelPolicyMutationInput` [SplitTunnelPolicyMutationInput] - (required) Parameters for this policy operation.

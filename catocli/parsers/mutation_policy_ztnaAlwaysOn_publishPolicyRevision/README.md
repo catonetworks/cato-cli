@@ -29,5 +29,5 @@ catocli mutation policy ztnaAlwaysOn publishPolicyRevision '{
 #### Operation Arguments for mutation.policy.ztnaAlwaysOn.publishPolicyRevision ####
 
 `accountId` [ID] - (required) N/A
-`policyPublishRevisionInput` [PolicyPublishRevisionInput] - (required) N/A
-`ztnaAlwaysOnPolicyMutationInput` [ZtnaAlwaysOnPolicyMutationInput] - (required) N/A
+`policyPublishRevisionInput` [PolicyPublishRevisionInput] - (required) Parameters for this policy operation.
+`ztnaAlwaysOnPolicyMutationInput` [ZtnaAlwaysOnPolicyMutationInput] - (required) Parameters for this policy operation.

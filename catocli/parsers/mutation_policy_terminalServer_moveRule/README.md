@@ -32,5 +32,5 @@ catocli mutation policy terminalServer moveRule '{
 #### Operation Arguments for mutation.policy.terminalServer.moveRule ####
 
 `accountId` [ID] - (required) N/A
-`policyMoveRuleInput` [PolicyMoveRuleInput] - (required) N/A
-`terminalServerPolicyMutationInput` [TerminalServerPolicyMutationInput] - (required) N/A
+`policyMoveRuleInput` [PolicyMoveRuleInput] - (required) Parameters for this policy operation.
+`terminalServerPolicyMutationInput` [TerminalServerPolicyMutationInput] - (required) Parameters for this policy operation.

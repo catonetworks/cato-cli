@@ -2392,7 +2392,7 @@
                                                         "allocatedBandwidth": {
                                                             "args": {},
                                                             "deprecationReason": null,
-                                                            "description": "allocated bandwidth, in Mbps, for all the sites assigned to this license.",
+                                                            "description": "allocated bandwidth, in Mbps, for the sites and App Connectors assigned to this license.",
                                                             "id_str": "assignSiteBwLicense___license___PooledBandwidthLicense___allocatedBandwidth",
                                                             "isDeprecated": false,
                                                             "name": "allocatedBandwidth",
@@ -2409,6 +2409,137 @@
                                                                 "non_null": false
                                                             },
                                                             "varName": "allocatedBandwidth"
+                                                        },
+                                                        "appConnectors": {
+                                                            "args": {},
+                                                            "deprecationReason": null,
+                                                            "description": "App Connectors that this license is assigned to (and the license usage within each). Empty unless App Connector license enforcement is enabled for the account.",
+                                                            "id_str": "assignSiteBwLicense___license___PooledBandwidthLicense___appConnectors",
+                                                            "isDeprecated": false,
+                                                            "name": "appConnectors",
+                                                            "path": "assignSiteBwLicense.license.PooledBandwidthLicense.appConnectors",
+                                                            "requestStr": "$pooledBandwidthLicenseAppConnector:[PooledBandwidthLicenseAppConnector]! ",
+                                                            "required": true,
+                                                            "responseStr": "appConnectors:$pooledBandwidthLicenseAppConnector ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": null,
+                                                                    "enumValues": null,
+                                                                    "fields": {
+                                                                        "allocatedBandwidth": {
+                                                                            "args": {},
+                                                                            "deprecationReason": null,
+                                                                            "description": "Allocated bandwidth for this App Connector",
+                                                                            "id_str": "assignSiteBwLicense___license___PooledBandwidthLicense___appConnectors___allocatedBandwidth",
+                                                                            "isDeprecated": false,
+                                                                            "name": "allocatedBandwidth",
+                                                                            "path": "assignSiteBwLicense.license.PooledBandwidthLicense.appConnectors.allocatedBandwidth",
+                                                                            "requestStr": "$allocatedBandwidth:Int! ",
+                                                                            "required": true,
+                                                                            "responseStr": "allocatedBandwidth:$allocatedBandwidth ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "NON_NULL",
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "Int",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "allocatedBandwidth"
+                                                                        },
+                                                                        "appConnector": {
+                                                                            "args": {},
+                                                                            "deprecationReason": null,
+                                                                            "description": "Identifying data for the App Connector. Only the ID identifies the connector; the name is served by App-connector service.",
+                                                                            "id_str": "assignSiteBwLicense___license___PooledBandwidthLicense___appConnectors___appConnector",
+                                                                            "isDeprecated": false,
+                                                                            "name": "appConnector",
+                                                                            "path": "assignSiteBwLicense.license.PooledBandwidthLicense.appConnectors.appConnector",
+                                                                            "requestStr": "$ztnaAppConnectorRef:ZtnaAppConnectorRef! ",
+                                                                            "required": true,
+                                                                            "responseStr": "appConnector:$ztnaAppConnectorRef ",
+                                                                            "type": {
+                                                                                "definition": {
+                                                                                    "description": null,
+                                                                                    "enumValues": null,
+                                                                                    "fields": {
+                                                                                        "id": {
+                                                                                            "args": {},
+                                                                                            "deprecationReason": null,
+                                                                                            "description": "Unique ZTNA app connector ID",
+                                                                                            "id_str": "assignSiteBwLicense___license___PooledBandwidthLicense___appConnectors___appConnector___id",
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "id",
+                                                                                            "path": "assignSiteBwLicense.license.PooledBandwidthLicense.appConnectors.appConnector.id",
+                                                                                            "requestStr": "$id:ID! ",
+                                                                                            "required": true,
+                                                                                            "responseStr": "id:$id ",
+                                                                                            "type": {
+                                                                                                "kind": [
+                                                                                                    "NON_NULL",
+                                                                                                    "SCALAR"
+                                                                                                ],
+                                                                                                "name": "ID",
+                                                                                                "non_null": false
+                                                                                            },
+                                                                                            "varName": "id"
+                                                                                        },
+                                                                                        "name": {
+                                                                                            "args": {},
+                                                                                            "deprecationReason": null,
+                                                                                            "description": "Name for the ZTNA app connector",
+                                                                                            "id_str": "assignSiteBwLicense___license___PooledBandwidthLicense___appConnectors___appConnector___name",
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "name",
+                                                                                            "path": "assignSiteBwLicense.license.PooledBandwidthLicense.appConnectors.appConnector.name",
+                                                                                            "requestStr": "$name:String! ",
+                                                                                            "required": true,
+                                                                                            "responseStr": "name:$name ",
+                                                                                            "type": {
+                                                                                                "kind": [
+                                                                                                    "NON_NULL",
+                                                                                                    "SCALAR"
+                                                                                                ],
+                                                                                                "name": "String",
+                                                                                                "non_null": false
+                                                                                            },
+                                                                                            "varName": "name"
+                                                                                        }
+                                                                                    },
+                                                                                    "inputFields": null,
+                                                                                    "interfaces": {},
+                                                                                    "kind": "OBJECT",
+                                                                                    "name": "ZtnaAppConnectorRef",
+                                                                                    "possibleTypes": null
+                                                                                },
+                                                                                "indexType": "object",
+                                                                                "kind": [
+                                                                                    "NON_NULL",
+                                                                                    "OBJECT"
+                                                                                ],
+                                                                                "name": "ZtnaAppConnectorRef",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "ztnaAppConnectorRef"
+                                                                        }
+                                                                    },
+                                                                    "inputFields": null,
+                                                                    "interfaces": {},
+                                                                    "kind": "OBJECT",
+                                                                    "name": "PooledBandwidthLicenseAppConnector",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "object",
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "LIST",
+                                                                    "NON_NULL",
+                                                                    "OBJECT"
+                                                                ],
+                                                                "name": "PooledBandwidthLicenseAppConnector",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "pooledBandwidthLicenseAppConnector"
                                                         },
                                                         "siteLicenseGroup": {
                                                             "args": {},

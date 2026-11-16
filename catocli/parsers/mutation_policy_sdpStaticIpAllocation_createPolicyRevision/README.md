@@ -29,5 +29,5 @@ catocli mutation policy sdpStaticIpAllocation createPolicyRevision '{
 #### Operation Arguments for mutation.policy.sdpStaticIpAllocation.createPolicyRevision ####
 
 `accountId` [ID] - (required) N/A
-`policyCreateRevisionInput` [PolicyCreateRevisionInput] - (required) N/A
-`sdpStaticIpAllocationPolicyMutationInput` [SdpStaticIpAllocationPolicyMutationInput] - (required) N/A
+`policyCreateRevisionInput` [PolicyCreateRevisionInput] - (required) Parameters for this policy operation.
+`sdpStaticIpAllocationPolicyMutationInput` [SdpStaticIpAllocationPolicyMutationInput] - (required) Parameters for this policy operation.

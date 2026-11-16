@@ -28,5 +28,5 @@ catocli mutation policy terminalServer removeRule '{
 #### Operation Arguments for mutation.policy.terminalServer.removeRule ####
 
 `accountId` [ID] - (required) N/A
-`terminalServerPolicyMutationInput` [TerminalServerPolicyMutationInput] - (required) N/A
-`terminalServerRemoveRuleInput` [TerminalServerRemoveRuleInput] - (required) N/A
+`terminalServerPolicyMutationInput` [TerminalServerPolicyMutationInput] - (required) Parameters for this policy operation.
+`terminalServerRemoveRuleInput` [TerminalServerRemoveRuleInput] - (required) Parameters for this policy operation.

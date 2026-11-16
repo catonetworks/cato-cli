@@ -32,5 +32,5 @@ catocli mutation policy sdpStaticIpAllocation moveRule '{
 #### Operation Arguments for mutation.policy.sdpStaticIpAllocation.moveRule ####
 
 `accountId` [ID] - (required) N/A
-`policyMoveRuleInput` [PolicyMoveRuleInput] - (required) N/A
-`sdpStaticIpAllocationPolicyMutationInput` [SdpStaticIpAllocationPolicyMutationInput] - (required) N/A
+`policyMoveRuleInput` [PolicyMoveRuleInput] - (required) Parameters for this policy operation.
+`sdpStaticIpAllocationPolicyMutationInput` [SdpStaticIpAllocationPolicyMutationInput] - (required) Parameters for this policy operation.

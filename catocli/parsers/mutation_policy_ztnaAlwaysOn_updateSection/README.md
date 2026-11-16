@@ -31,5 +31,5 @@ catocli mutation policy ztnaAlwaysOn updateSection '{
 #### Operation Arguments for mutation.policy.ztnaAlwaysOn.updateSection ####
 
 `accountId` [ID] - (required) N/A
-`policyUpdateSectionInput` [PolicyUpdateSectionInput] - (required) N/A
-`ztnaAlwaysOnPolicyMutationInput` [ZtnaAlwaysOnPolicyMutationInput] - (required) N/A
+`policyUpdateSectionInput` [PolicyUpdateSectionInput] - (required) Parameters for this policy operation.
+`ztnaAlwaysOnPolicyMutationInput` [ZtnaAlwaysOnPolicyMutationInput] - (required) Parameters for this policy operation.

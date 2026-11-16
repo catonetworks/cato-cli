@@ -106,5 +106,5 @@ catocli query privateApplication privateApplicationList '{
 
 #### Operation Arguments for query.privateApplication.privateApplicationList ####
 
-`accountId` [ID] - (required) N/A
-`privateApplicationListInput` [PrivateApplicationListInput] - (required) N/A
+`accountId` [ID] - (required) Account containing the private applications.
+`privateApplicationListInput` [PrivateApplicationListInput] - (required) Parameters for the private application operation.

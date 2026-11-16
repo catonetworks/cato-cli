@@ -32,5 +32,5 @@ catocli mutation policy clientConnectivity moveRule '{
 #### Operation Arguments for mutation.policy.clientConnectivity.moveRule ####
 
 `accountId` [ID] - (required) N/A
-`clientConnectivityPolicyMutationInput` [ClientConnectivityPolicyMutationInput] - (required) N/A
-`policyMoveRuleInput` [PolicyMoveRuleInput] - (required) N/A
+`clientConnectivityPolicyMutationInput` [ClientConnectivityPolicyMutationInput] - (required) Parameters for this policy operation.
+`policyMoveRuleInput` [PolicyMoveRuleInput] - (required) Parameters for this policy operation.

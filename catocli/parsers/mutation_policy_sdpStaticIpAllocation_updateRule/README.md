@@ -40,5 +40,5 @@ catocli mutation policy sdpStaticIpAllocation updateRule '{
 #### Operation Arguments for mutation.policy.sdpStaticIpAllocation.updateRule ####
 
 `accountId` [ID] - (required) N/A
-`sdpStaticIpAllocationPolicyMutationInput` [SdpStaticIpAllocationPolicyMutationInput] - (required) N/A
-`sdpStaticIpAllocationUpdateRuleInput` [SdpStaticIpAllocationUpdateRuleInput] - (required) N/A
+`sdpStaticIpAllocationPolicyMutationInput` [SdpStaticIpAllocationPolicyMutationInput] - (required) Parameters for this policy operation.
+`sdpStaticIpAllocationUpdateRuleInput` [SdpStaticIpAllocationUpdateRuleInput] - (required) Parameters for this policy operation.

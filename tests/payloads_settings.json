@@ -62,7 +62,17 @@
         "query.networkConfig.dns.serverSet": {},
         "query.networkConfig.dns.serverSetList": {},
         "query.networkConfig.dns.suffixSet": {},
-        "query.networkConfig.dns.suffixSetList": {}
+        "query.networkConfig.dns.suffixSetList": {},
+        // Financial Documents API is gradually rolling out; unavailable for the CI account
+        "query.financialDocuments": {},
+        // Private Application API is gradually rolling out; unavailable for the CI account
+        "query.privateApplication.privateApplication": {},
+        "query.privateApplication.privateApplicationList": {},
+        // ZTNA App Connector API is gradually rolling out; unavailable for the CI account
+        "query.ztnaAppConnector.ztnaAppConnector": {},
+        "query.ztnaAppConnector.ztnaAppConnectorList": {},
+        // Business Platform accountOverview is not entitled for the CI account (parent query.businessPlatform is already ignored, but the child op needs its own key)
+        "query.businessPlatform.accountOverview": {}
     },
     "defaultValues": {
         "timeFrame": "last.P1D",
@@ -92,13 +102,15 @@
         "query.appStats": {
             "payload": {
                 "appStatsFilter": [
-                    {
-                        "fieldName": "risk_score",
-                        "operator": "gte",
-                        "values": [
-                            "5"
-                        ]
-                    }
+                    [
+                        {
+                            "fieldName": "risk_score",
+                            "operator": "gte",
+                            "values": [
+                                "5"
+                            ]
+                        }
+                    ]
                 ],
                 "appStatsSort": [
                     {
@@ -175,13 +187,15 @@
                     }
                 ],
                 "eventsFilter": [
-                    {
-                        "fieldName": "event_sub_type",
-                        "operator": "is",
-                        "values": [
-                            "Internet Firewall"
-                        ]
-                    }
+                    [
+                        {
+                            "fieldName": "event_sub_type",
+                            "operator": "is",
+                            "values": [
+                                "Internet Firewall"
+                            ]
+                        }
+                    ]
                 ],
                 "eventsMeasure": [
                     {
@@ -617,7 +631,7 @@
                 },
                 "groupRefInput": {
                     "by": "ID",
-                    "input": "ebe28735-8d7b-487d-aaca-41f198dcb725"
+                    "input": "d32bc227-0b2f-4e84-ac0f-81f15146ce7b"
                 }
             },
             "assertions": [
@@ -641,7 +655,7 @@
             "payload": {
                 "groupRefInput": {
                     "by": "ID",
-                    "input": "ebe28735-8d7b-487d-aaca-41f198dcb725"
+                    "input": "d32bc227-0b2f-4e84-ac0f-81f15146ce7b"
                 }
             },
             "assertions": [
@@ -867,6 +881,33 @@
             },
             "assertions": [
                 "site.siteSocketConfiguration"
+            ]
+        },
+        "query.site.socketInterface": {
+            "payload": {
+                "siteSocketInterfaceInput": {
+                    "site": {
+                        "by": "ID",
+                        "input": "204609"
+                    },
+                    "socketInterfaceId": "INT_1"
+                }
+            },
+            "assertions": [
+                "site.socketInterface"
+            ]
+        },
+        "query.site.socketInterfaceList": {
+            "payload": {
+                "socketInterfaceListInput": {
+                    "site": {
+                        "by": "ID",
+                        "input": "204609"
+                    }
+                }
+            },
+            "assertions": [
+                "site.socketInterfaceList.items"
             ]
         },
         "query.site.staticHost": {

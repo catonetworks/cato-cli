@@ -79,8 +79,8 @@ def mutation_notification_parse(mutation_subparsers):
     mutation_notification_deleteMailingList_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_notification_deleteMailingList_parser.set_defaults(func=createRequest,operation_name='mutation.notification.deleteMailingList')
 
-    mutation_notification_integration_parser = mutation_notification_subparsers.add_parser('integration',
-            help='integration() notification operation',
+    mutation_notification_integration_parser = mutation_notification_subparsers.add_parser('integration', 
+            help='integration() notification operation', 
             usage=get_help("mutation_notification_integration"))
 
     def _show_mutation_notification_integration_help(args, configuration=None):
@@ -95,8 +95,8 @@ def mutation_notification_parse(mutation_subparsers):
     mutation_notification_integration_subparsers = mutation_notification_integration_parser.add_subparsers()
     mutation_notification_integration_parser.set_defaults(func=_show_mutation_notification_integration_help)
 
-    mutation_notification_integration_createWebhook_parser = mutation_notification_integration_subparsers.add_parser('createWebhook',
-            help='createWebhook() integration operation',
+    mutation_notification_integration_createWebhook_parser = mutation_notification_integration_subparsers.add_parser('createWebhook', 
+            help='createWebhook() integration operation', 
             usage=get_help("mutation_notification_integration_createWebhook"))
 
     mutation_notification_integration_createWebhook_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
@@ -115,8 +115,8 @@ def mutation_notification_parse(mutation_subparsers):
     mutation_notification_integration_createWebhook_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_notification_integration_createWebhook_parser.set_defaults(func=createRequest,operation_name='mutation.notification.integration.createWebhook')
 
-    mutation_notification_integration_updateWebhook_parser = mutation_notification_integration_subparsers.add_parser('updateWebhook',
-            help='updateWebhook() integration operation',
+    mutation_notification_integration_updateWebhook_parser = mutation_notification_integration_subparsers.add_parser('updateWebhook', 
+            help='updateWebhook() integration operation', 
             usage=get_help("mutation_notification_integration_updateWebhook"))
 
     mutation_notification_integration_updateWebhook_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
@@ -135,8 +135,8 @@ def mutation_notification_parse(mutation_subparsers):
     mutation_notification_integration_updateWebhook_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_notification_integration_updateWebhook_parser.set_defaults(func=createRequest,operation_name='mutation.notification.integration.updateWebhook')
 
-    mutation_notification_integration_deleteWebhook_parser = mutation_notification_integration_subparsers.add_parser('deleteWebhook',
-            help='deleteWebhook() integration operation',
+    mutation_notification_integration_deleteWebhook_parser = mutation_notification_integration_subparsers.add_parser('deleteWebhook', 
+            help='deleteWebhook() integration operation', 
             usage=get_help("mutation_notification_integration_deleteWebhook"))
 
     mutation_notification_integration_deleteWebhook_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
@@ -155,8 +155,8 @@ def mutation_notification_parse(mutation_subparsers):
     mutation_notification_integration_deleteWebhook_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_notification_integration_deleteWebhook_parser.set_defaults(func=createRequest,operation_name='mutation.notification.integration.deleteWebhook')
 
-    mutation_notification_integration_testWebhook_parser = mutation_notification_integration_subparsers.add_parser('testWebhook',
-            help='testWebhook() integration operation',
+    mutation_notification_integration_testWebhook_parser = mutation_notification_integration_subparsers.add_parser('testWebhook', 
+            help='testWebhook() integration operation', 
             usage=get_help("mutation_notification_integration_testWebhook"))
 
     mutation_notification_integration_testWebhook_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')

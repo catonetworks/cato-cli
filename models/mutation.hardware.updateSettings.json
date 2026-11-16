@@ -1,0 +1,1046 @@
+{
+    "args": {
+        "accountId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        }
+    },
+    "childOperations": {
+        "updateSettings": {
+            "args": {
+                "updateSettings___input": {
+                    "defaultValue": null,
+                    "description": null,
+                    "id_str": "updateSettings___input",
+                    "name": "input",
+                    "path": "updateSettings.input",
+                    "requestStr": "$hardwareShippingSettingsUpdateSettingsInput:HardwareShippingSettingsUpdateSettingsInput! ",
+                    "required": true,
+                    "responseStr": "input:$hardwareShippingSettingsUpdateSettingsInput ",
+                    "type": {
+                        "definition": {
+                            "description": null,
+                            "enumValues": null,
+                            "fields": null,
+                            "inputFields": {
+                                "allowEditing": {
+                                    "defaultValue": "INHERIT",
+                                    "description": "This account's local shipping detail editing setting.",
+                                    "id_str": "updateSettings___input___allowEditing",
+                                    "name": "allowEditing",
+                                    "path": "updateSettings.input.allowEditing",
+                                    "requestStr": "$allowEditing:HardwareShippingEnablement! ",
+                                    "required": true,
+                                    "responseStr": "allowEditing:$allowEditing ",
+                                    "type": {
+                                        "definition": {
+                                            "description": "Whether this account overrides an inherited shipping setting.",
+                                            "enumValues": [
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Use the nearest ancestor's override, or enable the setting when none is configured.",
+                                                    "isDeprecated": false,
+                                                    "name": "INHERIT"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Enable this setting for this account, overriding any ancestor setting.",
+                                                    "isDeprecated": false,
+                                                    "name": "ENABLED"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Disable this setting for this account unless a child overrides it.",
+                                                    "isDeprecated": false,
+                                                    "name": "DISABLED"
+                                                }
+                                            ],
+                                            "fields": null,
+                                            "inputFields": null,
+                                            "interfaces": null,
+                                            "kind": "ENUM",
+                                            "name": "HardwareShippingEnablement",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "enum",
+                                        "kind": [
+                                            "NON_NULL",
+                                            "ENUM"
+                                        ],
+                                        "name": "HardwareShippingEnablement",
+                                        "non_null": false
+                                    },
+                                    "varName": "allowEditing"
+                                },
+                                "incotermRestrictionIncludeSelf": {
+                                    "defaultValue": null,
+                                    "description": "Apply restrictions to current account",
+                                    "id_str": "updateSettings___input___incotermRestrictionIncludeSelf",
+                                    "name": "incotermRestrictionIncludeSelf",
+                                    "path": "updateSettings.input.incotermRestrictionIncludeSelf",
+                                    "requestStr": "$incotermRestrictionIncludeSelf:Boolean! ",
+                                    "required": true,
+                                    "responseStr": "incotermRestrictionIncludeSelf:$incotermRestrictionIncludeSelf ",
+                                    "type": {
+                                        "kind": [
+                                            "NON_NULL",
+                                            "SCALAR"
+                                        ],
+                                        "name": "Boolean",
+                                        "non_null": false
+                                    },
+                                    "varName": "incotermRestrictionIncludeSelf"
+                                },
+                                "restrictedIncoterm": {
+                                    "defaultValue": null,
+                                    "description": "Incoterm restriction for current account",
+                                    "id_str": "updateSettings___input___restrictedIncoterm",
+                                    "name": "restrictedIncoterm",
+                                    "path": "updateSettings.input.restrictedIncoterm",
+                                    "requestStr": "$restrictedIncoterm:[Incoterms!]! ",
+                                    "required": true,
+                                    "responseStr": "restrictedIncoterm:$restrictedIncoterm ",
+                                    "type": {
+                                        "definition": {
+                                            "description": null,
+                                            "enumValues": [
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Self pickup (Ex Works).",
+                                                    "isDeprecated": false,
+                                                    "name": "EXW"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Economy shipping; the customer pays import duties and taxes.",
+                                                    "isDeprecated": false,
+                                                    "name": "DDU_ECONOMY"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Express shipping; the customer pays import duties and taxes.",
+                                                    "isDeprecated": false,
+                                                    "name": "DDU_EXPRESS"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Economy shipping with duties and taxes paid.",
+                                                    "isDeprecated": false,
+                                                    "name": "DDP_ECONOMY"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Express shipping with duties and taxes paid.",
+                                                    "isDeprecated": false,
+                                                    "name": "DDP_EXPRESS"
+                                                }
+                                            ],
+                                            "fields": null,
+                                            "inputFields": null,
+                                            "interfaces": null,
+                                            "kind": "ENUM",
+                                            "name": "Incoterms",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "enum",
+                                        "kind": [
+                                            "NON_NULL",
+                                            "LIST",
+                                            "NON_NULL",
+                                            "ENUM"
+                                        ],
+                                        "name": "Incoterms",
+                                        "non_null": false
+                                    },
+                                    "varName": "restrictedIncoterm"
+                                },
+                                "shippingCostVisibility": {
+                                    "defaultValue": "INHERIT",
+                                    "description": "This account's local shipping cost visibility setting.",
+                                    "id_str": "updateSettings___input___shippingCostVisibility",
+                                    "name": "shippingCostVisibility",
+                                    "path": "updateSettings.input.shippingCostVisibility",
+                                    "requestStr": "$shippingCostVisibility:HardwareShippingEnablement! ",
+                                    "required": true,
+                                    "responseStr": "shippingCostVisibility:$shippingCostVisibility ",
+                                    "type": {
+                                        "definition": {
+                                            "description": "Whether this account overrides an inherited shipping setting.",
+                                            "enumValues": [
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Use the nearest ancestor's override, or enable the setting when none is configured.",
+                                                    "isDeprecated": false,
+                                                    "name": "INHERIT"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Enable this setting for this account, overriding any ancestor setting.",
+                                                    "isDeprecated": false,
+                                                    "name": "ENABLED"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Disable this setting for this account unless a child overrides it.",
+                                                    "isDeprecated": false,
+                                                    "name": "DISABLED"
+                                                }
+                                            ],
+                                            "fields": null,
+                                            "inputFields": null,
+                                            "interfaces": null,
+                                            "kind": "ENUM",
+                                            "name": "HardwareShippingEnablement",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "enum",
+                                        "kind": [
+                                            "NON_NULL",
+                                            "ENUM"
+                                        ],
+                                        "name": "HardwareShippingEnablement",
+                                        "non_null": false
+                                    },
+                                    "varName": "shippingCostVisibility"
+                                }
+                            },
+                            "interfaces": null,
+                            "kind": "INPUT_OBJECT",
+                            "name": "HardwareShippingSettingsUpdateSettingsInput",
+                            "possibleTypes": null
+                        },
+                        "indexType": "input_object",
+                        "kind": [
+                            "NON_NULL",
+                            "INPUT_OBJECT"
+                        ],
+                        "name": "HardwareShippingSettingsUpdateSettingsInput",
+                        "non_null": false
+                    },
+                    "varName": "hardwareShippingSettingsUpdateSettingsInput"
+                }
+            },
+            "deprecationReason": null,
+            "description": "Replace this account's local shipping configuration.",
+            "isDeprecated": false,
+            "name": "updateSettings",
+            "type": {
+                "kind": "OBJECT",
+                "name": "HardwareShippingSettingsUpdateSettingsPayload",
+                "ofType": null
+            }
+        }
+    },
+    "deprecationReason": null,
+    "description": null,
+    "fieldTypes": {},
+    "isDeprecated": false,
+    "name": "hardware",
+    "operationArgs": {
+        "accountId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        },
+        "hardwareShippingSettingsUpdateSettingsInput": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "updateSettings___input",
+            "name": "input",
+            "path": "updateSettings.input",
+            "requestStr": "$hardwareShippingSettingsUpdateSettingsInput:HardwareShippingSettingsUpdateSettingsInput! ",
+            "required": true,
+            "responseStr": "input:$hardwareShippingSettingsUpdateSettingsInput ",
+            "type": {
+                "definition": {
+                    "description": null,
+                    "enumValues": null,
+                    "fields": null,
+                    "inputFields": {
+                        "allowEditing": {
+                            "defaultValue": "INHERIT",
+                            "description": "This account's local shipping detail editing setting.",
+                            "id_str": "updateSettings___input___allowEditing",
+                            "name": "allowEditing",
+                            "path": "updateSettings.input.allowEditing",
+                            "requestStr": "$allowEditing:HardwareShippingEnablement! ",
+                            "required": true,
+                            "responseStr": "allowEditing:$allowEditing ",
+                            "type": {
+                                "definition": {
+                                    "description": "Whether this account overrides an inherited shipping setting.",
+                                    "enumValues": [
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Use the nearest ancestor's override, or enable the setting when none is configured.",
+                                            "isDeprecated": false,
+                                            "name": "INHERIT"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Enable this setting for this account, overriding any ancestor setting.",
+                                            "isDeprecated": false,
+                                            "name": "ENABLED"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Disable this setting for this account unless a child overrides it.",
+                                            "isDeprecated": false,
+                                            "name": "DISABLED"
+                                        }
+                                    ],
+                                    "fields": null,
+                                    "inputFields": null,
+                                    "interfaces": null,
+                                    "kind": "ENUM",
+                                    "name": "HardwareShippingEnablement",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "enum",
+                                "kind": [
+                                    "NON_NULL",
+                                    "ENUM"
+                                ],
+                                "name": "HardwareShippingEnablement",
+                                "non_null": false
+                            },
+                            "varName": "allowEditing"
+                        },
+                        "incotermRestrictionIncludeSelf": {
+                            "defaultValue": null,
+                            "description": "Apply restrictions to current account",
+                            "id_str": "updateSettings___input___incotermRestrictionIncludeSelf",
+                            "name": "incotermRestrictionIncludeSelf",
+                            "path": "updateSettings.input.incotermRestrictionIncludeSelf",
+                            "requestStr": "$incotermRestrictionIncludeSelf:Boolean! ",
+                            "required": true,
+                            "responseStr": "incotermRestrictionIncludeSelf:$incotermRestrictionIncludeSelf ",
+                            "type": {
+                                "kind": [
+                                    "NON_NULL",
+                                    "SCALAR"
+                                ],
+                                "name": "Boolean",
+                                "non_null": false
+                            },
+                            "varName": "incotermRestrictionIncludeSelf"
+                        },
+                        "restrictedIncoterm": {
+                            "defaultValue": null,
+                            "description": "Incoterm restriction for current account",
+                            "id_str": "updateSettings___input___restrictedIncoterm",
+                            "name": "restrictedIncoterm",
+                            "path": "updateSettings.input.restrictedIncoterm",
+                            "requestStr": "$restrictedIncoterm:[Incoterms!]! ",
+                            "required": true,
+                            "responseStr": "restrictedIncoterm:$restrictedIncoterm ",
+                            "type": {
+                                "definition": {
+                                    "description": null,
+                                    "enumValues": [
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Self pickup (Ex Works).",
+                                            "isDeprecated": false,
+                                            "name": "EXW"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Economy shipping; the customer pays import duties and taxes.",
+                                            "isDeprecated": false,
+                                            "name": "DDU_ECONOMY"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Express shipping; the customer pays import duties and taxes.",
+                                            "isDeprecated": false,
+                                            "name": "DDU_EXPRESS"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Economy shipping with duties and taxes paid.",
+                                            "isDeprecated": false,
+                                            "name": "DDP_ECONOMY"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Express shipping with duties and taxes paid.",
+                                            "isDeprecated": false,
+                                            "name": "DDP_EXPRESS"
+                                        }
+                                    ],
+                                    "fields": null,
+                                    "inputFields": null,
+                                    "interfaces": null,
+                                    "kind": "ENUM",
+                                    "name": "Incoterms",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "enum",
+                                "kind": [
+                                    "NON_NULL",
+                                    "LIST",
+                                    "NON_NULL",
+                                    "ENUM"
+                                ],
+                                "name": "Incoterms",
+                                "non_null": false
+                            },
+                            "varName": "restrictedIncoterm"
+                        },
+                        "shippingCostVisibility": {
+                            "defaultValue": "INHERIT",
+                            "description": "This account's local shipping cost visibility setting.",
+                            "id_str": "updateSettings___input___shippingCostVisibility",
+                            "name": "shippingCostVisibility",
+                            "path": "updateSettings.input.shippingCostVisibility",
+                            "requestStr": "$shippingCostVisibility:HardwareShippingEnablement! ",
+                            "required": true,
+                            "responseStr": "shippingCostVisibility:$shippingCostVisibility ",
+                            "type": {
+                                "definition": {
+                                    "description": "Whether this account overrides an inherited shipping setting.",
+                                    "enumValues": [
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Use the nearest ancestor's override, or enable the setting when none is configured.",
+                                            "isDeprecated": false,
+                                            "name": "INHERIT"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Enable this setting for this account, overriding any ancestor setting.",
+                                            "isDeprecated": false,
+                                            "name": "ENABLED"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Disable this setting for this account unless a child overrides it.",
+                                            "isDeprecated": false,
+                                            "name": "DISABLED"
+                                        }
+                                    ],
+                                    "fields": null,
+                                    "inputFields": null,
+                                    "interfaces": null,
+                                    "kind": "ENUM",
+                                    "name": "HardwareShippingEnablement",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "enum",
+                                "kind": [
+                                    "NON_NULL",
+                                    "ENUM"
+                                ],
+                                "name": "HardwareShippingEnablement",
+                                "non_null": false
+                            },
+                            "varName": "shippingCostVisibility"
+                        }
+                    },
+                    "interfaces": null,
+                    "kind": "INPUT_OBJECT",
+                    "name": "HardwareShippingSettingsUpdateSettingsInput",
+                    "possibleTypes": null
+                },
+                "indexType": "input_object",
+                "kind": [
+                    "NON_NULL",
+                    "INPUT_OBJECT"
+                ],
+                "name": "HardwareShippingSettingsUpdateSettingsInput",
+                "non_null": false
+            },
+            "varName": "hardwareShippingSettingsUpdateSettingsInput"
+        }
+    },
+    "path": "mutation.hardware.updateSettings",
+    "type": {
+        "definition": {
+            "description": null,
+            "enumValues": null,
+            "fields": {
+                "updateSettings": {
+                    "args": {
+                        "updateSettings___input": {
+                            "defaultValue": null,
+                            "description": null,
+                            "id_str": "updateSettings___input",
+                            "name": "input",
+                            "path": "updateSettings.input",
+                            "requestStr": "$hardwareShippingSettingsUpdateSettingsInput:HardwareShippingSettingsUpdateSettingsInput! ",
+                            "required": true,
+                            "responseStr": "input:$hardwareShippingSettingsUpdateSettingsInput ",
+                            "type": {
+                                "definition": {
+                                    "description": null,
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "allowEditing": {
+                                            "defaultValue": "INHERIT",
+                                            "description": "This account's local shipping detail editing setting.",
+                                            "id_str": "updateSettings___input___allowEditing",
+                                            "name": "allowEditing",
+                                            "path": "updateSettings.input.allowEditing",
+                                            "requestStr": "$allowEditing:HardwareShippingEnablement! ",
+                                            "required": true,
+                                            "responseStr": "allowEditing:$allowEditing ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": "Whether this account overrides an inherited shipping setting.",
+                                                    "enumValues": [
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Use the nearest ancestor's override, or enable the setting when none is configured.",
+                                                            "isDeprecated": false,
+                                                            "name": "INHERIT"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Enable this setting for this account, overriding any ancestor setting.",
+                                                            "isDeprecated": false,
+                                                            "name": "ENABLED"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Disable this setting for this account unless a child overrides it.",
+                                                            "isDeprecated": false,
+                                                            "name": "DISABLED"
+                                                        }
+                                                    ],
+                                                    "fields": null,
+                                                    "inputFields": null,
+                                                    "interfaces": null,
+                                                    "kind": "ENUM",
+                                                    "name": "HardwareShippingEnablement",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "enum",
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "ENUM"
+                                                ],
+                                                "name": "HardwareShippingEnablement",
+                                                "non_null": false
+                                            },
+                                            "varName": "allowEditing"
+                                        },
+                                        "incotermRestrictionIncludeSelf": {
+                                            "defaultValue": null,
+                                            "description": "Apply restrictions to current account",
+                                            "id_str": "updateSettings___input___incotermRestrictionIncludeSelf",
+                                            "name": "incotermRestrictionIncludeSelf",
+                                            "path": "updateSettings.input.incotermRestrictionIncludeSelf",
+                                            "requestStr": "$incotermRestrictionIncludeSelf:Boolean! ",
+                                            "required": true,
+                                            "responseStr": "incotermRestrictionIncludeSelf:$incotermRestrictionIncludeSelf ",
+                                            "type": {
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "SCALAR"
+                                                ],
+                                                "name": "Boolean",
+                                                "non_null": false
+                                            },
+                                            "varName": "incotermRestrictionIncludeSelf"
+                                        },
+                                        "restrictedIncoterm": {
+                                            "defaultValue": null,
+                                            "description": "Incoterm restriction for current account",
+                                            "id_str": "updateSettings___input___restrictedIncoterm",
+                                            "name": "restrictedIncoterm",
+                                            "path": "updateSettings.input.restrictedIncoterm",
+                                            "requestStr": "$restrictedIncoterm:[Incoterms!]! ",
+                                            "required": true,
+                                            "responseStr": "restrictedIncoterm:$restrictedIncoterm ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": [
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Self pickup (Ex Works).",
+                                                            "isDeprecated": false,
+                                                            "name": "EXW"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Economy shipping; the customer pays import duties and taxes.",
+                                                            "isDeprecated": false,
+                                                            "name": "DDU_ECONOMY"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Express shipping; the customer pays import duties and taxes.",
+                                                            "isDeprecated": false,
+                                                            "name": "DDU_EXPRESS"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Economy shipping with duties and taxes paid.",
+                                                            "isDeprecated": false,
+                                                            "name": "DDP_ECONOMY"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Express shipping with duties and taxes paid.",
+                                                            "isDeprecated": false,
+                                                            "name": "DDP_EXPRESS"
+                                                        }
+                                                    ],
+                                                    "fields": null,
+                                                    "inputFields": null,
+                                                    "interfaces": null,
+                                                    "kind": "ENUM",
+                                                    "name": "Incoterms",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "enum",
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "LIST",
+                                                    "NON_NULL",
+                                                    "ENUM"
+                                                ],
+                                                "name": "Incoterms",
+                                                "non_null": false
+                                            },
+                                            "varName": "restrictedIncoterm"
+                                        },
+                                        "shippingCostVisibility": {
+                                            "defaultValue": "INHERIT",
+                                            "description": "This account's local shipping cost visibility setting.",
+                                            "id_str": "updateSettings___input___shippingCostVisibility",
+                                            "name": "shippingCostVisibility",
+                                            "path": "updateSettings.input.shippingCostVisibility",
+                                            "requestStr": "$shippingCostVisibility:HardwareShippingEnablement! ",
+                                            "required": true,
+                                            "responseStr": "shippingCostVisibility:$shippingCostVisibility ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": "Whether this account overrides an inherited shipping setting.",
+                                                    "enumValues": [
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Use the nearest ancestor's override, or enable the setting when none is configured.",
+                                                            "isDeprecated": false,
+                                                            "name": "INHERIT"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Enable this setting for this account, overriding any ancestor setting.",
+                                                            "isDeprecated": false,
+                                                            "name": "ENABLED"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Disable this setting for this account unless a child overrides it.",
+                                                            "isDeprecated": false,
+                                                            "name": "DISABLED"
+                                                        }
+                                                    ],
+                                                    "fields": null,
+                                                    "inputFields": null,
+                                                    "interfaces": null,
+                                                    "kind": "ENUM",
+                                                    "name": "HardwareShippingEnablement",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "enum",
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "ENUM"
+                                                ],
+                                                "name": "HardwareShippingEnablement",
+                                                "non_null": false
+                                            },
+                                            "varName": "shippingCostVisibility"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "HardwareShippingSettingsUpdateSettingsInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "NON_NULL",
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "HardwareShippingSettingsUpdateSettingsInput",
+                                "non_null": false
+                            },
+                            "varName": "hardwareShippingSettingsUpdateSettingsInput"
+                        }
+                    },
+                    "deprecationReason": null,
+                    "description": "Replace this account's local shipping configuration.",
+                    "id_str": "updateSettings",
+                    "isDeprecated": false,
+                    "name": "updateSettings",
+                    "path": "updateSettings",
+                    "requestStr": "$hardwareShippingSettingsUpdateSettingsPayload:HardwareShippingSettingsUpdateSettingsPayload ",
+                    "required": false,
+                    "responseStr": "updateSettings:$hardwareShippingSettingsUpdateSettingsPayload ",
+                    "type": {
+                        "definition": {
+                            "description": null,
+                            "enumValues": null,
+                            "fields": {
+                                "settings": {
+                                    "args": {},
+                                    "deprecationReason": null,
+                                    "description": null,
+                                    "id_str": "updateSettings___settings",
+                                    "isDeprecated": false,
+                                    "name": "settings",
+                                    "path": "updateSettings.settings",
+                                    "requestStr": "$hardwareShippingSettings:HardwareShippingSettings! ",
+                                    "required": true,
+                                    "responseStr": "settings:$hardwareShippingSettings ",
+                                    "type": {
+                                        "definition": {
+                                            "description": null,
+                                            "enumValues": null,
+                                            "fields": {
+                                                "allowEditing": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "This account's local shipping detail editing setting.",
+                                                    "id_str": "updateSettings___settings___allowEditing",
+                                                    "isDeprecated": false,
+                                                    "name": "allowEditing",
+                                                    "path": "updateSettings.settings.allowEditing",
+                                                    "requestStr": "$allowEditing:HardwareShippingEnablement! ",
+                                                    "required": true,
+                                                    "responseStr": "allowEditing:$allowEditing ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": "Whether this account overrides an inherited shipping setting.",
+                                                            "enumValues": [
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Use the nearest ancestor's override, or enable the setting when none is configured.",
+                                                                    "isDeprecated": false,
+                                                                    "name": "INHERIT"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Enable this setting for this account, overriding any ancestor setting.",
+                                                                    "isDeprecated": false,
+                                                                    "name": "ENABLED"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Disable this setting for this account unless a child overrides it.",
+                                                                    "isDeprecated": false,
+                                                                    "name": "DISABLED"
+                                                                }
+                                                            ],
+                                                            "fields": null,
+                                                            "inputFields": null,
+                                                            "interfaces": null,
+                                                            "kind": "ENUM",
+                                                            "name": "HardwareShippingEnablement",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "enum",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "ENUM"
+                                                        ],
+                                                        "name": "HardwareShippingEnablement",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "allowEditing"
+                                                },
+                                                "incotermRestrictionIncludeSelf": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Apply restrictions to current account",
+                                                    "id_str": "updateSettings___settings___incotermRestrictionIncludeSelf",
+                                                    "isDeprecated": false,
+                                                    "name": "incotermRestrictionIncludeSelf",
+                                                    "path": "updateSettings.settings.incotermRestrictionIncludeSelf",
+                                                    "requestStr": "$incotermRestrictionIncludeSelf:Boolean! ",
+                                                    "required": true,
+                                                    "responseStr": "incotermRestrictionIncludeSelf:$incotermRestrictionIncludeSelf ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "Boolean",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "incotermRestrictionIncludeSelf"
+                                                },
+                                                "parentRestrictedIncoterm": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Inherited incoterm restrictions",
+                                                    "id_str": "updateSettings___settings___parentRestrictedIncoterm",
+                                                    "isDeprecated": false,
+                                                    "name": "parentRestrictedIncoterm",
+                                                    "path": "updateSettings.settings.parentRestrictedIncoterm",
+                                                    "requestStr": "$parentRestrictedIncoterm:[Incoterms!]! ",
+                                                    "required": true,
+                                                    "responseStr": "parentRestrictedIncoterm:$parentRestrictedIncoterm ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": null,
+                                                            "enumValues": [
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Self pickup (Ex Works).",
+                                                                    "isDeprecated": false,
+                                                                    "name": "EXW"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Economy shipping; the customer pays import duties and taxes.",
+                                                                    "isDeprecated": false,
+                                                                    "name": "DDU_ECONOMY"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Express shipping; the customer pays import duties and taxes.",
+                                                                    "isDeprecated": false,
+                                                                    "name": "DDU_EXPRESS"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Economy shipping with duties and taxes paid.",
+                                                                    "isDeprecated": false,
+                                                                    "name": "DDP_ECONOMY"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Express shipping with duties and taxes paid.",
+                                                                    "isDeprecated": false,
+                                                                    "name": "DDP_EXPRESS"
+                                                                }
+                                                            ],
+                                                            "fields": null,
+                                                            "inputFields": null,
+                                                            "interfaces": null,
+                                                            "kind": "ENUM",
+                                                            "name": "Incoterms",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "enum",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "LIST",
+                                                            "NON_NULL",
+                                                            "ENUM"
+                                                        ],
+                                                        "name": "Incoterms",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "parentRestrictedIncoterm"
+                                                },
+                                                "restrictedIncoterm": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Incoterm restriction for current account",
+                                                    "id_str": "updateSettings___settings___restrictedIncoterm",
+                                                    "isDeprecated": false,
+                                                    "name": "restrictedIncoterm",
+                                                    "path": "updateSettings.settings.restrictedIncoterm",
+                                                    "requestStr": "$restrictedIncoterm:[Incoterms!]! ",
+                                                    "required": true,
+                                                    "responseStr": "restrictedIncoterm:$restrictedIncoterm ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": null,
+                                                            "enumValues": [
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Self pickup (Ex Works).",
+                                                                    "isDeprecated": false,
+                                                                    "name": "EXW"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Economy shipping; the customer pays import duties and taxes.",
+                                                                    "isDeprecated": false,
+                                                                    "name": "DDU_ECONOMY"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Express shipping; the customer pays import duties and taxes.",
+                                                                    "isDeprecated": false,
+                                                                    "name": "DDU_EXPRESS"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Economy shipping with duties and taxes paid.",
+                                                                    "isDeprecated": false,
+                                                                    "name": "DDP_ECONOMY"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Express shipping with duties and taxes paid.",
+                                                                    "isDeprecated": false,
+                                                                    "name": "DDP_EXPRESS"
+                                                                }
+                                                            ],
+                                                            "fields": null,
+                                                            "inputFields": null,
+                                                            "interfaces": null,
+                                                            "kind": "ENUM",
+                                                            "name": "Incoterms",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "enum",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "LIST",
+                                                            "NON_NULL",
+                                                            "ENUM"
+                                                        ],
+                                                        "name": "Incoterms",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "restrictedIncoterm"
+                                                },
+                                                "shippingCostVisibility": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "This account's local shipping cost visibility setting.",
+                                                    "id_str": "updateSettings___settings___shippingCostVisibility",
+                                                    "isDeprecated": false,
+                                                    "name": "shippingCostVisibility",
+                                                    "path": "updateSettings.settings.shippingCostVisibility",
+                                                    "requestStr": "$shippingCostVisibility:HardwareShippingEnablement! ",
+                                                    "required": true,
+                                                    "responseStr": "shippingCostVisibility:$shippingCostVisibility ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": "Whether this account overrides an inherited shipping setting.",
+                                                            "enumValues": [
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Use the nearest ancestor's override, or enable the setting when none is configured.",
+                                                                    "isDeprecated": false,
+                                                                    "name": "INHERIT"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Enable this setting for this account, overriding any ancestor setting.",
+                                                                    "isDeprecated": false,
+                                                                    "name": "ENABLED"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Disable this setting for this account unless a child overrides it.",
+                                                                    "isDeprecated": false,
+                                                                    "name": "DISABLED"
+                                                                }
+                                                            ],
+                                                            "fields": null,
+                                                            "inputFields": null,
+                                                            "interfaces": null,
+                                                            "kind": "ENUM",
+                                                            "name": "HardwareShippingEnablement",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "enum",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "ENUM"
+                                                        ],
+                                                        "name": "HardwareShippingEnablement",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "shippingCostVisibility"
+                                                }
+                                            },
+                                            "inputFields": null,
+                                            "interfaces": {},
+                                            "kind": "OBJECT",
+                                            "name": "HardwareShippingSettings",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "object",
+                                        "kind": [
+                                            "NON_NULL",
+                                            "OBJECT"
+                                        ],
+                                        "name": "HardwareShippingSettings",
+                                        "non_null": false
+                                    },
+                                    "varName": "hardwareShippingSettings"
+                                }
+                            },
+                            "inputFields": null,
+                            "interfaces": {},
+                            "kind": "OBJECT",
+                            "name": "HardwareShippingSettingsUpdateSettingsPayload",
+                            "possibleTypes": null
+                        },
+                        "indexType": "object",
+                        "kind": [
+                            "OBJECT"
+                        ],
+                        "name": "HardwareShippingSettingsUpdateSettingsPayload",
+                        "non_null": false
+                    },
+                    "varName": "hardwareShippingSettingsUpdateSettingsPayload"
+                }
+            },
+            "inputFields": null,
+            "interfaces": [],
+            "kind": "OBJECT",
+            "name": "HardwareMutations",
+            "possibleTypes": null
+        },
+        "indexType": "object",
+        "kind": [
+            "OBJECT"
+        ],
+        "name": "HardwareMutations",
+        "non_null": false
+    },
+    "variablesPayload": {
+        "hardwareShippingSettingsUpdateSettingsInput": {
+            "allowEditing": "INHERIT",
+            "incotermRestrictionIncludeSelf": true,
+            "restrictedIncoterm": [
+                "EXW"
+            ],
+            "shippingCostVisibility": "INHERIT"
+        }
+    }
+}

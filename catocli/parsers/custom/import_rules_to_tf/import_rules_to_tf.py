@@ -918,7 +918,13 @@ def import_wnw_rules_to_tf(args, configuration):
             print(f"\n█ Ready to import {len(rules)} rules only.")
         elif args.sections_only:
             print(f"\n█ Ready to import {len(sections)} sections only.")
-        
+
+        _policy_enabled = policy_data.get('policy_enabled', policy_data.get('enabled'))
+        if _policy_enabled is not None:
+            print(f"█ NOTE: account-level policy toggle is created on first apply (not imported). "
+                  f"Exported state enabled={_policy_enabled} -- set "
+                  f"`policy_enabled = {str(bool(_policy_enabled)).lower()}` on your module block to manage it.")
+
         if hasattr(args, 'auto_approve') and args.auto_approve:
             print("\nAuto-approve enabled, proceeding with import...")
         else:
@@ -1449,6 +1455,11 @@ def import_ao_rules_to_tf(args, configuration):
         print(f"\n Ready to import {len(sections)} section(s) and {len(rules)} rule(s).")
         print(" NOTE: cato_bulk_ao_move_rule (ordering + publish) is not importable; "
               "it is created on the first apply.")
+        _policy_enabled = policy_data.get('policy_enabled', policy_data.get('enabled'))
+        if _policy_enabled is not None:
+            print(f" NOTE: account-level policy toggle is created on first apply (not imported). "
+                  f"Exported state enabled={_policy_enabled} -- set "
+                  f"`policy_enabled = {str(bool(_policy_enabled)).lower()}` on your module block to manage it.")
 
         if hasattr(args, 'auto_approve') and args.auto_approve:
             print("\nAuto-approve enabled, proceeding with import...")
@@ -1551,6 +1562,11 @@ def import_pa_rules_to_tf(args, configuration):
         print(f"\n Ready to import {len(rules)} rule(s).")
         print(" NOTE: cato_private_access_rule_bulk (ordering + publish) is not importable; "
               "it is created on the first apply.")
+        _policy_enabled = policy_data.get('policy_enabled', policy_data.get('enabled'))
+        if _policy_enabled is not None:
+            print(f" NOTE: account-level policy toggle is created on first apply (not imported). "
+                  f"Exported state enabled={_policy_enabled} -- set "
+                  f"`policy_enabled = {str(bool(_policy_enabled)).lower()}` on your module block to manage it.")
 
         if hasattr(args, 'auto_approve') and args.auto_approve:
             print("\nAuto-approve enabled, proceeding with import...")
@@ -1633,6 +1649,15 @@ def _import_flat_policy_to_tf(args, policy_root_key, label,
 
         print(f"\n Ready to import {len(sections)} section(s) and {len(rules)} rule(s).")
         print(" NOTE: the bulk move/publish resource is not importable; it is created on the first apply.")
+
+        # Account-level policy toggle: created on first apply (not imported), like the
+        # move/publish resource. Surface the exported enable/disable state so the operator
+        # can set it on the module block. Omitted entirely for old exports lacking the field.
+        policy_enabled = policy_data.get('policy_enabled', policy_data.get('enabled'))
+        if policy_enabled is not None:
+            print(f" NOTE: account-level policy toggle is created on first apply (not imported). "
+                  f"Exported state enabled={policy_enabled} -- set `policy_enabled = {str(bool(policy_enabled)).lower()}` "
+                  f"on your module block to manage it.")
 
         if hasattr(args, 'auto_approve') and args.auto_approve:
             print("\nAuto-approve enabled, proceeding with import...")

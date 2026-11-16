@@ -34,5 +34,5 @@ catocli mutation policy privateAccess addSection '{
 #### Operation Arguments for mutation.policy.privateAccess.addSection ####
 
 `accountId` [ID] - (required) N/A
-`policyAddSectionInput` [PolicyAddSectionInput] - (required) N/A
-`privateAccessPolicyMutationInput` [PrivateAccessPolicyMutationInput] - (required) N/A
+`policyAddSectionInput` [PolicyAddSectionInput] - (required) Parameters for this policy operation.
+`privateAccessPolicyMutationInput` [PrivateAccessPolicyMutationInput] - (required) Parameters for this policy operation.

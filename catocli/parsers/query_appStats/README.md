@@ -11,18 +11,20 @@ catocli query appStats <json>
 
 catocli query appStats --json-file query.appStats.json
 
-catocli query appStats '{"appStatsFilter":[{"fieldName":"account_id","operator":"is","values":["string1","string2"]}],"appStatsPostAggFilter":[{"aggType":"sum","filter":{"fieldName":"account_id","operator":"is","values":["string1","string2"]}}],"appStatsSort":[{"alias":"string","fieldName":"account_id","order":"asc"}],"dimension":[{"fieldName":"account_id"}],"from":1,"includeEmptyDimension":true,"limit":1,"measure":[{"aggType":"sum","alias":"string","fieldName":"account_id","trend":true}],"timeFrame":"last.P1D"}'
+catocli query appStats '{"appStatsFilter":[[{"fieldName":"account_id","operator":"is","values":["string1","string2"]}]],"appStatsPostAggFilter":[{"aggType":"sum","filter":{"fieldName":"account_id","operator":"is","values":["string1","string2"]}}],"appStatsSort":[{"alias":"string","fieldName":"account_id","order":"asc"}],"dimension":[{"fieldName":"account_id"}],"from":1,"includeEmptyDimension":true,"limit":1,"measure":[{"aggType":"sum","alias":"string","fieldName":"account_id","trend":true}],"timeFrame":"last.P1D"}'
 
 catocli query appStats '{
     "appStatsFilter": [
-        {
-            "fieldName": "account_id",
-            "operator": "is",
-            "values": [
-                "string1",
-                "string2"
-            ]
-        }
+        [
+            {
+                "fieldName": "account_id",
+                "operator": "is",
+                "values": [
+                    "string1",
+                    "string2"
+                ]
+            }
+        ]
     ],
     "appStatsPostAggFilter": [
         {
@@ -455,7 +457,7 @@ Format: `"utc.YYYY-MM-{DD/HH:MM:SS--DD/HH:MM:SS}"`
 #### Operation Arguments for query.appStats ####
 
 `accountID` [ID] - (required) Account ID
-`appStatsFilter` [AppStatsFilter[]] - (required) N/A
+`appStatsFilter` [AppStatsFilter[]] - (required) Defines groups of conditions. A row matches if it meets every condition in at least one group. Note: Use instead of legacy filters field.
 `appStatsPostAggFilter` [AppStatsPostAggFilter[]] - (required) N/A
 `appStatsSort` [AppStatsSort[]] - (required) N/A
 `dimension` [Dimension[]] - (required) N/A

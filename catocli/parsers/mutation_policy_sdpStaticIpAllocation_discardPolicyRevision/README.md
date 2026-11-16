@@ -28,5 +28,5 @@ catocli mutation policy sdpStaticIpAllocation discardPolicyRevision '{
 #### Operation Arguments for mutation.policy.sdpStaticIpAllocation.discardPolicyRevision ####
 
 `accountId` [ID] - (required) N/A
-`policyDiscardRevisionInput` [PolicyDiscardRevisionInput] - (required) N/A
-`sdpStaticIpAllocationPolicyMutationInput` [SdpStaticIpAllocationPolicyMutationInput] - (required) N/A
+`policyDiscardRevisionInput` [PolicyDiscardRevisionInput] - (required) Parameters for this policy operation.
+`sdpStaticIpAllocationPolicyMutationInput` [SdpStaticIpAllocationPolicyMutationInput] - (required) Parameters for this policy operation.

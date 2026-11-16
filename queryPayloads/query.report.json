@@ -1,0 +1,170 @@
+{
+    "operationName": "report",
+    "query": "query report ( $accountId:ID! $id:ID! $reportConfigurationListInput:ReportConfigurationListInput! $reportRunListInput:ReportRunListInput! $reportTemplateListInput:ReportTemplateListInput!) {\n\treport ( accountId:$accountId ) {\n\t\tconfiguration ( id:$id  )  {\n\t\t\tid\n\t\t\tname\n\t\t\ttemplateId\n\t\t\ttemplateName\n\t\t\ttimeFrame\n\t\t\tfilter {\n\t\t\t\tfield\n\t\t\t\toperator\n\t\t\t\tvalue\n\t\t\t}\n\t\t\tschedule {\n\t\t\t\tfrequency\n\t\t\t\tdayOfWeek\n\t\t\t\tdayOfMonth\n\t\t\t\tnextRunAt\n\t\t\t}\n\t\t\tsubscriptionId\n\t\t\tenabled\n\t\t\ttimeZone\n\t\t\trenderingFormat\n\t\t\tlastModified\n\t\t}\n\t\tconfigurationList ( input:$reportConfigurationListInput  )  {\n\t\t\titems {\n\t\t\t\tid\n\t\t\t\tname\n\t\t\t\ttemplateId\n\t\t\t\ttemplateName\n\t\t\t\ttimeFrame\n\t\t\t\tfilter {\n\t\t\t\t\tfield\n\t\t\t\t\toperator\n\t\t\t\t\tvalue\n\t\t\t\t}\n\t\t\t\tschedule {\n\t\t\t\t\tfrequency\n\t\t\t\t\tdayOfWeek\n\t\t\t\t\tdayOfMonth\n\t\t\t\t\tnextRunAt\n\t\t\t\t}\n\t\t\t\tsubscriptionId\n\t\t\t\tenabled\n\t\t\t\ttimeZone\n\t\t\t\trenderingFormat\n\t\t\t\tlastModified\n\t\t\t}\n\t\t\tpaging {\n\t\t\t\ttotal\n\t\t\t}\n\t\t}\n\t\trun ( id:$id  )  {\n\t\t\tid\n\t\t\treportConfigurationId\n\t\t\treportName\n\t\t\ttemplateName\n\t\t\trunAt\n\t\t\tstatus\n\t\t\ttrigger\n\t\t\tfailureReason\n\t\t\trenderingFormat\n\t\t\tdownloadLink {\n\t\t\t\turl\n\t\t\t\texpiresAt\n\t\t\t}\n\t\t}\n\t\trunList ( input:$reportRunListInput  )  {\n\t\t\titems {\n\t\t\t\tid\n\t\t\t\treportConfigurationId\n\t\t\t\treportName\n\t\t\t\ttemplateName\n\t\t\t\trunAt\n\t\t\t\tstatus\n\t\t\t\ttrigger\n\t\t\t\tfailureReason\n\t\t\t\trenderingFormat\n\t\t\t\tdownloadLink {\n\t\t\t\t\turl\n\t\t\t\t\texpiresAt\n\t\t\t\t}\n\t\t\t}\n\t\t\tpaging {\n\t\t\t\ttotal\n\t\t\t}\n\t\t}\n\t\ttemplate ( id:$id  )  {\n\t\t\tid\n\t\t\tname\n\t\t\talias\n\t\t\tpredefined\n\t\t\tlastModified\n\t\t}\n\t\ttemplateList ( input:$reportTemplateListInput  )  {\n\t\t\titems {\n\t\t\t\tid\n\t\t\t\tname\n\t\t\t\talias\n\t\t\t\tpredefined\n\t\t\t\tlastModified\n\t\t\t}\n\t\t\tpaging {\n\t\t\t\ttotal\n\t\t\t}\n\t\t}\n\t}\t\n}",
+    "variables": {
+        "id": "id",
+        "reportConfigurationListInput": {
+            "filter": {
+                "enabled": {
+                    "eq": true,
+                    "neq": true
+                },
+                "frequency": {
+                    "eq": "DAILY",
+                    "in": [
+                        "DAILY"
+                    ],
+                    "neq": "DAILY",
+                    "nin": [
+                        "DAILY"
+                    ]
+                },
+                "name": {
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
+                },
+                "templateId": {
+                    "eq": "id",
+                    "in": [
+                        "id1",
+                        "id2"
+                    ],
+                    "neq": "id",
+                    "nin": [
+                        "id1",
+                        "id2"
+                    ]
+                }
+            },
+            "paging": {
+                "from": 1,
+                "limit": 1
+            },
+            "sort": {
+                "lastModified": {
+                    "direction": "ASC",
+                    "priority": 1
+                },
+                "name": {
+                    "direction": "ASC",
+                    "priority": 1
+                }
+            }
+        },
+        "reportRunListInput": {
+            "filter": {
+                "reportConfigurationId": {
+                    "eq": "id",
+                    "in": [
+                        "id1",
+                        "id2"
+                    ],
+                    "neq": "id",
+                    "nin": [
+                        "id1",
+                        "id2"
+                    ]
+                },
+                "runAt": {
+                    "between": [
+                        "2026-01-02T15:04:05Z"
+                    ],
+                    "eq": "2026-01-02T15:04:05Z",
+                    "gt": "2026-01-02T15:04:05Z",
+                    "gte": "2026-01-02T15:04:05Z",
+                    "in": [
+                        "2026-01-02T15:04:05Z"
+                    ],
+                    "lt": "2026-01-02T15:04:05Z",
+                    "lte": "2026-01-02T15:04:05Z",
+                    "neq": "2026-01-02T15:04:05Z",
+                    "nin": [
+                        "2026-01-02T15:04:05Z"
+                    ]
+                },
+                "status": {
+                    "eq": "PENDING",
+                    "in": [
+                        "PENDING"
+                    ],
+                    "neq": "PENDING",
+                    "nin": [
+                        "PENDING"
+                    ]
+                }
+            },
+            "paging": {
+                "from": 1,
+                "limit": 1
+            },
+            "sort": {
+                "reportName": {
+                    "direction": "ASC",
+                    "priority": 1
+                },
+                "runAt": {
+                    "direction": "ASC",
+                    "priority": 1
+                },
+                "status": {
+                    "direction": "ASC",
+                    "priority": 1
+                }
+            }
+        },
+        "reportTemplateListInput": {
+            "filter": {
+                "alias": {
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
+                },
+                "name": {
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
+                },
+                "predefined": {
+                    "eq": true,
+                    "neq": true
+                }
+            },
+            "paging": {
+                "from": 1,
+                "limit": 1
+            },
+            "sort": {
+                "lastModified": {
+                    "direction": "ASC",
+                    "priority": 1
+                },
+                "name": {
+                    "direction": "ASC",
+                    "priority": 1
+                }
+            }
+        }
+    }
+}

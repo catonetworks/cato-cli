@@ -32,5 +32,5 @@ catocli mutation policy splitTunnel moveRule '{
 #### Operation Arguments for mutation.policy.splitTunnel.moveRule ####
 
 `accountId` [ID] - (required) N/A
-`policyMoveRuleInput` [PolicyMoveRuleInput] - (required) N/A
-`splitTunnelPolicyMutationInput` [SplitTunnelPolicyMutationInput] - (required) N/A
+`policyMoveRuleInput` [PolicyMoveRuleInput] - (required) Parameters for this policy operation.
+`splitTunnelPolicyMutationInput` [SplitTunnelPolicyMutationInput] - (required) Parameters for this policy operation.

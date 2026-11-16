@@ -28,5 +28,5 @@ catocli mutation policy dynamicIpAllocation updatePolicy '{
 #### Operation Arguments for mutation.policy.dynamicIpAllocation.updatePolicy ####
 
 `accountId` [ID] - (required) N/A
-`dynamicIpAllocationPolicyMutationInput` [DynamicIpAllocationPolicyMutationInput] - (required) N/A
-`dynamicIpAllocationPolicyUpdateInput` [DynamicIpAllocationPolicyUpdateInput] - (required) N/A
+`dynamicIpAllocationPolicyMutationInput` [DynamicIpAllocationPolicyMutationInput] - (required) Parameters for this policy operation.
+`dynamicIpAllocationPolicyUpdateInput` [DynamicIpAllocationPolicyUpdateInput] - (required) Parameters for this policy operation.

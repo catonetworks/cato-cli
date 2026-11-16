@@ -1168,6 +1168,10 @@ def export_wnw_rules_to_json(args, configuration):
 
         # Add rules_in_sections to the policy structure
         processed_data['data']['policy']['wanNetwork']['policy']['rules_in_sections'] = rules_in_sections
+        # Surface the account-level policy enable flag under a stable, import-friendly
+        # top-level key alongside rules/sections (additive, backward-compatible).
+        processed_data['data']['policy']['wanNetwork']['policy']['policy_enabled'] = \
+            processed_data['data']['policy']['wanNetwork']['policy'].get('enabled')
         
         # Reformat sections array to have index, section_id and section_name structure
         # Exclude the first section from export
@@ -1249,6 +1253,9 @@ def export_apc_rules_to_json(args, configuration):
         processed_data = strip_ids_recursive(response)
         policy_node = processed_data['data']['policy']['applicationControl']['policy']
         policy_node.pop('additionalAttributes', None)
+        # Surface the account-level policy enable flag under a stable, import-friendly
+        # top-level key alongside rules/sections (additive, backward-compatible).
+        policy_node['policy_enabled'] = policy_node.get('enabled')
 
         filtered_rules = []
         for rule_data in policy_node.get('rules') or []:
@@ -1360,6 +1367,9 @@ def export_atr_rules_to_json(args, configuration):
         processed_data = strip_ids_recursive(response)
         policy_node = processed_data['data']['policy']['appTenantRestriction']['policy']
         policy_node.pop('additionalAttributes', None)
+        # Surface the account-level policy enable flag under a stable, import-friendly
+        # top-level key alongside rules/sections (additive, backward-compatible).
+        policy_node['policy_enabled'] = policy_node.get('enabled')
 
         filtered_rules = []
         for rule_data in policy_node.get('rules') or []:
@@ -1453,6 +1463,9 @@ def export_pa_rules_to_json(args, configuration):
         response = makeCall(args, configuration, policy_query)
         processed_data = strip_ids_recursive(response)
         policy_node = processed_data['data']['policy']['privateAccess']['policy']
+        # Surface the account-level policy enable flag under a stable, import-friendly
+        # top-level key alongside rules/sections (additive, backward-compatible).
+        policy_node['policy_enabled'] = policy_node.get('enabled')
 
         filtered_rules = []
         for rule_data in policy_node.get('rules') or []:
@@ -1542,6 +1555,9 @@ def export_ao_rules_to_json(args, configuration):
         response = makeCall(args, configuration, policy_query)
         processed_data = strip_ids_recursive(response)
         policy_node = processed_data['data']['policy']['ztnaAlwaysOn']['policy']
+        # Surface the account-level policy enable flag under a stable, import-friendly
+        # top-level key alongside rules/sections (additive, backward-compatible).
+        policy_node['policy_enabled'] = policy_node.get('enabled')
 
         # SYSTEM filter (defensive - none observed live for this policy type)
         filtered_rules = []
@@ -1945,6 +1961,9 @@ def _export_flat_policy_to_json(args, configuration, policy_key, policy_query_st
         processed_data = strip_ids_recursive(response)
         policy_node = processed_data['data']['policy'][policy_key]['policy']
         policy_node.pop('additionalAttributes', None)
+        # Surface the account-level policy enable flag under a stable, import-friendly
+        # top-level key alongside rules/sections (additive, backward-compatible).
+        policy_node['policy_enabled'] = policy_node.get('enabled')
 
         filtered_rules = []
         for rule_data in policy_node.get('rules') or []:

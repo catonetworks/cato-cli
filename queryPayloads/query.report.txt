@@ -1,0 +1,109 @@
+query report ( $accountId:ID! $id:ID! $reportConfigurationListInput:ReportConfigurationListInput! $reportRunListInput:ReportRunListInput! $reportTemplateListInput:ReportTemplateListInput!) {
+	report ( accountId:$accountId ) {
+		configuration ( id:$id  )  {
+			id
+			name
+			templateId
+			templateName
+			timeFrame
+			filter {
+				field
+				operator
+				value
+			}
+			schedule {
+				frequency
+				dayOfWeek
+				dayOfMonth
+				nextRunAt
+			}
+			subscriptionId
+			enabled
+			timeZone
+			renderingFormat
+			lastModified
+		}
+		configurationList ( input:$reportConfigurationListInput  )  {
+			items {
+				id
+				name
+				templateId
+				templateName
+				timeFrame
+				filter {
+					field
+					operator
+					value
+				}
+				schedule {
+					frequency
+					dayOfWeek
+					dayOfMonth
+					nextRunAt
+				}
+				subscriptionId
+				enabled
+				timeZone
+				renderingFormat
+				lastModified
+			}
+			paging {
+				total
+			}
+		}
+		run ( id:$id  )  {
+			id
+			reportConfigurationId
+			reportName
+			templateName
+			runAt
+			status
+			trigger
+			failureReason
+			renderingFormat
+			downloadLink {
+				url
+				expiresAt
+			}
+		}
+		runList ( input:$reportRunListInput  )  {
+			items {
+				id
+				reportConfigurationId
+				reportName
+				templateName
+				runAt
+				status
+				trigger
+				failureReason
+				renderingFormat
+				downloadLink {
+					url
+					expiresAt
+				}
+			}
+			paging {
+				total
+			}
+		}
+		template ( id:$id  )  {
+			id
+			name
+			alias
+			predefined
+			lastModified
+		}
+		templateList ( input:$reportTemplateListInput  )  {
+			items {
+				id
+				name
+				alias
+				predefined
+				lastModified
+			}
+			paging {
+				total
+			}
+		}
+	}	
+}

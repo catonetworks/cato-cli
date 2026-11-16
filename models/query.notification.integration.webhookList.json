@@ -126,7 +126,7 @@
                                                     "isDeprecated": false,
                                                     "name": "items",
                                                     "path": "integration.webhookList.items",
-                                                    "requestStr": "$webhook:[Webhook]! ",
+                                                    "requestStr": "$webhook:[Webhook!]! ",
                                                     "required": true,
                                                     "responseStr": "items:$webhook ",
                                                     "type": {
@@ -165,6 +165,12 @@
                                                                                         "definition": {
                                                                                             "description": null,
                                                                                             "enumValues": [
+                                                                                                {
+                                                                                                    "deprecationReason": null,
+                                                                                                    "description": null,
+                                                                                                    "isDeprecated": false,
+                                                                                                    "name": "OAUTH2_CLIENT_CREDENTIALS"
+                                                                                                },
                                                                                                 {
                                                                                                     "deprecationReason": null,
                                                                                                     "description": null,
@@ -305,7 +311,7 @@
                                                                                             "isDeprecated": false,
                                                                                             "name": "plainHeaders",
                                                                                             "path": "integration.webhookList.items.auth.CustomHeadersAuth.plainHeaders",
-                                                                                            "requestStr": "$plainHeaderEntry:[PlainHeaderEntry]! ",
+                                                                                            "requestStr": "$plainHeaderEntry:[PlainHeaderEntry!]! ",
                                                                                             "required": true,
                                                                                             "responseStr": "plainHeaders:$plainHeaderEntry ",
                                                                                             "type": {
@@ -382,7 +388,7 @@
                                                                                             "isDeprecated": false,
                                                                                             "name": "secretHeaders",
                                                                                             "path": "integration.webhookList.items.auth.CustomHeadersAuth.secretHeaders",
-                                                                                            "requestStr": "$secretHeaderEntry:[SecretHeaderEntry]! ",
+                                                                                            "requestStr": "$secretHeaderEntry:[SecretHeaderEntry!]! ",
                                                                                             "required": true,
                                                                                             "responseStr": "secretHeaders:$secretHeaderEntry ",
                                                                                             "type": {
@@ -445,6 +451,79 @@
                                                                                     "interfaces": {},
                                                                                     "kind": "OBJECT",
                                                                                     "name": "NoAuth",
+                                                                                    "possibleTypes": null
+                                                                                },
+                                                                                "OAuth2ClientCredentialsAuth": {
+                                                                                    "description": "OAuth 2.0 client credentials authentication.\nThe client secret is never returned.",
+                                                                                    "enumValues": null,
+                                                                                    "fields": {
+                                                                                        "authUrl": {
+                                                                                            "args": {},
+                                                                                            "deprecationReason": null,
+                                                                                            "description": "The token endpoint of the OAuth authorization server.",
+                                                                                            "id_str": "integration___webhookList___items___auth___OAuth2ClientCredentialsAuth___authUrl",
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "authUrl",
+                                                                                            "path": "integration.webhookList.items.auth.OAuth2ClientCredentialsAuth.authUrl",
+                                                                                            "requestStr": "$authUrl:Url! ",
+                                                                                            "required": true,
+                                                                                            "responseStr": "authUrl:$authUrl ",
+                                                                                            "type": {
+                                                                                                "kind": [
+                                                                                                    "NON_NULL",
+                                                                                                    "SCALAR"
+                                                                                                ],
+                                                                                                "name": "Url",
+                                                                                                "non_null": false
+                                                                                            },
+                                                                                            "varName": "authUrl"
+                                                                                        },
+                                                                                        "clientId": {
+                                                                                            "args": {},
+                                                                                            "deprecationReason": null,
+                                                                                            "description": "The OAuth client id.",
+                                                                                            "id_str": "integration___webhookList___items___auth___OAuth2ClientCredentialsAuth___clientId",
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "clientId",
+                                                                                            "path": "integration.webhookList.items.auth.OAuth2ClientCredentialsAuth.clientId",
+                                                                                            "requestStr": "$clientId:String! ",
+                                                                                            "required": true,
+                                                                                            "responseStr": "clientId:$clientId ",
+                                                                                            "type": {
+                                                                                                "kind": [
+                                                                                                    "NON_NULL",
+                                                                                                    "SCALAR"
+                                                                                                ],
+                                                                                                "name": "String",
+                                                                                                "non_null": false
+                                                                                            },
+                                                                                            "varName": "clientId"
+                                                                                        },
+                                                                                        "scope": {
+                                                                                            "args": {},
+                                                                                            "deprecationReason": null,
+                                                                                            "description": "Optional scopes requested with the access token, separated by spaces.",
+                                                                                            "id_str": "integration___webhookList___items___auth___OAuth2ClientCredentialsAuth___scope",
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "scope",
+                                                                                            "path": "integration.webhookList.items.auth.OAuth2ClientCredentialsAuth.scope",
+                                                                                            "requestStr": "$scope:String ",
+                                                                                            "required": false,
+                                                                                            "responseStr": "scope:$scope ",
+                                                                                            "type": {
+                                                                                                "kind": [
+                                                                                                    "SCALAR"
+                                                                                                ],
+                                                                                                "name": "String",
+                                                                                                "non_null": false
+                                                                                            },
+                                                                                            "varName": "scope"
+                                                                                        }
+                                                                                    },
+                                                                                    "inputFields": null,
+                                                                                    "interfaces": {},
+                                                                                    "kind": "OBJECT",
+                                                                                    "name": "OAuth2ClientCredentialsAuth",
                                                                                     "possibleTypes": null
                                                                                 }
                                                                             }
@@ -509,7 +588,7 @@
                                                                     "isDeprecated": false,
                                                                     "name": "header",
                                                                     "path": "integration.webhookList.items.header",
-                                                                    "requestStr": "$httpHeaderNameValue:[HttpHeaderNameValue]! ",
+                                                                    "requestStr": "$httpHeaderNameValue:[HttpHeaderNameValue!]! ",
                                                                     "required": true,
                                                                     "responseStr": "header:$httpHeaderNameValue ",
                                                                     "type": {
@@ -693,7 +772,7 @@
                                                                     "isDeprecated": false,
                                                                     "name": "responseMapping",
                                                                     "path": "integration.webhookList.items.responseMapping",
-                                                                    "requestStr": "$webhookResponseMapEntry:[WebhookResponseMapEntry]! ",
+                                                                    "requestStr": "$webhookResponseMapEntry:[WebhookResponseMapEntry!]! ",
                                                                     "required": true,
                                                                     "responseStr": "responseMapping:$webhookResponseMapEntry ",
                                                                     "type": {

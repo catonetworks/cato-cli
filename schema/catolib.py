@@ -527,6 +527,36 @@ def getChildOperations(operationType, curType, parentType, parentPath, childOper
 # Import all other functions from the original catolib.py with thread-safety improvements
 # (I'm including the key functions here, but in practice you'd want to copy all functions)
 
+def buildGqlTypeString(kind, baseName):
+    """Reconstruct a GraphQL type signature from an ordered wrapper `kind` list.
+
+    `kind` is ordered outermost-to-innermost, e.g. a GraphQL type of
+    `[[AppStatsFilter!]!]` is represented as
+    ["LIST","NON_NULL","LIST","NON_NULL","INPUT_OBJECT"]. Walking the list:
+    LIST wraps the remainder in brackets, NON_NULL appends `!`, and the first
+    base kind (SCALAR/ENUM/INPUT_OBJECT/OBJECT/INTERFACE/UNION) terminates with
+    `baseName`. This correctly handles arbitrary nesting; the previous logic
+    only ever emitted a single `[...]` level and silently flattened nested
+    lists (breaking appStats/eventsTimeSeries advancedFilters).
+    """
+    if not isinstance(kind, list):
+        # Legacy scalar form: a bare "NON_NULL" string means required.
+        return baseName + ("!" if kind == "NON_NULL" else "")
+
+    def build(i):
+        if i >= len(kind):
+            return baseName
+        k = kind[i]
+        if k == "LIST":
+            return "[" + build(i + 1) + "]"
+        if k == "NON_NULL":
+            return build(i + 1) + "!"
+        # Base type kind reached (SCALAR/ENUM/INPUT_OBJECT/OBJECT/...).
+        return baseName
+
+    return build(0)
+
+
 def getNestedArgDefinitions(argsAry, parentParamPath, childOperations, parentFields):
     newArgsList = {}
     for arg in argsAry:
@@ -541,17 +571,12 @@ def getNestedArgDefinitions(argsAry, parentParamPath, childOperations, parentFie
             arg["required"] = True if arg["type"]["kind"][0] == "NON_NULL" else False
         else:
             arg["required"] = True if arg["type"]["kind"] == "NON_NULL" else False
-        required1 = "!" if arg["required"] else ""
-        required2 = "!" if "NON_NULL" in arg["type"]["kind"][1:] else ""
         if "SCALAR" in arg["type"]["kind"] or "ENUM" in arg["type"]["kind"]:
             arg["varName"] = renderCamelCase(arg["name"])
         else:
             arg["varName"] = renderCamelCase(arg["type"]["name"])
         arg["responseStr"] = arg["name"] + ":$" + arg["varName"] + " "
-        if "LIST" in arg["type"]["kind"]:
-            arg["requestStr"] = "$" + arg["varName"] + ":" + "[" + arg["type"]["name"] + required2 + "]" + required1 + " "
-        else:
-            arg["requestStr"] = "$" + arg["varName"] + ":" + arg["type"]["name"] + required1 + " "
+        arg["requestStr"] = "$" + arg["varName"] + ":" + buildGqlTypeString(arg["type"]["kind"], arg["type"]["name"]) + " "
         newArgsList[arg["id_str"]] = arg
     return newArgsList
 
@@ -1463,20 +1488,14 @@ def getNestedFieldDefinitions(fieldsAry, parentParamPath, childOperations, paren
         else:
             field["required"] = True if field["type"]["kind"] == "NON_NULL" else False
         
-        required1 = "!" if field["required"] else ""
-        required2 = "!" if field["type"]["kind"][1:] == "NON_NULL" else ""
-        
         if "SCALAR" in field["type"]["kind"] or "ENUM" in field["type"]["kind"]:
             field["varName"] = renderCamelCase(field["name"])
         else:
             field["varName"] = renderCamelCase(field["type"]["name"])
-        
+
         field["responseStr"] = field["name"] + ":$" + field["varName"] + " "
-        
-        if "LIST" in field["type"]["kind"]:
-            field["requestStr"] = "$" + field["varName"] + ":" + "[" + field["type"]["name"] + required2 + "]" + required1 + " "
-        else:
-            field["requestStr"] = "$" + field["varName"] + ":" + field["type"]["name"] + required1 + " "
+
+        field["requestStr"] = "$" + field["varName"] + ":" + buildGqlTypeString(field["type"]["kind"], field["type"]["name"]) + " "
         
         if "args" in field:
             field["args"] = getNestedArgDefinitions(field["args"], field["name"], childOperations, parentFields)

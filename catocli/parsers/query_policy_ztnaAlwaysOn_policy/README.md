@@ -26,4 +26,4 @@ catocli query policy ztnaAlwaysOn policy '{
 #### Operation Arguments for query.policy.ztnaAlwaysOn.policy ####
 
 `accountId` [ID] - (required) N/A
-`ztnaAlwaysOnPolicyInput` [ZtnaAlwaysOnPolicyInput] - (required) N/A
+`ztnaAlwaysOnPolicyInput` [ZtnaAlwaysOnPolicyInput] - (required) Parameters for this policy operation.

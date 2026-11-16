@@ -32,5 +32,5 @@ catocli mutation policy privateAccess moveSection '{
 #### Operation Arguments for mutation.policy.privateAccess.moveSection ####
 
 `accountId` [ID] - (required) N/A
-`policyMoveSectionInput` [PolicyMoveSectionInput] - (required) N/A
-`privateAccessPolicyMutationInput` [PrivateAccessPolicyMutationInput] - (required) N/A
+`policyMoveSectionInput` [PolicyMoveSectionInput] - (required) Parameters for this policy operation.
+`privateAccessPolicyMutationInput` [PrivateAccessPolicyMutationInput] - (required) Parameters for this policy operation.

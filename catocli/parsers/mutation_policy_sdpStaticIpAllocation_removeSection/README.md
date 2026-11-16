@@ -28,5 +28,5 @@ catocli mutation policy sdpStaticIpAllocation removeSection '{
 #### Operation Arguments for mutation.policy.sdpStaticIpAllocation.removeSection ####
 
 `accountId` [ID] - (required) N/A
-`policyRemoveSectionInput` [PolicyRemoveSectionInput] - (required) N/A
-`sdpStaticIpAllocationPolicyMutationInput` [SdpStaticIpAllocationPolicyMutationInput] - (required) N/A
+`policyRemoveSectionInput` [PolicyRemoveSectionInput] - (required) Parameters for this policy operation.
+`sdpStaticIpAllocationPolicyMutationInput` [SdpStaticIpAllocationPolicyMutationInput] - (required) Parameters for this policy operation.

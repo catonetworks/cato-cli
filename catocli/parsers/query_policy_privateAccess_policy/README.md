@@ -26,4 +26,4 @@ catocli query policy privateAccess policy '{
 #### Operation Arguments for query.policy.privateAccess.policy ####
 
 `accountId` [ID] - (required) N/A
-`privateAccessPolicyInput` [PrivateAccessPolicyInput] - (required) N/A
+`privateAccessPolicyInput` [PrivateAccessPolicyInput] - (required) Parameters for this policy operation.

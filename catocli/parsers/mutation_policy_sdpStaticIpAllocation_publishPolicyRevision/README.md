@@ -29,5 +29,5 @@ catocli mutation policy sdpStaticIpAllocation publishPolicyRevision '{
 #### Operation Arguments for mutation.policy.sdpStaticIpAllocation.publishPolicyRevision ####
 
 `accountId` [ID] - (required) N/A
-`policyPublishRevisionInput` [PolicyPublishRevisionInput] - (required) N/A
-`sdpStaticIpAllocationPolicyMutationInput` [SdpStaticIpAllocationPolicyMutationInput] - (required) N/A
+`policyPublishRevisionInput` [PolicyPublishRevisionInput] - (required) Parameters for this policy operation.
+`sdpStaticIpAllocationPolicyMutationInput` [SdpStaticIpAllocationPolicyMutationInput] - (required) Parameters for this policy operation.

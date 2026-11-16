@@ -2,7 +2,7 @@
     "args": {
         "accountId": {
             "defaultValue": null,
-            "description": null,
+            "description": "Account containing the private applications.",
             "id_str": "accountId",
             "name": "accountId",
             "path": "accountId",
@@ -25,7 +25,7 @@
             "args": {
                 "privateApplicationList___input": {
                     "defaultValue": null,
-                    "description": null,
+                    "description": "Parameters for the private application operation.",
                     "id_str": "privateApplicationList___input",
                     "name": "input",
                     "path": "privateApplicationList.input",
@@ -34,7 +34,7 @@
                     "responseStr": "input:$privateApplicationListInput ",
                     "type": {
                         "definition": {
-                            "description": null,
+                            "description": "Filtering, pagination, and sorting for private applications.",
                             "enumValues": null,
                             "fields": null,
                             "inputFields": {
@@ -49,7 +49,7 @@
                                     "responseStr": "filter:$privateApplicationListFilterInput ",
                                     "type": {
                                         "definition": {
-                                            "description": null,
+                                            "description": "Criteria used to filter private applications.",
                                             "enumValues": null,
                                             "fields": null,
                                             "inputFields": {
@@ -686,7 +686,7 @@
                                     "responseStr": "sort:$privateApplicationSortInput ",
                                     "type": {
                                         "definition": {
-                                            "description": null,
+                                            "description": "Sort order for private applications.",
                                             "enumValues": null,
                                             "fields": null,
                                             "inputFields": {
@@ -1200,7 +1200,7 @@
     "operationArgs": {
         "accountId": {
             "defaultValue": null,
-            "description": null,
+            "description": "Account containing the private applications.",
             "id_str": "accountId",
             "name": "accountId",
             "path": "accountId",
@@ -1219,7 +1219,7 @@
         },
         "privateApplicationListInput": {
             "defaultValue": null,
-            "description": null,
+            "description": "Parameters for the private application operation.",
             "id_str": "privateApplicationList___input",
             "name": "input",
             "path": "privateApplicationList.input",
@@ -1228,7 +1228,7 @@
             "responseStr": "input:$privateApplicationListInput ",
             "type": {
                 "definition": {
-                    "description": null,
+                    "description": "Filtering, pagination, and sorting for private applications.",
                     "enumValues": null,
                     "fields": null,
                     "inputFields": {
@@ -1243,7 +1243,7 @@
                             "responseStr": "filter:$privateApplicationListFilterInput ",
                             "type": {
                                 "definition": {
-                                    "description": null,
+                                    "description": "Criteria used to filter private applications.",
                                     "enumValues": null,
                                     "fields": null,
                                     "inputFields": {
@@ -1880,7 +1880,7 @@
                             "responseStr": "sort:$privateApplicationSortInput ",
                             "type": {
                                 "definition": {
-                                    "description": null,
+                                    "description": "Sort order for private applications.",
                                     "enumValues": null,
                                     "fields": null,
                                     "inputFields": {
@@ -2385,7 +2385,7 @@
                     "args": {
                         "privateApplicationList___input": {
                             "defaultValue": null,
-                            "description": null,
+                            "description": "Parameters for the private application operation.",
                             "id_str": "privateApplicationList___input",
                             "name": "input",
                             "path": "privateApplicationList.input",
@@ -2394,7 +2394,7 @@
                             "responseStr": "input:$privateApplicationListInput ",
                             "type": {
                                 "definition": {
-                                    "description": null,
+                                    "description": "Filtering, pagination, and sorting for private applications.",
                                     "enumValues": null,
                                     "fields": null,
                                     "inputFields": {
@@ -2409,7 +2409,7 @@
                                             "responseStr": "filter:$privateApplicationListFilterInput ",
                                             "type": {
                                                 "definition": {
-                                                    "description": null,
+                                                    "description": "Criteria used to filter private applications.",
                                                     "enumValues": null,
                                                     "fields": null,
                                                     "inputFields": {
@@ -3046,7 +3046,7 @@
                                             "responseStr": "sort:$privateApplicationSortInput ",
                                             "type": {
                                                 "definition": {
-                                                    "description": null,
+                                                    "description": "Sort order for private applications.",
                                                     "enumValues": null,
                                                     "fields": null,
                                                     "inputFields": {
@@ -3558,7 +3558,7 @@
                                 "applications": {
                                     "args": {},
                                     "deprecationReason": null,
-                                    "description": null,
+                                    "description": "Private applications matching the query.",
                                     "id_str": "privateApplicationList___applications",
                                     "isDeprecated": false,
                                     "name": "applications",
@@ -3826,10 +3826,75 @@
                                                                     },
                                                                     "varName": "interval"
                                                                 },
+                                                                "port": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "TCP port to probe (1-65535). Set for TCP_CONNECT; empty for ICMP_PING.",
+                                                                    "id_str": "privateApplicationList___applications___privateAppProbing___port",
+                                                                    "isDeprecated": false,
+                                                                    "name": "port",
+                                                                    "path": "privateApplicationList.applications.privateAppProbing.port",
+                                                                    "requestStr": "$port:Int ",
+                                                                    "required": false,
+                                                                    "responseStr": "port:$port ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "Int",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "port"
+                                                                },
+                                                                "probingType": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Probe type. ICMP_PING pings the app; TCP_CONNECT opens a TCP connection to `port`.",
+                                                                    "id_str": "privateApplicationList___applications___privateAppProbing___probingType",
+                                                                    "isDeprecated": false,
+                                                                    "name": "probingType",
+                                                                    "path": "privateApplicationList.applications.privateAppProbing.probingType",
+                                                                    "requestStr": "$probingType:PrivateAppProbingType! ",
+                                                                    "required": true,
+                                                                    "responseStr": "probingType:$probingType ",
+                                                                    "type": {
+                                                                        "definition": {
+                                                                            "description": "How the health probe checks that a private application is reachable",
+                                                                            "enumValues": [
+                                                                                {
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "Sends ICMP echo requests (ping) to the application",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "ICMP_PING"
+                                                                                },
+                                                                                {
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "Opens a TCP connection to the application on the probing port",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "TCP_CONNECT"
+                                                                                }
+                                                                            ],
+                                                                            "fields": null,
+                                                                            "inputFields": null,
+                                                                            "interfaces": null,
+                                                                            "kind": "ENUM",
+                                                                            "name": "PrivateAppProbingType",
+                                                                            "possibleTypes": null
+                                                                        },
+                                                                        "indexType": "enum",
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "ENUM"
+                                                                        ],
+                                                                        "name": "PrivateAppProbingType",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "probingType"
+                                                                },
                                                                 "type": {
                                                                     "args": {},
                                                                     "deprecationReason": null,
-                                                                    "description": "Probing type. Example: 'ICMP' or 'TCP'",
+                                                                    "description": "Probing type name, the same value as probingType. Example: 'ICMP_PING' or 'TCP_CONNECT'",
                                                                     "id_str": "privateApplicationList___applications___privateAppProbing___type",
                                                                     "isDeprecated": false,
                                                                     "name": "type",

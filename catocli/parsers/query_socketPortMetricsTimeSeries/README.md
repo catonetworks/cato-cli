@@ -11,7 +11,7 @@ catocli query socketPortMetricsTimeSeries <json>
 
 catocli query socketPortMetricsTimeSeries --json-file query.socketPortMetricsTimeSeries.json
 
-catocli query socketPortMetricsTimeSeries '{"buckets":1,"perSecond":true,"socketPortMetricsDimension":[{"fieldName":"account_id"}],"socketPortMetricsFilter":[{"fieldName":"account_id","operator":"is","values":["string1","string2"]}],"socketPortMetricsMeasure":[{"aggType":"sum","alias":"string","fieldName":"account_id","trend":true}],"timeFrame":"last.P1D","useDefaultSizeBucket":true,"withMissingData":true}'
+catocli query socketPortMetricsTimeSeries '{"buckets":1,"perSecond":true,"socketPortMetricsDimension":[{"fieldName":"account_id"}],"socketPortMetricsFilter":[[{"fieldName":"account_id","operator":"is","values":["string1","string2"]}]],"socketPortMetricsMeasure":[{"aggType":"sum","alias":"string","fieldName":"account_id","trend":true}],"timeFrame":"last.P1D","useDefaultSizeBucket":true,"withMissingData":true}'
 
 catocli query socketPortMetricsTimeSeries '{
     "buckets": 1,
@@ -22,14 +22,16 @@ catocli query socketPortMetricsTimeSeries '{
         }
     ],
     "socketPortMetricsFilter": [
-        {
-            "fieldName": "account_id",
-            "operator": "is",
-            "values": [
-                "string1",
-                "string2"
-            ]
-        }
+        [
+            {
+                "fieldName": "account_id",
+                "operator": "is",
+                "values": [
+                    "string1",
+                    "string2"
+                ]
+            }
+        ]
     ],
     "socketPortMetricsMeasure": [
         {
@@ -320,7 +322,7 @@ Format: `"utc.YYYY-MM-{DD/HH:MM:SS--DD/HH:MM:SS}"`
 `buckets` [Int] - (required) N/A
 `perSecond` [Boolean] - (required) whether to normalize the data into per second (i.e. divide by granularity)
 `socketPortMetricsDimension` [SocketPortMetricsDimension[]] - (required) N/A
-`socketPortMetricsFilter` [SocketPortMetricsFilter[]] - (required) N/A
+`socketPortMetricsFilter` [SocketPortMetricsFilter[]] - (required) Defines groups of conditions. A row matches if it meets every condition in at least one group. Note: Use instead of legacy filters field.
 `socketPortMetricsMeasure` [SocketPortMetricsMeasure[]] - (required) N/A
 `timeFrame` [TimeFrame] - (required) N/A
 `useDefaultSizeBucket` [Boolean] - (required) In case we want to have the default size bucket (from properties)

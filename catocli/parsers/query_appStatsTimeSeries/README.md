@@ -11,18 +11,20 @@ catocli query appStatsTimeSeries <json>
 
 catocli query appStatsTimeSeries --json-file query.appStatsTimeSeries.json
 
-catocli query appStatsTimeSeries '{"appStatsFilter":[{"fieldName":"account_id","operator":"is","values":["string1","string2"]}],"buckets":1,"dimension":[{"fieldName":"account_id"}],"includeEmptyDimension":true,"measure":[{"aggType":"sum","alias":"string","fieldName":"account_id","trend":true}],"perSecond":true,"timeFrame":"last.P1D","useDefaultSizeBucket":true,"withMissingData":true}'
+catocli query appStatsTimeSeries '{"appStatsFilter":[[{"fieldName":"account_id","operator":"is","values":["string1","string2"]}]],"buckets":1,"dimension":[{"fieldName":"account_id"}],"includeEmptyDimension":true,"measure":[{"aggType":"sum","alias":"string","fieldName":"account_id","trend":true}],"perSecond":true,"timeFrame":"last.P1D","useDefaultSizeBucket":true,"withMissingData":true}'
 
 catocli query appStatsTimeSeries '{
     "appStatsFilter": [
-        {
-            "fieldName": "account_id",
-            "operator": "is",
-            "values": [
-                "string1",
-                "string2"
-            ]
-        }
+        [
+            {
+                "fieldName": "account_id",
+                "operator": "is",
+                "values": [
+                    "string1",
+                    "string2"
+                ]
+            }
+        ]
     ],
     "buckets": 1,
     "dimension": [
@@ -400,7 +402,7 @@ Format: `"utc.YYYY-MM-{DD/HH:MM:SS--DD/HH:MM:SS}"`
 #### Operation Arguments for query.appStatsTimeSeries ####
 
 `accountID` [ID] - (required) Account ID
-`appStatsFilter` [AppStatsFilter[]] - (required) N/A
+`appStatsFilter` [AppStatsFilter[]] - (required) Defines groups of conditions. A row matches if it meets every condition in at least one group. Note: Use instead of legacy filters field.
 `buckets` [Int] - (required) N/A
 `dimension` [Dimension[]] - (required) N/A
 `includeEmptyDimension` [Boolean] - (required) When true, rows with empty/null values for a grouped dimension (e.g., country, device type) are returned as an empty group rather than excluded. This ensures consistent totals in API queries and surfaces previously hidden data in CMA dashboards and reports. Defaults to false.

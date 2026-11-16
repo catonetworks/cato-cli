@@ -25,5 +25,5 @@ catocli mutation privateApplication deletePrivateApplication '{
 
 #### Operation Arguments for mutation.privateApplication.deletePrivateApplication ####
 
-`accountId` [ID] - (required) N/A
-`deletePrivateApplicationInput` [DeletePrivateApplicationInput] - (required) N/A
+`accountId` [ID] - (required) Account containing the private applications.
+`deletePrivateApplicationInput` [DeletePrivateApplicationInput] - (required) Parameters for the private application operation.

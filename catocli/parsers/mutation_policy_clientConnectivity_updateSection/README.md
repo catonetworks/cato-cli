@@ -31,5 +31,5 @@ catocli mutation policy clientConnectivity updateSection '{
 #### Operation Arguments for mutation.policy.clientConnectivity.updateSection ####
 
 `accountId` [ID] - (required) N/A
-`clientConnectivityPolicyMutationInput` [ClientConnectivityPolicyMutationInput] - (required) N/A
-`policyUpdateSectionInput` [PolicyUpdateSectionInput] - (required) N/A
+`clientConnectivityPolicyMutationInput` [ClientConnectivityPolicyMutationInput] - (required) Parameters for this policy operation.
+`policyUpdateSectionInput` [PolicyUpdateSectionInput] - (required) Parameters for this policy operation.

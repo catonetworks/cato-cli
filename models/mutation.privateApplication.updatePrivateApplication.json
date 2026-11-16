@@ -2,7 +2,7 @@
     "args": {
         "accountId": {
             "defaultValue": null,
-            "description": null,
+            "description": "Account containing the private applications.",
             "id_str": "accountId",
             "name": "accountId",
             "path": "accountId",
@@ -25,7 +25,7 @@
             "args": {
                 "updatePrivateApplication___input": {
                     "defaultValue": null,
-                    "description": null,
+                    "description": "Parameters for the private application operation.",
                     "id_str": "updatePrivateApplication___input",
                     "name": "input",
                     "path": "updatePrivateApplication.input",
@@ -34,7 +34,7 @@
                     "responseStr": "input:$updatePrivateApplicationInput ",
                     "type": {
                         "definition": {
-                            "description": null,
+                            "description": "Identifies a private application and the settings to update.",
                             "enumValues": null,
                             "fields": null,
                             "inputFields": {
@@ -140,7 +140,7 @@
                                     "responseStr": "privateAppProbing:$privateAppProbingInput ",
                                     "type": {
                                         "definition": {
-                                            "description": null,
+                                            "description": "Health probe settings for a private application.",
                                             "enumValues": null,
                                             "fields": null,
                                             "inputFields": {
@@ -198,9 +198,69 @@
                                                     },
                                                     "varName": "interval"
                                                 },
+                                                "port": {
+                                                    "defaultValue": null,
+                                                    "description": "TCP port to probe (1-65535). Send it together with probingType TCP_CONNECT, also when changing only the port; must be empty for ICMP_PING.",
+                                                    "id_str": "updatePrivateApplication___input___privateAppProbing___port",
+                                                    "name": "port",
+                                                    "path": "updatePrivateApplication.input.privateAppProbing.port",
+                                                    "requestStr": "$port:Int ",
+                                                    "required": false,
+                                                    "responseStr": "port:$port ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "Int",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "port"
+                                                },
+                                                "probingType": {
+                                                    "defaultValue": null,
+                                                    "description": "Probe type. ICMP_PING pings the app; TCP_CONNECT opens a TCP connection to `port` and must be sent together with it.",
+                                                    "id_str": "updatePrivateApplication___input___privateAppProbing___probingType",
+                                                    "name": "probingType",
+                                                    "path": "updatePrivateApplication.input.privateAppProbing.probingType",
+                                                    "requestStr": "$probingType:PrivateAppProbingType ",
+                                                    "required": false,
+                                                    "responseStr": "probingType:$probingType ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": "How the health probe checks that a private application is reachable",
+                                                            "enumValues": [
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Sends ICMP echo requests (ping) to the application",
+                                                                    "isDeprecated": false,
+                                                                    "name": "ICMP_PING"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Opens a TCP connection to the application on the probing port",
+                                                                    "isDeprecated": false,
+                                                                    "name": "TCP_CONNECT"
+                                                                }
+                                                            ],
+                                                            "fields": null,
+                                                            "inputFields": null,
+                                                            "interfaces": null,
+                                                            "kind": "ENUM",
+                                                            "name": "PrivateAppProbingType",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "enum",
+                                                        "kind": [
+                                                            "ENUM"
+                                                        ],
+                                                        "name": "PrivateAppProbingType",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "probingType"
+                                                },
                                                 "type": {
                                                     "defaultValue": null,
-                                                    "description": "Probing type. Example: 'ICMP' or 'TCP'",
+                                                    "description": "Probing type. Accepts only 'ICMP_PING'; use probingType for other types",
                                                     "id_str": "updatePrivateApplication___input___privateAppProbing___type",
                                                     "name": "type",
                                                     "path": "updatePrivateApplication.input.privateAppProbing.type",
@@ -459,7 +519,7 @@
                                     "responseStr": "publishedAppDomain:$publishedAppDomainInput ",
                                     "type": {
                                         "definition": {
-                                            "description": null,
+                                            "description": "Published domain settings for a private application.",
                                             "enumValues": null,
                                             "fields": null,
                                             "inputFields": {
@@ -604,7 +664,7 @@
     "operationArgs": {
         "accountId": {
             "defaultValue": null,
-            "description": null,
+            "description": "Account containing the private applications.",
             "id_str": "accountId",
             "name": "accountId",
             "path": "accountId",
@@ -623,7 +683,7 @@
         },
         "updatePrivateApplicationInput": {
             "defaultValue": null,
-            "description": null,
+            "description": "Parameters for the private application operation.",
             "id_str": "updatePrivateApplication___input",
             "name": "input",
             "path": "updatePrivateApplication.input",
@@ -632,7 +692,7 @@
             "responseStr": "input:$updatePrivateApplicationInput ",
             "type": {
                 "definition": {
-                    "description": null,
+                    "description": "Identifies a private application and the settings to update.",
                     "enumValues": null,
                     "fields": null,
                     "inputFields": {
@@ -738,7 +798,7 @@
                             "responseStr": "privateAppProbing:$privateAppProbingInput ",
                             "type": {
                                 "definition": {
-                                    "description": null,
+                                    "description": "Health probe settings for a private application.",
                                     "enumValues": null,
                                     "fields": null,
                                     "inputFields": {
@@ -796,9 +856,69 @@
                                             },
                                             "varName": "interval"
                                         },
+                                        "port": {
+                                            "defaultValue": null,
+                                            "description": "TCP port to probe (1-65535). Send it together with probingType TCP_CONNECT, also when changing only the port; must be empty for ICMP_PING.",
+                                            "id_str": "updatePrivateApplication___input___privateAppProbing___port",
+                                            "name": "port",
+                                            "path": "updatePrivateApplication.input.privateAppProbing.port",
+                                            "requestStr": "$port:Int ",
+                                            "required": false,
+                                            "responseStr": "port:$port ",
+                                            "type": {
+                                                "kind": [
+                                                    "SCALAR"
+                                                ],
+                                                "name": "Int",
+                                                "non_null": false
+                                            },
+                                            "varName": "port"
+                                        },
+                                        "probingType": {
+                                            "defaultValue": null,
+                                            "description": "Probe type. ICMP_PING pings the app; TCP_CONNECT opens a TCP connection to `port` and must be sent together with it.",
+                                            "id_str": "updatePrivateApplication___input___privateAppProbing___probingType",
+                                            "name": "probingType",
+                                            "path": "updatePrivateApplication.input.privateAppProbing.probingType",
+                                            "requestStr": "$probingType:PrivateAppProbingType ",
+                                            "required": false,
+                                            "responseStr": "probingType:$probingType ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": "How the health probe checks that a private application is reachable",
+                                                    "enumValues": [
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Sends ICMP echo requests (ping) to the application",
+                                                            "isDeprecated": false,
+                                                            "name": "ICMP_PING"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Opens a TCP connection to the application on the probing port",
+                                                            "isDeprecated": false,
+                                                            "name": "TCP_CONNECT"
+                                                        }
+                                                    ],
+                                                    "fields": null,
+                                                    "inputFields": null,
+                                                    "interfaces": null,
+                                                    "kind": "ENUM",
+                                                    "name": "PrivateAppProbingType",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "enum",
+                                                "kind": [
+                                                    "ENUM"
+                                                ],
+                                                "name": "PrivateAppProbingType",
+                                                "non_null": false
+                                            },
+                                            "varName": "probingType"
+                                        },
                                         "type": {
                                             "defaultValue": null,
-                                            "description": "Probing type. Example: 'ICMP' or 'TCP'",
+                                            "description": "Probing type. Accepts only 'ICMP_PING'; use probingType for other types",
                                             "id_str": "updatePrivateApplication___input___privateAppProbing___type",
                                             "name": "type",
                                             "path": "updatePrivateApplication.input.privateAppProbing.type",
@@ -1057,7 +1177,7 @@
                             "responseStr": "publishedAppDomain:$publishedAppDomainInput ",
                             "type": {
                                 "definition": {
-                                    "description": null,
+                                    "description": "Published domain settings for a private application.",
                                     "enumValues": null,
                                     "fields": null,
                                     "inputFields": {
@@ -1193,7 +1313,7 @@
                     "args": {
                         "updatePrivateApplication___input": {
                             "defaultValue": null,
-                            "description": null,
+                            "description": "Parameters for the private application operation.",
                             "id_str": "updatePrivateApplication___input",
                             "name": "input",
                             "path": "updatePrivateApplication.input",
@@ -1202,7 +1322,7 @@
                             "responseStr": "input:$updatePrivateApplicationInput ",
                             "type": {
                                 "definition": {
-                                    "description": null,
+                                    "description": "Identifies a private application and the settings to update.",
                                     "enumValues": null,
                                     "fields": null,
                                     "inputFields": {
@@ -1308,7 +1428,7 @@
                                             "responseStr": "privateAppProbing:$privateAppProbingInput ",
                                             "type": {
                                                 "definition": {
-                                                    "description": null,
+                                                    "description": "Health probe settings for a private application.",
                                                     "enumValues": null,
                                                     "fields": null,
                                                     "inputFields": {
@@ -1366,9 +1486,69 @@
                                                             },
                                                             "varName": "interval"
                                                         },
+                                                        "port": {
+                                                            "defaultValue": null,
+                                                            "description": "TCP port to probe (1-65535). Send it together with probingType TCP_CONNECT, also when changing only the port; must be empty for ICMP_PING.",
+                                                            "id_str": "updatePrivateApplication___input___privateAppProbing___port",
+                                                            "name": "port",
+                                                            "path": "updatePrivateApplication.input.privateAppProbing.port",
+                                                            "requestStr": "$port:Int ",
+                                                            "required": false,
+                                                            "responseStr": "port:$port ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "Int",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "port"
+                                                        },
+                                                        "probingType": {
+                                                            "defaultValue": null,
+                                                            "description": "Probe type. ICMP_PING pings the app; TCP_CONNECT opens a TCP connection to `port` and must be sent together with it.",
+                                                            "id_str": "updatePrivateApplication___input___privateAppProbing___probingType",
+                                                            "name": "probingType",
+                                                            "path": "updatePrivateApplication.input.privateAppProbing.probingType",
+                                                            "requestStr": "$probingType:PrivateAppProbingType ",
+                                                            "required": false,
+                                                            "responseStr": "probingType:$probingType ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": "How the health probe checks that a private application is reachable",
+                                                                    "enumValues": [
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": "Sends ICMP echo requests (ping) to the application",
+                                                                            "isDeprecated": false,
+                                                                            "name": "ICMP_PING"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": "Opens a TCP connection to the application on the probing port",
+                                                                            "isDeprecated": false,
+                                                                            "name": "TCP_CONNECT"
+                                                                        }
+                                                                    ],
+                                                                    "fields": null,
+                                                                    "inputFields": null,
+                                                                    "interfaces": null,
+                                                                    "kind": "ENUM",
+                                                                    "name": "PrivateAppProbingType",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "enum",
+                                                                "kind": [
+                                                                    "ENUM"
+                                                                ],
+                                                                "name": "PrivateAppProbingType",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "probingType"
+                                                        },
                                                         "type": {
                                                             "defaultValue": null,
-                                                            "description": "Probing type. Example: 'ICMP' or 'TCP'",
+                                                            "description": "Probing type. Accepts only 'ICMP_PING'; use probingType for other types",
                                                             "id_str": "updatePrivateApplication___input___privateAppProbing___type",
                                                             "name": "type",
                                                             "path": "updatePrivateApplication.input.privateAppProbing.type",
@@ -1627,7 +1807,7 @@
                                             "responseStr": "publishedAppDomain:$publishedAppDomainInput ",
                                             "type": {
                                                 "definition": {
-                                                    "description": null,
+                                                    "description": "Published domain settings for a private application.",
                                                     "enumValues": null,
                                                     "fields": null,
                                                     "inputFields": {
@@ -1770,7 +1950,7 @@
                                 "application": {
                                     "args": {},
                                     "deprecationReason": null,
-                                    "description": null,
+                                    "description": "Private application returned by the operation.",
                                     "id_str": "updatePrivateApplication___application",
                                     "isDeprecated": false,
                                     "name": "application",
@@ -2038,10 +2218,75 @@
                                                                     },
                                                                     "varName": "interval"
                                                                 },
+                                                                "port": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "TCP port to probe (1-65535). Set for TCP_CONNECT; empty for ICMP_PING.",
+                                                                    "id_str": "updatePrivateApplication___application___privateAppProbing___port",
+                                                                    "isDeprecated": false,
+                                                                    "name": "port",
+                                                                    "path": "updatePrivateApplication.application.privateAppProbing.port",
+                                                                    "requestStr": "$port:Int ",
+                                                                    "required": false,
+                                                                    "responseStr": "port:$port ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "Int",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "port"
+                                                                },
+                                                                "probingType": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Probe type. ICMP_PING pings the app; TCP_CONNECT opens a TCP connection to `port`.",
+                                                                    "id_str": "updatePrivateApplication___application___privateAppProbing___probingType",
+                                                                    "isDeprecated": false,
+                                                                    "name": "probingType",
+                                                                    "path": "updatePrivateApplication.application.privateAppProbing.probingType",
+                                                                    "requestStr": "$probingType:PrivateAppProbingType! ",
+                                                                    "required": true,
+                                                                    "responseStr": "probingType:$probingType ",
+                                                                    "type": {
+                                                                        "definition": {
+                                                                            "description": "How the health probe checks that a private application is reachable",
+                                                                            "enumValues": [
+                                                                                {
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "Sends ICMP echo requests (ping) to the application",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "ICMP_PING"
+                                                                                },
+                                                                                {
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "Opens a TCP connection to the application on the probing port",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "TCP_CONNECT"
+                                                                                }
+                                                                            ],
+                                                                            "fields": null,
+                                                                            "inputFields": null,
+                                                                            "interfaces": null,
+                                                                            "kind": "ENUM",
+                                                                            "name": "PrivateAppProbingType",
+                                                                            "possibleTypes": null
+                                                                        },
+                                                                        "indexType": "enum",
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "ENUM"
+                                                                        ],
+                                                                        "name": "PrivateAppProbingType",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "probingType"
+                                                                },
                                                                 "type": {
                                                                     "args": {},
                                                                     "deprecationReason": null,
-                                                                    "description": "Probing type. Example: 'ICMP' or 'TCP'",
+                                                                    "description": "Probing type name, the same value as probingType. Example: 'ICMP_PING' or 'TCP_CONNECT'",
                                                                     "id_str": "updatePrivateApplication___application___privateAppProbing___type",
                                                                     "isDeprecated": false,
                                                                     "name": "type",
@@ -2504,6 +2749,8 @@
                 "faultThresholdDown": 1,
                 "id": "id",
                 "interval": 1,
+                "port": 1,
+                "probingType": "ICMP_PING",
                 "type": "string"
             },
             "probingEnabled": true,

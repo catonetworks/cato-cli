@@ -334,6 +334,15 @@ def export_socket_site_to_json(args, configuration, bucket=None):
         all_site_ids = [entity_site["entity"]["id"] for entity_site in entity_sites]
         snapshot_sites_map = getAccountSnapshotSitesMap(args, configuration, account_id, all_site_ids)
 
+        # IPSec sites carry a Cato-side endpoint (publicCatoIp) the site config
+        # does not expose; it comes from the account snapshot's info.ipsec and is
+        # a PoP-allocated IP. Fetch the allocated-IP map once so each endpoint's
+        # catoIP can be recorded by its allocation name/description.
+        ipsec_allocated_ip_map = (
+            getAllocatedIpsByIp(args, configuration, account_id)
+            if bucket == 'ipsec_sites' else {}
+        )
+
         for idx, entity_site in enumerate(entity_sites, 1):
             site_id = entity_site["entity"]["id"]
             entity_input = {"id":site_id,"type":"site"}
@@ -368,6 +377,11 @@ def export_socket_site_to_json(args, configuration, bucket=None):
                 cur_site['description'] = snapshot_site.get('infoSiteSnapshot', {}).get('description')
                 cur_site['connection_type'] = connectionType
                 cur_site['type'] = snapshot_site.get('infoSiteSnapshot', {}).get('type')
+                if bucket == 'ipsec_sites':
+                    # Record the primary/secondary publicCatoIp (by allocated-IP
+                    # name/description) + destination_type from the snapshot, so
+                    # cato_ipsec_site can satisfy the IPv4 publicCatoIp requirement.
+                    cur_site['ipsec'] = buildIpsecEndpoints(snapshot_site, ipsec_allocated_ip_map)
                 cur_site['license_id'] = None
                 cur_site['license_bw'] = None
                 cur_site['wifi_ssids'] = getWifiSsidList(args, configuration, account_id, site_id)
@@ -1931,6 +1945,71 @@ def getDhcpRelayGroups(args, configuration, account_id):
         print(f"Retrieved {len(relay_map)} DHCP relay groups for account {account_id}")
 
     return relay_map
+
+
+def getAllocatedIpsByIp(args, configuration, account_id):
+    """Map each PoP-allocated IP address -> its display name/description, so an
+    IPSec site's Cato-side endpoint IP (accountSnapshot info.ipsec.catoIP, which
+    IS a PoP-allocated IP) can be recorded by the allocation's stable identity
+    rather than the raw IP. The display name is synthesized as "<pop> - <ip>",
+    matching export_allocated_ips_to_json / the CMA entity name and the join key
+    the bulk module's allocated-IP remap uses. Keyed by ip:
+    {ip: {"name": "<pop> - <ip>", "description": "...", "pop": "<pop>"}}."""
+    query = {
+        "query": (
+            "query popLocationsAllocatedIpList ( $accountId:ID! "
+            "$popLocationAllocatedIpInput:PopLocationAllocatedIpInput! ) "
+            "{ popLocations ( accountId:$accountId ) { allocatedIpList "
+            "( input:$popLocationAllocatedIpInput ) { allocatedIp "
+            "{ id ip description allocationType popLocation { id name } } "
+            "paging { total } } } }"
+        ),
+        "variables": {"accountId": account_id, "popLocationAllocatedIpInput": {}},
+        "operationName": "popLocationsAllocatedIpList",
+    }
+    response = makeCall(args, configuration, query)
+    items = (((response or {}).get('data') or {}).get('popLocations') or {}).get(
+        'allocatedIpList') or {}
+    allocated = items.get('allocatedIp') or []
+    ip_map = {}
+    for item in allocated:
+        ip = item.get('ip') or ""
+        pop_name = ((item.get('popLocation') or {}).get('name')) or ""
+        if ip:
+            ip_map[ip] = {
+                "name": f"{pop_name} - {ip}",
+                "description": item.get('description') or "",
+                "pop": pop_name,
+            }
+    if hasattr(args, 'verbose') and args.verbose:
+        print(f"Retrieved {len(ip_map)} allocated IPs for IPSec endpoint resolution")
+    return ip_map
+
+
+def buildIpsecEndpoints(snapshot_site, allocated_ip_map):
+    """Build the cato_ipsec_site `ipsec` block from the account snapshot's
+    info.ipsec[] endpoints -- the publicCatoIp/destination data that the site
+    config / entityLookup does NOT carry, so a plain ipsec_sites export omits it
+    and the bulk module then can't satisfy the API's "publicCatoIp is mandatory
+    for IPv4 destination" rule. Each endpoint's catoIP is a PoP-allocated IP;
+    resolve it to that allocation's display name + description (cross-tenant
+    remap join key) since the Cato-side IP is reassigned per target tenant. An
+    endpoint with an IPv4 catoIP -> destination_type "IPv4" + public_cato_ip_name;
+    an endpoint with no catoIP -> "FQDN" (no publicCatoIp needed)."""
+    endpoints = ((snapshot_site or {}).get('infoSiteSnapshot') or {}).get('ipsec') or []
+    ipsec = {}
+    for ep in endpoints:
+        cato_ip = ep.get('catoIP') or ""
+        key = 'primary' if ep.get('isPrimary') else 'secondary'
+        alloc = allocated_ip_map.get(cato_ip) if cato_ip else None
+        ipsec[key] = {
+            "destination_type": "IPv4" if cato_ip else "FQDN",
+            "cato_ip": cato_ip,
+            "public_cato_ip_name": alloc.get("name") if alloc else None,
+            "public_cato_ip_description": alloc.get("description") if alloc else None,
+        }
+    return ipsec
+
 
 WBR_INDEX_PATTERN = re.compile(r'^WBR\d+$')
 

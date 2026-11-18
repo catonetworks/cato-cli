@@ -1,3 +1,38 @@
+# List all groups
+
+```bash
+# List all groups (first page of 50)
+catocli query groups groupList '{
+    "groupListInput": {
+        "paging": {
+            "from": 0,
+            "limit": 50
+        }
+    }
+}'
+```
+
+# Search groups by name
+
+```bash
+# Search groups by name (free-text match)
+catocli query groups groupList '{
+    "groupListInput": {
+        "filter": [
+            {
+                "freeText": {
+                    "search": "my-group"
+                }
+            }
+        ],
+        "paging": {
+            "from": 0,
+            "limit": 50
+        }
+    }
+}'
+```
+
 # Use raw query to get group list
 
 ```bash
@@ -10,3 +45,6 @@ catocli raw '{
      "operationName": "groupsGroupList"
 }'
 ```
+
+Note: the members of each group cannot be requested inside groupList; list a
+specific group's members separately with `catocli query groups group members`.

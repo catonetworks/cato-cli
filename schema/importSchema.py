@@ -252,8 +252,14 @@ def build_site_location_db():
         print("• Site location database build complete!")
 
 def run():
+    # Run from the schema/ directory so introspection.json and the ../models,
+    # ../queryPayloads, ../catocli outputs resolve regardless of the caller's CWD
+    # (mirrors schema/regenerate.py). Without this, importSchema.py only worked
+    # when invoked from inside schema/.
+    os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
     print("Starting continuous multi-threaded schema processing...")
-    
+
     # Cleanup previous build artifacts
     catolib.cleanupBuildArtifacts()
     
@@ -296,11 +302,17 @@ def run():
     print(f"   - Total types processed: {len(catolib.catoApiIntrospection['objects']) + len(catolib.catoApiIntrospection['enums']) + len(catolib.catoApiIntrospection['scalars'])}")
 
     # The weekly job refreshes reference data too. Callers that only need the
-    # GraphQL schema can explicitly opt out of these independent downloads.
-    if os.environ.get("SKIP_SITE_LOCATION_UPDATE", "").lower() not in {"1", "true", "yes"}:
+    # GraphQL schema can opt out via --schema-only or the SKIP_SITE_LOCATION_UPDATE
+    # env var (the geonames download is slow and rewrites the multi-MB
+    # siteLocation.db/.json every run).
+    skip_site_location = (
+        getattr(options, "schema_only", False)
+        or os.environ.get("SKIP_SITE_LOCATION_UPDATE", "").lower() in {"1", "true", "yes"}
+    )
+    if not skip_site_location:
         build_site_location_db()
     else:
-        print("• Skipping independent site location data refresh")
+        print("• Skipping site location data refresh (--schema-only / SKIP_SITE_LOCATION_UPDATE)")
 
 if __name__ == '__main__':
     run()

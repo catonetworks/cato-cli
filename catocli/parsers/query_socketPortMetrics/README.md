@@ -11,7 +11,7 @@ catocli query socketPortMetrics <json>
 
 catocli query socketPortMetrics --json-file query.socketPortMetrics.json
 
-catocli query socketPortMetrics '{"from":1,"limit":1,"socketPortMetricsDimension":[{"fieldName":"account_id"}],"socketPortMetricsFilter":[{"fieldName":"account_id","operator":"is","values":["string1","string2"]}],"socketPortMetricsMeasure":[{"aggType":"sum","alias":"string","fieldName":"account_id","trend":true}],"socketPortMetricsPostAggFilter":[{"aggType":"sum","filter":{"fieldName":"account_id","operator":"is","values":["string1","string2"]}}],"socketPortMetricsSort":[{"alias":"string","fieldName":"account_id","order":"asc"}],"timeFrame":"last.P1D"}'
+catocli query socketPortMetrics '{"from":1,"limit":1,"socketPortMetricsDimension":[{"fieldName":"account_id"}],"socketPortMetricsFilter":[[{"fieldName":"account_id","operator":"is","values":["string1","string2"]}]],"socketPortMetricsMeasure":[{"aggType":"sum","alias":"string","fieldName":"account_id","trend":true}],"socketPortMetricsPostAggFilter":[{"aggType":"sum","filter":{"fieldName":"account_id","operator":"is","values":["string1","string2"]}}],"socketPortMetricsSort":[{"alias":"string","fieldName":"account_id","order":"asc"}],"timeFrame":"last.P1D"}'
 
 catocli query socketPortMetrics '{
     "from": 1,
@@ -22,14 +22,16 @@ catocli query socketPortMetrics '{
         }
     ],
     "socketPortMetricsFilter": [
-        {
-            "fieldName": "account_id",
-            "operator": "is",
-            "values": [
-                "string1",
-                "string2"
-            ]
-        }
+        [
+            {
+                "fieldName": "account_id",
+                "operator": "is",
+                "values": [
+                    "string1",
+                    "string2"
+                ]
+            }
+        ]
     ],
     "socketPortMetricsMeasure": [
         {
@@ -203,7 +205,7 @@ Format: `"utc.YYYY-MM-{DD/HH:MM:SS--DD/HH:MM:SS}"`
 `from` [Int] - (required) N/A
 `limit` [Int] - (required) N/A
 `socketPortMetricsDimension` [SocketPortMetricsDimension[]] - (required) N/A
-`socketPortMetricsFilter` [SocketPortMetricsFilter[]] - (required) N/A
+`socketPortMetricsFilter` [SocketPortMetricsFilter[]] - (required) Defines groups of conditions. A row matches if it meets every condition in at least one group. Note: Use instead of legacy filters field.
 `socketPortMetricsMeasure` [SocketPortMetricsMeasure[]] - (required) N/A
 `socketPortMetricsPostAggFilter` [SocketPortMetricsPostAggFilter[]] - (required) N/A
 `socketPortMetricsSort` [SocketPortMetricsSort[]] - (required) N/A

@@ -240,20 +240,29 @@ class ProfileManager:
         return True, "SCIM credentials are valid"
     
     def migrate_from_environment(self):
-        """Migrate from environment variables to default profile if needed"""
+        """Seed a default profile from CATO_TOKEN / CATO_ACCOUNT_ID ONLY when no
+        credential file exists.
+
+        Policy: the credential file (~/.cato/credentials) is authoritative. When
+        it is present, the selected profile is the sole credential source and the
+        CATO_TOKEN / CATO_ACCOUNT_ID environment variables are NOT honored -- an
+        interactive shell exporting another tenant's values must never override a
+        profile-targeted call. Environment variables are honored only as a
+        bootstrap when there is no credential file at all.
+        """
+        if self.credentials_file.exists():
+            return False
+
         cato_token = os.getenv('CATO_TOKEN')
         account_id = os.getenv('CATO_ACCOUNT_ID')
-        
+
         if cato_token and account_id:
-            # Check if default profile already exists
-            default_config = self.get_profile_config('default')
-            if not default_config:
-                print("Migrating environment variables to default profile...")
-                self.create_profile('default', 
+            print("No credential file found; migrating environment variables to default profile...")
+            self.create_profile('default',
                                  endpoint=self.default_endpoint,
-                                 cato_token=cato_token, 
+                                 cato_token=cato_token,
                                  account_id=account_id)
-                return True
+            return True
         return False
 
 

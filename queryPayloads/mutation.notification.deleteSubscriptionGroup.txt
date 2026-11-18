@@ -4,60 +4,6 @@ mutation notificationDeleteSubscriptionGroup ( $accountId:ID! $subscriptionGroup
 			subscriptionGroup {
 				id
 				name
-				mailingList {
-					id
-					name
-					type
-					address
-					admin {
-						id
-						name
-					}
-					audit {
-						updatedTime
-						updatedBy {
-							id
-							name
-						}
-					}
-				}
-				integration {
-					webhookList {
-						id
-						name
-						enabled
-						url
-						requestMethod
-						auth {
-							authType
-							... on BasicAuth {
-								username
-							}
-							... on CustomHeaderAuth {
-								name
-							}
-							... on CustomHeadersAuth {
-								plainHeaders {
-									name
-									value
-								}
-								secretHeaders {
-									name
-								}
-							}
-						}
-						header {
-							name
-							value
-						}
-						body
-						responseMapping {
-							key
-							value
-						}
-						relatedWebhookId
-					}
-				}
 			}
 		}
 	}	

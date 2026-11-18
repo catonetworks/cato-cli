@@ -2091,7 +2091,7 @@ def _purge_users_from_ids(user_ids, args):
                 ]
             }
             
-            success, result = client.patch_user(user_id, account_id, source_id, patch_request)
+            success, result = client.patch_user(user_id, patch_request)
             
             disable_result = {
                 'user_id': user_id,
@@ -2137,7 +2137,7 @@ def _purge_users_from_ids(user_ids, args):
             print(f"  [{i}/{len(user_ids)}] Deleting user: {email} ({user_id})", file=sys.stderr)
         
         try:
-            success, result = client.delete_user(user_id, account_id, source_id)
+            success, result = client.delete_user(user_id)
             
             delete_result = {
                 'user_id': user_id,

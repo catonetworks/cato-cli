@@ -10,6 +10,7 @@ catocli query notification integration referenceBodyTemplateList -h
 catocli query notification integration referenceBodyTemplateList <json>
 
 catocli query notification integration referenceBodyTemplateList --json-file query.notification.integration.referenceBodyTemplateList.json
+```
 
 #### Operation Arguments for query.notification.integration.referenceBodyTemplateList ####
 

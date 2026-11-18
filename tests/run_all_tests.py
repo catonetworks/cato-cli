@@ -45,6 +45,14 @@ from test_utils import (
 PROJECT_ROOT = Path(__file__).parent.parent.absolute()
 TESTS_DIR = Path(__file__).parent.absolute()
 PYTHON_CMD = "python3" if sys.platform != "win32" else "python"
+REGRESSION_TEST_FILES = (
+    "test_generated_graphql_payloads.py",
+    "test_example_variables.py",
+    "test_generator_regressions.py",
+    "test_private_boolean_arguments.py",
+    "test_policy_export_import.py",
+    "test_policy_import_failures.py",
+)
 
 
 def set_tests_directory(directory: Path):
@@ -85,8 +93,10 @@ class AllTestsRunner:
         print(f"Running Validation Tests (pytest) - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
         print(f"{Colors.BLUE}{'='*70}{Colors.NC}")
         
-        # Run tests from this module - pytest will discover the test classes
+        # Include the standalone regression suites run by CI, regardless of --dir.
+        validation_dir = Path(__file__).resolve().parent
         pytest_args = ['-v', '--tb=short', __file__]
+        pytest_args.extend(str(validation_dir / name) for name in REGRESSION_TEST_FILES)
         
         if self.verbose:
             pytest_args.append('-vv')
@@ -565,6 +575,28 @@ class AllTestsRunner:
 try:
     import pytest
     
+    class TestValidationRunner:
+        """Keep local validation aligned with the standalone CI regressions."""
+
+        @pytest.mark.parametrize("exit_code", [0, 1, 2])
+        def test_regressions_are_collected_and_failures_propagate(self, monkeypatch, exit_code):
+            captured = []
+
+            def fake_main(args):
+                captured.extend(args)
+                return exit_code
+
+            monkeypatch.setattr(pytest, "main", fake_main)
+            runner = AllTestsRunner(verbose=True, stop_on_fail=True)
+            assert runner.run_validation_tests() == (exit_code == 0)
+            assert runner.validation_passed == (exit_code == 0)
+            validation_dir = Path(__file__).resolve().parent
+            assert __file__ in captured
+            for name in REGRESSION_TEST_FILES:
+                assert str(validation_dir / name) in captured
+            assert "-vv" in captured
+            assert "-x" in captured
+
     # Test classes from old run_validation_tests.py
     MODELS_DIR = PROJECT_ROOT / "models"
     QUERY_PAYLOADS_DIR = PROJECT_ROOT / "queryPayloads"

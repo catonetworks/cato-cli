@@ -10,6 +10,7 @@ catocli query rbac roleManagement permissionCatalog -h
 catocli query rbac roleManagement permissionCatalog <json>
 
 catocli query rbac roleManagement permissionCatalog --json-file query.rbac.roleManagement.permissionCatalog.json
+```
 
 #### Operation Arguments for query.rbac.roleManagement.permissionCatalog ####
 

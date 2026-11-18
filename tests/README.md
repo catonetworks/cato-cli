@@ -12,6 +12,11 @@ Structural validation and regression tests that verify:
 - Data integrity between models and payloads
 - Error handling and packaging
 
+The validation phase also runs the six standalone regression files listed in
+`REGRESSION_TEST_FILES` in `run_all_tests.py`, matching the explicit regression
+checks in `.github/workflows/test.yml`. Running with `--skip-validation` skips
+these regressions as well.
+
 ### 2. Generated Tests
 Auto-generated from `payloads_generated.json` to test all query operations with default payloads.
 
@@ -56,6 +61,9 @@ python3 run_all_tests.py --skip-generated
 
 # Skip custom tests
 python3 run_all_tests.py --skip-custom
+
+# Run validation and CI regression checks without live generated/custom API tests
+python3 run_all_tests.py --skip-generated --skip-custom
 
 # Verbose output
 python3 run_all_tests.py --verbose

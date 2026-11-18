@@ -32,5 +32,5 @@ catocli mutation policy ztnaAlwaysOn moveRule '{
 #### Operation Arguments for mutation.policy.ztnaAlwaysOn.moveRule ####
 
 `accountId` [ID] - (required) N/A
-`policyMoveRuleInput` [PolicyMoveRuleInput] - (required) N/A
-`ztnaAlwaysOnPolicyMutationInput` [ZtnaAlwaysOnPolicyMutationInput] - (required) N/A
+`policyMoveRuleInput` [PolicyMoveRuleInput] - (required) Parameters for this policy operation.
+`ztnaAlwaysOnPolicyMutationInput` [ZtnaAlwaysOnPolicyMutationInput] - (required) Parameters for this policy operation.

@@ -10,6 +10,7 @@ catocli query notification mailingListList -h
 catocli query notification mailingListList <json>
 
 catocli query notification mailingListList --json-file query.notification.mailingListList.json
+```
 
 #### Operation Arguments for query.notification.mailingListList ####
 

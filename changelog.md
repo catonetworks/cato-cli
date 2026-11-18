@@ -1,5 +1,22 @@
 # Changelog
 
+## 3.3.0 (2026-11-04)
+
+Adds bulk export for the `1-dependencies` object types and account-level notification objects, plus WiFi SSID support for socket sites.
+
+### New export commands
+
+- Added 9 new `catocli export` subcommands: `groups`, `global_ip_ranges`, `dhcp_relay_groups`, `custom_apps`, `fqdn_containers`, `ip_range_containers`, `mailing_lists`, `subscription_groups`, and `static_hosts`. `static_hosts` supports both JSON and CSV output (`-f json|csv`); the rest are JSON-only.
+- Added `--strip-ids` to all 9 new subcommands, omitting tenant-specific `id` fields (and, where applicable, nested member/admin/mailing-list/integration ids) so an export can be migrated into a different tenant.
+- Added repeatable `--names` selective-export filters to all 9 new subcommands (plus `--site-names` on `static_hosts`), matching exact names case-insensitively; a literal comma in a name is escaped as `\,`. Unknown names print a warning rather than failing, unless none of the requested names matched anything.
+- Added `--merge-into` to all 9 new subcommands plus `catocli export socket_sites`, upserting the exported object(s) by name into an existing JSON file instead of overwriting it - useful for pulling select objects from a second tenant (via `CATO_PROFILE`/`-accountID`) into this repo's `config_data/`. Rejected when combined with CSV output (`static_hosts -f csv` and `socket_sites -f csv`).
+- All exported lists (and nested lists, e.g. group members, container values, WiFi SSIDs) are now sorted deterministically, for stable diffs across scheduled exports.
+
+### Socket sites and WiFi
+
+- `catocli export socket_sites` now also exports `--names` and `--merge-into`, and additionally emits a per-site `wifi_ssids[]` array (SSID name, band, security mode, subnet, etc.) - PSKs/passkeys are never exported, since the API cannot return them. WiFi radio network interfaces (e.g. `WBR1`) are now excluded from `lan_interfaces`, since they're owned by the new `wifi_ssids` entry instead.
+- `catocli import socket_sites_to_tf` now also imports `cato_wifi_ssid` resources for any WiFi SSIDs present in the export, in addition to the existing sites/WAN/LAN/network-range imports.
+
 ## 3.2.1 (2026-10-15)
 
 Changes since 3.2.0, incorporating the query sub-operation and schema refresh in #28.

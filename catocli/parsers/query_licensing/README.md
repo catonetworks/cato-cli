@@ -10,6 +10,7 @@ catocli query licensing -h
 catocli query licensing <json>
 
 catocli query licensing --json-file query.licensing.json
+```
 
 #### Operation Arguments for query.licensing ####
 

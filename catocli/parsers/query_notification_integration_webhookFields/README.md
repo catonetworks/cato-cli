@@ -10,6 +10,7 @@ catocli query notification integration webhookFields -h
 catocli query notification integration webhookFields <json>
 
 catocli query notification integration webhookFields --json-file query.notification.integration.webhookFields.json
+```
 
 #### Operation Arguments for query.notification.integration.webhookFields ####
 

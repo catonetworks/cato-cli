@@ -54,12 +54,21 @@ catoApiSchema = {
 schema_lock = threading.RLock()
 file_write_lock = threading.RLock()
 
+# Config-driven field exclusions per operation path (read-only after import).
+# Maps a dotted operation name to field names stripped from its generated
+# selection (and therefore from its hoisted arguments), e.g.
+# {"query.groups.groupList": ["members"]} — see clisettings.json.
+operationFieldExclusions = loadJSON("../catocli/clisettings.json", __file__).get("operationFieldExclusions", {})
+
 def initParser():
     # Process options
     parser = OptionParser()
     parser.add_option("-P", dest="prettify", action="store_true", help="Prettify output")
     parser.add_option("-p", dest="print_entities", action="store_true", help="Print entity records")
     parser.add_option("-v", dest="verbose", action="store_true", help="Print debug info")
+    parser.add_option("--schema-only", dest="schema_only", action="store_true",
+                      help="importSchema.py: regenerate GraphQL artifacts only, skipping the "
+                           "geonames site-location DB rebuild (fast schema/exclusion refresh)")
     (options, args) = parser.parse_args()
     
     # Get credentials from profile
@@ -518,6 +527,36 @@ def getChildOperations(operationType, curType, parentType, parentPath, childOper
 # Import all other functions from the original catolib.py with thread-safety improvements
 # (I'm including the key functions here, but in practice you'd want to copy all functions)
 
+def buildGqlTypeString(kind, baseName):
+    """Reconstruct a GraphQL type signature from an ordered wrapper `kind` list.
+
+    `kind` is ordered outermost-to-innermost, e.g. a GraphQL type of
+    `[[AppStatsFilter!]!]` is represented as
+    ["LIST","NON_NULL","LIST","NON_NULL","INPUT_OBJECT"]. Walking the list:
+    LIST wraps the remainder in brackets, NON_NULL appends `!`, and the first
+    base kind (SCALAR/ENUM/INPUT_OBJECT/OBJECT/INTERFACE/UNION) terminates with
+    `baseName`. This correctly handles arbitrary nesting; the previous logic
+    only ever emitted a single `[...]` level and silently flattened nested
+    lists (breaking appStats/eventsTimeSeries advancedFilters).
+    """
+    if not isinstance(kind, list):
+        # Legacy scalar form: a bare "NON_NULL" string means required.
+        return baseName + ("!" if kind == "NON_NULL" else "")
+
+    def build(i):
+        if i >= len(kind):
+            return baseName
+        k = kind[i]
+        if k == "LIST":
+            return "[" + build(i + 1) + "]"
+        if k == "NON_NULL":
+            return build(i + 1) + "!"
+        # Base type kind reached (SCALAR/ENUM/INPUT_OBJECT/OBJECT/...).
+        return baseName
+
+    return build(0)
+
+
 def getNestedArgDefinitions(argsAry, parentParamPath, childOperations, parentFields):
     newArgsList = {}
     for arg in argsAry:
@@ -532,17 +571,12 @@ def getNestedArgDefinitions(argsAry, parentParamPath, childOperations, parentFie
             arg["required"] = True if arg["type"]["kind"][0] == "NON_NULL" else False
         else:
             arg["required"] = True if arg["type"]["kind"] == "NON_NULL" else False
-        required1 = "!" if arg["required"] else ""
-        required2 = "!" if "NON_NULL" in arg["type"]["kind"][1:] else ""
         if "SCALAR" in arg["type"]["kind"] or "ENUM" in arg["type"]["kind"]:
             arg["varName"] = renderCamelCase(arg["name"])
         else:
             arg["varName"] = renderCamelCase(arg["type"]["name"])
         arg["responseStr"] = arg["name"] + ":$" + arg["varName"] + " "
-        if "LIST" in arg["type"]["kind"]:
-            arg["requestStr"] = "$" + arg["varName"] + ":" + "[" + arg["type"]["name"] + required2 + "]" + required1 + " "
-        else:
-            arg["requestStr"] = "$" + arg["varName"] + ":" + arg["type"]["name"] + required1 + " "
+        arg["requestStr"] = "$" + arg["varName"] + ":" + buildGqlTypeString(arg["type"]["kind"], arg["type"]["name"]) + " "
         newArgsList[arg["id_str"]] = arg
     return newArgsList
 
@@ -1226,7 +1260,10 @@ catocli {operationCmd} '{example_json}'
 catocli {operationCmd} '{example_json_pretty}'
 ```
 """
-                
+                else:
+                    # No generated example (e.g. no-arg operation) — still close the code fence
+                    readmeStr += "```\n"
+
                 # Note: GitHub links for advanced examples are now handled dynamically in the help system
                 
                 # Check for example file and insert its content before Operation Arguments
@@ -1282,6 +1319,8 @@ catocli {operationCmd} '{example_json_pretty}'
                 with file_write_lock:
                     writeFile(parserPath+"/README.md",readmeStr)
             else:
+                # Intermediate (non-leaf) node — close the usage code fence before writing
+                readmeStr += "```\n"
                 parserPath = "../catocli/parsers/"+parserName
                 if not os.path.exists(parserPath):
                     os.makedirs(parserPath)
@@ -1386,9 +1425,15 @@ def should_exclude_field(field_name, field_type, operation_path, parent_path):
     Determine if a field should be excluded from model generation for query.policy and mutation.policy operations.
     
     Excludes:
+    - any field listed for the operation in the operationFieldExclusions config
+      (clisettings.json), e.g. members from query.groups.groupList
     - subPolicyId field (type: ID) from rules.rule.section and sections.section
     - access field from sections with EntityAccess type containing action field (enum: RBACAction)
     """
+    # Config-driven exclusions (exact operation-path match, any nesting depth)
+    if operation_path and field_name in operationFieldExclusions.get(operation_path, ()):
+        return True
+
     # Only apply filtering to query.policy and mutation.policy operations
     if not operation_path or not (operation_path.startswith("query.policy") or operation_path.startswith("mutation.policy")):
         return False
@@ -1443,20 +1488,14 @@ def getNestedFieldDefinitions(fieldsAry, parentParamPath, childOperations, paren
         else:
             field["required"] = True if field["type"]["kind"] == "NON_NULL" else False
         
-        required1 = "!" if field["required"] else ""
-        required2 = "!" if field["type"]["kind"][1:] == "NON_NULL" else ""
-        
         if "SCALAR" in field["type"]["kind"] or "ENUM" in field["type"]["kind"]:
             field["varName"] = renderCamelCase(field["name"])
         else:
             field["varName"] = renderCamelCase(field["type"]["name"])
-        
+
         field["responseStr"] = field["name"] + ":$" + field["varName"] + " "
-        
-        if "LIST" in field["type"]["kind"]:
-            field["requestStr"] = "$" + field["varName"] + ":" + "[" + field["type"]["name"] + required2 + "]" + required1 + " "
-        else:
-            field["requestStr"] = "$" + field["varName"] + ":" + field["type"]["name"] + required1 + " "
+
+        field["requestStr"] = "$" + field["varName"] + ":" + buildGqlTypeString(field["type"]["kind"], field["type"]["name"]) + " "
         
         if "args" in field:
             field["args"] = getNestedArgDefinitions(field["args"], field["name"], childOperations, parentFields)
@@ -1946,7 +1985,10 @@ catocli {subOperationCmd} '{example_json_pretty}'
             except:
                 # If example file doesn't exist, continue without adding example content
                 pass
-        
+        else:
+            # No generated example (e.g. no-arg operation) — still close the code fence
+            readmeStr += "```\n"
+
         if not os.path.exists(parserPath):
             os.makedirs(parserPath)
         with file_write_lock:

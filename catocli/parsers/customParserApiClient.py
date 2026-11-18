@@ -48,6 +48,7 @@ from catocli.Utils.graphql_utils import (
 )
 from catocli.Utils.cliutils import strip_json_comments
 from catocli.Utils.profile_manager import get_profile_manager
+from catocli.Utils.waf_detect import call_with_waf_retry, response_text_if_not_dict
 
 class CustomAPIClient:
     """Enhanced API Client with custom query generation capabilities"""
@@ -334,8 +335,20 @@ def createRequest(args, configuration):
             return None
         else:
             try:
-                response = instance.call_api(body, dict(params, _upload_model=operation))
-                
+                # Detect/retry an Imperva/Incapsula WAF challenge page here
+                # (shared with every other call path via catocli.Utils.
+                # waf_detect) instead of letting a raw HTML challenge page
+                # propagate up as this call's ApiException message - see
+                # call_with_waf_retry's docstring for the retry schedule
+                # and why it re-raises a plain ApiException (not
+                # WafChallengeError) once exhausted.
+                response = call_with_waf_retry(
+                    lambda: instance.call_api(body, dict(params, _upload_model=operation)),
+                    waf_payload_from_result=lambda r: response_text_if_not_dict(
+                        r[0] if isinstance(r, (list, tuple)) and r else r
+                    ),
+                )
+
                 # Extract and display X-Trace-ID if trace_id flag is enabled
                 trace_id_value = None
                 if params.get('trace_id', False) and response:

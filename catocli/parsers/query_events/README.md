@@ -11,7 +11,7 @@ catocli query events <json>
 
 catocli query events --json-file query.events.json
 
-catocli query events '{"eventsDimension":[{"fieldName":"access_method"}],"eventsFilter":[{"fieldName":"access_method","operator":"is","values":["string1","string2"]}],"eventsMeasure":[{"aggType":"sum","alias":"string","fieldName":"access_method","trend":true}],"eventsPostAggFilter":[{"aggType":"sum","filter":{"fieldName":"access_method","operator":"is","values":["string1","string2"]}}],"eventsSort":[{"alias":"string","fieldName":"access_method","order":"asc"}],"from":1,"includeEmptyDimension":true,"limit":1,"timeFrame":"last.P1D"}'
+catocli query events '{"eventsDimension":[{"fieldName":"access_method"}],"eventsFilter":[[{"fieldName":"access_method","operator":"is","values":["string1","string2"]}]],"eventsMeasure":[{"aggType":"sum","alias":"string","fieldName":"access_method","trend":true}],"eventsPostAggFilter":[{"aggType":"sum","filter":{"fieldName":"access_method","operator":"is","values":["string1","string2"]}}],"eventsSort":[{"alias":"string","fieldName":"access_method","order":"asc"}],"from":1,"includeEmptyDimension":true,"limit":1,"timeFrame":"last.P1D"}'
 
 catocli query events '{
     "eventsDimension": [
@@ -20,14 +20,16 @@ catocli query events '{
         }
     ],
     "eventsFilter": [
-        {
-            "fieldName": "access_method",
-            "operator": "is",
-            "values": [
-                "string1",
-                "string2"
-            ]
-        }
+        [
+            {
+                "fieldName": "access_method",
+                "operator": "is",
+                "values": [
+                    "string1",
+                    "string2"
+                ]
+            }
+        ]
     ],
     "eventsMeasure": [
         {
@@ -89,7 +91,7 @@ Format: `"utc.YYYY-MM-{DD/HH:MM:SS--DD/HH:MM:SS}"`
 
 `accountID` [ID] - (required) Account ID
 `eventsDimension` [EventsDimension[]] - (required) N/A
-`eventsFilter` [EventsFilter[]] - (required) N/A
+`eventsFilter` [EventsFilter[]] - (required) Defines groups of conditions. A row matches if it meets every condition in at least one group. Note: Use instead of legacy filters field.
 `eventsMeasure` [EventsMeasure[]] - (required) N/A
 `eventsPostAggFilter` [EventsPostAggFilter[]] - (required) N/A
 `eventsSort` [EventsSort[]] - (required) N/A

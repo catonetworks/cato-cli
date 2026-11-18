@@ -94,7 +94,7 @@
                                     "isDeprecated": false,
                                     "name": "items",
                                     "path": "subscriptionGroupList.items",
-                                    "requestStr": "$subscriptionGroup:[SubscriptionGroup]! ",
+                                    "requestStr": "$subscriptionGroup:[SubscriptionGroup!]! ",
                                     "required": true,
                                     "responseStr": "items:$subscriptionGroup ",
                                     "type": {
@@ -147,7 +147,7 @@
                                                                     "isDeprecated": false,
                                                                     "name": "webhookList",
                                                                     "path": "subscriptionGroupList.items.integration.webhookList",
-                                                                    "requestStr": "$webhook:[Webhook]! ",
+                                                                    "requestStr": "$webhook:[Webhook!]! ",
                                                                     "required": true,
                                                                     "responseStr": "webhookList:$webhook ",
                                                                     "type": {
@@ -186,6 +186,12 @@
                                                                                                         "definition": {
                                                                                                             "description": null,
                                                                                                             "enumValues": [
+                                                                                                                {
+                                                                                                                    "deprecationReason": null,
+                                                                                                                    "description": null,
+                                                                                                                    "isDeprecated": false,
+                                                                                                                    "name": "OAUTH2_CLIENT_CREDENTIALS"
+                                                                                                                },
                                                                                                                 {
                                                                                                                     "deprecationReason": null,
                                                                                                                     "description": null,
@@ -326,7 +332,7 @@
                                                                                                             "isDeprecated": false,
                                                                                                             "name": "plainHeaders",
                                                                                                             "path": "subscriptionGroupList.items.integration.webhookList.auth.CustomHeadersAuth.plainHeaders",
-                                                                                                            "requestStr": "$plainHeaderEntry:[PlainHeaderEntry]! ",
+                                                                                                            "requestStr": "$plainHeaderEntry:[PlainHeaderEntry!]! ",
                                                                                                             "required": true,
                                                                                                             "responseStr": "plainHeaders:$plainHeaderEntry ",
                                                                                                             "type": {
@@ -403,7 +409,7 @@
                                                                                                             "isDeprecated": false,
                                                                                                             "name": "secretHeaders",
                                                                                                             "path": "subscriptionGroupList.items.integration.webhookList.auth.CustomHeadersAuth.secretHeaders",
-                                                                                                            "requestStr": "$secretHeaderEntry:[SecretHeaderEntry]! ",
+                                                                                                            "requestStr": "$secretHeaderEntry:[SecretHeaderEntry!]! ",
                                                                                                             "required": true,
                                                                                                             "responseStr": "secretHeaders:$secretHeaderEntry ",
                                                                                                             "type": {
@@ -466,6 +472,79 @@
                                                                                                     "interfaces": {},
                                                                                                     "kind": "OBJECT",
                                                                                                     "name": "NoAuth",
+                                                                                                    "possibleTypes": null
+                                                                                                },
+                                                                                                "OAuth2ClientCredentialsAuth": {
+                                                                                                    "description": "OAuth 2.0 client credentials authentication.\nThe client secret is never returned.",
+                                                                                                    "enumValues": null,
+                                                                                                    "fields": {
+                                                                                                        "authUrl": {
+                                                                                                            "args": {},
+                                                                                                            "deprecationReason": null,
+                                                                                                            "description": "The token endpoint of the OAuth authorization server.",
+                                                                                                            "id_str": "subscriptionGroupList___items___integration___webhookList___auth___OAuth2ClientCredentialsAuth___authUrl",
+                                                                                                            "isDeprecated": false,
+                                                                                                            "name": "authUrl",
+                                                                                                            "path": "subscriptionGroupList.items.integration.webhookList.auth.OAuth2ClientCredentialsAuth.authUrl",
+                                                                                                            "requestStr": "$authUrl:Url! ",
+                                                                                                            "required": true,
+                                                                                                            "responseStr": "authUrl:$authUrl ",
+                                                                                                            "type": {
+                                                                                                                "kind": [
+                                                                                                                    "NON_NULL",
+                                                                                                                    "SCALAR"
+                                                                                                                ],
+                                                                                                                "name": "Url",
+                                                                                                                "non_null": false
+                                                                                                            },
+                                                                                                            "varName": "authUrl"
+                                                                                                        },
+                                                                                                        "clientId": {
+                                                                                                            "args": {},
+                                                                                                            "deprecationReason": null,
+                                                                                                            "description": "The OAuth client id.",
+                                                                                                            "id_str": "subscriptionGroupList___items___integration___webhookList___auth___OAuth2ClientCredentialsAuth___clientId",
+                                                                                                            "isDeprecated": false,
+                                                                                                            "name": "clientId",
+                                                                                                            "path": "subscriptionGroupList.items.integration.webhookList.auth.OAuth2ClientCredentialsAuth.clientId",
+                                                                                                            "requestStr": "$clientId:String! ",
+                                                                                                            "required": true,
+                                                                                                            "responseStr": "clientId:$clientId ",
+                                                                                                            "type": {
+                                                                                                                "kind": [
+                                                                                                                    "NON_NULL",
+                                                                                                                    "SCALAR"
+                                                                                                                ],
+                                                                                                                "name": "String",
+                                                                                                                "non_null": false
+                                                                                                            },
+                                                                                                            "varName": "clientId"
+                                                                                                        },
+                                                                                                        "scope": {
+                                                                                                            "args": {},
+                                                                                                            "deprecationReason": null,
+                                                                                                            "description": "Optional scopes requested with the access token, separated by spaces.",
+                                                                                                            "id_str": "subscriptionGroupList___items___integration___webhookList___auth___OAuth2ClientCredentialsAuth___scope",
+                                                                                                            "isDeprecated": false,
+                                                                                                            "name": "scope",
+                                                                                                            "path": "subscriptionGroupList.items.integration.webhookList.auth.OAuth2ClientCredentialsAuth.scope",
+                                                                                                            "requestStr": "$scope:String ",
+                                                                                                            "required": false,
+                                                                                                            "responseStr": "scope:$scope ",
+                                                                                                            "type": {
+                                                                                                                "kind": [
+                                                                                                                    "SCALAR"
+                                                                                                                ],
+                                                                                                                "name": "String",
+                                                                                                                "non_null": false
+                                                                                                            },
+                                                                                                            "varName": "scope"
+                                                                                                        }
+                                                                                                    },
+                                                                                                    "inputFields": null,
+                                                                                                    "interfaces": {},
+                                                                                                    "kind": "OBJECT",
+                                                                                                    "name": "OAuth2ClientCredentialsAuth",
                                                                                                     "possibleTypes": null
                                                                                                 }
                                                                                             }
@@ -530,7 +609,7 @@
                                                                                     "isDeprecated": false,
                                                                                     "name": "header",
                                                                                     "path": "subscriptionGroupList.items.integration.webhookList.header",
-                                                                                    "requestStr": "$httpHeaderNameValue:[HttpHeaderNameValue]! ",
+                                                                                    "requestStr": "$httpHeaderNameValue:[HttpHeaderNameValue!]! ",
                                                                                     "required": true,
                                                                                     "responseStr": "header:$httpHeaderNameValue ",
                                                                                     "type": {
@@ -714,7 +793,7 @@
                                                                                     "isDeprecated": false,
                                                                                     "name": "responseMapping",
                                                                                     "path": "subscriptionGroupList.items.integration.webhookList.responseMapping",
-                                                                                    "requestStr": "$webhookResponseMapEntry:[WebhookResponseMapEntry]! ",
+                                                                                    "requestStr": "$webhookResponseMapEntry:[WebhookResponseMapEntry!]! ",
                                                                                     "required": true,
                                                                                     "responseStr": "responseMapping:$webhookResponseMapEntry ",
                                                                                     "type": {
@@ -848,7 +927,7 @@
                                                     "isDeprecated": false,
                                                     "name": "mailingList",
                                                     "path": "subscriptionGroupList.items.mailingList",
-                                                    "requestStr": "$mailingList:[MailingList]! ",
+                                                    "requestStr": "$mailingList:[MailingList!]! ",
                                                     "required": true,
                                                     "responseStr": "mailingList:$mailingList ",
                                                     "type": {
@@ -864,7 +943,7 @@
                                                                     "isDeprecated": false,
                                                                     "name": "address",
                                                                     "path": "subscriptionGroupList.items.mailingList.address",
-                                                                    "requestStr": "$address:[Email]! ",
+                                                                    "requestStr": "$address:[Email!]! ",
                                                                     "required": true,
                                                                     "responseStr": "address:$address ",
                                                                     "type": {
@@ -887,7 +966,7 @@
                                                                     "isDeprecated": false,
                                                                     "name": "admin",
                                                                     "path": "subscriptionGroupList.items.mailingList.admin",
-                                                                    "requestStr": "$adminRef:[AdminRef]! ",
+                                                                    "requestStr": "$adminRef:[AdminRef!]! ",
                                                                     "required": true,
                                                                     "responseStr": "admin:$adminRef ",
                                                                     "type": {
@@ -1060,6 +1139,16 @@
                                                                                                     "interfaces": {},
                                                                                                     "kind": "OBJECT",
                                                                                                     "name": "ApiKeyRef",
+                                                                                                    "possibleTypes": null
+                                                                                                },
+                                                                                                "SplitTunnelProfileSystemActorRef": {
+                                                                                                    "description": "Cato as the system actor that publishes ready-made templates.",
+                                                                                                    "enumValues": null,
+                                                                                                    "fields": {},
+                                                                                                    "inputFields": null,
+                                                                                                    "interfaces": {},
+                                                                                                    "kind": "OBJECT",
+                                                                                                    "name": "SplitTunnelProfileSystemActorRef",
                                                                                                     "possibleTypes": null
                                                                                                 }
                                                                                             }

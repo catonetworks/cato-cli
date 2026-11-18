@@ -158,20 +158,29 @@ class NamespaceTest(unittest.TestCase):
                     self.assertEqual([segment], [field.name.value for field in selection.selections])
                     selection = selection.selections[0].selection_set
 
-    def test_group_list_without_and_with_member_details(self):
-        operation = model("query.groups.groupList")
-        self.assertFalse(operation["operationArgs"]["groupMembersListInput"]["requiredForOperation"])
-        for include_members in (False, True):
-            with self.subTest(include_members=include_members):
-                variables = {"accountId": "123"}
-                if include_members:
-                    variables["groupMembersListInput"] = catolib.generateExampleVariables(operation)["groupMembersListInput"]
-                self.assertTrue(validateArgs(variables, operation)[0])
-                payload = generateGraphqlPayload(variables, copy.deepcopy(operation), "query.groups.groupList",
-                    renderArgsAndFields_func=lambda r, v, o, d, n, i, a: renderArgsAndFields(r, v, o, d, n, i, a, None))
-                self.assertEqual([], validate(self.schema, parse(payload["query"])))
-                self.assertEqual(include_members, "members (" in payload["query"])
-                self.assertEqual(include_members, "$groupMembersListInput" in payload["query"])
+    def test_group_list_excludes_member_details(self):
+        name = "query.groups.groupList"
+        operation = model(name)
+        self.assertNotIn("groupMembersListInput", operation["operationArgs"])
+        variables = {"accountId": "123"}
+        self.assertTrue(validateArgs(variables, operation)[0])
+        payload = generateGraphqlPayload(variables, operation, name,
+            renderArgsAndFields_func=lambda r, v, o, d, n, i, a: renderArgsAndFields(r, v, o, d, n, i, a, None))
+        self.assertEqual([], validate(self.schema, parse(payload["query"])))
+        self.assertNotIn("members (", payload["query"])
+        self.assertNotIn("$groupMembersListInput", payload["query"])
+
+    def test_group_members_query_includes_member_details(self):
+        name = "query.groups.group.members"
+        operation = model(name)
+        variables = dict(catolib.generateExampleVariables(operation), accountId="123")
+        self.assertIn("groupMembersListInput", variables)
+        self.assertTrue(validateArgs(variables, operation)[0])
+        payload = generateGraphqlPayload(variables, operation, name,
+            renderArgsAndFields_func=lambda r, v, o, d, n, i, a: renderArgsAndFields(r, v, o, d, n, i, a, None))
+        self.assertEqual([], validate(self.schema, parse(payload["query"])))
+        self.assertIn("members (", payload["query"])
+        self.assertIn("$groupMembersListInput", payload["query"])
 
     def test_group_mutations_do_not_require_returned_member_details(self):
         for action in ("createGroup", "updateGroup", "deleteGroup"):

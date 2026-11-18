@@ -1,0 +1,48 @@
+mutation notificationIntegrationCreateWebhook ( $accountId:ID! $createWebhookInput:CreateWebhookInput!) {
+	notification ( accountId:$accountId ) {
+		integration {
+			createWebhook ( input:$createWebhookInput   ) {
+				webhook {
+					id
+					name
+					enabled
+					url
+					requestMethod
+					auth {
+						authType
+						... on BasicAuth {
+							username
+						}
+						... on CustomHeaderAuth {
+							name
+						}
+						... on CustomHeadersAuth {
+							plainHeaders {
+								name
+								value
+							}
+							secretHeaders {
+								name
+							}
+						}
+						... on OAuth2ClientCredentialsAuth {
+							clientId
+							authUrl
+							scope
+						}
+					}
+					header {
+						name
+						value
+					}
+					body
+					responseMapping {
+						key
+						value
+					}
+					relatedWebhookId
+				}
+			}
+		}
+	}	
+}

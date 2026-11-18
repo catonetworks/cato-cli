@@ -1,4 +1,4 @@
-query groupsGroupList ( $accountId:ID! $groupListInput:GroupListInput $groupMembersListInput:GroupMembersListInput!) {
+query groupsGroupList ( $accountId:ID! $groupListInput:GroupListInput) {
 	groups ( accountId:$accountId ) {
 		groupList ( input:$groupListInput  )  {
 			items {
@@ -10,16 +10,6 @@ query groupsGroupList ( $accountId:ID! $groupListInput:GroupListInput $groupMemb
 					updatedBy {
 						id
 						name
-					}
-				}
-				members ( input:$groupMembersListInput  )  {
-					items {
-						id
-						name
-						type
-					}
-					paging {
-						total
 					}
 				}
 				membersCount

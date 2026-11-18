@@ -567,7 +567,7 @@
                                                     "isDeprecated": false,
                                                     "name": "errors",
                                                     "path": "applicationControl.createPolicyRevision.errors",
-                                                    "requestStr": "$policyMutationError:[PolicyMutationError]! ",
+                                                    "requestStr": "$policyMutationError:[PolicyMutationError!]! ",
                                                     "required": true,
                                                     "responseStr": "errors:$policyMutationError ",
                                                     "type": {
@@ -988,7 +988,7 @@
                                                                     "isDeprecated": false,
                                                                     "name": "rules",
                                                                     "path": "applicationControl.createPolicyRevision.policy.rules",
-                                                                    "requestStr": "$applicationControlRulePayload:[ApplicationControlRulePayload]! ",
+                                                                    "requestStr": "$applicationControlRulePayload:[ApplicationControlRulePayload!]! ",
                                                                     "required": true,
                                                                     "responseStr": "rules:$applicationControlRulePayload ",
                                                                     "type": {
@@ -1206,7 +1206,7 @@
                                                                                     "isDeprecated": false,
                                                                                     "name": "properties",
                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.properties",
-                                                                                    "requestStr": "$properties:[PolicyElementPropertiesEnum]! ",
+                                                                                    "requestStr": "$properties:[PolicyElementPropertiesEnum!]! ",
                                                                                     "required": true,
                                                                                     "responseStr": "properties:$properties ",
                                                                                     "type": {
@@ -1315,7 +1315,7 @@
                                                                                                                     "isDeprecated": false,
                                                                                                                     "name": "accessMethod",
                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.applicationRule.accessMethod",
-                                                                                                                    "requestStr": "$applicationControlAccessMethod:[ApplicationControlAccessMethod]! ",
+                                                                                                                    "requestStr": "$applicationControlAccessMethod:[ApplicationControlAccessMethod!]! ",
                                                                                                                     "required": true,
                                                                                                                     "responseStr": "accessMethod:$applicationControlAccessMethod ",
                                                                                                                     "type": {
@@ -1619,7 +1619,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "userNotification",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.applicationRule.actionConfig.userNotification",
-                                                                                                                                    "requestStr": "$userNotificationTemplateRef:[UserNotificationTemplateRef]! ",
+                                                                                                                                    "requestStr": "$userNotificationTemplateRef:[UserNotificationTemplateRef!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "userNotification:$userNotificationTemplateRef ",
                                                                                                                                     "type": {
@@ -1877,7 +1877,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "applicationType",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.applicationRule.application.applicationType",
-                                                                                                                                    "requestStr": "$applicationType:[ApplicationType]! ",
+                                                                                                                                    "requestStr": "$applicationType:[ApplicationType!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "applicationType:$applicationType ",
                                                                                                                                     "type": {
@@ -1998,10 +1998,10 @@
                                                                                                                                 },
                                                                                                                                 "customCategory": {
                                                                                                                                     "args": {},
-                                                                                                                                    "deprecationReason": null,
+                                                                                                                                    "deprecationReason": "Use an advanced group instead.",
                                                                                                                                     "description": "Custom Categories \u2013 Groups of objects such as predefined and custom applications, predefined and custom services, domains, FQDNs etc.",
                                                                                                                                     "id_str": "applicationControl___createPolicyRevision___policy___rules___rule___applicationRule___application___customCategory",
-                                                                                                                                    "isDeprecated": false,
+                                                                                                                                    "isDeprecated": true,
                                                                                                                                     "name": "customCategory",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.applicationRule.application.customCategory",
                                                                                                                                     "requestStr": "$customCategoryRef:CustomCategoryRef ",
@@ -2069,6 +2069,80 @@
                                                                                                                                         "non_null": false
                                                                                                                                     },
                                                                                                                                     "varName": "customCategoryRef"
+                                                                                                                                },
+                                                                                                                                "group": {
+                                                                                                                                    "args": {},
+                                                                                                                                    "deprecationReason": null,
+                                                                                                                                    "description": "Advanced group containing supported application or destination members",
+                                                                                                                                    "id_str": "applicationControl___createPolicyRevision___policy___rules___rule___applicationRule___application___group",
+                                                                                                                                    "isDeprecated": false,
+                                                                                                                                    "name": "group",
+                                                                                                                                    "path": "applicationControl.createPolicyRevision.policy.rules.rule.applicationRule.application.group",
+                                                                                                                                    "requestStr": "$groupRef:GroupRef ",
+                                                                                                                                    "required": false,
+                                                                                                                                    "responseStr": "group:$groupRef ",
+                                                                                                                                    "type": {
+                                                                                                                                        "definition": {
+                                                                                                                                            "description": "A reference identifying the Group object. ID: Unique Group Identifier, Name: The Group Name",
+                                                                                                                                            "enumValues": null,
+                                                                                                                                            "fields": {
+                                                                                                                                                "id": {
+                                                                                                                                                    "args": {},
+                                                                                                                                                    "deprecationReason": null,
+                                                                                                                                                    "description": null,
+                                                                                                                                                    "id_str": "applicationControl___createPolicyRevision___policy___rules___rule___applicationRule___application___group___id",
+                                                                                                                                                    "isDeprecated": false,
+                                                                                                                                                    "name": "id",
+                                                                                                                                                    "path": "applicationControl.createPolicyRevision.policy.rules.rule.applicationRule.application.group.id",
+                                                                                                                                                    "requestStr": "$id:ID! ",
+                                                                                                                                                    "required": true,
+                                                                                                                                                    "responseStr": "id:$id ",
+                                                                                                                                                    "type": {
+                                                                                                                                                        "kind": [
+                                                                                                                                                            "NON_NULL",
+                                                                                                                                                            "SCALAR"
+                                                                                                                                                        ],
+                                                                                                                                                        "name": "ID",
+                                                                                                                                                        "non_null": false
+                                                                                                                                                    },
+                                                                                                                                                    "varName": "id"
+                                                                                                                                                },
+                                                                                                                                                "name": {
+                                                                                                                                                    "args": {},
+                                                                                                                                                    "deprecationReason": null,
+                                                                                                                                                    "description": null,
+                                                                                                                                                    "id_str": "applicationControl___createPolicyRevision___policy___rules___rule___applicationRule___application___group___name",
+                                                                                                                                                    "isDeprecated": false,
+                                                                                                                                                    "name": "name",
+                                                                                                                                                    "path": "applicationControl.createPolicyRevision.policy.rules.rule.applicationRule.application.group.name",
+                                                                                                                                                    "requestStr": "$name:String! ",
+                                                                                                                                                    "required": true,
+                                                                                                                                                    "responseStr": "name:$name ",
+                                                                                                                                                    "type": {
+                                                                                                                                                        "kind": [
+                                                                                                                                                            "NON_NULL",
+                                                                                                                                                            "SCALAR"
+                                                                                                                                                        ],
+                                                                                                                                                        "name": "String",
+                                                                                                                                                        "non_null": false
+                                                                                                                                                    },
+                                                                                                                                                    "varName": "name"
+                                                                                                                                                }
+                                                                                                                                            },
+                                                                                                                                            "inputFields": null,
+                                                                                                                                            "interfaces": {},
+                                                                                                                                            "kind": "OBJECT",
+                                                                                                                                            "name": "GroupRef",
+                                                                                                                                            "possibleTypes": null
+                                                                                                                                        },
+                                                                                                                                        "indexType": "object",
+                                                                                                                                        "kind": [
+                                                                                                                                            "OBJECT"
+                                                                                                                                        ],
+                                                                                                                                        "name": "GroupRef",
+                                                                                                                                        "non_null": false
+                                                                                                                                    },
+                                                                                                                                    "varName": "groupRef"
                                                                                                                                 },
                                                                                                                                 "sanctionedAppsCategory": {
                                                                                                                                     "args": {},
@@ -2169,7 +2243,7 @@
                                                                                                                     "isDeprecated": false,
                                                                                                                     "name": "applicationActivity",
                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.applicationRule.applicationActivity",
-                                                                                                                    "requestStr": "$applicationControlActivity:[ApplicationControlActivity]! ",
+                                                                                                                    "requestStr": "$applicationControlActivity:[ApplicationControlActivity!]! ",
                                                                                                                     "required": true,
                                                                                                                     "responseStr": "applicationActivity:$applicationControlActivity ",
                                                                                                                     "type": {
@@ -2570,7 +2644,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "applicationTenant",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.applicationRule.applicationContext.applicationTenant",
-                                                                                                                                    "requestStr": "$applicationControlTenant:[ApplicationControlTenant]! ",
+                                                                                                                                    "requestStr": "$applicationControlTenant:[ApplicationControlTenant!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "applicationTenant:$applicationControlTenant ",
                                                                                                                                     "type": {
@@ -2794,7 +2868,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "aiRisk",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.applicationRule.applicationCriteria.aiRisk",
-                                                                                                                                    "requestStr": "$aiRisk:[ApplicationControlAiRisk]! ",
+                                                                                                                                    "requestStr": "$aiRisk:[ApplicationControlAiRisk!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "aiRisk:$aiRisk ",
                                                                                                                                     "type": {
@@ -3819,7 +3893,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "originCountry",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.applicationRule.applicationCriteria.originCountry",
-                                                                                                                                    "requestStr": "$countryRef:[CountryRef]! ",
+                                                                                                                                    "requestStr": "$countryRef:[CountryRef!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "originCountry:$countryRef ",
                                                                                                                                     "type": {
@@ -3896,7 +3970,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "risk",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.applicationRule.applicationCriteria.risk",
-                                                                                                                                    "requestStr": "$applicationControlRiskCriteria:[ApplicationControlRiskCriteria]! ",
+                                                                                                                                    "requestStr": "$applicationControlRiskCriteria:[ApplicationControlRiskCriteria!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "risk:$applicationControlRiskCriteria ",
                                                                                                                                     "type": {
@@ -4077,7 +4151,7 @@
                                                                                                                     "isDeprecated": false,
                                                                                                                     "name": "device",
                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.applicationRule.device",
-                                                                                                                    "requestStr": "$deviceProfileRef:[DeviceProfileRef]! ",
+                                                                                                                    "requestStr": "$deviceProfileRef:[DeviceProfileRef!]! ",
                                                                                                                     "required": true,
                                                                                                                     "responseStr": "device:$deviceProfileRef ",
                                                                                                                     "type": {
@@ -4243,7 +4317,7 @@
                                                                                                                                                     "isDeprecated": false,
                                                                                                                                                     "name": "days",
                                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.applicationRule.schedule.customRecurring.days",
-                                                                                                                                                    "requestStr": "$days:[DayOfWeek]! ",
+                                                                                                                                                    "requestStr": "$days:[DayOfWeek!]! ",
                                                                                                                                                     "required": true,
                                                                                                                                                     "responseStr": "days:$days ",
                                                                                                                                                     "type": {
@@ -4536,7 +4610,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "country",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.applicationRule.source.country",
-                                                                                                                                    "requestStr": "$countryRef:[CountryRef]! ",
+                                                                                                                                    "requestStr": "$countryRef:[CountryRef!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "country:$countryRef ",
                                                                                                                                     "type": {
@@ -4613,7 +4687,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "floatingSubnet",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.applicationRule.source.floatingSubnet",
-                                                                                                                                    "requestStr": "$floatingSubnetRef:[FloatingSubnetRef]! ",
+                                                                                                                                    "requestStr": "$floatingSubnetRef:[FloatingSubnetRef!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "floatingSubnet:$floatingSubnetRef ",
                                                                                                                                     "type": {
@@ -4690,7 +4764,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "globalIpRange",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.applicationRule.source.globalIpRange",
-                                                                                                                                    "requestStr": "$globalIpRangeRef:[GlobalIpRangeRef]! ",
+                                                                                                                                    "requestStr": "$globalIpRangeRef:[GlobalIpRangeRef!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "globalIpRange:$globalIpRangeRef ",
                                                                                                                                     "type": {
@@ -4767,7 +4841,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "group",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.applicationRule.source.group",
-                                                                                                                                    "requestStr": "$groupRef:[GroupRef]! ",
+                                                                                                                                    "requestStr": "$groupRef:[GroupRef!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "group:$groupRef ",
                                                                                                                                     "type": {
@@ -4844,7 +4918,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "host",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.applicationRule.source.host",
-                                                                                                                                    "requestStr": "$hostRef:[HostRef]! ",
+                                                                                                                                    "requestStr": "$hostRef:[HostRef!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "host:$hostRef ",
                                                                                                                                     "type": {
@@ -4921,7 +4995,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "ip",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.applicationRule.source.ip",
-                                                                                                                                    "requestStr": "$ip:[IPAddress]! ",
+                                                                                                                                    "requestStr": "$ip:[IPAddress!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "ip:$ip ",
                                                                                                                                     "type": {
@@ -4944,7 +5018,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "ipRange",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.applicationRule.source.ipRange",
-                                                                                                                                    "requestStr": "$ipAddressRange:[IpAddressRange]! ",
+                                                                                                                                    "requestStr": "$ipAddressRange:[IpAddressRange!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "ipRange:$ipAddressRange ",
                                                                                                                                     "type": {
@@ -5021,7 +5095,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "networkInterface",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.applicationRule.source.networkInterface",
-                                                                                                                                    "requestStr": "$networkInterfaceRef:[NetworkInterfaceRef]! ",
+                                                                                                                                    "requestStr": "$networkInterfaceRef:[NetworkInterfaceRef!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "networkInterface:$networkInterfaceRef ",
                                                                                                                                     "type": {
@@ -5098,7 +5172,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "site",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.applicationRule.source.site",
-                                                                                                                                    "requestStr": "$siteRef:[SiteRef]! ",
+                                                                                                                                    "requestStr": "$siteRef:[SiteRef!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "site:$siteRef ",
                                                                                                                                     "type": {
@@ -5175,7 +5249,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "siteNetworkSubnet",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.applicationRule.source.siteNetworkSubnet",
-                                                                                                                                    "requestStr": "$siteNetworkSubnetRef:[SiteNetworkSubnetRef]! ",
+                                                                                                                                    "requestStr": "$siteNetworkSubnetRef:[SiteNetworkSubnetRef!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "siteNetworkSubnet:$siteNetworkSubnetRef ",
                                                                                                                                     "type": {
@@ -5252,7 +5326,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "subnet",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.applicationRule.source.subnet",
-                                                                                                                                    "requestStr": "$subnet:[NetworkSubnet]! ",
+                                                                                                                                    "requestStr": "$subnet:[NetworkSubnet!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "subnet:$subnet ",
                                                                                                                                     "type": {
@@ -5275,7 +5349,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "systemGroup",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.applicationRule.source.systemGroup",
-                                                                                                                                    "requestStr": "$systemGroupRef:[SystemGroupRef]! ",
+                                                                                                                                    "requestStr": "$systemGroupRef:[SystemGroupRef!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "systemGroup:$systemGroupRef ",
                                                                                                                                     "type": {
@@ -5352,7 +5426,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "user",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.applicationRule.source.user",
-                                                                                                                                    "requestStr": "$userRef:[UserRef]! ",
+                                                                                                                                    "requestStr": "$userRef:[UserRef!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "user:$userRef ",
                                                                                                                                     "type": {
@@ -5429,7 +5503,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "usersGroup",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.applicationRule.source.usersGroup",
-                                                                                                                                    "requestStr": "$usersGroupRef:[UsersGroupRef]! ",
+                                                                                                                                    "requestStr": "$usersGroupRef:[UsersGroupRef!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "usersGroup:$usersGroupRef ",
                                                                                                                                     "type": {
@@ -5633,7 +5707,7 @@
                                                                                                                                                     "isDeprecated": false,
                                                                                                                                                     "name": "mailingList",
                                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.applicationRule.tracking.alert.mailingList",
-                                                                                                                                                    "requestStr": "$subscriptionMailingListRef:[SubscriptionMailingListRef]! ",
+                                                                                                                                                    "requestStr": "$subscriptionMailingListRef:[SubscriptionMailingListRef!]! ",
                                                                                                                                                     "required": true,
                                                                                                                                                     "responseStr": "mailingList:$subscriptionMailingListRef ",
                                                                                                                                                     "type": {
@@ -5710,7 +5784,7 @@
                                                                                                                                                     "isDeprecated": false,
                                                                                                                                                     "name": "subscriptionGroup",
                                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.applicationRule.tracking.alert.subscriptionGroup",
-                                                                                                                                                    "requestStr": "$subscriptionGroupRef:[SubscriptionGroupRef]! ",
+                                                                                                                                                    "requestStr": "$subscriptionGroupRef:[SubscriptionGroupRef!]! ",
                                                                                                                                                     "required": true,
                                                                                                                                                     "responseStr": "subscriptionGroup:$subscriptionGroupRef ",
                                                                                                                                                     "type": {
@@ -5787,7 +5861,7 @@
                                                                                                                                                     "isDeprecated": false,
                                                                                                                                                     "name": "webhook",
                                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.applicationRule.tracking.alert.webhook",
-                                                                                                                                                    "requestStr": "$subscriptionWebhookRef:[SubscriptionWebhookRef]! ",
+                                                                                                                                                    "requestStr": "$subscriptionWebhookRef:[SubscriptionWebhookRef!]! ",
                                                                                                                                                     "required": true,
                                                                                                                                                     "responseStr": "webhook:$subscriptionWebhookRef ",
                                                                                                                                                     "type": {
@@ -5984,7 +6058,7 @@
                                                                                                                     "isDeprecated": false,
                                                                                                                     "name": "accessMethod",
                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.dataRule.accessMethod",
-                                                                                                                    "requestStr": "$applicationControlAccessMethod:[ApplicationControlAccessMethod]! ",
+                                                                                                                    "requestStr": "$applicationControlAccessMethod:[ApplicationControlAccessMethod!]! ",
                                                                                                                     "required": true,
                                                                                                                     "responseStr": "accessMethod:$applicationControlAccessMethod ",
                                                                                                                     "type": {
@@ -6288,7 +6362,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "userNotification",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.dataRule.actionConfig.userNotification",
-                                                                                                                                    "requestStr": "$userNotificationTemplateRef:[UserNotificationTemplateRef]! ",
+                                                                                                                                    "requestStr": "$userNotificationTemplateRef:[UserNotificationTemplateRef!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "userNotification:$userNotificationTemplateRef ",
                                                                                                                                     "type": {
@@ -6545,7 +6619,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "applicationType",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.dataRule.application.applicationType",
-                                                                                                                                    "requestStr": "$applicationType:[ApplicationType]! ",
+                                                                                                                                    "requestStr": "$applicationType:[ApplicationType!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "applicationType:$applicationType ",
                                                                                                                                     "type": {
@@ -6666,10 +6740,10 @@
                                                                                                                                 },
                                                                                                                                 "customCategory": {
                                                                                                                                     "args": {},
-                                                                                                                                    "deprecationReason": null,
+                                                                                                                                    "deprecationReason": "Use an advanced group instead.",
                                                                                                                                     "description": "Custom Categories \u2013 Groups of objects such as predefined and custom applications, predefined and custom services, domains, FQDNs etc.",
                                                                                                                                     "id_str": "applicationControl___createPolicyRevision___policy___rules___rule___dataRule___application___customCategory",
-                                                                                                                                    "isDeprecated": false,
+                                                                                                                                    "isDeprecated": true,
                                                                                                                                     "name": "customCategory",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.dataRule.application.customCategory",
                                                                                                                                     "requestStr": "$customCategoryRef:CustomCategoryRef ",
@@ -6737,6 +6811,80 @@
                                                                                                                                         "non_null": false
                                                                                                                                     },
                                                                                                                                     "varName": "customCategoryRef"
+                                                                                                                                },
+                                                                                                                                "group": {
+                                                                                                                                    "args": {},
+                                                                                                                                    "deprecationReason": null,
+                                                                                                                                    "description": "Advanced group containing supported application or destination members",
+                                                                                                                                    "id_str": "applicationControl___createPolicyRevision___policy___rules___rule___dataRule___application___group",
+                                                                                                                                    "isDeprecated": false,
+                                                                                                                                    "name": "group",
+                                                                                                                                    "path": "applicationControl.createPolicyRevision.policy.rules.rule.dataRule.application.group",
+                                                                                                                                    "requestStr": "$groupRef:GroupRef ",
+                                                                                                                                    "required": false,
+                                                                                                                                    "responseStr": "group:$groupRef ",
+                                                                                                                                    "type": {
+                                                                                                                                        "definition": {
+                                                                                                                                            "description": "A reference identifying the Group object. ID: Unique Group Identifier, Name: The Group Name",
+                                                                                                                                            "enumValues": null,
+                                                                                                                                            "fields": {
+                                                                                                                                                "id": {
+                                                                                                                                                    "args": {},
+                                                                                                                                                    "deprecationReason": null,
+                                                                                                                                                    "description": null,
+                                                                                                                                                    "id_str": "applicationControl___createPolicyRevision___policy___rules___rule___dataRule___application___group___id",
+                                                                                                                                                    "isDeprecated": false,
+                                                                                                                                                    "name": "id",
+                                                                                                                                                    "path": "applicationControl.createPolicyRevision.policy.rules.rule.dataRule.application.group.id",
+                                                                                                                                                    "requestStr": "$id:ID! ",
+                                                                                                                                                    "required": true,
+                                                                                                                                                    "responseStr": "id:$id ",
+                                                                                                                                                    "type": {
+                                                                                                                                                        "kind": [
+                                                                                                                                                            "NON_NULL",
+                                                                                                                                                            "SCALAR"
+                                                                                                                                                        ],
+                                                                                                                                                        "name": "ID",
+                                                                                                                                                        "non_null": false
+                                                                                                                                                    },
+                                                                                                                                                    "varName": "id"
+                                                                                                                                                },
+                                                                                                                                                "name": {
+                                                                                                                                                    "args": {},
+                                                                                                                                                    "deprecationReason": null,
+                                                                                                                                                    "description": null,
+                                                                                                                                                    "id_str": "applicationControl___createPolicyRevision___policy___rules___rule___dataRule___application___group___name",
+                                                                                                                                                    "isDeprecated": false,
+                                                                                                                                                    "name": "name",
+                                                                                                                                                    "path": "applicationControl.createPolicyRevision.policy.rules.rule.dataRule.application.group.name",
+                                                                                                                                                    "requestStr": "$name:String! ",
+                                                                                                                                                    "required": true,
+                                                                                                                                                    "responseStr": "name:$name ",
+                                                                                                                                                    "type": {
+                                                                                                                                                        "kind": [
+                                                                                                                                                            "NON_NULL",
+                                                                                                                                                            "SCALAR"
+                                                                                                                                                        ],
+                                                                                                                                                        "name": "String",
+                                                                                                                                                        "non_null": false
+                                                                                                                                                    },
+                                                                                                                                                    "varName": "name"
+                                                                                                                                                }
+                                                                                                                                            },
+                                                                                                                                            "inputFields": null,
+                                                                                                                                            "interfaces": {},
+                                                                                                                                            "kind": "OBJECT",
+                                                                                                                                            "name": "GroupRef",
+                                                                                                                                            "possibleTypes": null
+                                                                                                                                        },
+                                                                                                                                        "indexType": "object",
+                                                                                                                                        "kind": [
+                                                                                                                                            "OBJECT"
+                                                                                                                                        ],
+                                                                                                                                        "name": "GroupRef",
+                                                                                                                                        "non_null": false
+                                                                                                                                    },
+                                                                                                                                    "varName": "groupRef"
                                                                                                                                 },
                                                                                                                                 "sanctionedAppsCategory": {
                                                                                                                                     "args": {},
@@ -6837,7 +6985,7 @@
                                                                                                                     "isDeprecated": false,
                                                                                                                     "name": "applicationActivity",
                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.dataRule.applicationActivity",
-                                                                                                                    "requestStr": "$applicationControlActivity:[ApplicationControlActivity]! ",
+                                                                                                                    "requestStr": "$applicationControlActivity:[ApplicationControlActivity!]! ",
                                                                                                                     "required": true,
                                                                                                                     "responseStr": "applicationActivity:$applicationControlActivity ",
                                                                                                                     "type": {
@@ -7238,7 +7386,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "applicationTenant",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.dataRule.applicationContext.applicationTenant",
-                                                                                                                                    "requestStr": "$applicationControlTenant:[ApplicationControlTenant]! ",
+                                                                                                                                    "requestStr": "$applicationControlTenant:[ApplicationControlTenant!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "applicationTenant:$applicationControlTenant ",
                                                                                                                                     "type": {
@@ -7462,7 +7610,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "aiRisk",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.dataRule.applicationCriteria.aiRisk",
-                                                                                                                                    "requestStr": "$aiRisk:[ApplicationControlAiRisk]! ",
+                                                                                                                                    "requestStr": "$aiRisk:[ApplicationControlAiRisk!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "aiRisk:$aiRisk ",
                                                                                                                                     "type": {
@@ -8487,7 +8635,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "originCountry",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.dataRule.applicationCriteria.originCountry",
-                                                                                                                                    "requestStr": "$countryRef:[CountryRef]! ",
+                                                                                                                                    "requestStr": "$countryRef:[CountryRef!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "originCountry:$countryRef ",
                                                                                                                                     "type": {
@@ -8564,7 +8712,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "risk",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.dataRule.applicationCriteria.risk",
-                                                                                                                                    "requestStr": "$applicationControlRiskCriteria:[ApplicationControlRiskCriteria]! ",
+                                                                                                                                    "requestStr": "$applicationControlRiskCriteria:[ApplicationControlRiskCriteria!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "risk:$applicationControlRiskCriteria ",
                                                                                                                                     "type": {
@@ -8745,7 +8893,7 @@
                                                                                                                     "isDeprecated": false,
                                                                                                                     "name": "device",
                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.dataRule.device",
-                                                                                                                    "requestStr": "$deviceProfileRef:[DeviceProfileRef]! ",
+                                                                                                                    "requestStr": "$deviceProfileRef:[DeviceProfileRef!]! ",
                                                                                                                     "required": true,
                                                                                                                     "responseStr": "device:$deviceProfileRef ",
                                                                                                                     "type": {
@@ -8838,7 +8986,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "contentProfile",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.dataRule.dlpProfile.contentProfile",
-                                                                                                                                    "requestStr": "$dlpContentProfileRef:[DlpContentProfileRef]! ",
+                                                                                                                                    "requestStr": "$dlpContentProfileRef:[DlpContentProfileRef!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "contentProfile:$dlpContentProfileRef ",
                                                                                                                                     "type": {
@@ -8915,7 +9063,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "edmProfile",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.dataRule.dlpProfile.edmProfile",
-                                                                                                                                    "requestStr": "$dlpEdmProfileRef:[DlpEdmProfileRef]! ",
+                                                                                                                                    "requestStr": "$dlpEdmProfileRef:[DlpEdmProfileRef!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "edmProfile:$dlpEdmProfileRef ",
                                                                                                                                     "type": {
@@ -9009,7 +9157,7 @@
                                                                                                                     "isDeprecated": false,
                                                                                                                     "name": "fileAttribute",
                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.dataRule.fileAttribute",
-                                                                                                                    "requestStr": "$applicationControlFileAttribute:[ApplicationControlFileAttribute]! ",
+                                                                                                                    "requestStr": "$applicationControlFileAttribute:[ApplicationControlFileAttribute!]! ",
                                                                                                                     "required": true,
                                                                                                                     "responseStr": "fileAttribute:$applicationControlFileAttribute ",
                                                                                                                     "type": {
@@ -9025,7 +9173,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "contentTypeGroupValues",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.dataRule.fileAttribute.contentTypeGroupValues",
-                                                                                                                                    "requestStr": "$applicationControlContentTypeGroupRef:[ApplicationControlContentTypeGroupRef]! ",
+                                                                                                                                    "requestStr": "$applicationControlContentTypeGroupRef:[ApplicationControlContentTypeGroupRef!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "contentTypeGroupValues:$applicationControlContentTypeGroupRef ",
                                                                                                                                     "type": {
@@ -9102,7 +9250,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "contentTypeValues",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.dataRule.fileAttribute.contentTypeValues",
-                                                                                                                                    "requestStr": "$applicationControlContentTypeRef:[ApplicationControlContentTypeRef]! ",
+                                                                                                                                    "requestStr": "$applicationControlContentTypeRef:[ApplicationControlContentTypeRef!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "contentTypeValues:$applicationControlContentTypeRef ",
                                                                                                                                     "type": {
@@ -9466,7 +9614,7 @@
                                                                                                                                                     "isDeprecated": false,
                                                                                                                                                     "name": "days",
                                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.dataRule.schedule.customRecurring.days",
-                                                                                                                                                    "requestStr": "$days:[DayOfWeek]! ",
+                                                                                                                                                    "requestStr": "$days:[DayOfWeek!]! ",
                                                                                                                                                     "required": true,
                                                                                                                                                     "responseStr": "days:$days ",
                                                                                                                                                     "type": {
@@ -9759,7 +9907,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "country",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.dataRule.source.country",
-                                                                                                                                    "requestStr": "$countryRef:[CountryRef]! ",
+                                                                                                                                    "requestStr": "$countryRef:[CountryRef!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "country:$countryRef ",
                                                                                                                                     "type": {
@@ -9836,7 +9984,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "floatingSubnet",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.dataRule.source.floatingSubnet",
-                                                                                                                                    "requestStr": "$floatingSubnetRef:[FloatingSubnetRef]! ",
+                                                                                                                                    "requestStr": "$floatingSubnetRef:[FloatingSubnetRef!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "floatingSubnet:$floatingSubnetRef ",
                                                                                                                                     "type": {
@@ -9913,7 +10061,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "globalIpRange",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.dataRule.source.globalIpRange",
-                                                                                                                                    "requestStr": "$globalIpRangeRef:[GlobalIpRangeRef]! ",
+                                                                                                                                    "requestStr": "$globalIpRangeRef:[GlobalIpRangeRef!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "globalIpRange:$globalIpRangeRef ",
                                                                                                                                     "type": {
@@ -9990,7 +10138,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "group",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.dataRule.source.group",
-                                                                                                                                    "requestStr": "$groupRef:[GroupRef]! ",
+                                                                                                                                    "requestStr": "$groupRef:[GroupRef!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "group:$groupRef ",
                                                                                                                                     "type": {
@@ -10067,7 +10215,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "host",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.dataRule.source.host",
-                                                                                                                                    "requestStr": "$hostRef:[HostRef]! ",
+                                                                                                                                    "requestStr": "$hostRef:[HostRef!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "host:$hostRef ",
                                                                                                                                     "type": {
@@ -10144,7 +10292,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "ip",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.dataRule.source.ip",
-                                                                                                                                    "requestStr": "$ip:[IPAddress]! ",
+                                                                                                                                    "requestStr": "$ip:[IPAddress!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "ip:$ip ",
                                                                                                                                     "type": {
@@ -10167,7 +10315,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "ipRange",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.dataRule.source.ipRange",
-                                                                                                                                    "requestStr": "$ipAddressRange:[IpAddressRange]! ",
+                                                                                                                                    "requestStr": "$ipAddressRange:[IpAddressRange!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "ipRange:$ipAddressRange ",
                                                                                                                                     "type": {
@@ -10244,7 +10392,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "networkInterface",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.dataRule.source.networkInterface",
-                                                                                                                                    "requestStr": "$networkInterfaceRef:[NetworkInterfaceRef]! ",
+                                                                                                                                    "requestStr": "$networkInterfaceRef:[NetworkInterfaceRef!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "networkInterface:$networkInterfaceRef ",
                                                                                                                                     "type": {
@@ -10321,7 +10469,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "site",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.dataRule.source.site",
-                                                                                                                                    "requestStr": "$siteRef:[SiteRef]! ",
+                                                                                                                                    "requestStr": "$siteRef:[SiteRef!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "site:$siteRef ",
                                                                                                                                     "type": {
@@ -10398,7 +10546,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "siteNetworkSubnet",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.dataRule.source.siteNetworkSubnet",
-                                                                                                                                    "requestStr": "$siteNetworkSubnetRef:[SiteNetworkSubnetRef]! ",
+                                                                                                                                    "requestStr": "$siteNetworkSubnetRef:[SiteNetworkSubnetRef!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "siteNetworkSubnet:$siteNetworkSubnetRef ",
                                                                                                                                     "type": {
@@ -10475,7 +10623,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "subnet",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.dataRule.source.subnet",
-                                                                                                                                    "requestStr": "$subnet:[NetworkSubnet]! ",
+                                                                                                                                    "requestStr": "$subnet:[NetworkSubnet!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "subnet:$subnet ",
                                                                                                                                     "type": {
@@ -10498,7 +10646,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "systemGroup",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.dataRule.source.systemGroup",
-                                                                                                                                    "requestStr": "$systemGroupRef:[SystemGroupRef]! ",
+                                                                                                                                    "requestStr": "$systemGroupRef:[SystemGroupRef!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "systemGroup:$systemGroupRef ",
                                                                                                                                     "type": {
@@ -10575,7 +10723,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "user",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.dataRule.source.user",
-                                                                                                                                    "requestStr": "$userRef:[UserRef]! ",
+                                                                                                                                    "requestStr": "$userRef:[UserRef!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "user:$userRef ",
                                                                                                                                     "type": {
@@ -10652,7 +10800,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "usersGroup",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.dataRule.source.usersGroup",
-                                                                                                                                    "requestStr": "$usersGroupRef:[UsersGroupRef]! ",
+                                                                                                                                    "requestStr": "$usersGroupRef:[UsersGroupRef!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "usersGroup:$usersGroupRef ",
                                                                                                                                     "type": {
@@ -10856,7 +11004,7 @@
                                                                                                                                                     "isDeprecated": false,
                                                                                                                                                     "name": "mailingList",
                                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.dataRule.tracking.alert.mailingList",
-                                                                                                                                                    "requestStr": "$subscriptionMailingListRef:[SubscriptionMailingListRef]! ",
+                                                                                                                                                    "requestStr": "$subscriptionMailingListRef:[SubscriptionMailingListRef!]! ",
                                                                                                                                                     "required": true,
                                                                                                                                                     "responseStr": "mailingList:$subscriptionMailingListRef ",
                                                                                                                                                     "type": {
@@ -10933,7 +11081,7 @@
                                                                                                                                                     "isDeprecated": false,
                                                                                                                                                     "name": "subscriptionGroup",
                                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.dataRule.tracking.alert.subscriptionGroup",
-                                                                                                                                                    "requestStr": "$subscriptionGroupRef:[SubscriptionGroupRef]! ",
+                                                                                                                                                    "requestStr": "$subscriptionGroupRef:[SubscriptionGroupRef!]! ",
                                                                                                                                                     "required": true,
                                                                                                                                                     "responseStr": "subscriptionGroup:$subscriptionGroupRef ",
                                                                                                                                                     "type": {
@@ -11010,7 +11158,7 @@
                                                                                                                                                     "isDeprecated": false,
                                                                                                                                                     "name": "webhook",
                                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.dataRule.tracking.alert.webhook",
-                                                                                                                                                    "requestStr": "$subscriptionWebhookRef:[SubscriptionWebhookRef]! ",
+                                                                                                                                                    "requestStr": "$subscriptionWebhookRef:[SubscriptionWebhookRef!]! ",
                                                                                                                                                     "required": true,
                                                                                                                                                     "responseStr": "webhook:$subscriptionWebhookRef ",
                                                                                                                                                     "type": {
@@ -11249,7 +11397,7 @@
                                                                                                                     "isDeprecated": false,
                                                                                                                     "name": "accessMethod",
                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.fileRule.accessMethod",
-                                                                                                                    "requestStr": "$applicationControlAccessMethod:[ApplicationControlAccessMethod]! ",
+                                                                                                                    "requestStr": "$applicationControlAccessMethod:[ApplicationControlAccessMethod!]! ",
                                                                                                                     "required": true,
                                                                                                                     "responseStr": "accessMethod:$applicationControlAccessMethod ",
                                                                                                                     "type": {
@@ -11553,7 +11701,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "userNotification",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.fileRule.actionConfig.userNotification",
-                                                                                                                                    "requestStr": "$userNotificationTemplateRef:[UserNotificationTemplateRef]! ",
+                                                                                                                                    "requestStr": "$userNotificationTemplateRef:[UserNotificationTemplateRef!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "userNotification:$userNotificationTemplateRef ",
                                                                                                                                     "type": {
@@ -11810,7 +11958,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "applicationType",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.fileRule.application.applicationType",
-                                                                                                                                    "requestStr": "$applicationType:[ApplicationType]! ",
+                                                                                                                                    "requestStr": "$applicationType:[ApplicationType!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "applicationType:$applicationType ",
                                                                                                                                     "type": {
@@ -11931,10 +12079,10 @@
                                                                                                                                 },
                                                                                                                                 "customCategory": {
                                                                                                                                     "args": {},
-                                                                                                                                    "deprecationReason": null,
+                                                                                                                                    "deprecationReason": "Use an advanced group instead.",
                                                                                                                                     "description": "Custom Categories \u2013 Groups of objects such as predefined and custom applications, predefined and custom services, domains, FQDNs etc.",
                                                                                                                                     "id_str": "applicationControl___createPolicyRevision___policy___rules___rule___fileRule___application___customCategory",
-                                                                                                                                    "isDeprecated": false,
+                                                                                                                                    "isDeprecated": true,
                                                                                                                                     "name": "customCategory",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.fileRule.application.customCategory",
                                                                                                                                     "requestStr": "$customCategoryRef:CustomCategoryRef ",
@@ -12002,6 +12150,80 @@
                                                                                                                                         "non_null": false
                                                                                                                                     },
                                                                                                                                     "varName": "customCategoryRef"
+                                                                                                                                },
+                                                                                                                                "group": {
+                                                                                                                                    "args": {},
+                                                                                                                                    "deprecationReason": null,
+                                                                                                                                    "description": "Advanced group containing supported application or destination members",
+                                                                                                                                    "id_str": "applicationControl___createPolicyRevision___policy___rules___rule___fileRule___application___group",
+                                                                                                                                    "isDeprecated": false,
+                                                                                                                                    "name": "group",
+                                                                                                                                    "path": "applicationControl.createPolicyRevision.policy.rules.rule.fileRule.application.group",
+                                                                                                                                    "requestStr": "$groupRef:GroupRef ",
+                                                                                                                                    "required": false,
+                                                                                                                                    "responseStr": "group:$groupRef ",
+                                                                                                                                    "type": {
+                                                                                                                                        "definition": {
+                                                                                                                                            "description": "A reference identifying the Group object. ID: Unique Group Identifier, Name: The Group Name",
+                                                                                                                                            "enumValues": null,
+                                                                                                                                            "fields": {
+                                                                                                                                                "id": {
+                                                                                                                                                    "args": {},
+                                                                                                                                                    "deprecationReason": null,
+                                                                                                                                                    "description": null,
+                                                                                                                                                    "id_str": "applicationControl___createPolicyRevision___policy___rules___rule___fileRule___application___group___id",
+                                                                                                                                                    "isDeprecated": false,
+                                                                                                                                                    "name": "id",
+                                                                                                                                                    "path": "applicationControl.createPolicyRevision.policy.rules.rule.fileRule.application.group.id",
+                                                                                                                                                    "requestStr": "$id:ID! ",
+                                                                                                                                                    "required": true,
+                                                                                                                                                    "responseStr": "id:$id ",
+                                                                                                                                                    "type": {
+                                                                                                                                                        "kind": [
+                                                                                                                                                            "NON_NULL",
+                                                                                                                                                            "SCALAR"
+                                                                                                                                                        ],
+                                                                                                                                                        "name": "ID",
+                                                                                                                                                        "non_null": false
+                                                                                                                                                    },
+                                                                                                                                                    "varName": "id"
+                                                                                                                                                },
+                                                                                                                                                "name": {
+                                                                                                                                                    "args": {},
+                                                                                                                                                    "deprecationReason": null,
+                                                                                                                                                    "description": null,
+                                                                                                                                                    "id_str": "applicationControl___createPolicyRevision___policy___rules___rule___fileRule___application___group___name",
+                                                                                                                                                    "isDeprecated": false,
+                                                                                                                                                    "name": "name",
+                                                                                                                                                    "path": "applicationControl.createPolicyRevision.policy.rules.rule.fileRule.application.group.name",
+                                                                                                                                                    "requestStr": "$name:String! ",
+                                                                                                                                                    "required": true,
+                                                                                                                                                    "responseStr": "name:$name ",
+                                                                                                                                                    "type": {
+                                                                                                                                                        "kind": [
+                                                                                                                                                            "NON_NULL",
+                                                                                                                                                            "SCALAR"
+                                                                                                                                                        ],
+                                                                                                                                                        "name": "String",
+                                                                                                                                                        "non_null": false
+                                                                                                                                                    },
+                                                                                                                                                    "varName": "name"
+                                                                                                                                                }
+                                                                                                                                            },
+                                                                                                                                            "inputFields": null,
+                                                                                                                                            "interfaces": {},
+                                                                                                                                            "kind": "OBJECT",
+                                                                                                                                            "name": "GroupRef",
+                                                                                                                                            "possibleTypes": null
+                                                                                                                                        },
+                                                                                                                                        "indexType": "object",
+                                                                                                                                        "kind": [
+                                                                                                                                            "OBJECT"
+                                                                                                                                        ],
+                                                                                                                                        "name": "GroupRef",
+                                                                                                                                        "non_null": false
+                                                                                                                                    },
+                                                                                                                                    "varName": "groupRef"
                                                                                                                                 },
                                                                                                                                 "sanctionedAppsCategory": {
                                                                                                                                     "args": {},
@@ -12102,7 +12324,7 @@
                                                                                                                     "isDeprecated": false,
                                                                                                                     "name": "applicationActivity",
                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.fileRule.applicationActivity",
-                                                                                                                    "requestStr": "$applicationControlActivity:[ApplicationControlActivity]! ",
+                                                                                                                    "requestStr": "$applicationControlActivity:[ApplicationControlActivity!]! ",
                                                                                                                     "required": true,
                                                                                                                     "responseStr": "applicationActivity:$applicationControlActivity ",
                                                                                                                     "type": {
@@ -12503,7 +12725,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "applicationTenant",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.fileRule.applicationContext.applicationTenant",
-                                                                                                                                    "requestStr": "$applicationControlTenant:[ApplicationControlTenant]! ",
+                                                                                                                                    "requestStr": "$applicationControlTenant:[ApplicationControlTenant!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "applicationTenant:$applicationControlTenant ",
                                                                                                                                     "type": {
@@ -12727,7 +12949,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "aiRisk",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.fileRule.applicationCriteria.aiRisk",
-                                                                                                                                    "requestStr": "$aiRisk:[ApplicationControlAiRisk]! ",
+                                                                                                                                    "requestStr": "$aiRisk:[ApplicationControlAiRisk!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "aiRisk:$aiRisk ",
                                                                                                                                     "type": {
@@ -13752,7 +13974,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "originCountry",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.fileRule.applicationCriteria.originCountry",
-                                                                                                                                    "requestStr": "$countryRef:[CountryRef]! ",
+                                                                                                                                    "requestStr": "$countryRef:[CountryRef!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "originCountry:$countryRef ",
                                                                                                                                     "type": {
@@ -13829,7 +14051,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "risk",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.fileRule.applicationCriteria.risk",
-                                                                                                                                    "requestStr": "$applicationControlRiskCriteria:[ApplicationControlRiskCriteria]! ",
+                                                                                                                                    "requestStr": "$applicationControlRiskCriteria:[ApplicationControlRiskCriteria!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "risk:$applicationControlRiskCriteria ",
                                                                                                                                     "type": {
@@ -14010,7 +14232,7 @@
                                                                                                                     "isDeprecated": false,
                                                                                                                     "name": "device",
                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.fileRule.device",
-                                                                                                                    "requestStr": "$deviceProfileRef:[DeviceProfileRef]! ",
+                                                                                                                    "requestStr": "$deviceProfileRef:[DeviceProfileRef!]! ",
                                                                                                                     "required": true,
                                                                                                                     "responseStr": "device:$deviceProfileRef ",
                                                                                                                     "type": {
@@ -14087,7 +14309,7 @@
                                                                                                                     "isDeprecated": false,
                                                                                                                     "name": "fileAttribute",
                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.fileRule.fileAttribute",
-                                                                                                                    "requestStr": "$applicationControlFileAttribute:[ApplicationControlFileAttribute]! ",
+                                                                                                                    "requestStr": "$applicationControlFileAttribute:[ApplicationControlFileAttribute!]! ",
                                                                                                                     "required": true,
                                                                                                                     "responseStr": "fileAttribute:$applicationControlFileAttribute ",
                                                                                                                     "type": {
@@ -14103,7 +14325,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "contentTypeGroupValues",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.fileRule.fileAttribute.contentTypeGroupValues",
-                                                                                                                                    "requestStr": "$applicationControlContentTypeGroupRef:[ApplicationControlContentTypeGroupRef]! ",
+                                                                                                                                    "requestStr": "$applicationControlContentTypeGroupRef:[ApplicationControlContentTypeGroupRef!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "contentTypeGroupValues:$applicationControlContentTypeGroupRef ",
                                                                                                                                     "type": {
@@ -14180,7 +14402,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "contentTypeValues",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.fileRule.fileAttribute.contentTypeValues",
-                                                                                                                                    "requestStr": "$applicationControlContentTypeRef:[ApplicationControlContentTypeRef]! ",
+                                                                                                                                    "requestStr": "$applicationControlContentTypeRef:[ApplicationControlContentTypeRef!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "contentTypeValues:$applicationControlContentTypeRef ",
                                                                                                                                     "type": {
@@ -14544,7 +14766,7 @@
                                                                                                                                                     "isDeprecated": false,
                                                                                                                                                     "name": "days",
                                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.fileRule.schedule.customRecurring.days",
-                                                                                                                                                    "requestStr": "$days:[DayOfWeek]! ",
+                                                                                                                                                    "requestStr": "$days:[DayOfWeek!]! ",
                                                                                                                                                     "required": true,
                                                                                                                                                     "responseStr": "days:$days ",
                                                                                                                                                     "type": {
@@ -14837,7 +15059,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "country",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.fileRule.source.country",
-                                                                                                                                    "requestStr": "$countryRef:[CountryRef]! ",
+                                                                                                                                    "requestStr": "$countryRef:[CountryRef!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "country:$countryRef ",
                                                                                                                                     "type": {
@@ -14914,7 +15136,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "floatingSubnet",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.fileRule.source.floatingSubnet",
-                                                                                                                                    "requestStr": "$floatingSubnetRef:[FloatingSubnetRef]! ",
+                                                                                                                                    "requestStr": "$floatingSubnetRef:[FloatingSubnetRef!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "floatingSubnet:$floatingSubnetRef ",
                                                                                                                                     "type": {
@@ -14991,7 +15213,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "globalIpRange",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.fileRule.source.globalIpRange",
-                                                                                                                                    "requestStr": "$globalIpRangeRef:[GlobalIpRangeRef]! ",
+                                                                                                                                    "requestStr": "$globalIpRangeRef:[GlobalIpRangeRef!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "globalIpRange:$globalIpRangeRef ",
                                                                                                                                     "type": {
@@ -15068,7 +15290,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "group",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.fileRule.source.group",
-                                                                                                                                    "requestStr": "$groupRef:[GroupRef]! ",
+                                                                                                                                    "requestStr": "$groupRef:[GroupRef!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "group:$groupRef ",
                                                                                                                                     "type": {
@@ -15145,7 +15367,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "host",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.fileRule.source.host",
-                                                                                                                                    "requestStr": "$hostRef:[HostRef]! ",
+                                                                                                                                    "requestStr": "$hostRef:[HostRef!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "host:$hostRef ",
                                                                                                                                     "type": {
@@ -15222,7 +15444,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "ip",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.fileRule.source.ip",
-                                                                                                                                    "requestStr": "$ip:[IPAddress]! ",
+                                                                                                                                    "requestStr": "$ip:[IPAddress!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "ip:$ip ",
                                                                                                                                     "type": {
@@ -15245,7 +15467,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "ipRange",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.fileRule.source.ipRange",
-                                                                                                                                    "requestStr": "$ipAddressRange:[IpAddressRange]! ",
+                                                                                                                                    "requestStr": "$ipAddressRange:[IpAddressRange!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "ipRange:$ipAddressRange ",
                                                                                                                                     "type": {
@@ -15322,7 +15544,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "networkInterface",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.fileRule.source.networkInterface",
-                                                                                                                                    "requestStr": "$networkInterfaceRef:[NetworkInterfaceRef]! ",
+                                                                                                                                    "requestStr": "$networkInterfaceRef:[NetworkInterfaceRef!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "networkInterface:$networkInterfaceRef ",
                                                                                                                                     "type": {
@@ -15399,7 +15621,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "site",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.fileRule.source.site",
-                                                                                                                                    "requestStr": "$siteRef:[SiteRef]! ",
+                                                                                                                                    "requestStr": "$siteRef:[SiteRef!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "site:$siteRef ",
                                                                                                                                     "type": {
@@ -15476,7 +15698,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "siteNetworkSubnet",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.fileRule.source.siteNetworkSubnet",
-                                                                                                                                    "requestStr": "$siteNetworkSubnetRef:[SiteNetworkSubnetRef]! ",
+                                                                                                                                    "requestStr": "$siteNetworkSubnetRef:[SiteNetworkSubnetRef!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "siteNetworkSubnet:$siteNetworkSubnetRef ",
                                                                                                                                     "type": {
@@ -15553,7 +15775,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "subnet",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.fileRule.source.subnet",
-                                                                                                                                    "requestStr": "$subnet:[NetworkSubnet]! ",
+                                                                                                                                    "requestStr": "$subnet:[NetworkSubnet!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "subnet:$subnet ",
                                                                                                                                     "type": {
@@ -15576,7 +15798,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "systemGroup",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.fileRule.source.systemGroup",
-                                                                                                                                    "requestStr": "$systemGroupRef:[SystemGroupRef]! ",
+                                                                                                                                    "requestStr": "$systemGroupRef:[SystemGroupRef!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "systemGroup:$systemGroupRef ",
                                                                                                                                     "type": {
@@ -15653,7 +15875,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "user",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.fileRule.source.user",
-                                                                                                                                    "requestStr": "$userRef:[UserRef]! ",
+                                                                                                                                    "requestStr": "$userRef:[UserRef!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "user:$userRef ",
                                                                                                                                     "type": {
@@ -15730,7 +15952,7 @@
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "usersGroup",
                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.fileRule.source.usersGroup",
-                                                                                                                                    "requestStr": "$usersGroupRef:[UsersGroupRef]! ",
+                                                                                                                                    "requestStr": "$usersGroupRef:[UsersGroupRef!]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "usersGroup:$usersGroupRef ",
                                                                                                                                     "type": {
@@ -15934,7 +16156,7 @@
                                                                                                                                                     "isDeprecated": false,
                                                                                                                                                     "name": "mailingList",
                                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.fileRule.tracking.alert.mailingList",
-                                                                                                                                                    "requestStr": "$subscriptionMailingListRef:[SubscriptionMailingListRef]! ",
+                                                                                                                                                    "requestStr": "$subscriptionMailingListRef:[SubscriptionMailingListRef!]! ",
                                                                                                                                                     "required": true,
                                                                                                                                                     "responseStr": "mailingList:$subscriptionMailingListRef ",
                                                                                                                                                     "type": {
@@ -16011,7 +16233,7 @@
                                                                                                                                                     "isDeprecated": false,
                                                                                                                                                     "name": "subscriptionGroup",
                                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.fileRule.tracking.alert.subscriptionGroup",
-                                                                                                                                                    "requestStr": "$subscriptionGroupRef:[SubscriptionGroupRef]! ",
+                                                                                                                                                    "requestStr": "$subscriptionGroupRef:[SubscriptionGroupRef!]! ",
                                                                                                                                                     "required": true,
                                                                                                                                                     "responseStr": "subscriptionGroup:$subscriptionGroupRef ",
                                                                                                                                                     "type": {
@@ -16088,7 +16310,7 @@
                                                                                                                                                     "isDeprecated": false,
                                                                                                                                                     "name": "webhook",
                                                                                                                                                     "path": "applicationControl.createPolicyRevision.policy.rules.rule.fileRule.tracking.alert.webhook",
-                                                                                                                                                    "requestStr": "$subscriptionWebhookRef:[SubscriptionWebhookRef]! ",
+                                                                                                                                                    "requestStr": "$subscriptionWebhookRef:[SubscriptionWebhookRef!]! ",
                                                                                                                                                     "required": true,
                                                                                                                                                     "responseStr": "webhook:$subscriptionWebhookRef ",
                                                                                                                                                     "type": {
@@ -16494,7 +16716,7 @@
                                                                     "isDeprecated": false,
                                                                     "name": "sections",
                                                                     "path": "applicationControl.createPolicyRevision.policy.sections",
-                                                                    "requestStr": "$policySectionPayload:[PolicySectionPayload]! ",
+                                                                    "requestStr": "$policySectionPayload:[PolicySectionPayload!]! ",
                                                                     "required": true,
                                                                     "responseStr": "sections:$policySectionPayload ",
                                                                     "type": {
@@ -16712,7 +16934,7 @@
                                                                                     "isDeprecated": false,
                                                                                     "name": "properties",
                                                                                     "path": "applicationControl.createPolicyRevision.policy.sections.properties",
-                                                                                    "requestStr": "$properties:[PolicyElementPropertiesEnum]! ",
+                                                                                    "requestStr": "$properties:[PolicyElementPropertiesEnum!]! ",
                                                                                     "required": true,
                                                                                     "responseStr": "properties:$properties ",
                                                                                     "type": {

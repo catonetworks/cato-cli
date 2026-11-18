@@ -101,3 +101,35 @@ jobs:
       uses: pypa/gh-action-pypi-publish@release/v1
       with:
         repository-url: https://test.pypi.org/legacy/
+
+  dispatch-mcp-rebuild:
+    name: Trigger cato-cli-mcp rebuild
+    needs: [publish-to-pypi]
+    if: github.event_name == 'release' && github.event.release.prerelease == false
+    runs-on: ubuntu-latest
+    steps:
+    - name: Resolve version
+      id: ver
+      env:
+        TAG: ${{ github.event.release.tag_name }}
+      run: echo "version=${TAG#v}" >> "$GITHUB_OUTPUT"
+
+    - name: Wait for PyPI availability
+      env:
+        VERSION: ${{ steps.ver.outputs.version }}
+      run: |
+        for i in $(seq 1 30); do
+          curl -fsSL "https://pypi.org/pypi/catocli/${VERSION}/json" >/dev/null && exit 0
+          echo "catocli ${VERSION} not on PyPI yet (attempt $i/30)"; sleep 20
+        done
+        echo "::error::catocli ${VERSION} never appeared on PyPI"; exit 1
+
+    - name: Dispatch to cato-cli-mcp
+      env:
+        GH_TOKEN: ${{ secrets.MCP_DISPATCH_TOKEN }}
+        VERSION: ${{ steps.ver.outputs.version }}
+      run: |
+        gh api repos/catonetworks/cato-cli-mcp/dispatches \
+          -f event_type=catocli-released \
+          -F "client_payload[version]=${VERSION}" \
+          -F "client_payload[tag]=v${VERSION}"

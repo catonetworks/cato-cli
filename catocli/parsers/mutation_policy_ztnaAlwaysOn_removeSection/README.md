@@ -28,5 +28,5 @@ catocli mutation policy ztnaAlwaysOn removeSection '{
 #### Operation Arguments for mutation.policy.ztnaAlwaysOn.removeSection ####
 
 `accountId` [ID] - (required) N/A
-`policyRemoveSectionInput` [PolicyRemoveSectionInput] - (required) N/A
-`ztnaAlwaysOnPolicyMutationInput` [ZtnaAlwaysOnPolicyMutationInput] - (required) N/A
+`policyRemoveSectionInput` [PolicyRemoveSectionInput] - (required) Parameters for this policy operation.
+`ztnaAlwaysOnPolicyMutationInput` [ZtnaAlwaysOnPolicyMutationInput] - (required) Parameters for this policy operation.

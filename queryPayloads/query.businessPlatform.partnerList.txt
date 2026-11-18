@@ -1,0 +1,20 @@
+query businessPlatformPartnerList ( $accountId:ID! $businessPlatformPartnerListInput:BusinessPlatformPartnerListInput) {
+	businessPlatform ( accountId:$accountId ) {
+		partnerList ( input:$businessPlatformPartnerListInput  )  {
+			items {
+				id
+				account {
+					id
+					name
+				}
+				name
+				description
+				createdBy
+				createdAt
+			}
+			paging {
+				total
+			}
+		}
+	}	
+}

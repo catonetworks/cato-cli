@@ -10,6 +10,7 @@ catocli mutation posture reevaluateChecks -h
 catocli mutation posture reevaluateChecks <json>
 
 catocli mutation posture reevaluateChecks --json-file mutation.posture.reevaluateChecks.json
+```
 
 #### Operation Arguments for mutation.posture.reevaluateChecks ####
 

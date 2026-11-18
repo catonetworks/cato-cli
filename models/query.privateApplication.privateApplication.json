@@ -2,7 +2,7 @@
     "args": {
         "accountId": {
             "defaultValue": null,
-            "description": null,
+            "description": "Account containing the private applications.",
             "id_str": "accountId",
             "name": "accountId",
             "path": "accountId",
@@ -25,7 +25,7 @@
             "args": {
                 "privateApplication___input": {
                     "defaultValue": null,
-                    "description": null,
+                    "description": "Parameters for the private application operation.",
                     "id_str": "privateApplication___input",
                     "name": "input",
                     "path": "privateApplication.input",
@@ -136,7 +136,7 @@
     "operationArgs": {
         "accountId": {
             "defaultValue": null,
-            "description": null,
+            "description": "Account containing the private applications.",
             "id_str": "accountId",
             "name": "accountId",
             "path": "accountId",
@@ -155,7 +155,7 @@
         },
         "privateApplicationRefInput": {
             "defaultValue": null,
-            "description": null,
+            "description": "Parameters for the private application operation.",
             "id_str": "privateApplication___input",
             "name": "input",
             "path": "privateApplication.input",
@@ -257,7 +257,7 @@
                     "args": {
                         "privateApplication___input": {
                             "defaultValue": null,
-                            "description": null,
+                            "description": "Parameters for the private application operation.",
                             "id_str": "privateApplication___input",
                             "name": "input",
                             "path": "privateApplication.input",
@@ -618,10 +618,75 @@
                                                     },
                                                     "varName": "interval"
                                                 },
+                                                "port": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "TCP port to probe (1-65535). Set for TCP_CONNECT; empty for ICMP_PING.",
+                                                    "id_str": "privateApplication___privateAppProbing___port",
+                                                    "isDeprecated": false,
+                                                    "name": "port",
+                                                    "path": "privateApplication.privateAppProbing.port",
+                                                    "requestStr": "$port:Int ",
+                                                    "required": false,
+                                                    "responseStr": "port:$port ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "Int",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "port"
+                                                },
+                                                "probingType": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Probe type. ICMP_PING pings the app; TCP_CONNECT opens a TCP connection to `port`.",
+                                                    "id_str": "privateApplication___privateAppProbing___probingType",
+                                                    "isDeprecated": false,
+                                                    "name": "probingType",
+                                                    "path": "privateApplication.privateAppProbing.probingType",
+                                                    "requestStr": "$probingType:PrivateAppProbingType! ",
+                                                    "required": true,
+                                                    "responseStr": "probingType:$probingType ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": "How the health probe checks that a private application is reachable",
+                                                            "enumValues": [
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Sends ICMP echo requests (ping) to the application",
+                                                                    "isDeprecated": false,
+                                                                    "name": "ICMP_PING"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Opens a TCP connection to the application on the probing port",
+                                                                    "isDeprecated": false,
+                                                                    "name": "TCP_CONNECT"
+                                                                }
+                                                            ],
+                                                            "fields": null,
+                                                            "inputFields": null,
+                                                            "interfaces": null,
+                                                            "kind": "ENUM",
+                                                            "name": "PrivateAppProbingType",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "enum",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "ENUM"
+                                                        ],
+                                                        "name": "PrivateAppProbingType",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "probingType"
+                                                },
                                                 "type": {
                                                     "args": {},
                                                     "deprecationReason": null,
-                                                    "description": "Probing type. Example: 'ICMP' or 'TCP'",
+                                                    "description": "Probing type name, the same value as probingType. Example: 'ICMP_PING' or 'TCP_CONNECT'",
                                                     "id_str": "privateApplication___privateAppProbing___type",
                                                     "isDeprecated": false,
                                                     "name": "type",
@@ -684,7 +749,7 @@
                                     "isDeprecated": false,
                                     "name": "protocolPorts",
                                     "path": "privateApplication.protocolPorts",
-                                    "requestStr": "$customService:[CustomService]! ",
+                                    "requestStr": "$customService:[CustomService!]! ",
                                     "required": true,
                                     "responseStr": "protocolPorts:$customService ",
                                     "type": {
@@ -700,7 +765,7 @@
                                                     "isDeprecated": false,
                                                     "name": "port",
                                                     "path": "privateApplication.protocolPorts.port",
-                                                    "requestStr": "$port:[Port] ",
+                                                    "requestStr": "$port:[Port!] ",
                                                     "required": false,
                                                     "responseStr": "port:$port ",
                                                     "type": {

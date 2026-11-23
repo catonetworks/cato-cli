@@ -28,6 +28,6 @@ catocli mutation policy clientConnectivity publishPolicyRevision '{
 
 #### Operation Arguments for mutation.policy.clientConnectivity.publishPolicyRevision ####
 
-`accountId` [ID] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
 `clientConnectivityPolicyMutationInput` [ClientConnectivityPolicyMutationInput] - (required) Parameters for this policy operation.
 `policyPublishRevisionInput` [PolicyPublishRevisionInput] - (required) Parameters for this policy operation.

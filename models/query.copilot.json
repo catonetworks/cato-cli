@@ -21,7 +21,7 @@
         }
     },
     "deprecationReason": null,
-    "description": "Account AI configuration.",
+    "description": "Read AI settings for an account.",
     "fieldTypes": {},
     "isDeprecated": false,
     "name": "copilot",
@@ -49,13 +49,66 @@
     "path": "query.copilot",
     "type": {
         "definition": {
-            "description": "Account AI configuration queries.",
+            "description": "AI queries.",
             "enumValues": null,
             "fields": {
+                "aiAgentMode": {
+                    "args": {},
+                    "deprecationReason": null,
+                    "description": "Whether AI requests in CMA are enabled. Default is enabled.",
+                    "id_str": "aiAgentMode",
+                    "isDeprecated": false,
+                    "name": "aiAgentMode",
+                    "path": "aiAgentMode",
+                    "requestStr": "$copilotAiAgentModePayload:CopilotAiAgentModePayload ",
+                    "required": false,
+                    "responseStr": "aiAgentMode:$copilotAiAgentModePayload ",
+                    "type": {
+                        "definition": {
+                            "description": "The AI setting for requests in CMA. User permissions still apply.",
+                            "enumValues": null,
+                            "fields": {
+                                "enabled": {
+                                    "args": {},
+                                    "deprecationReason": null,
+                                    "description": "Whether AI requests in CMA are enabled.",
+                                    "id_str": "aiAgentMode___enabled",
+                                    "isDeprecated": false,
+                                    "name": "enabled",
+                                    "path": "aiAgentMode.enabled",
+                                    "requestStr": "$enabled:Boolean! ",
+                                    "required": true,
+                                    "responseStr": "enabled:$enabled ",
+                                    "type": {
+                                        "kind": [
+                                            "NON_NULL",
+                                            "SCALAR"
+                                        ],
+                                        "name": "Boolean",
+                                        "non_null": false
+                                    },
+                                    "varName": "enabled"
+                                }
+                            },
+                            "inputFields": null,
+                            "interfaces": {},
+                            "kind": "OBJECT",
+                            "name": "CopilotAiAgentModePayload",
+                            "possibleTypes": null
+                        },
+                        "indexType": "object",
+                        "kind": [
+                            "OBJECT"
+                        ],
+                        "name": "CopilotAiAgentModePayload",
+                        "non_null": false
+                    },
+                    "varName": "copilotAiAgentModePayload"
+                },
                 "getAccountAgentScope": {
                     "args": {},
                     "deprecationReason": null,
-                    "description": "Account AI enablement. An unsaved account defaults to enabled.",
+                    "description": "Whether AI requests in CMA are enabled. Default is enabled.",
                     "id_str": "getAccountAgentScope",
                     "isDeprecated": false,
                     "name": "getAccountAgentScope",
@@ -65,13 +118,13 @@
                     "responseStr": "getAccountAgentScope:$copilotAccountAgentScope ",
                     "type": {
                         "definition": {
-                            "description": "Account configuration; does not represent effective user permissions.",
+                            "description": "The AI setting for requests in CMA. User permissions still apply.",
                             "enumValues": null,
                             "fields": {
                                 "enabled": {
                                     "args": {},
                                     "deprecationReason": null,
-                                    "description": "Whether CMA AI requests are enabled for this account.",
+                                    "description": "Whether AI requests in CMA are enabled.",
                                     "id_str": "getAccountAgentScope___enabled",
                                     "isDeprecated": false,
                                     "name": "enabled",

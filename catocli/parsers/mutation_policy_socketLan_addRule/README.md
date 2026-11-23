@@ -192,6 +192,6 @@ catocli mutation policy socketLan addRule '{
 
 #### Operation Arguments for mutation.policy.socketLan.addRule ####
 
-`accountId` [ID] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
 `socketLanAddRuleInput` [SocketLanAddRuleInput] - (required) N/A
 `socketLanPolicyMutationInput` [SocketLanPolicyMutationInput] - (required) N/A

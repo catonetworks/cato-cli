@@ -1,0 +1,21 @@
+mutation reportingDeleteReportRun ( $accountId:ID! $reportingDeleteReportRunInput:ReportingDeleteReportRunInput!) {
+	reporting ( accountId:$accountId ) {
+		deleteReportRun ( input:$reportingDeleteReportRunInput  )  {
+			run {
+				id
+				reportConfigurationId
+				reportName
+				templateName
+				runAt
+				status
+				trigger
+				failureReason
+				renderingFormat
+				downloadLink {
+					url
+					expiresAt
+				}
+			}
+		}
+	}	
+}

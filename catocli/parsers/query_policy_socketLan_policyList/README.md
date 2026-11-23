@@ -77,5 +77,5 @@ catocli query policy socketLan policyList '{
 
 #### Operation Arguments for query.policy.socketLan.policyList ####
 
-`accountId` [ID] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
 `socketLanPolicyListInput` [SocketLanPolicyListInput] - (required) N/A

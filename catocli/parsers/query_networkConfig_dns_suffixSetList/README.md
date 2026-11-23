@@ -46,5 +46,5 @@ catocli query networkConfig dns suffixSetList '{
 
 #### Operation Arguments for query.networkConfig.dns.suffixSetList ####
 
-`accountId` [ID] - (required) N/A
-`networkConfigDnsSuffixSetListInput` [NetworkConfigDnsSuffixSetListInput] - (required) N/A
+`accountId` [ID] - (required) ID of the account whose network configuration is requested.
+`networkConfigDnsSuffixSetListInput` [NetworkConfigDnsSuffixSetListInput] - (required) Filters, sorting, and pagination for DNS suffix sets.

@@ -52,5 +52,5 @@ catocli mutation container ipAddressRange updateFromURL '{
 
 #### Operation Arguments for mutation.container.ipAddressRange.updateFromURL ####
 
-`accountId` [ID] - (required) N/A
-`updateIpAddressRangeContainerFromUrlInput` [UpdateIpAddressRangeContainerFromUrlInput] - (required) N/A
+`accountId` [ID] - (required) ID of the account whose containers are accessed.
+`updateIpAddressRangeContainerFromUrlInput` [UpdateIpAddressRangeContainerFromUrlInput] - (required) Container reference and URL synchronization settings to update.

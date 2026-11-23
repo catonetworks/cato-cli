@@ -1,0 +1,26 @@
+mutation networkConfigSnmpRemoveSiteSettings ( $accountId:ID! $networkConfigSnmpRemoveSiteSettingsInput:NetworkConfigSnmpRemoveSiteSettingsInput!) {
+	networkConfig ( accountId:$accountId ) {
+		snmp {
+			removeSiteSettings ( input:$networkConfigSnmpRemoveSiteSettingsInput   ) {
+				siteSettings {
+					site {
+						id
+						name
+					}
+					profile {
+						id
+						name
+					}
+					enabled
+					audit {
+						updatedTime
+						updatedBy {
+							id
+							name
+						}
+					}
+				}
+			}
+		}
+	}	
+}

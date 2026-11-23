@@ -27,6 +27,6 @@ catocli mutation policy siteWebProxy removeSection '{
 
 #### Operation Arguments for mutation.policy.siteWebProxy.removeSection ####
 
-`accountId` [ID] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
 `policyRemoveSectionInput` [PolicyRemoveSectionInput] - (required) N/A
 `siteWebProxyPolicyMutationInput` [SiteWebProxyPolicyMutationInput] - (required) N/A

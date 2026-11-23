@@ -134,6 +134,6 @@ catocli mutation policy privateAccess updateRule '{
 
 #### Operation Arguments for mutation.policy.privateAccess.updateRule ####
 
-`accountId` [ID] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
 `privateAccessPolicyMutationInput` [PrivateAccessPolicyMutationInput] - (required) Parameters for this policy operation.
 `privateAccessUpdateRuleInput` [PrivateAccessUpdateRuleInput] - (required) Parameters for this policy operation.

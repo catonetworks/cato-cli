@@ -25,5 +25,5 @@ catocli mutation container ipAddressRange syncFromURL '{
 
 #### Operation Arguments for mutation.container.ipAddressRange.syncFromURL ####
 
-`accountId` [ID] - (required) N/A
-`syncIpAddressRangeContainerFromUrlInput` [SyncIpAddressRangeContainerFromUrlInput] - (required) N/A
+`accountId` [ID] - (required) ID of the account whose containers are accessed.
+`syncIpAddressRangeContainerFromUrlInput` [SyncIpAddressRangeContainerFromUrlInput] - (required) Reference identifying the container to synchronize.

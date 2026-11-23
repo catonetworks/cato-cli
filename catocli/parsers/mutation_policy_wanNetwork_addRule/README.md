@@ -507,6 +507,6 @@ catocli mutation policy wanNetwork addRule '{
 
 #### Operation Arguments for mutation.policy.wanNetwork.addRule ####
 
-`accountId` [ID] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
 `wanNetworkAddRuleInput` [WanNetworkAddRuleInput] - (required) N/A
 `wanNetworkPolicyMutationInput` [WanNetworkPolicyMutationInput] - (required) N/A

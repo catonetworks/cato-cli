@@ -28,6 +28,6 @@ catocli mutation policy appTenantRestriction createPolicyRevision '{
 
 #### Operation Arguments for mutation.policy.appTenantRestriction.createPolicyRevision ####
 
-`accountId` [ID] - (required) N/A
-`appTenantRestrictionPolicyMutationInput` [AppTenantRestrictionPolicyMutationInput] - (required) N/A
-`policyCreateRevisionInput` [PolicyCreateRevisionInput] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
+`appTenantRestrictionPolicyMutationInput` [AppTenantRestrictionPolicyMutationInput] - (required) Parameters for this policy operation.
+`policyCreateRevisionInput` [PolicyCreateRevisionInput] - (required) Parameters for this policy operation.

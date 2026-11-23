@@ -11,7 +11,7 @@ def mutation_networkConfig_parse(mutation_subparsers):
         """Show help when mutation_networkConfig is called without subcommand"""
         print("\ncatocli mutation networkConfig <subcommand> [options]")
         print("\nAvailable subcommands:")
-        print("  dhcp                           dhcp operation\n  dns                            dns operation")
+        print("  dhcp                           dhcp operation\n  dns                            dns operation\n  snmp                           snmp operation")
         print("\nFor help on a specific subcommand:")
         print("  catocli mutation networkConfig <subcommand> -h")
         return None
@@ -530,3 +530,259 @@ def mutation_networkConfig_parse(mutation_subparsers):
     mutation_networkConfig_dns_setSuffixSet_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_networkConfig_dns_setSuffixSet_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_networkConfig_dns_setSuffixSet_parser.set_defaults(func=createRequest,operation_name='mutation.networkConfig.dns.setSuffixSet')
+
+    mutation_networkConfig_snmp_parser = mutation_networkConfig_subparsers.add_parser('snmp', 
+            help='snmp() networkConfig operation', 
+            usage=get_help("mutation_networkConfig_snmp"))
+
+    def _show_mutation_networkConfig_snmp_help(args, configuration=None):
+        """Show help when mutation_networkConfig_snmp is called without subcommand"""
+        print("\ncatocli mutation networkConfig snmp <subcommand> [options]")
+        print("\nAvailable subcommands:")
+        print("  createProfile                  createProfile operation\n  createProfileList              createProfileList operation\n  updateProfile                  updateProfile operation\n  updateProfileList              updateProfileList operation\n  deleteProfile                  deleteProfile operation\n  deleteProfileList              deleteProfileList operation\n  setProfileList                 setProfileList operation\n  updateSiteSettings             updateSiteSettings operation\n  updateSiteSettingsList         updateSiteSettingsList operation\n  removeSiteSettings             removeSiteSettings operation\n  ... and 2 more")
+        print("\nFor help on a specific subcommand:")
+        print("  catocli mutation networkConfig snmp <subcommand> -h")
+        return None
+
+    mutation_networkConfig_snmp_subparsers = mutation_networkConfig_snmp_parser.add_subparsers()
+    mutation_networkConfig_snmp_parser.set_defaults(func=_show_mutation_networkConfig_snmp_help)
+
+    mutation_networkConfig_snmp_createProfile_parser = mutation_networkConfig_snmp_subparsers.add_parser('createProfile', 
+            help='createProfile() snmp operation', 
+            usage=get_help("mutation_networkConfig_snmp_createProfile"))
+
+    mutation_networkConfig_snmp_createProfile_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_networkConfig_snmp_createProfile_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_networkConfig_snmp_createProfile_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_networkConfig_snmp_createProfile_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_networkConfig_snmp_createProfile_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_networkConfig_snmp_createProfile_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_networkConfig_snmp_createProfile_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_networkConfig_snmp_createProfile_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_networkConfig_snmp_createProfile_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_networkConfig_snmp_createProfile_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_networkConfig_snmp_createProfile_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_networkConfig_snmp_createProfile_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_networkConfig_snmp_createProfile_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_networkConfig_snmp_createProfile_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_networkConfig_snmp_createProfile_parser.set_defaults(func=createRequest,operation_name='mutation.networkConfig.snmp.createProfile')
+
+    mutation_networkConfig_snmp_createProfileList_parser = mutation_networkConfig_snmp_subparsers.add_parser('createProfileList', 
+            help='createProfileList() snmp operation', 
+            usage=get_help("mutation_networkConfig_snmp_createProfileList"))
+
+    mutation_networkConfig_snmp_createProfileList_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_networkConfig_snmp_createProfileList_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_networkConfig_snmp_createProfileList_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_networkConfig_snmp_createProfileList_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_networkConfig_snmp_createProfileList_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_networkConfig_snmp_createProfileList_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_networkConfig_snmp_createProfileList_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_networkConfig_snmp_createProfileList_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_networkConfig_snmp_createProfileList_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_networkConfig_snmp_createProfileList_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_networkConfig_snmp_createProfileList_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_networkConfig_snmp_createProfileList_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_networkConfig_snmp_createProfileList_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_networkConfig_snmp_createProfileList_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_networkConfig_snmp_createProfileList_parser.set_defaults(func=createRequest,operation_name='mutation.networkConfig.snmp.createProfileList')
+
+    mutation_networkConfig_snmp_updateProfile_parser = mutation_networkConfig_snmp_subparsers.add_parser('updateProfile', 
+            help='updateProfile() snmp operation', 
+            usage=get_help("mutation_networkConfig_snmp_updateProfile"))
+
+    mutation_networkConfig_snmp_updateProfile_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_networkConfig_snmp_updateProfile_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_networkConfig_snmp_updateProfile_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_networkConfig_snmp_updateProfile_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_networkConfig_snmp_updateProfile_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_networkConfig_snmp_updateProfile_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_networkConfig_snmp_updateProfile_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_networkConfig_snmp_updateProfile_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_networkConfig_snmp_updateProfile_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_networkConfig_snmp_updateProfile_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_networkConfig_snmp_updateProfile_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_networkConfig_snmp_updateProfile_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_networkConfig_snmp_updateProfile_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_networkConfig_snmp_updateProfile_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_networkConfig_snmp_updateProfile_parser.set_defaults(func=createRequest,operation_name='mutation.networkConfig.snmp.updateProfile')
+
+    mutation_networkConfig_snmp_updateProfileList_parser = mutation_networkConfig_snmp_subparsers.add_parser('updateProfileList', 
+            help='updateProfileList() snmp operation', 
+            usage=get_help("mutation_networkConfig_snmp_updateProfileList"))
+
+    mutation_networkConfig_snmp_updateProfileList_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_networkConfig_snmp_updateProfileList_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_networkConfig_snmp_updateProfileList_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_networkConfig_snmp_updateProfileList_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_networkConfig_snmp_updateProfileList_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_networkConfig_snmp_updateProfileList_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_networkConfig_snmp_updateProfileList_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_networkConfig_snmp_updateProfileList_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_networkConfig_snmp_updateProfileList_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_networkConfig_snmp_updateProfileList_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_networkConfig_snmp_updateProfileList_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_networkConfig_snmp_updateProfileList_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_networkConfig_snmp_updateProfileList_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_networkConfig_snmp_updateProfileList_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_networkConfig_snmp_updateProfileList_parser.set_defaults(func=createRequest,operation_name='mutation.networkConfig.snmp.updateProfileList')
+
+    mutation_networkConfig_snmp_deleteProfile_parser = mutation_networkConfig_snmp_subparsers.add_parser('deleteProfile', 
+            help='deleteProfile() snmp operation', 
+            usage=get_help("mutation_networkConfig_snmp_deleteProfile"))
+
+    mutation_networkConfig_snmp_deleteProfile_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_networkConfig_snmp_deleteProfile_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_networkConfig_snmp_deleteProfile_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_networkConfig_snmp_deleteProfile_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_networkConfig_snmp_deleteProfile_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_networkConfig_snmp_deleteProfile_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_networkConfig_snmp_deleteProfile_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_networkConfig_snmp_deleteProfile_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_networkConfig_snmp_deleteProfile_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_networkConfig_snmp_deleteProfile_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_networkConfig_snmp_deleteProfile_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_networkConfig_snmp_deleteProfile_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_networkConfig_snmp_deleteProfile_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_networkConfig_snmp_deleteProfile_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_networkConfig_snmp_deleteProfile_parser.set_defaults(func=createRequest,operation_name='mutation.networkConfig.snmp.deleteProfile')
+
+    mutation_networkConfig_snmp_deleteProfileList_parser = mutation_networkConfig_snmp_subparsers.add_parser('deleteProfileList', 
+            help='deleteProfileList() snmp operation', 
+            usage=get_help("mutation_networkConfig_snmp_deleteProfileList"))
+
+    mutation_networkConfig_snmp_deleteProfileList_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_networkConfig_snmp_deleteProfileList_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_networkConfig_snmp_deleteProfileList_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_networkConfig_snmp_deleteProfileList_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_networkConfig_snmp_deleteProfileList_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_networkConfig_snmp_deleteProfileList_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_networkConfig_snmp_deleteProfileList_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_networkConfig_snmp_deleteProfileList_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_networkConfig_snmp_deleteProfileList_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_networkConfig_snmp_deleteProfileList_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_networkConfig_snmp_deleteProfileList_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_networkConfig_snmp_deleteProfileList_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_networkConfig_snmp_deleteProfileList_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_networkConfig_snmp_deleteProfileList_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_networkConfig_snmp_deleteProfileList_parser.set_defaults(func=createRequest,operation_name='mutation.networkConfig.snmp.deleteProfileList')
+
+    mutation_networkConfig_snmp_setProfileList_parser = mutation_networkConfig_snmp_subparsers.add_parser('setProfileList', 
+            help='setProfileList() snmp operation', 
+            usage=get_help("mutation_networkConfig_snmp_setProfileList"))
+
+    mutation_networkConfig_snmp_setProfileList_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_networkConfig_snmp_setProfileList_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_networkConfig_snmp_setProfileList_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_networkConfig_snmp_setProfileList_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_networkConfig_snmp_setProfileList_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_networkConfig_snmp_setProfileList_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_networkConfig_snmp_setProfileList_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_networkConfig_snmp_setProfileList_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_networkConfig_snmp_setProfileList_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_networkConfig_snmp_setProfileList_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_networkConfig_snmp_setProfileList_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_networkConfig_snmp_setProfileList_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_networkConfig_snmp_setProfileList_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_networkConfig_snmp_setProfileList_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_networkConfig_snmp_setProfileList_parser.set_defaults(func=createRequest,operation_name='mutation.networkConfig.snmp.setProfileList')
+
+    mutation_networkConfig_snmp_updateSiteSettings_parser = mutation_networkConfig_snmp_subparsers.add_parser('updateSiteSettings', 
+            help='updateSiteSettings() snmp operation', 
+            usage=get_help("mutation_networkConfig_snmp_updateSiteSettings"))
+
+    mutation_networkConfig_snmp_updateSiteSettings_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_networkConfig_snmp_updateSiteSettings_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_networkConfig_snmp_updateSiteSettings_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_networkConfig_snmp_updateSiteSettings_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_networkConfig_snmp_updateSiteSettings_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_networkConfig_snmp_updateSiteSettings_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_networkConfig_snmp_updateSiteSettings_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_networkConfig_snmp_updateSiteSettings_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_networkConfig_snmp_updateSiteSettings_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_networkConfig_snmp_updateSiteSettings_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_networkConfig_snmp_updateSiteSettings_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_networkConfig_snmp_updateSiteSettings_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_networkConfig_snmp_updateSiteSettings_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_networkConfig_snmp_updateSiteSettings_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_networkConfig_snmp_updateSiteSettings_parser.set_defaults(func=createRequest,operation_name='mutation.networkConfig.snmp.updateSiteSettings')
+
+    mutation_networkConfig_snmp_updateSiteSettingsList_parser = mutation_networkConfig_snmp_subparsers.add_parser('updateSiteSettingsList', 
+            help='updateSiteSettingsList() snmp operation', 
+            usage=get_help("mutation_networkConfig_snmp_updateSiteSettingsList"))
+
+    mutation_networkConfig_snmp_updateSiteSettingsList_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_networkConfig_snmp_updateSiteSettingsList_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_networkConfig_snmp_updateSiteSettingsList_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_networkConfig_snmp_updateSiteSettingsList_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_networkConfig_snmp_updateSiteSettingsList_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_networkConfig_snmp_updateSiteSettingsList_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_networkConfig_snmp_updateSiteSettingsList_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_networkConfig_snmp_updateSiteSettingsList_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_networkConfig_snmp_updateSiteSettingsList_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_networkConfig_snmp_updateSiteSettingsList_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_networkConfig_snmp_updateSiteSettingsList_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_networkConfig_snmp_updateSiteSettingsList_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_networkConfig_snmp_updateSiteSettingsList_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_networkConfig_snmp_updateSiteSettingsList_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_networkConfig_snmp_updateSiteSettingsList_parser.set_defaults(func=createRequest,operation_name='mutation.networkConfig.snmp.updateSiteSettingsList')
+
+    mutation_networkConfig_snmp_removeSiteSettings_parser = mutation_networkConfig_snmp_subparsers.add_parser('removeSiteSettings', 
+            help='removeSiteSettings() snmp operation', 
+            usage=get_help("mutation_networkConfig_snmp_removeSiteSettings"))
+
+    mutation_networkConfig_snmp_removeSiteSettings_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_networkConfig_snmp_removeSiteSettings_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_networkConfig_snmp_removeSiteSettings_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_networkConfig_snmp_removeSiteSettings_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_networkConfig_snmp_removeSiteSettings_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_networkConfig_snmp_removeSiteSettings_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_networkConfig_snmp_removeSiteSettings_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_networkConfig_snmp_removeSiteSettings_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_networkConfig_snmp_removeSiteSettings_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_networkConfig_snmp_removeSiteSettings_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_networkConfig_snmp_removeSiteSettings_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_networkConfig_snmp_removeSiteSettings_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_networkConfig_snmp_removeSiteSettings_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_networkConfig_snmp_removeSiteSettings_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_networkConfig_snmp_removeSiteSettings_parser.set_defaults(func=createRequest,operation_name='mutation.networkConfig.snmp.removeSiteSettings')
+
+    mutation_networkConfig_snmp_removeSiteSettingsList_parser = mutation_networkConfig_snmp_subparsers.add_parser('removeSiteSettingsList', 
+            help='removeSiteSettingsList() snmp operation', 
+            usage=get_help("mutation_networkConfig_snmp_removeSiteSettingsList"))
+
+    mutation_networkConfig_snmp_removeSiteSettingsList_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_networkConfig_snmp_removeSiteSettingsList_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_networkConfig_snmp_removeSiteSettingsList_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_networkConfig_snmp_removeSiteSettingsList_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_networkConfig_snmp_removeSiteSettingsList_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_networkConfig_snmp_removeSiteSettingsList_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_networkConfig_snmp_removeSiteSettingsList_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_networkConfig_snmp_removeSiteSettingsList_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_networkConfig_snmp_removeSiteSettingsList_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_networkConfig_snmp_removeSiteSettingsList_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_networkConfig_snmp_removeSiteSettingsList_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_networkConfig_snmp_removeSiteSettingsList_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_networkConfig_snmp_removeSiteSettingsList_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_networkConfig_snmp_removeSiteSettingsList_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_networkConfig_snmp_removeSiteSettingsList_parser.set_defaults(func=createRequest,operation_name='mutation.networkConfig.snmp.removeSiteSettingsList')
+
+    mutation_networkConfig_snmp_setSiteSettingsList_parser = mutation_networkConfig_snmp_subparsers.add_parser('setSiteSettingsList', 
+            help='setSiteSettingsList() snmp operation', 
+            usage=get_help("mutation_networkConfig_snmp_setSiteSettingsList"))
+
+    mutation_networkConfig_snmp_setSiteSettingsList_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_networkConfig_snmp_setSiteSettingsList_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_networkConfig_snmp_setSiteSettingsList_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_networkConfig_snmp_setSiteSettingsList_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_networkConfig_snmp_setSiteSettingsList_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_networkConfig_snmp_setSiteSettingsList_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_networkConfig_snmp_setSiteSettingsList_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_networkConfig_snmp_setSiteSettingsList_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_networkConfig_snmp_setSiteSettingsList_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_networkConfig_snmp_setSiteSettingsList_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_networkConfig_snmp_setSiteSettingsList_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_networkConfig_snmp_setSiteSettingsList_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_networkConfig_snmp_setSiteSettingsList_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_networkConfig_snmp_setSiteSettingsList_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_networkConfig_snmp_setSiteSettingsList_parser.set_defaults(func=createRequest,operation_name='mutation.networkConfig.snmp.setSiteSettingsList')

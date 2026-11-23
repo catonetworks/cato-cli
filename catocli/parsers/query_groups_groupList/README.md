@@ -172,5 +172,5 @@ specific group's members separately with `catocli query groups group members`.
 
 #### Operation Arguments for query.groups.groupList ####
 
-`accountId` [ID] - (required) N/A
-`groupListInput` [GroupListInput] - (required) N/A
+`accountId` [ID] - (required) ID of the account to query for groups.
+`groupListInput` [GroupListInput] - (required) Filters, sorting, and pagination for the groups to retrieve.

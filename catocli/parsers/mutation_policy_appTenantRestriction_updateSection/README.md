@@ -30,6 +30,6 @@ catocli mutation policy appTenantRestriction updateSection '{
 
 #### Operation Arguments for mutation.policy.appTenantRestriction.updateSection ####
 
-`accountId` [ID] - (required) N/A
-`appTenantRestrictionPolicyMutationInput` [AppTenantRestrictionPolicyMutationInput] - (required) N/A
-`policyUpdateSectionInput` [PolicyUpdateSectionInput] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
+`appTenantRestrictionPolicyMutationInput` [AppTenantRestrictionPolicyMutationInput] - (required) Parameters for this policy operation.
+`policyUpdateSectionInput` [PolicyUpdateSectionInput] - (required) Parameters for this policy operation.

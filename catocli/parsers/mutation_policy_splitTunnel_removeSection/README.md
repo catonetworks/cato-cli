@@ -27,6 +27,6 @@ catocli mutation policy splitTunnel removeSection '{
 
 #### Operation Arguments for mutation.policy.splitTunnel.removeSection ####
 
-`accountId` [ID] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
 `policyRemoveSectionInput` [PolicyRemoveSectionInput] - (required) Parameters for this policy operation.
 `splitTunnelPolicyMutationInput` [SplitTunnelPolicyMutationInput] - (required) Parameters for this policy operation.

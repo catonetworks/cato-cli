@@ -29,5 +29,5 @@ catocli mutation networkConfig dhcp createRelayGroup '{
 
 #### Operation Arguments for mutation.networkConfig.dhcp.createRelayGroup ####
 
-`accountId` [ID] - (required) N/A
-`networkConfigDhcpCreateRelayGroupInput` [NetworkConfigDhcpCreateRelayGroupInput] - (required) N/A
+`accountId` [ID] - (required) ID of the account whose network configuration is modified.
+`networkConfigDhcpCreateRelayGroupInput` [NetworkConfigDhcpCreateRelayGroupInput] - (required) Input for creating DHCP relay groups.

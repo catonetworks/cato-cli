@@ -23,5 +23,5 @@ catocli query groups whereUsed '{
 
 #### Operation Arguments for query.groups.whereUsed ####
 
-`accountId` [ID] - (required) N/A
-`groupRefInput` [GroupRefInput] - (required) N/A
+`accountId` [ID] - (required) ID of the account to query for groups.
+`groupRefInput` [GroupRefInput] - (required) Group to check for policy references, identified by ID or name.

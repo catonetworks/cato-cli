@@ -50,7 +50,7 @@ from ..parsers.mutation_popLocationMutations import mutation_popLocationMutation
 from ..parsers.mutation_posture import mutation_posture_parse
 from ..parsers.mutation_privateApplication import mutation_privateApplication_parse
 from ..parsers.mutation_rbac import mutation_rbac_parse
-from ..parsers.mutation_report import mutation_report_parse
+from ..parsers.mutation_reporting import mutation_reporting_parse
 from ..parsers.mutation_sandbox import mutation_sandbox_parse
 from ..parsers.mutation_site import mutation_site_parse
 from ..parsers.mutation_sites import mutation_sites_parse
@@ -95,7 +95,7 @@ from ..parsers.query_popLocations import query_popLocations_parse
 from ..parsers.query_posture import query_posture_parse
 from ..parsers.query_privateApplication import query_privateApplication_parse
 from ..parsers.query_rbac import query_rbac_parse
-from ..parsers.query_report import query_report_parse
+from ..parsers.query_reporting import query_reporting_parse
 from ..parsers.query_sandbox import query_sandbox_parse
 from ..parsers.query_servicePrincipalAdmin import query_servicePrincipalAdmin_parse
 from ..parsers.query_site import query_site_parse
@@ -265,7 +265,7 @@ mutation_popLocationMutations_parser = mutation_popLocationMutations_parse(mutat
 mutation_posture_parser = mutation_posture_parse(mutation_subparsers)
 mutation_privateApplication_parser = mutation_privateApplication_parse(mutation_subparsers)
 mutation_rbac_parser = mutation_rbac_parse(mutation_subparsers)
-mutation_report_parser = mutation_report_parse(mutation_subparsers)
+mutation_reporting_parser = mutation_reporting_parse(mutation_subparsers)
 mutation_sandbox_parser = mutation_sandbox_parse(mutation_subparsers)
 mutation_site_parser = mutation_site_parse(mutation_subparsers)
 mutation_sites_parser = mutation_sites_parse(mutation_subparsers)
@@ -310,7 +310,7 @@ query_popLocations_parser = query_popLocations_parse(query_subparsers)
 query_posture_parser = query_posture_parse(query_subparsers)
 query_privateApplication_parser = query_privateApplication_parse(query_subparsers)
 query_rbac_parser = query_rbac_parse(query_subparsers)
-query_report_parser = query_report_parse(query_subparsers)
+query_reporting_parser = query_reporting_parse(query_subparsers)
 query_sandbox_parser = query_sandbox_parse(query_subparsers)
 query_servicePrincipalAdmin_parser = query_servicePrincipalAdmin_parse(query_subparsers)
 query_site_parser = query_site_parse(query_subparsers)

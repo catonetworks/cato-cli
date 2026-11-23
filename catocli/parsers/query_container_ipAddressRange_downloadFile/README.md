@@ -23,5 +23,5 @@ catocli query container ipAddressRange downloadFile '{
 
 #### Operation Arguments for query.container.ipAddressRange.downloadFile ####
 
-`accountId` [ID] - (required) N/A
-`downloadIpAddressRangeContainerFileInput` [DownloadIpAddressRangeContainerFileInput] - (required) N/A
+`accountId` [ID] - (required) ID of the account whose containers are accessed.
+`downloadIpAddressRangeContainerFileInput` [DownloadIpAddressRangeContainerFileInput] - (required) Container ID or name used to select the file to download.

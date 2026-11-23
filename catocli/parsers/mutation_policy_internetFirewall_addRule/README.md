@@ -536,6 +536,6 @@ catocli mutation policy internetFirewall addRule '{
 
 #### Operation Arguments for mutation.policy.internetFirewall.addRule ####
 
-`accountId` [ID] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
 `internetFirewallAddRuleInput` [InternetFirewallAddRuleInput] - (required) N/A
 `internetFirewallPolicyMutationInput` [InternetFirewallPolicyMutationInput] - (required) N/A

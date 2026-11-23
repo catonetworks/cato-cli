@@ -25,5 +25,5 @@ catocli mutation networkConfig dns deleteForwardingRule '{
 
 #### Operation Arguments for mutation.networkConfig.dns.deleteForwardingRule ####
 
-`accountId` [ID] - (required) N/A
-`networkConfigDnsDeleteForwardingRuleInput` [NetworkConfigDnsDeleteForwardingRuleInput] - (required) N/A
+`accountId` [ID] - (required) ID of the account whose network configuration is modified.
+`networkConfigDnsDeleteForwardingRuleInput` [NetworkConfigDnsDeleteForwardingRuleInput] - (required) Input for deleting DNS forwarding rules.

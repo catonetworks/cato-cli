@@ -77,5 +77,5 @@ catocli query policy internetFirewall policyList '{
 
 #### Operation Arguments for query.policy.internetFirewall.policyList ####
 
-`accountId` [ID] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
 `internetFirewallPolicyListInput` [InternetFirewallPolicyListInput] - (required) N/A

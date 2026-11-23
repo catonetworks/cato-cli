@@ -1,0 +1,24 @@
+query policyApplicationControlRevisions ( $accountId:ID! $policyRevisionsInput:PolicyRevisionsInput!) {
+	policy ( accountId:$accountId ) {
+		applicationControl {
+			revisions ( input:$policyRevisionsInput   ) {
+				revision {
+					id
+					name
+					description
+					changes
+					createdTime
+					updatedTime
+					state
+					audit {
+						publishedTime
+						publishedBy
+					}
+				}
+				paging {
+					total
+				}
+			}
+		}
+	}	
+}

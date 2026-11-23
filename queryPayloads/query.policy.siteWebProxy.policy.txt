@@ -81,6 +81,27 @@ query policySiteWebProxyPolicy ( $accountId:ID! $siteWebProxyPolicyInput:SiteWeb
 									domain
 								}
 								action
+								tracking {
+									event {
+										enabled
+									}
+									alert {
+										enabled
+										frequency
+										subscriptionGroup {
+											id
+											name
+										}
+										webhook {
+											id
+											name
+										}
+										mailingList {
+											id
+											name
+										}
+									}
+								}
 							}
 							properties
 						}
@@ -131,6 +152,11 @@ query policySiteWebProxyPolicy ( $accountId:ID! $siteWebProxyPolicyInput:SiteWeb
 					changes
 					createdTime
 					updatedTime
+					state
+					audit {
+						publishedTime
+						publishedBy
+					}
 				}
 			}
 		}

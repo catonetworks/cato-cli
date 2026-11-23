@@ -30,6 +30,6 @@ catocli mutation policy internetFirewall updateSection '{
 
 #### Operation Arguments for mutation.policy.internetFirewall.updateSection ####
 
-`accountId` [ID] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
 `internetFirewallPolicyMutationInput` [InternetFirewallPolicyMutationInput] - (required) N/A
 `policyUpdateSectionInput` [PolicyUpdateSectionInput] - (required) N/A

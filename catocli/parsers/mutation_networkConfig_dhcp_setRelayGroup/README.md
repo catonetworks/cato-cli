@@ -30,5 +30,5 @@ catocli mutation networkConfig dhcp setRelayGroup '{
 
 #### Operation Arguments for mutation.networkConfig.dhcp.setRelayGroup ####
 
-`accountId` [ID] - (required) N/A
-`networkConfigDhcpSetRelayGroupInput` [NetworkConfigDhcpSetRelayGroupInput] - (required) N/A
+`accountId` [ID] - (required) ID of the account whose network configuration is modified.
+`networkConfigDhcpSetRelayGroupInput` [NetworkConfigDhcpSetRelayGroupInput] - (required) Input for replacing the whole DHCP relay-group catalog.

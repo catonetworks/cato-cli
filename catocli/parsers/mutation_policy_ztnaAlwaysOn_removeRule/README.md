@@ -27,6 +27,6 @@ catocli mutation policy ztnaAlwaysOn removeRule '{
 
 #### Operation Arguments for mutation.policy.ztnaAlwaysOn.removeRule ####
 
-`accountId` [ID] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
 `ztnaAlwaysOnPolicyMutationInput` [ZtnaAlwaysOnPolicyMutationInput] - (required) Parameters for this policy operation.
 `ztnaAlwaysOnRemoveRuleInput` [ZtnaAlwaysOnRemoveRuleInput] - (required) Parameters for this policy operation.

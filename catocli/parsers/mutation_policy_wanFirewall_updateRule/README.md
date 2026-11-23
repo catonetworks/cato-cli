@@ -619,6 +619,6 @@ catocli mutation policy wanFirewall updateRule '{
 
 #### Operation Arguments for mutation.policy.wanFirewall.updateRule ####
 
-`accountId` [ID] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
 `wanFirewallPolicyMutationInput` [WanFirewallPolicyMutationInput] - (required) N/A
 `wanFirewallUpdateRuleInput` [WanFirewallUpdateRuleInput] - (required) N/A

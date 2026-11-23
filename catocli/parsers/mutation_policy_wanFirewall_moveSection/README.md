@@ -31,6 +31,6 @@ catocli mutation policy wanFirewall moveSection '{
 
 #### Operation Arguments for mutation.policy.wanFirewall.moveSection ####
 
-`accountId` [ID] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
 `policyMoveSectionInput` [PolicyMoveSectionInput] - (required) N/A
 `wanFirewallPolicyMutationInput` [WanFirewallPolicyMutationInput] - (required) N/A

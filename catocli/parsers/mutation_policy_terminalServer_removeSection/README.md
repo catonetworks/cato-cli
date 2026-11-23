@@ -27,6 +27,6 @@ catocli mutation policy terminalServer removeSection '{
 
 #### Operation Arguments for mutation.policy.terminalServer.removeSection ####
 
-`accountId` [ID] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
 `policyRemoveSectionInput` [PolicyRemoveSectionInput] - (required) Parameters for this policy operation.
 `terminalServerPolicyMutationInput` [TerminalServerPolicyMutationInput] - (required) Parameters for this policy operation.

@@ -33,6 +33,6 @@ catocli mutation policy tlsInspect addSection '{
 
 #### Operation Arguments for mutation.policy.tlsInspect.addSection ####
 
-`accountId` [ID] - (required) N/A
-`policyAddSectionInput` [PolicyAddSectionInput] - (required) N/A
-`tlsInspectPolicyMutationInput` [TlsInspectPolicyMutationInput] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
+`policyAddSectionInput` [PolicyAddSectionInput] - (required) Parameters for this policy operation.
+`tlsInspectPolicyMutationInput` [TlsInspectPolicyMutationInput] - (required) Parameters for this policy operation.

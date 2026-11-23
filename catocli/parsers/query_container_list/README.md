@@ -30,5 +30,5 @@ catocli query container list '{
 
 #### Operation Arguments for query.container.list ####
 
-`accountId` [ID] - (required) N/A
-`containerSearchInput` [ContainerSearchInput] - (required) N/A
+`accountId` [ID] - (required) ID of the account whose containers are accessed.
+`containerSearchInput` [ContainerSearchInput] - (required) References and container types used to filter the results.

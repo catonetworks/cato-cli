@@ -23,5 +23,5 @@ catocli mutation externalAccess revokePartnerAccess '{
 
 #### Operation Arguments for mutation.externalAccess.revokePartnerAccess ####
 
-`accountId` [ID] - (required) N/A
-`revokePartnerAccessInput` [RevokePartnerAccessInput] - (required) N/A
+`accountId` [ID] - (required) ID of the account in which to manage external access requests.
+`revokePartnerAccessInput` [RevokePartnerAccessInput] - (required) Access request to revoke and the reason for revoking access.

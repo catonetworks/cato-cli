@@ -1,0 +1,32 @@
+mutation reportingCreateReportConfiguration ( $accountId:ID! $reportingCreateReportConfigurationInput:ReportingCreateReportConfigurationInput!) {
+	reporting ( accountId:$accountId ) {
+		createReportConfiguration ( input:$reportingCreateReportConfigurationInput  )  {
+			configuration {
+				id
+				name
+				templateId
+				templateName
+				timeFrame
+				filter {
+					field
+					operator
+					value
+				}
+				schedule {
+					frequency
+					dayOfWeek
+					dayOfMonth
+					nextRunAt
+				}
+				mailingList {
+					id
+					name
+				}
+				enabled
+				timeZone
+				renderingFormat
+				lastModified
+			}
+		}
+	}	
+}

@@ -24,5 +24,5 @@ catocli mutation externalAccess resolveIncomingAccessRequest '{
 
 #### Operation Arguments for mutation.externalAccess.resolveIncomingAccessRequest ####
 
-`accountId` [ID] - (required) N/A
-`resolveIncomingAccessRequestInput` [ResolveIncomingAccessRequestInput] - (required) N/A
+`accountId` [ID] - (required) ID of the account in which to manage external access requests.
+`resolveIncomingAccessRequestInput` [ResolveIncomingAccessRequestInput] - (required) Access request to approve or reject, with the decision and an optional note.

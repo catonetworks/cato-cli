@@ -540,6 +540,6 @@ catocli mutation policy internetFirewall addSubPolicy '{
 
 #### Operation Arguments for mutation.policy.internetFirewall.addSubPolicy ####
 
-`accountId` [ID] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
 `internetFirewallAddSubPolicyInput` [InternetFirewallAddSubPolicyInput] - (required) N/A
 `internetFirewallPolicyMutationInput` [InternetFirewallPolicyMutationInput] - (required) N/A

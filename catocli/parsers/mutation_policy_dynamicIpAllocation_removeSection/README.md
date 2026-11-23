@@ -27,6 +27,6 @@ catocli mutation policy dynamicIpAllocation removeSection '{
 
 #### Operation Arguments for mutation.policy.dynamicIpAllocation.removeSection ####
 
-`accountId` [ID] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
 `dynamicIpAllocationPolicyMutationInput` [DynamicIpAllocationPolicyMutationInput] - (required) Parameters for this policy operation.
 `policyRemoveSectionInput` [PolicyRemoveSectionInput] - (required) Parameters for this policy operation.

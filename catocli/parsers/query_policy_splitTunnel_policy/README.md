@@ -25,5 +25,5 @@ catocli query policy splitTunnel policy '{
 
 #### Operation Arguments for query.policy.splitTunnel.policy ####
 
-`accountId` [ID] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
 `splitTunnelPolicyInput` [SplitTunnelPolicyInput] - (required) Parameters for this policy operation.

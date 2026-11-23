@@ -27,6 +27,6 @@ catocli mutation policy appTenantRestriction discardPolicyRevision '{
 
 #### Operation Arguments for mutation.policy.appTenantRestriction.discardPolicyRevision ####
 
-`accountId` [ID] - (required) N/A
-`appTenantRestrictionPolicyMutationInput` [AppTenantRestrictionPolicyMutationInput] - (required) N/A
-`policyDiscardRevisionInput` [PolicyDiscardRevisionInput] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
+`appTenantRestrictionPolicyMutationInput` [AppTenantRestrictionPolicyMutationInput] - (required) Parameters for this policy operation.
+`policyDiscardRevisionInput` [PolicyDiscardRevisionInput] - (required) Parameters for this policy operation.

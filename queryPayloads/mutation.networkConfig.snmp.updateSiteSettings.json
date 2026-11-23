@@ -1,0 +1,19 @@
+{
+    "operationName": "networkConfigSnmpUpdateSiteSettings",
+    "query": "mutation networkConfigSnmpUpdateSiteSettings ( $accountId:ID! $networkConfigSnmpUpdateSiteSettingsInput:NetworkConfigSnmpUpdateSiteSettingsInput!) {\n\tnetworkConfig ( accountId:$accountId ) {\n\t\tsnmp {\n\t\t\tupdateSiteSettings ( input:$networkConfigSnmpUpdateSiteSettingsInput   ) {\n\t\t\t\tsiteSettings {\n\t\t\t\t\tsite {\n\t\t\t\t\t\tid\n\t\t\t\t\t\tname\n\t\t\t\t\t}\n\t\t\t\t\tprofile {\n\t\t\t\t\t\tid\n\t\t\t\t\t\tname\n\t\t\t\t\t}\n\t\t\t\t\tenabled\n\t\t\t\t\taudit {\n\t\t\t\t\t\tupdatedTime\n\t\t\t\t\t\tupdatedBy {\n\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\tname\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\t\n}",
+    "variables": {
+        "networkConfigSnmpUpdateSiteSettingsInput": {
+            "siteSettings": {
+                "enabled": true,
+                "profile": {
+                    "by": "ID",
+                    "input": "string"
+                },
+                "site": {
+                    "by": "ID",
+                    "input": "string"
+                }
+            }
+        }
+    }
+}

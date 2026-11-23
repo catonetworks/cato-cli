@@ -62,7 +62,7 @@ Format: `"utc.YYYY-MM-{DD/HH:MM:SS--DD/HH:MM:SS}"`
 #### Operation Arguments for query.auditFeed ####
 
 `accountIDs` [ID[]] - (required) List of Unique Account Identifiers.
-`auditFieldFilterInput` [AuditFieldFilterInput[]] - (required) N/A
+`auditFieldFilterInput` [AuditFieldFilterInput[]] - (required) Criteria used to select audit feed records.
 `fieldNames` [AuditFieldName[]] - (required) N/A Default Value: ['admin', 'apiKey', 'model_name', 'admin_id', 'module', 'audit_creation_type', 'insertion_date', 'change_type', 'creation_date', 'model_type', 'account', 'account_id']
 `marker` [String] - (required) Marker to use to get results from
-`timeFrame` [TimeFrame] - (required) N/A
+`timeFrame` [TimeFrame] - (required) Time range covered by the requested data.

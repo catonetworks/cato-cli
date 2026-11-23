@@ -25,5 +25,5 @@ catocli mutation networkConfig dns deleteSuffixSet '{
 
 #### Operation Arguments for mutation.networkConfig.dns.deleteSuffixSet ####
 
-`accountId` [ID] - (required) N/A
-`networkConfigDnsDeleteSuffixSetInput` [NetworkConfigDnsDeleteSuffixSetInput] - (required) N/A
+`accountId` [ID] - (required) ID of the account whose network configuration is modified.
+`networkConfigDnsDeleteSuffixSetInput` [NetworkConfigDnsDeleteSuffixSetInput] - (required) Input for deleting DNS suffix sets.

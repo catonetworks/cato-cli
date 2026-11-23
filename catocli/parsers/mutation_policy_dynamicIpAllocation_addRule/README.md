@@ -70,6 +70,6 @@ catocli mutation policy dynamicIpAllocation addRule '{
 
 #### Operation Arguments for mutation.policy.dynamicIpAllocation.addRule ####
 
-`accountId` [ID] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
 `dynamicIpAllocationAddRuleInput` [DynamicIpAllocationAddRuleInput] - (required) Parameters for this policy operation.
 `dynamicIpAllocationPolicyMutationInput` [DynamicIpAllocationPolicyMutationInput] - (required) Parameters for this policy operation.

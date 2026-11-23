@@ -82,6 +82,27 @@ mutation policySiteWebProxyCreatePolicyRevision ( $accountId:ID! $siteWebProxyPo
 										domain
 									}
 									action
+									tracking {
+										event {
+											enabled
+										}
+										alert {
+											enabled
+											frequency
+											subscriptionGroup {
+												id
+												name
+											}
+											webhook {
+												id
+												name
+											}
+											mailingList {
+												id
+												name
+											}
+										}
+									}
 								}
 								properties
 							}
@@ -132,6 +153,11 @@ mutation policySiteWebProxyCreatePolicyRevision ( $accountId:ID! $siteWebProxyPo
 						changes
 						createdTime
 						updatedTime
+						state
+						audit {
+							publishedTime
+							publishedBy
+						}
 					}
 				}
 				status

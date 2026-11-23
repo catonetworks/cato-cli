@@ -95,6 +95,6 @@ catocli mutation groups updateGroup '{
 
 #### Operation Arguments for mutation.groups.updateGroup ####
 
-`accountId` [ID] - (required) N/A
-`groupMembersListInput` [GroupMembersListInput] - (optional) N/A
-`updateGroupInput` [UpdateGroupInput] - (required) N/A
+`accountId` [ID] - (required) ID of the account in which to create, update, or delete groups.
+`groupMembersListInput` [GroupMembersListInput] - (optional) Filters, sorting, and pagination for the group members to retrieve.
+`updateGroupInput` [UpdateGroupInput] - (required) Group to update and the changes to its attributes or members.

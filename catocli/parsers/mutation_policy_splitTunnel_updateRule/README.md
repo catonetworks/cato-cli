@@ -86,6 +86,6 @@ catocli mutation policy splitTunnel updateRule '{
 
 #### Operation Arguments for mutation.policy.splitTunnel.updateRule ####
 
-`accountId` [ID] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
 `splitTunnelPolicyMutationInput` [SplitTunnelPolicyMutationInput] - (required) Parameters for this policy operation.
 `splitTunnelUpdateRuleInput` [SplitTunnelUpdateRuleInput] - (required) Parameters for this policy operation.

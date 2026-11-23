@@ -27,6 +27,6 @@ catocli mutation policy clientConnectivity removeRule '{
 
 #### Operation Arguments for mutation.policy.clientConnectivity.removeRule ####
 
-`accountId` [ID] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
 `clientConnectivityPolicyMutationInput` [ClientConnectivityPolicyMutationInput] - (required) Parameters for this policy operation.
 `clientConnectivityRemoveRuleInput` [ClientConnectivityRemoveRuleInput] - (required) Parameters for this policy operation.

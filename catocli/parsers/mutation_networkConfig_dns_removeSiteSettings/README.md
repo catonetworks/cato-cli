@@ -27,5 +27,5 @@ catocli mutation networkConfig dns removeSiteSettings '{
 
 #### Operation Arguments for mutation.networkConfig.dns.removeSiteSettings ####
 
-`accountId` [ID] - (required) N/A
-`networkConfigDnsRemoveSiteSettingsInput` [NetworkConfigDnsRemoveSiteSettingsInput] - (required) N/A
+`accountId` [ID] - (required) ID of the account whose network configuration is modified.
+`networkConfigDnsRemoveSiteSettingsInput` [NetworkConfigDnsRemoveSiteSettingsInput] - (required) Input for removing the DNS override from one or more sites.

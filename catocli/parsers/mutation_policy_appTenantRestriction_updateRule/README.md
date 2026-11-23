@@ -138,6 +138,6 @@ catocli mutation policy appTenantRestriction updateRule '{
 
 #### Operation Arguments for mutation.policy.appTenantRestriction.updateRule ####
 
-`accountId` [ID] - (required) N/A
-`appTenantRestrictionPolicyMutationInput` [AppTenantRestrictionPolicyMutationInput] - (required) N/A
-`appTenantRestrictionUpdateRuleInput` [AppTenantRestrictionUpdateRuleInput] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
+`appTenantRestrictionPolicyMutationInput` [AppTenantRestrictionPolicyMutationInput] - (required) Parameters for this policy operation.
+`appTenantRestrictionUpdateRuleInput` [AppTenantRestrictionUpdateRuleInput] - (required) Parameters for this policy operation.

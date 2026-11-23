@@ -1,0 +1,20 @@
+{
+    "operationName": "networkConfigSnmpSetProfileList",
+    "query": "mutation networkConfigSnmpSetProfileList ( $accountId:ID! $networkConfigSnmpSetProfileListInput:NetworkConfigSnmpSetProfileListInput!) {\n\tnetworkConfig ( accountId:$accountId ) {\n\t\tsnmp {\n\t\t\tsetProfileList ( input:$networkConfigSnmpSetProfileListInput   ) {\n\t\t\t\tsnmpProfile {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t\tusername\n\t\t\t\t\tsecurityLevel\n\t\t\t\t\tauthProtocol\n\t\t\t\t\tprivacyProtocol\n\t\t\t\t\tdescription\n\t\t\t\t\taudit {\n\t\t\t\t\t\tupdatedTime\n\t\t\t\t\t\tupdatedBy {\n\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\tname\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\t\n}",
+    "variables": {
+        "networkConfigSnmpSetProfileListInput": {
+            "snmpProfile": [
+                {
+                    "authPassphrase": "replace-with-your-secret",
+                    "authProtocol": "SHA_256",
+                    "description": "string",
+                    "name": "string",
+                    "privacyPassphrase": "replace-with-your-secret",
+                    "privacyProtocol": "AES_128",
+                    "securityLevel": "AUTH_PRIV",
+                    "username": "string"
+                }
+            ]
+        }
+    }
+}

@@ -92,6 +92,6 @@ catocli mutation policy remotePortFwd addRule '{
 
 #### Operation Arguments for mutation.policy.remotePortFwd.addRule ####
 
-`accountId` [ID] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
 `remotePortFwdAddRuleInput` [RemotePortFwdAddRuleInput] - (required) N/A
 `remotePortFwdPolicyMutationInput` [RemotePortFwdPolicyMutationInput] - (required) N/A

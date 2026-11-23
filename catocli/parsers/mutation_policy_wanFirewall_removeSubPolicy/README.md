@@ -30,6 +30,6 @@ catocli mutation policy wanFirewall removeSubPolicy '{
 
 #### Operation Arguments for mutation.policy.wanFirewall.removeSubPolicy ####
 
-`accountId` [ID] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
 `wanFirewallPolicyMutationInput` [WanFirewallPolicyMutationInput] - (required) N/A
 `wanFirewallRemoveSubPolicyInput` [WanFirewallRemoveSubPolicyInput] - (required) N/A

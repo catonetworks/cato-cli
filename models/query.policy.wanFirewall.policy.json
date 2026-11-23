@@ -2,7 +2,7 @@
     "args": {
         "accountId": {
             "defaultValue": null,
-            "description": null,
+            "description": "Account whose policies are accessed.",
             "id_str": "accountId",
             "name": "accountId",
             "path": "accountId",
@@ -55,7 +55,7 @@
                                             "inputFields": {
                                                 "id": {
                                                     "defaultValue": null,
-                                                    "description": null,
+                                                    "description": "Revision ID to read. When type is PRIVATE, omit this field to read the caller's private revision, or pass an empty string to read the published policy. Omit this field when type is PUBLIC.",
                                                     "id_str": "policy___input___revision___id",
                                                     "name": "id",
                                                     "path": "policy.input.revision.id",
@@ -73,7 +73,7 @@
                                                 },
                                                 "type": {
                                                     "defaultValue": "PRIVATE",
-                                                    "description": null,
+                                                    "description": "Whether to read a private revision or the published policy. Defaults to PRIVATE.",
                                                     "id_str": "policy___input___revision___type",
                                                     "name": "type",
                                                     "path": "policy.input.revision.type",
@@ -179,7 +179,7 @@
     "operationArgs": {
         "accountId": {
             "defaultValue": null,
-            "description": null,
+            "description": "Account whose policies are accessed.",
             "id_str": "accountId",
             "name": "accountId",
             "path": "accountId",
@@ -228,7 +228,7 @@
                                     "inputFields": {
                                         "id": {
                                             "defaultValue": null,
-                                            "description": null,
+                                            "description": "Revision ID to read. When type is PRIVATE, omit this field to read the caller's private revision, or pass an empty string to read the published policy. Omit this field when type is PUBLIC.",
                                             "id_str": "policy___input___revision___id",
                                             "name": "id",
                                             "path": "policy.input.revision.id",
@@ -246,7 +246,7 @@
                                         },
                                         "type": {
                                             "defaultValue": "PRIVATE",
-                                            "description": null,
+                                            "description": "Whether to read a private revision or the published policy. Defaults to PRIVATE.",
                                             "id_str": "policy___input___revision___type",
                                             "name": "type",
                                             "path": "policy.input.revision.type",
@@ -373,7 +373,7 @@
                                                                     "inputFields": {
                                                                         "id": {
                                                                             "defaultValue": null,
-                                                                            "description": null,
+                                                                            "description": "Revision ID to read. When type is PRIVATE, omit this field to read the caller's private revision, or pass an empty string to read the published policy. Omit this field when type is PUBLIC.",
                                                                             "id_str": "policy___input___revision___id",
                                                                             "name": "id",
                                                                             "path": "policy.input.revision.id",
@@ -391,7 +391,7 @@
                                                                         },
                                                                         "type": {
                                                                             "defaultValue": "PRIVATE",
-                                                                            "description": null,
+                                                                            "description": "Whether to read a private revision or the published policy. Defaults to PRIVATE.",
                                                                             "id_str": "policy___input___revision___type",
                                                                             "name": "type",
                                                                             "path": "policy.input.revision.type",
@@ -573,13 +573,13 @@
                                                     "responseStr": "audit:$policyAudit ",
                                                     "type": {
                                                         "definition": {
-                                                            "description": null,
+                                                            "description": "Publication details for a policy or policy revision.",
                                                             "enumValues": null,
                                                             "fields": {
                                                                 "publishedBy": {
                                                                     "args": {},
                                                                     "deprecationReason": null,
-                                                                    "description": null,
+                                                                    "description": "Identity that published the policy.",
                                                                     "id_str": "wanFirewall___policy___audit___publishedBy",
                                                                     "isDeprecated": false,
                                                                     "name": "publishedBy",
@@ -600,7 +600,7 @@
                                                                 "publishedTime": {
                                                                     "args": {},
                                                                     "deprecationReason": null,
-                                                                    "description": null,
+                                                                    "description": "Date and time the policy was published.",
                                                                     "id_str": "wanFirewall___policy___audit___publishedTime",
                                                                     "isDeprecated": false,
                                                                     "name": "publishedTime",
@@ -734,10 +734,84 @@
                                                             "description": "Returns data about the policy revision, such as when the change was made, how many rules were changed, etc.",
                                                             "enumValues": null,
                                                             "fields": {
+                                                                "audit": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Publish details: when and by whom the revision was published. Null for unpublished revisions.\nSame shape as `PolicyRevisionInfo.audit` returned by `policyRevisionsDiff`.",
+                                                                    "id_str": "wanFirewall___policy___revision___audit",
+                                                                    "isDeprecated": false,
+                                                                    "name": "audit",
+                                                                    "path": "wanFirewall.policy.revision.audit",
+                                                                    "requestStr": "$policyAudit:PolicyAudit ",
+                                                                    "required": false,
+                                                                    "responseStr": "audit:$policyAudit ",
+                                                                    "type": {
+                                                                        "definition": {
+                                                                            "description": "Publication details for a policy or policy revision.",
+                                                                            "enumValues": null,
+                                                                            "fields": {
+                                                                                "publishedBy": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "Identity that published the policy.",
+                                                                                    "id_str": "wanFirewall___policy___revision___audit___publishedBy",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "publishedBy",
+                                                                                    "path": "wanFirewall.policy.revision.audit.publishedBy",
+                                                                                    "requestStr": "$publishedBy:String! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "publishedBy:$publishedBy ",
+                                                                                    "type": {
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "SCALAR"
+                                                                                        ],
+                                                                                        "name": "String",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "publishedBy"
+                                                                                },
+                                                                                "publishedTime": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "Date and time the policy was published.",
+                                                                                    "id_str": "wanFirewall___policy___revision___audit___publishedTime",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "publishedTime",
+                                                                                    "path": "wanFirewall.policy.revision.audit.publishedTime",
+                                                                                    "requestStr": "$publishedTime:DateTime! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "publishedTime:$publishedTime ",
+                                                                                    "type": {
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "SCALAR"
+                                                                                        ],
+                                                                                        "name": "DateTime",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "publishedTime"
+                                                                                }
+                                                                            },
+                                                                            "inputFields": null,
+                                                                            "interfaces": {},
+                                                                            "kind": "OBJECT",
+                                                                            "name": "PolicyAudit",
+                                                                            "possibleTypes": null
+                                                                        },
+                                                                        "indexType": "object",
+                                                                        "kind": [
+                                                                            "OBJECT"
+                                                                        ],
+                                                                        "name": "PolicyAudit",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "policyAudit"
+                                                                },
                                                                 "changes": {
                                                                     "args": {},
                                                                     "deprecationReason": null,
-                                                                    "description": null,
+                                                                    "description": "Number of changes in the revision.",
                                                                     "id_str": "wanFirewall___policy___revision___changes",
                                                                     "isDeprecated": false,
                                                                     "name": "changes",
@@ -779,7 +853,7 @@
                                                                 "description": {
                                                                     "args": {},
                                                                     "deprecationReason": null,
-                                                                    "description": null,
+                                                                    "description": "Description of the revision.",
                                                                     "id_str": "wanFirewall___policy___revision___description",
                                                                     "isDeprecated": false,
                                                                     "name": "description",
@@ -800,7 +874,7 @@
                                                                 "id": {
                                                                     "args": {},
                                                                     "deprecationReason": null,
-                                                                    "description": null,
+                                                                    "description": "Unique identifier of the revision.",
                                                                     "id_str": "wanFirewall___policy___revision___id",
                                                                     "isDeprecated": false,
                                                                     "name": "id",
@@ -821,7 +895,7 @@
                                                                 "name": {
                                                                     "args": {},
                                                                     "deprecationReason": null,
-                                                                    "description": null,
+                                                                    "description": "Name of the revision.",
                                                                     "id_str": "wanFirewall___policy___revision___name",
                                                                     "isDeprecated": false,
                                                                     "name": "name",
@@ -838,6 +912,57 @@
                                                                         "non_null": false
                                                                     },
                                                                     "varName": "name"
+                                                                },
+                                                                "state": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Lifecycle state of the revision: active, unpublished or historical (previously published).",
+                                                                    "id_str": "wanFirewall___policy___revision___state",
+                                                                    "isDeprecated": false,
+                                                                    "name": "state",
+                                                                    "path": "wanFirewall.policy.revision.state",
+                                                                    "requestStr": "$state:PolicyRevisionState! ",
+                                                                    "required": true,
+                                                                    "responseStr": "state:$state ",
+                                                                    "type": {
+                                                                        "definition": {
+                                                                            "description": "Lifecycle state of a policy revision.",
+                                                                            "enumValues": [
+                                                                                {
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "The last published revision: the policy currently applied to the account's traffic.",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "ACTIVE"
+                                                                                },
+                                                                                {
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "A working copy that has not been published yet. Visible only to the admin who owns it.",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "UNPUBLISHED"
+                                                                                },
+                                                                                {
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "A revision that was published and later superseded by a newer published revision. Read-only.",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "HISTORICAL"
+                                                                                }
+                                                                            ],
+                                                                            "fields": null,
+                                                                            "inputFields": null,
+                                                                            "interfaces": null,
+                                                                            "kind": "ENUM",
+                                                                            "name": "PolicyRevisionState",
+                                                                            "possibleTypes": null
+                                                                        },
+                                                                        "indexType": "enum",
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "ENUM"
+                                                                        ],
+                                                                        "name": "PolicyRevisionState",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "state"
                                                                 },
                                                                 "updatedTime": {
                                                                     "args": {},
@@ -989,7 +1114,7 @@
                                                                     "responseStr": "audit:$policyElementAudit ",
                                                                     "type": {
                                                                         "definition": {
-                                                                            "description": null,
+                                                                            "description": "Information about the last update to a rule or section.",
                                                                             "enumValues": null,
                                                                             "fields": {
                                                                                 "updatedBy": {
@@ -7566,7 +7691,7 @@
                                                                                                 "id": {
                                                                                                     "args": {},
                                                                                                     "deprecationReason": null,
-                                                                                                    "description": null,
+                                                                                                    "description": "Unique identifier of the section.",
                                                                                                     "id_str": "wanFirewall___policy___rules___rule___section___id",
                                                                                                     "isDeprecated": false,
                                                                                                     "name": "id",
@@ -7587,7 +7712,7 @@
                                                                                                 "name": {
                                                                                                     "args": {},
                                                                                                     "deprecationReason": null,
-                                                                                                    "description": null,
+                                                                                                    "description": "Name of the section.",
                                                                                                     "id_str": "wanFirewall___policy___rules___rule___section___name",
                                                                                                     "isDeprecated": false,
                                                                                                     "name": "name",
@@ -9455,13 +9580,13 @@
                                                     "responseStr": "sections:$policySectionPayload ",
                                                     "type": {
                                                         "definition": {
-                                                            "description": null,
+                                                            "description": "A policy section with its audit information and change properties.",
                                                             "enumValues": null,
                                                             "fields": {
                                                                 "audit": {
                                                                     "args": {},
                                                                     "deprecationReason": null,
-                                                                    "description": null,
+                                                                    "description": "Information about the last update to the section.",
                                                                     "id_str": "wanFirewall___policy___sections___audit",
                                                                     "isDeprecated": false,
                                                                     "name": "audit",
@@ -9471,7 +9596,7 @@
                                                                     "responseStr": "audit:$policyElementAudit ",
                                                                     "type": {
                                                                         "definition": {
-                                                                            "description": null,
+                                                                            "description": "Information about the last update to a rule or section.",
                                                                             "enumValues": null,
                                                                             "fields": {
                                                                                 "updatedBy": {
@@ -9663,7 +9788,7 @@
                                                                 "properties": {
                                                                     "args": {},
                                                                     "deprecationReason": null,
-                                                                    "description": null,
+                                                                    "description": "State and change flags for the section, such as ADDED, UPDATED, or LOCKED.",
                                                                     "id_str": "wanFirewall___policy___sections___properties",
                                                                     "isDeprecated": false,
                                                                     "name": "properties",
@@ -9740,7 +9865,7 @@
                                                                 "section": {
                                                                     "args": {},
                                                                     "deprecationReason": null,
-                                                                    "description": null,
+                                                                    "description": "Section identifier and name.",
                                                                     "id_str": "wanFirewall___policy___sections___section",
                                                                     "isDeprecated": false,
                                                                     "name": "section",
@@ -9756,7 +9881,7 @@
                                                                                 "id": {
                                                                                     "args": {},
                                                                                     "deprecationReason": null,
-                                                                                    "description": null,
+                                                                                    "description": "Unique identifier of the section.",
                                                                                     "id_str": "wanFirewall___policy___sections___section___id",
                                                                                     "isDeprecated": false,
                                                                                     "name": "id",
@@ -9777,7 +9902,7 @@
                                                                                 "name": {
                                                                                     "args": {},
                                                                                     "deprecationReason": null,
-                                                                                    "description": null,
+                                                                                    "description": "Name of the section.",
                                                                                     "id_str": "wanFirewall___policy___sections___section___name",
                                                                                     "isDeprecated": false,
                                                                                     "name": "name",
@@ -9876,13 +10001,13 @@
                                                                                     "responseStr": "audit:$policyAudit ",
                                                                                     "type": {
                                                                                         "definition": {
-                                                                                            "description": null,
+                                                                                            "description": "Publication details for a policy or policy revision.",
                                                                                             "enumValues": null,
                                                                                             "fields": {
                                                                                                 "publishedBy": {
                                                                                                     "args": {},
                                                                                                     "deprecationReason": null,
-                                                                                                    "description": null,
+                                                                                                    "description": "Identity that published the policy.",
                                                                                                     "id_str": "wanFirewall___policy___subPolicies___policy___audit___publishedBy",
                                                                                                     "isDeprecated": false,
                                                                                                     "name": "publishedBy",
@@ -9903,7 +10028,7 @@
                                                                                                 "publishedTime": {
                                                                                                     "args": {},
                                                                                                     "deprecationReason": null,
-                                                                                                    "description": null,
+                                                                                                    "description": "Date and time the policy was published.",
                                                                                                     "id_str": "wanFirewall___policy___subPolicies___policy___audit___publishedTime",
                                                                                                     "isDeprecated": false,
                                                                                                     "name": "publishedTime",

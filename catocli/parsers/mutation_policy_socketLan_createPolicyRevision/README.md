@@ -28,6 +28,6 @@ catocli mutation policy socketLan createPolicyRevision '{
 
 #### Operation Arguments for mutation.policy.socketLan.createPolicyRevision ####
 
-`accountId` [ID] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
 `policyCreateRevisionInput` [PolicyCreateRevisionInput] - (required) N/A
 `socketLanPolicyMutationInput` [SocketLanPolicyMutationInput] - (required) N/A

@@ -45,5 +45,5 @@ catocli query policy dynamicIpAllocation policy | jq -r '.data.policy.dynamicIpA
 
 #### Operation Arguments for query.policy.dynamicIpAllocation.policy ####
 
-`accountId` [ID] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
 `dynamicIpAllocationPolicyInput` [DynamicIpAllocationPolicyInput] - (required) Parameters for this policy operation.

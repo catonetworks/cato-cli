@@ -1,0 +1,24 @@
+query policyClientConnectivityRevisions ( $accountId:ID! $policyRevisionsInput:PolicyRevisionsInput!) {
+	policy ( accountId:$accountId ) {
+		clientConnectivity {
+			revisions ( input:$policyRevisionsInput   ) {
+				revision {
+					id
+					name
+					description
+					changes
+					createdTime
+					updatedTime
+					state
+					audit {
+						publishedTime
+						publishedBy
+					}
+				}
+				paging {
+					total
+				}
+			}
+		}
+	}	
+}

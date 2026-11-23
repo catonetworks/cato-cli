@@ -45,5 +45,5 @@ catocli query policy terminalServer policy | jq -r '.data.policy.terminalServer.
 
 #### Operation Arguments for query.policy.terminalServer.policy ####
 
-`accountId` [ID] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
 `terminalServerPolicyInput` [TerminalServerPolicyInput] - (required) Parameters for this policy operation.

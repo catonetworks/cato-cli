@@ -1,0 +1,32 @@
+mutation reportingDeleteReportConfiguration ( $accountId:ID! $reportingDeleteReportConfigurationInput:ReportingDeleteReportConfigurationInput!) {
+	reporting ( accountId:$accountId ) {
+		deleteReportConfiguration ( input:$reportingDeleteReportConfigurationInput  )  {
+			configuration {
+				id
+				name
+				templateId
+				templateName
+				timeFrame
+				filter {
+					field
+					operator
+					value
+				}
+				schedule {
+					frequency
+					dayOfWeek
+					dayOfMonth
+					nextRunAt
+				}
+				mailingList {
+					id
+					name
+				}
+				enabled
+				timeZone
+				renderingFormat
+				lastModified
+			}
+		}
+	}	
+}

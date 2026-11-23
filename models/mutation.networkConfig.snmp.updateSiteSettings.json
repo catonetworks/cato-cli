@@ -1,0 +1,1351 @@
+{
+    "args": {
+        "accountId": {
+            "defaultValue": null,
+            "description": "ID of the account whose network configuration is modified.",
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        }
+    },
+    "childOperations": {
+        "snmp": {
+            "args": {},
+            "deprecationReason": null,
+            "description": "SNMP write operations.",
+            "isDeprecated": false,
+            "name": "snmp",
+            "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                    "kind": "OBJECT",
+                    "name": "NetworkConfigSnmpMutations",
+                    "ofType": null
+                }
+            }
+        },
+        "updateSiteSettings": {
+            "args": {
+                "updateSiteSettings___input": {
+                    "defaultValue": null,
+                    "description": null,
+                    "id_str": "updateSiteSettings___input",
+                    "name": "input",
+                    "path": "updateSiteSettings.input",
+                    "requestStr": "$networkConfigSnmpUpdateSiteSettingsInput:NetworkConfigSnmpUpdateSiteSettingsInput! ",
+                    "required": true,
+                    "responseStr": "input:$networkConfigSnmpUpdateSiteSettingsInput ",
+                    "type": {
+                        "definition": {
+                            "description": "Input for applying an SNMP profile to one site.",
+                            "enumValues": null,
+                            "fields": null,
+                            "inputFields": {
+                                "siteSettings": {
+                                    "defaultValue": null,
+                                    "description": "The per-site SNMP settings to create or update, addressed by site.",
+                                    "id_str": "updateSiteSettings___input___siteSettings",
+                                    "name": "siteSettings",
+                                    "path": "updateSiteSettings.input.siteSettings",
+                                    "requestStr": "$networkConfigSnmpSiteSettingsInput:NetworkConfigSnmpSiteSettingsInput! ",
+                                    "required": true,
+                                    "responseStr": "siteSettings:$networkConfigSnmpSiteSettingsInput ",
+                                    "type": {
+                                        "definition": {
+                                            "description": "The SNMP settings of a single site. A whole-row value: the site is the key, and both value fields are required.",
+                                            "enumValues": null,
+                                            "fields": null,
+                                            "inputFields": {
+                                                "enabled": {
+                                                    "defaultValue": null,
+                                                    "description": "Whether the Socket serves SNMP for this site.",
+                                                    "id_str": "updateSiteSettings___input___siteSettings___enabled",
+                                                    "name": "enabled",
+                                                    "path": "updateSiteSettings.input.siteSettings.enabled",
+                                                    "requestStr": "$enabled:Boolean! ",
+                                                    "required": true,
+                                                    "responseStr": "enabled:$enabled ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "Boolean",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "enabled"
+                                                },
+                                                "profile": {
+                                                    "defaultValue": null,
+                                                    "description": "The single SNMP profile the site applies, by id or name. A site applies one profile, never several.",
+                                                    "id_str": "updateSiteSettings___input___siteSettings___profile",
+                                                    "name": "profile",
+                                                    "path": "updateSiteSettings.input.siteSettings.profile",
+                                                    "requestStr": "$networkConfigSnmpProfileRefInput:NetworkConfigSnmpProfileRefInput! ",
+                                                    "required": true,
+                                                    "responseStr": "profile:$networkConfigSnmpProfileRefInput ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": "A reference to an existing SNMP profile, by id or name.",
+                                                            "enumValues": null,
+                                                            "fields": null,
+                                                            "inputFields": {
+                                                                "by": {
+                                                                    "defaultValue": "ID",
+                                                                    "description": "Whether `input` is the profile's id or its name.",
+                                                                    "id_str": "updateSiteSettings___input___siteSettings___profile___by",
+                                                                    "name": "by",
+                                                                    "path": "updateSiteSettings.input.siteSettings.profile.by",
+                                                                    "requestStr": "$by:ObjectRefBy! ",
+                                                                    "required": true,
+                                                                    "responseStr": "by:$by ",
+                                                                    "type": {
+                                                                        "definition": {
+                                                                            "description": "Specifies whether an object is identified by its ID or name.",
+                                                                            "enumValues": [
+                                                                                {
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "ID"
+                                                                                },
+                                                                                {
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "NAME"
+                                                                                }
+                                                                            ],
+                                                                            "fields": null,
+                                                                            "inputFields": null,
+                                                                            "interfaces": null,
+                                                                            "kind": "ENUM",
+                                                                            "name": "ObjectRefBy",
+                                                                            "possibleTypes": null
+                                                                        },
+                                                                        "indexType": "enum",
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "ENUM"
+                                                                        ],
+                                                                        "name": "ObjectRefBy",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "by"
+                                                                },
+                                                                "input": {
+                                                                    "defaultValue": null,
+                                                                    "description": "The profile's opaque id or its name, per `by`.",
+                                                                    "id_str": "updateSiteSettings___input___siteSettings___profile___input",
+                                                                    "name": "input",
+                                                                    "path": "updateSiteSettings.input.siteSettings.profile.input",
+                                                                    "requestStr": "$input:String! ",
+                                                                    "required": true,
+                                                                    "responseStr": "input:$input ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "String",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "input"
+                                                                }
+                                                            },
+                                                            "interfaces": null,
+                                                            "kind": "INPUT_OBJECT",
+                                                            "name": "NetworkConfigSnmpProfileRefInput",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "input_object",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "INPUT_OBJECT"
+                                                        ],
+                                                        "name": "NetworkConfigSnmpProfileRefInput",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "networkConfigSnmpProfileRefInput"
+                                                },
+                                                "site": {
+                                                    "defaultValue": null,
+                                                    "description": "The site the settings apply to, by id or name.",
+                                                    "id_str": "updateSiteSettings___input___siteSettings___site",
+                                                    "name": "site",
+                                                    "path": "updateSiteSettings.input.siteSettings.site",
+                                                    "requestStr": "$siteRefInput:SiteRefInput! ",
+                                                    "required": true,
+                                                    "responseStr": "site:$siteRefInput ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": null,
+                                                            "enumValues": null,
+                                                            "fields": null,
+                                                            "inputFields": {
+                                                                "by": {
+                                                                    "defaultValue": "ID",
+                                                                    "description": null,
+                                                                    "id_str": "updateSiteSettings___input___siteSettings___site___by",
+                                                                    "name": "by",
+                                                                    "path": "updateSiteSettings.input.siteSettings.site.by",
+                                                                    "requestStr": "$by:ObjectRefBy! ",
+                                                                    "required": true,
+                                                                    "responseStr": "by:$by ",
+                                                                    "type": {
+                                                                        "definition": {
+                                                                            "description": "Specifies whether an object is identified by its ID or name.",
+                                                                            "enumValues": [
+                                                                                {
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "ID"
+                                                                                },
+                                                                                {
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "NAME"
+                                                                                }
+                                                                            ],
+                                                                            "fields": null,
+                                                                            "inputFields": null,
+                                                                            "interfaces": null,
+                                                                            "kind": "ENUM",
+                                                                            "name": "ObjectRefBy",
+                                                                            "possibleTypes": null
+                                                                        },
+                                                                        "indexType": "enum",
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "ENUM"
+                                                                        ],
+                                                                        "name": "ObjectRefBy",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "by"
+                                                                },
+                                                                "input": {
+                                                                    "defaultValue": null,
+                                                                    "description": null,
+                                                                    "id_str": "updateSiteSettings___input___siteSettings___site___input",
+                                                                    "name": "input",
+                                                                    "path": "updateSiteSettings.input.siteSettings.site.input",
+                                                                    "requestStr": "$input:String! ",
+                                                                    "required": true,
+                                                                    "responseStr": "input:$input ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "String",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "input"
+                                                                }
+                                                            },
+                                                            "interfaces": null,
+                                                            "kind": "INPUT_OBJECT",
+                                                            "name": "SiteRefInput",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "input_object",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "INPUT_OBJECT"
+                                                        ],
+                                                        "name": "SiteRefInput",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "siteRefInput"
+                                                }
+                                            },
+                                            "interfaces": null,
+                                            "kind": "INPUT_OBJECT",
+                                            "name": "NetworkConfigSnmpSiteSettingsInput",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "input_object",
+                                        "kind": [
+                                            "NON_NULL",
+                                            "INPUT_OBJECT"
+                                        ],
+                                        "name": "NetworkConfigSnmpSiteSettingsInput",
+                                        "non_null": false
+                                    },
+                                    "varName": "networkConfigSnmpSiteSettingsInput"
+                                }
+                            },
+                            "interfaces": null,
+                            "kind": "INPUT_OBJECT",
+                            "name": "NetworkConfigSnmpUpdateSiteSettingsInput",
+                            "possibleTypes": null
+                        },
+                        "indexType": "input_object",
+                        "kind": [
+                            "NON_NULL",
+                            "INPUT_OBJECT"
+                        ],
+                        "name": "NetworkConfigSnmpUpdateSiteSettingsInput",
+                        "non_null": false
+                    },
+                    "varName": "networkConfigSnmpUpdateSiteSettingsInput"
+                }
+            },
+            "deprecationReason": null,
+            "description": "Apply an SNMP profile to one site, and set whether the agent is enabled there. Creates the setting if the site has none. Returns the resulting per-site settings.",
+            "isDeprecated": false,
+            "name": "updateSiteSettings",
+            "type": {
+                "kind": "OBJECT",
+                "name": "NetworkConfigSnmpUpdateSiteSettingsPayload",
+                "ofType": null
+            }
+        }
+    },
+    "deprecationReason": null,
+    "description": "All network-configuration write operations for an account.",
+    "fieldTypes": {},
+    "isDeprecated": false,
+    "name": "networkConfig",
+    "operationArgs": {
+        "accountId": {
+            "defaultValue": null,
+            "description": "ID of the account whose network configuration is modified.",
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        },
+        "networkConfigSnmpUpdateSiteSettingsInput": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "updateSiteSettings___input",
+            "name": "input",
+            "path": "updateSiteSettings.input",
+            "requestStr": "$networkConfigSnmpUpdateSiteSettingsInput:NetworkConfigSnmpUpdateSiteSettingsInput! ",
+            "required": true,
+            "responseStr": "input:$networkConfigSnmpUpdateSiteSettingsInput ",
+            "type": {
+                "definition": {
+                    "description": "Input for applying an SNMP profile to one site.",
+                    "enumValues": null,
+                    "fields": null,
+                    "inputFields": {
+                        "siteSettings": {
+                            "defaultValue": null,
+                            "description": "The per-site SNMP settings to create or update, addressed by site.",
+                            "id_str": "updateSiteSettings___input___siteSettings",
+                            "name": "siteSettings",
+                            "path": "updateSiteSettings.input.siteSettings",
+                            "requestStr": "$networkConfigSnmpSiteSettingsInput:NetworkConfigSnmpSiteSettingsInput! ",
+                            "required": true,
+                            "responseStr": "siteSettings:$networkConfigSnmpSiteSettingsInput ",
+                            "type": {
+                                "definition": {
+                                    "description": "The SNMP settings of a single site. A whole-row value: the site is the key, and both value fields are required.",
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "enabled": {
+                                            "defaultValue": null,
+                                            "description": "Whether the Socket serves SNMP for this site.",
+                                            "id_str": "updateSiteSettings___input___siteSettings___enabled",
+                                            "name": "enabled",
+                                            "path": "updateSiteSettings.input.siteSettings.enabled",
+                                            "requestStr": "$enabled:Boolean! ",
+                                            "required": true,
+                                            "responseStr": "enabled:$enabled ",
+                                            "type": {
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "SCALAR"
+                                                ],
+                                                "name": "Boolean",
+                                                "non_null": false
+                                            },
+                                            "varName": "enabled"
+                                        },
+                                        "profile": {
+                                            "defaultValue": null,
+                                            "description": "The single SNMP profile the site applies, by id or name. A site applies one profile, never several.",
+                                            "id_str": "updateSiteSettings___input___siteSettings___profile",
+                                            "name": "profile",
+                                            "path": "updateSiteSettings.input.siteSettings.profile",
+                                            "requestStr": "$networkConfigSnmpProfileRefInput:NetworkConfigSnmpProfileRefInput! ",
+                                            "required": true,
+                                            "responseStr": "profile:$networkConfigSnmpProfileRefInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": "A reference to an existing SNMP profile, by id or name.",
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "by": {
+                                                            "defaultValue": "ID",
+                                                            "description": "Whether `input` is the profile's id or its name.",
+                                                            "id_str": "updateSiteSettings___input___siteSettings___profile___by",
+                                                            "name": "by",
+                                                            "path": "updateSiteSettings.input.siteSettings.profile.by",
+                                                            "requestStr": "$by:ObjectRefBy! ",
+                                                            "required": true,
+                                                            "responseStr": "by:$by ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": "Specifies whether an object is identified by its ID or name.",
+                                                                    "enumValues": [
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "ID"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "NAME"
+                                                                        }
+                                                                    ],
+                                                                    "fields": null,
+                                                                    "inputFields": null,
+                                                                    "interfaces": null,
+                                                                    "kind": "ENUM",
+                                                                    "name": "ObjectRefBy",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "enum",
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "ENUM"
+                                                                ],
+                                                                "name": "ObjectRefBy",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "by"
+                                                        },
+                                                        "input": {
+                                                            "defaultValue": null,
+                                                            "description": "The profile's opaque id or its name, per `by`.",
+                                                            "id_str": "updateSiteSettings___input___siteSettings___profile___input",
+                                                            "name": "input",
+                                                            "path": "updateSiteSettings.input.siteSettings.profile.input",
+                                                            "requestStr": "$input:String! ",
+                                                            "required": true,
+                                                            "responseStr": "input:$input ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "String",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "input"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "NetworkConfigSnmpProfileRefInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "NetworkConfigSnmpProfileRefInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "networkConfigSnmpProfileRefInput"
+                                        },
+                                        "site": {
+                                            "defaultValue": null,
+                                            "description": "The site the settings apply to, by id or name.",
+                                            "id_str": "updateSiteSettings___input___siteSettings___site",
+                                            "name": "site",
+                                            "path": "updateSiteSettings.input.siteSettings.site",
+                                            "requestStr": "$siteRefInput:SiteRefInput! ",
+                                            "required": true,
+                                            "responseStr": "site:$siteRefInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "by": {
+                                                            "defaultValue": "ID",
+                                                            "description": null,
+                                                            "id_str": "updateSiteSettings___input___siteSettings___site___by",
+                                                            "name": "by",
+                                                            "path": "updateSiteSettings.input.siteSettings.site.by",
+                                                            "requestStr": "$by:ObjectRefBy! ",
+                                                            "required": true,
+                                                            "responseStr": "by:$by ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": "Specifies whether an object is identified by its ID or name.",
+                                                                    "enumValues": [
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "ID"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "NAME"
+                                                                        }
+                                                                    ],
+                                                                    "fields": null,
+                                                                    "inputFields": null,
+                                                                    "interfaces": null,
+                                                                    "kind": "ENUM",
+                                                                    "name": "ObjectRefBy",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "enum",
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "ENUM"
+                                                                ],
+                                                                "name": "ObjectRefBy",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "by"
+                                                        },
+                                                        "input": {
+                                                            "defaultValue": null,
+                                                            "description": null,
+                                                            "id_str": "updateSiteSettings___input___siteSettings___site___input",
+                                                            "name": "input",
+                                                            "path": "updateSiteSettings.input.siteSettings.site.input",
+                                                            "requestStr": "$input:String! ",
+                                                            "required": true,
+                                                            "responseStr": "input:$input ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "String",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "input"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "SiteRefInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "SiteRefInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "siteRefInput"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "NetworkConfigSnmpSiteSettingsInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "NON_NULL",
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "NetworkConfigSnmpSiteSettingsInput",
+                                "non_null": false
+                            },
+                            "varName": "networkConfigSnmpSiteSettingsInput"
+                        }
+                    },
+                    "interfaces": null,
+                    "kind": "INPUT_OBJECT",
+                    "name": "NetworkConfigSnmpUpdateSiteSettingsInput",
+                    "possibleTypes": null
+                },
+                "indexType": "input_object",
+                "kind": [
+                    "NON_NULL",
+                    "INPUT_OBJECT"
+                ],
+                "name": "NetworkConfigSnmpUpdateSiteSettingsInput",
+                "non_null": false
+            },
+            "varName": "networkConfigSnmpUpdateSiteSettingsInput"
+        }
+    },
+    "path": "mutation.networkConfig.snmp.updateSiteSettings",
+    "type": {
+        "definition": {
+            "description": "Network-configuration write operations.",
+            "enumValues": null,
+            "fields": {
+                "snmp": {
+                    "args": {},
+                    "deprecationReason": null,
+                    "description": "SNMP write operations.",
+                    "id_str": "snmp",
+                    "isDeprecated": false,
+                    "name": "snmp",
+                    "path": "snmp",
+                    "requestStr": "$networkConfigSnmpMutations:NetworkConfigSnmpMutations! ",
+                    "required": true,
+                    "responseStr": "snmp:$networkConfigSnmpMutations ",
+                    "type": {
+                        "definition": {
+                            "description": "SNMP write operations for the account.",
+                            "enumValues": null,
+                            "fields": {
+                                "updateSiteSettings": {
+                                    "args": {
+                                        "updateSiteSettings___input": {
+                                            "defaultValue": null,
+                                            "description": null,
+                                            "id_str": "updateSiteSettings___input",
+                                            "name": "input",
+                                            "path": "updateSiteSettings.input",
+                                            "requestStr": "$networkConfigSnmpUpdateSiteSettingsInput:NetworkConfigSnmpUpdateSiteSettingsInput! ",
+                                            "required": true,
+                                            "responseStr": "input:$networkConfigSnmpUpdateSiteSettingsInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": "Input for applying an SNMP profile to one site.",
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "siteSettings": {
+                                                            "defaultValue": null,
+                                                            "description": "The per-site SNMP settings to create or update, addressed by site.",
+                                                            "id_str": "updateSiteSettings___input___siteSettings",
+                                                            "name": "siteSettings",
+                                                            "path": "updateSiteSettings.input.siteSettings",
+                                                            "requestStr": "$networkConfigSnmpSiteSettingsInput:NetworkConfigSnmpSiteSettingsInput! ",
+                                                            "required": true,
+                                                            "responseStr": "siteSettings:$networkConfigSnmpSiteSettingsInput ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": "The SNMP settings of a single site. A whole-row value: the site is the key, and both value fields are required.",
+                                                                    "enumValues": null,
+                                                                    "fields": null,
+                                                                    "inputFields": {
+                                                                        "enabled": {
+                                                                            "defaultValue": null,
+                                                                            "description": "Whether the Socket serves SNMP for this site.",
+                                                                            "id_str": "updateSiteSettings___input___siteSettings___enabled",
+                                                                            "name": "enabled",
+                                                                            "path": "updateSiteSettings.input.siteSettings.enabled",
+                                                                            "requestStr": "$enabled:Boolean! ",
+                                                                            "required": true,
+                                                                            "responseStr": "enabled:$enabled ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "NON_NULL",
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "Boolean",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "enabled"
+                                                                        },
+                                                                        "profile": {
+                                                                            "defaultValue": null,
+                                                                            "description": "The single SNMP profile the site applies, by id or name. A site applies one profile, never several.",
+                                                                            "id_str": "updateSiteSettings___input___siteSettings___profile",
+                                                                            "name": "profile",
+                                                                            "path": "updateSiteSettings.input.siteSettings.profile",
+                                                                            "requestStr": "$networkConfigSnmpProfileRefInput:NetworkConfigSnmpProfileRefInput! ",
+                                                                            "required": true,
+                                                                            "responseStr": "profile:$networkConfigSnmpProfileRefInput ",
+                                                                            "type": {
+                                                                                "definition": {
+                                                                                    "description": "A reference to an existing SNMP profile, by id or name.",
+                                                                                    "enumValues": null,
+                                                                                    "fields": null,
+                                                                                    "inputFields": {
+                                                                                        "by": {
+                                                                                            "defaultValue": "ID",
+                                                                                            "description": "Whether `input` is the profile's id or its name.",
+                                                                                            "id_str": "updateSiteSettings___input___siteSettings___profile___by",
+                                                                                            "name": "by",
+                                                                                            "path": "updateSiteSettings.input.siteSettings.profile.by",
+                                                                                            "requestStr": "$by:ObjectRefBy! ",
+                                                                                            "required": true,
+                                                                                            "responseStr": "by:$by ",
+                                                                                            "type": {
+                                                                                                "definition": {
+                                                                                                    "description": "Specifies whether an object is identified by its ID or name.",
+                                                                                                    "enumValues": [
+                                                                                                        {
+                                                                                                            "deprecationReason": null,
+                                                                                                            "description": null,
+                                                                                                            "isDeprecated": false,
+                                                                                                            "name": "ID"
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "deprecationReason": null,
+                                                                                                            "description": null,
+                                                                                                            "isDeprecated": false,
+                                                                                                            "name": "NAME"
+                                                                                                        }
+                                                                                                    ],
+                                                                                                    "fields": null,
+                                                                                                    "inputFields": null,
+                                                                                                    "interfaces": null,
+                                                                                                    "kind": "ENUM",
+                                                                                                    "name": "ObjectRefBy",
+                                                                                                    "possibleTypes": null
+                                                                                                },
+                                                                                                "indexType": "enum",
+                                                                                                "kind": [
+                                                                                                    "NON_NULL",
+                                                                                                    "ENUM"
+                                                                                                ],
+                                                                                                "name": "ObjectRefBy",
+                                                                                                "non_null": false
+                                                                                            },
+                                                                                            "varName": "by"
+                                                                                        },
+                                                                                        "input": {
+                                                                                            "defaultValue": null,
+                                                                                            "description": "The profile's opaque id or its name, per `by`.",
+                                                                                            "id_str": "updateSiteSettings___input___siteSettings___profile___input",
+                                                                                            "name": "input",
+                                                                                            "path": "updateSiteSettings.input.siteSettings.profile.input",
+                                                                                            "requestStr": "$input:String! ",
+                                                                                            "required": true,
+                                                                                            "responseStr": "input:$input ",
+                                                                                            "type": {
+                                                                                                "kind": [
+                                                                                                    "NON_NULL",
+                                                                                                    "SCALAR"
+                                                                                                ],
+                                                                                                "name": "String",
+                                                                                                "non_null": false
+                                                                                            },
+                                                                                            "varName": "input"
+                                                                                        }
+                                                                                    },
+                                                                                    "interfaces": null,
+                                                                                    "kind": "INPUT_OBJECT",
+                                                                                    "name": "NetworkConfigSnmpProfileRefInput",
+                                                                                    "possibleTypes": null
+                                                                                },
+                                                                                "indexType": "input_object",
+                                                                                "kind": [
+                                                                                    "NON_NULL",
+                                                                                    "INPUT_OBJECT"
+                                                                                ],
+                                                                                "name": "NetworkConfigSnmpProfileRefInput",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "networkConfigSnmpProfileRefInput"
+                                                                        },
+                                                                        "site": {
+                                                                            "defaultValue": null,
+                                                                            "description": "The site the settings apply to, by id or name.",
+                                                                            "id_str": "updateSiteSettings___input___siteSettings___site",
+                                                                            "name": "site",
+                                                                            "path": "updateSiteSettings.input.siteSettings.site",
+                                                                            "requestStr": "$siteRefInput:SiteRefInput! ",
+                                                                            "required": true,
+                                                                            "responseStr": "site:$siteRefInput ",
+                                                                            "type": {
+                                                                                "definition": {
+                                                                                    "description": null,
+                                                                                    "enumValues": null,
+                                                                                    "fields": null,
+                                                                                    "inputFields": {
+                                                                                        "by": {
+                                                                                            "defaultValue": "ID",
+                                                                                            "description": null,
+                                                                                            "id_str": "updateSiteSettings___input___siteSettings___site___by",
+                                                                                            "name": "by",
+                                                                                            "path": "updateSiteSettings.input.siteSettings.site.by",
+                                                                                            "requestStr": "$by:ObjectRefBy! ",
+                                                                                            "required": true,
+                                                                                            "responseStr": "by:$by ",
+                                                                                            "type": {
+                                                                                                "definition": {
+                                                                                                    "description": "Specifies whether an object is identified by its ID or name.",
+                                                                                                    "enumValues": [
+                                                                                                        {
+                                                                                                            "deprecationReason": null,
+                                                                                                            "description": null,
+                                                                                                            "isDeprecated": false,
+                                                                                                            "name": "ID"
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "deprecationReason": null,
+                                                                                                            "description": null,
+                                                                                                            "isDeprecated": false,
+                                                                                                            "name": "NAME"
+                                                                                                        }
+                                                                                                    ],
+                                                                                                    "fields": null,
+                                                                                                    "inputFields": null,
+                                                                                                    "interfaces": null,
+                                                                                                    "kind": "ENUM",
+                                                                                                    "name": "ObjectRefBy",
+                                                                                                    "possibleTypes": null
+                                                                                                },
+                                                                                                "indexType": "enum",
+                                                                                                "kind": [
+                                                                                                    "NON_NULL",
+                                                                                                    "ENUM"
+                                                                                                ],
+                                                                                                "name": "ObjectRefBy",
+                                                                                                "non_null": false
+                                                                                            },
+                                                                                            "varName": "by"
+                                                                                        },
+                                                                                        "input": {
+                                                                                            "defaultValue": null,
+                                                                                            "description": null,
+                                                                                            "id_str": "updateSiteSettings___input___siteSettings___site___input",
+                                                                                            "name": "input",
+                                                                                            "path": "updateSiteSettings.input.siteSettings.site.input",
+                                                                                            "requestStr": "$input:String! ",
+                                                                                            "required": true,
+                                                                                            "responseStr": "input:$input ",
+                                                                                            "type": {
+                                                                                                "kind": [
+                                                                                                    "NON_NULL",
+                                                                                                    "SCALAR"
+                                                                                                ],
+                                                                                                "name": "String",
+                                                                                                "non_null": false
+                                                                                            },
+                                                                                            "varName": "input"
+                                                                                        }
+                                                                                    },
+                                                                                    "interfaces": null,
+                                                                                    "kind": "INPUT_OBJECT",
+                                                                                    "name": "SiteRefInput",
+                                                                                    "possibleTypes": null
+                                                                                },
+                                                                                "indexType": "input_object",
+                                                                                "kind": [
+                                                                                    "NON_NULL",
+                                                                                    "INPUT_OBJECT"
+                                                                                ],
+                                                                                "name": "SiteRefInput",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "siteRefInput"
+                                                                        }
+                                                                    },
+                                                                    "interfaces": null,
+                                                                    "kind": "INPUT_OBJECT",
+                                                                    "name": "NetworkConfigSnmpSiteSettingsInput",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "input_object",
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "INPUT_OBJECT"
+                                                                ],
+                                                                "name": "NetworkConfigSnmpSiteSettingsInput",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "networkConfigSnmpSiteSettingsInput"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "NetworkConfigSnmpUpdateSiteSettingsInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "NetworkConfigSnmpUpdateSiteSettingsInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "networkConfigSnmpUpdateSiteSettingsInput"
+                                        }
+                                    },
+                                    "deprecationReason": null,
+                                    "description": "Apply an SNMP profile to one site, and set whether the agent is enabled there. Creates the setting if the site has none. Returns the resulting per-site settings.",
+                                    "id_str": "snmp___updateSiteSettings",
+                                    "isDeprecated": false,
+                                    "name": "updateSiteSettings",
+                                    "path": "snmp.updateSiteSettings",
+                                    "requestStr": "$networkConfigSnmpUpdateSiteSettingsPayload:NetworkConfigSnmpUpdateSiteSettingsPayload ",
+                                    "required": false,
+                                    "responseStr": "updateSiteSettings:$networkConfigSnmpUpdateSiteSettingsPayload ",
+                                    "type": {
+                                        "definition": {
+                                            "description": "Result of applying SNMP settings to one site.",
+                                            "enumValues": null,
+                                            "fields": {
+                                                "siteSettings": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "The created or updated per-site settings.",
+                                                    "id_str": "snmp___updateSiteSettings___siteSettings",
+                                                    "isDeprecated": false,
+                                                    "name": "siteSettings",
+                                                    "path": "snmp.updateSiteSettings.siteSettings",
+                                                    "requestStr": "$networkConfigSnmpSiteSettings:NetworkConfigSnmpSiteSettings! ",
+                                                    "required": true,
+                                                    "responseStr": "siteSettings:$networkConfigSnmpSiteSettings ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": "The SNMP settings of a single site: the one profile it applies, and whether the agent serves SNMP there.",
+                                                            "enumValues": null,
+                                                            "fields": {
+                                                                "audit": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Audit metadata for these settings.",
+                                                                    "id_str": "snmp___updateSiteSettings___siteSettings___audit",
+                                                                    "isDeprecated": false,
+                                                                    "name": "audit",
+                                                                    "path": "snmp.updateSiteSettings.siteSettings.audit",
+                                                                    "requestStr": "$auditingMetadata:AuditingMetadata ",
+                                                                    "required": false,
+                                                                    "responseStr": "audit:$auditingMetadata ",
+                                                                    "type": {
+                                                                        "definition": {
+                                                                            "description": "Information about the most recent update to an object.",
+                                                                            "enumValues": null,
+                                                                            "fields": {
+                                                                                "updatedBy": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "Administrator or API key that last updated the object.",
+                                                                                    "id_str": "snmp___updateSiteSettings___siteSettings___audit___updatedBy",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "updatedBy",
+                                                                                    "path": "snmp.updateSiteSettings.siteSettings.audit.updatedBy",
+                                                                                    "requestStr": "$actorRef:ActorRef! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "updatedBy:$actorRef ",
+                                                                                    "type": {
+                                                                                        "definition": {
+                                                                                            "description": "Identifies the administrator or API key that performed an action.",
+                                                                                            "enumValues": null,
+                                                                                            "fields": {
+                                                                                                "id": {
+                                                                                                    "args": {},
+                                                                                                    "deprecationReason": null,
+                                                                                                    "description": "ID of the administrator or API key.",
+                                                                                                    "id_str": "snmp___updateSiteSettings___siteSettings___audit___updatedBy___id",
+                                                                                                    "isDeprecated": false,
+                                                                                                    "name": "id",
+                                                                                                    "path": "snmp.updateSiteSettings.siteSettings.audit.updatedBy.id",
+                                                                                                    "requestStr": "$id:ID! ",
+                                                                                                    "required": true,
+                                                                                                    "responseStr": "id:$id ",
+                                                                                                    "type": {
+                                                                                                        "kind": [
+                                                                                                            "NON_NULL",
+                                                                                                            "SCALAR"
+                                                                                                        ],
+                                                                                                        "name": "ID",
+                                                                                                        "non_null": false
+                                                                                                    },
+                                                                                                    "varName": "id"
+                                                                                                },
+                                                                                                "name": {
+                                                                                                    "args": {},
+                                                                                                    "deprecationReason": null,
+                                                                                                    "description": "Display name of the administrator or API key.",
+                                                                                                    "id_str": "snmp___updateSiteSettings___siteSettings___audit___updatedBy___name",
+                                                                                                    "isDeprecated": false,
+                                                                                                    "name": "name",
+                                                                                                    "path": "snmp.updateSiteSettings.siteSettings.audit.updatedBy.name",
+                                                                                                    "requestStr": "$name:String! ",
+                                                                                                    "required": true,
+                                                                                                    "responseStr": "name:$name ",
+                                                                                                    "type": {
+                                                                                                        "kind": [
+                                                                                                            "NON_NULL",
+                                                                                                            "SCALAR"
+                                                                                                        ],
+                                                                                                        "name": "String",
+                                                                                                        "non_null": false
+                                                                                                    },
+                                                                                                    "varName": "name"
+                                                                                                }
+                                                                                            },
+                                                                                            "inputFields": null,
+                                                                                            "interfaces": [
+                                                                                                {
+                                                                                                    "kind": "INTERFACE",
+                                                                                                    "name": "ObjectRef",
+                                                                                                    "ofType": null
+                                                                                                }
+                                                                                            ],
+                                                                                            "kind": "INTERFACE",
+                                                                                            "name": "ActorRef",
+                                                                                            "possibleTypes": {
+                                                                                                "AdminRef": {
+                                                                                                    "description": "A reference identifying the Admin object. ID: Unique Admin Identifier, Name: The Admin Name",
+                                                                                                    "enumValues": null,
+                                                                                                    "fields": {},
+                                                                                                    "inputFields": null,
+                                                                                                    "interfaces": {},
+                                                                                                    "kind": "OBJECT",
+                                                                                                    "name": "AdminRef",
+                                                                                                    "possibleTypes": null
+                                                                                                },
+                                                                                                "ApiKeyRef": {
+                                                                                                    "description": "A reference identifying the ApiKey object. ID: Unique ApiKey Identifier, Name: The ApiKey Name",
+                                                                                                    "enumValues": null,
+                                                                                                    "fields": {},
+                                                                                                    "inputFields": null,
+                                                                                                    "interfaces": {},
+                                                                                                    "kind": "OBJECT",
+                                                                                                    "name": "ApiKeyRef",
+                                                                                                    "possibleTypes": null
+                                                                                                },
+                                                                                                "SplitTunnelProfileSystemActorRef": {
+                                                                                                    "description": "Cato as the system actor that publishes ready-made templates.",
+                                                                                                    "enumValues": null,
+                                                                                                    "fields": {},
+                                                                                                    "inputFields": null,
+                                                                                                    "interfaces": {},
+                                                                                                    "kind": "OBJECT",
+                                                                                                    "name": "SplitTunnelProfileSystemActorRef",
+                                                                                                    "possibleTypes": null
+                                                                                                }
+                                                                                            }
+                                                                                        },
+                                                                                        "indexType": "interface",
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "INTERFACE"
+                                                                                        ],
+                                                                                        "name": "ActorRef",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "actorRef"
+                                                                                },
+                                                                                "updatedTime": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "Date and time the object was last updated.",
+                                                                                    "id_str": "snmp___updateSiteSettings___siteSettings___audit___updatedTime",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "updatedTime",
+                                                                                    "path": "snmp.updateSiteSettings.siteSettings.audit.updatedTime",
+                                                                                    "requestStr": "$updatedTime:DateTime! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "updatedTime:$updatedTime ",
+                                                                                    "type": {
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "SCALAR"
+                                                                                        ],
+                                                                                        "name": "DateTime",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "updatedTime"
+                                                                                }
+                                                                            },
+                                                                            "inputFields": null,
+                                                                            "interfaces": {},
+                                                                            "kind": "OBJECT",
+                                                                            "name": "AuditingMetadata",
+                                                                            "possibleTypes": null
+                                                                        },
+                                                                        "indexType": "object",
+                                                                        "kind": [
+                                                                            "OBJECT"
+                                                                        ],
+                                                                        "name": "AuditingMetadata",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "auditingMetadata"
+                                                                },
+                                                                "enabled": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Whether the Socket serves SNMP for this site.",
+                                                                    "id_str": "snmp___updateSiteSettings___siteSettings___enabled",
+                                                                    "isDeprecated": false,
+                                                                    "name": "enabled",
+                                                                    "path": "snmp.updateSiteSettings.siteSettings.enabled",
+                                                                    "requestStr": "$enabled:Boolean! ",
+                                                                    "required": true,
+                                                                    "responseStr": "enabled:$enabled ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "Boolean",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "enabled"
+                                                                },
+                                                                "profile": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "The single SNMP profile the site applies. A site applies one profile, never several.",
+                                                                    "id_str": "snmp___updateSiteSettings___siteSettings___profile",
+                                                                    "isDeprecated": false,
+                                                                    "name": "profile",
+                                                                    "path": "snmp.updateSiteSettings.siteSettings.profile",
+                                                                    "requestStr": "$networkConfigSnmpProfileRef:NetworkConfigSnmpProfileRef! ",
+                                                                    "required": true,
+                                                                    "responseStr": "profile:$networkConfigSnmpProfileRef ",
+                                                                    "type": {
+                                                                        "definition": {
+                                                                            "description": "A reference to an existing SNMP profile.",
+                                                                            "enumValues": null,
+                                                                            "fields": {
+                                                                                "id": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "Identifier for the profile.",
+                                                                                    "id_str": "snmp___updateSiteSettings___siteSettings___profile___id",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "id",
+                                                                                    "path": "snmp.updateSiteSettings.siteSettings.profile.id",
+                                                                                    "requestStr": "$id:ID! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "id:$id ",
+                                                                                    "type": {
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "SCALAR"
+                                                                                        ],
+                                                                                        "name": "ID",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "id"
+                                                                                },
+                                                                                "name": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "Profile name, unique within the account.",
+                                                                                    "id_str": "snmp___updateSiteSettings___siteSettings___profile___name",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "name",
+                                                                                    "path": "snmp.updateSiteSettings.siteSettings.profile.name",
+                                                                                    "requestStr": "$name:String! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "name:$name ",
+                                                                                    "type": {
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "SCALAR"
+                                                                                        ],
+                                                                                        "name": "String",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "name"
+                                                                                }
+                                                                            },
+                                                                            "inputFields": null,
+                                                                            "interfaces": {},
+                                                                            "kind": "OBJECT",
+                                                                            "name": "NetworkConfigSnmpProfileRef",
+                                                                            "possibleTypes": null
+                                                                        },
+                                                                        "indexType": "object",
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "OBJECT"
+                                                                        ],
+                                                                        "name": "NetworkConfigSnmpProfileRef",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "networkConfigSnmpProfileRef"
+                                                                },
+                                                                "site": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "The site these settings apply to.",
+                                                                    "id_str": "snmp___updateSiteSettings___siteSettings___site",
+                                                                    "isDeprecated": false,
+                                                                    "name": "site",
+                                                                    "path": "snmp.updateSiteSettings.siteSettings.site",
+                                                                    "requestStr": "$siteRef:SiteRef! ",
+                                                                    "required": true,
+                                                                    "responseStr": "site:$siteRef ",
+                                                                    "type": {
+                                                                        "definition": {
+                                                                            "description": "A reference identifying the Site object. ID: Unique Site Identifier, Name: The Site Name",
+                                                                            "enumValues": null,
+                                                                            "fields": {
+                                                                                "id": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "id_str": "snmp___updateSiteSettings___siteSettings___site___id",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "id",
+                                                                                    "path": "snmp.updateSiteSettings.siteSettings.site.id",
+                                                                                    "requestStr": "$id:ID! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "id:$id ",
+                                                                                    "type": {
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "SCALAR"
+                                                                                        ],
+                                                                                        "name": "ID",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "id"
+                                                                                },
+                                                                                "name": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "id_str": "snmp___updateSiteSettings___siteSettings___site___name",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "name",
+                                                                                    "path": "snmp.updateSiteSettings.siteSettings.site.name",
+                                                                                    "requestStr": "$name:String! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "name:$name ",
+                                                                                    "type": {
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "SCALAR"
+                                                                                        ],
+                                                                                        "name": "String",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "name"
+                                                                                }
+                                                                            },
+                                                                            "inputFields": null,
+                                                                            "interfaces": {},
+                                                                            "kind": "OBJECT",
+                                                                            "name": "SiteRef",
+                                                                            "possibleTypes": null
+                                                                        },
+                                                                        "indexType": "object",
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "OBJECT"
+                                                                        ],
+                                                                        "name": "SiteRef",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "siteRef"
+                                                                }
+                                                            },
+                                                            "inputFields": null,
+                                                            "interfaces": {},
+                                                            "kind": "OBJECT",
+                                                            "name": "NetworkConfigSnmpSiteSettings",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "object",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "OBJECT"
+                                                        ],
+                                                        "name": "NetworkConfigSnmpSiteSettings",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "networkConfigSnmpSiteSettings"
+                                                }
+                                            },
+                                            "inputFields": null,
+                                            "interfaces": {},
+                                            "kind": "OBJECT",
+                                            "name": "NetworkConfigSnmpUpdateSiteSettingsPayload",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "object",
+                                        "kind": [
+                                            "OBJECT"
+                                        ],
+                                        "name": "NetworkConfigSnmpUpdateSiteSettingsPayload",
+                                        "non_null": false
+                                    },
+                                    "varName": "networkConfigSnmpUpdateSiteSettingsPayload"
+                                }
+                            },
+                            "inputFields": null,
+                            "interfaces": {},
+                            "kind": "OBJECT",
+                            "name": "NetworkConfigSnmpMutations",
+                            "possibleTypes": null
+                        },
+                        "indexType": "object",
+                        "kind": [
+                            "NON_NULL",
+                            "OBJECT"
+                        ],
+                        "name": "NetworkConfigSnmpMutations",
+                        "non_null": false
+                    },
+                    "varName": "networkConfigSnmpMutations"
+                }
+            },
+            "inputFields": null,
+            "interfaces": [],
+            "kind": "OBJECT",
+            "name": "NetworkConfigMutations",
+            "possibleTypes": null
+        },
+        "indexType": "object",
+        "kind": [
+            "OBJECT"
+        ],
+        "name": "NetworkConfigMutations",
+        "non_null": false
+    },
+    "variablesPayload": {
+        "networkConfigSnmpUpdateSiteSettingsInput": {
+            "siteSettings": {
+                "enabled": true,
+                "profile": {
+                    "by": "ID",
+                    "input": "string"
+                },
+                "site": {
+                    "by": "ID",
+                    "input": "string"
+                }
+            }
+        }
+    }
+}

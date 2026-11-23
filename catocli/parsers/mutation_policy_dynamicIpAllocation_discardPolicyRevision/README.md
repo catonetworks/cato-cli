@@ -27,6 +27,6 @@ catocli mutation policy dynamicIpAllocation discardPolicyRevision '{
 
 #### Operation Arguments for mutation.policy.dynamicIpAllocation.discardPolicyRevision ####
 
-`accountId` [ID] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
 `dynamicIpAllocationPolicyMutationInput` [DynamicIpAllocationPolicyMutationInput] - (required) Parameters for this policy operation.
 `policyDiscardRevisionInput` [PolicyDiscardRevisionInput] - (required) Parameters for this policy operation.

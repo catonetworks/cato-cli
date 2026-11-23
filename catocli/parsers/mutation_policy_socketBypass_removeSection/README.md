@@ -27,6 +27,6 @@ catocli mutation policy socketBypass removeSection '{
 
 #### Operation Arguments for mutation.policy.socketBypass.removeSection ####
 
-`accountId` [ID] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
 `policyRemoveSectionInput` [PolicyRemoveSectionInput] - (required) N/A
 `socketBypassPolicyMutationInput` [SocketBypassPolicyMutationInput] - (required) N/A

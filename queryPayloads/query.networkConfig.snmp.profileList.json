@@ -1,0 +1,55 @@
+{
+    "operationName": "networkConfigSnmpProfileList",
+    "query": "query networkConfigSnmpProfileList ( $accountId:ID! $networkConfigSnmpProfileListInput:NetworkConfigSnmpProfileListInput!) {\n\tnetworkConfig ( accountId:$accountId ) {\n\t\tsnmp {\n\t\t\tprofileList ( input:$networkConfigSnmpProfileListInput   ) {\n\t\t\t\titems {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t\tusername\n\t\t\t\t\tsecurityLevel\n\t\t\t\t\tauthProtocol\n\t\t\t\t\tprivacyProtocol\n\t\t\t\t\tdescription\n\t\t\t\t\taudit {\n\t\t\t\t\t\tupdatedTime\n\t\t\t\t\t\tupdatedBy {\n\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\tname\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tpaging {\n\t\t\t\t\ttotal\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\t\n}",
+    "variables": {
+        "networkConfigSnmpProfileListInput": {
+            "filter": {
+                "profile": {
+                    "eq": {
+                        "by": "ID",
+                        "input": "string"
+                    },
+                    "in": [
+                        {
+                            "by": "ID",
+                            "input": "string"
+                        }
+                    ],
+                    "neq": {
+                        "by": "ID",
+                        "input": "string"
+                    },
+                    "nin": [
+                        {
+                            "by": "ID",
+                            "input": "string"
+                        }
+                    ]
+                },
+                "username": {
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ],
+                    "regex": "string"
+                }
+            },
+            "paging": {
+                "from": 1,
+                "limit": 1
+            },
+            "sort": {
+                "name": {
+                    "direction": "ASC",
+                    "priority": 1
+                }
+            }
+        }
+    }
+}

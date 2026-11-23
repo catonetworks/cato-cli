@@ -30,5 +30,5 @@ catocli mutation networkConfig dhcp updateOption '{
 
 #### Operation Arguments for mutation.networkConfig.dhcp.updateOption ####
 
-`accountId` [ID] - (required) N/A
-`networkConfigDhcpUpdateOptionInput` [NetworkConfigDhcpUpdateOptionInput] - (required) N/A
+`accountId` [ID] - (required) ID of the account whose network configuration is modified.
+`networkConfigDhcpUpdateOptionInput` [NetworkConfigDhcpUpdateOptionInput] - (required) Input for updating existing DHCP options, addressed by id.

@@ -28,6 +28,6 @@ catocli mutation policy terminalServer createPolicyRevision '{
 
 #### Operation Arguments for mutation.policy.terminalServer.createPolicyRevision ####
 
-`accountId` [ID] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
 `policyCreateRevisionInput` [PolicyCreateRevisionInput] - (required) Parameters for this policy operation.
 `terminalServerPolicyMutationInput` [TerminalServerPolicyMutationInput] - (required) Parameters for this policy operation.

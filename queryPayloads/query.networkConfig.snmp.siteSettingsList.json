@@ -1,0 +1,46 @@
+{
+    "operationName": "networkConfigSnmpSiteSettingsList",
+    "query": "query networkConfigSnmpSiteSettingsList ( $accountId:ID! $networkConfigSnmpSiteSettingsListInput:NetworkConfigSnmpSiteSettingsListInput!) {\n\tnetworkConfig ( accountId:$accountId ) {\n\t\tsnmp {\n\t\t\tsiteSettingsList ( input:$networkConfigSnmpSiteSettingsListInput   ) {\n\t\t\t\titems {\n\t\t\t\t\tsite {\n\t\t\t\t\t\tid\n\t\t\t\t\t\tname\n\t\t\t\t\t}\n\t\t\t\t\tprofile {\n\t\t\t\t\t\tid\n\t\t\t\t\t\tname\n\t\t\t\t\t}\n\t\t\t\t\tenabled\n\t\t\t\t\taudit {\n\t\t\t\t\t\tupdatedTime\n\t\t\t\t\t\tupdatedBy {\n\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\tname\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tpaging {\n\t\t\t\t\ttotal\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\t\n}",
+    "variables": {
+        "networkConfigSnmpSiteSettingsListInput": {
+            "filter": {
+                "enabled": {
+                    "eq": true,
+                    "neq": true
+                },
+                "site": {
+                    "eq": {
+                        "by": "ID",
+                        "input": "string"
+                    },
+                    "in": [
+                        {
+                            "by": "ID",
+                            "input": "string"
+                        }
+                    ],
+                    "neq": {
+                        "by": "ID",
+                        "input": "string"
+                    },
+                    "nin": [
+                        {
+                            "by": "ID",
+                            "input": "string"
+                        }
+                    ]
+                }
+            },
+            "paging": {
+                "from": 1,
+                "limit": 1
+            },
+            "sort": {
+                "site": {
+                    "direction": "ASC",
+                    "priority": 1
+                }
+            }
+        }
+    }
+}

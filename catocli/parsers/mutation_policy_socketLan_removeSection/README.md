@@ -27,6 +27,6 @@ catocli mutation policy socketLan removeSection '{
 
 #### Operation Arguments for mutation.policy.socketLan.removeSection ####
 
-`accountId` [ID] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
 `policyRemoveSectionInput` [PolicyRemoveSectionInput] - (required) N/A
 `socketLanPolicyMutationInput` [SocketLanPolicyMutationInput] - (required) N/A

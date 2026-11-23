@@ -76,5 +76,5 @@ catocli query networkConfig dhcp optionList '{
 
 #### Operation Arguments for query.networkConfig.dhcp.optionList ####
 
-`accountId` [ID] - (required) N/A
-`networkConfigDhcpOptionListInput` [NetworkConfigDhcpOptionListInput] - (required) N/A
+`accountId` [ID] - (required) ID of the account whose network configuration is requested.
+`networkConfigDhcpOptionListInput` [NetworkConfigDhcpOptionListInput] - (required) Filters, sorting, and pagination for DHCP options.

@@ -27,6 +27,6 @@ catocli mutation policy wanNetwork discardPolicyRevision '{
 
 #### Operation Arguments for mutation.policy.wanNetwork.discardPolicyRevision ####
 
-`accountId` [ID] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
 `policyDiscardRevisionInput` [PolicyDiscardRevisionInput] - (required) N/A
 `wanNetworkPolicyMutationInput` [WanNetworkPolicyMutationInput] - (required) N/A

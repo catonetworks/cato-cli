@@ -260,6 +260,6 @@ catocli mutation policy socketLan firewall addRule '{
 
 #### Operation Arguments for mutation.policy.socketLan.firewall.addRule ####
 
-`accountId` [ID] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
 `socketLanFirewallAddRuleInput` [SocketLanFirewallAddRuleInput] - (required) N/A
 `socketLanPolicyMutationInput` [SocketLanPolicyMutationInput] - (required) N/A

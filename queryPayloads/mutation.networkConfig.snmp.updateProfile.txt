@@ -1,0 +1,24 @@
+mutation networkConfigSnmpUpdateProfile ( $accountId:ID! $networkConfigSnmpUpdateProfileInput:NetworkConfigSnmpUpdateProfileInput!) {
+	networkConfig ( accountId:$accountId ) {
+		snmp {
+			updateProfile ( input:$networkConfigSnmpUpdateProfileInput   ) {
+				snmpProfile {
+					id
+					name
+					username
+					securityLevel
+					authProtocol
+					privacyProtocol
+					description
+					audit {
+						updatedTime
+						updatedBy {
+							id
+							name
+						}
+					}
+				}
+			}
+		}
+	}	
+}

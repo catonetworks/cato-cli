@@ -45,5 +45,5 @@ catocli query policy remotePortFwd policy | jq -r '.data.policy.remotePortFwd.po
 
 #### Operation Arguments for query.policy.remotePortFwd.policy ####
 
-`accountId` [ID] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
 `remotePortFwdPolicyInput` [RemotePortFwdPolicyInput] - (required) N/A

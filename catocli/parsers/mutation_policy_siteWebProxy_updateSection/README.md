@@ -30,6 +30,6 @@ catocli mutation policy siteWebProxy updateSection '{
 
 #### Operation Arguments for mutation.policy.siteWebProxy.updateSection ####
 
-`accountId` [ID] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
 `policyUpdateSectionInput` [PolicyUpdateSectionInput] - (required) N/A
 `siteWebProxyPolicyMutationInput` [SiteWebProxyPolicyMutationInput] - (required) N/A

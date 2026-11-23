@@ -196,6 +196,6 @@ catocli mutation policy socketLan addSubPolicy '{
 
 #### Operation Arguments for mutation.policy.socketLan.addSubPolicy ####
 
-`accountId` [ID] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
 `socketLanAddSubPolicyInput` [SocketLanAddSubPolicyInput] - (required) N/A
 `socketLanPolicyMutationInput` [SocketLanPolicyMutationInput] - (required) N/A

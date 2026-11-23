@@ -1,0 +1,24 @@
+mutation networkConfigSnmpSetProfileList ( $accountId:ID! $networkConfigSnmpSetProfileListInput:NetworkConfigSnmpSetProfileListInput!) {
+	networkConfig ( accountId:$accountId ) {
+		snmp {
+			setProfileList ( input:$networkConfigSnmpSetProfileListInput   ) {
+				snmpProfile {
+					id
+					name
+					username
+					securityLevel
+					authProtocol
+					privacyProtocol
+					description
+					audit {
+						updatedTime
+						updatedBy {
+							id
+							name
+						}
+					}
+				}
+			}
+		}
+	}	
+}

@@ -30,6 +30,6 @@ catocli mutation policy internetFirewall removeSubPolicy '{
 
 #### Operation Arguments for mutation.policy.internetFirewall.removeSubPolicy ####
 
-`accountId` [ID] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
 `internetFirewallPolicyMutationInput` [InternetFirewallPolicyMutationInput] - (required) N/A
 `internetFirewallRemoveSubPolicyInput` [InternetFirewallRemoveSubPolicyInput] - (required) N/A

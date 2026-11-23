@@ -77,5 +77,5 @@ catocli query policy wanFirewall policyList '{
 
 #### Operation Arguments for query.policy.wanFirewall.policyList ####
 
-`accountId` [ID] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
 `wanFirewallPolicyListInput` [WanFirewallPolicyListInput] - (required) N/A

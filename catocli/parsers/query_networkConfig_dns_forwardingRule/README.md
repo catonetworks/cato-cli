@@ -23,5 +23,5 @@ catocli query networkConfig dns forwardingRule '{
 
 #### Operation Arguments for query.networkConfig.dns.forwardingRule ####
 
-`accountId` [ID] - (required) N/A
-`networkConfigDnsForwardingRuleRefInput` [NetworkConfigDnsForwardingRuleRefInput] - (required) N/A
+`accountId` [ID] - (required) ID of the account whose network configuration is requested.
+`networkConfigDnsForwardingRuleRefInput` [NetworkConfigDnsForwardingRuleRefInput] - (required) A reference to an existing DNS forwarding rule. NAME means its domain, unique per account.

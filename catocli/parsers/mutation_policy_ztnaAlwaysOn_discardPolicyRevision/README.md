@@ -27,6 +27,6 @@ catocli mutation policy ztnaAlwaysOn discardPolicyRevision '{
 
 #### Operation Arguments for mutation.policy.ztnaAlwaysOn.discardPolicyRevision ####
 
-`accountId` [ID] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
 `policyDiscardRevisionInput` [PolicyDiscardRevisionInput] - (required) Parameters for this policy operation.
 `ztnaAlwaysOnPolicyMutationInput` [ZtnaAlwaysOnPolicyMutationInput] - (required) Parameters for this policy operation.

@@ -1,0 +1,24 @@
+mutation networkConfigSnmpDeleteProfile ( $accountId:ID! $networkConfigSnmpDeleteProfileInput:NetworkConfigSnmpDeleteProfileInput!) {
+	networkConfig ( accountId:$accountId ) {
+		snmp {
+			deleteProfile ( input:$networkConfigSnmpDeleteProfileInput   ) {
+				snmpProfile {
+					id
+					name
+					username
+					securityLevel
+					authProtocol
+					privacyProtocol
+					description
+					audit {
+						updatedTime
+						updatedBy {
+							id
+							name
+						}
+					}
+				}
+			}
+		}
+	}	
+}

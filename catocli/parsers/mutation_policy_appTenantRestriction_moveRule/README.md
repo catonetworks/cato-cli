@@ -31,6 +31,6 @@ catocli mutation policy appTenantRestriction moveRule '{
 
 #### Operation Arguments for mutation.policy.appTenantRestriction.moveRule ####
 
-`accountId` [ID] - (required) N/A
-`appTenantRestrictionPolicyMutationInput` [AppTenantRestrictionPolicyMutationInput] - (required) N/A
-`policyMoveRuleInput` [PolicyMoveRuleInput] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
+`appTenantRestrictionPolicyMutationInput` [AppTenantRestrictionPolicyMutationInput] - (required) Parameters for this policy operation.
+`policyMoveRuleInput` [PolicyMoveRuleInput] - (required) Parameters for this policy operation.

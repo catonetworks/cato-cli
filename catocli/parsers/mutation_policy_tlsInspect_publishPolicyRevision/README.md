@@ -28,6 +28,6 @@ catocli mutation policy tlsInspect publishPolicyRevision '{
 
 #### Operation Arguments for mutation.policy.tlsInspect.publishPolicyRevision ####
 
-`accountId` [ID] - (required) N/A
-`policyPublishRevisionInput` [PolicyPublishRevisionInput] - (required) N/A
-`tlsInspectPolicyMutationInput` [TlsInspectPolicyMutationInput] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
+`policyPublishRevisionInput` [PolicyPublishRevisionInput] - (required) Parameters for this policy operation.
+`tlsInspectPolicyMutationInput` [TlsInspectPolicyMutationInput] - (required) Parameters for this policy operation.

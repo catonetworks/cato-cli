@@ -34,5 +34,5 @@ catocli mutation networkConfig dns updateSiteSettings '{
 
 #### Operation Arguments for mutation.networkConfig.dns.updateSiteSettings ####
 
-`accountId` [ID] - (required) N/A
-`networkConfigDnsUpdateSiteSettingsInput` [NetworkConfigDnsUpdateSiteSettingsInput] - (required) N/A
+`accountId` [ID] - (required) ID of the account whose network configuration is modified.
+`networkConfigDnsUpdateSiteSettingsInput` [NetworkConfigDnsUpdateSiteSettingsInput] - (required) Input for creating or updating the DNS override for one or more sites.

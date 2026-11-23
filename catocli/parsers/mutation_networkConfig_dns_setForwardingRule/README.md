@@ -30,5 +30,5 @@ catocli mutation networkConfig dns setForwardingRule '{
 
 #### Operation Arguments for mutation.networkConfig.dns.setForwardingRule ####
 
-`accountId` [ID] - (required) N/A
-`networkConfigDnsSetForwardingRuleInput` [NetworkConfigDnsSetForwardingRuleInput] - (required) N/A
+`accountId` [ID] - (required) ID of the account whose network configuration is modified.
+`networkConfigDnsSetForwardingRuleInput` [NetworkConfigDnsSetForwardingRuleInput] - (required) Input for replacing the whole DNS forwarding-rule collection.

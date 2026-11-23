@@ -28,6 +28,6 @@ catocli mutation policy applicationControl createPolicyRevision '{
 
 #### Operation Arguments for mutation.policy.applicationControl.createPolicyRevision ####
 
-`accountId` [ID] - (required) N/A
-`applicationControlPolicyMutationInput` [ApplicationControlPolicyMutationInput] - (required) N/A
-`policyCreateRevisionInput` [PolicyCreateRevisionInput] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
+`applicationControlPolicyMutationInput` [ApplicationControlPolicyMutationInput] - (required) Parameters for this policy operation.
+`policyCreateRevisionInput` [PolicyCreateRevisionInput] - (required) Parameters for this policy operation.

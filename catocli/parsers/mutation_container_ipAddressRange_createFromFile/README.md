@@ -25,5 +25,5 @@ catocli mutation container ipAddressRange createFromFile '{
 
 #### Operation Arguments for mutation.container.ipAddressRange.createFromFile ####
 
-`accountId` [ID] - (required) N/A
-`createIpAddressRangeContainerFromFileInput` [CreateIpAddressRangeContainerFromFileInput] - (required) N/A
+`accountId` [ID] - (required) ID of the account whose containers are accessed.
+`createIpAddressRangeContainerFromFileInput` [CreateIpAddressRangeContainerFromFileInput] - (required) Container name, description, uploaded file and its format.

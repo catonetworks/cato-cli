@@ -30,6 +30,6 @@ catocli mutation policy sdpStaticIpAllocation updateSection '{
 
 #### Operation Arguments for mutation.policy.sdpStaticIpAllocation.updateSection ####
 
-`accountId` [ID] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
 `policyUpdateSectionInput` [PolicyUpdateSectionInput] - (required) Parameters for this policy operation.
 `sdpStaticIpAllocationPolicyMutationInput` [SdpStaticIpAllocationPolicyMutationInput] - (required) Parameters for this policy operation.

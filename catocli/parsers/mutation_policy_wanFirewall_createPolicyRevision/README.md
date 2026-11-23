@@ -28,6 +28,6 @@ catocli mutation policy wanFirewall createPolicyRevision '{
 
 #### Operation Arguments for mutation.policy.wanFirewall.createPolicyRevision ####
 
-`accountId` [ID] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
 `policyCreateRevisionInput` [PolicyCreateRevisionInput] - (required) N/A
 `wanFirewallPolicyMutationInput` [WanFirewallPolicyMutationInput] - (required) N/A

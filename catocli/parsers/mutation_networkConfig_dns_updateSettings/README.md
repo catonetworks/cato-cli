@@ -27,5 +27,5 @@ catocli mutation networkConfig dns updateSettings '{
 
 #### Operation Arguments for mutation.networkConfig.dns.updateSettings ####
 
-`accountId` [ID] - (required) N/A
-`networkConfigDnsUpdateSettingsInput` [NetworkConfigDnsUpdateSettingsInput] - (required) N/A
+`accountId` [ID] - (required) ID of the account whose network configuration is modified.
+`networkConfigDnsUpdateSettingsInput` [NetworkConfigDnsUpdateSettingsInput] - (required) Input for updating the account-level DNS settings. Every field is optional and an omitted field is left unchanged, subject to "no secondary server or suffix without a primary server".

@@ -27,6 +27,6 @@ catocli mutation policy remotePortFwd removeRule '{
 
 #### Operation Arguments for mutation.policy.remotePortFwd.removeRule ####
 
-`accountId` [ID] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
 `remotePortFwdPolicyMutationInput` [RemotePortFwdPolicyMutationInput] - (required) N/A
 `remotePortFwdRemoveRuleInput` [RemotePortFwdRemoveRuleInput] - (required) N/A

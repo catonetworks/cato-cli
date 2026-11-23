@@ -33,6 +33,6 @@ catocli mutation policy wanNetwork addSection '{
 
 #### Operation Arguments for mutation.policy.wanNetwork.addSection ####
 
-`accountId` [ID] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
 `policyAddSectionInput` [PolicyAddSectionInput] - (required) N/A
 `wanNetworkPolicyMutationInput` [WanNetworkPolicyMutationInput] - (required) N/A

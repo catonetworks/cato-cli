@@ -1,0 +1,26 @@
+mutation networkConfigSnmpSetSiteSettingsList ( $accountId:ID! $networkConfigSnmpSetSiteSettingsListInput:NetworkConfigSnmpSetSiteSettingsListInput!) {
+	networkConfig ( accountId:$accountId ) {
+		snmp {
+			setSiteSettingsList ( input:$networkConfigSnmpSetSiteSettingsListInput   ) {
+				siteSettings {
+					site {
+						id
+						name
+					}
+					profile {
+						id
+						name
+					}
+					enabled
+					audit {
+						updatedTime
+						updatedBy {
+							id
+							name
+						}
+					}
+				}
+			}
+		}
+	}	
+}

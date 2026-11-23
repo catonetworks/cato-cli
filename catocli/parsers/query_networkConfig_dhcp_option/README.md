@@ -23,5 +23,5 @@ catocli query networkConfig dhcp option '{
 
 #### Operation Arguments for query.networkConfig.dhcp.option ####
 
-`accountId` [ID] - (required) N/A
-`networkConfigDhcpOptionRefInput` [NetworkConfigDhcpOptionRefInput] - (required) N/A
+`accountId` [ID] - (required) ID of the account whose network configuration is requested.
+`networkConfigDhcpOptionRefInput` [NetworkConfigDhcpOptionRefInput] - (required) A reference to an existing DHCP option. NAME means its description, which is not unique - a description matching more than one option is rejected.

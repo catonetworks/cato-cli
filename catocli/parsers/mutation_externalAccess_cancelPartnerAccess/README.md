@@ -23,5 +23,5 @@ catocli mutation externalAccess cancelPartnerAccess '{
 
 #### Operation Arguments for mutation.externalAccess.cancelPartnerAccess ####
 
-`accountId` [ID] - (required) N/A
-`cancelPartnerAccessInput` [CancelPartnerAccessInput] - (required) N/A
+`accountId` [ID] - (required) ID of the account in which to manage external access requests.
+`cancelPartnerAccessInput` [CancelPartnerAccessInput] - (required) Access request to cancel and the reason for cancellation.

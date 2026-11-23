@@ -27,6 +27,6 @@ catocli mutation policy remotePortFwd updatePolicy '{
 
 #### Operation Arguments for mutation.policy.remotePortFwd.updatePolicy ####
 
-`accountId` [ID] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
 `remotePortFwdPolicyMutationInput` [RemotePortFwdPolicyMutationInput] - (required) N/A
 `remotePortFwdPolicyUpdateInput` [RemotePortFwdPolicyUpdateInput] - (required) N/A

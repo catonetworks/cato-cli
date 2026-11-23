@@ -27,6 +27,6 @@ catocli mutation policy internetFirewall removeRule '{
 
 #### Operation Arguments for mutation.policy.internetFirewall.removeRule ####
 
-`accountId` [ID] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
 `internetFirewallPolicyMutationInput` [InternetFirewallPolicyMutationInput] - (required) N/A
 `internetFirewallRemoveRuleInput` [InternetFirewallRemoveRuleInput] - (required) N/A

@@ -29,5 +29,5 @@ catocli mutation container fqdn updateFromList '{
 
 #### Operation Arguments for mutation.container.fqdn.updateFromList ####
 
-`accountId` [ID] - (required) N/A
-`updateFqdnContainerFromListInput` [UpdateFqdnContainerFromListInput] - (required) N/A
+`accountId` [ID] - (required) ID of the account whose containers are accessed.
+`updateFqdnContainerFromListInput` [UpdateFqdnContainerFromListInput] - (required) Container reference, values and description to update.

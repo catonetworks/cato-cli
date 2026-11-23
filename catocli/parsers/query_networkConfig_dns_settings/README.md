@@ -14,4 +14,4 @@ catocli query networkConfig dns settings --json-file query.networkConfig.dns.set
 
 #### Operation Arguments for query.networkConfig.dns.settings ####
 
-`accountId` [ID] - (required) N/A
+`accountId` [ID] - (required) ID of the account whose network configuration is requested.

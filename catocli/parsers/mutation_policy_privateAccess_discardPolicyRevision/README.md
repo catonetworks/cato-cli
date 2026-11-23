@@ -27,6 +27,6 @@ catocli mutation policy privateAccess discardPolicyRevision '{
 
 #### Operation Arguments for mutation.policy.privateAccess.discardPolicyRevision ####
 
-`accountId` [ID] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
 `policyDiscardRevisionInput` [PolicyDiscardRevisionInput] - (required) Parameters for this policy operation.
 `privateAccessPolicyMutationInput` [PrivateAccessPolicyMutationInput] - (required) Parameters for this policy operation.

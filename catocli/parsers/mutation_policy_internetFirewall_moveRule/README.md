@@ -31,6 +31,6 @@ catocli mutation policy internetFirewall moveRule '{
 
 #### Operation Arguments for mutation.policy.internetFirewall.moveRule ####
 
-`accountId` [ID] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
 `internetFirewallPolicyMutationInput` [InternetFirewallPolicyMutationInput] - (required) N/A
 `policyMoveRuleInput` [PolicyMoveRuleInput] - (required) N/A

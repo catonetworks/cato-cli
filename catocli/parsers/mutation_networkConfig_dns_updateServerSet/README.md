@@ -30,5 +30,5 @@ catocli mutation networkConfig dns updateServerSet '{
 
 #### Operation Arguments for mutation.networkConfig.dns.updateServerSet ####
 
-`accountId` [ID] - (required) N/A
-`networkConfigDnsUpdateServerSetInput` [NetworkConfigDnsUpdateServerSetInput] - (required) N/A
+`accountId` [ID] - (required) ID of the account whose network configuration is modified.
+`networkConfigDnsUpdateServerSetInput` [NetworkConfigDnsUpdateServerSetInput] - (required) Input for updating existing DNS server sets, addressed by id.

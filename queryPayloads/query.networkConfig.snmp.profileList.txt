@@ -1,0 +1,27 @@
+query networkConfigSnmpProfileList ( $accountId:ID! $networkConfigSnmpProfileListInput:NetworkConfigSnmpProfileListInput!) {
+	networkConfig ( accountId:$accountId ) {
+		snmp {
+			profileList ( input:$networkConfigSnmpProfileListInput   ) {
+				items {
+					id
+					name
+					username
+					securityLevel
+					authProtocol
+					privacyProtocol
+					description
+					audit {
+						updatedTime
+						updatedBy {
+							id
+							name
+						}
+					}
+				}
+				paging {
+					total
+				}
+			}
+		}
+	}	
+}

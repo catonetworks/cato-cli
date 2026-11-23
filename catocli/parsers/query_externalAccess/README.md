@@ -209,6 +209,6 @@ catocli query externalAccess '{
 
 #### Operation Arguments for query.externalAccess ####
 
-`accountId` [ID] - (required) N/A
-`incomingAccessRequestListInput` [IncomingAccessRequestListInput] - (required) N/A
-`partnerAccessRequestListInput` [PartnerAccessRequestListInput] - (required) N/A
+`accountId` [ID] - (required) ID of the account whose external access requests are being queried.
+`incomingAccessRequestListInput` [IncomingAccessRequestListInput] - (required) Filters, sorting, and pagination for incoming access requests.
+`partnerAccessRequestListInput` [PartnerAccessRequestListInput] - (required) Filters, sorting, and pagination for partner access requests.

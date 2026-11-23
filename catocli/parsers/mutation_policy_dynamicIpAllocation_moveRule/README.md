@@ -31,6 +31,6 @@ catocli mutation policy dynamicIpAllocation moveRule '{
 
 #### Operation Arguments for mutation.policy.dynamicIpAllocation.moveRule ####
 
-`accountId` [ID] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
 `dynamicIpAllocationPolicyMutationInput` [DynamicIpAllocationPolicyMutationInput] - (required) Parameters for this policy operation.
 `policyMoveRuleInput` [PolicyMoveRuleInput] - (required) Parameters for this policy operation.

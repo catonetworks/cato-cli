@@ -27,6 +27,6 @@ catocli mutation policy socketLan updatePolicy '{
 
 #### Operation Arguments for mutation.policy.socketLan.updatePolicy ####
 
-`accountId` [ID] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
 `socketLanPolicyMutationInput` [SocketLanPolicyMutationInput] - (required) N/A
 `socketLanPolicyUpdateInput` [SocketLanPolicyUpdateInput] - (required) N/A

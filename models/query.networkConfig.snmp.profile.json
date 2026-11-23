@@ -1,0 +1,816 @@
+{
+    "args": {
+        "accountId": {
+            "defaultValue": null,
+            "description": "ID of the account whose network configuration is requested.",
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        }
+    },
+    "childOperations": {
+        "profile": {
+            "args": {
+                "profile___input": {
+                    "defaultValue": null,
+                    "description": null,
+                    "id_str": "profile___input",
+                    "name": "input",
+                    "path": "profile.input",
+                    "requestStr": "$networkConfigSnmpProfileRefInput:NetworkConfigSnmpProfileRefInput! ",
+                    "required": true,
+                    "responseStr": "input:$networkConfigSnmpProfileRefInput ",
+                    "type": {
+                        "definition": {
+                            "description": "A reference to an existing SNMP profile, by id or name.",
+                            "enumValues": null,
+                            "fields": null,
+                            "inputFields": {
+                                "by": {
+                                    "defaultValue": "ID",
+                                    "description": "Whether `input` is the profile's id or its name.",
+                                    "id_str": "profile___input___by",
+                                    "name": "by",
+                                    "path": "profile.input.by",
+                                    "requestStr": "$by:ObjectRefBy! ",
+                                    "required": true,
+                                    "responseStr": "by:$by ",
+                                    "type": {
+                                        "definition": {
+                                            "description": "Specifies whether an object is identified by its ID or name.",
+                                            "enumValues": [
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": null,
+                                                    "isDeprecated": false,
+                                                    "name": "ID"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": null,
+                                                    "isDeprecated": false,
+                                                    "name": "NAME"
+                                                }
+                                            ],
+                                            "fields": null,
+                                            "inputFields": null,
+                                            "interfaces": null,
+                                            "kind": "ENUM",
+                                            "name": "ObjectRefBy",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "enum",
+                                        "kind": [
+                                            "NON_NULL",
+                                            "ENUM"
+                                        ],
+                                        "name": "ObjectRefBy",
+                                        "non_null": false
+                                    },
+                                    "varName": "by"
+                                },
+                                "input": {
+                                    "defaultValue": null,
+                                    "description": "The profile's opaque id or its name, per `by`.",
+                                    "id_str": "profile___input___input",
+                                    "name": "input",
+                                    "path": "profile.input.input",
+                                    "requestStr": "$input:String! ",
+                                    "required": true,
+                                    "responseStr": "input:$input ",
+                                    "type": {
+                                        "kind": [
+                                            "NON_NULL",
+                                            "SCALAR"
+                                        ],
+                                        "name": "String",
+                                        "non_null": false
+                                    },
+                                    "varName": "input"
+                                }
+                            },
+                            "interfaces": null,
+                            "kind": "INPUT_OBJECT",
+                            "name": "NetworkConfigSnmpProfileRefInput",
+                            "possibleTypes": null
+                        },
+                        "indexType": "input_object",
+                        "kind": [
+                            "NON_NULL",
+                            "INPUT_OBJECT"
+                        ],
+                        "name": "NetworkConfigSnmpProfileRefInput",
+                        "non_null": false
+                    },
+                    "varName": "networkConfigSnmpProfileRefInput"
+                }
+            },
+            "deprecationReason": null,
+            "description": "A single SNMP profile, by id or name.",
+            "isDeprecated": false,
+            "name": "profile",
+            "type": {
+                "kind": "OBJECT",
+                "name": "NetworkConfigSnmpProfile",
+                "ofType": null
+            }
+        },
+        "snmp": {
+            "args": {},
+            "deprecationReason": null,
+            "description": "SNMP read operations.",
+            "isDeprecated": false,
+            "name": "snmp",
+            "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                    "kind": "OBJECT",
+                    "name": "NetworkConfigSnmpQueries",
+                    "ofType": null
+                }
+            }
+        }
+    },
+    "deprecationReason": null,
+    "description": "All network-configuration read operations for an account.",
+    "fieldTypes": {},
+    "isDeprecated": false,
+    "name": "networkConfig",
+    "operationArgs": {
+        "accountId": {
+            "defaultValue": null,
+            "description": "ID of the account whose network configuration is requested.",
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        },
+        "networkConfigSnmpProfileRefInput": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "profile___input",
+            "name": "input",
+            "path": "profile.input",
+            "requestStr": "$networkConfigSnmpProfileRefInput:NetworkConfigSnmpProfileRefInput! ",
+            "required": true,
+            "responseStr": "input:$networkConfigSnmpProfileRefInput ",
+            "type": {
+                "definition": {
+                    "description": "A reference to an existing SNMP profile, by id or name.",
+                    "enumValues": null,
+                    "fields": null,
+                    "inputFields": {
+                        "by": {
+                            "defaultValue": "ID",
+                            "description": "Whether `input` is the profile's id or its name.",
+                            "id_str": "profile___input___by",
+                            "name": "by",
+                            "path": "profile.input.by",
+                            "requestStr": "$by:ObjectRefBy! ",
+                            "required": true,
+                            "responseStr": "by:$by ",
+                            "type": {
+                                "definition": {
+                                    "description": "Specifies whether an object is identified by its ID or name.",
+                                    "enumValues": [
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "ID"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "NAME"
+                                        }
+                                    ],
+                                    "fields": null,
+                                    "inputFields": null,
+                                    "interfaces": null,
+                                    "kind": "ENUM",
+                                    "name": "ObjectRefBy",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "enum",
+                                "kind": [
+                                    "NON_NULL",
+                                    "ENUM"
+                                ],
+                                "name": "ObjectRefBy",
+                                "non_null": false
+                            },
+                            "varName": "by"
+                        },
+                        "input": {
+                            "defaultValue": null,
+                            "description": "The profile's opaque id or its name, per `by`.",
+                            "id_str": "profile___input___input",
+                            "name": "input",
+                            "path": "profile.input.input",
+                            "requestStr": "$input:String! ",
+                            "required": true,
+                            "responseStr": "input:$input ",
+                            "type": {
+                                "kind": [
+                                    "NON_NULL",
+                                    "SCALAR"
+                                ],
+                                "name": "String",
+                                "non_null": false
+                            },
+                            "varName": "input"
+                        }
+                    },
+                    "interfaces": null,
+                    "kind": "INPUT_OBJECT",
+                    "name": "NetworkConfigSnmpProfileRefInput",
+                    "possibleTypes": null
+                },
+                "indexType": "input_object",
+                "kind": [
+                    "NON_NULL",
+                    "INPUT_OBJECT"
+                ],
+                "name": "NetworkConfigSnmpProfileRefInput",
+                "non_null": false
+            },
+            "varName": "networkConfigSnmpProfileRefInput"
+        }
+    },
+    "path": "query.networkConfig.snmp.profile",
+    "type": {
+        "definition": {
+            "description": "Network-configuration read operations.",
+            "enumValues": null,
+            "fields": {
+                "snmp": {
+                    "args": {},
+                    "deprecationReason": null,
+                    "description": "SNMP read operations.",
+                    "id_str": "snmp",
+                    "isDeprecated": false,
+                    "name": "snmp",
+                    "path": "snmp",
+                    "requestStr": "$networkConfigSnmpQueries:NetworkConfigSnmpQueries! ",
+                    "required": true,
+                    "responseStr": "snmp:$networkConfigSnmpQueries ",
+                    "type": {
+                        "definition": {
+                            "description": "SNMP read operations for the account.",
+                            "enumValues": null,
+                            "fields": {
+                                "profile": {
+                                    "args": {
+                                        "profile___input": {
+                                            "defaultValue": null,
+                                            "description": null,
+                                            "id_str": "profile___input",
+                                            "name": "input",
+                                            "path": "profile.input",
+                                            "requestStr": "$networkConfigSnmpProfileRefInput:NetworkConfigSnmpProfileRefInput! ",
+                                            "required": true,
+                                            "responseStr": "input:$networkConfigSnmpProfileRefInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": "A reference to an existing SNMP profile, by id or name.",
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "by": {
+                                                            "defaultValue": "ID",
+                                                            "description": "Whether `input` is the profile's id or its name.",
+                                                            "id_str": "profile___input___by",
+                                                            "name": "by",
+                                                            "path": "profile.input.by",
+                                                            "requestStr": "$by:ObjectRefBy! ",
+                                                            "required": true,
+                                                            "responseStr": "by:$by ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": "Specifies whether an object is identified by its ID or name.",
+                                                                    "enumValues": [
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "ID"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "NAME"
+                                                                        }
+                                                                    ],
+                                                                    "fields": null,
+                                                                    "inputFields": null,
+                                                                    "interfaces": null,
+                                                                    "kind": "ENUM",
+                                                                    "name": "ObjectRefBy",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "enum",
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "ENUM"
+                                                                ],
+                                                                "name": "ObjectRefBy",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "by"
+                                                        },
+                                                        "input": {
+                                                            "defaultValue": null,
+                                                            "description": "The profile's opaque id or its name, per `by`.",
+                                                            "id_str": "profile___input___input",
+                                                            "name": "input",
+                                                            "path": "profile.input.input",
+                                                            "requestStr": "$input:String! ",
+                                                            "required": true,
+                                                            "responseStr": "input:$input ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "String",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "input"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "NetworkConfigSnmpProfileRefInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "NetworkConfigSnmpProfileRefInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "networkConfigSnmpProfileRefInput"
+                                        }
+                                    },
+                                    "deprecationReason": null,
+                                    "description": "A single SNMP profile, by id or name.",
+                                    "id_str": "snmp___profile",
+                                    "isDeprecated": false,
+                                    "name": "profile",
+                                    "path": "snmp.profile",
+                                    "requestStr": "$networkConfigSnmpProfile:NetworkConfigSnmpProfile ",
+                                    "required": false,
+                                    "responseStr": "profile:$networkConfigSnmpProfile ",
+                                    "type": {
+                                        "definition": {
+                                            "description": "An account-level SNMPv3 identity the Socket agent serves. allows one per account. No passphrase field exists on this type.",
+                                            "enumValues": null,
+                                            "fields": {
+                                                "audit": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Audit metadata for this profile.",
+                                                    "id_str": "snmp___profile___audit",
+                                                    "isDeprecated": false,
+                                                    "name": "audit",
+                                                    "path": "snmp.profile.audit",
+                                                    "requestStr": "$auditingMetadata:AuditingMetadata ",
+                                                    "required": false,
+                                                    "responseStr": "audit:$auditingMetadata ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": "Information about the most recent update to an object.",
+                                                            "enumValues": null,
+                                                            "fields": {
+                                                                "updatedBy": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Administrator or API key that last updated the object.",
+                                                                    "id_str": "snmp___profile___audit___updatedBy",
+                                                                    "isDeprecated": false,
+                                                                    "name": "updatedBy",
+                                                                    "path": "snmp.profile.audit.updatedBy",
+                                                                    "requestStr": "$actorRef:ActorRef! ",
+                                                                    "required": true,
+                                                                    "responseStr": "updatedBy:$actorRef ",
+                                                                    "type": {
+                                                                        "definition": {
+                                                                            "description": "Identifies the administrator or API key that performed an action.",
+                                                                            "enumValues": null,
+                                                                            "fields": {
+                                                                                "id": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "ID of the administrator or API key.",
+                                                                                    "id_str": "snmp___profile___audit___updatedBy___id",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "id",
+                                                                                    "path": "snmp.profile.audit.updatedBy.id",
+                                                                                    "requestStr": "$id:ID! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "id:$id ",
+                                                                                    "type": {
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "SCALAR"
+                                                                                        ],
+                                                                                        "name": "ID",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "id"
+                                                                                },
+                                                                                "name": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "Display name of the administrator or API key.",
+                                                                                    "id_str": "snmp___profile___audit___updatedBy___name",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "name",
+                                                                                    "path": "snmp.profile.audit.updatedBy.name",
+                                                                                    "requestStr": "$name:String! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "name:$name ",
+                                                                                    "type": {
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "SCALAR"
+                                                                                        ],
+                                                                                        "name": "String",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "name"
+                                                                                }
+                                                                            },
+                                                                            "inputFields": null,
+                                                                            "interfaces": [
+                                                                                {
+                                                                                    "kind": "INTERFACE",
+                                                                                    "name": "ObjectRef",
+                                                                                    "ofType": null
+                                                                                }
+                                                                            ],
+                                                                            "kind": "INTERFACE",
+                                                                            "name": "ActorRef",
+                                                                            "possibleTypes": {
+                                                                                "AdminRef": {
+                                                                                    "description": "A reference identifying the Admin object. ID: Unique Admin Identifier, Name: The Admin Name",
+                                                                                    "enumValues": null,
+                                                                                    "fields": {},
+                                                                                    "inputFields": null,
+                                                                                    "interfaces": {},
+                                                                                    "kind": "OBJECT",
+                                                                                    "name": "AdminRef",
+                                                                                    "possibleTypes": null
+                                                                                },
+                                                                                "ApiKeyRef": {
+                                                                                    "description": "A reference identifying the ApiKey object. ID: Unique ApiKey Identifier, Name: The ApiKey Name",
+                                                                                    "enumValues": null,
+                                                                                    "fields": {},
+                                                                                    "inputFields": null,
+                                                                                    "interfaces": {},
+                                                                                    "kind": "OBJECT",
+                                                                                    "name": "ApiKeyRef",
+                                                                                    "possibleTypes": null
+                                                                                },
+                                                                                "SplitTunnelProfileSystemActorRef": {
+                                                                                    "description": "Cato as the system actor that publishes ready-made templates.",
+                                                                                    "enumValues": null,
+                                                                                    "fields": {},
+                                                                                    "inputFields": null,
+                                                                                    "interfaces": {},
+                                                                                    "kind": "OBJECT",
+                                                                                    "name": "SplitTunnelProfileSystemActorRef",
+                                                                                    "possibleTypes": null
+                                                                                }
+                                                                            }
+                                                                        },
+                                                                        "indexType": "interface",
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "INTERFACE"
+                                                                        ],
+                                                                        "name": "ActorRef",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "actorRef"
+                                                                },
+                                                                "updatedTime": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Date and time the object was last updated.",
+                                                                    "id_str": "snmp___profile___audit___updatedTime",
+                                                                    "isDeprecated": false,
+                                                                    "name": "updatedTime",
+                                                                    "path": "snmp.profile.audit.updatedTime",
+                                                                    "requestStr": "$updatedTime:DateTime! ",
+                                                                    "required": true,
+                                                                    "responseStr": "updatedTime:$updatedTime ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "DateTime",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "updatedTime"
+                                                                }
+                                                            },
+                                                            "inputFields": null,
+                                                            "interfaces": {},
+                                                            "kind": "OBJECT",
+                                                            "name": "AuditingMetadata",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "object",
+                                                        "kind": [
+                                                            "OBJECT"
+                                                        ],
+                                                        "name": "AuditingMetadata",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "auditingMetadata"
+                                                },
+                                                "authProtocol": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "The USM authentication protocol.",
+                                                    "id_str": "snmp___profile___authProtocol",
+                                                    "isDeprecated": false,
+                                                    "name": "authProtocol",
+                                                    "path": "snmp.profile.authProtocol",
+                                                    "requestStr": "$authProtocol:NetworkConfigSnmpAuthProtocol! ",
+                                                    "required": true,
+                                                    "responseStr": "authProtocol:$authProtocol ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": "The SNMPv3 USM authentication protocol.",
+                                                            "enumValues": [
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "HMAC-SHA-256 (RFC 7860).",
+                                                                    "isDeprecated": false,
+                                                                    "name": "SHA_256"
+                                                                }
+                                                            ],
+                                                            "fields": null,
+                                                            "inputFields": null,
+                                                            "interfaces": null,
+                                                            "kind": "ENUM",
+                                                            "name": "NetworkConfigSnmpAuthProtocol",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "enum",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "ENUM"
+                                                        ],
+                                                        "name": "NetworkConfigSnmpAuthProtocol",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "authProtocol"
+                                                },
+                                                "description": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Human-readable description of the profile.",
+                                                    "id_str": "snmp___profile___description",
+                                                    "isDeprecated": false,
+                                                    "name": "description",
+                                                    "path": "snmp.profile.description",
+                                                    "requestStr": "$description:String ",
+                                                    "required": false,
+                                                    "responseStr": "description:$description ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "description"
+                                                },
+                                                "id": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Identifier for the profile.",
+                                                    "id_str": "snmp___profile___id",
+                                                    "isDeprecated": false,
+                                                    "name": "id",
+                                                    "path": "snmp.profile.id",
+                                                    "requestStr": "$id:ID! ",
+                                                    "required": true,
+                                                    "responseStr": "id:$id ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "ID",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "id"
+                                                },
+                                                "name": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Profile name, unique within the account.",
+                                                    "id_str": "snmp___profile___name",
+                                                    "isDeprecated": false,
+                                                    "name": "name",
+                                                    "path": "snmp.profile.name",
+                                                    "requestStr": "$name:String! ",
+                                                    "required": true,
+                                                    "responseStr": "name:$name ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "name"
+                                                },
+                                                "privacyProtocol": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "The USM privacy protocol.",
+                                                    "id_str": "snmp___profile___privacyProtocol",
+                                                    "isDeprecated": false,
+                                                    "name": "privacyProtocol",
+                                                    "path": "snmp.profile.privacyProtocol",
+                                                    "requestStr": "$privacyProtocol:NetworkConfigSnmpPrivacyProtocol! ",
+                                                    "required": true,
+                                                    "responseStr": "privacyProtocol:$privacyProtocol ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": "The SNMPv3 USM privacy (encryption) protocol.",
+                                                            "enumValues": [
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "AES-128 in CFB mode (RFC 3826).",
+                                                                    "isDeprecated": false,
+                                                                    "name": "AES_128"
+                                                                }
+                                                            ],
+                                                            "fields": null,
+                                                            "inputFields": null,
+                                                            "interfaces": null,
+                                                            "kind": "ENUM",
+                                                            "name": "NetworkConfigSnmpPrivacyProtocol",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "enum",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "ENUM"
+                                                        ],
+                                                        "name": "NetworkConfigSnmpPrivacyProtocol",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "privacyProtocol"
+                                                },
+                                                "securityLevel": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "The SNMPv3 security level served.",
+                                                    "id_str": "snmp___profile___securityLevel",
+                                                    "isDeprecated": false,
+                                                    "name": "securityLevel",
+                                                    "path": "snmp.profile.securityLevel",
+                                                    "requestStr": "$securityLevel:NetworkConfigSnmpSecurityLevel! ",
+                                                    "required": true,
+                                                    "responseStr": "securityLevel:$securityLevel ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": "The SNMPv3 security level the Socket agent serves.",
+                                                            "enumValues": [
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Authentication and privacy (encryption) both required.",
+                                                                    "isDeprecated": false,
+                                                                    "name": "AUTH_PRIV"
+                                                                }
+                                                            ],
+                                                            "fields": null,
+                                                            "inputFields": null,
+                                                            "interfaces": null,
+                                                            "kind": "ENUM",
+                                                            "name": "NetworkConfigSnmpSecurityLevel",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "enum",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "ENUM"
+                                                        ],
+                                                        "name": "NetworkConfigSnmpSecurityLevel",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "securityLevel"
+                                                },
+                                                "username": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "The SNMPv3 USM user the NMS authenticates as, unique within the account.",
+                                                    "id_str": "snmp___profile___username",
+                                                    "isDeprecated": false,
+                                                    "name": "username",
+                                                    "path": "snmp.profile.username",
+                                                    "requestStr": "$username:String! ",
+                                                    "required": true,
+                                                    "responseStr": "username:$username ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "username"
+                                                }
+                                            },
+                                            "inputFields": null,
+                                            "interfaces": {},
+                                            "kind": "OBJECT",
+                                            "name": "NetworkConfigSnmpProfile",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "object",
+                                        "kind": [
+                                            "OBJECT"
+                                        ],
+                                        "name": "NetworkConfigSnmpProfile",
+                                        "non_null": false
+                                    },
+                                    "varName": "networkConfigSnmpProfile"
+                                }
+                            },
+                            "inputFields": null,
+                            "interfaces": {},
+                            "kind": "OBJECT",
+                            "name": "NetworkConfigSnmpQueries",
+                            "possibleTypes": null
+                        },
+                        "indexType": "object",
+                        "kind": [
+                            "NON_NULL",
+                            "OBJECT"
+                        ],
+                        "name": "NetworkConfigSnmpQueries",
+                        "non_null": false
+                    },
+                    "varName": "networkConfigSnmpQueries"
+                }
+            },
+            "inputFields": null,
+            "interfaces": [],
+            "kind": "OBJECT",
+            "name": "NetworkConfigQueries",
+            "possibleTypes": null
+        },
+        "indexType": "object",
+        "kind": [
+            "OBJECT"
+        ],
+        "name": "NetworkConfigQueries",
+        "non_null": false
+    },
+    "variablesPayload": {
+        "networkConfigSnmpProfileRefInput": {
+            "by": "ID",
+            "input": "string"
+        }
+    }
+}

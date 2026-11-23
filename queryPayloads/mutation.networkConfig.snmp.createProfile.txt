@@ -1,0 +1,24 @@
+mutation networkConfigSnmpCreateProfile ( $accountId:ID! $networkConfigSnmpCreateProfileInput:NetworkConfigSnmpCreateProfileInput!) {
+	networkConfig ( accountId:$accountId ) {
+		snmp {
+			createProfile ( input:$networkConfigSnmpCreateProfileInput   ) {
+				snmpProfile {
+					id
+					name
+					username
+					securityLevel
+					authProtocol
+					privacyProtocol
+					description
+					audit {
+						updatedTime
+						updatedBy {
+							id
+							name
+						}
+					}
+				}
+			}
+		}
+	}	
+}

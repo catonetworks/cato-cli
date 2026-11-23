@@ -81,6 +81,27 @@ mutation policySiteWebProxyRemoveRule ( $accountId:ID! $siteWebProxyPolicyMutati
 									domain
 								}
 								action
+								tracking {
+									event {
+										enabled
+									}
+									alert {
+										enabled
+										frequency
+										subscriptionGroup {
+											id
+											name
+										}
+										webhook {
+											id
+											name
+										}
+										mailingList {
+											id
+											name
+										}
+									}
+								}
 							}
 							properties
 						}
@@ -109,6 +130,11 @@ mutation policySiteWebProxyRemoveRule ( $accountId:ID! $siteWebProxyPolicyMutati
 					changes
 					createdTime
 					updatedTime
+					state
+					audit {
+						publishedTime
+						publishedBy
+					}
 				}
 				status
 				errors {

@@ -66,6 +66,6 @@ catocli mutation policy ztnaAlwaysOn addRule '{
 
 #### Operation Arguments for mutation.policy.ztnaAlwaysOn.addRule ####
 
-`accountId` [ID] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
 `ztnaAlwaysOnAddRuleInput` [ZtnaAlwaysOnAddRuleInput] - (required) Parameters for this policy operation.
 `ztnaAlwaysOnPolicyMutationInput` [ZtnaAlwaysOnPolicyMutationInput] - (required) Parameters for this policy operation.

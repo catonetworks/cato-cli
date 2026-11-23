@@ -27,6 +27,6 @@ catocli mutation policy internetFirewall removeSection '{
 
 #### Operation Arguments for mutation.policy.internetFirewall.removeSection ####
 
-`accountId` [ID] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
 `internetFirewallPolicyMutationInput` [InternetFirewallPolicyMutationInput] - (required) N/A
 `policyRemoveSectionInput` [PolicyRemoveSectionInput] - (required) N/A

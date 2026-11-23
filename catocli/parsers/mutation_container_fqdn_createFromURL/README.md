@@ -49,5 +49,5 @@ catocli mutation container fqdn createFromURL '{
 
 #### Operation Arguments for mutation.container.fqdn.createFromURL ####
 
-`accountId` [ID] - (required) N/A
-`createFqdnContainerFromUrlInput` [CreateFqdnContainerFromUrlInput] - (required) N/A
+`accountId` [ID] - (required) ID of the account whose containers are accessed.
+`createFqdnContainerFromUrlInput` [CreateFqdnContainerFromUrlInput] - (required) Container name, source URL, file format and synchronization settings.

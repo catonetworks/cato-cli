@@ -1,0 +1,24 @@
+query policyAppTenantRestrictionRevisions ( $accountId:ID! $policyRevisionsInput:PolicyRevisionsInput!) {
+	policy ( accountId:$accountId ) {
+		appTenantRestriction {
+			revisions ( input:$policyRevisionsInput   ) {
+				revision {
+					id
+					name
+					description
+					changes
+					createdTime
+					updatedTime
+					state
+					audit {
+						publishedTime
+						publishedBy
+					}
+				}
+				paging {
+					total
+				}
+			}
+		}
+	}	
+}

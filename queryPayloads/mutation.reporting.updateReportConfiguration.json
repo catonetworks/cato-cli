@@ -1,0 +1,34 @@
+{
+    "operationName": "reportingUpdateReportConfiguration",
+    "query": "mutation reportingUpdateReportConfiguration ( $accountId:ID! $reportingUpdateReportConfigurationInput:ReportingUpdateReportConfigurationInput!) {\n\treporting ( accountId:$accountId ) {\n\t\tupdateReportConfiguration ( input:$reportingUpdateReportConfigurationInput  )  {\n\t\t\tconfiguration {\n\t\t\t\tid\n\t\t\t\tname\n\t\t\t\ttemplateId\n\t\t\t\ttemplateName\n\t\t\t\ttimeFrame\n\t\t\t\tfilter {\n\t\t\t\t\tfield\n\t\t\t\t\toperator\n\t\t\t\t\tvalue\n\t\t\t\t}\n\t\t\t\tschedule {\n\t\t\t\t\tfrequency\n\t\t\t\t\tdayOfWeek\n\t\t\t\t\tdayOfMonth\n\t\t\t\t\tnextRunAt\n\t\t\t\t}\n\t\t\t\tmailingList {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t}\n\t\t\t\tenabled\n\t\t\t\ttimeZone\n\t\t\t\trenderingFormat\n\t\t\t\tlastModified\n\t\t\t}\n\t\t}\n\t}\t\n}",
+    "variables": {
+        "reportingUpdateReportConfigurationInput": {
+            "enabled": true,
+            "filter": [
+                {
+                    "field": "SITE_NAME",
+                    "operator": "is",
+                    "value": [
+                        "string1",
+                        "string2"
+                    ]
+                }
+            ],
+            "id": "id",
+            "mailingList": {
+                "by": "ID",
+                "input": "string"
+            },
+            "name": "string",
+            "renderingFormat": "PDF",
+            "schedule": {
+                "dayOfMonth": "FIRST_DAY",
+                "dayOfWeek": "SUNDAY",
+                "frequency": "DAILY"
+            },
+            "templateId": "id",
+            "timeFrame": "last.P1D",
+            "timeZone": "America/New_York"
+        }
+    }
+}

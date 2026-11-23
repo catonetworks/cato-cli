@@ -77,6 +77,6 @@ catocli mutation groups createGroup '{
 
 #### Operation Arguments for mutation.groups.createGroup ####
 
-`accountId` [ID] - (required) N/A
-`createGroupInput` [CreateGroupInput] - (required) N/A
-`groupMembersListInput` [GroupMembersListInput] - (optional) N/A
+`accountId` [ID] - (required) ID of the account in which to create, update, or delete groups.
+`createGroupInput` [CreateGroupInput] - (required) Name, description, and initial members of the group to create.
+`groupMembersListInput` [GroupMembersListInput] - (optional) Filters, sorting, and pagination for the group members to retrieve.

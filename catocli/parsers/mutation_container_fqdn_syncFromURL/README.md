@@ -25,5 +25,5 @@ catocli mutation container fqdn syncFromURL '{
 
 #### Operation Arguments for mutation.container.fqdn.syncFromURL ####
 
-`accountId` [ID] - (required) N/A
-`syncFqdnContainerFromUrlInput` [SyncFqdnContainerFromUrlInput] - (required) N/A
+`accountId` [ID] - (required) ID of the account whose containers are accessed.
+`syncFqdnContainerFromUrlInput` [SyncFqdnContainerFromUrlInput] - (required) Reference identifying the container to synchronize.

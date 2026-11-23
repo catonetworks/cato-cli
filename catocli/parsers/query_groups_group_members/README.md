@@ -115,6 +115,6 @@ catocli query groups group members '{
 
 #### Operation Arguments for query.groups.group.members ####
 
-`accountId` [ID] - (required) N/A
-`groupMembersListInput` [GroupMembersListInput] - (required) N/A
-`groupRefInput` [GroupRefInput] - (required) N/A
+`accountId` [ID] - (required) ID of the account to query for groups.
+`groupMembersListInput` [GroupMembersListInput] - (required) Filters, sorting, and pagination for the group members to retrieve.
+`groupRefInput` [GroupRefInput] - (required) Group to retrieve, identified by ID or name.

@@ -31,5 +31,5 @@ catocli mutation container ipAddressRange addValues '{
 
 #### Operation Arguments for mutation.container.ipAddressRange.addValues ####
 
-`accountId` [ID] - (required) N/A
-`ipAddressRangeContainerAddValuesInput` [IpAddressRangeContainerAddValuesInput] - (required) N/A
+`accountId` [ID] - (required) ID of the account whose containers are accessed.
+`ipAddressRangeContainerAddValuesInput` [IpAddressRangeContainerAddValuesInput] - (required) Container reference and values to add.

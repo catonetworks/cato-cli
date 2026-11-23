@@ -828,6 +828,6 @@ catocli mutation policy applicationControl updateRule '{
 
 #### Operation Arguments for mutation.policy.applicationControl.updateRule ####
 
-`accountId` [ID] - (required) N/A
-`applicationControlPolicyMutationInput` [ApplicationControlPolicyMutationInput] - (required) N/A
-`applicationControlUpdateRuleInput` [ApplicationControlUpdateRuleInput] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
+`applicationControlPolicyMutationInput` [ApplicationControlPolicyMutationInput] - (required) Parameters for this policy operation.
+`applicationControlUpdateRuleInput` [ApplicationControlUpdateRuleInput] - (required) Parameters for this policy operation.

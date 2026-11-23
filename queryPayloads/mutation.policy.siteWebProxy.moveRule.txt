@@ -81,6 +81,27 @@ mutation policySiteWebProxyMoveRule ( $accountId:ID! $siteWebProxyPolicyMutation
 									domain
 								}
 								action
+								tracking {
+									event {
+										enabled
+									}
+									alert {
+										enabled
+										frequency
+										subscriptionGroup {
+											id
+											name
+										}
+										webhook {
+											id
+											name
+										}
+										mailingList {
+											id
+											name
+										}
+									}
+								}
 							}
 							properties
 						}
@@ -109,6 +130,11 @@ mutation policySiteWebProxyMoveRule ( $accountId:ID! $siteWebProxyPolicyMutation
 					changes
 					createdTime
 					updatedTime
+					state
+					audit {
+						publishedTime
+						publishedBy
+					}
 				}
 				status
 				errors {

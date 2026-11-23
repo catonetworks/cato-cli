@@ -27,6 +27,6 @@ catocli mutation policy clientConnectivity discardPolicyRevision '{
 
 #### Operation Arguments for mutation.policy.clientConnectivity.discardPolicyRevision ####
 
-`accountId` [ID] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
 `clientConnectivityPolicyMutationInput` [ClientConnectivityPolicyMutationInput] - (required) Parameters for this policy operation.
 `policyDiscardRevisionInput` [PolicyDiscardRevisionInput] - (required) Parameters for this policy operation.

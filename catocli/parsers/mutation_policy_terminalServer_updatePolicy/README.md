@@ -27,6 +27,6 @@ catocli mutation policy terminalServer updatePolicy '{
 
 #### Operation Arguments for mutation.policy.terminalServer.updatePolicy ####
 
-`accountId` [ID] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
 `terminalServerPolicyMutationInput` [TerminalServerPolicyMutationInput] - (required) Parameters for this policy operation.
 `terminalServerPolicyUpdateInput` [TerminalServerPolicyUpdateInput] - (required) Parameters for this policy operation.

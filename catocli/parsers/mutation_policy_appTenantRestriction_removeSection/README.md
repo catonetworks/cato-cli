@@ -27,6 +27,6 @@ catocli mutation policy appTenantRestriction removeSection '{
 
 #### Operation Arguments for mutation.policy.appTenantRestriction.removeSection ####
 
-`accountId` [ID] - (required) N/A
-`appTenantRestrictionPolicyMutationInput` [AppTenantRestrictionPolicyMutationInput] - (required) N/A
-`policyRemoveSectionInput` [PolicyRemoveSectionInput] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
+`appTenantRestrictionPolicyMutationInput` [AppTenantRestrictionPolicyMutationInput] - (required) Parameters for this policy operation.
+`policyRemoveSectionInput` [PolicyRemoveSectionInput] - (required) Parameters for this policy operation.

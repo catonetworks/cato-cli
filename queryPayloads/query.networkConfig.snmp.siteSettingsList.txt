@@ -1,0 +1,29 @@
+query networkConfigSnmpSiteSettingsList ( $accountId:ID! $networkConfigSnmpSiteSettingsListInput:NetworkConfigSnmpSiteSettingsListInput!) {
+	networkConfig ( accountId:$accountId ) {
+		snmp {
+			siteSettingsList ( input:$networkConfigSnmpSiteSettingsListInput   ) {
+				items {
+					site {
+						id
+						name
+					}
+					profile {
+						id
+						name
+					}
+					enabled
+					audit {
+						updatedTime
+						updatedBy {
+							id
+							name
+						}
+					}
+				}
+				paging {
+					total
+				}
+			}
+		}
+	}	
+}

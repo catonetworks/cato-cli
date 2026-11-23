@@ -27,6 +27,6 @@ catocli mutation policy splitTunnel discardPolicyRevision '{
 
 #### Operation Arguments for mutation.policy.splitTunnel.discardPolicyRevision ####
 
-`accountId` [ID] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
 `policyDiscardRevisionInput` [PolicyDiscardRevisionInput] - (required) Parameters for this policy operation.
 `splitTunnelPolicyMutationInput` [SplitTunnelPolicyMutationInput] - (required) Parameters for this policy operation.

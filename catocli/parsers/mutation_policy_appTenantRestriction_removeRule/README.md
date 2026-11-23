@@ -27,6 +27,6 @@ catocli mutation policy appTenantRestriction removeRule '{
 
 #### Operation Arguments for mutation.policy.appTenantRestriction.removeRule ####
 
-`accountId` [ID] - (required) N/A
-`appTenantRestrictionPolicyMutationInput` [AppTenantRestrictionPolicyMutationInput] - (required) N/A
-`appTenantRestrictionRemoveRuleInput` [AppTenantRestrictionRemoveRuleInput] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
+`appTenantRestrictionPolicyMutationInput` [AppTenantRestrictionPolicyMutationInput] - (required) Parameters for this policy operation.
+`appTenantRestrictionRemoveRuleInput` [AppTenantRestrictionRemoveRuleInput] - (required) Parameters for this policy operation.

@@ -33,6 +33,6 @@ catocli mutation policy remotePortFwd addSection '{
 
 #### Operation Arguments for mutation.policy.remotePortFwd.addSection ####
 
-`accountId` [ID] - (required) N/A
+`accountId` [ID] - (required) Account whose policies are accessed.
 `policyAddSectionInput` [PolicyAddSectionInput] - (required) N/A
 `remotePortFwdPolicyMutationInput` [RemotePortFwdPolicyMutationInput] - (required) N/A

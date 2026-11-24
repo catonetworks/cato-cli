@@ -413,7 +413,10 @@ def export_socket_site_to_json(args, configuration, bucket=None):
                     print(f"DEBUG: Built precedence map with {len(precedence_map)} entries: {precedence_map}")
 
                 for interface in site_interfaces:
-                    role = interface.get('wanRoleInterfaceInfo', "")
+                    # accountSnapshot returns the role UPPER-case ("WAN_1") but the mutation
+                    # enum SocketInterfaceRole is lower-case (wan_1..wan_4); normalise so WAN
+                    # interfaces are recognised AND re-creatable (was silently dropping them).
+                    role = (interface.get('wanRoleInterfaceInfo') or "").lower()
                     dest_type = interface.get('destType', "")
                     interfaceName = interface.get('id', "")
                     
@@ -986,7 +989,10 @@ def get_processed_site_data(args, configuration):
                 print(f"DEBUG: Built precedence map with {len(precedence_map)} entries: {precedence_map}")
 
             for interface in site_interfaces:
-                role = interface.get('wanRoleInterfaceInfo', "")
+                # accountSnapshot returns the role UPPER-case ("WAN_1") but the mutation
+                # enum SocketInterfaceRole is lower-case (wan_1..wan_4); normalise so WAN
+                # interfaces are recognised AND re-creatable (was silently dropping them).
+                role = (interface.get('wanRoleInterfaceInfo') or "").lower()
                 dest_type = interface.get('destType', "")
                 interfaceName = interface.get('id', "")
                 

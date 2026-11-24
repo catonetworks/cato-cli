@@ -1252,6 +1252,10 @@ def export_apc_rules_to_json(args, configuration):
         response = makeCall(args, configuration, policy_query)
         processed_data = strip_ids_recursive(response)
         policy_node = processed_data['data']['policy']['applicationControl']['policy']
+        # Keep the Data Control sub-toggle (ENABLED/DISABLED) before dropping the
+        # rest of additionalAttributes -- it is part of the policy's config and a
+        # replica that loses it comes up with Data Control off.
+        policy_node['policy_data_control_enabled'] = (policy_node.get('additionalAttributes') or {}).get('dataControlEnabled')
         policy_node.pop('additionalAttributes', None)
         # Surface the account-level policy enable flag under a stable, import-friendly
         # top-level key alongside rules/sections (additive, backward-compatible).

@@ -426,6 +426,13 @@ def export_socket_site_to_json(args, configuration, bucket=None):
                         'name': interface.get('name', ""),
                         'role': role
                     }
+
+                    # WAN-capable ports a NEW socket may bring up by default (e.g. the
+                    # X1600 LTE cellular port comes up as wan_2). Record the ones the
+                    # source has explicitly disabled so a replica can switch them off too.
+                    if dest_type == "INTERFACE_DISABLED" and interfaceName in ("LTE", "USB1", "USB2"):
+                        cur_site.setdefault('disabled_interfaces', []).append(
+                            {'index': interfaceName, 'name': interface.get('name', "")})
                     
                     # Process WAN interfaces
                     if role is not None and role[0:3] == "wan":

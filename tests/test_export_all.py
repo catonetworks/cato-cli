@@ -146,51 +146,81 @@ class ExportAllTypesFilterTest(PreflightStubbedTestCase):
         self.assertEqual(self.called, ["groups"])
 
 
-class ExportAllAccessDeniedAbortTest(PreflightStubbedTestCase):
-    """(b) A mid-run access-denied failure aborts the whole run immediately,
-    regardless of continue-on-error / --fail-fast, and later types are never
-    invoked."""
+class ExportAllAccessDeniedTest(PreflightStubbedTestCase):
+    """(b) A type refused for lack of permission is recorded and the run carries on (permissions are per API:
+    a working key whose role lacks some is refused on just those types). Only a key refused on the first
+    EXPORT_ALL_DENIED_ABORT_STREAK types, before anything exported, aborts the run."""
 
-    def test_access_denied_aborts_immediately_and_skips_remaining_types(self):
-        args = self.parser.parse_args(
-            ["export", "all", "--types", "if_rules,dia_rules,wf_rules,groups"]
-        )
-        with self.assertRaises(SystemExit) as ctx:
-            args.func(args, None)
-        self.assertEqual(ctx.exception.code, 1)
-        # wf_rules and groups queue after dia_rules's access-denied failure
-        # and must never be called, even though continue-on-error is the
-        # default behavior for ordinary (non-access-denied) failures.
-        self.assertEqual(self.called, ["if_rules", "dia_rules"])
+    # The wording a real key got from the API when its role lacked the Socket Bypass permission.
+    INSUFFICIENT_PRIVILEGES = ("Unexpected error during API call - API returned errors: Exception while fetching "
+                               "data (/policy/socketBypass) : Access denied: Insufficient privileges for account 1234567")
 
-    def test_access_denied_abort_is_not_gated_behind_fail_fast(self):
-        # No --fail-fast passed here: proves the abort-on-access-denied
-        # behavior is unconditional, not an alias for --fail-fast.
-        args = self.parser.parse_args(
-            ["export", "all", "--types", "dia_rules,wf_rules"]
-        )
-        with self.assertRaises(SystemExit) as ctx:
-            args.func(args, None)
-        self.assertEqual(ctx.exception.code, 1)
-        self.assertEqual(self.called, ["dia_rules"])
-
-    def test_access_denied_raised_as_exception_also_aborts(self):
-        # Access-denied surfacing as a raised exception (e.g. from makeCall)
-        # rather than a returned {"success": False, ...} must abort too.
-        def raising_stub(args, configuration):
-            self.called.append("dia_rules")
-            raise RuntimeError(self.ACCESS_DENIED_ERROR)
-
+    def _deny(self, *names, raising=False):
         for name, sub_parser in self.registry.choices.items():
-            if name == "dia_rules":
-                sub_parser.set_defaults(func=raising_stub)
+            if name in names:
+                def stub(args, configuration, _name=name):
+                    self.called.append(_name)
+                    if raising:
+                        raise RuntimeError(self.INSUFFICIENT_PRIVILEGES)
+                    return [{"success": False, "error": self.INSUFFICIENT_PRIVILEGES}]
+                sub_parser.set_defaults(func=stub)
 
-        args = self.parser.parse_args(
-            ["export", "all", "--types", "dia_rules,wf_rules"]
-        )
-        with self.assertRaises(SystemExit) as ctx:
+    def _run(self, *argv):
+        import contextlib
+        import io
+        out = io.StringIO()
+        args = self.parser.parse_args(["export", "all", *argv])
+        with contextlib.redirect_stdout(out), self.assertRaises(SystemExit) as ctx:
             args.func(args, None)
-        self.assertEqual(ctx.exception.code, 1)
+        return ctx.exception.code, out.getvalue()
+
+    def test_the_real_insufficient_privileges_wording_counts_as_access_denied(self):
+        self.assertTrue(export_rules_module._is_access_denied_error(self.INSUFFICIENT_PRIVILEGES))
+        self.assertTrue(export_rules_module._is_access_denied_error(self.ACCESS_DENIED_ERROR))
+
+    def test_refused_type_mid_run_does_not_stop_the_run(self):
+        self._deny("sb_rules")
+        code, out = self._run("--types", "if_rules,sb_rules,wf_rules,apc_rules")
+        self.assertEqual(code, 1)  # still a failed run: something is missing
+        self.assertEqual(self.called, ["if_rules", "sb_rules", "wf_rules", "apc_rules"])
+        self.assertNotIn("ABORTING", out)
+        self.assertIn("Refused for lack of permission (1)", out)
+        self.assertIn("sb_rules: needs the 'Socket Bypass' permission", out)
+        self.assertIn("--types sb_rules", out)
+
+    def test_refused_as_an_exception_also_continues(self):
+        self._deny("dia_rules", raising=True)
+        code, out = self._run("--types", "dia_rules,wf_rules")
+        self.assertEqual(code, 1)
+        self.assertEqual(self.called, ["dia_rules", "wf_rules"])
+        self.assertIn("dia_rules: needs the 'SDP IP Allocation Policy' permission", out)
+
+    def test_refusals_after_a_success_never_abort(self):
+        self._deny("sb_rules", "tls_rules", "wf_rules", "dia_rules")
+        code, out = self._run("--types", "if_rules,sb_rules,tls_rules,wf_rules,dia_rules,apc_rules")
+        self.assertEqual(code, 1)
+        self.assertEqual(len(self.called), 6)
+        self.assertIn("Refused for lack of permission (4)", out)
+        self.assertIn("--types sb_rules,tls_rules,wf_rules,dia_rules", out)
+
+    def test_a_key_refused_on_the_first_three_types_aborts(self):
+        self._deny("if_rules", "wf_rules", "dia_rules")
+        code, out = self._run("--types", "if_rules,wf_rules,dia_rules,groups,apc_rules")
+        self.assertEqual(code, 1)
+        self.assertEqual(self.called, ["if_rules", "wf_rules", "dia_rules"])  # groups and apc_rules never called
+        self.assertIn("ABORTING", out)
+        self.assertIn("skipping the remaining 2 export type(s)", out)
+
+    def test_an_ordinary_failure_breaks_the_refusal_streak(self):
+        self._deny("if_rules", "wf_rules", "dia_rules")
+        code, _ = self._run("--types", "if_rules,wf_rules,groups,dia_rules,apc_rules")  # groups: ordinary failure
+        self.assertEqual(code, 1)
+        self.assertEqual(len(self.called), 5)
+
+    def test_fail_fast_still_stops_at_a_refusal(self):
+        self._deny("dia_rules")
+        code, _ = self._run("--types", "dia_rules,wf_rules", "--fail-fast")
+        self.assertEqual(code, 1)
         self.assertEqual(self.called, ["dia_rules"])
 
 

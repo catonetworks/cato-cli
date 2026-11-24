@@ -2115,14 +2115,34 @@ def export_sb_rules_to_json(args, configuration):
         args, configuration, 'socketBypass', SB_POLICY_QUERY, 'sb', 'Socket Bypass')
 
 
+# An access-denied run is only aborted when the key is refused on this many types in a row before any type has
+# succeeded: a key with no useful access then stops at once instead of printing the same error for every type.
+# A key that works but whose admin role lacks some permissions is refused only on those types, so the run
+# carries on and the summary lists them.
+EXPORT_ALL_DENIED_ABORT_STREAK = 3
+
+# The admin-role permission each policy type's API needs (API reference, "Required Permissions"), named in the
+# summary so whoever manages the key's role knows exactly what to add.
+EXPORT_TYPE_PERMISSION = {
+    'if_rules': 'Internet Firewall', 'wf_rules': 'WAN Firewall', 'wnw_rules': 'Network Rules',
+    'apc_rules': 'Application Control', 'atr_rules': 'Application Control', 'tls_rules': 'TLS Inspection',
+    'sb_rules': 'Socket Bypass', 'lan_fw_rules': 'Socket LAN Network', 'cc_rules': 'Client Connectivity Policy',
+    'pa_rules': 'Private Access Policy', 'st_rules': 'SDP Split Tunnel', 'ao_rules': 'Always On Policy',
+    'dia_rules': 'SDP IP Allocation Policy', 'ssia_rules': 'SDP IP Allocation Policy',
+    'rpf_rules': 'Remote Port Forwarding', 'swp_rules': 'Site Web Proxy', 'amfh_rules': 'Anti Malware',
+    'ts_rules': 'User Awareness',
+}
+
+
 def _is_access_denied_error(error_text):
     """Case-insensitive match for the Cato API's access-denied signature.
 
-    Used by export_all_to_json to fatally abort the whole run the moment one
-    type hits this, instead of grinding through every remaining type hitting
-    the identical wall - observed live: an under-privileged API key printed
-    the same "Access denied: ... does not have sufficient permissions"
-    error for type after type until the run finally finished on its own."""
+    Used by export_all_to_json to record a type as refused (the key's admin role lacks that API's permission),
+    and to abort the run early only when the key is refused on the first EXPORT_ALL_DENIED_ABORT_STREAK types
+    in a row - observed live: an under-privileged API key printed the same "Access denied: ... does not have
+    sufficient permissions" error for type after type until the run finally finished on its own. Also observed
+    live: a working key refused on just one policy type ("Access denied: Insufficient privileges for account
+    ..."), where aborting threw away every type after it."""
     if not error_text:
         return False
     text = str(error_text).lower()
@@ -2205,15 +2225,15 @@ def export_all_to_json(args, configuration):
 
     --types restricts the run to a comma-separated subset of type names.
     One failing type does NOT abort the run by default (continue-on-error);
-    pass --fail-fast to stop at the first failure instead. The one exception
-    to continue-on-error is an access-denied failure (see
-    _is_access_denied_error): permissions are granted per-API, so a key that
-    lacks permission for one operation will almost always lack it for every
-    remaining one too - continuing would just reprint the identical error for
-    every remaining type (this is exactly what happened in the field: an
-    under-privileged key ground through type after type printing the same
-    "Access denied" error). An access-denied failure therefore aborts the
-    run immediately regardless of --fail-fast.
+    pass --fail-fast to stop at the first failure instead. That includes an
+    access-denied failure (see _is_access_denied_error): permissions are
+    granted per API, and a working key whose admin role lacks some of them is
+    refused on just those types, so the run carries on, and the summary lists
+    each refused type with the permission it needs and the --types command
+    that re-exports only those. The one exception: if the key is refused on
+    the first EXPORT_ALL_DENIED_ABORT_STREAK types in a row before any type
+    has succeeded, it has no useful access, so the run aborts there instead
+    of printing the same error for every remaining type.
 
     --no-account-suffix is off by default (preserving today's filenames).
     When set, each type's own produced file is renamed in place
@@ -2344,8 +2364,17 @@ def export_all_to_json(args, configuration):
     succeeded = []
     succeeded_output_files = []
     failed = []
+    refused = []
+    denied_streak = 0
     aborted_access_denied = False
     attempted = 0
+
+    def _refused(export_type):
+        """Record an access-denied type; True when the run should abort (a key with no useful access)."""
+        nonlocal denied_streak
+        refused.append(export_type)
+        denied_streak += 1
+        return not succeeded and denied_streak >= EXPORT_ALL_DENIED_ABORT_STREAK
 
     print(f"Exporting {total} type(s) into {getattr(args, 'output_directory', None) or 'config_data'}/\n")
 
@@ -2386,8 +2415,11 @@ def export_all_to_json(args, configuration):
             failed.append((export_type, error_text))
             print(f"{prefix}: FAILED ({error_text})")
             if _is_access_denied_error(error_text):
-                aborted_access_denied = True
-                break
+                if _refused(export_type):
+                    aborted_access_denied = True
+                    break
+            else:
+                denied_streak = 0
             if fail_fast:
                 break
             continue
@@ -2399,6 +2431,7 @@ def export_all_to_json(args, configuration):
         results.append({"type": export_type, "result": item})
 
         if item.get("success"):
+            denied_streak = 0
             output_file = item.get("output_file")
             if not output_file:
                 output_files = item.get("output_files")
@@ -2483,17 +2516,20 @@ def export_all_to_json(args, configuration):
             failed.append((export_type, error_msg))
             print(f"{prefix}: FAILED ({error_msg})")
             if _is_access_denied_error(error_msg):
-                aborted_access_denied = True
-                break
+                if _refused(export_type):
+                    aborted_access_denied = True
+                    break
+            else:
+                denied_streak = 0
             if fail_fast:
                 break
 
     if aborted_access_denied:
         skipped_types = types_to_run[attempted:]
         print(
-            f"\nABORTING: the API key does not have sufficient permissions for this operation "
-            f"(access denied on '{types_to_run[attempted - 1]}') - skipping the remaining "
-            f"{len(skipped_types)} export type(s). Verify the associated Admin or Service "
+            f"\nABORTING: the API key was refused on the first {len(refused)} export type(s) "
+            f"({', '.join(refused)}) and nothing has exported, so it has no useful access - skipping the "
+            f"remaining {len(skipped_types)} export type(s). Verify the associated Admin or Service "
             f"Principal permissions (see `catocli configure show`) and re-run."
         )
     else:
@@ -2527,6 +2563,15 @@ def export_all_to_json(args, configuration):
         print("Failed types:")
         for export_type, error_msg in failed:
             print(f"  - {export_type}: {error_msg}")
+    if refused and not aborted_access_denied:
+        print(f"\nRefused for lack of permission ({len(refused)}): the API key's admin role can't read "
+              f"{'this type' if len(refused) == 1 else 'these types'}.")
+        for export_type in refused:
+            permission = EXPORT_TYPE_PERMISSION.get(export_type)
+            print(f"  - {export_type}" + (f": needs the '{permission}' permission" if permission else ""))
+        print("Add the missing permissions to the key's admin role (or use a key from an admin whose role covers "
+              "the whole account), then export just these with the same options plus:")
+        print(f"  --types {','.join(refused)}")
 
     overall_success = len(failed) == 0 and not aborted_access_denied
     result = [{
@@ -2535,6 +2580,7 @@ def export_all_to_json(args, configuration):
         "failed": [{"type": t, "error": e} for t, e in failed],
         "results": results,
         "aborted_access_denied": aborted_access_denied,
+        "refused": refused,
         "skipped": skipped_types,
         "archive_directory": archive_directory if archive_enabled else None,
         "checklist_path": checklist_path,

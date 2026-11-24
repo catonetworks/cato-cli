@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+### Export
+
+- `catocli export all` no longer abandons the run when one type is refused for lack of permission ("Access denied"). A working key whose admin role lacks a permission is refused on just that type (for example `sb_rules` without the "Socket Bypass" permission); the run now carries on with every other type, and the summary lists each refused type with the permission it needs and the `--types` value that re-exports just those once the role is fixed. The run still exits non-zero, `--fail-fast` still stops at the first failure, and a key refused on the first 3 types before anything has exported still stops there.
+
 ## 3.3.0 (2026-11-04)
 
 Adds bulk export for the `1-dependencies` object types and account-level notification objects, plus WiFi SSID support for socket sites.

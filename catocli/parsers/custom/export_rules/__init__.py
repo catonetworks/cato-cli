@@ -533,10 +533,12 @@ is exported.
 One failing type does not abort the run (continue-on-error by default); the
 process exits non-zero if any requested type failed, after printing a
 per-type progress line and a final summary (succeeded/failed counts and
-error one-liners for each failed type). The one exception: if a type fails
-with an access-denied error, the whole run aborts immediately regardless of
---fail-fast, since a key denied one API will almost always be denied every
-remaining one too.
+error one-liners for each failed type). A type refused for lack of permission
+("Access denied") doesn't stop the run either: the summary lists each refused
+type with the admin-role permission it needs, and the --types value that
+re-exports just those once the role is fixed. The one exception: if the key
+is refused on the first 3 types before any type has exported, it has no
+useful access and the run stops there.
 
 Examples:
   # Export every registered type into ./config_data (uses CATO_ACCOUNT_ID environment variable)
